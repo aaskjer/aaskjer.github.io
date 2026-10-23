@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · aaskjer</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/img/avatar.png" type="image/png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+</head>
+<body class="notfound">
+  <main class="wrap">
+    <p class="kicker">Error 404</p>
+    <h1>This page took a <span class="grad">wrong turn</span></h1>
+    <p class="lead">It doesn't exist or it has moved.</p>
+    <a class="btn btn--primary" href="/">Back to the projects</a>
+  </main>
+</body>
+</html>

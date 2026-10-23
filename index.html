@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aaskjer · Streamer.bot extensions</title>
+  <meta name="description" content="Free, open-source Streamer.bot extensions by aaskjer: chat games, moderation and Discord go-live announcements for Twitch, YouTube and Kick.">
+  <link rel="canonical" href="https://aaskjer.github.io/">
+  <meta name="theme-color" content="#0b0a12">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aaskjer">
+  <meta property="og:url" content="https://aaskjer.github.io/">
+  <meta property="og:title" content="aaskjer · Streamer.bot extensions">
+  <meta property="og:description" content="Chat games, moderation and stream tools for Twitch, YouTube and Kick. Free and open source.">
+  <meta property="og:image" content="https://aaskjer.github.io/assets/img/avatar.png">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="assets/img/avatar.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/avatar.png">
+  <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    // Pick the theme before the first paint so the page never flashes.
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <script src="assets/js/projects.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top">
+        <img src="assets/img/avatar.png" alt="" width="32" height="32">
+        <span class="brand__name">aaskjer</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#tools">Tools</a>
+        <a href="#games">Games</a>
+        <a href="#start">Setup</a>
+      </nav>
+      <div class="topbar__actions">
+        <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub">
+          <svg class="i" aria-hidden="true"><use href="#i-github"/></svg>
+        </a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="i i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="i i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero__inner">
+        <div class="hero__text">
+          <p class="eyebrow">Streamer.bot extensions by aaskjer</p>
+          <h1>Chat games and stream tools for <span class="grad">Streamer.bot</span></h1>
+          <p class="lead">Moderation, Discord go-live announcements and a whole arcade of chat games for Twitch, YouTube and Kick. Free and open source.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#tools">Browse projects <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost" href="https://github.com/aaskjer"><svg class="i" aria-hidden="true"><use href="#i-github"/></svg> GitHub profile</a>
+          </div>
+          <dl class="stats">
+            <div><dt>Projects</dt><dd data-stat="projects">–</dd></div>
+            <div><dt>Downloads</dt><dd data-stat="downloads">–</dd></div>
+            <div><dt>GitHub stars</dt><dd data-stat="stars">–</dd></div>
+          </dl>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="collage" id="collage"></div>
+        </div>
+      </div>
+    </section>
+
+    <noscript>
+      <p class="wrap">The project list needs JavaScript. All projects are also on <a href="https://github.com/aaskjer?tab=repositories">GitHub</a>.</p>
+    </noscript>
+
+    <section class="section" id="tools" aria-labelledby="tools-title">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 id="tools-title">Stream tools</h2>
+          <p>Keep chat clean, let Discord know when you go live, and make your exports work on every PC.</p>
+        </div>
+        <div id="spotlight"></div>
+        <div class="grid" id="tools-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="games" aria-labelledby="games-title">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 id="games-title">Chat games</h2>
+          <p>Casino classics, quiz rounds and full games with OBS overlays. Chat plays on Twitch, YouTube and Kick, and every message a game sends can be rewritten.</p>
+        </div>
+        <div class="grid" id="games-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="more" aria-labelledby="more-title" hidden>
+      <div class="wrap">
+        <div class="section__head">
+          <h2 id="more-title">More on GitHub</h2>
+          <p>Newer and smaller projects, straight from GitHub.</p>
+        </div>
+        <div class="grid" id="more-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="start" aria-labelledby="start-title">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 id="start-title">Get started</h2>
+          <p>Every extension installs the same way.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="steps__n" aria-hidden="true">1</span>
+            <h3>Grab it</h3>
+            <p>Download the <code>.sb</code> file from the project's latest release, or copy its import string.</p>
+          </li>
+          <li>
+            <span class="steps__n" aria-hidden="true">2</span>
+            <h3>Import it</h3>
+            <p>Click <strong>Import</strong> in <a href="https://streamer.bot/">Streamer.bot</a>, drop the file in or paste the string, and confirm.</p>
+          </li>
+          <li>
+            <span class="steps__n" aria-hidden="true">3</span>
+            <h3>Make it yours</h3>
+            <p>Enable the commands, open the settings window and follow the project's setup guide.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__about">
+        <a class="brand" href="#top">
+          <img src="assets/img/avatar.png" alt="" width="32" height="32">
+          <span>aaskjer</span>
+        </a>
+        <p>Free, open-source extensions for Streamer.bot. Found a bug or have an idea? Open an issue on the project's GitHub page.</p>
+      </div>
+      <p class="footer__meta">© <span id="year">2026</span> aaskjer · Not affiliated with Streamer.bot, Twitch, YouTube or Kick.</p>
+    </div>
+  </footer>
+</body>
+</html>
