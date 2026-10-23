@@ -489,6 +489,7 @@ code {
 
 .collage__tile {
   display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   aspect-ratio: 1;
   padding: 16%;
@@ -608,6 +609,8 @@ a.collage__tile--me:focus-visible {
 
 .tile {
   display: grid;
+  /* a fixed track, so the logo's 100% height means the tile and not its own height */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   flex: none;
   width: 64px;
