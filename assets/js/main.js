@@ -84,9 +84,23 @@
     return `<span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>`;
   }
 
+  // The picture on top of a card; a click opens the full-size version in the lightbox.
+  function shot(p) {
+    if (!p.scene) return '';
+    const name = p.name || p.repo;
+    const thumb = p.scene.replace(/(\.\w+)$/, '-thumb$1');
+    return `
+        <button class="card__shot" type="button" data-full="${esc(p.scene)}" data-size="1600x900"
+                data-caption="${esc(name)} · example scene with sample chat" aria-label="Show a larger picture of ${esc(name)}">
+          <img src="${esc(thumb)}" alt="${esc(p.sceneAlt || '')}" width="960" height="540" loading="lazy" decoding="async">
+          <span class="zoom">${icon('expand')}</span>
+        </button>`;
+  }
+
   function card(p) {
     return `
       <article class="card" data-repo="${esc(p.repo)}">
+        ${shot(p)}
         <div class="card__head">
           ${logoTile(p)}
           <div class="card__heading">
@@ -127,7 +141,11 @@
         ${p.screenshot ? `
         <figure class="spotlight__shot">
           <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <img src="${esc(p.screenshot)}" alt="The ${esc(p.name)} settings window" width="940" height="640" loading="lazy" decoding="async">
+          <button class="shot-zoom" type="button" data-full="${esc(p.screenshotFull || p.screenshot)}" data-size="${p.screenshotFull ? '940x1461' : '940x640'}"
+                  data-caption="${esc(p.name)} · settings window" aria-label="Show the whole ${esc(p.name)} settings window">
+            <img src="${esc(p.screenshot)}" alt="The ${esc(p.name)} settings window" width="940" height="640" loading="lazy" decoding="async">
+            <span class="zoom">${icon('expand')}</span>
+          </button>
         </figure>` : ''}
       </article>`;
   }
@@ -277,6 +295,30 @@
     toggle.addEventListener('click', () => apply(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
   }
 
+  // One shared dialog shows any picture that has a data-full attribute at full size.
+  function setupLightbox() {
+    const dialog = $('#lightbox');
+    const img = dialog.querySelector('img');
+    const caption = dialog.querySelector('.lightbox__caption');
+    document.addEventListener('click', event => {
+      const trigger = event.target.closest('[data-full]');
+      if (!trigger) return;
+      // Sized up front from the known dimensions, fitted to the window, so the dialog does
+      // not jump while the picture loads. Without a size the CSS limits alone apply.
+      const [w, h] = (trigger.dataset.size || '').split('x').map(Number);
+      const fit = w && h ? Math.min(1, (innerWidth * 0.94 - 2) / w, (innerHeight * 0.94 - 58) / h) : 0;
+      img.style.width = fit ? Math.floor(w * fit) + 'px' : '';
+      img.style.height = fit ? Math.floor(h * fit) + 'px' : '';
+      img.src = trigger.dataset.full;
+      img.alt = trigger.querySelector('img')?.alt || '';
+      caption.textContent = trigger.dataset.caption || '';
+      dialog.showModal();
+    });
+    // a click on the dimmed backdrop lands on the dialog element itself
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => img.removeAttribute('src'));
+  }
+
   // Highlights the nav link of the section currently on screen.
   function setupNav() {
     const links = new Map([...document.querySelectorAll('.nav a')].map(a => [a.hash.slice(1), a]));
@@ -293,6 +335,7 @@
   render();
   setupTheme();
   setupNav();
+  setupLightbox();
   $('#year').textContent = new Date().getFullYear();
   loadLive().catch(() => { /* keep the numbers from projects.js */ });
 })();

@@ -718,6 +718,79 @@ a.collage__tile--me:focus-visible {
   outline-offset: 3px;
 }
 
+/* scene picture: full bleed across the top of the card, above the card-wide link */
+.card__shot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: -1.35rem -1.35rem 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+  background: var(--tile);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.card__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card__shot img {
+  transform: scale(1.03);
+}
+
+.card__shot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.shot-zoom {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgb(0 0 0 / 0.62);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.zoom .i {
+  width: 18px;
+  height: 18px;
+}
+
+.card__shot:hover .zoom,
+.card__shot:focus-visible .zoom,
+.shot-zoom:hover .zoom,
+.shot-zoom:focus-visible .zoom {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .zoom { opacity: 1; }
+}
+
 .card__head {
   display: flex;
   align-items: center;
@@ -1011,6 +1084,59 @@ a.collage__tile--me:focus-visible {
 
 .footer__meta p + p {
   margin-top: 0.4rem;
+}
+
+/* ---------- lightbox ---------- */
+
+.lightbox {
+  max-width: 94vw;
+  max-height: 94vh;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 40px 120px -20px rgb(0 0 0 / 0.8);
+  overflow: hidden;
+}
+
+.lightbox::backdrop {
+  background: rgb(5 4 10 / 0.84);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0.6rem 0.55rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.lightbox__caption {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.lightbox img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(94vw - 2px);
+  max-height: calc(94vh - 58px);
+  background: #000;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] {
+    animation: lightbox-in 0.2s ease;
+  }
+}
+
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.97); }
 }
 
 /* ---------- 404 ---------- */
