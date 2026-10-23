@@ -34,6 +34,7 @@ window.SITE = {
         'Alerts via Discord, Stoat, GameVox, ntfy or Windows',
       ],
       platforms: ['Twitch'],
+      tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Manual', href: 'Manual.md' },
       version: 'v4.0.1', stars: 4, downloads: 93,
     },

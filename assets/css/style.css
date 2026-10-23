@@ -974,8 +974,13 @@ code {
 }
 
 .footer__meta {
+  max-width: 34rem;
   color: var(--faint);
   font-size: 0.85rem;
+}
+
+.footer__meta p + p {
+  margin-top: 0.4rem;
 }
 
 /* ---------- 404 ---------- */
