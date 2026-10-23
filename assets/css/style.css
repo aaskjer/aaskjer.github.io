@@ -513,6 +513,7 @@ code {
 }
 
 .collage__tile--me {
+  position: relative;
   padding: 5%;
   border: 0;
   border-radius: 50%;
@@ -522,6 +523,32 @@ code {
 .collage__tile--me img {
   border-radius: 50%;
   filter: none;
+}
+
+a.collage__tile--me:hover {
+  box-shadow: 0 0 0 4px #9146ff, 0 18px 40px -16px rgb(145 70 255 / 0.9);
+}
+
+a.collage__tile--me:focus-visible {
+  outline-offset: 5px;
+  border-radius: 50%;
+}
+
+.collage__badge {
+  position: absolute;
+  left: 50%;
+  bottom: -4%;
+  translate: -50% 0;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: #9146ff;
+  box-shadow: 0 0 0 3px var(--bg);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: no-preference) {

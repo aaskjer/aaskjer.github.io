@@ -16,6 +16,7 @@
  */
 window.SITE = {
   user: 'aaskjer',
+  twitch: 'https://www.twitch.tv/aaskjer',
   projects: [
     {
       repo: 'TwitchSentry',

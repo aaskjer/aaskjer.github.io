@@ -5,7 +5,7 @@
 (() => {
   'use strict';
 
-  const { user, projects } = window.SITE;
+  const { user, twitch, projects } = window.SITE;
   const API = 'https://api.github.com';
   const CACHE_KEY = 'github-live-v1';
   // GitHub allows 60 requests per hour without a token, so one visit's
@@ -133,9 +133,13 @@
   }
 
   function collage() {
+    // the logos repeat the card links, so only the avatar is reachable by keyboard
     const tiles = projects.filter(p => p.logo).slice(0, 8).map((p, i) =>
-      `<a class="collage__tile" style="--i:${i}" href="${repoUrl(p.repo)}" tabindex="-1"><img src="${esc(p.logo)}" alt=""></a>`);
-    tiles.splice(4, 0, '<div class="collage__tile collage__tile--me" style="--i:4"><img src="assets/img/avatar.png" alt=""></div>');
+      `<a class="collage__tile" style="--i:${i}" href="${repoUrl(p.repo)}" tabindex="-1" aria-hidden="true"><img src="${esc(p.logo)}" alt=""></a>`);
+    const avatar = '<img src="assets/img/avatar.png" alt="">';
+    tiles.splice(4, 0, twitch
+      ? `<a class="collage__tile collage__tile--me" style="--i:4" href="${esc(twitch)}" title="aaskjer on Twitch" aria-label="aaskjer on Twitch">${avatar}<span class="collage__badge" aria-hidden="true">Twitch</span></a>`
+      : `<div class="collage__tile collage__tile--me" style="--i:4">${avatar}</div>`);
     return tiles.join('');
   }
 
