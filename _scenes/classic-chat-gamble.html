@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Classic Chat Gamble scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(640px 520px at 25% 50%, rgba(34, 211, 238, .2), transparent 70%),
+      radial-gradient(520px 420px at 22% 48%, rgba(57, 255, 136, .16), transparent 70%),
+      linear-gradient(150deg, #071d18 0%, #060f10 55%, #050608 100%);
+  }
+  .mark { --glow: #22d3ee; }
+  .chat { --accent: #39ff88; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <div class="mark"><img src="img/classic-chat-gamble.png" alt=""></div>
+
+  <section class="chat chat--wide">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c6">Mr_Wiggles</span>!gamble 100</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@Mr_Wiggles, unlucky! You LOST 100 Points. New balance: 150 Points.</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!gamble 200</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@PixelPanda, WINS! 🎉 You got 200 Points! New balance: 650 Points.</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>!gamble all</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@CozyKoala, unlucky! You LOST 420 Points. New balance: 0 Points.</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>rip 💀</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>!gamble 50%</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@NoScopeNick, WINS! 🎉 You got 300 Points! New balance: 900 Points.</li>
+      <li class="msg"><span class="n c5">SaltySeagull</span>!gamble half</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🎰 J A C K P O T 🎰 @SaltySeagull you WON the JACKPOT of: 800 Points! New balance: 960 Points.</li>
+      <li class="msg"><span class="n c6">Mr_Wiggles</span>LETS GOOOO</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>!gamble all &lt;- never again 😭</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>

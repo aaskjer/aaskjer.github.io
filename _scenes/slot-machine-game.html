@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Slot Machine Game scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255, 210, 63, .25) 0 6px, transparent 40px),
+      radial-gradient(circle at 34% 84%, rgba(236, 72, 153, .3) 0 8px, transparent 60px),
+      radial-gradient(circle at 58% 12%, rgba(96, 165, 250, .25) 0 6px, transparent 46px),
+      radial-gradient(circle at 8% 70%, rgba(168, 85, 247, .3) 0 10px, transparent 70px),
+      radial-gradient(680px 520px at 25% 50%, rgba(168, 85, 247, .32), transparent 70%),
+      linear-gradient(150deg, #21103a 0%, #110920 55%, #07040c 100%);
+  }
+  .mark { --glow: #a855f7; }
+  .mark img { width: 470px; }
+  .chat { --accent: #ffd23f; }
+  .reels { font-size: 1.15em; letter-spacing: .02em; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <div class="mark"><img src="img/slot-machine-game.png" alt=""></div>
+
+  <section class="chat chat--wide">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c3">NoScopeNick</span>one more spin, then I'm done</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!slots 100</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span><span class="reels">🍒 || 🍋 || 🔔 || 🍒</span></li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@PixelPanda, you LOST! Better luck next time! -- Your new balance: 400 Points</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>!slots 250</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span><span class="reels">💎 || 💎 || 💎 || 🍋</span></li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@CozyKoala, you WON! 750 Points! 🎉🎉 -- Your new balance: 900 Points</li>
+      <li class="msg"><span class="n c5">SaltySeagull</span>!slots all</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span><span class="reels">7️⃣ || 7️⃣ || 7️⃣ || 7️⃣</span></li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🔥 J A C K P O T 🔥 @SaltySeagull, YOU WON 800 Points -- Your new balance: 880 Points</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>NO WAY 😱</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>ok one more spin</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>

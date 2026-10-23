@@ -10,6 +10,8 @@ Every card comes from [`assets/js/projects.js`](assets/js/projects.js): add, rem
 Stars, downloads, versions and "updated" dates are fetched live from the GitHub API.
 Public repositories that are not listed in that file show up on their own under **More on GitHub**.
 
+The pictures on top of the cards are rendered from the mockups in [`_scenes/`](_scenes/README.md), which also explains how to render them again.
+
 ## Local preview
 
 ```bash

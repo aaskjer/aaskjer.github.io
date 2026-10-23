@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+
+<head>
+
+<meta charset='utf-8'>
+
+<!-- hm-overlay-version: 5 -->
+
+<title>Hangman Overlay</title>
+
+<style>
+
+  html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
+
+  #stage {
+
+    position: absolute; top: 0; left: 0;
+
+    transform-origin: top left;
+
+    font-family: Consolas, Menlo, monospace;
+
+    color: var(--text);
+
+    padding: 14px 18px;
+
+    box-sizing: border-box;
+
+    background: var(--bg);
+
+    border-radius: 10px;
+
+    opacity: 0;
+
+    transition: opacity .35s ease;
+
+  }
+
+  #stage.show { opacity: 1; }
+
+  #stage.gone { opacity: 0; }
+
+  .row { display: flex; align-items: flex-start; gap: 18px; }
+
+  .figure { flex: 0 0 auto; }
+
+  .info { display: flex; flex-direction: column; justify-content: center; min-width: 240px; }
+
+  .cat {
+
+    font-size: calc(15px * var(--fs));
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+
+    color: var(--accent);
+
+    margin-bottom: 6px;
+
+  }
+
+  .word {
+
+    font-size: calc(34px * var(--fs));
+
+    font-weight: 700;
+
+    letter-spacing: .16em;
+
+    white-space: nowrap;
+
+    text-transform: uppercase;
+
+    text-shadow: 0 2px 6px rgba(0,0,0,.65);
+
+  }
+
+  .lives { font-size: calc(17px * var(--fs)); margin-top: 10px; }
+
+  .pip { letter-spacing: .18em; }
+
+  .pip .lost { opacity: .28; }
+
+  .meta { font-size: calc(14px * var(--fs)); margin-top: 8px; opacity: .85; }
+
+  .meta .lbl { color: var(--accent); letter-spacing: .06em; }
+
+  .wrong span { text-decoration: line-through; opacity: .75; }
+
+  .hint { font-size: calc(14px * var(--fs)); margin-top: 8px; font-style: italic; opacity: .9; }
+
+  .banner {
+
+    margin-top: 12px;
+
+    font-size: calc(20px * var(--fs));
+
+    font-weight: 700;
+
+    letter-spacing: .06em;
+
+  }
+
+  .banner.win { color: #4caf50; }
+
+  .banner.lose { color: #ef5350; }
+
+  svg { display: block; }
+
+  svg .part { opacity: 0; transition: opacity .25s ease; }
+
+  svg .part.on { opacity: 1; }
+
+  /* A CSS rule beats the stroke presentation attribute on the svg element, so the gallows can
+
+     take its own colour while the body keeps --fig. */
+
+  svg .part.gallows { stroke: var(--gallows); }
+
+</style>
+
+</head>
+
+<body>
+
+<div id='stage'>
+
+  <div class='row'>
+
+    <div class='figure'>
+
+      <svg id='fig' width='190' height='210' viewBox='0 0 200 220'
+
+           fill='none' stroke='var(--fig)' stroke-width='6'
+
+           stroke-linecap='round' stroke-linejoin='round'>
+
+        <line class='part gallows' data-part='base' x1='18'  y1='202' x2='112' y2='202'/>
+
+        <line class='part gallows' data-part='post' x1='42'  y1='202' x2='42'  y2='18'/>
+
+        <line class='part gallows' data-part='beam' x1='39'  y1='18'  x2='126' y2='18'/>
+
+        <line class='part gallows' data-part='rope' x1='124' y1='18'  x2='124' y2='40'/>
+
+        <circle class='part' data-part='head' cx='124' cy='56' r='16'/>
+
+        <line class='part' data-part='torso' x1='124' y1='72'  x2='124' y2='132'/>
+
+        <line class='part' data-part='armL'  x1='124' y1='86'  x2='97'  y2='112'/>
+
+        <line class='part' data-part='armR'  x1='124' y1='86'  x2='151' y2='112'/>
+
+        <line class='part' data-part='legL'  x1='124' y1='132' x2='99'  y2='174'/>
+
+        <line class='part' data-part='legR'  x1='124' y1='132' x2='149' y2='174'/>
+
+      </svg>
+
+    </div>
+
+    <div class='info'>
+
+      <div class='cat' id='cat'></div>
+
+      <div class='word' id='word'></div>
+
+      <div class='lives' id='lives'></div>
+
+      <div class='meta' id='guessed'></div>
+
+      <div class='meta wrong' id='wrong'></div>
+
+      <div class='meta wrong' id='wrongwords'></div>
+
+      <div class='hint' id='hint'></div>
+
+      <div class='banner' id='banner'></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+(function () {
+
+  var STATE_URL = 'hangman_state.json';
+
+  var POLL_MS = 400;
+
+
+
+  var ORDER_EXTENDED = ['base','post','beam','rope','head','torso','armL','armR','legL','legR'];
+
+  var ORDER_BODY     = ['head','torso','armL','armR','legL','legR'];
+
+  var GALLOWS        = ['base','post','beam','rope'];
+
+
+
+  var stage   = document.getElementById('stage');
+
+  var fig     = document.getElementById('fig');
+
+  var elCat   = document.getElementById('cat');
+
+  var elWord  = document.getElementById('word');
+
+  var elLives = document.getElementById('lives');
+
+  var elGuess = document.getElementById('guessed');
+
+  var elWrong = document.getElementById('wrong');
+
+  var elWords = document.getElementById('wrongwords');
+
+  var elHint  = document.getElementById('hint');
+
+  var elBan   = document.getElementById('banner');
+
+
+
+  var parts = {};
+
+  var nodes = fig.querySelectorAll('.part');
+
+  for (var i = 0; i < nodes.length; i++) parts[nodes[i].getAttribute('data-part')] = nodes[i];
+
+
+
+  var lastText = null;
+
+  var hideTimer = null;
+
+  var curScale = 1;
+
+  var MIN_WORD_FS = 18;
+
+
+
+  function setParts(mode, count) {
+
+    var order = (mode === 'extended') ? ORDER_EXTENDED : ORDER_BODY;
+
+    var on = {};
+
+    if (mode !== 'extended') {
+
+      for (var g = 0; g < GALLOWS.length; g++) on[GALLOWS[g]] = true;
+
+    }
+
+    for (var i = 0; i < order.length && i < count; i++) on[order[i]] = true;
+
+    for (var key in parts) {
+
+      if (on[key]) parts[key].classList.add('on');
+
+      else parts[key].classList.remove('on');
+
+    }
+
+  }
+
+
+
+  function hearts(lives, max) {
+
+    var out = '';
+
+    for (var i = 0; i < max; i++) {
+
+      out += (i < lives) ? '<span>&#9829;</span>' : '<span class=lost>&#9829;</span>';
+
+    }
+
+    return '<span class=pip>' + out + '</span>';
+
+  }
+
+
+
+  function esc(s) {
+
+    return String(s === null || s === undefined ? '' : s)
+
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  }
+
+
+
+  function hexToRgba(hex, alpha) {
+
+    var h = String(hex || '#000000').replace('#', '');
+
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+
+    var n = parseInt(h, 16);
+
+    if (isNaN(n)) return 'rgba(0,0,0,' + alpha + ')';
+
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + alpha + ')';
+
+  }
+
+
+
+  function fitWord() {
+
+    elWord.style.fontSize = '';
+
+    elWord.style.maxWidth = '';
+
+    elWord.style.whiteSpace = '';
+
+    if (!elWord.textContent) return;
+
+
+
+    var scale = curScale > 0 ? curScale : 1;
+
+    var base = parseFloat(getComputedStyle(elWord).fontSize) || 34;
+
+    var padRight = parseFloat(getComputedStyle(stage).paddingRight) || 0;
+
+    var avail = (window.innerWidth / scale) - (elWord.getBoundingClientRect().left / scale) - padRight;
+
+    if (!(avail > 0)) return;
+
+
+
+    if (elWord.scrollWidth <= avail) return;
+
+
+
+    var fs = Math.max(MIN_WORD_FS, Math.floor(base * avail / elWord.scrollWidth));
+
+    elWord.style.fontSize = fs + 'px';
+
+    while (fs > MIN_WORD_FS && elWord.scrollWidth > avail) {
+
+      fs -= 1;
+
+      elWord.style.fontSize = fs + 'px';
+
+    }
+
+
+
+    if (elWord.scrollWidth > avail) {
+
+      elWord.style.maxWidth = avail + 'px';
+
+      elWord.style.whiteSpace = 'normal';
+
+    }
+
+  }
+
+
+
+  function render(s) {
+
+    var o = s.overlay || {};
+
+    var root = document.documentElement.style;
+
+
+
+    root.setProperty('--fig', o.figureColor || '#f2f2f2');
+
+    root.setProperty('--gallows', o.gallowsColor || o.figureColor || '#f2f2f2');
+
+    root.setProperty('--text', o.textColor || '#ffffff');
+
+    root.setProperty('--accent', o.accentColor || '#e91e63');
+
+    root.setProperty('--bg', hexToRgba(o.bgColor, typeof o.bgOpacity === 'number' ? o.bgOpacity : 0));
+
+    root.setProperty('--fs', o.fontScale || 1);
+
+    curScale = o.scale || 1;
+
+    stage.style.transform = 'scale(' + curScale + ')';
+
+
+
+    setParts(o.mode, typeof o.stage === 'number' ? o.stage : 0);
+
+
+
+    elCat.style.display   = (o.showCategory && s.category) ? '' : 'none';
+
+    elCat.textContent     = s.category || '';
+
+    elWord.textContent    = s.masked || '';
+
+
+
+    elLives.style.display = o.showLives ? '' : 'none';
+
+    elLives.innerHTML     = hearts(s.lives || 0, s.maxlives || 0);
+
+
+
+    var hasGuessed = o.showGuessed && s.guessed && s.guessed !== '-';
+
+    elGuess.style.display = hasGuessed ? '' : 'none';
+
+    elGuess.innerHTML     = '<span class=lbl>GUESSED</span> ' + esc(s.guessed);
+
+
+
+    var hasWrong = o.showWrong && s.wrong && s.wrong !== '-';
+
+    elWrong.style.display = hasWrong ? '' : 'none';
+
+    elWrong.innerHTML     = '<span class=lbl>WRONG</span> <span>' + esc(s.wrong) + '</span>';
+
+
+
+    var hasWords = o.showWrongWords && s.wrongWords && s.wrongWords !== '-';
+
+    elWords.style.display = hasWords ? '' : 'none';
+
+    elWords.innerHTML     = '<span class=lbl>TRIED</span> <span>' + esc(s.wrongWords) + '</span>';
+
+
+
+    var hasHint = o.showHint && s.hint && s.active;
+
+    elHint.style.display  = hasHint ? '' : 'none';
+
+    elHint.textContent    = s.hint ? ('Hint: ' + s.hint) : '';
+
+
+
+    elBan.className = 'banner';
+
+    if (s.active) {
+
+      elBan.textContent = '';
+
+      elBan.style.display = 'none';
+
+    } else if (s.endReason) {
+
+      elBan.style.display = '';
+
+      if (s.endReason === 'win') {
+
+        elBan.classList.add('win');
+
+        elBan.textContent = 'SOLVED - ' + (s.word || '');
+
+      } else {
+
+        elBan.classList.add('lose');
+
+        elBan.textContent = (s.endReason === 'timeout' ? 'TIME UP - ' : 'GAME OVER - ') + (s.word || '');
+
+      }
+
+      elWord.textContent = s.masked || s.word || '';
+
+    }
+
+
+
+    fitWord();
+
+
+
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+
+    stage.classList.remove('gone');
+
+    stage.classList.add('show');
+
+
+
+    if (!s.active) {
+
+      var fade = (typeof o.endFadeSec === 'number' ? o.endFadeSec : 8) * 1000;
+
+      if (fade > 0) hideTimer = setTimeout(function () { stage.classList.add('gone'); }, fade);
+
+      else stage.classList.add('gone');
+
+    }
+
+  }
+
+
+
+  function poll() {
+
+    fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
+
+      .then(function (r) { return r.ok ? r.text() : null; })
+
+      .then(function (text) {
+
+        if (text === null || text === lastText) return;
+
+        lastText = text;
+
+        try { render(JSON.parse(text)); } catch (e) { }
+
+      })
+
+      .catch(function () { })
+
+      .then(function () { setTimeout(poll, POLL_MS); });
+
+  }
+
+
+
+  window.addEventListener('resize', fitWord);
+
+  if (window.ResizeObserver) new ResizeObserver(fitWord).observe(document.documentElement);
+
+
+
+  poll();
+
+})();
+
+</script>
+
+</body>
+
+</html>

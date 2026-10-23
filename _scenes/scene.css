@@ -1,0 +1,192 @@
+/* Shared look for the project scene mockups: 1600x900 frames rendered to images. */
+
+@font-face {
+  font-family: 'Sora';
+  font-weight: 100 800;
+  src: url('../assets/fonts/sora-latin-wght-normal.woff2') format('woff2');
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 1600px;
+  height: 900px;
+  overflow: hidden;
+  background: #08080d;
+}
+
+body {
+  font-family: 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Symbol', system-ui, sans-serif;
+  color: #efeff1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.frame {
+  position: relative;
+  width: 1600px;
+  height: 900px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* ---------- stream chrome ---------- */
+
+.live {
+  position: absolute;
+  top: 30px;
+  left: 32px;
+  z-index: 4;
+  display: flex;
+  gap: 8px;
+  font: 700 16px/1 'Sora', 'Segoe UI', sans-serif;
+}
+
+.live b,
+.live span {
+  padding: 7px 11px;
+  border-radius: 6px;
+}
+
+.live b { background: #e91916; color: #fff; letter-spacing: .08em; }
+.live span { background: rgba(0, 0, 0, .6); color: #fff; font-weight: 600; }
+
+.overlay {
+  position: absolute;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+}
+
+/* ---------- chat panel ---------- */
+
+.chat {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  bottom: 28px;
+  z-index: 3;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 20px;
+  background: rgba(14, 13, 22, .84);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .85);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.chat__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+  color: #a9a6bd;
+  font: 700 14px/1 'Sora', 'Segoe UI', sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.chat__head i {
+  color: #6f6b86;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.chat__list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 14px 22px;
+  overflow: hidden;
+  list-style: none;
+  font-size: 20px;
+  line-height: 1.42;
+}
+
+.msg { overflow-wrap: anywhere; }
+
+.msg .n { font-weight: 700; }
+.msg .n::after { content: ':'; margin-right: .3em; color: #efeff1; font-weight: 400; }
+
+.msg.bot {
+  margin: 2px -22px;
+  padding: 7px 22px 7px 19px;
+  border-left: 3px solid var(--accent, #9146ff);
+  background: rgba(255, 255, 255, .05);
+  white-space: pre-line;
+}
+
+.badge {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+  border-radius: 5px;
+  vertical-align: -3px;
+  background: #e91916 radial-gradient(circle, #fff 0 3.5px, transparent 4px);
+}
+
+.chat__input {
+  margin: 0 18px 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .07);
+  color: #77738c;
+  font-size: 18px;
+}
+
+/* chat-only games: a wider panel next to the game's logo */
+.chat--wide { width: 780px; }
+.chat--wide .chat__list { font-size: 23px; gap: 8px; }
+
+.mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 790px;
+  display: grid;
+  place-items: center;
+}
+
+.mark::before {
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(90px);
+  opacity: .55;
+}
+
+.mark img {
+  position: relative;
+  width: 430px;
+  height: 430px;
+  object-fit: contain;
+  filter: drop-shadow(0 34px 60px rgba(0, 0, 0, .65));
+}
+
+/* viewer name colours */
+.c1 { color: #ff7f50; }
+.c2 { color: #1e90ff; }
+.c3 { color: #9acd32; }
+.c4 { color: #da70d6; }
+.c5 { color: #00d2a0; }
+.c6 { color: #ffd23f; }
+.me { color: #b69cff; }

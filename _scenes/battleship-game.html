@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Battleship Game scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      repeating-radial-gradient(ellipse 140% 60% at 40% 130%, rgba(255, 255, 255, .035) 0 2px, transparent 3px 34px),
+      radial-gradient(1000px 640px at 36% 30%, #165378 0%, #0a2a44 50%, #04121f 100%);
+  }
+  .chat { --accent: #ff5a3c; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <iframe class="overlay" src="overlays/battleship/battleship_overlay.html" style="left:0;top:120px;width:1092px;height:640px"></iframe>
+
+  <section class="chat">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c1">PixelPanda</span>!battleship</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🚢 PixelPanda puts to sea against The Admiral! 3 ships on a 8x8 grid. Fire with !fire B7 — 60s to open fire.</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!fire D4</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🌊 PixelPanda fires at D4 — splash, nothing there.</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>💢 The Admiral returns fire at D2 — your ship is hit!</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>try the edges, admirals love corners</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!fire E6</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>💥 PixelPanda fires at E6 — HIT!</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🌊 The Admiral returns fire at E5 — miss.</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!fire F6</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>💥 PixelPanda fires at F6 — HIT!</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🌊 The Admiral returns fire at C3 — miss.</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>G6 next, it's a carrier for sure</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>

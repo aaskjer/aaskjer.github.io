@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hangman Game scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(900px 620px at 32% 38%, rgba(124, 58, 237, .35), transparent 70%),
+      radial-gradient(700px 500px at 75% 90%, rgba(233, 30, 99, .18), transparent 70%),
+      linear-gradient(160deg, #171029 0%, #0b0816 60%, #06050b 100%);
+  }
+  .letters {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    font: 800 150px/1 'Sora', sans-serif;
+    color: rgba(255, 255, 255, .035);
+  }
+  .letters span { position: absolute; }
+  .chat { --accent: #e91e63; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="letters">
+    <span style="left:70px;top:620px">A</span><span style="left:300px;top:690px">S</span>
+    <span style="left:560px;top:640px">P</span><span style="left:820px;top:700px">G</span>
+  </div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <iframe class="overlay" src="overlays/hangman/hangman_overlay.html" style="left:56px;top:170px;width:1010px;height:500px"></iframe>
+
+  <section class="chat">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ol class="chat__list">
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🎮 Hangman started! Category: Animals | Word: _ _ _ _ _ _ _ | ❤️ Lives: 6/6 | Guess with !g &lt;letter or word&gt;</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!g e</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>✅ @PixelPanda found 'E'! Word: _ E _ _ _ _ _ | ❤️ Lives: 6/6 | Guessed: E</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>!g a</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>❌ @CozyKoala — 'A' is not in the word! ❤️ Lives: 5/6 | Wrong: A</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>!g n</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>✅ @NoScopeNick found 'N'! Word: _ E N _ _ _ N | ❤️ Lives: 5/6 | Guessed: A, E, N</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>!g s</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>❌ @LunaLurks — 'S' is not in the word! ❤️ Lives: 4/6 | Wrong: A, S</li>
+      <li class="msg"><span class="n c5">SaltySeagull</span>!g u</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>✅ @SaltySeagull found 'U'! Word: _ E N _ U _ N | ❤️ Lives: 4/6 | Guessed: A, E, N, S, U</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>wait... is it a penguin 🐧</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>

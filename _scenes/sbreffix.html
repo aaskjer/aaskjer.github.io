@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SBRefFix scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(900px 600px at 80% 10%, rgba(37, 99, 235, .35), transparent 70%),
+      radial-gradient(800px 600px at 10% 100%, rgba(124, 58, 237, .35), transparent 70%),
+      linear-gradient(160deg, #101629, #090b14);
+  }
+  .file {
+    position: absolute;
+    left: 70px;
+    top: 90px;
+    width: 130px;
+    text-align: center;
+    color: #e6e6ee;
+    font-size: 16px;
+  }
+  .file i {
+    display: grid;
+    place-items: center;
+    width: 84px;
+    height: 104px;
+    margin: 0 auto 10px;
+    border-radius: 6px 22px 6px 6px;
+    background: linear-gradient(160deg, #f4f4f7, #c9c9d6);
+    color: #4f46e5;
+    font: 800 22px/1 'Sora', sans-serif;
+    font-style: normal;
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, .6);
+  }
+  .file.cmd i { background: linear-gradient(160deg, #2b2b33, #121217); color: #7ee787; border: 1px solid #3a3a46; }
+  .file.cmd { top: 260px; }
+  .term {
+    position: absolute;
+    left: 236px;
+    top: 70px;
+    width: 1320px;
+    height: 760px;
+    border: 1px solid #2c2c36;
+    border-radius: 12px;
+    background: #0c0c0f;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .9);
+    overflow: hidden;
+  }
+  .term__bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 46px;
+    padding: 0 18px;
+    background: #1c1c22;
+    color: #c9c9d3;
+    font-size: 15px;
+  }
+  .term__bar::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: #2b2b33 linear-gradient(#7ee787, #7ee787) 4px 11px / 7px 2px no-repeat;
+  }
+  pre {
+    margin: 0;
+    padding: 24px 28px;
+    color: #d4d4dc;
+    font: 16px/1.75 'Cascadia Mono', Consolas, monospace;
+    white-space: pre-wrap;
+  }
+  .y { color: #f2cc60; }
+  .g { color: #7ee787; }
+  .d { color: #8b8b98; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="file"><i>.sb</i>TriviaGame.sb</div>
+  <div class="file cmd"><i>&gt;_</i>Fix-Export.cmd</div>
+  <section class="term">
+    <div class="term__bar">Fix-Export.cmd</div>
+<pre>TriviaGame.sb - 24 references in 9 actions
+<span class="y">  fix  ..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.dll</span>
+    -&gt; C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.dll   <span class="d">[relative to the exporting Streamer.bot's folder]</span>
+<span class="y">  fix  ..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Net.Http.dll</span>
+    -&gt; C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Net.Http.dll   <span class="d">[relative to the exporting Streamer.bot's folder]</span>
+<span class="y">  fix  ..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Core.dll</span>
+    -&gt; C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Core.dll   <span class="d">[relative to the exporting Streamer.bot's folder]</span>
+  kept the original as TriviaGame.sb.bak
+<span class="g">  ok   6 references repaired in 3 actions; written to E:\Streaming\Exports\TriviaGame.sb</span>
+
+<span class="g">1 exports done.</span>
+
+Press any key to continue . . .</pre>
+  </section>
+</div>
+</body>
+</html>

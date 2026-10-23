@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blackjack Game scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(ellipse 760px 520px at 36% 52%, #1b8a55 0%, #0f5c37 45%, #073521 75%, #03180e 100%);
+  }
+  @font-face {
+    font-family: 'Noto Sans Symbols 2';
+    src: url('fonts/noto-sans-symbols-2-symbols.woff2') format('woff2');
+  }
+  .rail {
+    position: absolute;
+    left: 46px;
+    width: 1000px;
+    top: -560px;
+    height: 1380px;
+    z-index: -1;
+    border: 3px solid rgba(214, 177, 92, .45);
+    border-radius: 50%;
+  }
+  .felt-text {
+    position: absolute;
+    left: 0;
+    width: 1092px;
+    top: 830px;
+    z-index: -1;
+    text-align: center;
+    color: rgba(214, 177, 92, .5);
+    font: 700 22px/1 'Sora', sans-serif;
+    letter-spacing: .4em;
+  }
+  .chat { --accent: #d6b15c; }
+  /* the playing-card glyphs the game sends; the "(10)" after each stays in the chat font */
+  .cg { font-family: 'Noto Sans Symbols 2', sans-serif; font-size: 1.45em; line-height: 1; vertical-align: -.12em; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="rail"></div>
+  <div class="felt-text">BLACKJACK PAYS 3 TO 2</div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <iframe class="overlay" src="overlays/blackjack/blackjack_overlay.html" style="left:0;top:90px;width:1092px;height:700px"></iframe>
+
+  <section class="chat">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c1">PixelPanda</span>!duel @NoScopeNick 250</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>⚔️ PixelPanda challenges @NoScopeNick to Blackjack for 250 Points! @NoScopeNick, type accept or decline within 60s.</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>accept</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>⚔️ NoScopeNick accepts! PixelPanda vs NoScopeNick for 500 Points. PixelPanda plays first.</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>PixelPanda: <span class="cg">🂮</span>(10) <span class="cg">🂹</span>(9) (Value: 19)</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>stand</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🛑 PixelPanda stands on 19.</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>NoScopeNick: <span class="cg">🃇</span>(7) <span class="cg">🃕</span>(5) (Value: 12)</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>hit</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>NoScopeNick draws <span class="cg">🂴</span>(4). Hand: <span class="cg">🃇</span>(7) <span class="cg">🃕</span>(5) <span class="cg">🂴</span>(4) (Value: 16)</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>HIT AGAIN 😂</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>no way he hits on 16</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>
