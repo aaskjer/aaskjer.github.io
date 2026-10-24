@@ -84,6 +84,22 @@
     return `<span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>`;
   }
 
+  const STATUS = {
+    dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
+    complete: { label: 'Complete', note: 'Finished: no big updates planned, only fixes.' },
+  };
+
+  // Version and status side by side, e.g. "v16.1.1" and a yellow "In development".
+  function badges(p) {
+    const status = STATUS[p.status];
+    let note = status ? status.note : '';
+    if (p.status === 'complete' && p.section === 'games') {
+      note += ' The games get one more round if Streamer.bot ships its own points system.';
+    }
+    const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
+    return `<span class="badges">${badge(p)}${label}</span>`;
+  }
+
   // The picture on top of a card; a click opens the full-size version in the lightbox.
   function shot(p) {
     if (!p.scene) return '';
@@ -105,7 +121,7 @@
           ${logoTile(p)}
           <div class="card__heading">
             <h3 class="card__title"><a href="${repoUrl(p.repo)}" data-track="repo">${esc(p.name || p.repo)}</a></h3>
-            ${badge(p)}
+            ${badges(p)}
           </div>
         </div>
         <p class="card__text">${esc(p.tagline || 'No description yet.')}</p>
@@ -134,7 +150,7 @@
           </ul>
           ${chips(p)}
           <div class="spotlight__foot">
-            <div class="meta-row">${badge(p)}${metaRow(p)}</div>
+            <div class="meta-row">${badges(p)}${metaRow(p)}</div>
             <div class="actions">${actions(p, { github: true })}</div>
           </div>
         </div>
@@ -198,7 +214,8 @@
         badgeEl.hidden = !p.version;
       }
       const meta = node.querySelector('.meta-row');
-      if (meta) meta.innerHTML = (meta.contains(badgeEl) ? badgeEl.outerHTML : '') + metaRow(p);
+      const group = meta && meta.querySelector('.badges');
+      if (meta) meta.innerHTML = (group ? group.outerHTML : '') + metaRow(p);
     }
   }
 

@@ -16,6 +16,7 @@
  *   logo       image file, or `mono` for a short text logo instead
  *   guide      { label, href } – href is a file in the repo or a full URL
  *   download   download link, defaults to the latest release
+ *   status     'dev' (yellow "In development") or 'complete' (green "Complete"), shown next to the version
  */
 window.SITE = {
   user: 'aaskjer',
@@ -25,6 +26,7 @@ window.SITE = {
   projects: [
     {
       repo: 'TwitchSentry',
+      status: 'dev',
       name: 'TwitchSentry',
       section: 'tools',
       featured: true,
@@ -47,6 +49,7 @@ window.SITE = {
     },
     {
       repo: 'Better-Stream-Announcements',
+      status: 'complete',
       name: 'Better Stream Announcements',
       section: 'tools',
       logo: 'assets/img/projects/better-stream-announcements.png',
@@ -60,6 +63,7 @@ window.SITE = {
     },
     {
       repo: 'SBRefFix',
+      status: 'dev',
       name: 'SBRefFix',
       section: 'tools',
       mono: '.sb',
@@ -75,6 +79,7 @@ window.SITE = {
     },
     {
       repo: 'Blackjack-Game',
+      status: 'dev',
       name: 'Blackjack Game',
       section: 'games',
       logo: 'assets/img/projects/blackjack-game.png',
@@ -88,6 +93,7 @@ window.SITE = {
     },
     {
       repo: 'Classic-Chat-Gamble',
+      status: 'complete',
       name: 'Classic Chat Gamble',
       section: 'games',
       logo: 'assets/img/projects/classic-chat-gamble.png',
@@ -100,6 +106,7 @@ window.SITE = {
     },
     {
       repo: 'Trivia-Game',
+      status: 'dev',
       name: 'Trivia Game',
       section: 'games',
       logo: 'assets/img/projects/trivia-game.png',
@@ -112,6 +119,7 @@ window.SITE = {
     },
     {
       repo: 'Slot-Machine-Game',
+      status: 'complete',
       name: 'Slot Machine Game',
       section: 'games',
       logo: 'assets/img/projects/slot-machine-game.png',
@@ -124,6 +132,7 @@ window.SITE = {
     },
     {
       repo: 'Hangman-Game',
+      status: 'complete',
       name: 'Hangman Game',
       section: 'games',
       logo: 'assets/img/projects/hangman-game.png',
@@ -137,6 +146,7 @@ window.SITE = {
     },
     {
       repo: 'Battleship-Game',
+      status: 'dev',
       name: 'Battleship Game',
       section: 'games',
       logo: 'assets/img/projects/battleship-game.png',

@@ -848,6 +848,37 @@ a.collage__tile--me:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
+.badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.badge--dev {
+  background: color-mix(in srgb, #facc15 20%, transparent);
+  color: #facc15;
+}
+
+.badge--complete {
+  background: color-mix(in srgb, #34d399 18%, transparent);
+  color: #34d399;
+}
+
+.badge--dev,
+.badge--complete {
+  cursor: help;
+}
+
+:root[data-theme='light'] .badge--dev {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+:root[data-theme='light'] .badge--complete {
+  background: #d1fae5;
+  color: #065f46;
+}
+
 .meta-row {
   display: flex;
   flex-wrap: wrap;
