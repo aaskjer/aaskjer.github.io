@@ -14,7 +14,7 @@
   const PLATFORM_TOPICS = { twitch: 'Twitch', youtube: 'YouTube', kick: 'Kick', discord: 'Discord', obs: 'OBS' };
 
   const $ = sel => document.querySelector(sel);
-  const repoUrl = repo => `https://github.com/${user}/${repo}`;
+  const repoUrl = repo => `https://github.com/${user}/${encodeURIComponent(repo)}`;
   const numberFormat = new Intl.NumberFormat('en');
   const relativeFormat = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
   const slug = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-');

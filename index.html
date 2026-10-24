@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site, the GitHub API and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://gateway.umami.is https://cloud.umami.is; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>aaskjer · Streamer.bot extensions</title>
   <meta name="description" content="Free, open-source Streamer.bot extensions by aaskjer: chat games, moderation and Discord go-live announcements for Twitch, YouTube and Kick.">
   <link rel="canonical" href="https://aaskjer.github.io/">
@@ -21,17 +23,7 @@
   <link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <script>
-    // Pick the theme before the first paint so the page never flashes.
-    (function () {
-      var theme;
-      try { theme = localStorage.getItem('theme'); } catch (e) {}
-      if (theme !== 'light' && theme !== 'dark') {
-        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      }
-      document.documentElement.dataset.theme = theme;
-    })();
-  </script>
+  <script src="assets/js/theme.js"></script>
   <script src="assets/js/projects.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>

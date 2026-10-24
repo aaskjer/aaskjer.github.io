@@ -3,21 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site, the GitHub API and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://gateway.umami.is https://cloud.umami.is; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>Privacy · aaskjer</title>
   <meta name="description" content="What happens to your data when you visit aaskjer.github.io.">
   <meta name="theme-color" content="#0b0a12">
   <link rel="icon" href="assets/img/avatar.png" type="image/png">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script>
-    (function () {
-      var theme;
-      try { theme = localStorage.getItem('theme'); } catch (e) {}
-      if (theme !== 'light' && theme !== 'dark') {
-        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-      }
-      document.documentElement.dataset.theme = theme;
-    })();
-  </script>
+  <script src="assets/js/theme.js"></script>
 </head>
 <body>
   <header class="topbar">
