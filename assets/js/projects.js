@@ -49,7 +49,7 @@ window.SITE = {
     },
     {
       repo: 'Better-Stream-Announcements',
-      status: 'complete',
+      status: 'dev',
       name: 'Better Stream Announcements',
       section: 'tools',
       logo: 'assets/img/projects/better-stream-announcements.png',
@@ -132,7 +132,7 @@ window.SITE = {
     },
     {
       repo: 'Hangman-Game',
-      status: 'complete',
+      status: 'dev',
       name: 'Hangman Game',
       section: 'games',
       logo: 'assets/img/projects/hangman-game.png',
