@@ -5,7 +5,7 @@
 (() => {
   'use strict';
 
-  const { user, twitch, projects } = window.SITE;
+  const { user, twitch, stats, projects } = window.SITE;
   const API = 'https://api.github.com';
   const CACHE_KEY = 'github-live-v1';
   // GitHub allows 60 requests per hour without a token, so one visit's
@@ -68,14 +68,14 @@
     const url = repoUrl(p.repo);
     const links = [];
     if (p.download !== false) {
-      links.push(`<a class="btn btn--primary btn--sm" href="${esc(p.download || `${url}/releases/latest`)}">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`);
+      links.push(`<a class="btn btn--primary btn--sm" href="${esc(p.download || `${url}/releases/latest`)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`);
     }
     if (p.guide) {
       const href = /^https?:/.test(p.guide.href) ? p.guide.href : `${url}/blob/main/${p.guide.href}`;
-      links.push(`<a class="btn btn--ghost btn--sm" href="${esc(href)}">${icon('book')}${esc(p.guide.label)}</a>`);
+      links.push(`<a class="btn btn--ghost btn--sm" href="${esc(href)}" data-track="guide">${icon('book')}${esc(p.guide.label)}</a>`);
     }
     if (github || !links.length) {
-      links.push(`<a class="btn btn--ghost btn--sm" href="${url}">${icon('github')}GitHub</a>`);
+      links.push(`<a class="btn btn--ghost btn--sm" href="${url}" data-track="github">${icon('github')}GitHub</a>`);
     }
     return links.join('');
   }
@@ -90,7 +90,7 @@
     const name = p.name || p.repo;
     const thumb = p.scene.replace(/(\.\w+)$/, '-thumb$1');
     return `
-        <button class="card__shot" type="button" data-full="${esc(p.scene)}" data-size="1600x900"
+        <button class="card__shot" type="button" data-track="scene" data-full="${esc(p.scene)}" data-size="1600x900"
                 data-caption="${esc(name)} · example scene with sample chat" aria-label="Show a larger picture of ${esc(name)}">
           <img src="${esc(thumb)}" alt="${esc(p.sceneAlt || '')}" width="960" height="540" loading="lazy" decoding="async">
           <span class="zoom">${icon('expand')}</span>
@@ -104,7 +104,7 @@
         <div class="card__head">
           ${logoTile(p)}
           <div class="card__heading">
-            <h3 class="card__title"><a href="${repoUrl(p.repo)}">${esc(p.name || p.repo)}</a></h3>
+            <h3 class="card__title"><a href="${repoUrl(p.repo)}" data-track="repo">${esc(p.name || p.repo)}</a></h3>
             ${badge(p)}
           </div>
         </div>
@@ -125,7 +125,7 @@
             ${logoTile(p)}
             <div class="card__heading">
               <p class="kicker">Featured</p>
-              <h3 class="spotlight__title"><a href="${repoUrl(p.repo)}">${esc(p.name || p.repo)}</a></h3>
+              <h3 class="spotlight__title"><a href="${repoUrl(p.repo)}" data-track="repo">${esc(p.name || p.repo)}</a></h3>
             </div>
           </div>
           <p class="spotlight__text">${esc(p.tagline)}</p>
@@ -141,7 +141,7 @@
         ${p.screenshot ? `
         <figure class="spotlight__shot">
           <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <button class="shot-zoom" type="button" data-full="${esc(p.screenshotFull || p.screenshot)}" data-size="${p.screenshotFull ? '940x1461' : '940x640'}"
+          <button class="shot-zoom" type="button" data-track="scene" data-full="${esc(p.screenshotFull || p.screenshot)}" data-size="${p.screenshotFull ? '940x1461' : '940x640'}"
                   data-caption="${esc(p.name)} · settings window" aria-label="Show the whole ${esc(p.name)} settings window">
             <img src="${esc(p.screenshot)}" alt="The ${esc(p.name)} settings window" width="940" height="640" loading="lazy" decoding="async">
             <span class="zoom">${icon('expand')}</span>
@@ -153,10 +153,10 @@
   function collage() {
     // the logos repeat the card links, so only the avatar is reachable by keyboard
     const tiles = projects.filter(p => p.logo).slice(0, 8).map((p, i) =>
-      `<a class="collage__tile" style="--i:${i}" href="${repoUrl(p.repo)}" tabindex="-1" aria-hidden="true"><img src="${esc(p.logo)}" alt=""></a>`);
+      `<a class="collage__tile" style="--i:${i}" href="${repoUrl(p.repo)}" tabindex="-1" aria-hidden="true" data-track="logo" data-project="${esc(p.repo)}"><img src="${esc(p.logo)}" alt=""></a>`);
     const avatar = '<img src="assets/img/avatar.png" alt="">';
     tiles.splice(4, 0, twitch
-      ? `<a class="collage__tile collage__tile--me" style="--i:4" href="${esc(twitch)}" title="aaskjer on Twitch" aria-label="aaskjer on Twitch">${avatar}<span class="collage__badge" aria-hidden="true">Twitch</span></a>`
+      ? `<a class="collage__tile collage__tile--me" style="--i:4" href="${esc(twitch)}" title="aaskjer on Twitch" aria-label="aaskjer on Twitch" data-track="twitch-avatar">${avatar}<span class="collage__badge" aria-hidden="true">Twitch</span></a>`
       : `<div class="collage__tile collage__tile--me" style="--i:4">${avatar}</div>`);
     return tiles.join('');
   }
@@ -319,6 +319,26 @@
     dialog.addEventListener('close', () => img.removeAttribute('src'));
   }
 
+  // Visitor statistics with Umami: no cookies, nothing that identifies a visitor (see
+  // privacy.html). Clicks on anything marked with data-track count as events named after
+  // the action ("download", "scene", ...), with the project as a property where there is one.
+  function setupStats() {
+    if (!stats || !stats.websiteId) return;
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = stats.script;
+    script.dataset.websiteId = stats.websiteId;
+    if (stats.domain) script.dataset.domains = stats.domain;
+    document.head.appendChild(script);
+
+    document.addEventListener('click', event => {
+      const el = event.target.closest('[data-track]');
+      if (!el || !window.umami) return;
+      const project = el.dataset.project || el.closest('[data-repo]')?.dataset.repo;
+      window.umami.track(el.dataset.track, project ? { project } : undefined);
+    });
+  }
+
   // Highlights the nav link of the section currently on screen.
   function setupNav() {
     const links = new Map([...document.querySelectorAll('.nav a')].map(a => [a.hash.slice(1), a]));
@@ -336,6 +356,7 @@
   setupTheme();
   setupNav();
   setupLightbox();
+  setupStats();
   $('#year').textContent = new Date().getFullYear();
   loadLive().catch(() => { /* keep the numbers from projects.js */ });
 })();

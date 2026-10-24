@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy · aaskjer</title>
+  <meta name="description" content="What happens to your data when you visit aaskjer.github.io.">
+  <meta name="theme-color" content="#0b0a12">
+  <link rel="icon" href="assets/img/avatar.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="./">
+        <img src="assets/img/avatar.png" alt="" width="32" height="32">
+        <span class="brand__name">aaskjer</span>
+      </a>
+      <nav class="nav" aria-label="Back">
+        <a href="./">Back to the projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="legal">
+    <div class="wrap">
+      <p class="kicker">Privacy</p>
+      <h1>What happens to your data here</h1>
+      <p>This site shows my Streamer.bot extensions. It has no accounts, no forms, no ads and no cookies. This page explains which services see your visit and what they keep.</p>
+
+      <h2>Who is responsible</h2>
+      <p>aaskjer (<a href="https://github.com/aaskjer">github.com/aaskjer</a>). For questions about this page or your data, open an issue in the <a href="https://github.com/aaskjer/aaskjer.github.io/issues">repository of this site</a>.</p>
+
+      <h2>Hosting: GitHub Pages</h2>
+      <p>The site is hosted by GitHub Pages, a service of GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. To deliver the pages, GitHub receives your IP address and the usual request data (page, time, browser), and logs the IP address for security purposes. GitHub takes part in the EU–U.S. Data Privacy Framework. Details are in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+      <p>Legal basis: Art. 6(1)(f) GDPR, my legitimate interest in publishing this site reliably and securely.</p>
+
+      <h2>Visitor statistics: Umami</h2>
+      <p>To see how many people visit and what they use, the site counts visits with <a href="https://umami.is">Umami Cloud</a>, a service of Umami Software, Inc., 28 Geary St, Suite 650 #243, San Francisco, CA, USA. The statistics are stored in Umami's EU data region. Umami works with ClickHouse (EU/USA), Hetzner (EU) and Vercel (USA), which also loads Umami's counting script; transfers outside the EU are covered by the EU Standard Contractual Clauses in Umami's data processing agreement.</p>
+      <p>When a page opens, or when you click one of the buttons or links on it (for example a project's Download button), your browser sends Umami:</p>
+      <ul>
+        <li>the address of the page, or the name of the button you clicked and the project it belongs to,</li>
+        <li>the page you came from (referrer),</li>
+        <li>your screen size and browser language.</li>
+      </ul>
+      <p>From the request Umami works out your browser, operating system, device type and approximate location. To group several page views into one visit, it computes an anonymous visit ID from your IP address, your browser details and a regularly changing random value, without cookies. Umami states that it stores nothing that identifies you personally; I only see <strong>totals</strong>, such as “12 visits from Discord today” or “30 clicks on Download for Trivia Game”. No cookies and no other storage in your browser are used. The statistics are kept for six months. See <a href="https://umami.is/privacy">Umami's privacy policy</a>.</p>
+      <p>Legal basis: Art. 6(1)(f) GDPR, my legitimate interest in knowing how the site is used, so I can improve it.</p>
+
+      <h2>Project numbers from the GitHub API</h2>
+      <p>The stars, downloads, version numbers and update dates on the project cards are loaded live by your browser from GitHub's public API (api.github.com), so GitHub also receives your IP address for these requests. The answer is kept in your browser's local storage for one hour, so a reload does not ask GitHub again. Local storage also remembers whether you picked the light or dark theme. Both stay in your browser and are never sent anywhere; you can delete them at any time in your browser settings.</p>
+      <p>Legal basis: Art. 6(1)(f) GDPR, my legitimate interest in showing current numbers.</p>
+
+      <h2>Links to other sites</h2>
+      <p>The site links to GitHub, Twitch, Discord and Streamer.bot. Once you follow such a link, the privacy policy of that site applies.</p>
+
+      <h2>Your rights</h2>
+      <p>Under the GDPR you can ask for access to the data about you (Art. 15), its correction (Art. 16) or deletion (Art. 17), restrict its processing (Art. 18) and object to it (Art. 21). You can also complain to a data protection supervisory authority (Art. 77). Neither this site nor its statistics keep data that identifies you, so there is usually nothing to look up, but feel free to ask.</p>
+
+      <p class="legal__date">Last updated: October 2026</p>
+    </div>
+  </main>
+</body>
+</html>

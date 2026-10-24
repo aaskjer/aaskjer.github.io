@@ -1139,6 +1139,58 @@ a.collage__tile--me:focus-visible {
   from { opacity: 0; transform: scale(0.97); }
 }
 
+/* ---------- privacy page ---------- */
+
+.legal {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 4rem;
+}
+
+.legal .wrap {
+  width: min(100% - 2rem, 46rem);
+}
+
+.legal h1 {
+  margin-top: 0.6rem;
+  font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem);
+}
+
+.legal h2 {
+  margin-top: 2.4rem;
+  font-size: 1.3rem;
+}
+
+.legal p,
+.legal li {
+  color: var(--muted);
+}
+
+.legal p {
+  margin-top: 0.8rem;
+}
+
+.legal ul {
+  margin: 0.8rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.legal li + li {
+  margin-top: 0.35rem;
+}
+
+.legal strong {
+  color: var(--text);
+}
+
+.legal__date {
+  margin-top: 2.4rem !important;
+  color: var(--faint) !important;
+  font-size: 0.85rem;
+}
+
+.footer__meta a {
+  color: inherit;
+}
+
 /* ---------- 404 ---------- */
 
 .notfound {

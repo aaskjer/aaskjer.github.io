@@ -20,6 +20,8 @@
 window.SITE = {
   user: 'aaskjer',
   twitch: 'https://www.twitch.tv/aaskjer',
+  // Umami Cloud visitor statistics: the website ID from the Umami dashboard; leave empty to switch them off
+  stats: { script: 'https://cloud.umami.is/script.js', websiteId: '1fd3cb1c-351d-4e3c-aed9-925125642e95', domain: 'aaskjer.github.io' },
   projects: [
     {
       repo: 'TwitchSentry',
