@@ -63,7 +63,7 @@ window.SITE = {
     },
     {
       repo: 'SBRefFix',
-      status: 'dev',
+      status: 'complete',
       name: 'SBRefFix',
       section: 'tools',
       mono: '.sb',
