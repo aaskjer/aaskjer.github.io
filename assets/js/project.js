@@ -266,7 +266,7 @@
       return `<p>From the <a href="${REPO_URL}/releases">releases on GitHub</a>.</p>` + published.map(r => {
         let name = (r.name || '').trim();
         if (name.toLowerCase().startsWith(r.tag_name.toLowerCase())) name = name.slice(r.tag_name.length).replace(/^\s*[-–—:|]\s*/, '');
-        return `<h2>${esc(r.tag_name)}${name ? ` — ${esc(name)}` : ''}</h2>`
+        return `<h2${r.prerelease ? ' data-prerelease' : ''}>${esc(r.tag_name)}${name ? ` — ${esc(name)}` : ''}</h2>`
           + `<p class="release__date">${dateFormat.format(new Date(r.published_at))}${r.prerelease ? ' · pre-release' : ''}</p>`
           + window.marked.parse(r.body || '', { gfm: true, walkTokens: demote });
       }).join('');
@@ -299,7 +299,8 @@
       while (details.lastElementChild && details.lastElementChild.tagName === 'HR') details.lastElementChild.remove();
       if (!latest) continue;
       details.open = true;
-      if (/unreleased|-(alpha|beta|rc|pre)\b/i.test(h.textContent)) continue;
+      // GitHub's pre-release tick for release notes, the usual names in a CHANGELOG.md
+      if (h.hasAttribute('data-prerelease') || /unreleased|-(alpha|beta|rc|pre)\b/i.test(h.textContent)) continue;
       summary.insertAdjacentHTML('beforeend', '<span class="badge">Latest</span>');
       latest = false;
     }
