@@ -15,6 +15,8 @@
 
   const $ = sel => document.querySelector(sel);
   const repoUrl = repo => `https://github.com/${user}/${encodeURIComponent(repo)}`;
+  // A project's own page on this site where it has one, its GitHub repository otherwise.
+  const projectUrl = p => p.page || repoUrl(p.repo);
   const numberFormat = new Intl.NumberFormat('en');
   const relativeFormat = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
   const slug = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -120,7 +122,7 @@
         <div class="card__head">
           ${logoTile(p)}
           <div class="card__heading">
-            <h3 class="card__title"><a href="${repoUrl(p.repo)}" data-track="repo">${esc(p.name || p.repo)}</a></h3>
+            <h3 class="card__title"><a href="${esc(projectUrl(p))}" data-track="${p.page ? 'project' : 'repo'}">${esc(p.name || p.repo)}</a></h3>
             ${badges(p)}
           </div>
         </div>
@@ -141,7 +143,7 @@
             ${logoTile(p)}
             <div class="card__heading">
               <p class="kicker">Featured</p>
-              <h3 class="spotlight__title"><a href="${repoUrl(p.repo)}" data-track="repo">${esc(p.name || p.repo)}</a></h3>
+              <h3 class="spotlight__title"><a href="${esc(projectUrl(p))}" data-track="${p.page ? 'project' : 'repo'}">${esc(p.name || p.repo)}</a></h3>
             </div>
           </div>
           <p class="spotlight__text">${esc(p.tagline)}</p>
@@ -169,7 +171,7 @@
   function collage() {
     // the logos repeat the card links, so only the avatar is reachable by keyboard
     const tiles = projects.filter(p => p.logo).slice(0, 8).map((p, i) =>
-      `<a class="collage__tile" style="--i:${i}" href="${repoUrl(p.repo)}" tabindex="-1" aria-hidden="true" data-track="logo" data-project="${esc(p.repo)}"><img src="${esc(p.logo)}" alt=""></a>`);
+      `<a class="collage__tile" style="--i:${i}" href="${esc(projectUrl(p))}" tabindex="-1" aria-hidden="true" data-track="logo" data-project="${esc(p.repo)}"><img src="${esc(p.logo)}" alt=""></a>`);
     const avatar = '<img src="assets/img/avatar.png" alt="">';
     tiles.splice(4, 0, twitch
       ? `<a class="collage__tile collage__tile--me" style="--i:4" href="${esc(twitch)}" title="aaskjer on Twitch" aria-label="aaskjer on Twitch" data-track="twitch-avatar">${avatar}<span class="collage__badge" aria-hidden="true">Twitch</span></a>`

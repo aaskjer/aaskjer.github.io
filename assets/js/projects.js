@@ -16,6 +16,10 @@
  *   logo       image file, or `mono` for a short text logo instead
  *   guide      { label, href } – href is a file in the repo or a full URL
  *   download   download link, defaults to the latest release
+ *   page       the project's own page on this site (folder with an index.html); cards link there.
+ *              It shows the repository's README, Setup-Guide.md, Manual.md, FAQ.md and CHANGELOG.md
+ *              as tabs, whichever exist, plus `moreDocs` ({ id, label, file }), and a copy button
+ *              for Import-String.md (`importString` if the file is somewhere else)
  *   status     'dev' (yellow "In development") or 'complete' (green "Complete"), shown next to the version
  */
 window.SITE = {
@@ -26,6 +30,7 @@ window.SITE = {
   projects: [
     {
       repo: 'TwitchSentry',
+      page: 'twitchsentry/',
       status: 'dev',
       name: 'TwitchSentry',
       section: 'tools',
@@ -45,10 +50,13 @@ window.SITE = {
       platforms: ['Twitch'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Manual', href: 'Manual.md' },
+      importString: 'Utilities/Import-String.md',
+      moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
       version: 'v4.0.1', stars: 4, downloads: 93,
     },
     {
       repo: 'Better-Stream-Announcements',
+      page: 'better-stream-announcements/',
       status: 'dev',
       name: 'Better Stream Announcements',
       section: 'tools',
@@ -63,6 +71,7 @@ window.SITE = {
     },
     {
       repo: 'SBRefFix',
+      page: 'sbreffix/',
       status: 'complete',
       name: 'SBRefFix',
       section: 'tools',
@@ -79,6 +88,7 @@ window.SITE = {
     },
     {
       repo: 'Blackjack-Game',
+      page: 'blackjack-game/',
       status: 'dev',
       name: 'Blackjack Game',
       section: 'games',
@@ -93,6 +103,7 @@ window.SITE = {
     },
     {
       repo: 'Classic-Chat-Gamble',
+      page: 'classic-chat-gamble/',
       status: 'complete',
       name: 'Classic Chat Gamble',
       section: 'games',
@@ -106,6 +117,7 @@ window.SITE = {
     },
     {
       repo: 'Trivia-Game',
+      page: 'trivia-game/',
       status: 'dev',
       name: 'Trivia Game',
       section: 'games',
@@ -119,6 +131,7 @@ window.SITE = {
     },
     {
       repo: 'Slot-Machine-Game',
+      page: 'slot-machine-game/',
       status: 'complete',
       name: 'Slot Machine Game',
       section: 'games',
@@ -132,6 +145,7 @@ window.SITE = {
     },
     {
       repo: 'Hangman-Game',
+      page: 'hangman-game/',
       status: 'dev',
       name: 'Hangman Game',
       section: 'games',
@@ -146,6 +160,7 @@ window.SITE = {
     },
     {
       repo: 'Battleship-Game',
+      page: 'battleship-game/',
       status: 'dev',
       name: 'Battleship Game',
       section: 'games',
