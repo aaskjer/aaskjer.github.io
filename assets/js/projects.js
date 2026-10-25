@@ -17,8 +17,9 @@
  *   guide      { label, href } – href is a file in the repo or a full URL
  *   download   download link, defaults to the latest release
  *   page       the project's own page on this site (folder with an index.html); cards link there.
- *              It shows the repository's README, Setup-Guide.md, Manual.md, FAQ.md and CHANGELOG.md
- *              as tabs, whichever exist, plus `moreDocs` ({ id, label, file }), and a copy button
+ *              It shows the repository's README, Setup-Guide.md, Manual.md and FAQ.md as tabs,
+ *              whichever exist, plus `moreDocs` ({ id, label, file }). The Changelog tab is always
+ *              there: CHANGELOG.md, or else the release notes, or else the commit history. A copy button
  *              for Import-String.md (`importString` if the file is somewhere else)
  *   status     'dev' (yellow "In development") or 'complete' (green "Complete"), shown next to the version
  */

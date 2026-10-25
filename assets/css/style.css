@@ -1260,9 +1260,12 @@ a.collage__tile--me:focus-visible {
 .tabs {
   display: flex;
   gap: 0.3rem;
-  padding: 0.6rem 0;
+  padding: 0.6rem 2rem 0.6rem 0;
   overflow-x: auto;
   scrollbar-width: none;
+  /* on a narrow screen the row scrolls sideways; the fade shows there is more */
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
 }
 
 .tab {
@@ -1286,6 +1289,13 @@ a.collage__tile--me:focus-visible {
   border-color: var(--border-strong);
   background: var(--surface-2);
   color: var(--text);
+}
+
+@media (max-width: 560px) {
+  .tab {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.9rem;
+  }
 }
 
 .project-doc {
@@ -1479,6 +1489,80 @@ a.collage__tile--me:focus-visible {
 .md th {
   background: var(--surface-2);
   color: var(--text);
+}
+
+/* changelog versions, folded under their heading */
+.md .release {
+  margin: 0 0 0.8rem;
+  padding: 0 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.md .release[open] {
+  padding-bottom: 0.2rem;
+}
+
+.md .release > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 -1.2rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.md .release > summary::-webkit-details-marker {
+  display: none;
+}
+
+.md .release > summary::before {
+  content: '';
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.15rem;
+  border-right: 2px solid var(--faint);
+  border-bottom: 2px solid var(--faint);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+
+.md .release[open] > summary::before {
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+
+.md .release > summary:hover h2 {
+  color: var(--accent);
+}
+
+.md .release[open] > summary {
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--border);
+  border-radius: 14px 14px 0 0;
+}
+
+.md .release > summary h2 {
+  margin: 0;
+  font-size: 1.12rem;
+  transition: color 0.15s ease;
+}
+
+.md .release > summary .badge {
+  flex: none;
+  margin-left: auto;
+}
+
+.md .release > summary + * {
+  margin-top: 0;
+}
+
+.md .release__date {
+  color: var(--faint);
+  font-size: 0.9rem;
 }
 
 .toast {

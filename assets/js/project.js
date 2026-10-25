@@ -27,6 +27,7 @@
 
   const $ = sel => document.querySelector(sel);
   const numberFormat = new Intl.NumberFormat('en');
+  const dateFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long' });
   const relativeFormat = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
   const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const icon = name => `<svg class="i" aria-hidden="true"><use href="${ROOT}assets/img/icons.svg#i-${name}"/></svg>`;
@@ -121,6 +122,11 @@
 
   /* ---------- live numbers ---------- */
 
+  // Asked for once, used by the numbers in the header and by the Changelog tab.
+  let releasesRequest = null;
+  const releases = () => releasesRequest || (releasesRequest =
+    fetch(`${API}/repos/${user}/${repo}/releases?per_page=100`).then(res => res.ok ? res.json() : Promise.reject(res.status)));
+
   async function refreshNumbers() {
     let live = null;
     try {
@@ -131,7 +137,7 @@
       try {
         const [r, releases] = await Promise.all([
           fetch(`${API}/repos/${user}/${repo}`).then(res => res.ok ? res.json() : Promise.reject(res.status)),
-          fetch(`${API}/repos/${user}/${repo}/releases?per_page=100`).then(res => res.ok ? res.json() : null).catch(() => null),
+          releases().catch(() => null),
         ]);
         const stable = releases && releases.find(rel => !rel.draft && !rel.prerelease);
         live = {
@@ -200,6 +206,7 @@
   /* ---------- documents ---------- */
 
   const docText = {};
+  const docHtml = {};
   let available = [];
 
   function dirOf(file) {
@@ -229,9 +236,67 @@
     }
   }
 
+  // Without a CHANGELOG.md the Changelog tab shows the release notes from GitHub, and for a
+  // project without releases its commit history.
+  async function changelogFromGitHub() {
+    const fallback = `<p>The changelog could not be loaded right now. See the <a href="${REPO_URL}/releases">releases on GitHub</a>.</p>`;
+    const list = await releases().catch(() => null);
+    if (!list) return fallback;
+    const published = list.filter(r => !r.draft);
+    if (published.length) {
+      // headings inside the notes move down two levels, below the version headings
+      const demote = token => { if (token.type === 'heading') token.depth = Math.min(token.depth + 2, 6); };
+      return `<p>From the <a href="${REPO_URL}/releases">releases on GitHub</a>.</p>` + published.map(r => {
+        let name = (r.name || '').trim();
+        if (name.toLowerCase().startsWith(r.tag_name.toLowerCase())) name = name.slice(r.tag_name.length).replace(/^\s*[-–—:|]\s*/, '');
+        return `<h2>${esc(r.tag_name)}${name ? ` — ${esc(name)}` : ''}</h2>`
+          + `<p class="release__date">${dateFormat.format(new Date(r.published_at))}${r.prerelease ? ' · pre-release' : ''}</p>`
+          + window.marked.parse(r.body || '', { gfm: true, walkTokens: demote });
+      }).join('');
+    }
+    const commits = await fetch(`${API}/repos/${user}/${repo}/commits?per_page=100`).then(res => res.ok ? res.json() : null).catch(() => null);
+    if (!commits) return fallback;
+    const days = new Map();
+    for (const c of commits) {
+      if (c.parents.length > 1) continue; // a merge only repeats the commits it brings in
+      const day = dateFormat.format(new Date(c.commit.author.date));
+      if (!days.has(day)) days.set(day, []);
+      days.get(day).push(`<li><a href="${esc(c.html_url)}">${esc(c.commit.message.split('\n')[0])}</a></li>`);
+    }
+    return `<p>${esc(p.name)} has no releases, so this is its <a href="${REPO_URL}/commits/main">commit history</a> on GitHub.</p>`
+      + [...days].map(([day, items]) => `<h2>${day}</h2><ul>${items.join('')}</ul>`).join('');
+  }
+
+  // Changelogs: every version folds away under its heading, except the newest one
+  // (and anything unreleased or pre-release above it).
+  function foldVersions(root) {
+    let latest = true;
+    for (const h of [...root.children].filter(el => el.tagName === 'H2')) {
+      const details = document.createElement('details');
+      const summary = document.createElement('summary');
+      details.className = 'release';
+      h.replaceWith(details);
+      summary.appendChild(h);
+      details.appendChild(summary);
+      while (details.nextSibling && details.nextSibling.nodeName !== 'H2') details.appendChild(details.nextSibling);
+      while (details.lastElementChild && details.lastElementChild.tagName === 'HR') details.lastElementChild.remove();
+      if (!latest) continue;
+      details.open = true;
+      if (/unreleased|-(alpha|beta|rc|pre)\b/i.test(h.textContent)) continue;
+      summary.insertAdjacentHTML('beforeend', '<span class="badge">Latest</span>');
+      latest = false;
+    }
+  }
+
+  // Opens the folded version a link or address points into.
+  function reveal(target) {
+    const details = target.closest('details');
+    if (details) details.open = true;
+  }
+
   function render(doc) {
-    const md = docText[doc.file];
-    const html = window.DOMPurify.sanitize(window.marked.parse(md, { gfm: true }), { ADD_ATTR: ['align'] });
+    const source = doc.file in docHtml ? docHtml[doc.file] : window.marked.parse(docText[doc.file], { gfm: true });
+    const html = window.DOMPurify.sanitize(source, { ADD_ATTR: ['align'] });
     const tpl = document.createElement('template');
     tpl.innerHTML = html;
     const root = tpl.content;
@@ -299,6 +364,8 @@
       wrap.appendChild(table);
     }
 
+    if (doc.id === 'changelog') foldVersions(root);
+
     // A README often opens with rules and empty space once the logo and badges are gone,
     // and with the project's name, which the header above already shows.
     const leading = el => el.tagName === 'HR' || !el.textContent.trim() && !el.querySelector('img')
@@ -325,16 +392,23 @@
     const doc = available.find(d => d.id === id) || available[0];
     if (!doc) return;
     current = doc.id;
-    for (const tab of document.querySelectorAll('.tab')) {
+    const bar = $('#tabs');
+    for (const tab of bar.querySelectorAll('.tab')) {
       const on = tab.dataset.tab === doc.id;
       tab.setAttribute('aria-selected', on);
       tab.tabIndex = on ? 0 : -1;
+      // on a narrow screen the row scrolls sideways; keep the chosen tab in view
+      if (on) {
+        const t = tab.getBoundingClientRect();
+        const b = bar.getBoundingClientRect();
+        bar.scrollLeft += t.left - b.left - (b.width - t.width) / 2;
+      }
     }
     render(doc);
     const url = (doc.id === 'overview' ? location.pathname : `?tab=${doc.id}`) + (anchor ? `#${anchor}` : '');
     history[push ? 'pushState' : 'replaceState'](null, '', url);
     const target = anchor && document.getElementById(anchor);
-    if (target) target.scrollIntoView();
+    if (target) { reveal(target); target.scrollIntoView(); }
     else if (push) $('.tabs-bar').scrollIntoView();
   }
 
@@ -342,8 +416,9 @@
     await Promise.all(DOCS.map(async doc => {
       const res = await fetch(RAW + doc.file).catch(() => null);
       if (res && res.ok) docText[doc.file] = await res.text();
+      else if (doc.id === 'changelog') docHtml[doc.file] = await changelogFromGitHub();
     }));
-    available = DOCS.filter(doc => docText[doc.file] != null);
+    available = DOCS.filter(doc => docText[doc.file] != null || docHtml[doc.file] != null);
     if (!available.length) {
       $('#doc').innerHTML = `<p class="doc-status">The documents could not be loaded. <a href="${REPO_URL}">Read them on GitHub</a>.</p>`;
       return;
@@ -374,6 +449,11 @@
     window.addEventListener('popstate', () => {
       const id = new URLSearchParams(location.search).get('tab') || 'overview';
       if (id !== current) showTab(id, location.hash.slice(1), false);
+    });
+    // a link to a heading inside a folded version opens that version first
+    window.addEventListener('hashchange', () => {
+      const target = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target && target.closest('details:not([open])')) { reveal(target); target.scrollIntoView(); }
     });
   }
 

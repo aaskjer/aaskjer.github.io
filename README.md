@@ -5,7 +5,7 @@ Source of [aaskjer.github.io](https://aaskjer.github.io), the overview page for 
 Plain HTML, CSS and JavaScript, published by GitHub Pages straight from the `main` branch. There is no build step.
 
 - `assets/js/projects.js` lists the projects; the start page and the project pages are built from it.
-- Each project has its own page in a folder named after it (`blackjack-game/index.html` and so on). The page shows the project's README, setup guide, manual, FAQ and changelog, loaded live from its repository, so it never needs updating when the documents change. For a new project, copy one of the folders, change the title, descriptions, picture and `data-repo`, and add `page` to its entry in `projects.js`.
+- Each project has its own page in a folder named after it (`blackjack-game/index.html` and so on). The page shows the project's README, setup guide, manual and FAQ, loaded live from its repository, and a changelog (its `CHANGELOG.md`, or else its release notes or commit history), so it never needs updating when the documents change. For a new project, copy one of the folders, change the title, descriptions, picture and `data-repo`, and add `page` to its entry in `projects.js`.
 - `_scenes/` holds the sources of the example scenes on the project cards (see `_scenes/render.ps1`).
 
 ## Credits
