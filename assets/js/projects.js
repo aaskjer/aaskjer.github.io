@@ -29,6 +29,9 @@ window.SITE = {
   twitch: 'https://www.twitch.tv/aaskjer',
   // Umami Cloud visitor statistics: the website ID from the Umami dashboard; leave empty to switch them off
   stats: { script: 'https://cloud.umami.is/script.js', websiteId: '1fd3cb1c-351d-4e3c-aed9-925125642e95', domain: 'aaskjer.github.io' },
+  // Repositories under "More on GitHub" that are not released yet: their card shows a red
+  // "Coming Soon" instead of the GitHub button, until the first release is out.
+  comingSoon: ['ChatCalendar'],
   projects: [
     {
       repo: 'TwitchSentry',

@@ -5,7 +5,7 @@
 (() => {
   'use strict';
 
-  const { user, twitch, stats, projects } = window.SITE;
+  const { user, twitch, stats, projects, comingSoon = [] } = window.SITE;
   const API = 'https://api.github.com';
   const CACHE_KEY = 'github-live-v2';
   // GitHub allows 60 requests per hour without a token, so one visit's
@@ -94,6 +94,7 @@
   }
 
   function actions(p, { github = false } = {}) {
+    if (p.comingSoon) return `<span class="btn btn--sm btn--soon">${icon('clock')}Coming Soon</span>`;
     const url = repoUrl(p.repo);
     const links = [];
     if (p.download !== false) {
@@ -311,6 +312,7 @@
         version: l.version,
         released: l.released,
         download: l.hasReleases ? undefined : false,
+        comingSoon: !l.hasReleases && comingSoon.some(name => name.toLowerCase() === l.name.toLowerCase()),
       }));
     renderExtras();
     renderStats();
