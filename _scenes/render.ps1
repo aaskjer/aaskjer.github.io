@@ -1,17 +1,20 @@
 <#
   Renders the scene mockups in this folder to the pictures the site uses:
   assets/img/scenes/<name>.jpg (1600x900) and <name>-thumb.jpg (960x540).
+  Pages named og-* are link previews instead: assets/img/<name>.jpg (1200x630).
 
   Needs Google Chrome or Microsoft Edge, and Python for a local web server
   (the overlays load their sample game state over HTTP).
 
     powershell -ExecutionPolicy Bypass -File _scenes\render.ps1
     powershell -ExecutionPolicy Bypass -File _scenes\render.ps1 -Scene hangman-game
+    powershell -ExecutionPolicy Bypass -File _scenes\render.ps1 -Scene og-home
 #>
 param(
   # Hangman comes first: Better Stream Announcements shows its picture as the stream preview.
   [string[]] $Scene = @('hangman-game', 'battleship-game', 'blackjack-game', 'trivia-game',
-                        'classic-chat-gamble', 'slot-machine-game', 'better-stream-announcements', 'sbreffix', 'suto'),
+                        'classic-chat-gamble', 'slot-machine-game', 'better-stream-announcements', 'sbreffix', 'suto',
+                        'og-home'),
   [int] $Port = 8765
 )
 $ErrorActionPreference = 'Stop'
@@ -53,10 +56,12 @@ try {
   Start-Sleep -Seconds 1
   foreach ($name in $Scene) {
     $png = Join-Path $work "$name.png"
+    $preview = $name -like 'og-*'
+    $size = if ($preview) { '1200,630' } else { '1600,900' }
     Remove-Item $png -ErrorAction SilentlyContinue
     # Chrome's own log goes to a file: it is noisy, and its error lines are not failures.
     $arguments = '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run',
-                 "`"--user-data-dir=$work\profile`"", '--window-size=1600,900', '--virtual-time-budget=6000',
+                 "`"--user-data-dir=$work\profile`"", "--window-size=$size", '--virtual-time-budget=6000',
                  "`"--screenshot=$png`"", "http://127.0.0.1:$Port/_scenes/$name.html"
     Start-Process $browser -ArgumentList $arguments -Wait -WindowStyle Hidden `
       -RedirectStandardOutput (Join-Path $work 'browser.out') -RedirectStandardError (Join-Path $work 'browser.log')
@@ -65,8 +70,12 @@ try {
       continue
     }
     $image = [System.Drawing.Image]::FromFile($png)
-    Save-Jpeg $image 1600 900 (Join-Path $target "$name.jpg") 84
-    Save-Jpeg $image 960 540 (Join-Path $target "$name-thumb.jpg") 80
+    if ($preview) {
+      Save-Jpeg $image 1200 630 (Join-Path $root "assets\img\$name.jpg") 88
+    } else {
+      Save-Jpeg $image 1600 900 (Join-Path $target "$name.jpg") 84
+      Save-Jpeg $image 960 540 (Join-Path $target "$name-thumb.jpg") 80
+    }
     $image.Dispose()
     Write-Host "ok   $name"
   }

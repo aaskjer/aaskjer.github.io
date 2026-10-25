@@ -6,6 +6,7 @@ The pictures on top of the project cards (`assets/img/scenes/`) are rendered fro
 - `overlays/` holds copies of the real OBS overlays from the Hangman (v11.0.0), Battleship (v1.0.0) and Blackjack (v16.1.1) releases. The `*_state.json` next to each overlay is the sample game it shows, in the same format the game writes.
 - The chat messages are the games' default texts. Viewer names, bets and numbers are made up.
 - `scene.css` is the shared stream frame and chat panel; `img/` holds full-size logos for the chat-only games.
+- `og-home.html` is the link preview of the start page (`assets/img/og-home.jpg`, 1200x630), the picture Discord and others show under a shared link. Render it again when a project logo is added: `render.ps1 -Scene og-home`.
 
 ## Fonts
 

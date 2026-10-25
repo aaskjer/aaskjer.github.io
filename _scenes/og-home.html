@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Link preview of the start page</title>
+<!-- 1200x630: the picture Discord, X and others show under a shared link to the start page -->
+<style>
+  @font-face {
+    font-family: 'Sora';
+    font-weight: 100 800;
+    src: url('../assets/fonts/sora-latin-wght-normal.woff2') format('woff2');
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0b0a12;
+  }
+
+  body {
+    position: relative;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #eeedf7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* glows and the dotted grid from the start page */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(620px 420px at 82% 18%, rgb(124 58 237 / 0.32), transparent 70%),
+      radial-gradient(560px 420px at 8% 100%, rgb(37 99 235 / 0.22), transparent 70%);
+  }
+
+  .bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgb(255 255 255 / 0.13) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 40% 20%, #000 15%, transparent 75%);
+  }
+
+  .text {
+    position: absolute;
+    left: 72px;
+    top: 50%;
+    width: 640px;
+    transform: translateY(-50%);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    margin: 0;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 16px;
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 999px;
+    background: #13111c;
+    color: #a6a2bb;
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 12px #34d399;
+  }
+
+  h1 {
+    margin: 30px 0 0;
+    font: 700 60px/1.08 'Sora', sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  .grad {
+    background: linear-gradient(120deg, #c4b5fd 0%, #818cf8 50%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lead {
+    margin: 26px 0 0;
+    color: #a6a2bb;
+    font-size: 24px;
+    line-height: 1.45;
+  }
+
+  .chips {
+    display: flex;
+    gap: 10px;
+    margin: 30px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 16px;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.04);
+    color: #d6d3e6;
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  .chips li::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--dot);
+  }
+
+  /* the logo collage from the start page */
+  .art {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    width: 390px;
+    transform: translateY(-50%);
+  }
+
+  .art::before {
+    content: '';
+    position: absolute;
+    inset: 10%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 55%, #2563eb 100%);
+    filter: blur(70px);
+    opacity: 0.45;
+  }
+
+  .collage {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    transform: rotate(-5deg);
+  }
+
+  .tile {
+    display: grid;
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+    place-items: center;
+    aspect-ratio: 1;
+    padding: 16%;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 22%;
+    background: radial-gradient(circle at 30% 20%, #262043, #0e0c17 72%);
+    box-shadow: 0 18px 36px -20px rgb(0 0 0 / 0.8);
+  }
+
+  .tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.45));
+  }
+
+  .tile--me {
+    padding: 5%;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 55%, #2563eb 100%);
+  }
+
+  .tile--me img {
+    border-radius: 50%;
+    filter: none;
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="text">
+    <p class="eyebrow">Streamer.bot extensions by aaskjer</p>
+    <h1>Chat games and stream tools for <span class="grad">Streamer.bot</span></h1>
+    <p class="lead">Moderation, Discord go-live announcements and a whole arcade of chat games. Free and open source.</p>
+    <ul class="chips">
+      <li style="--dot: #9146ff">Twitch</li>
+      <li style="--dot: #ff3b3b">YouTube</li>
+      <li style="--dot: #53fc18">Kick</li>
+    </ul>
+  </div>
+
+  <div class="art">
+    <div class="collage">
+      <div class="tile"><img src="../assets/img/projects/twitchsentry.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/better-stream-announcements.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/blackjack-game.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/classic-chat-gamble.png" alt=""></div>
+      <div class="tile tile--me"><img src="../assets/img/avatar.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/trivia-game.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/slot-machine-game.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/hangman-game.png" alt=""></div>
+      <div class="tile"><img src="../assets/img/projects/battleship-game.png" alt=""></div>
+    </div>
+  </div>
+</body>
+</html>
