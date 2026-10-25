@@ -66,6 +66,20 @@
     return items.join('');
   }
 
+  // The guide button opens the matching tab of the project's own page where there is one.
+  const GUIDE_TABS = { 'setup-guide.md': 'setup', 'manual.md': 'manual', 'faq.md': 'faq' };
+
+  function guideUrl(p) {
+    const href = p.guide.href;
+    if (p.page) {
+      const tab = GUIDE_TABS[href.toLowerCase()];
+      if (tab) return `${p.page}?tab=${tab}`;
+      const readme = href.match(new RegExp(`^https://github\\.com/${user}/${p.repo}/?(#.*)?$`, 'i'));
+      if (readme) return p.page + (readme[1] || '');
+    }
+    return /^https?:/.test(href) ? href : `${repoUrl(p.repo)}/blob/main/${href}`;
+  }
+
   function actions(p, { github = false } = {}) {
     const url = repoUrl(p.repo);
     const links = [];
@@ -73,8 +87,7 @@
       links.push(`<a class="btn btn--primary btn--sm" href="${esc(p.download || `${url}/releases/latest`)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`);
     }
     if (p.guide) {
-      const href = /^https?:/.test(p.guide.href) ? p.guide.href : `${url}/blob/main/${p.guide.href}`;
-      links.push(`<a class="btn btn--ghost btn--sm" href="${esc(href)}" data-track="guide">${icon('book')}${esc(p.guide.label)}</a>`);
+      links.push(`<a class="btn btn--ghost btn--sm" href="${esc(guideUrl(p))}" data-track="guide">${icon('book')}${esc(p.guide.label)}</a>`);
     }
     if (github || !links.length) {
       links.push(`<a class="btn btn--ghost btn--sm" href="${url}" data-track="github">${icon('github')}GitHub</a>`);

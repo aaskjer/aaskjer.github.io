@@ -930,6 +930,18 @@ a.collage__tile--me:focus-visible {
     var(--surface);
   box-shadow: var(--card-shadow);
   overflow: hidden;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spotlight:hover {
+  border-color: color-mix(in srgb, #7c3aed 50%, var(--border));
+  box-shadow: var(--hover-shadow);
+}
+
+.spotlight:has(.spotlight__title a:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .spotlight__body {
@@ -953,8 +965,16 @@ a.collage__tile--me:focus-visible {
   text-decoration: none;
 }
 
-.spotlight__title a:hover {
-  text-decoration: underline;
+/* like a card, the whole spotlight links to the project; buttons and the picture sit above */
+.spotlight__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.spotlight__title a:focus-visible {
+  outline: none;
 }
 
 .spotlight__text {
@@ -999,6 +1019,8 @@ a.collage__tile--me:focus-visible {
 }
 
 .spotlight__shot {
+  position: relative;
+  z-index: 1;
   margin: 0;
   border: 1px solid var(--border-strong);
   border-radius: 14px;
