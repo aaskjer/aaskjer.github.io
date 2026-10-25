@@ -864,9 +864,20 @@ a.collage__tile--me:focus-visible {
   color: #34d399;
 }
 
+.badge--new {
+  background: color-mix(in srgb, #38bdf8 18%, transparent);
+  color: #38bdf8;
+}
+
 .badge--dev,
-.badge--complete {
+.badge--complete,
+.badge--new {
   cursor: help;
+}
+
+:root[data-theme='light'] .badge--new {
+  background: #e0f2fe;
+  color: #075985;
 }
 
 :root[data-theme='light'] .badge--dev {

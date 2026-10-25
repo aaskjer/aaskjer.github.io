@@ -7,7 +7,7 @@
 
   const { user, twitch, stats, projects } = window.SITE;
   const API = 'https://api.github.com';
-  const CACHE_KEY = 'github-live-v1';
+  const CACHE_KEY = 'github-live-v2';
   // GitHub allows 60 requests per hour without a token, so one visit's
   // answers are kept for an hour.
   const CACHE_TTL = 60 * 60 * 1000;
@@ -24,6 +24,19 @@
   const icon = name => `<svg class="i" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 
   let extras = [];
+
+  // Releases since the visitor's previous visit get a "New" badge. A visit ends after
+  // 30 minutes without a page view; on a first visit nothing is marked.
+  const previousVisit = (() => {
+    try {
+      const now = Date.now();
+      const visit = JSON.parse(localStorage.getItem('visit')) || {};
+      if (!visit.current || now - visit.current > 30 * 60 * 1000) visit.previous = visit.current || null;
+      visit.current = now;
+      localStorage.setItem('visit', JSON.stringify(visit));
+      return visit.previous;
+    } catch (e) { return null; }
+  })();
 
   function timeAgo(iso) {
     const seconds = (new Date(iso) - Date.now()) / 1000;
@@ -99,6 +112,11 @@
     return `<span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>`;
   }
 
+  function newBadge(p) {
+    if (!p.released || !previousVisit || new Date(p.released) <= previousVisit) return '';
+    return `<span class="badge badge--new" title="Released ${esc(timeAgo(p.released))}, since your last visit">New</span>`;
+  }
+
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
     complete: { label: 'Complete', note: 'Finished: no big updates planned, only fixes.' },
@@ -112,7 +130,7 @@
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
     const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
-    return `<span class="badges">${badge(p)}${label}</span>`;
+    return `<span class="badges">${badge(p)}${newBadge(p)}${label}</span>`;
   }
 
   // The picture on top of a card; a click opens the full-size version in the lightbox.
@@ -223,14 +241,11 @@
   // Updates the numbers in place, so the cards and images are not rebuilt.
   function refresh(p) {
     for (const node of document.querySelectorAll(`[data-repo="${CSS.escape(p.repo)}"]`)) {
-      const badgeEl = node.querySelector('.badge');
-      if (badgeEl) {
-        badgeEl.textContent = p.version || '';
-        badgeEl.hidden = !p.version;
-      }
+      const group = node.querySelector('.badges');
+      if (group) group.outerHTML = badges(p);
       const meta = node.querySelector('.meta-row');
-      const group = meta && meta.querySelector('.badges');
-      if (meta) meta.innerHTML = (group ? group.outerHTML : '') + metaRow(p);
+      const inMeta = meta && meta.querySelector('.badges');
+      if (meta) meta.innerHTML = (inMeta ? inMeta.outerHTML : '') + metaRow(p);
     }
   }
 
@@ -258,6 +273,7 @@
         stars: r.stargazers_count,
         pushed: r.pushed_at,
         version: stable ? stable.tag_name : null,
+        released: stable ? stable.published_at : null,
         // null means "unknown", so a failed request never shows 0 downloads
         downloads: releases && releases.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         hasReleases: Boolean(releases && releases.some(rel => !rel.draft)),
@@ -275,6 +291,7 @@
       p.updated = l.pushed;
       if (l.downloads != null) p.downloads = l.downloads;
       if (l.version) p.version = l.version;
+      p.released = l.released;
       refresh(p);
     }
 
@@ -291,6 +308,7 @@
         downloads: l.downloads,
         updated: l.pushed,
         version: l.version,
+        released: l.released,
         download: l.hasReleases ? undefined : false,
       }));
     renderExtras();

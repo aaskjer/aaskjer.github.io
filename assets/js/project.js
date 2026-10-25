@@ -15,7 +15,7 @@
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
   // the start page's answers from the GitHub API, used for as long as the start page uses them
-  const CACHE_KEY = 'github-live-v1';
+  const CACHE_KEY = 'github-live-v2';
   const CACHE_TTL = 60 * 60 * 1000;
   const DOCS = [
     { id: 'overview', label: 'Overview', file: 'README.md' },
@@ -56,10 +56,24 @@
     complete: { label: 'Complete', note: 'Finished: no big updates planned, only fixes.' },
   };
 
+  // Same "New" badge as on the start page: a release since the visitor's previous visit.
+  const previousVisit = (() => {
+    try {
+      const now = Date.now();
+      const visit = JSON.parse(localStorage.getItem('visit')) || {};
+      if (!visit.current || now - visit.current > 30 * 60 * 1000) visit.previous = visit.current || null;
+      visit.current = now;
+      localStorage.setItem('visit', JSON.stringify(visit));
+      return visit.previous;
+    } catch (e) { return null; }
+  })();
+
   function badges() {
     const status = STATUS[p.status];
     const label = status ? `<span class="badge badge--${p.status}" title="${esc(status.note)}">${status.label}</span>` : '';
-    return `<span class="badges"><span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>${label}</span>`;
+    const fresh = p.released && previousVisit && new Date(p.released) > previousVisit
+      ? `<span class="badge badge--new" title="Released ${esc(timeAgo(p.released))}, since your last visit">New</span>` : '';
+    return `<span class="badges"><span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>${fresh}${label}</span>`;
   }
 
   function metaRow() {
@@ -101,6 +115,7 @@
                 ${p.download === false ? '' : `<a class="btn btn--primary" href="${esc(download)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`}
                 <button class="btn btn--ghost" type="button" id="copy-import" data-track="import-string" hidden>${icon('copy')}Copy import string</button>
                 <a class="btn btn--ghost" href="${REPO_URL}" data-track="github">${icon('github')}GitHub</a>
+                <a class="btn btn--ghost" href="${REPO_URL}/issues/new/choose" data-track="report">${icon('flag')}Report a problem</a>
               </div>
               <div class="meta-row" id="meta">${metaRow()}</div>
             </div>
@@ -146,6 +161,7 @@
           stars: r.stargazers_count,
           pushed: r.pushed_at,
           version: stable ? stable.tag_name : null,
+          released: stable ? stable.published_at : null,
           downloads: list && list.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         };
       } catch (e) { return; }
@@ -154,10 +170,9 @@
     p.updated = live.pushed;
     if (live.downloads != null) p.downloads = live.downloads;
     if (live.version) p.version = live.version;
+    p.released = live.released;
     $('#meta').innerHTML = metaRow();
-    const version = $('.project-hero .badges .badge');
-    version.textContent = p.version || '';
-    version.hidden = !p.version;
+    $('.project-hero .badges').outerHTML = badges();
   }
 
   /* ---------- import string ---------- */

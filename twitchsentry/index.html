@@ -52,8 +52,23 @@
   </header>
 
   <main id="main">
-    <p class="wrap doc-status">Loading…</p>
-    <noscript><p class="wrap">This page needs JavaScript. The project is also on <a href="https://github.com/aaskjer/TwitchSentry">GitHub</a>.</p></noscript>
+    <!-- shown until project.js has built the page; search engines read it too -->
+    <section class="project-hero">
+      <div class="wrap">
+        <h1>TwitchSentry</h1>
+        <p class="project-hero__lead">Your smart chat bodyguard. Deletes fake gift links, sketchy URLs and copy-paste scams, and tells you what each message said, who sent it and why it was removed.</p>
+        <ul class="features">
+          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>Blocks links from untrusted viewers, with a link whitelist</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>Spam scoring that recognises scam adverts</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>Raid, hate raid and follow wave protection</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>Spam Learner and a bot list shared between channels</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>Twitch warnings, link permits, link checks and vote kicks</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>Alerts via Discord, Stoat, GameVox, ntfy or Windows</span></li>
+        </ul>
+        <p class="doc-status">Loading…</p>
+      </div>
+    </section>
+    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/TwitchSentry">GitHub</a>.</p></noscript>
   </main>
 
   <footer class="footer">
