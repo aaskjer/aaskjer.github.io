@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SuTo scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg { background: radial-gradient(circle at 22% 30%, #2a1f4d, #0d0b18 62%); }
+
+  /* Discord, as in the Better Stream Announcements scene */
+  .app { position: absolute; top: 28px; left: 28px; bottom: 28px; width: 1036px; display: flex; overflow: hidden;
+    border-radius: 14px; background: #1e1f22; box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .85); }
+  .rail { width: 72px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .rail i { width: 48px; height: 48px; border-radius: 50%; background: #313338; }
+  .rail i.on { border-radius: 16px; background: linear-gradient(135deg, #7c3aed, #2563eb); }
+  .rail hr { width: 32px; border: 0; border-top: 2px solid #35373c; margin: 2px 0; }
+
+  .side { width: 220px; background: #2b2d31; display: flex; flex-direction: column; }
+  .server { padding: 16px; font: 700 16px/1 'Sora', sans-serif; color: #f2f3f5; border-bottom: 1px solid #1f2023; }
+  .group { margin: 18px 16px 4px; color: #949ba4; font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+  .chan { margin: 1px 8px; padding: 6px 8px; border-radius: 4px; color: #949ba4; font-size: 16px; }
+  .chan::before { content: '#'; margin-right: 8px; color: #80848e; font-size: 19px; }
+  .chan.on { background: #404249; color: #f2f3f5; }
+
+  .main { flex: 1; display: flex; flex-direction: column; background: #313338; }
+  .top { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 16px; border-bottom: 1px solid #26272b; color: #f2f3f5; font-size: 16px; font-weight: 600; }
+  .top::before { content: '#'; color: #80848e; font-size: 22px; font-weight: 400; }
+  .top span { padding-left: 12px; border-left: 1px solid #3f4147; color: #949ba4; font-weight: 400; font-size: 14px; }
+
+  .feed { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 0 24px 24px; overflow: hidden; }
+  .post { display: flex; gap: 16px; }
+  .post + .post.cont { margin-top: -2px; }
+  .ava { width: 40px; height: 40px; flex: none; border-radius: 50%; display: grid; place-items: center;
+    background: linear-gradient(135deg, #e408db, #7c3aed); color: #fff; font: 700 13px/1 'Sora', sans-serif; }
+  .cont .ava { visibility: hidden; height: 0; }
+  .who { display: flex; align-items: center; gap: 6px; }
+  .who b { color: #f2f3f5; font-size: 17px; font-weight: 600; }
+  .who em { padding: 1px 5px; border-radius: 3px; background: #5865f2; color: #fff; font: 600 10px/1.4 'Segoe UI', sans-serif; font-style: normal; }
+  .who small { margin-left: 2px; color: #949ba4; font-size: 12px; }
+
+  .embed { width: 620px; margin-top: 4px; padding: 10px 18px 14px 14px; border-left: 4px solid var(--c); border-radius: 4px; background: #2b2d31; }
+  .e-desc { margin-top: 4px; color: #dbdee1; font-size: 18px; line-height: 1.45; }
+  .e-desc b { color: #f2f3f5; text-decoration: underline; }
+  .e-foot { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: #949ba4; font-size: 14px; }
+  .e-foot i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--a);
+    color: #fff; font: 700 10px/1 'Segoe UI', sans-serif; font-style: normal; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+
+  <div class="app">
+    <nav class="rail"><i class="on"></i><hr><i></i><i></i><i></i></nav>
+    <aside class="side">
+      <div class="server">aaskjer's Community</div>
+      <div class="group">Community</div>
+      <div class="chan">general</div>
+      <div class="chan">clips</div>
+      <div class="chan on">suggestions</div>
+      <div class="group">Streams</div>
+      <div class="chan">live-now</div>
+    </aside>
+    <main class="main">
+      <div class="top">suggestions <span>Ideas from chat, straight from the stream</span></div>
+      <div class="feed">
+        <article class="post">
+          <div class="ava">SuTo</div>
+          <div>
+            <div class="who"><b>Suggestions</b><em>APP</em><small>Today at 19:48</small></div>
+            <div class="embed" style="--c:#9146FF">
+              <div class="e-desc">📝 <b>Suggestion</b>: Speedrun the first level blindfolded</div>
+              <div class="e-foot"><i style="--a:#da70d6">L</i>LunaByte (TWITCH) • Today at 19:48</div>
+            </div>
+          </div>
+        </article>
+        <article class="post cont">
+          <div class="ava"></div>
+          <div>
+            <div class="embed" style="--c:#53FC18">
+              <div class="e-desc">📝 <b>Suggestion</b>: A viewer games night with !blackjack duels</div>
+              <div class="e-foot"><i style="--a:#c9a227">R</i>RustyRaccoon (KICK) • Today at 19:55</div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <div class="ava">SuTo</div>
+          <div>
+            <div class="who"><b>Suggestions</b><em>APP</em><small>Today at 20:14</small></div>
+            <div class="embed" style="--c:#9146FF">
+              <div class="e-desc">📝 <b>Suggestion</b>: A Hangman round with only game titles</div>
+              <div class="e-foot"><i style="--a:#ff7f50">P</i>PixelPanda (TWITCH) • Today at 20:14</div>
+            </div>
+          </div>
+        </article>
+        <article class="post cont">
+          <div class="ava"></div>
+          <div>
+            <div class="embed" style="--c:#FF0000">
+              <div class="e-desc">📝 <b>Suggestion</b>: Cozy Sunday stream with the new farming game</div>
+              <div class="e-foot"><i style="--a:#1e90ff">C</i>CozyKoala (YOUTUBE) • Today at 20:17</div>
+            </div>
+          </div>
+        </article>
+        <article class="post cont">
+          <div class="ava"></div>
+          <div>
+            <div class="embed" style="--c:#53FC18">
+              <div class="e-desc">📝 <b>Suggestion</b>: Bring back the Friday trivia night!</div>
+              <div class="e-foot"><i style="--a:#2e9b27">N</i>NovaRush (KICK) • Today at 20:21</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <aside class="chat">
+    <div class="chat__head">Stream chat <i>Twitch · YouTube · Kick</i></div>
+    <ul class="chat__list">
+      <li class="msg"><span class="n c4">LunaByte</span>that boss fight was wild</li>
+      <li class="msg"><span class="n c6">RustyRaccoon</span>what are we playing next week?</li>
+      <li class="msg"><span class="n me">aaskjer</span>tell me with !suggestion, it lands in Discord</li>
+      <li class="msg"><span class="n c3">MossyMoth</span>gg, that last round was close</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!suggestion A Hangman round with only game titles</li>
+      <li class="msg bot"><span class="n me">aaskjer</span>@PixelPanda has made a suggestion!</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>!suggestion Cozy Sunday stream with the new farming game</li>
+      <li class="msg bot" style="--accent:#ff0000"><span class="n me">aaskjer</span>@CozyKoala has made a suggestion!</li>
+      <li class="msg"><span class="n c5">NovaRush</span>!vorschlag Bring back the Friday trivia night!</li>
+      <li class="msg bot" style="--accent:#53fc18"><span class="n me">aaskjer</span>@NovaRush has made a suggestion!</li>
+    </ul>
+    <div class="chat__input">Send a message</div>
+  </aside>
+</div>
+</body>
+</html>
