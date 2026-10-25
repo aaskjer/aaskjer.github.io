@@ -14,7 +14,9 @@
   const API = 'https://api.github.com';
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
+  // the start page's answers from the GitHub API, used for as long as the start page uses them
   const CACHE_KEY = 'github-live-v1';
+  const CACHE_TTL = 60 * 60 * 1000;
   const DOCS = [
     { id: 'overview', label: 'Overview', file: 'README.md' },
     { id: 'setup', label: 'Setup guide', file: 'Setup-Guide.md' },
@@ -131,20 +133,20 @@
     let live = null;
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-      live = cached && cached.live.find(l => l.name.toLowerCase() === repo.toLowerCase());
+      if (cached && Date.now() - cached.time < CACHE_TTL) live = cached.live.find(l => l.name.toLowerCase() === repo.toLowerCase());
     } catch (e) { /* no cache */ }
     if (!live) {
       try {
-        const [r, releases] = await Promise.all([
+        const [r, list] = await Promise.all([
           fetch(`${API}/repos/${user}/${repo}`).then(res => res.ok ? res.json() : Promise.reject(res.status)),
           releases().catch(() => null),
         ]);
-        const stable = releases && releases.find(rel => !rel.draft && !rel.prerelease);
+        const stable = list && list.find(rel => !rel.draft && !rel.prerelease);
         live = {
           stars: r.stargazers_count,
           pushed: r.pushed_at,
           version: stable ? stable.tag_name : null,
-          downloads: releases && releases.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
+          downloads: list && list.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         };
       } catch (e) { return; }
     }
