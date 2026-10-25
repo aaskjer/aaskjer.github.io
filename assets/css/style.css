@@ -864,6 +864,11 @@ a.collage__tile--me:focus-visible {
   color: #34d399;
 }
 
+.badge--done {
+  background: color-mix(in srgb, #f472b6 18%, transparent);
+  color: #f472b6;
+}
+
 .badge--new {
   background: color-mix(in srgb, #38bdf8 18%, transparent);
   color: #38bdf8;
@@ -871,6 +876,7 @@ a.collage__tile--me:focus-visible {
 
 .badge--dev,
 .badge--complete,
+.badge--done,
 .badge--new {
   cursor: help;
 }
@@ -888,6 +894,11 @@ a.collage__tile--me:focus-visible {
 :root[data-theme='light'] .badge--complete {
   background: #d1fae5;
   color: #065f46;
+}
+
+:root[data-theme='light'] .badge--done {
+  background: #fce7f3;
+  color: #9d174d;
 }
 
 .meta-row {

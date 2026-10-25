@@ -119,14 +119,15 @@
 
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
-    complete: { label: 'Complete', note: 'Finished: no big updates planned, only fixes.' },
+    complete: { label: 'Feature Complete', note: 'All planned features are in: no big updates planned, only fixes and polish.' },
+    done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.' },
   };
 
   // Version and status side by side, e.g. "v16.1.1" and a yellow "In development".
   function badges(p) {
     const status = STATUS[p.status];
     let note = status ? status.note : '';
-    if (p.status === 'complete' && p.section === 'games') {
+    if ((p.status === 'complete' || p.status === 'done') && p.section === 'games') {
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
     const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';

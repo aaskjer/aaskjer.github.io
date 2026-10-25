@@ -21,7 +21,8 @@
  *              whichever exist, plus `moreDocs` ({ id, label, file }). The Changelog tab is always
  *              there: CHANGELOG.md, or else the release notes, or else the commit history. A copy button
  *              for Import-String.md (`importString` if the file is somewhere else)
- *   status     'dev' (yellow "In development") or 'complete' (green "Complete"), shown next to the version
+ *   status     shown next to the version: 'dev' (yellow "In development"), 'complete' (green
+ *              "Feature Complete": all planned features are in) or 'done' (pink "Done": finished)
  */
 window.SITE = {
   user: 'aaskjer',
@@ -73,7 +74,7 @@ window.SITE = {
     {
       repo: 'SBRefFix',
       page: 'sbreffix/',
-      status: 'complete',
+      status: 'done',
       name: 'SBRefFix',
       section: 'tools',
       mono: '.sb',
@@ -120,7 +121,7 @@ window.SITE = {
     {
       repo: 'Classic-Chat-Gamble',
       page: 'classic-chat-gamble/',
-      status: 'complete',
+      status: 'done',
       name: 'Classic Chat Gamble',
       section: 'games',
       logo: 'assets/img/projects/classic-chat-gamble.png',
@@ -148,7 +149,7 @@ window.SITE = {
     {
       repo: 'Slot-Machine-Game',
       page: 'slot-machine-game/',
-      status: 'complete',
+      status: 'done',
       name: 'Slot Machine Game',
       section: 'games',
       logo: 'assets/img/projects/slot-machine-game.png',

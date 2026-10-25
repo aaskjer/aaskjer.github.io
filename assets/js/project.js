@@ -53,7 +53,8 @@
 
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
-    complete: { label: 'Complete', note: 'Finished: no big updates planned, only fixes.' },
+    complete: { label: 'Feature Complete', note: 'All planned features are in: no big updates planned, only fixes and polish.' },
+    done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.' },
   };
 
   // Same "New" badge as on the start page: a release since the visitor's previous visit.
@@ -70,7 +71,11 @@
 
   function badges() {
     const status = STATUS[p.status];
-    const label = status ? `<span class="badge badge--${p.status}" title="${esc(status.note)}">${status.label}</span>` : '';
+    let note = status ? status.note : '';
+    if ((p.status === 'complete' || p.status === 'done') && p.section === 'games') {
+      note += ' The games get one more round if Streamer.bot ships its own points system.';
+    }
+    const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
     const fresh = p.released && previousVisit && new Date(p.released) > previousVisit
       ? `<span class="badge badge--new" title="Released ${esc(timeAgo(p.released))}, since your last visit">New</span>` : '';
     return `<span class="badges"><span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>${fresh}${label}</span>`;
