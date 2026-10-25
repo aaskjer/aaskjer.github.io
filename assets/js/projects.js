@@ -49,7 +49,7 @@ window.SITE = {
         'Alerts via Discord, Stoat, GameVox, ntfy or Windows',
       ],
       platforms: ['Twitch'],
-      tags: ['Discord', 'Stoat', 'GameVox'],
+      tags: ['Discord', 'Stoat', 'GameVox', 'ntfy', 'Windows'],
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
