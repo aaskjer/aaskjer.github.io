@@ -8,7 +8,7 @@
  * "More on GitHub".
  *
  *   repo       repository name on GitHub (required)
- *   section    'tools' or 'games'
+ *   section    'tools', 'games' or 'more' (under "More on GitHub", before the repositories GitHub adds)
  *   featured   shown large at the top of its section, with `features` and `screenshot`
  *              (`screenshotFull` is what a click on it opens)
  *   scene      picture on top of the card, `sceneAlt` describes it; the card shows the
@@ -29,9 +29,9 @@ window.SITE = {
   twitch: 'https://www.twitch.tv/aaskjer',
   // Umami Cloud visitor statistics: the website ID from the Umami dashboard; leave empty to switch them off
   stats: { script: 'https://cloud.umami.is/script.js', websiteId: '1fd3cb1c-351d-4e3c-aed9-925125642e95', domain: 'aaskjer.github.io' },
-  // Under "More on GitHub", a repository without a release that holds only README and LICENSE
-  // shows a red "Coming Soon" instead of the GitHub button. Repositories listed here show it
-  // too although they already have files, until their first release is out.
+  // A repository without a release that holds only README and LICENSE shows a red "Coming Soon"
+  // instead of its buttons. Repositories listed here show it too although they already have
+  // files, until their first release is out.
   comingSoon: ['ChatCalendar'],
   projects: [
     {
@@ -80,7 +80,8 @@ window.SITE = {
       page: 'sbreffix/',
       status: 'done',
       name: 'SBRefFix',
-      section: 'tools',
+      // a helper for anyone sharing Streamer.bot exports, not a stream tool
+      section: 'more',
       mono: '.sb',
       scene: 'assets/img/scenes/sbreffix.jpg',
       sceneAlt: 'SBRefFix in a console window, rewriting the .NET references of a Streamer.bot export.',
@@ -106,6 +107,16 @@ window.SITE = {
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Manual', href: 'Manual.md' },
       version: 'v1.0.0', stars: 0, downloads: 0,
+    },
+    {
+      repo: 'OBSNotes',
+      status: 'dev',
+      name: 'OBSNotes',
+      section: 'tools',
+      mono: 'ON',
+      tagline: "Can't remember the code of the padlock? Your chat can stick a post-it note in OBS.",
+      download: false,
+      version: null, stars: 0, downloads: 0,
     },
     {
       repo: 'Blackjack-Game',

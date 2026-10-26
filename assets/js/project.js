@@ -104,7 +104,7 @@
     return `
       <section class="project-hero">
         <div class="wrap">
-          <a class="back-link" href="${ROOT}#${p.section === 'tools' ? 'tools' : 'games'}">${icon('back')}All projects</a>
+          <a class="back-link" href="${ROOT}#${esc(p.section || 'tools')}">${icon('back')}All projects</a>
           <div class="project-hero__grid">
             <div>
               <div class="card__head">

@@ -214,12 +214,17 @@
 
   /* ---------- rendering ---------- */
 
+  const listedAsSoon = repo => comingSoon.some(name => name.toLowerCase() === repo.toLowerCase());
+
   function render() {
     const featured = projects.find(p => p.featured);
+    // until the live data says otherwise
+    for (const p of projects) p.comingSoon = listedAsSoon(p.repo);
     $('#collage').innerHTML = collage();
     $('#spotlight').innerHTML = featured ? spotlight(featured) : '';
     $('#tools-grid').innerHTML = projects.filter(p => p.section === 'tools' && p !== featured).map(card).join('');
     $('#games-grid').innerHTML = projects.filter(p => p.section === 'games' && p !== featured).map(card).join('');
+    renderExtras();
     renderStats();
   }
 
@@ -235,9 +240,11 @@
     }
   }
 
+  // "More on GitHub": projects listed with section 'more' first, then the ones GitHub adds.
   function renderExtras() {
-    $('#more').hidden = extras.length === 0;
-    $('#more-grid').innerHTML = extras.map(card).join('');
+    const all = projects.filter(p => p.section === 'more').concat(extras);
+    $('#more').hidden = all.length === 0;
+    $('#more-grid').innerHTML = all.map(card).join('');
   }
 
   // Updates the numbers in place, so the cards and images are not rebuilt.
@@ -248,6 +255,8 @@
       const meta = node.querySelector('.meta-row');
       const inMeta = meta && meta.querySelector('.badges');
       if (meta) meta.innerHTML = (inMeta ? inMeta.outerHTML : '') + metaRow(p);
+      const buttons = node.querySelector('.actions');
+      if (buttons) buttons.innerHTML = actions(p, { github: node.classList.contains('spotlight') });
     }
   }
 
@@ -273,7 +282,6 @@
 
   async function fetchLive() {
     const skip = new Set([`${user}.github.io`, user].map(name => name.toLowerCase()));
-    const known = new Set(projects.map(p => p.repo.toLowerCase()));
     const repos = (await getJSON(`${API}/users/${user}/repos?per_page=100&sort=pushed`))
       .filter(r => !r.fork && !r.archived && !skip.has(r.name.toLowerCase()));
     let complete = true;
@@ -281,8 +289,8 @@
       const releases = await getJSON(`${API}/repos/${user}/${r.name}/releases?per_page=100`).catch(() => null);
       if (!releases) complete = false;
       const stable = releases && releases.find(rel => !rel.draft && !rel.prerelease);
-      // only asked for repositories under "More on GitHub" that have no release yet
-      const empty = releases && !releases.length && !known.has(r.name.toLowerCase()) ? await isEmpty(r.name) : false;
+      // only asked for repositories that have no release yet
+      const empty = releases && !releases.length ? await isEmpty(r.name) : false;
       return {
         name: r.name,
         description: r.description,
@@ -310,6 +318,8 @@
       if (l.downloads != null) p.downloads = l.downloads;
       if (l.version) p.version = l.version;
       p.released = l.released;
+      if (!l.hasReleases && p.download === undefined) p.download = false;
+      p.comingSoon = !l.hasReleases && (l.empty === true || listedAsSoon(p.repo));
       refresh(p);
     }
 
@@ -328,7 +338,7 @@
         version: l.version,
         released: l.released,
         download: l.hasReleases ? undefined : false,
-        comingSoon: !l.hasReleases && (l.empty === true || comingSoon.some(name => name.toLowerCase() === l.name.toLowerCase())),
+        comingSoon: !l.hasReleases && (l.empty === true || listedAsSoon(l.name)),
       }));
     renderExtras();
     renderStats();
