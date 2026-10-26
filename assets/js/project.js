@@ -15,7 +15,7 @@
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
   // the start page's answers from the GitHub API, used for as long as the start page uses them
-  const CACHE_KEY = 'github-live-v2';
+  const CACHE_KEY = 'github-live-v3';
   const CACHE_TTL = 60 * 60 * 1000;
   const DOCS = [
     { id: 'overview', label: 'Overview', file: 'README.md' },

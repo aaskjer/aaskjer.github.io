@@ -7,7 +7,7 @@
 
   const { user, twitch, stats, projects, comingSoon = [] } = window.SITE;
   const API = 'https://api.github.com';
-  const CACHE_KEY = 'github-live-v2';
+  const CACHE_KEY = 'github-live-v3';
   // GitHub allows 60 requests per hour without a token, so one visit's
   // answers are kept for an hour.
   const CACHE_TTL = 60 * 60 * 1000;
@@ -259,8 +259,21 @@
     return response.json();
   }
 
+  // What GitHub puts in a new repository; a repository with nothing else is still empty.
+  const STARTER_FILES = new Set(['readme.md', 'readme', 'license', 'license.md', 'license.txt', '.gitignore', '.gitattributes']);
+
+  // true when the repository holds only starter files (or no commit at all), null when unknown
+  async function isEmpty(name) {
+    const response = await fetch(`${API}/repos/${user}/${name}/contents/`, { headers: { Accept: 'application/vnd.github+json' } }).catch(() => null);
+    if (!response) return null;
+    if (response.status === 404) return true;
+    if (!response.ok) return null;
+    return (await response.json()).every(file => STARTER_FILES.has(file.name.toLowerCase()));
+  }
+
   async function fetchLive() {
     const skip = new Set([`${user}.github.io`, user].map(name => name.toLowerCase()));
+    const known = new Set(projects.map(p => p.repo.toLowerCase()));
     const repos = (await getJSON(`${API}/users/${user}/repos?per_page=100&sort=pushed`))
       .filter(r => !r.fork && !r.archived && !skip.has(r.name.toLowerCase()));
     let complete = true;
@@ -268,6 +281,8 @@
       const releases = await getJSON(`${API}/repos/${user}/${r.name}/releases?per_page=100`).catch(() => null);
       if (!releases) complete = false;
       const stable = releases && releases.find(rel => !rel.draft && !rel.prerelease);
+      // only asked for repositories under "More on GitHub" that have no release yet
+      const empty = releases && !releases.length && !known.has(r.name.toLowerCase()) ? await isEmpty(r.name) : false;
       return {
         name: r.name,
         description: r.description,
@@ -279,6 +294,7 @@
         // null means "unknown", so a failed request never shows 0 downloads
         downloads: releases && releases.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         hasReleases: Boolean(releases && releases.some(rel => !rel.draft)),
+        empty,
       };
     }));
     return { live, complete };
@@ -312,7 +328,7 @@
         version: l.version,
         released: l.released,
         download: l.hasReleases ? undefined : false,
-        comingSoon: !l.hasReleases && comingSoon.some(name => name.toLowerCase() === l.name.toLowerCase()),
+        comingSoon: !l.hasReleases && (l.empty === true || comingSoon.some(name => name.toLowerCase() === l.name.toLowerCase())),
       }));
     renderExtras();
     renderStats();
