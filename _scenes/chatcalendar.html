@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ChatCalendar scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(640px 520px at 25% 50%, rgba(99, 102, 241, .26), transparent 70%),
+      radial-gradient(520px 420px at 22% 62%, rgba(250, 204, 21, .12), transparent 70%),
+      linear-gradient(150deg, #13112e 0%, #0a0a18 55%, #050508 100%);
+  }
+  .mark { --glow: #6d5cff; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <div class="mark"><img src="img/chatcalendar.png" alt=""></div>
+
+  <section class="chat chat--wide">
+    <div class="chat__head">Stream chat <i>Twitch · YouTube · Kick</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c1">PixelPanda</span>merry christmas chat!! 🎄</li>
+      <li class="msg bot"><span class="n me">aaskjer</span>Happy 'Christmas Day', PixelPanda!</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>hi everyone, cozy stream today</li>
+      <li class="msg bot" style="--accent:#ff0000"><span class="n me">aaskjer</span>Happy 'Christmas Day', CozyKoala!</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>!birthday 22.7.</li>
+      <li class="msg bot" style="--accent:#53fc18"><span class="n me">aaskjer</span>Saved, NoScopeNick: your birthday is on July 22.</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>!nextholidays</li>
+      <li class="msg bot"><span class="n me">aaskjer</span>Upcoming Official Holidays: 'Christmas Day' on 12/25/2026, 'New Year's Day' on 1/1/2027, 'Martin Luther King, Jr. Day' on 1/18/2027.</li>
+      <li class="msg"><span class="n c5">SaltySeagull</span>!nextbirthdays</li>
+      <li class="msg bot"><span class="n me">aaskjer</span>Upcoming birthdays: LunaLurks on December 28, NoScopeNick on July 22.</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>3 more days 🥳</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>

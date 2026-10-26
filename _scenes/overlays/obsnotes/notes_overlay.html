@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang='de'>
+<head>
+<meta charset='utf-8'>
+<!-- obs-notes-overlay-version: 4 -->
+<title>OBS Notes</title>
+<style>
+  html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; }
+  body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+  #board { box-sizing: border-box; height: 100%; padding: 22px 18px; overflow: hidden;
+           display: flex; flex-wrap: wrap; align-content: flex-start; gap: 26px 24px; transition: opacity 1.2s ease; }
+  #board.gone { opacity: 0; }
+  .note { --r: 0deg; position: relative; box-sizing: border-box; width: 270px; height: 212px; padding: 40px 16px 14px;
+          color: #222; background: #ffe970; transform: rotate(var(--r));
+          box-shadow: 0 14px 18px -10px rgba(0, 0, 0, 0.6), inset 0 -22px 28px -26px rgba(0, 0, 0, 0.35); }
+  .note.c1 { background: #ffb7d0; }
+  .note.c2 { background: #b8f0a8; }
+  .note.c3 { background: #a9dcff; }
+  .note.c4 { background: #ffcc8a; }
+  #board.plain .note { background: #fff; color: #000; }
+  .note.tilt { --r: -1.8deg; }
+  .note.tilt2 { --r: 1.5deg; }
+  .tape { position: absolute; top: -13px; left: 50%; width: 92px; height: 26px; margin-left: -46px;
+          background: rgba(255, 255, 255, 0.55); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); transform: rotate(-3deg); }
+  #board.plain .tape { background: rgba(210, 210, 210, 0.7); }
+  .head { position: absolute; top: 6px; left: 14px; right: 14px; display: flex; align-items: baseline; gap: 10px;
+          line-height: 1; color: rgba(0, 0, 0, 0.5); }
+  .num { flex: none; font-size: 34px; font-weight: 800; }
+  .game { min-width: 0; font-size: 22px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fit { width: 100%; height: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .text { font-weight: 700; line-height: 1.05; text-align: center; word-break: normal; overflow-wrap: normal; }
+  .text.squeeze { overflow-wrap: anywhere; }
+  .more { flex-basis: 100%; font-size: 36px; font-weight: 800; line-height: 1; color: #fff;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); }
+  .note.new { animation: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1); }
+  @keyframes pop { from { opacity: 0; transform: rotate(var(--r)) scale(0.3); } to { opacity: 1; transform: rotate(var(--r)) scale(1); } }
+</style>
+</head>
+<body>
+<div id='board'></div>
+<script>
+(function () {
+  var PAGE_VERSION = 4;
+  var STATE_URL = 'notes_state.json';
+  var POLL_MS = 1500;
+  var MAX_FONT = 112;
+  var MIN_FONT = 22;
+  var lastText = null;
+  var state = null;
+  var known = null;
+  var reloadedFor = new URLSearchParams(location.search).get('v');
+  var board = document.getElementById('board');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  // Hyphens are non-breaking, so a code like 3-7-1-9 stays on one line.
+  function textBox(text) {
+    var box = el('div', 'fit');
+    box.appendChild(el('div', 'text', (text || '').replace(/-/g, String.fromCharCode(0x2011))));
+    return box;
+  }
+
+  // As large as the box allows; a word too long for one line is broken only once the font is small.
+  function fit(box, max) {
+    var text = box.firstChild;
+    var size = max;
+    text.classList.remove('squeeze');
+    for (;;) {
+      text.style.fontSize = size + 'px';
+      if (box.scrollWidth <= box.clientWidth && box.scrollHeight <= box.clientHeight) return;
+      if (size <= MIN_FONT) { if (text.classList.contains('squeeze')) return; text.classList.add('squeeze'); size = 34; continue; }
+      size -= size > 48 ? 6 : 2;
+    }
+  }
+
+  // The game name sits on the first post-it shown, next to its number.
+  function layout(notes, game, hidden, english) {
+    board.textContent = '';
+    if (hidden) board.appendChild(el('div', 'more', '+ ' + hidden + (english ? ' more' : ' weitere')));
+    notes.forEach(function (note) { board.appendChild(note); });
+    if (game && notes.length) notes[0].querySelector('.head').appendChild(game);
+  }
+
+  function render(s) {
+    var seen = {};
+    board.classList.toggle('plain', s.colorfulNotes === false);
+    var notes = (s.notes || []).map(function (n) {
+      var key = n.number + '|' + n.text;
+      seen[key] = true;
+      var note = el('div', 'note c' + (n.number % 5) + (n.number % 2 ? ' tilt' : ' tilt2') + (known && !known[key] ? ' new' : ''));
+      note.appendChild(el('div', 'tape'));
+      var head = el('div', 'head');
+      head.appendChild(el('span', 'num', '#' + n.number));
+      note.appendChild(head);
+      note.appendChild(textBox(n.text));
+      return note;
+    });
+    known = seen;
+    var game = s.showGameName !== false && s.category ? el('span', 'game', s.category) : null;
+
+    var english = s.language === 'EN';
+    layout(notes, game, 0, english);
+    notes.forEach(function (note) { fit(note.lastChild, MAX_FONT); });
+
+    // The oldest post-its make room for the newest; a line at the top counts what no longer fits.
+    var hidden = 0;
+    while (board.scrollHeight > board.clientHeight + 1 && hidden < notes.length - 1) {
+      hidden++;
+      layout(notes.slice(hidden), game, hidden, english);
+    }
+  }
+
+  // Fades out once no command has run for hideAfterMinutes; the next command brings it back.
+  function updateVisibility() {
+    var minutes = state ? Number(state.hideAfterMinutes) || 0 : 0;
+    var idle = minutes > 0 && Date.now() - Number(state.lastActivity || 0) > minutes * 60000;
+    board.classList.toggle('gone', idle);
+  }
+
+  function poll() {
+    fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (text) {
+        if (text === null || text === lastText) return;
+        var s;
+        try { s = JSON.parse(text); } catch (e) { return; }
+        lastText = text;
+        if (s.overlayVersion > PAGE_VERSION && reloadedFor !== String(s.overlayVersion)) {
+          location.replace(location.pathname + '?v=' + s.overlayVersion);
+          return;
+        }
+        state = s;
+        render(s);
+      })
+      .catch(function () { })
+      .then(function () { updateVisibility(); setTimeout(poll, POLL_MS); });
+  }
+
+  window.addEventListener('resize', function () { lastText = null; });
+  poll();
+})();
+</script>
+</body>
+</html>

@@ -14,7 +14,7 @@ param(
   # Hangman comes first: Better Stream Announcements shows its picture as the stream preview.
   [string[]] $Scene = @('hangman-game', 'battleship-game', 'blackjack-game', 'trivia-game',
                         'classic-chat-gamble', 'slot-machine-game', 'better-stream-announcements', 'sbreffix', 'suto',
-                        'og-home'),
+                        'obsnotes', 'chatcalendar', 'og-home'),
   [int] $Port = 8765
 )
 $ErrorActionPreference = 'Stop'

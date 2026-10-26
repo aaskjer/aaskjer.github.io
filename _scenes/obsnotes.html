@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OBSNotes scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(860px 600px at 34% 44%, rgba(56, 189, 248, .22), transparent 70%),
+      radial-gradient(640px 460px at 70% 92%, rgba(250, 204, 21, .12), transparent 70%),
+      linear-gradient(160deg, #0d1a26 0%, #0a0f18 60%, #06070b 100%);
+  }
+  /* a keypad in the background: the codes chat writes down */
+  .digits {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    font: 800 150px/1 'Sora', sans-serif;
+    color: rgba(255, 255, 255, .035);
+  }
+  .digits span { position: absolute; }
+  .overlay { transform: scale(1.3); transform-origin: 0 0; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="digits">
+    <span style="left:60px;top:640px">4</span><span style="left:330px;top:700px">7</span>
+    <span style="left:640px;top:650px">1</span><span style="left:900px;top:90px">9</span>
+  </div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+  <iframe class="overlay" src="overlays/obsnotes/notes_overlay.html" style="left:150px;top:120px;width:600px;height:500px"></iframe>
+
+  <section class="chat">
+    <div class="chat__head">Stream chat <i>Twitch · YouTube · Kick</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c4">LunaLurks</span>the safe code was on the note in the office!</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>!note 4711</li>
+      <li class="msg bot" style="--accent:#53fc18"><span class="n me">aaskjer</span>Note written down as number '#1'. ✅</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>!note Code 3-7-1-9</li>
+      <li class="msg bot" style="--accent:#ff0000"><span class="n me">aaskjer</span>Note written down as number '#2'. ✅</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>!note ask Liara</li>
+      <li class="msg bot" style="--accent:#53fc18"><span class="n me">aaskjer</span>Note written down as number '#3'. ✅</li>
+      <li class="msg"><span class="n c5">SaltySeagull</span>!note pick up the sword at the smith</li>
+      <li class="msg bot" style="--accent:#ff0000"><span class="n me">aaskjer</span>Note written down as number '#4'. ✅</li>
+      <li class="msg"><span class="n me">aaskjer</span>ok what was the safe code again?</li>
+      <li class="msg"><span class="n c6">Mr_Wiggles</span>!zettel 1</li>
+      <li class="msg bot"><span class="n me">aaskjer</span>[1] "4711" - written down by @PixelPanda on [2026-10-27 / 20:14:05]</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>
