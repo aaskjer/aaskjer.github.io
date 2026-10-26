@@ -11,6 +11,8 @@
   // GitHub allows 60 requests per hour without a token, so one visit's
   // answers are kept for an hour.
   const CACHE_TTL = 60 * 60 * 1000;
+  // A change to projects.js (a new release entered, say) drops the kept answers at once.
+  const SITE_STAMP = stamp(JSON.stringify(window.SITE));
   const PLATFORM_TOPICS = { twitch: 'Twitch', youtube: 'YouTube', kick: 'Kick', discord: 'Discord', obs: 'OBS' };
 
   const $ = sel => document.querySelector(sel);
@@ -348,16 +350,23 @@
     renderStats();
   }
 
+  // short fingerprint of a text
+  function stamp(text) {
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) | 0;
+    return hash.toString(36);
+  }
+
   async function loadLive() {
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-      if (cached && Date.now() - cached.time < CACHE_TTL) return applyLive(cached.live);
+      if (cached && cached.site === SITE_STAMP && Date.now() - cached.time < CACHE_TTL) return applyLive(cached.live);
     } catch (e) { /* no storage, fetch instead */ }
 
     const { live, complete } = await fetchLive();
     applyLive(live);
     if (complete) {
-      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), live })); } catch (e) { /* ignore */ }
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), site: SITE_STAMP, live })); } catch (e) { /* ignore */ }
     }
   }
 

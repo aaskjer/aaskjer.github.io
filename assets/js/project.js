@@ -17,6 +17,12 @@
   // the start page's answers from the GitHub API, used for as long as the start page uses them
   const CACHE_KEY = 'github-live-v3';
   const CACHE_TTL = 60 * 60 * 1000;
+  // the same fingerprint of projects.js as on the start page: answers kept before a change to it are not used
+  const SITE_STAMP = (text => {
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) | 0;
+    return hash.toString(36);
+  })(JSON.stringify(window.SITE));
   const DOCS = [
     { id: 'overview', label: 'Overview', file: 'README.md' },
     { id: 'setup', label: 'Setup guide', file: 'Setup-Guide.md' },
@@ -153,7 +159,7 @@
     let live = null;
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-      if (cached && Date.now() - cached.time < CACHE_TTL) live = cached.live.find(l => l.name.toLowerCase() === repo.toLowerCase());
+      if (cached && cached.site === SITE_STAMP && Date.now() - cached.time < CACHE_TTL) live = cached.live.find(l => l.name.toLowerCase() === repo.toLowerCase());
     } catch (e) { /* no cache */ }
     if (!live) {
       try {
