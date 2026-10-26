@@ -255,6 +255,8 @@
       const meta = node.querySelector('.meta-row');
       const inMeta = meta && meta.querySelector('.badges');
       if (meta) meta.innerHTML = (inMeta ? inMeta.outerHTML : '') + metaRow(p);
+      const text = node.querySelector('.card__text, .spotlight__text');
+      if (text) text.textContent = p.tagline || 'No description yet.';
       const buttons = node.querySelector('.actions');
       if (buttons) buttons.innerHTML = actions(p, { github: node.classList.contains('spotlight') });
     }
@@ -313,6 +315,8 @@
     for (const p of projects) {
       const l = byName.get(p.repo.toLowerCase());
       if (!l) continue;
+      // the short description from the repository's About box on GitHub
+      if (l.description) p.tagline = l.description;
       p.stars = l.stars;
       p.updated = l.pushed;
       if (l.downloads != null) p.downloads = l.downloads;

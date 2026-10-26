@@ -1,16 +1,28 @@
-// Writes each project's name, tagline and features from projects.js into its page's HTML,
-// so search engines and link previews get real text, and rebuilds sitemap.xml.
-// Run it after changing those fields or adding a project page:  node _tools/update-pages.js
+// Writes each project's name, short description and features into its page's HTML, so search
+// engines get real text, and rebuilds sitemap.xml. The description is the repository's About
+// text on GitHub (the tagline in projects.js if GitHub cannot be reached).
+// Run it after changing an About text or features, or adding a project page:  node _tools/update-pages.js
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 process.chdir(path.join(__dirname, '..'));
 const ctx = { window: {} };
 vm.runInNewContext(fs.readFileSync('assets/js/projects.js', 'utf8'), ctx);
-const { projects } = ctx.window.SITE;
+const { user, projects } = ctx.window.SITE;
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+
+(async () => {
+const about = new Map();
+try {
+  const response = await fetch(`https://api.github.com/users/${user}/repos?per_page=100`);
+  if (!response.ok) throw new Error(`GitHub answered ${response.status}`);
+  for (const r of await response.json()) if (r.description) about.set(r.name.toLowerCase(), r.description);
+} catch (e) {
+  console.warn(`About texts not loaded (${e.message}), using the taglines from projects.js.`);
+}
 const urls = ['', 'privacy.html'];
 for (const p of projects.filter(x => x.page)) {
+  p.tagline = about.get(p.repo.toLowerCase()) || p.tagline;
   const file = `${p.page}index.html`;
   let html = fs.readFileSync(file, 'utf8');
   const features = (p.features || []).map(f =>
@@ -39,3 +51,4 @@ ${urls.map(u => `  <url><loc>https://aaskjer.github.io/${u}</loc></url>`).join('
 `;
 fs.writeFileSync('sitemap.xml', sitemap);
 console.log(`Updated ${urls.length - 2} project pages and sitemap.xml.`);
+})();

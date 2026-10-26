@@ -163,6 +163,7 @@
         ]);
         const stable = list && list.find(rel => !rel.draft && !rel.prerelease);
         live = {
+          description: r.description,
           stars: r.stargazers_count,
           pushed: r.pushed_at,
           version: stable ? stable.tag_name : null,
@@ -170,6 +171,10 @@
           downloads: list && list.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         };
       } catch (e) { return; }
+    }
+    if (live.description) {
+      p.tagline = live.description;
+      $('.project-hero__lead').textContent = p.tagline;
     }
     p.stars = live.stars;
     p.updated = live.pushed;

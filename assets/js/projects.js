@@ -8,6 +8,8 @@
  * "More on GitHub".
  *
  *   repo       repository name on GitHub (required)
+ *   tagline    only a fallback: the site shows the short description from the repository's
+ *              About box on GitHub (projects under "More on GitHub" too)
  *   section    'tools', 'games' or 'more' (under "More on GitHub", before the repositories GitHub adds)
  *   featured   shown large at the top of its section, with `features` and `screenshot`
  *              (`screenshotFull` is what a click on it opens)
@@ -44,7 +46,7 @@ window.SITE = {
       logo: 'assets/img/projects/twitchsentry.png',
       screenshot: 'assets/img/twitchsentry-app.jpg',
       screenshotFull: 'assets/img/twitchsentry-app-full.jpg',
-      tagline: 'Your smart chat bodyguard. Deletes fake gift links, sketchy URLs and copy-paste scams, and tells you what each message said, who sent it and why it was removed.',
+      tagline: 'TwitchSentry is a full moderation suit built for streamer.bot and twitch.',
       features: [
         'Blocks links from untrusted viewers, with a link whitelist',
         'Spam scoring that recognises scam adverts',
@@ -69,7 +71,7 @@ window.SITE = {
       logo: 'assets/img/projects/better-stream-announcements.png',
       scene: 'assets/img/scenes/better-stream-announcements.jpg',
       sceneAlt: 'A go-live announcement in Discord with the stream title, game, viewers, a preview image and a Watch Stream button.',
-      tagline: 'Go-live and stream-ended embeds in Discord, for your own channel and your streamer friends. Slash commands and a settings window included.',
+      tagline: 'Streamer.bot tool to announce your and your friends livestreams on discord',
       platforms: ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'],
       tags: ['Discord'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
@@ -85,7 +87,7 @@ window.SITE = {
       mono: '.sb',
       scene: 'assets/img/scenes/sbreffix.jpg',
       sceneAlt: 'SBRefFix in a console window, rewriting the .NET references of a Streamer.bot export.',
-      tagline: 'Fixes the .NET references in a Streamer.bot export, so the import compiles on every PC, wherever Streamer.bot is installed.',
+      tagline: 'fixes the .NET references in a Streamer.bot export on v1.0.7',
       platforms: ['Windows'],
       tags: ['PowerShell'],
       download: 'https://github.com/aaskjer/SBRefFix/archive/refs/heads/main.zip',
@@ -102,7 +104,7 @@ window.SITE = {
       mono: 'SuTo',
       scene: 'assets/img/scenes/suto.jpg',
       sceneAlt: 'Viewers type !suggestion in Twitch, YouTube and Kick chat, and each suggestion lands in a Discord channel with the viewer\'s name, platform and time.',
-      tagline: 'Viewers type !suggestion in chat, and the idea lands in your Discord, Stoat or GameVox server with their name, platform and the time.',
+      tagline: 'gather suggestions from your twitch, youtube or kick chat in your discord, stoat or gamevox server',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Manual', href: 'Manual.md' },
@@ -114,7 +116,7 @@ window.SITE = {
       name: 'OBSNotes',
       section: 'tools',
       mono: 'ON',
-      tagline: "Can't remember the code of the padlock? Your chat can stick a post-it note in OBS.",
+      tagline: 'Can\'t remember the code of the combination lock? Your chat can add a post-it in obs',
       download: false,
       version: null, stars: 0, downloads: 0,
     },
@@ -127,7 +129,7 @@ window.SITE = {
       logo: 'assets/img/projects/blackjack-game.png',
       scene: 'assets/img/scenes/blackjack-game.jpg',
       sceneAlt: 'A Blackjack duel on stream: both hands on the OBS overlay while chat plays with hit and stand.',
-      tagline: 'A real hand of Blackjack against the dealer, with splits, double downs and insurance. Or challenge another chatter with !duel.',
+      tagline: 'blackjack game for twitch, kick, youtube, build for streamer.bot with obs overlay',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
@@ -142,7 +144,7 @@ window.SITE = {
       logo: 'assets/img/projects/classic-chat-gamble.png',
       scene: 'assets/img/scenes/classic-chat-gamble.jpg',
       sceneAlt: 'Viewers gambling in chat with !gamble, and the game answering with wins, losses and a jackpot.',
-      tagline: 'The most classic chat game. Bet with numbers, keywords or percentages, chase jackpots, or run it on Twitch channel points.',
+      tagline: 'most classic chat game built for streamer.bot supporting twitch, kick, and youtube',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v24.1.0', stars: 1, downloads: 124,
@@ -156,7 +158,7 @@ window.SITE = {
       logo: 'assets/img/projects/trivia-game.png',
       scene: 'assets/img/scenes/trivia-game.jpg',
       sceneAlt: 'A trivia round in chat: a question with four answers, the answers from chat and the winners.',
-      tagline: 'Quiz rounds straight in chat. Questions from the Open Trivia Database, your own list or both, with blitz rounds and viewer suggestions.',
+      tagline: 'ready to put your knowledge to the test? trivia quiz game built for streamer.bot, supporting twitch, kick and youtube',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v8.0.0', stars: 1, downloads: 64,
@@ -170,7 +172,7 @@ window.SITE = {
       logo: 'assets/img/projects/slot-machine-game.png',
       scene: 'assets/img/scenes/slot-machine-game.jpg',
       sceneAlt: 'Slot spins in chat: the reels, then the win, loss or jackpot message.',
-      tagline: 'Chat spins the reels with emotes. Adjustable odds, three to six reels, rare emotes pay more, and an optional jackpot pool.',
+      tagline: 'classic chat slots game for youtube, twitch, kick extension for streamer.bot',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v15.0.0', stars: 2, downloads: 47,
@@ -184,7 +186,7 @@ window.SITE = {
       logo: 'assets/img/projects/hangman-game.png',
       scene: 'assets/img/scenes/hangman-game.jpg',
       sceneAlt: 'Hangman on stream: the OBS overlay shows the gallows and the half-solved word while chat guesses with !g.',
-      tagline: 'One word, a row of blanks and everyone guessing at once. The OBS overlay draws the gallows as chat guesses.',
+      tagline: 'hangman chat game built for streamer.bot supporting twitch, kick, youtube',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
@@ -199,7 +201,7 @@ window.SITE = {
       logo: 'assets/img/projects/battleship-game.png',
       scene: 'assets/img/scenes/battleship-game.jpg',
       sceneAlt: 'A Battleship match on stream: both boards on the OBS overlay while the viewer fires with !fire.',
-      tagline: 'Chat commands a fleet against the Admiral, a CPU opponent that never sees your board, on a grid drawn live in OBS.',
+      tagline: 'a chat and overlay driven battleship game on twitch, kick, youtube made for streamer.bot and obs',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
