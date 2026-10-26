@@ -113,7 +113,7 @@ window.SITE = {
     {
       repo: 'OBSNotes',
       page: 'obsnotes/',
-      status: 'dev',
+      status: 'complete',
       name: 'OBS Notes',
       section: 'tools',
       mono: 'ON',
@@ -128,7 +128,7 @@ window.SITE = {
     {
       repo: 'ChatCalendar',
       page: 'chatcalendar/',
-      status: 'dev',
+      status: 'complete',
       name: 'Chat Calendar',
       section: 'tools',
       logo: 'assets/img/projects/chatcalendar.png',
