@@ -98,7 +98,7 @@ window.SITE = {
     {
       repo: 'SuTo',
       page: 'suto/',
-      status: 'complete',
+      status: 'done',
       name: 'Suggestions To',
       section: 'tools',
       mono: 'SuTo',
