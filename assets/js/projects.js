@@ -116,7 +116,7 @@ window.SITE = {
       status: 'complete',
       name: 'OBS Notes',
       section: 'tools',
-      mono: 'ON',
+      logo: 'assets/img/projects/obsnotes.png',
       scene: 'assets/img/scenes/obsnotes.jpg',
       sceneAlt: 'Viewers write a safe code and quest hints into chat with !note, and each one sticks on stream as a post-it.',
       tagline: 'Can\'t remember the code of the combination lock? Your chat can step-in an add a post-it in OBS for you!',

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- OBS Notes: one post-it, as the overlay shows them -->
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff38a"/>
+      <stop offset="1" stop-color="#ffd23f"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6c21c"/>
+      <stop offset="1" stop-color="#d99a0b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity=".45"/>
+    </filter>
+  </defs>
+  <g transform="rotate(-6 128 128)" stroke="#1a1726" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M38 50 H218 V184 L180 222 H38 Z" fill="url(#paper)" filter="url(#shadow)"/>
+    <path d="M218 184 L180 222 V184 Z" fill="url(#fold)"/>
+    <path d="M70 106 C100 99 140 110 186 101" fill="none" stroke="#3a3148" stroke-width="11"/>
+    <path d="M70 142 C98 136 128 146 168 138" fill="none" stroke="#3a3148" stroke-width="11"/>
+    <path d="M70 178 C88 173 108 180 138 175" fill="none" stroke="#3a3148" stroke-width="11"/>
+    <rect x="92" y="30" width="72" height="30" rx="3" fill="#eef6ff" fill-opacity=".9" transform="rotate(4 128 45)" stroke-width="5"/>
+  </g>
+</svg>

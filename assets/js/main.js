@@ -115,9 +115,13 @@
     return `<span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>`;
   }
 
+  // Since the last visit: "New" when the project's first release came out, "Updated" for a later one.
   function newBadge(p) {
     if (!p.released || !previousVisit || new Date(p.released) <= previousVisit) return '';
-    return `<span class="badge badge--new" title="Released ${esc(timeAgo(p.released))}, since your last visit">New</span>`;
+    if (p.firstReleased && new Date(p.firstReleased) > previousVisit) {
+      return `<span class="badge badge--new" title="First released ${esc(timeAgo(p.firstReleased))}, since your last visit">New</span>`;
+    }
+    return `<span class="badge badge--updated" title="${esc(p.version || 'A new version')} released ${esc(timeAgo(p.released))}, since your last visit">Updated</span>`;
   }
 
   const STATUS = {
@@ -293,6 +297,7 @@
       const releases = await getJSON(`${API}/repos/${user}/${r.name}/releases?per_page=100`).catch(() => null);
       if (!releases) complete = false;
       const stable = releases && releases.find(rel => !rel.draft && !rel.prerelease);
+      const published = releases ? releases.filter(rel => !rel.draft).map(rel => rel.published_at).sort() : [];
       // only asked for repositories that have no release yet
       const empty = releases && !releases.length ? await isEmpty(r.name) : false;
       return {
@@ -303,9 +308,11 @@
         pushed: r.pushed_at,
         version: stable ? stable.tag_name : null,
         released: stable ? stable.published_at : null,
+        firstReleased: published[0] || null,
         // null means "unknown", so a failed request never shows 0 downloads
         downloads: releases && releases.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
-        hasReleases: Boolean(releases && releases.some(rel => !rel.draft)),
+        // null when GitHub did not answer, so a failed request never hides the download button
+        hasReleases: releases ? releases.some(rel => !rel.draft) : null,
         empty,
       };
     }));
@@ -324,8 +331,9 @@
       if (l.downloads != null) p.downloads = l.downloads;
       if (l.version) p.version = l.version;
       p.released = l.released;
-      if (!l.hasReleases && p.download === undefined) p.download = false;
-      p.comingSoon = !l.hasReleases && (l.empty === true || listedAsSoon(p.repo));
+      p.firstReleased = l.firstReleased;
+      if (l.hasReleases === false && p.download === undefined) p.download = false;
+      p.comingSoon = l.hasReleases === false && (l.empty === true || listedAsSoon(p.repo));
       refresh(p);
     }
 
@@ -343,8 +351,9 @@
         updated: l.pushed,
         version: l.version,
         released: l.released,
-        download: l.hasReleases ? undefined : false,
-        comingSoon: !l.hasReleases && (l.empty === true || listedAsSoon(l.name)),
+        firstReleased: l.firstReleased,
+        download: l.hasReleases === false ? false : undefined,
+        comingSoon: l.hasReleases === false && (l.empty === true || listedAsSoon(l.name)),
       }));
     renderExtras();
     renderStats();

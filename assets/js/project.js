@@ -82,8 +82,13 @@
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
     const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
-    const fresh = p.released && previousVisit && new Date(p.released) > previousVisit
-      ? `<span class="badge badge--new" title="Released ${esc(timeAgo(p.released))}, since your last visit">New</span>` : '';
+    // since the last visit: "New" when the first release came out, "Updated" for a later one
+    let fresh = '';
+    if (p.released && previousVisit && new Date(p.released) > previousVisit) {
+      fresh = p.firstReleased && new Date(p.firstReleased) > previousVisit
+        ? `<span class="badge badge--new" title="First released ${esc(timeAgo(p.firstReleased))}, since your last visit">New</span>`
+        : `<span class="badge badge--updated" title="${esc(p.version || 'A new version')} released ${esc(timeAgo(p.released))}, since your last visit">Updated</span>`;
+    }
     return `<span class="badges"><span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>${fresh}${label}</span>`;
   }
 
@@ -168,12 +173,14 @@
           releases().catch(() => null),
         ]);
         const stable = list && list.find(rel => !rel.draft && !rel.prerelease);
+        const published = list ? list.filter(rel => !rel.draft).map(rel => rel.published_at).sort() : [];
         live = {
           description: r.description,
           stars: r.stargazers_count,
           pushed: r.pushed_at,
           version: stable ? stable.tag_name : null,
           released: stable ? stable.published_at : null,
+          firstReleased: published[0] || null,
           downloads: list && list.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         };
       } catch (e) { return; }
@@ -187,6 +194,7 @@
     if (live.downloads != null) p.downloads = live.downloads;
     if (live.version) p.version = live.version;
     p.released = live.released;
+    p.firstReleased = live.firstReleased;
     $('#meta').innerHTML = metaRow();
     $('.project-hero .badges').outerHTML = badges();
   }
