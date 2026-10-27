@@ -470,9 +470,41 @@
     for (const section of document.querySelectorAll('main > section')) observer.observe(section);
   }
 
+  // Get started: each step's demo window sits above its card (below it when the header would
+  // cover it), moved sideways so it stays on screen, with its arrow on the step number.
+  function setupDemos() {
+    const steps = [...document.querySelectorAll('.steps > li')].filter(step => step.querySelector('.demo'));
+    const header = $('.topbar');
+    const place = () => {
+      // the screenshot demos are laid out 376px wide and shrink with a narrower popover
+      for (const shot of document.querySelectorAll('.demo__window--shot')) {
+        shot.style.setProperty('--demo-fit', Math.min(1, shot.clientWidth / 376).toFixed(4));
+      }
+      const screen = document.documentElement.clientWidth;
+      const top = (header ? header.getBoundingClientRect().bottom : 0) + 8;
+      for (const step of steps) {
+        const demo = step.querySelector('.demo');
+        const card = step.getBoundingClientRect();
+        const number = step.querySelector('.steps__n').getBoundingClientRect();
+        const arrow = number.left + number.width / 2;
+        const left = Math.min(Math.max(16, arrow - 43), screen - 16 - demo.offsetWidth);
+        demo.style.setProperty('--demo-left', `${Math.round(left - card.left)}px`);
+        demo.style.setProperty('--demo-arrow', `${Math.round(arrow - left)}px`);
+        demo.classList.toggle('demo--below', card.top - demo.offsetHeight - 14 < top);
+      }
+    };
+    place();
+    window.addEventListener('resize', place);
+    for (const step of steps) {
+      step.addEventListener('pointerenter', place);
+      step.addEventListener('focusin', place);
+    }
+  }
+
   render();
   setupTheme();
   setupNav();
+  setupDemos();
   setupLightbox();
   setupStats();
   $('#year').textContent = new Date().getFullYear();

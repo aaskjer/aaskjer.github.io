@@ -1197,11 +1197,12 @@ a.collage__tile--me:focus-visible {
   border-bottom: 4px solid transparent;
 }
 
-/* The step played on a made-up page, shown above the card like a tooltip, its arrow on the step number. Without animations
-   (prefers-reduced-motion) it shows one still frame: the download done. */
+/* Each step played on a made-up page, shown above its card like a tooltip. main.js moves it sideways
+   (--demo-left) so it stays on screen, its arrow (--demo-arrow) on the step number. Without animations
+   (prefers-reduced-motion) it shows one still frame: the step done. */
 .demo {
   position: absolute;
-  left: 0;
+  left: var(--demo-left, 0px);
   bottom: calc(100% + 14px);
   z-index: 20;
   width: min(400px, calc(100vw - 32px));
@@ -1214,17 +1215,18 @@ a.collage__tile--me:focus-visible {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(8px) scale(0.97);
-  transform-origin: 30px 100%;
+  transform-origin: var(--demo-arrow, 43px) 100%;
   transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
 }
 
 .demo::after {
   content: '';
   position: absolute;
-  left: 36px;
+  left: var(--demo-arrow, 43px);
   bottom: -8px;
   width: 14px;
   height: 14px;
+  margin-left: -7px;
   border-right: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border-strong);
   background: var(--surface);
@@ -1235,6 +1237,23 @@ a.collage__tile--me:focus-visible {
   opacity: 1;
   visibility: visible;
   transform: none;
+}
+
+.demo--below {
+  top: calc(100% + 14px);
+  bottom: auto;
+  transform: translateY(-8px) scale(0.97);
+  transform-origin: var(--demo-arrow, 43px) 0;
+}
+
+.demo--below::after {
+  top: -8px;
+  bottom: auto;
+  transform: rotate(225deg);
+}
+
+.demo p {
+  margin: 0;
 }
 
 .demo__window {
@@ -1495,9 +1514,7 @@ a.collage__tile--me:focus-visible {
 
 .demo__cursor {
   position: absolute;
-  left: 110px;
-  top: 135px;
-  z-index: 2;
+  z-index: 3;
   width: 20px;
   height: 20px;
   fill: #fff;
@@ -1507,25 +1524,34 @@ a.collage__tile--me:focus-visible {
   filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.4));
 }
 
+/* the captions share one grid cell, so a long one that wraps makes room for itself */
 .demo__caption {
-  position: relative;
-  height: 1.5em;
+  display: grid;
+  min-height: 1.5em;
   margin: 9px 4px 1px;
   color: var(--muted);
   font-size: 0.85rem;
 }
 
 .demo__caption span {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
 }
 
 .demo__caption span + span {
   opacity: 0;
 }
 
+/* the still frames */
+.demo--grab .demo__cursor { left: 110px; top: 135px; }
+.demo--import .demo__cursor { left: 196px; top: 72px; }
+.demo--setup .demo__cursor { left: 161px; top: 70px; }
+.demo--import .demo__caption span:first-child,
+.demo--setup .demo__caption span:first-child { opacity: 0; }
+.demo--import .demo__caption span:last-child,
+.demo--setup .demo__caption span:last-child { opacity: 1; }
+
 @media (prefers-reduced-motion: no-preference) {
-  .steps > li:is(:hover, :focus-within) .demo__cursor { animation: demo-cursor 9s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--grab .demo__cursor { animation: demo-cursor 9s infinite; }
   .steps > li:is(:hover, :focus-within) .demo__sb { animation: demo-row 9s infinite; }
   .steps > li:is(:hover, :focus-within) .demo__toast { animation: demo-toast 9s infinite; }
   .steps > li:is(:hover, :focus-within) .demo__progress::after { animation: demo-progress 9s infinite; }
@@ -1534,8 +1560,8 @@ a.collage__tile--me:focus-visible {
   .steps > li:is(:hover, :focus-within) .demo__page--string { animation: demo-page-b 9s infinite; }
   .steps > li:is(:hover, :focus-within) .demo__copy { animation: demo-copy 9s infinite; }
   .steps > li:is(:hover, :focus-within) .demo__copied { animation: demo-copied 9s infinite; }
-  .steps > li:is(:hover, :focus-within) :is(.demo__caption, .demo__url) span { animation: demo-caption-a 9s infinite; }
-  .steps > li:is(:hover, :focus-within) :is(.demo__caption, .demo__url) span + span { animation: demo-caption-b 9s infinite; }
+  .steps > li:is(:hover, :focus-within) :is(.demo--grab .demo__caption, .demo__url) span { animation: demo-caption-a 9s infinite; }
+  .steps > li:is(:hover, :focus-within) :is(.demo--grab .demo__caption, .demo__url) span + span { animation: demo-caption-b 9s infinite; }
 }
 
 /* 9 seconds: the download (0-50%), then the import string (53-95%) */
@@ -1610,6 +1636,561 @@ a.collage__tile--me:focus-visible {
   53%, 95% { opacity: 1; }
   98%, 100% { opacity: 0; }
 }
+
+/* steps 2 and 3: Streamer.bot screenshots (_scenes/get-started/) on a stage in screenshot pixels. The stage
+   moves and zooms like a camera, the pointer and the dragged file move above it in window pixels. The window
+   is laid out 376x212 and shrinks with a narrower popover (--demo-fit, set by main.js). */
+.demo__window--shot {
+  height: calc(212px * var(--demo-fit, 1) + 2px);
+  background: #202020;
+}
+
+.demo__shot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 376px;
+  height: 212px;
+  transform: scale(var(--demo-fit, 1));
+  transform-origin: 0 0;
+}
+
+.demo__stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  transform-origin: 0 0;
+}
+
+.demo__stage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+}
+
+.demo__stage .demo__sb-group {
+  top: 140px;
+  left: 300px;
+}
+
+/* the windows that open, and in the still frame the ones already closed */
+.demo__stage :is(.demo__sb-import, .demo__sb-loaded, .demo__sb-code, .demo__sb-note, .demo__sb-settings) {
+  box-shadow: 0 18px 50px rgb(0 0 0 / 0.6);
+}
+
+.demo__stage :is(.demo__sb-import, .demo__sb-loaded, .demo__sb-code, .demo__sb-note, .demo__sb-commands,
+  .demo__sb-commands-menu, .demo__sb-enabled, .demo__sb-trigger-menu, .demo__sb-unsaved) {
+  opacity: 0;
+}
+
+.demo__stage :is(.demo__sb-commands-menu, .demo__sb-trigger-menu) {
+  transform-origin: 0 0;
+}
+
+/* step 2 */
+.demo--import .demo__stage {
+  transform: translate(-186px, -81px) scale(0.62);
+}
+
+.demo__stage :is(.demo__sb-import, .demo__sb-loaded) {
+  top: 23px;
+  left: 190px;
+}
+
+.demo__stage .demo__sb-code {
+  top: 261px;
+  left: 410px;
+}
+
+.demo__stage .demo__sb-note {
+  top: 280px;
+  left: 410px;
+}
+
+/* the Import String field lighting up under the dragged file */
+.demo__target {
+  position: absolute;
+  top: 80px;
+  left: 208px;
+  width: 870px;
+  height: 556px;
+  border: 6px solid var(--accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  opacity: 0;
+}
+
+.demo__file {
+  position: absolute;
+  top: 174px;
+  left: 6px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: 0 16px 32px -14px rgb(0 0 0 / 0.65);
+  font-size: 11px;
+  opacity: 0;
+}
+
+.demo__file .i {
+  width: 13px;
+  height: 13px;
+  color: var(--accent);
+}
+
+/* step 3 */
+.demo--setup .demo__stage {
+  transform: translate(-228px, -219px) scale(0.62);
+}
+
+.demo__stage .demo__sb-enabled {
+  top: 284px;
+  left: 336px;
+}
+
+.demo__stage .demo__sb-commands-menu {
+  top: 248px;
+  left: 384px;
+}
+
+/* until the right click, the screenshot shows what lies under the trigger menu: the empty panels below */
+.demo__stage .demo__sb-selected {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 1170px 100%, 1170px 250px, 1003px 250px, 1003px 100%, 0 100%);
+}
+
+.demo__stage .demo__sb-trigger-menu {
+  top: 250px;
+  left: 1003px;
+}
+
+.demo__stage :is(.demo__sb-settings, .demo__sb-calendar) {
+  top: 13px;
+  left: 267px;
+}
+
+/* the parts of the Calendar page that change: the country, its badge, the unsaved changes, Holiday data */
+.demo__stage .demo__sb-country {
+  top: 141px;
+  left: 395px;
+}
+
+.demo__stage .demo__sb-badge {
+  top: 49px;
+  left: 963px;
+}
+
+.demo__stage .demo__sb-unsaved {
+  top: 673px;
+  left: 641px;
+}
+
+.demo__stage :is(.demo__sb-downloading, .demo__sb-downloaded) {
+  top: 433px;
+  left: 387px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__shot { animation: demo2-shot 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__stage { animation: demo2-stage 12s ease-in-out infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__cursor { animation: demo2-cursor 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__file { animation: demo2-file 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__target { animation: demo2-target 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__sb-import { animation: demo2-import 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__sb-loaded { animation: demo2-loaded 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__sb-code { animation: demo2-code 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__sb-note { animation: demo2-note 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__sb-group { animation: demo2-group 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__caption span:nth-child(1) { animation: demo2-caption-1 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__caption span:nth-child(2) { animation: demo2-caption-2 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__caption span:nth-child(3) { animation: demo2-caption-3 12s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--import .demo__caption span:nth-child(4) { animation: demo2-caption-4 12s infinite; }
+
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__shot { animation: demo3-shot 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__stage { animation: demo3-stage 17s ease-in-out infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__cursor { animation: demo3-cursor 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-commands { animation: demo3-commands 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-commands-menu { animation: demo3-commands-menu 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-enabled { animation: demo3-enabled 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-selected { animation: demo3-selected 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-trigger-menu { animation: demo3-trigger-menu 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-settings { animation: demo3-settings 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(1) { animation: demo3-caption-1 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(2) { animation: demo3-caption-2 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-calendar { animation: demo3-calendar 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-country { animation: demo3-country 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-badge { animation: demo3-country 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-unsaved { animation: demo3-unsaved 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-downloading { animation: demo3-downloading 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-downloaded { animation: demo3-downloaded 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(3) { animation: demo3-caption-3 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(4) { animation: demo3-caption-4 17s infinite; }
+}
+
+/* Both made by a small script from a storyboard in seconds.
+   Step 2, 12 seconds: Import (0-19%), the file dragged in (20-38%), the six actions (38-53%), Import (53-63%),
+   Yes and Ok (63-83%), the new group. */
+@keyframes demo2-stage {
+  0% { transform: translate(0px, 0px) scale(0.2938); }
+  7.5% { transform: translate(0px, 0px) scale(0.2938); }
+  15.83% { transform: translate(0px, 0px) scale(0.62); }
+  19.17% { transform: translate(0px, 0px) scale(0.62); }
+  24.17% { transform: translate(-3px, -2px) scale(0.3); }
+  38.33% { transform: translate(-3px, -2px) scale(0.3); }
+  45% { transform: translate(-118px, -148px) scale(0.62); }
+  53.33% { transform: translate(-118px, -148px) scale(0.62); }
+  58.33% { transform: translate(-298px, -220px) scale(0.62); }
+  62.5% { transform: translate(-298px, -220px) scale(0.62); }
+  66.67% { transform: translate(-208px, -117px) scale(0.62); }
+  82.5% { transform: translate(-208px, -117px) scale(0.62); }
+  88.33% { transform: translate(-186px, -81px) scale(0.62); }
+  100% { transform: translate(-186px, -81px) scale(0.62); }
+}
+
+@keyframes demo2-cursor {
+  0% { left: 296px; top: 188px; opacity: 0; transform: scale(1); }
+  3% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
+  7.5% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
+  15.83% { left: 145px; top: 35px; opacity: 1; transform: scale(1); }
+  16.67% { left: 145px; top: 35px; opacity: 1; transform: scale(0.8); }
+  18.33% { left: 145px; top: 35px; opacity: 1; transform: scale(1); }
+  20% { left: 145px; top: 35px; opacity: 1; transform: scale(1); }
+  25.83% { left: 16px; top: 188px; opacity: 1; transform: scale(1); }
+  27.08% { left: 16px; top: 188px; opacity: 1; transform: scale(0.9); }
+  28.33% { left: 16px; top: 188px; opacity: 1; transform: scale(0.9); }
+  35.83% { left: 146px; top: 98px; opacity: 1; transform: scale(0.9); }
+  37.08% { left: 146px; top: 98px; opacity: 1; transform: scale(1); }
+  39.17% { left: 146px; top: 98px; opacity: 1; transform: scale(1); }
+  45% { left: 116px; top: 93px; opacity: 1; transform: scale(1); }
+  53.33% { left: 116px; top: 93px; opacity: 1; transform: scale(1); }
+  59.17% { left: 266px; top: 190px; opacity: 1; transform: scale(1); }
+  60% { left: 266px; top: 190px; opacity: 1; transform: scale(0.8); }
+  61.25% { left: 266px; top: 190px; opacity: 1; transform: scale(1); }
+  63.33% { left: 266px; top: 190px; opacity: 1; transform: scale(1); }
+  70% { left: 225px; top: 146px; opacity: 1; transform: scale(1); }
+  70.83% { left: 225px; top: 146px; opacity: 1; transform: scale(0.8); }
+  72.08% { left: 225px; top: 146px; opacity: 1; transform: scale(1); }
+  73.33% { left: 225px; top: 146px; opacity: 1; transform: scale(1); }
+  78.33% { left: 290px; top: 134px; opacity: 1; transform: scale(1); }
+  81.25% { left: 290px; top: 134px; opacity: 1; transform: scale(1); }
+  82.08% { left: 290px; top: 134px; opacity: 1; transform: scale(0.8); }
+  83.33% { left: 290px; top: 134px; opacity: 1; transform: scale(1); }
+  84.17% { left: 290px; top: 134px; opacity: 1; transform: scale(1); }
+  90% { left: 196px; top: 72px; opacity: 1; transform: scale(1); }
+  95% { left: 196px; top: 72px; opacity: 1; transform: scale(1); }
+  97.5% { left: 196px; top: 72px; opacity: 0; transform: scale(1); }
+  100% { left: 196px; top: 72px; opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo2-file {
+  0% { left: 6px; top: 182px; opacity: 0; transform: scale(1); }
+  21.67% { left: 6px; top: 182px; opacity: 0; transform: scale(1); }
+  23.33% { left: 6px; top: 182px; opacity: 1; transform: scale(1); }
+  28.33% { left: 6px; top: 182px; opacity: 1; transform: scale(1); }
+  35.83% { left: 136px; top: 92px; opacity: 1; transform: scale(1); }
+  37.5% { left: 136px; top: 92px; opacity: 0; transform: scale(0.6); }
+  100% { left: 136px; top: 92px; opacity: 0; transform: scale(0.6); }
+}
+
+@keyframes demo2-target {
+  0% { opacity: 0; }
+  32.5% { opacity: 0; }
+  34.17% { opacity: 1; }
+  36.67% { opacity: 1; }
+  38.33% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo2-import {
+  0% { opacity: 0; transform: scale(0.97); }
+  19.17% { opacity: 0; transform: scale(0.97); }
+  20.83% { opacity: 1; transform: scale(1); }
+  39.17% { opacity: 1; transform: scale(1); }
+  39.25% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo2-loaded {
+  0% { opacity: 0; }
+  37.08% { opacity: 0; }
+  38.75% { opacity: 1; }
+  82.92% { opacity: 1; }
+  84.58% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo2-code {
+  0% { opacity: 0; transform: scale(0.97); }
+  62.08% { opacity: 0; transform: scale(0.97); }
+  63.33% { opacity: 1; transform: scale(1); }
+  72.08% { opacity: 1; transform: scale(1); }
+  72.92% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo2-note {
+  0% { opacity: 0; transform: scale(0.97); }
+  72.92% { opacity: 0; transform: scale(0.97); }
+  74.17% { opacity: 1; transform: scale(1); }
+  82.92% { opacity: 1; transform: scale(1); }
+  84.17% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo2-group {
+  0% { opacity: 0; }
+  82.92% { opacity: 0; }
+  85.42% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo2-shot {
+  0% { opacity: 0; }
+  3% { opacity: 1; }
+  96% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo2-caption-1 {
+  0% { opacity: 1; }
+  18.5% { opacity: 1; }
+  19.5% { opacity: 0; }
+  98% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo2-caption-2 {
+  0% { opacity: 0; }
+  19.5% { opacity: 0; }
+  20.5% { opacity: 1; }
+  52.5% { opacity: 1; }
+  53.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo2-caption-3 {
+  0% { opacity: 0; }
+  53.5% { opacity: 0; }
+  54.5% { opacity: 1; }
+  82.5% { opacity: 1; }
+  83.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo2-caption-4 {
+  0% { opacity: 0; }
+  83.5% { opacity: 0; }
+  84.5% { opacity: 1; }
+  96% { opacity: 1; }
+  98% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Step 3, 17 seconds: Enable All on the commands (0-29%), Test Trigger on [CC] - .Settings (29-55%),
+   the Calendar page and a country (55-76%), Save and download now. */
+@keyframes demo3-stage {
+  0% { transform: translate(0px, 0px) scale(0.2938); }
+  5.29% { transform: translate(0px, 0px) scale(0.2938); }
+  11.18% { transform: translate(-186px, -93px) scale(0.62); }
+  20.59% { transform: translate(-186px, -93px) scale(0.62); }
+  25.29% { transform: translate(-140px, -88px) scale(0.45); }
+  29.41% { transform: translate(-140px, -88px) scale(0.45); }
+  34.12% { transform: translate(0px, -68px) scale(0.45); }
+  42.94% { transform: translate(0px, -68px) scale(0.45); }
+  47.65% { transform: translate(-347px, -93px) scale(0.62); }
+  55.29% { transform: translate(-347px, -93px) scale(0.62); }
+  58.24% { transform: translate(-4px, -2px) scale(0.3); }
+  60.59% { transform: translate(-4px, -2px) scale(0.3); }
+  64.12% { transform: translate(-166px, -27px) scale(0.62); }
+  75.88% { transform: translate(-166px, -27px) scale(0.62); }
+  80% { transform: translate(-228px, -219px) scale(0.62); }
+  100% { transform: translate(-228px, -219px) scale(0.62); }
+}
+
+@keyframes demo3-cursor {
+  0% { left: 296px; top: 188px; opacity: 0; transform: scale(1); }
+  2.12% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
+  5.29% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
+  11.18% { left: 54px; top: 63px; opacity: 1; transform: scale(1); }
+  11.76% { left: 54px; top: 63px; opacity: 1; transform: scale(0.8); }
+  12.94% { left: 54px; top: 63px; opacity: 1; transform: scale(1); }
+  13.82% { left: 54px; top: 63px; opacity: 1; transform: scale(1); }
+  17.06% { left: 80px; top: 99px; opacity: 1; transform: scale(1); }
+  17.65% { left: 80px; top: 99px; opacity: 1; transform: scale(0.8); }
+  18.53% { left: 80px; top: 99px; opacity: 1; transform: scale(1); }
+  20.59% { left: 80px; top: 99px; opacity: 1; transform: scale(1); }
+  25.29% { left: 339px; top: 54px; opacity: 1; transform: scale(1); }
+  29.41% { left: 339px; top: 54px; opacity: 1; transform: scale(1); }
+  34.12% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
+  34.71% { left: 41px; top: 62px; opacity: 1; transform: scale(0.8); }
+  35.59% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
+  37.06% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
+  40% { left: 162px; top: 57px; opacity: 1; transform: scale(1); }
+  40.59% { left: 162px; top: 57px; opacity: 1; transform: scale(0.8); }
+  41.47% { left: 162px; top: 57px; opacity: 1; transform: scale(1); }
+  42.94% { left: 162px; top: 57px; opacity: 1; transform: scale(1); }
+  48.24% { left: 273px; top: 59px; opacity: 1; transform: scale(1); }
+  48.82% { left: 273px; top: 59px; opacity: 1; transform: scale(0.8); }
+  49.71% { left: 273px; top: 59px; opacity: 1; transform: scale(1); }
+  50.59% { left: 273px; top: 59px; opacity: 1; transform: scale(1); }
+  52.94% { left: 303px; top: 72px; opacity: 1; transform: scale(1); }
+  53.53% { left: 303px; top: 72px; opacity: 1; transform: scale(0.8); }
+  54.41% { left: 303px; top: 72px; opacity: 1; transform: scale(1); }
+  60.59% { left: 303px; top: 72px; opacity: 1; transform: scale(1); }
+  64.71% { left: 30px; top: 114px; opacity: 1; transform: scale(1); }
+  65.29% { left: 30px; top: 114px; opacity: 1; transform: scale(0.8); }
+  66.18% { left: 30px; top: 114px; opacity: 1; transform: scale(1); }
+  67.35% { left: 30px; top: 114px; opacity: 1; transform: scale(1); }
+  70.59% { left: 182px; top: 65px; opacity: 1; transform: scale(1); }
+  71.18% { left: 182px; top: 65px; opacity: 1; transform: scale(0.8); }
+  72.06% { left: 182px; top: 65px; opacity: 1; transform: scale(1); }
+  74.71% { left: 182px; top: 65px; opacity: 1; transform: scale(1); }
+  81.18% { left: 65px; top: 103px; opacity: 1; transform: scale(1); }
+  81.76% { left: 65px; top: 103px; opacity: 1; transform: scale(0.8); }
+  82.65% { left: 65px; top: 103px; opacity: 1; transform: scale(1); }
+  85.88% { left: 65px; top: 103px; opacity: 1; transform: scale(1); }
+  93.53% { left: 161px; top: 70px; opacity: 1; transform: scale(1); }
+  95.88% { left: 161px; top: 70px; opacity: 1; transform: scale(1); }
+  97.06% { left: 161px; top: 70px; opacity: 0; transform: scale(1); }
+  100% { left: 161px; top: 70px; opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo3-commands {
+  0% { opacity: 1; }
+  35.59% { opacity: 1; }
+  36.47% { opacity: 0; }
+  99.94% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-commands-menu {
+  0% { opacity: 0; transform: scale(0.9); }
+  12.94% { opacity: 0; transform: scale(0.9); }
+  13.82% { opacity: 1; transform: scale(1); }
+  18.53% { opacity: 1; transform: scale(1); }
+  19.12% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo3-enabled {
+  0% { opacity: 0; }
+  18.82% { opacity: 0; }
+  20.29% { opacity: 1; }
+  35.59% { opacity: 1; }
+  36.47% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-selected {
+  0% { opacity: 0; }
+  41.47% { opacity: 0; }
+  42.35% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-trigger-menu {
+  0% { opacity: 0; transform: scale(0.9); }
+  49.71% { opacity: 0; transform: scale(0.9); }
+  50.59% { opacity: 1; transform: scale(1); }
+  54.41% { opacity: 1; transform: scale(1); }
+  55% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes demo3-settings {
+  0% { opacity: 0; transform: scale(0.97); }
+  55.29% { opacity: 0; transform: scale(0.97); }
+  56.47% { opacity: 1; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes demo3-calendar {
+  0% { opacity: 0; }
+  66.18% { opacity: 0; }
+  67.06% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-country {
+  0% { opacity: 0; }
+  73.24% { opacity: 0; }
+  74.12% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-unsaved {
+  0% { opacity: 0; }
+  73.24% { opacity: 0; }
+  74.12% { opacity: 1; }
+  82.94% { opacity: 1; }
+  83.53% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-downloading {
+  0% { opacity: 0; }
+  82.94% { opacity: 0; }
+  83.53% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-downloaded {
+  0% { opacity: 0; }
+  90.59% { opacity: 0; }
+  91.47% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-shot {
+  0% { opacity: 0; }
+  2.12% { opacity: 1; }
+  96.94% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-caption-1 {
+  0% { opacity: 1; }
+  28.82% { opacity: 1; }
+  29.53% { opacity: 0; }
+  98.59% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo3-caption-2 {
+  0% { opacity: 0; }
+  29.53% { opacity: 0; }
+  30.24% { opacity: 1; }
+  54.71% { opacity: 1; }
+  55.41% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-caption-3 {
+  0% { opacity: 0; }
+  55.41% { opacity: 0; }
+  56.12% { opacity: 1; }
+  75.53% { opacity: 1; }
+  76.24% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-caption-4 {
+  0% { opacity: 0; }
+  76.24% { opacity: 0; }
+  76.94% { opacity: 1; }
+  96.94% { opacity: 1; }
+  98.59% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
 
 /* ---------- footer ---------- */
 
