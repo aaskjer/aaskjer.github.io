@@ -131,10 +131,43 @@
           <h2 id="start-title">Get started</h2>
         </div>
         <ol class="steps">
-          <li>
+          <li tabindex="0">
             <span class="steps__n" aria-hidden="true">1</span>
+            <span class="steps__hint" aria-hidden="true">See how</span>
             <h3>Grab it</h3>
             <p>Download the <code>.sb</code> file from the project's latest release, or copy its import string.</p>
+            <!-- a made-up GitHub page that plays the step while the card is hovered, focused or tapped -->
+            <div class="demo" aria-hidden="true">
+              <div class="demo__window">
+                <div class="demo__bar"><i></i><i></i><i></i><span class="demo__url"><span>github.com/aaskjer/Hangman-Game/releases</span><span>github.com/aaskjer/Hangman-Game/blob/main/Import-String.md</span></span></div>
+                <div class="demo__page demo__page--release">
+                  <div class="demo__title"><b>v12.1.0</b><em>Latest</em></div>
+                  <span class="demo__line"></span>
+                  <span class="demo__line demo__line--short"></span>
+                  <div class="demo__assets">Assets <small>3</small></div>
+                  <ul>
+                    <li class="demo__sb"><svg class="i"><use href="assets/img/icons.svg#i-download"/></svg>Hangman-Game.sb<small>184 KB</small></li>
+                    <li><svg class="i"><use href="assets/img/icons.svg#i-download"/></svg>Source code (zip)</li>
+                    <li><svg class="i"><use href="assets/img/icons.svg#i-download"/></svg>Source code (tar.gz)</li>
+                  </ul>
+                </div>
+                <div class="demo__page demo__page--string">
+                  <div class="demo__title"><b>Import-String.md</b></div>
+                  <div class="demo__code">
+                    <code>U0JBRR+LCAAAAAAABADtvQdgHEmWJiYvbcp7<br>iT09fU2kuICbDjeARJ+yNiwUARJcStwEtvU<br>zzTvMk113jwAQ6Lh8IbsO5vXq+kq7pL5E1<br>…</code>
+                    <span class="demo__copy"><svg class="i"><use href="assets/img/icons.svg#i-copy"/></svg></span>
+                    <span class="demo__copied"><svg class="i"><use href="assets/img/icons.svg#i-check"/></svg>Copied!</span>
+                  </div>
+                </div>
+                <div class="demo__toast">
+                  <svg class="i"><use href="assets/img/icons.svg#i-download"/></svg>
+                  <span><b>Hangman-Game.sb</b><span class="demo__progress"></span></span>
+                  <svg class="i demo__done"><use href="assets/img/icons.svg#i-check"/></svg>
+                </div>
+                <svg class="demo__cursor" viewBox="0 0 24 24"><path d="M5 2.5 19.5 13l-6.6 1.2 3.7 6.8-2.6 1.4-3.7-6.9L5 20Z"/></svg>
+              </div>
+              <div class="demo__caption"><span>Download the <code>.sb</code> from the latest release</span><span>… or copy the import string</span></div>
+            </div>
           </li>
           <li>
             <span class="steps__n" aria-hidden="true">2</span>
