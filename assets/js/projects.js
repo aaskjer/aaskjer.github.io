@@ -113,7 +113,7 @@ window.SITE = {
     {
       repo: 'OBSNotes',
       page: 'obsnotes/',
-      status: 'complete',
+      status: 'done',
       name: 'OBS Notes',
       section: 'tools',
       logo: 'assets/img/projects/obsnotes.png',
