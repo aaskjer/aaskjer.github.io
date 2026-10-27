@@ -7,7 +7,7 @@
 
   const { user, twitch, stats, projects, comingSoon = [] } = window.SITE;
   const API = 'https://api.github.com';
-  const CACHE_KEY = 'github-live-v3';
+  const CACHE_KEY = 'github-live-v4';
   // GitHub allows 60 requests per hour without a token, so one visit's
   // answers are kept for an hour.
   const CACHE_TTL = 60 * 60 * 1000;
@@ -115,13 +115,22 @@
     return `<span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>`;
   }
 
-  // Since the last visit: "New" when the project's first release came out, "Updated" for a later one.
+  // A pre-release newer than the latest stable version, e.g. "v2.0.0 Pre-release".
+  function preBadge(p) {
+    if (!p.pre) return '';
+    return `<span class="badge badge--pre" title="${esc(p.pre.version)}, out ${esc(timeAgo(p.pre.released))}: a test version of what comes next, not finished yet">${esc(p.pre.version.replace(/-.*/, ''))} Pre-release</span>`;
+  }
+
+  // Since the last visit: "New" when the project's first release came out, "Updated" for a later one
+  // (a pre-release too).
   function newBadge(p) {
-    if (!p.released || !previousVisit || new Date(p.released) <= previousVisit) return '';
+    const latest = p.pre ? p.pre.released : p.released;
+    if (!latest || !previousVisit || new Date(latest) <= previousVisit) return '';
     if (p.firstReleased && new Date(p.firstReleased) > previousVisit) {
       return `<span class="badge badge--new" title="First released ${esc(timeAgo(p.firstReleased))}, since your last visit">New</span>`;
     }
-    return `<span class="badge badge--updated" title="${esc(p.version || 'A new version')} released ${esc(timeAgo(p.released))}, since your last visit">Updated</span>`;
+    const what = p.pre ? `Pre-release ${p.pre.version}` : p.version || 'A new version';
+    return `<span class="badge badge--updated" title="${esc(what)} released ${esc(timeAgo(latest))}, since your last visit">Updated</span>`;
   }
 
   const STATUS = {
@@ -138,7 +147,7 @@
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
     const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
-    return `<span class="badges">${badge(p)}${newBadge(p)}${label}</span>`;
+    return `<span class="badges">${badge(p)}${preBadge(p)}${newBadge(p)}${label}</span>`;
   }
 
   // The picture on top of a card; a click opens the full-size version in the lightbox.
@@ -297,6 +306,8 @@
       const releases = await getJSON(`${API}/repos/${user}/${r.name}/releases?per_page=100`).catch(() => null);
       if (!releases) complete = false;
       const stable = releases && releases.find(rel => !rel.draft && !rel.prerelease);
+      // a pre-release counts when it is newer than the latest stable release
+      const newest = releases && releases.find(rel => !rel.draft);
       const published = releases ? releases.filter(rel => !rel.draft).map(rel => rel.published_at).sort() : [];
       // only asked for repositories that have no release yet
       const empty = releases && !releases.length ? await isEmpty(r.name) : false;
@@ -309,6 +320,7 @@
         version: stable ? stable.tag_name : null,
         released: stable ? stable.published_at : null,
         firstReleased: published[0] || null,
+        pre: newest && newest.prerelease ? { version: newest.tag_name, released: newest.published_at } : null,
         // null means "unknown", so a failed request never shows 0 downloads
         downloads: releases && releases.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         // null when GitHub did not answer, so a failed request never hides the download button
@@ -332,6 +344,9 @@
       if (l.version) p.version = l.version;
       p.released = l.released;
       p.firstReleased = l.firstReleased;
+      p.pre = l.pre;
+      // only pre-releases so far: GitHub's "latest" link would find nothing
+      if (l.pre && !l.version && p.download === undefined) p.download = `${repoUrl(p.repo)}/releases/tag/${encodeURIComponent(l.pre.version)}`;
       if (l.hasReleases === false && p.download === undefined) p.download = false;
       p.comingSoon = l.hasReleases === false && (l.empty === true || listedAsSoon(p.repo));
       refresh(p);
@@ -352,7 +367,9 @@
         version: l.version,
         released: l.released,
         firstReleased: l.firstReleased,
-        download: l.hasReleases === false ? false : undefined,
+        pre: l.pre,
+        download: l.hasReleases === false ? false
+          : l.pre && !l.version ? `${repoUrl(l.name)}/releases/tag/${encodeURIComponent(l.pre.version)}` : undefined,
         comingSoon: l.hasReleases === false && (l.empty === true || listedAsSoon(l.name)),
       }));
     renderExtras();

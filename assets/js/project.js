@@ -15,7 +15,7 @@
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
   // the start page's answers from the GitHub API, used for as long as the start page uses them
-  const CACHE_KEY = 'github-live-v3';
+  const CACHE_KEY = 'github-live-v4';
   const CACHE_TTL = 60 * 60 * 1000;
   // the same fingerprint of projects.js as on the start page: answers kept before a change to it are not used
   const SITE_STAMP = (text => {
@@ -82,14 +82,19 @@
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
     const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
-    // since the last visit: "New" when the first release came out, "Updated" for a later one
+    // a pre-release newer than the latest stable version, e.g. "v2.0.0 Pre-release"
+    const pre = p.pre
+      ? `<span class="badge badge--pre" title="${esc(p.pre.version)}, out ${esc(timeAgo(p.pre.released))}: a test version of what comes next, not finished yet">${esc(p.pre.version.replace(/-.*/, ''))} Pre-release</span>` : '';
+    // since the last visit: "New" when the first release came out, "Updated" for a later one (a pre-release too)
+    const latest = p.pre ? p.pre.released : p.released;
     let fresh = '';
-    if (p.released && previousVisit && new Date(p.released) > previousVisit) {
+    if (latest && previousVisit && new Date(latest) > previousVisit) {
+      const what = p.pre ? `Pre-release ${p.pre.version}` : p.version || 'A new version';
       fresh = p.firstReleased && new Date(p.firstReleased) > previousVisit
         ? `<span class="badge badge--new" title="First released ${esc(timeAgo(p.firstReleased))}, since your last visit">New</span>`
-        : `<span class="badge badge--updated" title="${esc(p.version || 'A new version')} released ${esc(timeAgo(p.released))}, since your last visit">Updated</span>`;
+        : `<span class="badge badge--updated" title="${esc(what)} released ${esc(timeAgo(latest))}, since your last visit">Updated</span>`;
     }
-    return `<span class="badges"><span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>${fresh}${label}</span>`;
+    return `<span class="badges"><span class="badge"${p.version ? '' : ' hidden'}>${esc(p.version || '')}</span>${pre}${fresh}${label}</span>`;
   }
 
   function metaRow() {
@@ -173,6 +178,7 @@
           releases().catch(() => null),
         ]);
         const stable = list && list.find(rel => !rel.draft && !rel.prerelease);
+        const newest = list && list.find(rel => !rel.draft);
         const published = list ? list.filter(rel => !rel.draft).map(rel => rel.published_at).sort() : [];
         live = {
           description: r.description,
@@ -181,6 +187,7 @@
           version: stable ? stable.tag_name : null,
           released: stable ? stable.published_at : null,
           firstReleased: published[0] || null,
+          pre: newest && newest.prerelease ? { version: newest.tag_name, released: newest.published_at } : null,
           downloads: list && list.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         };
       } catch (e) { return; }
@@ -195,6 +202,10 @@
     if (live.version) p.version = live.version;
     p.released = live.released;
     p.firstReleased = live.firstReleased;
+    p.pre = live.pre;
+    // only pre-releases so far: GitHub's "latest" link would find nothing
+    const button = $('.project-hero__actions [data-track="download"]');
+    if (live.pre && !live.version && !p.download && button) button.href = `${REPO_URL}/releases/tag/${encodeURIComponent(live.pre.version)}`;
     $('#meta').innerHTML = metaRow();
     $('.project-hero .badges').outerHTML = badges();
   }

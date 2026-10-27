@@ -893,6 +893,18 @@ a.collage__tile--me:focus-visible {
   color: #fb923c;
 }
 
+/* only outlined: a version that is not finished yet */
+.badge--pre {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px currentColor;
+  color: #c084fc;
+  cursor: help;
+}
+
+:root[data-theme='light'] .badge--pre {
+  color: #7e22ce;
+}
+
 .badge--dev,
 .badge--complete,
 .badge--done,
