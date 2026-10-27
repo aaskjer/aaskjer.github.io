@@ -73,7 +73,7 @@ window.SITE = {
       sceneAlt: 'A go-live announcement in Discord with the stream title, game, viewers, a preview image and a Watch Stream button.',
       tagline: 'Automatically announce your and your friend\'s livestream on Discord, Stoat, GameVox.',
       platforms: ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'],
-      tags: ['Discord'],
+      tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v2.0.0', stars: 1, downloads: 43,
     },
