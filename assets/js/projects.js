@@ -118,7 +118,7 @@ window.SITE = {
       section: 'tools',
       logo: 'assets/img/projects/obsnotes.png',
       scene: 'assets/img/scenes/obsnotes.jpg',
-      sceneAlt: 'Viewers write a safe code and quest hints into chat with !note, and each one sticks on stream as a post-it.',
+      sceneAlt: 'Viewers write their Fran Bow clues into chat with !note, and each one sticks on stream as a post-it.',
       tagline: 'Can\'t remember the code of the combination lock? Your chat can step-in an add a post-it in OBS for you!',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],

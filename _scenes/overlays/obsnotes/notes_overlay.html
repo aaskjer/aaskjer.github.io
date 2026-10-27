@@ -2,7 +2,7 @@
 <html lang='de'>
 <head>
 <meta charset='utf-8'>
-<!-- obs-notes-overlay-version: 4 -->
+<!-- obs-notes-overlay-version: 6 -->
 <title>OBS Notes</title>
 <style>
   html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; }
@@ -18,8 +18,6 @@
   .note.c3 { background: #a9dcff; }
   .note.c4 { background: #ffcc8a; }
   #board.plain .note { background: #fff; color: #000; }
-  .note.tilt { --r: -1.8deg; }
-  .note.tilt2 { --r: 1.5deg; }
   .tape { position: absolute; top: -13px; left: 50%; width: 92px; height: 26px; margin-left: -46px;
           background: rgba(255, 255, 255, 0.55); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); transform: rotate(-3deg); }
   #board.plain .tape { background: rgba(210, 210, 210, 0.7); }
@@ -40,7 +38,7 @@
 <div id='board'></div>
 <script>
 (function () {
-  var PAGE_VERSION = 4;
+  var PAGE_VERSION = 6;
   var STATE_URL = 'notes_state.json';
   var POLL_MS = 1500;
   var MAX_FONT = 112;
@@ -63,6 +61,19 @@
     var box = el('div', 'fit');
     box.appendChild(el('div', 'text', (text || '').replace(/-/g, String.fromCharCode(0x2011))));
     return box;
+  }
+
+  // Hung up like real post-its: six angles, and now and then a straight one (two slots of eight). The pick comes from
+  // the note's author and text, so it stays put when the page reloads; no post-it hangs exactly like the one before.
+  var ANGLES = [0, -3.2, -2.1, -0.9, 0, 1.1, 2.2, 3];
+  function tilt(n, before) {
+    var key = (n.author || '') + '|' + (n.text || '');
+    var h = 2166136261;
+    for (var i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+    h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b); h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35); h ^= h >>> 16;
+    var pick = (h >>> 0) % ANGLES.length;
+    if (ANGLES[pick] === before) pick = (pick + 1) % ANGLES.length;
+    return ANGLES[pick];
   }
 
   // As large as the box allows; a word too long for one line is broken only once the font is small.
@@ -88,11 +99,14 @@
 
   function render(s) {
     var seen = {};
+    var lean = null;
     board.classList.toggle('plain', s.colorfulNotes === false);
     var notes = (s.notes || []).map(function (n) {
       var key = n.number + '|' + n.text;
       seen[key] = true;
-      var note = el('div', 'note c' + (n.number % 5) + (n.number % 2 ? ' tilt' : ' tilt2') + (known && !known[key] ? ' new' : ''));
+      var note = el('div', 'note c' + (n.number % 5) + (known && !known[key] ? ' new' : ''));
+      lean = tilt(n, lean);
+      note.style.setProperty('--r', lean + 'deg');
       note.appendChild(el('div', 'tape'));
       var head = el('div', 'head');
       head.appendChild(el('span', 'num', '#' + n.number));
