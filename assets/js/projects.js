@@ -91,10 +91,10 @@ window.SITE = {
       tagline: 'Fixes the broken .NET references in a Streamer.bot v1.0.7 export.',
       platforms: ['Windows'],
       tags: ['PowerShell'],
-      download: 'https://github.com/aaskjer/SBRefFix/archive/refs/heads/main.zip',
+      download: 'https://github.com/aaskjer/SBRefFix/releases/latest/download/SBRefFix.zip',
       downloadLabel: 'Download ZIP',
       guide: { label: 'How to use', href: 'https://github.com/aaskjer/SBRefFix#how-to-use-it' },
-      version: null, stars: 0, downloads: 0,
+      version: 'v1.0.0', stars: 0, downloads: 0,
     },
     {
       repo: 'SuTo',
