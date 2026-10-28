@@ -7,6 +7,7 @@ Plain HTML, CSS and JavaScript, published by GitHub Pages straight from the `mai
 - `assets/js/projects.js` lists the projects; the start page and the project pages are built from it.
 - Each project has its own page in a folder named after it (`blackjack-game/index.html` and so on). The page shows the project's README, setup guide, manual and FAQ, loaded live from its repository, and a changelog (its `CHANGELOG.md`, or else its release notes or commit history), so it never needs updating when the documents change. For a new project, copy one of the folders, change the title, descriptions, picture and `data-repo`, and add `page` to its entry in `projects.js`.
 - Each project page also carries the project's name, tagline and features as plain text for search engines, and `sitemap.xml` lists every page. Both come from `projects.js`: after adding a project or changing those fields, run `node _tools/update-pages.js`.
+- The Featured box at the top of the start page shows the projects with a new release, a status change (`statusSince` in `projects.js`) or many downloads in the last days, taking turns, and the `fallback` project while there are none. Its rules are `featured` in `projects.js`. The downloads per day come from `.github/workflows/download-counts.yml`, which runs `_tools/download-counts.js` once a day and keeps the result as `downloads.json` on the `stats` branch.
 - `_scenes/` holds the sources of the example scenes on the project cards (see `_scenes/render.ps1`).
 
 ## Credits

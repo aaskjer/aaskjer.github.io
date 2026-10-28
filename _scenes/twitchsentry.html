@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TwitchSentry scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(760px 520px at 34% 46%, rgba(124, 58, 237, .32), transparent 70%),
+      radial-gradient(900px 600px at 0% 100%, rgba(37, 99, 235, .22), transparent 70%),
+      linear-gradient(160deg, #13102a, #08080f);
+  }
+
+  /* the real settings window, as on the start page */
+  .app {
+    position: absolute;
+    top: 112px;
+    left: 76px;
+    width: 940px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 14px;
+    background: #1e1e1e;
+    overflow: hidden;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .9), 0 0 0 8px rgba(124, 58, 237, .12);
+  }
+  .app__bar { display: flex; gap: 7px; padding: 12px 14px; background: #151515; border-bottom: 1px solid rgba(255, 255, 255, .06); }
+  .app__bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+  .app__bar i:nth-child(2) { background: #febc2e; }
+  .app__bar i:nth-child(3) { background: #28c840; }
+  .app img { display: block; width: 940px; height: 640px; }
+
+  /* a message TwitchSentry took down, as Twitch shows it */
+  .msg .gone { color: #8b879f; font-style: italic; }
+  .msg .spam { color: #8b879f; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+
+  <div class="app">
+    <div class="app__bar"><i></i><i></i><i></i></div>
+    <img src="../assets/img/twitchsentry-app.jpg" alt="">
+  </div>
+
+  <aside class="chat">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ul class="chat__list">
+      <li class="msg"><span class="n c4">LunaByte</span>that clutch was insane</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>gg chat</li>
+      <li class="msg"><span class="n spam">streamviews_shop</span><span class="gone">&lt;message deleted&gt;</span></li>
+      <li class="msg bot"><span class="n me">aaskjer</span>@streamviews_shop, your message was removed — selling viewers or followers isn't allowed here</li>
+      <li class="msg"><span class="n c2">CozyKoala</span>those bots again 🙄</li>
+      <li class="msg"><span class="n c3">MossyMoth</span><span class="gone">&lt;message deleted&gt;</span></li>
+      <li class="msg bot"><span class="n me">aaskjer</span>@MossyMoth, your message was removed. Reason: Unauthorized link</li>
+      <li class="msg"><span class="n c3">MossyMoth</span>oops, that was my speedrun video 😅</li>
+      <li class="msg"><span class="n me">aaskjer</span>!permit @MossyMoth</li>
+      <li class="msg bot"><span class="n me">aaskjer</span>@MossyMoth has been granted a 60s link permit by @aaskjer</li>
+      <li class="msg"><span class="n c3">MossyMoth</span>youtu.be/k3MossRun42 thanks!</li>
+    </ul>
+    <div class="chat__input">Send a message</div>
+  </aside>
+</div>
+</body>
+</html>

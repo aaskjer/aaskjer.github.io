@@ -1,0 +1,39 @@
+# Records the downloads of every repository once a day in downloads.json on the stats branch, so
+# the Featured box on the start page can tell which project is downloaded a lot right now. The
+# branch holds a single commit that is replaced every day; main and the site are not touched.
+name: Download counts
+
+on:
+  schedule:
+    - cron: '23 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: download-counts
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Count the downloads
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir stats
+          if git fetch --depth=1 origin stats; then git show FETCH_HEAD:downloads.json > stats/downloads.json; fi
+          node _tools/download-counts.js stats/downloads.json
+
+      - name: Save them on the stats branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd stats
+          git init -q -b stats
+          git add downloads.json
+          git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Download counts'
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" stats

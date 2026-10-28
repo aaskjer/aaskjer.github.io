@@ -6,7 +6,11 @@
   'use strict';
 
   const { user, twitch, stats, projects, comingSoon = [] } = window.SITE;
+  const feature = Object.assign({ fallback: null, days: 7, max: 5, downloads: { days: 7, min: 20 } }, window.SITE.featured);
   const API = 'https://api.github.com';
+  // the downloads of every repository once a day, recorded by .github/workflows/download-counts.yml
+  const HISTORY_URL = `https://raw.githubusercontent.com/${user}/${user}.github.io/stats/downloads.json`;
+  const DAY = 24 * 60 * 60 * 1000;
   const CACHE_KEY = 'github-live-v4';
   // GitHub allows 60 requests per hour without a token, so one visit's
   // answers are kept for an hour.
@@ -184,36 +188,53 @@
       </article>`;
   }
 
-  function spotlight(p) {
+  // The picture beside a featured project: its settings window where there is a screenshot, its scene otherwise.
+  function spotlightShot(p) {
+    const name = p.name || p.repo;
+    if (p.screenshot) return `
+        <figure class="spotlight__shot">
+          <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <button class="shot-zoom" type="button" data-track="scene" data-full="${esc(p.screenshotFull || p.screenshot)}" data-size="${p.screenshotFull ? '940x1461' : '940x640'}"
+                  data-caption="${esc(name)} · settings window" aria-label="Show the whole ${esc(name)} settings window">
+            <img src="${esc(p.screenshot)}" alt="The ${esc(name)} settings window" width="940" height="640" loading="lazy" decoding="async">
+            <span class="zoom">${icon('expand')}</span>
+          </button>
+        </figure>`;
+    if (!p.scene) return '';
+    const thumb = p.scene.replace(/(\.\w+)$/, '-thumb$1');
+    return `
+        <figure class="spotlight__shot">
+          <button class="shot-zoom" type="button" data-track="scene" data-full="${esc(p.scene)}" data-size="1600x900"
+                  data-caption="${esc(name)} · example scene with sample chat" aria-label="Show a larger picture of ${esc(name)}">
+            <img src="${esc(thumb)}" srcset="${esc(thumb)} 960w, ${esc(p.scene)} 1600w" sizes="(max-width: 900px) 92vw, 640px"
+                 alt="${esc(p.sceneAlt || '')}" width="960" height="540" loading="lazy" decoding="async">
+            <span class="zoom">${icon('expand')}</span>
+          </button>
+        </figure>`;
+  }
+
+  function spotlight(p, reason) {
     return `
       <article class="spotlight" data-repo="${esc(p.repo)}">
         <div class="spotlight__body">
           <div class="card__head">
             ${logoTile(p)}
             <div class="card__heading">
-              <p class="kicker">Featured</p>
+              <p class="kicker">Featured${reason ? ` · ${esc(reason.text)}` : ''}</p>
               <h3 class="spotlight__title"><a href="${esc(projectUrl(p))}" data-track="${p.page ? 'project' : 'repo'}">${esc(p.name || p.repo)}</a></h3>
             </div>
           </div>
-          <p class="spotlight__text">${esc(p.tagline)}</p>
-          <ul class="features">
-            ${(p.features || []).map(f => `<li>${icon('check')}<span>${esc(f)}</span></li>`).join('')}
-          </ul>
+          <p class="spotlight__text">${esc(p.tagline || 'No description yet.')}</p>
+          ${p.features ? `<ul class="features">
+            ${p.features.map(f => `<li>${icon('check')}<span>${esc(f)}</span></li>`).join('')}
+          </ul>` : ''}
           ${chips(p)}
           <div class="spotlight__foot">
             <div class="meta-row">${badges(p)}${metaRow(p)}</div>
             <div class="actions">${actions(p, { github: true })}</div>
           </div>
         </div>
-        ${p.screenshot ? `
-        <figure class="spotlight__shot">
-          <div class="window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <button class="shot-zoom" type="button" data-track="scene" data-full="${esc(p.screenshotFull || p.screenshot)}" data-size="${p.screenshotFull ? '940x1461' : '940x640'}"
-                  data-caption="${esc(p.name)} · settings window" aria-label="Show the whole ${esc(p.name)} settings window">
-            <img src="${esc(p.screenshot)}" alt="The ${esc(p.name)} settings window" width="940" height="640" loading="lazy" decoding="async">
-            <span class="zoom">${icon('expand')}</span>
-          </button>
-        </figure>` : ''}
+        ${spotlightShot(p)}
       </article>`;
   }
 
@@ -228,18 +249,140 @@
     return tiles.join('');
   }
 
+  /* ---------- the Featured box ---------- */
+
+  // { days: { 'YYYY-MM-DD': { repository name in lower case: downloads } } }, once loaded
+  let downloadHistory = null;
+
+  const STATUS_NEWS = { dev: 'In development again', complete: 'Now Feature Complete', done: 'Now finished' };
+
+  // Downloads in the last `downloads.days` days, from the daily counts. Until the history is that
+  // long, it counts from its first day; a history that stopped two days ago counts nothing.
+  function recentDownloads(p) {
+    const days = downloadHistory && downloadHistory.days;
+    if (!days) return null;
+    const dates = Object.keys(days).sort();
+    const newest = dates[dates.length - 1];
+    if (!newest || Date.now() - Date.parse(newest) > 2 * DAY) return null;
+    const start = new Date(Date.parse(newest) - feature.downloads.days * DAY).toISOString().slice(0, 10);
+    const from = dates.find(date => date >= start && date < newest);
+    if (!from) return null;
+    const repo = p.repo.toLowerCase();
+    const count = (days[newest][repo] || 0) - (days[from][repo] || 0);
+    if (count < feature.downloads.min) return null;
+    const span = Math.round((Date.parse(newest) - Date.parse(from)) / DAY);
+    return { time: Date.parse(newest), text: `${numberFormat.format(count)} downloads in ${span === 7 ? 'a week' : `${span} day${span === 1 ? '' : 's'}`}` };
+  }
+
+  // Why a project is featured right now: the newest of a release, a status change and a run of
+  // downloads within the last `days` days, or null.
+  function featureReason(p) {
+    const since = Date.now() - feature.days * DAY;
+    const reasons = [];
+    const release = p.pre ? p.pre.released : p.released;
+    if (release && Date.parse(release) > since) {
+      const text = release === p.firstReleased ? 'First release' : p.pre ? 'New pre-release' : 'New release';
+      reasons.push({ time: Date.parse(release), text });
+    }
+    if (p.statusSince && STATUS_NEWS[p.status] && Date.parse(p.statusSince) > since) {
+      reasons.push({ time: Date.parse(p.statusSince), text: STATUS_NEWS[p.status] });
+    }
+    const downloads = recentDownloads(p);
+    if (downloads) reasons.push(downloads);
+    return reasons.sort((a, b) => b.time - a.time)[0] || null;
+  }
+
+  function featuredList() {
+    const list = projects.map(p => ({ p, reason: featureReason(p) })).filter(f => f.reason)
+      .sort((a, b) => b.reason.time - a.reason.time).slice(0, feature.max);
+    if (list.length) return list;
+    const fallback = projects.find(p => p.repo === feature.fallback);
+    return fallback ? [{ p: fallback, reason: null }] : [];
+  }
+
+  // Several featured projects take turns every 8 seconds. Pointing at the box or focusing
+  // something in it holds the current one; with reduced motion only the dots change it.
+  const TURN = 8000;
+  let turns = null;
+
+  function renderFeatured() {
+    const box = $('#spotlight');
+    const list = featuredList();
+    // rebuilt only when the projects or their reasons change, so the current one stays put
+    const key = list.map(f => `${f.p.repo}:${f.reason ? f.reason.text : ''}`).join('|');
+    if (box.dataset.key === key) return;
+    box.dataset.key = key;
+    clearInterval(turns);
+    const many = list.length > 1;
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    box.innerHTML = `
+      <div class="featured__inner">
+        <div class="featured__deck">${list.map(f => spotlight(f.p, f.reason)).join('')}</div>
+        ${many ? `
+        <div class="featured__nav">
+          ${still ? '' : `<button class="featured__pause" type="button" aria-pressed="false" data-track="featured-pause">${icon('pause')}${icon('play')}<span class="sr-only">Pause the featured projects</span></button>`}
+          <div class="featured__dots" role="group" aria-label="Featured projects">
+            ${list.map(f => `<button class="featured__dot" type="button" data-track="featured-dot" data-project="${esc(f.p.repo)}" aria-label="Show ${esc(f.p.name || f.p.repo)}"></button>`).join('')}
+          </div>
+        </div>` : ''}
+      </div>`;
+
+    const inner = box.firstElementChild;
+    const slides = [...inner.querySelectorAll('.spotlight')];
+    const dots = [...inner.querySelectorAll('.featured__dot')];
+    let current = 0;
+    let last = Date.now();
+    let held = false;
+    let paused = still;
+    const show = index => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === current);
+        slide.inert = i !== current;
+      });
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
+      last = Date.now();
+    };
+    show(0);
+    if (!many) return;
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+    const pause = inner.querySelector('.featured__pause');
+    if (pause) {
+      pause.addEventListener('click', () => {
+        paused = !paused;
+        pause.setAttribute('aria-pressed', String(paused));
+        last = Date.now();
+      });
+    }
+    const hold = on => () => { held = on; last = Date.now(); };
+    inner.addEventListener('pointerenter', hold(true));
+    inner.addEventListener('pointerleave', hold(false));
+    inner.addEventListener('focusin', hold(true));
+    inner.addEventListener('focusout', event => { if (!inner.contains(event.relatedTarget)) hold(false)(); });
+    turns = setInterval(() => {
+      if (held || paused || document.hidden) last = Date.now();
+      else if (Date.now() - last >= TURN) show(current + 1);
+    }, 500);
+  }
+
+  async function loadHistory() {
+    const response = await fetch(HISTORY_URL);
+    if (!response.ok) throw new Error(`${response.status} for ${HISTORY_URL}`);
+    downloadHistory = await response.json();
+  }
+
   /* ---------- rendering ---------- */
 
   const listedAsSoon = repo => comingSoon.some(name => name.toLowerCase() === repo.toLowerCase());
 
   function render() {
-    const featured = projects.find(p => p.featured);
     // until the live data says otherwise
     for (const p of projects) p.comingSoon = listedAsSoon(p.repo);
     $('#collage').innerHTML = collage();
-    $('#spotlight').innerHTML = featured ? spotlight(featured) : '';
-    $('#tools-grid').innerHTML = projects.filter(p => p.section === 'tools' && p !== featured).map(card).join('');
-    $('#games-grid').innerHTML = projects.filter(p => p.section === 'games' && p !== featured).map(card).join('');
+    renderFeatured();
+    $('#tools-grid').innerHTML = projects.filter(p => p.section === 'tools').map(card).join('');
+    $('#games-grid').innerHTML = projects.filter(p => p.section === 'games').map(card).join('');
     renderExtras();
     renderStats();
   }
@@ -375,6 +518,7 @@
       }));
     renderExtras();
     renderStats();
+    renderFeatured();
   }
 
   // short fingerprint of a text
@@ -509,5 +653,16 @@
   setupLightbox();
   setupStats();
   $('#year').textContent = new Date().getFullYear();
-  loadLive().catch(() => { /* keep the numbers from projects.js */ });
+  // The Featured box stays hidden until the releases and the download history are in (or failed),
+  // so it does not switch projects in front of the visitor; after 4 seconds it shows what it has.
+  const reveal = () => $('#spotlight').classList.remove('is-pending');
+  const shown = setTimeout(reveal, 4000);
+  Promise.allSettled([
+    loadLive().catch(() => { /* keep the numbers from projects.js */ }),
+    loadHistory().catch(() => { /* no download history: releases and status changes only */ }),
+  ]).then(() => {
+    renderFeatured();
+    clearTimeout(shown);
+    reveal();
+  });
 })();

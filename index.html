@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Only this site, the GitHub API and Umami may load or receive anything. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://gateway.umami.is https://cloud.umami.is; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <!-- Only this site, GitHub (its API and the download counts on the stats branch) and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://gateway.umami.is https://cloud.umami.is; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>aaskjer · Streamer.bot extensions</title>
   <meta name="description" content="Free, open-source Streamer.bot extensions by aaskjer: chat games, moderation and Discord go-live announcements for Twitch, YouTube and Kick.">
   <link rel="canonical" href="https://aaskjer.github.io/">
@@ -45,6 +45,8 @@
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
     <symbol id="i-expand" viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></symbol>
   </svg>
 
   <header class="topbar">
@@ -97,12 +99,18 @@
       <p class="wrap">The project list needs JavaScript. All projects are also on <a href="https://github.com/aaskjer?tab=repositories">GitHub</a>.</p>
     </noscript>
 
+    <!-- filled by main.js: projects with a new release, a new status or many downloads take turns -->
+    <section class="section" id="featured" aria-label="Featured projects">
+      <div class="wrap">
+        <div class="featured is-pending" id="spotlight"></div>
+      </div>
+    </section>
+
     <section class="section" id="tools" aria-labelledby="tools-title">
       <div class="wrap">
         <div class="section__head">
           <h2 id="tools-title">Stream tools</h2>
         </div>
-        <div id="spotlight"></div>
         <div class="grid" id="tools-grid"></div>
       </div>
     </section>

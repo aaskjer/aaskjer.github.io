@@ -1128,6 +1128,120 @@ a.collage__tile--me:focus-visible {
   }
 }
 
+/* ---------- the Featured box: several spotlights taking turns ---------- */
+
+/* They lie on top of each other, so the box is as tall as the tallest one and does not jump
+   when the next one comes. */
+.featured__deck {
+  display: grid;
+}
+
+/* a shorter one sits in the middle, its text and picture together */
+.featured__deck > .spotlight {
+  grid-area: 1 / 1;
+  align-content: center;
+  margin-bottom: 0;
+}
+
+.featured__deck > .spotlight:not(.is-active) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* hidden until main.js knows which projects to show */
+.featured.is-pending .featured__inner {
+  opacity: 0;
+}
+
+.featured__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.featured__dots {
+  display: flex;
+}
+
+.featured__dot {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+}
+
+.featured__dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+.featured__dot:hover::before {
+  background: var(--muted);
+}
+
+.featured__dot[aria-current='true']::before {
+  width: 22px;
+  background: var(--accent);
+}
+
+.featured__pause {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.featured__pause:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.featured__pause .i {
+  width: 13px;
+  height: 13px;
+}
+
+/* the pause icon while the projects take turns, the play icon once paused */
+.featured__pause[aria-pressed='false'] .i:nth-of-type(2),
+.featured__pause[aria-pressed='true'] .i:nth-of-type(1) {
+  display: none;
+}
+
+:is(.featured__dot, .featured__pause):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .featured__inner {
+    transition: opacity 0.4s ease;
+  }
+
+  .featured__deck > .spotlight {
+    transition: opacity 0.6s ease, visibility 0.6s, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .featured__dot::before {
+    transition: width 0.25s ease, background-color 0.25s ease;
+  }
+}
+
 /* ---------- get started ---------- */
 
 .steps {

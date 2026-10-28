@@ -11,8 +11,9 @@
  *   tagline    only a fallback: the site shows the short description from the repository's
  *              About box on GitHub (projects under "More on GitHub" too)
  *   section    'tools', 'games' or 'more' (under "More on GitHub", before the repositories GitHub adds)
- *   featured   shown large at the top of its section, with `features` and `screenshot`
- *              (`screenshotFull` is what a click on it opens)
+ *   features   list of highlights, shown when the project is in the Featured box (see `featured` below)
+ *   screenshot picture the Featured box shows instead of the scene (`screenshotFull` is what a
+ *              click on it opens)
  *   scene      picture on top of the card, `sceneAlt` describes it; the card shows the
  *              smaller copy next to it (name-thumb.jpg), a click opens the full one
  *   logo       image file, or `mono` for a short text logo instead
@@ -26,6 +27,8 @@
  *   status     shown next to the version: 'dev' (yellow "In development"), 'complete' (green
  *              "Feature Complete": all planned features are in) or 'done' (finished: no label,
  *              the pink "Done" badge is switched off in main.js and project.js)
+ *   statusSince  the day `status` last changed, e.g. '2026-10-28'; set it with every change, it
+ *              puts the project in the Featured box for a while
  */
 window.SITE = {
   user: 'aaskjer',
@@ -36,6 +39,12 @@ window.SITE = {
   // instead of its buttons. Repositories listed here show it too although they already have
   // files, until their first release is out.
   comingSoon: [],
+  // The Featured box above the stream tools. A project gets in for `days` after a release (a
+  // pre-release too) or a change of its status, and for at least `downloads.min` downloads in the
+  // last `downloads.days` days. The newest reasons come first, at most `max` take turns, and
+  // `fallback` is shown while no project has a reason. The download history is the stats branch of
+  // this repository, recorded once a day by .github/workflows/download-counts.yml.
+  featured: { fallback: 'TwitchSentry', days: 7, max: 5, downloads: { days: 7, min: 20 } },
   projects: [
     {
       repo: 'TwitchSentry',
@@ -43,8 +52,9 @@ window.SITE = {
       status: 'dev',
       name: 'TwitchSentry',
       section: 'tools',
-      featured: true,
       logo: 'assets/img/projects/twitchsentry.png',
+      scene: 'assets/img/scenes/twitchsentry.jpg',
+      sceneAlt: 'TwitchSentry removes a viewer-selling spam message and an unauthorized link from chat, then a moderator gives a link permit.',
       screenshot: 'assets/img/twitchsentry-app.jpg',
       screenshotFull: 'assets/img/twitchsentry-app-full.jpg',
       tagline: 'TwitchSentry is a fully automated moderation suite designed for quiet and crowded chats. TwitchSentry is capable to replace a human moderator in small communities and works great as backup in big communities.',
@@ -67,6 +77,7 @@ window.SITE = {
       repo: 'Better-Stream-Announcements',
       page: 'better-stream-announcements/',
       status: 'dev',
+      statusSince: '2026-10-24',
       name: 'Better Stream Announcements',
       section: 'tools',
       logo: 'assets/img/projects/better-stream-announcements.png',
@@ -82,6 +93,7 @@ window.SITE = {
       repo: 'SBRefFix',
       page: 'sbreffix/',
       status: 'done',
+      statusSince: '2026-10-26',
       name: 'SBRefFix',
       // a helper for anyone sharing Streamer.bot exports, not a stream tool
       section: 'more',
@@ -100,6 +112,7 @@ window.SITE = {
       repo: 'SuTo',
       page: 'suto/',
       status: 'done',
+      statusSince: '2026-10-27',
       name: 'Suggestions To',
       section: 'tools',
       mono: 'SuTo',
@@ -115,6 +128,7 @@ window.SITE = {
       repo: 'OBSNotes',
       page: 'obsnotes/',
       status: 'done',
+      statusSince: '2026-10-27',
       name: 'OBS Notes',
       section: 'tools',
       logo: 'assets/img/projects/obsnotes.png',
@@ -130,6 +144,7 @@ window.SITE = {
       repo: 'ChatCalendar',
       page: 'chatcalendar/',
       status: 'complete',
+      statusSince: '2026-10-27',
       name: 'Chat Calendar',
       section: 'tools',
       logo: 'assets/img/projects/chatcalendar.png',
@@ -145,6 +160,7 @@ window.SITE = {
       repo: 'Blackjack-Game',
       page: 'blackjack-game/',
       status: 'complete',
+      statusSince: '2026-10-28',
       name: 'Blackjack Game',
       section: 'games',
       logo: 'assets/img/projects/blackjack-game.png',
@@ -160,6 +176,7 @@ window.SITE = {
       repo: 'Classic-Chat-Gamble',
       page: 'classic-chat-gamble/',
       status: 'done',
+      statusSince: '2026-10-26',
       name: 'Classic Chat Gamble',
       section: 'games',
       logo: 'assets/img/projects/classic-chat-gamble.png',
@@ -188,6 +205,7 @@ window.SITE = {
       repo: 'Slot-Machine-Game',
       page: 'slot-machine-game/',
       status: 'done',
+      statusSince: '2026-10-26',
       name: 'Slot Machine Game',
       section: 'games',
       logo: 'assets/img/projects/slot-machine-game.png',
@@ -202,6 +220,7 @@ window.SITE = {
       repo: 'Hangman-Game',
       page: 'hangman-game/',
       status: 'complete',
+      statusSince: '2026-10-28',
       name: 'Hangman Game',
       section: 'games',
       logo: 'assets/img/projects/hangman-game.png',
