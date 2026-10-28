@@ -150,6 +150,7 @@
   }
 
   .tile--me {
+    position: relative;
     padding: 5%;
     border: 0;
     border-radius: 50%;
@@ -159,6 +160,21 @@
   .tile--me img {
     border-radius: 50%;
     filter: none;
+  }
+
+  /* the Twitch label under the avatar, as on the start page */
+  .tile--me span {
+    position: absolute;
+    left: 50%;
+    bottom: -4%;
+    translate: -50% 0;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: #9146ff;
+    box-shadow: 0 0 0 3px #0b0a12;
+    color: #fff;
+    font: 700 13px/1.4 'Sora', sans-serif;
+    white-space: nowrap;
   }
 </style>
 </head>
@@ -181,7 +197,7 @@
       <div class="tile"><img src="../assets/img/projects/better-stream-announcements.png" alt=""></div>
       <div class="tile"><img src="../assets/img/projects/blackjack-game.png" alt=""></div>
       <div class="tile"><img src="../assets/img/projects/classic-chat-gamble.png" alt=""></div>
-      <div class="tile tile--me"><img src="../assets/img/avatar.png" alt=""></div>
+      <div class="tile tile--me"><img src="../assets/img/avatar.png" alt=""><span>Twitch</span></div>
       <div class="tile"><img src="../assets/img/projects/trivia-game.png" alt=""></div>
       <div class="tile"><img src="../assets/img/projects/slot-machine-game.png" alt=""></div>
       <div class="tile"><img src="../assets/img/projects/hangman-game.png" alt=""></div>
