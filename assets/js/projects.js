@@ -107,7 +107,7 @@ window.SITE = {
       tagline: 'Your chat has good ideas but you always struggle to remember them? Now your chat can write them down for you!',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
-      guide: { label: 'Manual', href: 'Manual.md' },
+      guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v1.0.0', stars: 0, downloads: 0,
     },
     {
