@@ -60,7 +60,8 @@
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
     complete: { label: 'Feature Complete', note: 'All planned features are in: no big updates planned, only fixes and polish.' },
-    done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.' },
+    // finished projects need no label, so "Done" stays in the list but is not shown
+    done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.', hidden: true },
   };
 
   // Same "New" badge as on the start page: a release since the visitor's previous visit.
@@ -81,7 +82,7 @@
     if ((p.status === 'complete' || p.status === 'done') && p.section === 'games') {
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
-    const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
+    const label = status && !status.hidden ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
     // a pre-release newer than the latest stable version, e.g. "v2.0.0 Pre-release"
     const pre = p.pre
       ? `<span class="badge badge--pre" title="${esc(p.pre.version)}, out ${esc(timeAgo(p.pre.released))}: a test version of what comes next, not finished yet">${esc(p.pre.version.replace(/-.*/, ''))} Pre-release</span>` : '';

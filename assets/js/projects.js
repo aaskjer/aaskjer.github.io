@@ -24,7 +24,8 @@
  *              there: CHANGELOG.md, or else the release notes, or else the commit history. A copy button
  *              for Import-String.md (`importString` if the file is somewhere else)
  *   status     shown next to the version: 'dev' (yellow "In development"), 'complete' (green
- *              "Feature Complete": all planned features are in) or 'done' (pink "Done": finished)
+ *              "Feature Complete": all planned features are in) or 'done' (finished: no label,
+ *              the pink "Done" badge is switched off in main.js and project.js)
  */
 window.SITE = {
   user: 'aaskjer',

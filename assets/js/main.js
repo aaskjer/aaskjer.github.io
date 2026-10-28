@@ -136,7 +136,8 @@
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
     complete: { label: 'Feature Complete', note: 'All planned features are in: no big updates planned, only fixes and polish.' },
-    done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.' },
+    // finished projects need no label, so "Done" stays in the list but is not shown
+    done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.', hidden: true },
   };
 
   // Version and status side by side, e.g. "v16.1.1" and a yellow "In development".
@@ -146,7 +147,7 @@
     if ((p.status === 'complete' || p.status === 'done') && p.section === 'games') {
       note += ' The games get one more round if Streamer.bot ships its own points system.';
     }
-    const label = status ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
+    const label = status && !status.hidden ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
     return `<span class="badges">${badge(p)}${preBadge(p)}${newBadge(p)}${label}</span>`;
   }
 
