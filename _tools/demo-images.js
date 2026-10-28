@@ -8,26 +8,45 @@ const { spawn } = require('child_process');
 process.chdir(path.join(__dirname, '..'));
 
 const QUALITY = 0.9;
-// source in _scenes/get-started/, picture in assets/img/get-started/, crop [x, y, width, height]
+// The last Chat Calendar screenshot was taken with Denmark chosen but Dominica's holidays downloaded
+// before: its "DM · 2026" becomes "DK · 2026", the rest of the line moving up to the narrower K.
+const DM_TO_DK = `g => {
+  const rest = g.getImageData(160, 424, 52, 18);
+  g.fillStyle = 'rgb(52, 52, 52)';
+  g.fillRect(146, 424, 66, 18);
+  g.putImageData(rest, 156, 424);
+  g.fillRect(208, 424, 4, 18);
+  g.fillStyle = 'rgb(236, 236, 236)';
+  g.font = '600 13px "Segoe UI"';
+  g.fillText('K', 146, 438);
+}`;
+// source in _scenes/get-started/, picture in assets/img/get-started/, crop [x, y, width, height],
+// and a change drawn on the screenshot first
 const jobs = [
+  // step 2, "Import it"
   ['sb-actions.png', 'sb-actions.webp'],
   ['sb-actions-chatcalendar.png', 'sb-actions-chatcalendar.webp', [300, 140, 500, 560]],
   ['sb-import.png', 'sb-import.webp'],
   ['sb-import-chatcalendar.png', 'sb-import-chatcalendar.webp'],
   ['sb-execute-code.png', 'sb-execute-code.webp'],
   ['sb-command-import.png', 'sb-command-import.webp'],
-  ['sb-commands.png', 'sb-commands.webp'],
-  ['sb-commands-menu.png', 'sb-commands-menu.webp', [384, 248, 158, 234]],
-  ['sb-commands-enabled.png', 'sb-commands-enabled.webp', [336, 284, 764, 358]],
-  ['sb-actions-settings.png', 'sb-actions-settings.webp'],
-  ['sb-actions-settings.png', 'sb-trigger-menu.webp', [1003, 250, 167, 470]],
-  ['chatcalendar-settings.png', 'chatcalendar-settings.webp'],
-  ['chatcalendar-calendar.png', 'chatcalendar-calendar.webp'],
-  ['chatcalendar-calendar-me.png', 'chatcalendar-me-badge.webp', [696, 36, 28, 28]],
-  ['chatcalendar-calendar-me.png', 'chatcalendar-me-country.webp', [128, 128, 270, 22]],
-  ['chatcalendar-calendar-me.png', 'chatcalendar-unsaved.webp', [374, 660, 122, 20]],
-  ['chatcalendar-downloading.png', 'chatcalendar-downloading.webp', [120, 420, 616, 128]],
-  ['chatcalendar-downloaded.png', 'chatcalendar-downloaded.webp', [120, 420, 616, 128]],
+  // step 3, "Make it yours", in the order it plays
+  ['setup-01-commands.png', 'setup-commands.webp'],
+  ['setup-02-commands-menu.png', 'setup-commands-menu.webp', [412, 244, 152, 232]],
+  ['setup-03-commands-enabled.png', 'setup-commands-enabled.webp', [330, 282, 780, 362]],
+  ['setup-04-actions-queues.png', 'setup-actions-queues.webp'],
+  ['setup-05-actions.png', 'setup-actions.webp'],
+  ['setup-06-actions-settings.png', 'setup-actions-settings.webp', [304, 196, 962, 416]],
+  ['setup-07-trigger-menu.png', 'setup-trigger-menu.webp', [1008, 238, 170, 470]],
+  ['setup-08-settings-chat.png', 'setup-settings-chat.webp'],
+  ['setup-09-settings-calendar.png', 'setup-settings-calendar.webp'],
+  ['setup-10-country-open.png', 'setup-country-open.webp', [118, 148, 350, 376]],
+  ['setup-11-country-denmark.png', 'setup-country-denmark.webp', [118, 124, 350, 400]],
+  ['setup-11-country-denmark.png', 'setup-badge-dk.webp', [692, 36, 36, 30]],
+  ['setup-12-downloading.png', 'setup-country-dk.webp', [124, 124, 302, 32]],
+  ['setup-13-downloaded.png', 'setup-unsaved.webp', [366, 656, 136, 26]],
+  ['setup-12-downloading.png', 'setup-downloading.webp', [120, 420, 616, 128]],
+  ['setup-13-downloaded.png', 'setup-downloaded.webp', [120, 420, 616, 128], DM_TO_DK],
 ];
 
 const browser = [
@@ -41,18 +60,27 @@ const sleep = ms => new Promise(done => setTimeout(done, ms));
 
 const work = fs.mkdtempSync(path.join(os.tmpdir(), 'demo-images-'));
 const list = jobs.map(([from, to, crop]) => ({ src: fileUrl(path.join('_scenes/get-started', from)), to, crop }));
+const patches = jobs.map(job => job[3] || 'null');
 fs.writeFileSync(path.join(work, 'encode.html'), `<!doctype html><script>
+const patches = [${patches.join(',\n')}];
 window.encoded = (async () => {
+  await document.fonts.load('600 13px "Segoe UI"');
   const out = [];
-  for (const job of ${JSON.stringify(list)}) {
+  for (const [i, job] of ${JSON.stringify(list)}.entries()) {
     const img = new Image();
     img.src = job.src;
     await img.decode();
+    const full = document.createElement('canvas');
+    full.width = img.naturalWidth;
+    full.height = img.naturalHeight;
+    const g = full.getContext('2d');
+    g.drawImage(img, 0, 0);
+    if (patches[i]) patches[i](g);
     const [x, y, w, h] = job.crop || [0, 0, img.naturalWidth, img.naturalHeight];
     const canvas = document.createElement('canvas');
     canvas.width = w;
     canvas.height = h;
-    canvas.getContext('2d').drawImage(img, x, y, w, h, 0, 0, w, h);
+    canvas.getContext('2d').drawImage(full, x, y, w, h, 0, 0, w, h);
     out.push([job.to, canvas.toDataURL('image/webp', ${QUALITY}).split(',')[1]]);
   }
   return out;

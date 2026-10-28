@@ -12,23 +12,17 @@
       linear-gradient(160deg, #13102a, #08080f);
   }
 
-  /* the real settings window, as on the start page */
+  /* a screenshot of the real settings window (v4.1.0-beta.1), title bar and all */
   .app {
     position: absolute;
-    top: 112px;
-    left: 76px;
-    width: 940px;
-    border: 1px solid rgba(255, 255, 255, .12);
-    border-radius: 14px;
-    background: #1e1e1e;
-    overflow: hidden;
+    top: 64px;
+    left: 83px;
+    display: block;
+    width: 926px;
+    height: 773px;
+    border-radius: 8px;
     box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .9), 0 0 0 8px rgba(124, 58, 237, .12);
   }
-  .app__bar { display: flex; gap: 7px; padding: 12px 14px; background: #151515; border-bottom: 1px solid rgba(255, 255, 255, .06); }
-  .app__bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
-  .app__bar i:nth-child(2) { background: #febc2e; }
-  .app__bar i:nth-child(3) { background: #28c840; }
-  .app img { display: block; width: 940px; height: 640px; }
 
   /* a message TwitchSentry took down, as Twitch shows it */
   .msg .gone { color: #8b879f; font-style: italic; }
@@ -39,10 +33,7 @@
 <div class="frame">
   <div class="bg"></div>
 
-  <div class="app">
-    <div class="app__bar"><i></i><i></i><i></i></div>
-    <img src="../assets/img/twitchsentry-app.jpg" alt="">
-  </div>
+  <img class="app" src="img/twitchsentry-window.png" alt="">
 
   <aside class="chat">
     <div class="chat__head">Stream chat <i>Twitch</i></div>

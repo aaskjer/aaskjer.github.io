@@ -1658,7 +1658,7 @@ a.collage__tile--me:focus-visible {
 /* the still frames */
 .demo--grab .demo__cursor { left: 110px; top: 135px; }
 .demo--import .demo__cursor { left: 196px; top: 72px; }
-.demo--setup .demo__cursor { left: 161px; top: 70px; }
+.demo--setup .demo__cursor { left: 202px; top: 151px; }
 .demo--import .demo__caption span:first-child,
 .demo--setup .demo__caption span:first-child { opacity: 0; }
 .demo--import .demo__caption span:last-child,
@@ -1791,12 +1791,12 @@ a.collage__tile--me:focus-visible {
 }
 
 /* the windows that open, and in the still frame the ones already closed */
-.demo__stage :is(.demo__sb-import, .demo__sb-loaded, .demo__sb-code, .demo__sb-note, .demo__sb-settings) {
+.demo__stage :is(.demo__sb-import, .demo__sb-loaded, .demo__sb-code, .demo__sb-note, .demo__sb-chat) {
   box-shadow: 0 18px 50px rgb(0 0 0 / 0.6);
 }
 
-.demo__stage :is(.demo__sb-import, .demo__sb-loaded, .demo__sb-code, .demo__sb-note, .demo__sb-commands,
-  .demo__sb-commands-menu, .demo__sb-enabled, .demo__sb-trigger-menu, .demo__sb-unsaved) {
+.demo__stage :is(.demo__sb-import, .demo__sb-loaded, .demo__sb-code, .demo__sb-note, .demo__sb-commands-menu,
+  .demo__sb-trigger-menu, .demo__sb-list, .demo__sb-list-dk, .demo__sb-unsaved, .demo__sb-downloading) {
   opacity: 0;
 }
 
@@ -1861,50 +1861,60 @@ a.collage__tile--me:focus-visible {
   color: var(--accent);
 }
 
-/* step 3 */
+/* step 3: the Commands page, Actions & Queues, the Actions page, then the settings window (746x693 at
+   267, 13) with its Calendar page; the smaller pictures are the parts that change */
 .demo--setup .demo__stage {
   transform: translate(-228px, -219px) scale(0.62);
 }
 
 .demo__stage .demo__sb-enabled {
-  top: 284px;
-  left: 336px;
+  top: 282px;
+  left: 330px;
 }
 
 .demo__stage .demo__sb-commands-menu {
-  top: 248px;
-  left: 384px;
+  top: 244px;
+  left: 412px;
 }
 
-/* until the right click, the screenshot shows what lies under the trigger menu: the empty panels below */
 .demo__stage .demo__sb-selected {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 1170px 100%, 1170px 250px, 1003px 250px, 1003px 100%, 0 100%);
+  top: 196px;
+  left: 304px;
 }
 
 .demo__stage .demo__sb-trigger-menu {
-  top: 250px;
-  left: 1003px;
+  top: 238px;
+  left: 1008px;
 }
 
-.demo__stage :is(.demo__sb-settings, .demo__sb-calendar) {
+.demo__stage :is(.demo__sb-chat, .demo__sb-calendar) {
   top: 13px;
   left: 267px;
 }
 
-/* the parts of the Calendar page that change: the country, its badge, the unsaved changes, Holiday data */
+.demo__stage .demo__sb-list {
+  top: 161px;
+  left: 385px;
+}
+
+.demo__stage .demo__sb-list-dk {
+  top: 137px;
+  left: 385px;
+}
+
 .demo__stage .demo__sb-country {
-  top: 141px;
-  left: 395px;
+  top: 137px;
+  left: 391px;
 }
 
 .demo__stage .demo__sb-badge {
   top: 49px;
-  left: 963px;
+  left: 959px;
 }
 
 .demo__stage .demo__sb-unsaved {
-  top: 673px;
-  left: 641px;
+  top: 669px;
+  left: 633px;
 }
 
 .demo__stage :is(.demo__sb-downloading, .demo__sb-downloaded) {
@@ -1928,25 +1938,29 @@ a.collage__tile--me:focus-visible {
   .steps > li:is(:hover, :focus-within) .demo--import .demo__caption span:nth-child(3) { animation: demo2-caption-3 12s infinite; }
   .steps > li:is(:hover, :focus-within) .demo--import .demo__caption span:nth-child(4) { animation: demo2-caption-4 12s infinite; }
 
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__shot { animation: demo3-shot 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__stage { animation: demo3-stage 17s ease-in-out infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__cursor { animation: demo3-cursor 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-commands { animation: demo3-commands 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-commands-menu { animation: demo3-commands-menu 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-enabled { animation: demo3-enabled 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-selected { animation: demo3-selected 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-trigger-menu { animation: demo3-trigger-menu 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-settings { animation: demo3-settings 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(1) { animation: demo3-caption-1 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(2) { animation: demo3-caption-2 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-calendar { animation: demo3-calendar 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-country { animation: demo3-country 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-badge { animation: demo3-country 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-unsaved { animation: demo3-unsaved 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-downloading { animation: demo3-downloading 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-downloaded { animation: demo3-downloaded 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(3) { animation: demo3-caption-3 17s infinite; }
-  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(4) { animation: demo3-caption-4 17s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__shot { animation: demo3-shot 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__stage { animation: demo3-stage 24s ease-in-out infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__cursor { animation: demo3-cursor 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-commands-menu { animation: demo3-commands-menu 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-enabled { animation: demo3-enabled 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-queues { animation: demo3-queues 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-actions { animation: demo3-actions 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-selected { animation: demo3-selected 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-trigger-menu { animation: demo3-trigger-menu 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-chat { animation: demo3-chat 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-calendar { animation: demo3-calendar 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-list { animation: demo3-list 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-list-dk { animation: demo3-list-dk 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-country { animation: demo3-country 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-badge { animation: demo3-country 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-unsaved { animation: demo3-unsaved 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-downloading { animation: demo3-downloading 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__sb-downloaded { animation: demo3-downloaded 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(1) { animation: demo3-caption-1 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(2) { animation: demo3-caption-2 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(3) { animation: demo3-caption-3 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(4) { animation: demo3-caption-4 24s infinite; }
+  .steps > li:is(:hover, :focus-within) .demo--setup .demo__caption span:nth-child(5) { animation: demo3-caption-5 24s infinite; }
 }
 
 /* Both made by a small script from a storyboard in seconds.
@@ -2108,200 +2122,261 @@ a.collage__tile--me:focus-visible {
   100% { opacity: 0; }
 }
 
-/* Step 3, 17 seconds: Enable All on the commands (0-29%), Test Trigger on [CC] - .Settings (29-55%),
-   the Calendar page and a country (55-76%), Save and download now. */
+/* Step 3, 24 seconds: Enable All on the commands (0-21%), Actions & Queues, Actions and [CC] - .Settings
+   (21-37%), Test Trigger on its trigger (37-54%), the Calendar page and Denmark (54-73%), Save and download now. */
 @keyframes demo3-stage {
   0% { transform: translate(0px, 0px) scale(0.2938); }
-  5.29% { transform: translate(0px, 0px) scale(0.2938); }
-  11.18% { transform: translate(-186px, -93px) scale(0.62); }
-  20.59% { transform: translate(-186px, -93px) scale(0.62); }
-  25.29% { transform: translate(-140px, -88px) scale(0.45); }
-  29.41% { transform: translate(-140px, -88px) scale(0.45); }
-  34.12% { transform: translate(0px, -68px) scale(0.45); }
-  42.94% { transform: translate(0px, -68px) scale(0.45); }
-  47.65% { transform: translate(-347px, -93px) scale(0.62); }
-  55.29% { transform: translate(-347px, -93px) scale(0.62); }
-  58.24% { transform: translate(-4px, -2px) scale(0.3); }
-  60.59% { transform: translate(-4px, -2px) scale(0.3); }
-  64.12% { transform: translate(-166px, -27px) scale(0.62); }
-  75.88% { transform: translate(-166px, -27px) scale(0.62); }
-  80% { transform: translate(-228px, -219px) scale(0.62); }
+  3.75% { transform: translate(0px, 0px) scale(0.2938); }
+  7.5% { transform: translate(-186px, -93px) scale(0.62); }
+  14.167% { transform: translate(-186px, -93px) scale(0.62); }
+  17.083% { transform: translate(-140px, -88px) scale(0.45); }
+  20.417% { transform: translate(-140px, -88px) scale(0.45); }
+  23.333% { transform: translate(0px, -68px) scale(0.45); }
+  35.833% { transform: translate(0px, -68px) scale(0.45); }
+  39.167% { transform: translate(-200px, -60px) scale(0.45); }
+  49.583% { transform: translate(-200px, -60px) scale(0.45); }
+  52.083% { transform: translate(-4px, -2px) scale(0.3); }
+  54.167% { transform: translate(-4px, -2px) scale(0.3); }
+  56.667% { transform: translate(-166px, -27px) scale(0.62); }
+  62.5% { transform: translate(-166px, -27px) scale(0.62); }
+  65% { transform: translate(-150px, -62px) scale(0.5); }
+  72.083% { transform: translate(-150px, -62px) scale(0.5); }
+  75% { transform: translate(-228px, -219px) scale(0.62); }
   100% { transform: translate(-228px, -219px) scale(0.62); }
 }
 
 @keyframes demo3-cursor {
   0% { left: 296px; top: 188px; opacity: 0; transform: scale(1); }
-  2.12% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
-  5.29% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
-  11.18% { left: 54px; top: 63px; opacity: 1; transform: scale(1); }
-  11.76% { left: 54px; top: 63px; opacity: 1; transform: scale(0.8); }
-  12.94% { left: 54px; top: 63px; opacity: 1; transform: scale(1); }
-  13.82% { left: 54px; top: 63px; opacity: 1; transform: scale(1); }
-  17.06% { left: 80px; top: 99px; opacity: 1; transform: scale(1); }
-  17.65% { left: 80px; top: 99px; opacity: 1; transform: scale(0.8); }
-  18.53% { left: 80px; top: 99px; opacity: 1; transform: scale(1); }
-  20.59% { left: 80px; top: 99px; opacity: 1; transform: scale(1); }
-  25.29% { left: 339px; top: 54px; opacity: 1; transform: scale(1); }
-  29.41% { left: 339px; top: 54px; opacity: 1; transform: scale(1); }
-  34.12% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
-  34.71% { left: 41px; top: 62px; opacity: 1; transform: scale(0.8); }
-  35.59% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
-  37.06% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
-  40% { left: 162px; top: 57px; opacity: 1; transform: scale(1); }
-  40.59% { left: 162px; top: 57px; opacity: 1; transform: scale(0.8); }
-  41.47% { left: 162px; top: 57px; opacity: 1; transform: scale(1); }
-  42.94% { left: 162px; top: 57px; opacity: 1; transform: scale(1); }
-  48.24% { left: 273px; top: 59px; opacity: 1; transform: scale(1); }
-  48.82% { left: 273px; top: 59px; opacity: 1; transform: scale(0.8); }
-  49.71% { left: 273px; top: 59px; opacity: 1; transform: scale(1); }
-  50.59% { left: 273px; top: 59px; opacity: 1; transform: scale(1); }
-  52.94% { left: 303px; top: 72px; opacity: 1; transform: scale(1); }
-  53.53% { left: 303px; top: 72px; opacity: 1; transform: scale(0.8); }
-  54.41% { left: 303px; top: 72px; opacity: 1; transform: scale(1); }
-  60.59% { left: 303px; top: 72px; opacity: 1; transform: scale(1); }
-  64.71% { left: 30px; top: 114px; opacity: 1; transform: scale(1); }
-  65.29% { left: 30px; top: 114px; opacity: 1; transform: scale(0.8); }
-  66.18% { left: 30px; top: 114px; opacity: 1; transform: scale(1); }
-  67.35% { left: 30px; top: 114px; opacity: 1; transform: scale(1); }
-  70.59% { left: 182px; top: 65px; opacity: 1; transform: scale(1); }
-  71.18% { left: 182px; top: 65px; opacity: 1; transform: scale(0.8); }
-  72.06% { left: 182px; top: 65px; opacity: 1; transform: scale(1); }
-  74.71% { left: 182px; top: 65px; opacity: 1; transform: scale(1); }
-  81.18% { left: 65px; top: 103px; opacity: 1; transform: scale(1); }
-  81.76% { left: 65px; top: 103px; opacity: 1; transform: scale(0.8); }
-  82.65% { left: 65px; top: 103px; opacity: 1; transform: scale(1); }
-  85.88% { left: 65px; top: 103px; opacity: 1; transform: scale(1); }
-  93.53% { left: 161px; top: 70px; opacity: 1; transform: scale(1); }
-  95.88% { left: 161px; top: 70px; opacity: 1; transform: scale(1); }
-  97.06% { left: 161px; top: 70px; opacity: 0; transform: scale(1); }
-  100% { left: 161px; top: 70px; opacity: 0; transform: scale(1); }
-}
-
-@keyframes demo3-commands {
-  0% { opacity: 1; }
-  35.59% { opacity: 1; }
-  36.47% { opacity: 0; }
-  99.94% { opacity: 0; }
-  100% { opacity: 1; }
+  1.5% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
+  3.75% { left: 296px; top: 188px; opacity: 1; transform: scale(1); }
+  7.5% { left: 67px; top: 61px; opacity: 1; transform: scale(1); }
+  7.917% { left: 67px; top: 61px; opacity: 1; transform: scale(1); }
+  8.333% { left: 67px; top: 61px; opacity: 1; transform: scale(0.8); }
+  8.958% { left: 67px; top: 61px; opacity: 1; transform: scale(1); }
+  12.083% { left: 98px; top: 97px; opacity: 1; transform: scale(1); }
+  12.5% { left: 98px; top: 97px; opacity: 1; transform: scale(1); }
+  12.917% { left: 98px; top: 97px; opacity: 1; transform: scale(0.8); }
+  13.542% { left: 98px; top: 97px; opacity: 1; transform: scale(1); }
+  14.167% { left: 98px; top: 97px; opacity: 1; transform: scale(1); }
+  17.083% { left: 343px; top: 96px; opacity: 1; transform: scale(1); }
+  20.417% { left: 343px; top: 96px; opacity: 1; transform: scale(1); }
+  25.417% { left: 40px; top: 44px; opacity: 1; transform: scale(1); }
+  25.833% { left: 40px; top: 44px; opacity: 1; transform: scale(1); }
+  26.25% { left: 40px; top: 44px; opacity: 1; transform: scale(0.8); }
+  26.875% { left: 40px; top: 44px; opacity: 1; transform: scale(1); }
+  29.167% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
+  29.583% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
+  30% { left: 41px; top: 62px; opacity: 1; transform: scale(0.8); }
+  30.625% { left: 41px; top: 62px; opacity: 1; transform: scale(1); }
+  32.917% { left: 166px; top: 57px; opacity: 1; transform: scale(1); }
+  33.333% { left: 166px; top: 57px; opacity: 1; transform: scale(1); }
+  33.75% { left: 166px; top: 57px; opacity: 1; transform: scale(0.8); }
+  34.375% { left: 166px; top: 57px; opacity: 1; transform: scale(1); }
+  35.833% { left: 166px; top: 57px; opacity: 1; transform: scale(1); }
+  39.167% { left: 246px; top: 176px; opacity: 1; transform: scale(1); }
+  42.917% { left: 246px; top: 176px; opacity: 1; transform: scale(1); }
+  45% { left: 253px; top: 49px; opacity: 1; transform: scale(1); }
+  45.417% { left: 253px; top: 49px; opacity: 1; transform: scale(1); }
+  45.833% { left: 253px; top: 49px; opacity: 1; transform: scale(0.8); }
+  46.458% { left: 253px; top: 49px; opacity: 1; transform: scale(1); }
+  48.333% { left: 276px; top: 59px; opacity: 1; transform: scale(1); }
+  48.75% { left: 276px; top: 59px; opacity: 1; transform: scale(1); }
+  49.167% { left: 276px; top: 59px; opacity: 1; transform: scale(0.8); }
+  49.792% { left: 276px; top: 59px; opacity: 1; transform: scale(1); }
+  49.583% { left: 276px; top: 59px; opacity: 1; transform: scale(1); }
+  52.083% { left: 89px; top: 67px; opacity: 1; transform: scale(1); }
+  54.167% { left: 89px; top: 67px; opacity: 1; transform: scale(1); }
+  56.667% { left: 30px; top: 117px; opacity: 1; transform: scale(1); }
+  57.292% { left: 30px; top: 117px; opacity: 1; transform: scale(1); }
+  57.708% { left: 30px; top: 117px; opacity: 1; transform: scale(0.8); }
+  58.333% { left: 30px; top: 117px; opacity: 1; transform: scale(1); }
+  60.833% { left: 163px; top: 65px; opacity: 1; transform: scale(1); }
+  61.25% { left: 163px; top: 65px; opacity: 1; transform: scale(1); }
+  61.667% { left: 163px; top: 65px; opacity: 1; transform: scale(0.8); }
+  62.292% { left: 163px; top: 65px; opacity: 1; transform: scale(1); }
+  62.5% { left: 163px; top: 65px; opacity: 1; transform: scale(1); }
+  65% { left: 115px; top: 12px; opacity: 1; transform: scale(1); }
+  67.917% { left: 70px; top: 56px; opacity: 1; transform: scale(1); }
+  68.333% { left: 70px; top: 56px; opacity: 1; transform: scale(1); }
+  68.75% { left: 70px; top: 56px; opacity: 1; transform: scale(0.8); }
+  69.375% { left: 70px; top: 56px; opacity: 1; transform: scale(1); }
+  72.083% { left: 70px; top: 56px; opacity: 1; transform: scale(1); }
+  76.667% { left: 58px; top: 103px; opacity: 1; transform: scale(1); }
+  77.083% { left: 58px; top: 103px; opacity: 1; transform: scale(1); }
+  77.5% { left: 58px; top: 103px; opacity: 1; transform: scale(0.8); }
+  78.125% { left: 58px; top: 103px; opacity: 1; transform: scale(1); }
+  80.833% { left: 58px; top: 103px; opacity: 1; transform: scale(1); }
+  87.5% { left: 202px; top: 151px; opacity: 1; transform: scale(1); }
+  96.667% { left: 202px; top: 151px; opacity: 1; transform: scale(1); }
+  97.5% { left: 202px; top: 151px; opacity: 0; transform: scale(1); }
+  100% { left: 202px; top: 151px; opacity: 0; transform: scale(1); }
 }
 
 @keyframes demo3-commands-menu {
   0% { opacity: 0; transform: scale(0.9); }
-  12.94% { opacity: 0; transform: scale(0.9); }
-  13.82% { opacity: 1; transform: scale(1); }
-  18.53% { opacity: 1; transform: scale(1); }
-  19.12% { opacity: 0; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1); }
+  8.958% { opacity: 0; transform: scale(0.9); }
+  9.458% { opacity: 1; transform: scale(1); }
+  13.333% { opacity: 1; transform: scale(1); }
+  13.667% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(0.9); }
 }
 
 @keyframes demo3-enabled {
   0% { opacity: 0; }
-  18.82% { opacity: 0; }
-  20.29% { opacity: 1; }
-  35.59% { opacity: 1; }
-  36.47% { opacity: 0; }
+  13.333% { opacity: 0; }
+  14.375% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-queues {
+  0% { opacity: 0; }
+  26.667% { opacity: 0; }
+  27.167% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-actions {
+  0% { opacity: 0; }
+  30.417% { opacity: 0; }
+  30.917% { opacity: 1; }
+  99.958% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 @keyframes demo3-selected {
   0% { opacity: 0; }
-  41.47% { opacity: 0; }
-  42.35% { opacity: 1; }
-  100% { opacity: 1; }
+  34.167% { opacity: 0; }
+  34.667% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes demo3-trigger-menu {
   0% { opacity: 0; transform: scale(0.9); }
-  49.71% { opacity: 0; transform: scale(0.9); }
-  50.59% { opacity: 1; transform: scale(1); }
-  54.41% { opacity: 1; transform: scale(1); }
-  55% { opacity: 0; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1); }
+  46.25% { opacity: 0; transform: scale(0.9); }
+  46.75% { opacity: 1; transform: scale(1); }
+  49.583% { opacity: 1; transform: scale(1); }
+  49.917% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(0.9); }
 }
 
-@keyframes demo3-settings {
+@keyframes demo3-chat {
   0% { opacity: 0; transform: scale(0.97); }
-  55.29% { opacity: 0; transform: scale(0.97); }
-  56.47% { opacity: 1; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1); }
+  49.792% { opacity: 0; transform: scale(0.97); }
+  50.625% { opacity: 1; transform: scale(1); }
+  99.958% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
 }
 
 @keyframes demo3-calendar {
   0% { opacity: 0; }
-  66.18% { opacity: 0; }
-  67.06% { opacity: 1; }
-  100% { opacity: 1; }
+  58.125% { opacity: 0; }
+  58.625% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-list {
+  0% { opacity: 0; }
+  62.083% { opacity: 0; }
+  62.5% { opacity: 1; }
+  70% { opacity: 1; }
+  70.333% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-list-dk {
+  0% { opacity: 0; }
+  68.75% { opacity: 0; }
+  68.958% { opacity: 1; }
+  70% { opacity: 1; }
+  70.333% { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 @keyframes demo3-country {
   0% { opacity: 0; }
-  73.24% { opacity: 0; }
-  74.12% { opacity: 1; }
-  100% { opacity: 1; }
+  70.208% { opacity: 0; }
+  70.417% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes demo3-unsaved {
   0% { opacity: 0; }
-  73.24% { opacity: 0; }
-  74.12% { opacity: 1; }
-  82.94% { opacity: 1; }
-  83.53% { opacity: 0; }
+  70.208% { opacity: 0; }
+  70.417% { opacity: 1; }
+  77.917% { opacity: 1; }
+  78.25% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes demo3-downloading {
   0% { opacity: 0; }
-  82.94% { opacity: 0; }
-  83.53% { opacity: 1; }
-  100% { opacity: 1; }
+  77.917% { opacity: 0; }
+  78.333% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes demo3-downloaded {
   0% { opacity: 0; }
-  90.59% { opacity: 0; }
-  91.47% { opacity: 1; }
-  100% { opacity: 1; }
+  85.833% { opacity: 0; }
+  86.458% { opacity: 1; }
+  99.958% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes demo3-shot {
   0% { opacity: 0; }
-  2.12% { opacity: 1; }
-  96.94% { opacity: 1; }
+  1.5% { opacity: 1; }
+  97.5% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 @keyframes demo3-caption-1 {
   0% { opacity: 1; }
-  28.82% { opacity: 1; }
-  29.53% { opacity: 0; }
-  98.59% { opacity: 0; }
+  20.333% { opacity: 1; }
+  20.833% { opacity: 0; }
+  99% { opacity: 0; }
   100% { opacity: 1; }
 }
 
 @keyframes demo3-caption-2 {
   0% { opacity: 0; }
-  29.53% { opacity: 0; }
-  30.24% { opacity: 1; }
-  54.71% { opacity: 1; }
-  55.41% { opacity: 0; }
+  20.833% { opacity: 0; }
+  21.333% { opacity: 1; }
+  36.167% { opacity: 1; }
+  36.667% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes demo3-caption-3 {
   0% { opacity: 0; }
-  55.41% { opacity: 0; }
-  56.12% { opacity: 1; }
-  75.53% { opacity: 1; }
-  76.24% { opacity: 0; }
+  36.667% { opacity: 0; }
+  37.167% { opacity: 1; }
+  53.25% { opacity: 1; }
+  53.75% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes demo3-caption-4 {
   0% { opacity: 0; }
-  76.24% { opacity: 0; }
-  76.94% { opacity: 1; }
-  96.94% { opacity: 1; }
-  98.59% { opacity: 0; }
+  53.75% { opacity: 0; }
+  54.25% { opacity: 1; }
+  72.833% { opacity: 1; }
+  73.333% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo3-caption-5 {
+  0% { opacity: 0; }
+  73.333% { opacity: 0; }
+  73.833% { opacity: 1; }
+  98.25% { opacity: 1; }
+  98.75% { opacity: 0; }
   100% { opacity: 0; }
 }
 
