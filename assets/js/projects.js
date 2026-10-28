@@ -143,7 +143,7 @@ window.SITE = {
     {
       repo: 'Blackjack-Game',
       page: 'blackjack-game/',
-      status: 'dev',
+      status: 'complete',
       name: 'Blackjack Game',
       section: 'games',
       logo: 'assets/img/projects/blackjack-game.png',
@@ -200,7 +200,7 @@ window.SITE = {
     {
       repo: 'Hangman-Game',
       page: 'hangman-game/',
-      status: 'dev',
+      status: 'complete',
       name: 'Hangman Game',
       section: 'games',
       logo: 'assets/img/projects/hangman-game.png',
