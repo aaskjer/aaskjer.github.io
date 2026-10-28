@@ -40,6 +40,11 @@
   --tile-hi: #262043;
   --card-shadow: 0 24px 48px -32px rgb(0 0 0 / 0.9);
   --hover-shadow: 0 28px 60px -30px rgb(124 58 237 / 0.55);
+  /* the lights behind the sections */
+  --glow-blue: rgb(37 99 235 / 0.17);
+  --glow-violet: rgb(124 58 237 / 0.17);
+  --glow-green: rgb(16 185 129 / 0.13);
+  --glow-teal: rgb(20 184 166 / 0.1);
 }
 
 /* Light is its own palette, not dark turned around: neutral paper greys instead of violet tints,
@@ -62,6 +67,10 @@
   --tile-hi: #ffffff;
   --card-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 12px 28px -20px rgb(15 23 42 / 0.22);
   --hover-shadow: 0 2px 4px rgb(15 23 42 / 0.04), 0 24px 44px -24px rgb(15 23 42 / 0.3);
+  --glow-blue: rgb(59 130 246 / 0.13);
+  --glow-violet: rgb(124 58 237 / 0.1);
+  --glow-green: rgb(16 185 129 / 0.12);
+  --glow-teal: rgb(20 184 166 / 0.1);
 }
 
 /* ---------- base ---------- */
@@ -620,6 +629,74 @@ a.collage__tile--me:focus-visible {
 
 .section + .section {
   padding-top: 0;
+}
+
+/* Behind each section of the start page a soft light, coloured after what is in it: violet for the
+   Featured box, blue for the stream tools, green for the chat games. The lights lie under the cards,
+   so they only show between them. */
+main > .section {
+  position: relative;
+  isolation: isolate;
+}
+
+main > .section::before {
+  content: '';
+  position: absolute;
+  inset: -8rem 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#featured::before {
+  background: radial-gradient(42rem 26rem at 12% 55%, var(--glow-violet), transparent 70%);
+}
+
+#tools::before {
+  background:
+    radial-gradient(46rem 30rem at 92% 30%, var(--glow-blue), transparent 70%),
+    radial-gradient(36rem 26rem at 4% 85%, var(--glow-violet), transparent 70%);
+}
+
+#games::before {
+  background:
+    radial-gradient(48rem 32rem at 6% 25%, var(--glow-green), transparent 70%),
+    radial-gradient(40rem 28rem at 96% 80%, var(--glow-teal), transparent 70%);
+}
+
+#more::before {
+  background: radial-gradient(36rem 24rem at 85% 50%, var(--glow-blue), transparent 70%);
+}
+
+/* the last one stops at the footer, so the page gets no longer */
+#start::before {
+  bottom: 0;
+  background: radial-gradient(50rem 26rem at 50% 70%, var(--glow-violet), transparent 70%);
+}
+
+/* light: the hero's dot grid again behind each heading, fading out */
+:root[data-theme='light'] main > .section:not(#featured)::after {
+  content: '';
+  position: absolute;
+  inset: -2rem 0 auto;
+  z-index: -1;
+  height: 26rem;
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 55% 70% at 22% 20%, #000 10%, transparent 70%);
+  mask-image: radial-gradient(ellipse 55% 70% at 22% 20%, #000 10%, transparent 70%);
+  pointer-events: none;
+}
+
+/* dark: a fine grain over every page, which also keeps the lights from banding */
+:root[data-theme='dark'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-image: url('../img/noise.svg');
+  background-size: 180px 180px;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 .section__head {
