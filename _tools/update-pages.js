@@ -72,9 +72,9 @@ for (const p of projects.filter(x => x.page)) {
   if (!placeholder.test(html)) throw new Error(`no placeholder in ${file}`);
   html = html.replace(placeholder, block);
 
-  // link preview: "TwitchSentry v4.0.1 · In development"; the site name "aaskjer" shows above it
+  // link preview: "TwitchSentry  •  v4.0.1"; the site name "aaskjer" shows above it
   const status = STATUS[p.status] || {};
-  html = setMeta(html, 'property', 'og:title', [[p.name, p.version].filter(Boolean).join(' '), status.label].filter(Boolean).join(' · '), file);
+  html = setMeta(html, 'property', 'og:title', [p.name, p.version].filter(Boolean).join('  •  '), file);
   // the colour of the preview's edge; theme.js gives browsers the page's background instead
   html = setMeta(html, 'name', 'theme-color', status.color || '#0b0a12', file);
   // Slack and others show these two as small columns under the description
