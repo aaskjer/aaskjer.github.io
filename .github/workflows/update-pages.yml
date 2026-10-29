@@ -1,6 +1,6 @@
 # Keeps the project pages current: the latest version in their link previews, and
 # the About texts from GitHub in their text, by running _tools/update-pages.js once a day and after
-# every change to projects.js. It commits to main only when something changed.
+# every change to projects.js or the page template. It commits to main only when something changed.
 name: Update project pages
 
 on:
@@ -8,7 +8,7 @@ on:
     - cron: '47 4 * * *'
   push:
     branches: [main]
-    paths: [assets/js/projects.js]
+    paths: [assets/js/projects.js, _tools/project-page.html, _tools/update-pages.js]
   workflow_dispatch:
 
 permissions:

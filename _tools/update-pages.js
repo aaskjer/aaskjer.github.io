@@ -1,10 +1,11 @@
-// Writes each project's name, short description and features into its page's HTML, so search
-// engines get real text, and rebuilds sitemap.xml. The description is the repository's About
-// text on GitHub (the tagline in projects.js if GitHub cannot be reached).
-// The link preview (what Discord, Slack and others show under a shared link) gets the latest
-// version: in the title and as a label.
-// .github/workflows/update-pages.yml runs it once a day and after every change to projects.js;
-// by hand:  node _tools/update-pages.js
+// Writes the page of every project with a `page` in projects.js from _tools/project-page.html,
+// and rebuilds sitemap.xml. Each page carries the project's name, short description and features
+// as plain text, so search engines get real text; the description is the repository's About text
+// on GitHub (the tagline in projects.js if GitHub cannot be reached). The link preview (what
+// Discord, Slack and others show under a shared link) gets the latest version: in the title and
+// as a label.
+// .github/workflows/update-pages.yml runs it once a day and after every change to projects.js or
+// the template; by hand:  node _tools/update-pages.js
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
@@ -12,6 +13,7 @@ process.chdir(path.join(__dirname, '..'));
 const ctx = { window: {} };
 vm.runInNewContext(fs.readFileSync('assets/js/projects.js', 'utf8'), ctx);
 const { user, projects } = ctx.window.SITE;
+const template = fs.readFileSync('_tools/project-page.html', 'utf8');
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 // in the workflow a failed request stops the run, so the pages never fall back to old values
 const strict = !!process.env.CI;
@@ -20,11 +22,6 @@ const getJSON = async url => {
   const response = await fetch(url, { headers });
   if (!response.ok) throw new Error(`GitHub answered ${response.status} for ${url}`);
   return response.json();
-};
-const setMeta = (html, attr, name, value, file) => {
-  const tag = new RegExp(`(<meta ${attr}="${name}" content=")[^"]*(">)`);
-  if (!tag.test(html)) throw new Error(`no ${name} in ${file}`);
-  return html.replace(tag, `$1${esc(value)}$2`);
 };
 
 (async () => {
@@ -37,6 +34,9 @@ try {
 }
 const urls = ['', 'privacy.html'];
 for (const p of projects.filter(x => x.page)) {
+  // the template's links lead two folders up
+  if (!/^projects\/[a-z0-9-]+\/$/.test(p.page)) throw new Error(`page of ${p.repo} is not 'projects/<folder>/'`);
+  for (const field of ['description', 'preview']) if (!p[field]) throw new Error(`${p.repo} has no ${field}`);
   p.tagline = about.get(p.repo.toLowerCase()) || p.tagline;
   // the latest stable release, as on the site; a pre-release only while there is none
   try {
@@ -47,11 +47,9 @@ for (const p of projects.filter(x => x.page)) {
     if (strict) throw e;
     console.warn(`Releases of ${p.repo} not loaded (${e.message}), using ${p.version || 'no version'} from projects.js.`);
   }
-  const file = `${p.page}index.html`;
-  let html = fs.readFileSync(file, 'utf8');
   const features = (p.features || []).map(f =>
-    `\n          <li><svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-check"/></svg><span>${esc(f)}</span></li>`).join('');
-  const block = `    <!-- shown until project.js has built the page; search engines read it too -->
+    `\n          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>${esc(f)}</span></li>`).join('');
+  const hero = `    <!-- shown until project.js has built the page; search engines read it too -->
     <section class="project-hero">
       <div class="wrap">
         <h1>${esc(p.name)}</h1>
@@ -61,18 +59,23 @@ for (const p of projects.filter(x => x.page)) {
         <p class="doc-status">Loading…</p>
       </div>
     </section>`;
-  // the first run replaces the bare "Loading…" line, later runs the block written before
-  const placeholder = /    <p class="wrap doc-status">Loading…<\/p>|    <!-- shown until project\.js[\s\S]*?<\/section>/;
-  if (!placeholder.test(html)) throw new Error(`no placeholder in ${file}`);
-  html = html.replace(placeholder, block);
-
-  // link preview: "TwitchSentry  •  v4.0.1"; the site name "aaskjer" shows above it
-  html = setMeta(html, 'property', 'og:title', [p.name, p.version].filter(Boolean).join('  •  '), file);
   // Slack and others show it as a small column under the description
-  const label = p.version ? `\n  <meta name="twitter:label1" content="Version">\n  <meta name="twitter:data1" content="${esc(p.version)}">` : '';
-  html = html.replace(/\n  <meta name="twitter:(?:label|data)\d" content="[^"]*">/g, '');
-  html = html.replace(/(<meta name="twitter:card" content="[^"]*">)/, `$1${label}`);
-  fs.writeFileSync(file, html);
+  const labels = p.version ? `\n  <meta name="twitter:label1" content="Version">\n  <meta name="twitter:data1" content="${esc(p.version)}">` : '';
+  const values = {
+    name: p.name, description: p.description, page: p.page, repo: p.repo, user,
+    // link preview: "TwitchSentry  •  v4.0.1"; the site name "aaskjer" shows above it
+    previewTitle: [p.name, p.version].filter(Boolean).join('  •  '),
+    preview: p.preview,
+    image: p.screenshot || p.scene,
+  };
+  const html = template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    if (key === 'hero') return hero;
+    if (key === 'labels') return labels;
+    if (values[key] == null) throw new Error(`nothing for {{${key}}} on the page of ${p.repo}`);
+    return esc(values[key]);
+  });
+  fs.mkdirSync(p.page, { recursive: true });
+  fs.writeFileSync(`${p.page}index.html`, html);
   urls.push(p.page);
 }
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -81,5 +84,5 @@ ${urls.map(u => `  <url><loc>https://aaskjer.github.io/${u}</loc></url>`).join('
 </urlset>
 `;
 fs.writeFileSync('sitemap.xml', sitemap);
-console.log(`Updated ${urls.length - 2} project pages and sitemap.xml.`);
+console.log(`Wrote ${urls.length - 2} project pages and sitemap.xml.`);
 })().catch(e => { console.error(e.message); process.exitCode = 1; });

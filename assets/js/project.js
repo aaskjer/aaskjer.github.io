@@ -10,7 +10,8 @@
   const { user, stats, projects } = window.SITE;
   const repo = document.body.dataset.repo;
   const p = projects.find(x => x.repo === repo);
-  const ROOT = '../';
+  // the pages sit in projects/<folder>/
+  const ROOT = '../../';
   const API = 'https://api.github.com';
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
