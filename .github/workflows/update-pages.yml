@@ -1,0 +1,36 @@
+# Keeps the project pages current: the latest version and the status in their link previews, and
+# the About texts from GitHub in their text, by running _tools/update-pages.js once a day and after
+# every change to projects.js. It commits to main only when something changed.
+name: Update project pages
+
+on:
+  schedule:
+    - cron: '47 4 * * *'
+  push:
+    branches: [main]
+    paths: [assets/js/projects.js]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-pages
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update the pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node _tools/update-pages.js
+
+      - name: Commit the changes
+        run: |
+          git add -A -- '*.html' sitemap.xml
+          if git diff --cached --quiet; then echo 'Nothing changed.'; exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update versions and statuses on the project pages'
+          git push -q
