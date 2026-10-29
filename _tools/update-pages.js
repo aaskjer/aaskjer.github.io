@@ -2,7 +2,7 @@
 // engines get real text, and rebuilds sitemap.xml. The description is the repository's About
 // text on GitHub (the tagline in projects.js if GitHub cannot be reached).
 // The link preview (what Discord, Slack and others show under a shared link) gets the latest
-// version and the status: in the title, as labels, and as the colour of the preview's edge.
+// version: in the title and as a label.
 // .github/workflows/update-pages.yml runs it once a day and after every change to projects.js;
 // by hand:  node _tools/update-pages.js
 const fs = require('fs');
@@ -13,12 +13,6 @@ const ctx = { window: {} };
 vm.runInNewContext(fs.readFileSync('assets/js/projects.js', 'utf8'), ctx);
 const { user, projects } = ctx.window.SITE;
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-// the labels of project.js and the colours of their badges; finished projects show no label
-const STATUS = {
-  dev: { label: 'In development', color: '#facc15' },
-  complete: { label: 'Feature Complete', color: '#34d399' },
-  done: { color: '#b69cff' },
-};
 // in the workflow a failed request stops the run, so the pages never fall back to old values
 const strict = !!process.env.CI;
 const headers = process.env.GH_TOKEN ? { Authorization: `Bearer ${process.env.GH_TOKEN}` } : {};
@@ -73,15 +67,11 @@ for (const p of projects.filter(x => x.page)) {
   html = html.replace(placeholder, block);
 
   // link preview: "TwitchSentry  •  v4.0.1"; the site name "aaskjer" shows above it
-  const status = STATUS[p.status] || {};
   html = setMeta(html, 'property', 'og:title', [p.name, p.version].filter(Boolean).join('  •  '), file);
-  // the colour of the preview's edge; theme.js gives browsers the page's background instead
-  html = setMeta(html, 'name', 'theme-color', status.color || '#0b0a12', file);
-  // Slack and others show these two as small columns under the description
-  const labels = [['Version', p.version], ['Status', status.label]].filter(([, value]) => value)
-    .map(([label, value], i) => `\n  <meta name="twitter:label${i + 1}" content="${label}">\n  <meta name="twitter:data${i + 1}" content="${esc(value)}">`).join('');
+  // Slack and others show it as a small column under the description
+  const label = p.version ? `\n  <meta name="twitter:label1" content="Version">\n  <meta name="twitter:data1" content="${esc(p.version)}">` : '';
   html = html.replace(/\n  <meta name="twitter:(?:label|data)\d" content="[^"]*">/g, '');
-  html = html.replace(/(<meta name="twitter:card" content="[^"]*">)/, `$1${labels}`);
+  html = html.replace(/(<meta name="twitter:card" content="[^"]*">)/, `$1${label}`);
   fs.writeFileSync(file, html);
   urls.push(p.page);
 }

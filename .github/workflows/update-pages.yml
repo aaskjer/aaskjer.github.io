@@ -1,4 +1,4 @@
-# Keeps the project pages current: the latest version and the status in their link previews, and
+# Keeps the project pages current: the latest version in their link previews, and
 # the About texts from GitHub in their text, by running _tools/update-pages.js once a day and after
 # every change to projects.js. It commits to main only when something changed.
 name: Update project pages
@@ -32,5 +32,5 @@ jobs:
         run: |
           git add -A -- '*.html' sitemap.xml
           if git diff --cached --quiet; then echo 'Nothing changed.'; exit 0; fi
-          git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update versions and statuses on the project pages'
+          git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update the project pages'
           git push -q
