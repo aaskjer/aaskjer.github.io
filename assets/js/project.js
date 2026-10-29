@@ -259,9 +259,12 @@
 
   /* ---------- documents ---------- */
 
-  const docText = {};
-  const docHtml = {};
+  // every tab: { id, label, file } and its markdown `text` or ready `html`
   let available = [];
+  // A line `<!-- tab: Setup -->` in a document starts the tab "Setup" there; GitHub does not show
+  // the line. Sections with the same name share a tab, and the document's own name (Overview for
+  // the README) leads back to its first one.
+  const TAB_MARKER = /^<!--[ \t]*tab:[ \t]*(.+?)[ \t]*-->[ \t]*\r?$/gim;
 
   function dirOf(file) {
     return file.includes('/') ? file.slice(0, file.lastIndexOf('/') + 1) : '';
@@ -280,6 +283,46 @@
   function docForPath(path, from) {
     const file = decodeURIComponent(new URL(path || 'README.md', `https://repo/${dirOf(from)}`).pathname.slice(1)).toLowerCase();
     return available.find(d => d.file.toLowerCase() === file);
+  }
+
+  // The tab of a split document that holds the heading `anchor`; `doc` itself otherwise.
+  function partWith(doc, anchor) {
+    if (!anchor || !doc.anchors) return doc;
+    try { anchor = decodeURIComponent(anchor); } catch (e) { /* keep it as it is */ }
+    return available.find(d => d.file === doc.file && d.anchors && d.anchors.has(anchor)) || doc;
+  }
+
+  function headingsOf(markdown) {
+    const tpl = document.createElement('template');
+    tpl.innerHTML = window.DOMPurify.sanitize(window.marked.parse(markdown, { gfm: true }));
+    return [...tpl.content.querySelectorAll('h1, h2, h3, h4')].map(h => h.textContent);
+  }
+
+  // Cuts a document at its tab markers. Each tab knows its heading anchors, numbered across the
+  // whole document as on GitHub, so links to them open the right tab.
+  function splitDoc(doc, text, taken) {
+    const pieces = text.split(TAB_MARKER);
+    const parts = [{ ...doc, text: pieces[0] }];
+    for (let i = 1; i < pieces.length; i += 2) {
+      const label = pieces[i];
+      let part = parts.find(x => x.label.toLowerCase() === label.toLowerCase());
+      if (!part) {
+        const base = label.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'tab';
+        let id = base;
+        for (let n = 2; taken.has(id); n++) id = `${base}-${n}`;
+        taken.add(id);
+        parts.push(part = { ...doc, id, label, text: '' });
+      }
+      part.text += '\n\n' + pieces[i + 1];
+    }
+    if (parts.length > 1) {
+      const used = new Set();
+      for (const part of parts) {
+        part.usedBefore = new Set(used);
+        part.anchors = new Set(headingsOf(part.text).map(h => anchorFor(h, used)));
+      }
+    }
+    return parts;
   }
 
   function removeIfEmpty(el) {
@@ -350,7 +393,7 @@
   }
 
   function render(doc) {
-    const source = doc.file in docHtml ? docHtml[doc.file] : window.marked.parse(docText[doc.file], { gfm: true });
+    const source = doc.html != null ? doc.html : window.marked.parse(doc.text, { gfm: true });
     const html = window.DOMPurify.sanitize(source, { ADD_ATTR: ['align'] });
     const tpl = document.createElement('template');
     tpl.innerHTML = html;
@@ -387,7 +430,16 @@
     // Links: other documents of this page open as tabs, other repository files on GitHub.
     for (const a of root.querySelectorAll('a[href]')) {
       const href = a.getAttribute('href');
-      if (href.startsWith('#')) continue;
+      if (href.startsWith('#')) {
+        // a heading in another tab of the same document
+        const part = partWith(doc, href.slice(1));
+        if (part !== doc) {
+          a.setAttribute('href', `?tab=${part.id}${href}`);
+          a.dataset.tab = part.id;
+          a.dataset.anchor = href.slice(1);
+        }
+        continue;
+      }
       let path = null;
       let from = doc.file;
       let hash = '';
@@ -396,9 +448,10 @@
       if (own) { path = own[1]; hash = own[2] || ''; from = ''; }
       else if (!/^[a-z][a-z0-9+.-]*:/i.test(href)) { [path, hash = ''] = href.split(/(?=#)/); }
       if (path === null) continue;
-      const target = docForPath(path, from);
-      if (own && !target) continue;
-      if (target) {
+      const file = docForPath(path, from);
+      if (own && !file) continue;
+      if (file) {
+        const target = partWith(file, hash.slice(1));
         a.setAttribute('href', `?tab=${target.id}${hash}`);
         a.dataset.tab = target.id;
         a.dataset.anchor = hash.slice(1);
@@ -408,7 +461,7 @@
     }
 
     // Anchors on headings, so links like Manual.md#link-filter land in the right place.
-    const used = new Set();
+    const used = new Set(doc.usedBefore);
     for (const h of root.querySelectorAll('h1, h2, h3, h4')) h.id = anchorFor(h.textContent, used);
 
     // Tables scroll sideways on small screens instead of widening the page.
@@ -426,6 +479,8 @@
     const leading = el => el.tagName === 'HR' || !el.textContent.trim() && !el.querySelector('img')
       || doc.id === 'overview' && el.tagName === 'H1';
     while (root.firstElementChild && leading(root.firstElementChild)) root.firstElementChild.remove();
+    // a tab of a split document ends with the rule before the next one
+    while (root.lastElementChild && root.lastElementChild.tagName === 'HR') root.lastElementChild.remove();
 
     const article = $('#doc');
     article.replaceChildren(root);
@@ -444,8 +499,9 @@
   let current = null;
 
   function showTab(id, anchor, push) {
-    const doc = available.find(d => d.id === id) || available[0];
-    if (!doc) return;
+    if (!available.length) return;
+    // an address like /#-setup from before a document was split still finds its heading
+    const doc = partWith(available.find(d => d.id === id) || available[0], anchor);
     current = doc.id;
     const bar = $('#tabs');
     for (const tab of bar.querySelectorAll('.tab')) {
@@ -468,18 +524,21 @@
   }
 
   async function loadDocs() {
-    await Promise.all(DOCS.map(async doc => {
+    const loaded = await Promise.all(DOCS.map(async doc => {
       const res = await fetch(RAW + doc.file).catch(() => null);
-      if (res && res.ok) docText[doc.file] = await res.text();
-      else if (doc.id === 'changelog') docHtml[doc.file] = await changelogFromGitHub();
+      if (res && res.ok) return { ...doc, text: await res.text() };
+      if (doc.id === 'changelog') return { ...doc, html: await changelogFromGitHub() };
+      return null;
     }));
-    available = DOCS.filter(doc => docText[doc.file] != null || docHtml[doc.file] != null);
+    const found = loaded.filter(Boolean);
+    const taken = new Set(found.map(doc => doc.id));
+    available = found.flatMap(doc => doc.text != null ? splitDoc(doc, doc.text, taken) : [doc]);
     if (!available.length) {
       $('#doc').innerHTML = `<p class="doc-status">The documents could not be loaded. <a href="${REPO_URL}">Read them on GitHub</a>.</p>`;
       return;
     }
     $('#tabs').innerHTML = available.map(doc =>
-      `<button class="tab" type="button" role="tab" id="tab-${doc.id}" data-tab="${doc.id}" data-track="tab-${doc.id}" aria-controls="doc">${doc.label}</button>`).join('');
+      `<button class="tab" type="button" role="tab" id="tab-${doc.id}" data-tab="${doc.id}" data-track="tab-${doc.id}" aria-controls="doc">${esc(doc.label)}</button>`).join('');
     const params = new URLSearchParams(location.search);
     showTab(params.get('tab') || 'overview', location.hash.slice(1), false);
   }

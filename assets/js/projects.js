@@ -22,7 +22,8 @@
  *   page       the project's own page on this site, 'projects/<folder>/'; cards link there.
  *              _tools/update-pages.js writes it from _tools/project-page.html (run it after adding one).
  *              It shows the repository's README, Setup-Guide.md, Manual.md and FAQ.md as tabs,
- *              whichever exist, plus `moreDocs` ({ id, label, file }). The Changelog tab is always
+ *              whichever exist, plus `moreDocs` ({ id, label, file }). A line `<!-- tab: Setup -->`
+ *              in one of them starts another tab there (see TAB_MARKER in project.js). The Changelog tab is always
  *              there: CHANGELOG.md, or else the release notes, or else the commit history. A copy button
  *              for Import-String.md (`importString` if the file is somewhere else)
  *   description  for projects with a page: the text search engines show for it

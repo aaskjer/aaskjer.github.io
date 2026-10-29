@@ -2754,7 +2754,8 @@ main > .section::before {
 
 @media (max-width: 1000px) {
   .project-doc {
-    grid-template-columns: 1fr;
+    /* minmax: a wide table scrolls in its box instead of widening the page */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .toc {
@@ -2895,6 +2896,9 @@ main > .section::before {
   border: 1px solid var(--border);
   text-align: left;
   vertical-align: top;
+  /* "anywhere" would let a column shrink to one letter (`useBot` as "useBo t"); the table
+     scrolls sideways instead */
+  overflow-wrap: break-word;
 }
 
 .md th {
