@@ -116,7 +116,7 @@ window.SITE = {
       tags: ['PowerShell'],
       download: 'https://github.com/aaskjer/SBRefFix/releases/latest/download/SBRefFix.zip',
       downloadLabel: 'Download ZIP',
-      guide: { label: 'How to use', href: 'https://github.com/aaskjer/SBRefFix#how-to-use-it' },
+      guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v1.0.0', stars: 0, downloads: 0,
     },
     {
@@ -152,7 +152,7 @@ window.SITE = {
       preview: 'Chat writes it down, OBS shows it as a post-it: notes from Twitch, YouTube and Kick chat, one list per game. A free Streamer.bot import.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
-      guide: { label: 'Setup', href: 'https://github.com/aaskjer/OBSNotes#-setup' },
+      guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
       version: 'v1.0.0', stars: 0, downloads: 0,
     },
     {
