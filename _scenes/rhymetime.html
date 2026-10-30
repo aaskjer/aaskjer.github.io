@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RhymeTime scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(720px 560px at 24% 48%, rgba(249, 115, 22, .26), transparent 70%),
+      radial-gradient(560px 440px at 20% 72%, rgba(244, 63, 94, .16), transparent 70%),
+      linear-gradient(150deg, #2a1410 0%, #160d13 55%, #07060a 100%);
+  }
+  /* rhymes drifting behind the card, the way the trivia scene floats its question marks */
+  .words {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    font: 800 86px/1 'Sora', sans-serif;
+    color: rgba(255, 255, 255, .045);
+  }
+  .words span { position: absolute; }
+
+  .round {
+    position: absolute;
+    top: 50%;
+    left: 395px;
+    z-index: 1;
+    width: 540px;
+    padding: 46px 48px 40px;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 28px;
+    background: rgba(22, 14, 16, .72);
+    box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .9);
+    backdrop-filter: blur(10px);
+  }
+  .round::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 60px;
+    left: 60px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: #f97316;
+    filter: blur(100px);
+    opacity: .5;
+  }
+
+  .wordmark {
+    margin-bottom: 30px;
+    font: 800 30px/1 'Sora', sans-serif;
+    letter-spacing: -.01em;
+  }
+  .wordmark b { color: #fff; font-weight: 800; }
+  .wordmark i { color: #fb923c; font-style: normal; }
+
+  .label {
+    color: #c4a79c;
+    font: 700 15px/1 'Sora', sans-serif;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .target {
+    margin: 14px 0 4px;
+    font: 800 96px/1 'Sora', sans-serif;
+    letter-spacing: -.02em;
+    color: #fff;
+    text-shadow: 0 10px 40px rgba(249, 115, 22, .45);
+  }
+  .target em { color: #fb923c; font-style: normal; }
+
+  .ending {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 9px 16px;
+    border: 1px solid rgba(251, 146, 60, .4);
+    border-radius: 999px;
+    background: rgba(249, 115, 22, .14);
+    color: #fdba74;
+    font: 700 19px/1 'Sora', sans-serif;
+    letter-spacing: .04em;
+  }
+
+  .meters {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, .09);
+  }
+  .clock {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    color: #fff;
+    font: 800 38px/1 'Sora', sans-serif;
+  }
+  .clock small { color: #c4a79c; font: 700 17px/1 'Sora', sans-serif; }
+
+  .bar {
+    flex: 1;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .1);
+    overflow: hidden;
+  }
+  .bar i { display: block; width: 60%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #f97316, #fb7185); }
+
+  .tries { display: flex; align-items: center; gap: 9px; color: #c4a79c; font: 700 17px/1 'Sora', sans-serif; }
+  .tries u { width: 14px; height: 14px; border-radius: 50%; background: rgba(255, 255, 255, .16); }
+  .tries u.used { background: #fb7185; }
+
+  .bank {
+    position: absolute;
+    top: 36px;
+    right: 40px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .07);
+    color: #fdba74;
+    font: 700 14px/1 'Sora', sans-serif;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .chat { --accent: #fb923c; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="words">
+    <span style="left:40px;top:70px">DREAM</span>
+    <span style="left:470px;top:170px">TEAM</span>
+    <span style="left:20px;top:690px">CREAM</span>
+    <span style="left:420px;top:770px">BEAM</span>
+  </div>
+  <div class="live"><b>LIVE</b><span>aaskjer</span></div>
+
+  <section class="round">
+    <div class="bank">Medium &times;2.0</div>
+    <div class="wordmark"><b>Rhyme</b><i>Time</i></div>
+    <div class="label">Find a rhyme for</div>
+    <div class="target">STR<em>EAM</em></div>
+    <div class="ending">anything ending in &hellip;EAM</div>
+    <div class="meters">
+      <div class="clock">0:18<small>left</small></div>
+      <div class="bar"><i></i></div>
+      <div class="tries"><u class="used"></u><u></u><u></u>1/3</div>
+    </div>
+  </section>
+
+  <section class="chat chat--wide">
+    <div class="chat__head">Stream chat <i>Twitch</i></div>
+    <ol class="chat__list">
+      <li class="msg"><span class="n c1">PixelPanda</span>!rhyme</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>PixelPanda, find a rhyme for: STREAM! You have 30 seconds. Bet: 100 Points</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>stream</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>@PixelPanda, 'STREAM' doesn't rhyme with 'STREAM'! 1/3 attempts used.</li>
+      <li class="msg"><span class="n c1">PixelPanda</span>hmm maybe gleam</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>PixelPanda rhymed 'STREAM' with 'GLEAM'! +200 Points [Total: 2.450 Points]</li>
+      <li class="msg"><span class="n c4">LunaLurks</span>!rhymebattle</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>⚔️ BATTLE TIME! First to rhyme with 'VICTORY' wins 500 Points! You have 30s!</li>
+      <li class="msg"><span class="n c3">NoScopeNick</span>history</li>
+      <li class="msg bot"><span class="badge"></span><span class="n me">aaskjer</span>🏆 NoScopeNick won the battle by rhyming 'VICTORY' with 'HISTORY'! +500 Points (Total: 1.900 Points)</li>
+    </ol>
+    <div class="chat__input">Send a message</div>
+  </section>
+</div>
+</body>
+</html>
