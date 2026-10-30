@@ -3072,3 +3072,35 @@ main > .section::before {
 .notfound .btn {
   margin-top: 2rem;
 }
+
+/* ---------- launcher links (/go/) ---------- */
+
+.launch {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.launch .lead {
+  margin-inline: auto;
+}
+
+.launch__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.launch__hint {
+  max-width: 32rem;
+  margin: 1.5rem auto 0;
+  color: var(--faint);
+  font-size: 0.9rem;
+}
+
+.launch > .wrap > .btn {
+  margin-top: 2rem;
+}

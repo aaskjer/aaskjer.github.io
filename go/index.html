@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site may load anything. No statistics on this page: it only hands a link on. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>Open in launcher · aaskjer</title>
+  <meta name="theme-color" content="#0b0a12">
+  <link rel="icon" href="/assets/img/avatar.png" type="image/png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/go.js" defer></script>
+</head>
+<body class="launch">
+  <main class="wrap">
+    <p class="kicker" id="launch-kicker">GameCheck</p>
+    <h1 id="launch-title">Opening the <span class="grad">store</span></h1>
+    <p class="lead" id="launch-lead">This page hands a store link from Discord on to the launcher on your computer.</p>
+    <div class="launch__cta" id="launch-cta" hidden>
+      <a class="btn btn--primary" id="launch-app" href="/">Open in the launcher</a>
+      <a class="btn btn--ghost" id="launch-web" href="/" rel="noopener noreferrer">Open in the browser</a>
+    </div>
+    <p class="launch__hint" id="launch-hint" hidden>Nothing happened? Your browser may be asking whether to open the launcher, or the launcher is not installed. The browser link always works.</p>
+    <a class="btn btn--ghost" id="launch-home" href="/" hidden>Back to the projects</a>
+  </main>
+</body>
+</html>
