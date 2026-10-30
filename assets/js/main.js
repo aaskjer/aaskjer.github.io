@@ -6,12 +6,12 @@
   'use strict';
 
   const { user, twitch, stats, projects, comingSoon = [] } = window.SITE;
-  const feature = Object.assign({ fallback: null, days: 7, max: 5, downloads: { days: 7, min: 20 } }, window.SITE.featured);
+  const feature = Object.assign({ fallback: null, days: 7, max: 3, downloads: { days: 7, min: 20 } }, window.SITE.featured);
   const API = 'https://api.github.com';
   // the downloads of every repository once a day, recorded by .github/workflows/download-counts.yml
   const HISTORY_URL = `https://raw.githubusercontent.com/${user}/${user}.github.io/stats/downloads.json`;
   const DAY = 24 * 60 * 60 * 1000;
-  const CACHE_KEY = 'github-live-v4';
+  const CACHE_KEY = 'github-live-v5';
   // GitHub allows 60 requests per hour without a token, so one visit's
   // answers are kept for an hour.
   const CACHE_TTL = 60 * 60 * 1000;
@@ -75,7 +75,8 @@
 
   function metaRow(p) {
     const items = [`<span class="meta" title="GitHub stars">${icon('star')}${numberFormat.format(p.stars || 0)}<span class="sr-only"> stars</span></span>`];
-    if (p.downloads) {
+    // shown at 0 too; null means GitHub did not answer
+    if (p.downloads != null) {
       items.push(`<span class="meta" title="Downloads">${icon('download')}${numberFormat.format(p.downloads)}<span class="sr-only"> downloads</span></span>`);
     }
     if (p.updated) {
@@ -213,6 +214,12 @@
         </figure>`;
   }
 
+  // After a release, the first sentence of its notes.
+  function whatsNew(p, reason) {
+    if (!p.notes || !reason || reason.kind !== 'release') return '';
+    return `<p class="whats-new"><strong>What's new:</strong> ${esc(p.notes)}</p>`;
+  }
+
   function spotlight(p, reason) {
     return `
       <article class="spotlight" data-repo="${esc(p.repo)}">
@@ -220,14 +227,14 @@
           <div class="card__head">
             ${logoTile(p)}
             <div class="card__heading">
-              <p class="kicker">Featured${reason ? ` · ${esc(reason.text)}` : ''}</p>
+              ${reason ? `<p class="kicker">${esc(reason.text)}</p>` : ''}
               <h3 class="spotlight__title"><a href="${esc(projectUrl(p))}" data-track="${p.page ? 'project' : 'repo'}">${esc(p.name || p.repo)}</a></h3>
             </div>
           </div>
           <p class="spotlight__text">${esc(p.tagline || 'No description yet.')}</p>
           ${p.features ? `<ul class="features">
             ${p.features.map(f => `<li>${icon('check')}<span>${esc(f)}</span></li>`).join('')}
-          </ul>` : ''}
+          </ul>` : whatsNew(p, reason)}
           ${chips(p)}
           <div class="spotlight__foot">
             <div class="meta-row">${badges(p)}${metaRow(p)}</div>
@@ -235,6 +242,28 @@
           </div>
         </div>
         ${spotlightShot(p)}
+      </article>`;
+  }
+
+  // A featured project below the big one: a card with its scene, why it is featured and what is new.
+  function update(p, reason) {
+    return `
+      <article class="card card--update" data-repo="${esc(p.repo)}">
+        ${shot(p)}
+        <div class="card__head">
+          ${logoTile(p)}
+          <div class="card__heading">
+            ${reason ? `<p class="kicker">${esc(reason.text)}</p>` : ''}
+            <h3 class="card__title"><a href="${esc(projectUrl(p))}" data-track="${p.page ? 'project' : 'repo'}">${esc(p.name || p.repo)}</a></h3>
+            ${badges(p)}
+          </div>
+        </div>
+        <p class="card__text">${esc(p.tagline || 'No description yet.')}</p>
+        ${whatsNew(p, reason)}
+        <div class="card__foot">
+          <div class="meta-row">${metaRow(p)}</div>
+          <div class="actions">${actions(p)}</div>
+        </div>
       </article>`;
   }
 
@@ -282,7 +311,7 @@
     const release = p.pre ? p.pre.released : p.released;
     if (release && Date.parse(release) > since) {
       const text = release === p.firstReleased ? 'First release' : p.pre ? 'New pre-release' : 'New release';
-      reasons.push({ time: Date.parse(release), text });
+      reasons.push({ time: Date.parse(release), text, kind: 'release' });
     }
     if (p.statusSince && STATUS_NEWS[p.status] && Date.parse(p.statusSince) > since) {
       reasons.push({ time: Date.parse(p.statusSince), text: STATUS_NEWS[p.status] });
@@ -300,70 +329,22 @@
     return fallback ? [{ p: fallback, reason: null }] : [];
   }
 
-  // Several featured projects take turns every 8 seconds. Pointing at the box or focusing
-  // something in it holds the current one; with reduced motion only the dots change it.
-  const TURN = 8000;
-  let turns = null;
-
+  // The newest featured project gets the big box with its highlights and picture; the others sit
+  // below it side by side, as cards.
   function renderFeatured() {
     const box = $('#spotlight');
     const list = featuredList();
-    // rebuilt only when the projects or their reasons change, so the current one stays put
-    const key = list.map(f => `${f.p.repo}:${f.reason ? f.reason.text : ''}`).join('|');
+    // rebuilt only when the projects, their reasons or their release notes change
+    const key = list.map(f => `${f.p.repo}:${f.reason ? f.reason.text : ''}:${f.p.notes ? 1 : 0}`).join('|');
     if (box.dataset.key === key) return;
     box.dataset.key = key;
-    clearInterval(turns);
-    const many = list.length > 1;
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    box.innerHTML = `
+    const [first, ...rest] = list;
+    $('#featured').hidden = !first;
+    box.innerHTML = first ? `
       <div class="featured__inner">
-        <div class="featured__deck">${list.map(f => spotlight(f.p, f.reason)).join('')}</div>
-        ${many ? `
-        <div class="featured__nav">
-          ${still ? '' : `<button class="featured__pause" type="button" aria-pressed="false" data-track="featured-pause">${icon('pause')}${icon('play')}<span class="sr-only">Pause the featured projects</span></button>`}
-          <div class="featured__dots" role="group" aria-label="Featured projects">
-            ${list.map(f => `<button class="featured__dot" type="button" data-track="featured-dot" data-project="${esc(f.p.repo)}" aria-label="Show ${esc(f.p.name || f.p.repo)}"></button>`).join('')}
-          </div>
-        </div>` : ''}
-      </div>`;
-
-    const inner = box.firstElementChild;
-    const slides = [...inner.querySelectorAll('.spotlight')];
-    const dots = [...inner.querySelectorAll('.featured__dot')];
-    let current = 0;
-    let last = Date.now();
-    let held = false;
-    let paused = still;
-    const show = index => {
-      current = (index + slides.length) % slides.length;
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('is-active', i === current);
-        slide.inert = i !== current;
-      });
-      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
-      last = Date.now();
-    };
-    show(0);
-    if (!many) return;
-
-    dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
-    const pause = inner.querySelector('.featured__pause');
-    if (pause) {
-      pause.addEventListener('click', () => {
-        paused = !paused;
-        pause.setAttribute('aria-pressed', String(paused));
-        last = Date.now();
-      });
-    }
-    const hold = on => () => { held = on; last = Date.now(); };
-    inner.addEventListener('pointerenter', hold(true));
-    inner.addEventListener('pointerleave', hold(false));
-    inner.addEventListener('focusin', hold(true));
-    inner.addEventListener('focusout', event => { if (!inner.contains(event.relatedTarget)) hold(false)(); });
-    turns = setInterval(() => {
-      if (held || paused || document.hidden) last = Date.now();
-      else if (Date.now() - last >= TURN) show(current + 1);
-    }, 500);
+        ${spotlight(first.p, first.reason)}
+        ${rest.length ? `<div class="featured__more">${rest.map(f => update(f.p, f.reason)).join('')}</div>` : ''}
+      </div>` : '';
   }
 
   async function loadHistory() {
@@ -429,6 +410,32 @@
     return response.json();
   }
 
+  // The first sentence of a release's notes as plain text, shortened to 180 characters.
+  function firstSentence(markdown) {
+    const plain = line => line
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/<[^>]+>|[*`~]|__/g, '')
+      .trim();
+    // headings, quotes, tables, rules and code fences carry no sentence
+    const skip = line => /^(#|>|\||-{3,}|```)/.test(line);
+    const item = /^([-*+]|\d+\.)\s+/;
+    let text = '';
+    for (const raw of (markdown || '').split(/\r?\n/)) {
+      const line = raw.trim();
+      if (text) {
+        // the notes wrap their lines: a paragraph or list item goes on until a blank line or the next item
+        if (!line || item.test(line) || skip(line)) break;
+        text += ' ' + plain(line);
+      } else if (line && !skip(line)) {
+        text = plain(line.replace(item, ''));
+      }
+    }
+    if (!text) return null;
+    const sentence = (text.match(/^.+?[.!?](?=\s|$)/) || [text])[0];
+    return sentence.length > 180 ? sentence.slice(0, 179).replace(/\s+\S*$/, '') + '…' : sentence;
+  }
+
   // What GitHub puts in a new repository; a repository with nothing else is still empty.
   const STARTER_FILES = new Set(['readme.md', 'readme', 'license', 'license.md', 'license.txt', '.gitignore', '.gitattributes']);
 
@@ -465,6 +472,8 @@
         released: stable ? stable.published_at : null,
         firstReleased: published[0] || null,
         pre: newest && newest.prerelease ? { version: newest.tag_name, released: newest.published_at } : null,
+        // "What's new" in the Featured box: from the newest release, a pre-release too
+        notes: newest ? firstSentence(newest.body) : null,
         // null means "unknown", so a failed request never shows 0 downloads
         downloads: releases && releases.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         // null when GitHub did not answer, so a failed request never hides the download button
@@ -489,6 +498,7 @@
       p.released = l.released;
       p.firstReleased = l.firstReleased;
       p.pre = l.pre;
+      p.notes = l.notes;
       // only pre-releases so far: GitHub's "latest" link would find nothing
       if (l.pre && !l.version && p.download === undefined) p.download = `${repoUrl(p.repo)}/releases/tag/${encodeURIComponent(l.pre.version)}`;
       if (l.hasReleases === false && p.download === undefined) p.download = false;
@@ -512,6 +522,7 @@
         released: l.released,
         firstReleased: l.firstReleased,
         pre: l.pre,
+        notes: l.notes,
         download: l.hasReleases === false ? false
           : l.pre && !l.version ? `${repoUrl(l.name)}/releases/tag/${encodeURIComponent(l.pre.version)}` : undefined,
         comingSoon: l.hasReleases === false && (l.empty === true || listedAsSoon(l.name)),

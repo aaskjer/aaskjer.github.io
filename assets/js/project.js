@@ -16,7 +16,7 @@
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
   // the start page's answers from the GitHub API, used for as long as the start page uses them
-  const CACHE_KEY = 'github-live-v4';
+  const CACHE_KEY = 'github-live-v5';
   const CACHE_TTL = 60 * 60 * 1000;
   // the same fingerprint of projects.js as on the start page: answers kept before a change to it are not used
   const SITE_STAMP = (text => {
@@ -33,6 +33,13 @@
     ...(p && p.moreDocs || []),
   ];
   const IMPORT_FILE = p && p.importString || 'Import-String.md';
+  // The documents the repository has, as _tools/update-pages.js found them (lower case → real name),
+  // so no request goes to a file that is not there. A page not rebuilt yet has no list and asks for all.
+  const FILES = document.body.dataset.files != null
+    ? new Map(document.body.dataset.files.split('|').filter(Boolean).map(f => [f.toLowerCase(), f]))
+    : null;
+  // the file's name in the repository, or null when it has no such file
+  const fileIn = file => FILES ? FILES.get(file.toLowerCase()) || null : file;
 
   const $ = sel => document.querySelector(sel);
   const numberFormat = new Intl.NumberFormat('en');
@@ -101,7 +108,7 @@
 
   function metaRow() {
     const items = [`<span class="meta" title="GitHub stars">${icon('star')}${numberFormat.format(p.stars || 0)}<span class="sr-only"> stars</span></span>`];
-    if (p.downloads) items.push(`<span class="meta" title="Downloads">${icon('download')}${numberFormat.format(p.downloads)}<span class="sr-only"> downloads</span></span>`);
+    if (p.downloads != null) items.push(`<span class="meta" title="Downloads">${icon('download')}${numberFormat.format(p.downloads)}<span class="sr-only"> downloads</span></span>`);
     if (p.updated) items.push(`<span class="meta" title="Last update">${icon('clock')}<span class="sr-only">updated </span>${timeAgo(p.updated)}</span>`);
     return items.join('');
   }
@@ -215,7 +222,7 @@
   /* ---------- import string ---------- */
 
   async function importString() {
-    const text = await fetch(RAW + IMPORT_FILE).then(res => res.ok ? res.text() : Promise.reject(res.status));
+    const text = await fetch(RAW + (fileIn(IMPORT_FILE) || IMPORT_FILE)).then(res => res.ok ? res.text() : Promise.reject(res.status));
     const block = text.match(/```[^\n]*\n([\s\S]*?)```/);
     const value = block ? block[1].replace(/\s+/g, '') : '';
     if (!value.startsWith('U0JBR')) throw new Error('no import string');
@@ -238,8 +245,12 @@
 
   async function setupImportString() {
     const button = $('#copy-import');
-    const head = await fetch(RAW + IMPORT_FILE, { method: 'HEAD' }).catch(() => null);
-    if (!head || !head.ok) return;
+    const file = fileIn(IMPORT_FILE);
+    if (!file) return;
+    if (!FILES) {
+      const head = await fetch(RAW + file, { method: 'HEAD' }).catch(() => null);
+      if (!head || !head.ok) return;
+    }
     button.hidden = false;
     button.addEventListener('click', async () => {
       try {
@@ -525,7 +536,8 @@
 
   async function loadDocs() {
     const loaded = await Promise.all(DOCS.map(async doc => {
-      const res = await fetch(RAW + doc.file).catch(() => null);
+      const file = fileIn(doc.file);
+      const res = file && await fetch(RAW + file).catch(() => null);
       if (res && res.ok) return { ...doc, text: await res.text() };
       if (doc.id === 'changelog') return { ...doc, html: await changelogFromGitHub() };
       return null;
