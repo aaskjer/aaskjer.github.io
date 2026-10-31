@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AutoBotCheck scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(900px 600px at 80% 10%, rgba(145, 70, 255, .32), transparent 70%),
+      radial-gradient(800px 600px at 10% 100%, rgba(37, 99, 235, .3), transparent 70%),
+      linear-gradient(160deg, #120f26, #090b14);
+  }
+  /* the AutoBotCheck actions and groups, as Streamer.bot lists them */
+  .side {
+    position: absolute;
+    left: 40px;
+    top: 36px;
+    width: 252px;
+    display: grid;
+    gap: 22px;
+  }
+  .panel {
+    border: 1px solid #2c2c36;
+    border-radius: 12px;
+    background: #121218;
+    box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .9);
+    overflow: hidden;
+  }
+  .panel h2 {
+    margin: 0;
+    padding: 14px 18px;
+    background: #1c1c22;
+    color: #c9c9d3;
+    font: 600 15px/1 'Segoe UI', sans-serif;
+  }
+  .panel ul { margin: 0; padding: 8px 0; list-style: none; }
+  .panel li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 18px;
+    color: #d4d4dc;
+    font-size: 16px;
+  }
+  .panel li.group { color: #8b8b98; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
+  .panel li.run { background: rgba(145, 70, 255, .18); color: #fff; box-shadow: inset 3px 0 #9146ff; }
+  .panel li.run::after { content: 'running'; color: #7ee787; font-size: 13px; }
+  .panel li b { color: #8b8b98; font-weight: 400; font-variant-numeric: tabular-nums; }
+  .log {
+    position: absolute;
+    left: 322px;
+    top: 36px;
+    width: 1240px;
+    height: 828px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #2c2c36;
+    border-radius: 12px;
+    background: #0c0c0f;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .9);
+    overflow: hidden;
+  }
+  .log__bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: none;
+    height: 46px;
+    padding: 0 18px;
+    background: #1c1c22;
+    color: #c9c9d3;
+    font-size: 15px;
+  }
+  .log__bar::before {
+    content: '';
+    width: 16px;
+    height: 18px;
+    border-radius: 2px 6px 2px 2px;
+    background: #d4d4dc linear-gradient(#5b5b68, #5b5b68) 3px 6px / 9px 2px no-repeat;
+  }
+  /* scrolled to the end of the run: older lines leave at the top */
+  .log__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  pre {
+    margin: 0;
+    padding: 18px 24px;
+    color: #d4d4dc;
+    font: 14px/1.5 'Cascadia Mono', Consolas, monospace;
+    white-space: pre;
+  }
+  .t { color: #6f6f7c; }
+  .g { color: #7ee787; }
+  .y { color: #f2cc60; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <div class="side">
+    <section class="panel">
+      <h2>Actions</h2>
+      <ul>
+        <li class="group">AutoBotCheck</li>
+        <li class="run">TwitchInsight</li>
+        <li>TwitchBots.Info</li>
+        <li>ISDS.BanLists</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>Groups</h2>
+      <ul>
+        <li>TwitchInsightBots <b>14248</b></li>
+        <li>Bots <b>3</b></li>
+        <li>WhitelistedBots <b>2</b></li>
+      </ul>
+    </section>
+  </div>
+  <section class="log">
+    <div class="log__bar">log_20261031.log</div>
+    <div class="log__body">
+<pre><span class="t">[2026-10-31 14:02:07.412 INF]</span> ---------------------------------------------------------------------------------------------------------
+<span class="t">[2026-10-31 14:02:07.413 INF]</span> Starting bot check 'twitchinsights'
+<span class="t">[2026-10-31 14:02:07.413 INF]</span> Auto group: TwitchInsightBots | Manual bot group: Bots | Whitelist group: WhitelistedBots
+<span class="t">[2026-10-31 14:02:07.415 INF]</span> Non-existent cache: C:\Streamer.bot\AutoBotCheck\NonExistentBot.txt
+<span class="t">[2026-10-31 14:02:07.415 INF]</span> ---------------------------------------------------------------------------------------------------------
+<span class="t">[2026-10-31 14:02:07.698 INF]</span> Helix: batch lookups, ban list and direct bans enabled.
+<span class="t">[2026-10-31 14:02:08.031 INF]</span> Protected accounts: 2 whitelisted, 11 own/mod/VIP.
+<span class="t">[2026-10-31 14:02:09.874 INF]</span> TwitchInsights: 14265 accounts.
+<span class="t">[2026-10-31 14:02:09.902 INF]</span> Group members: 14014 in 'TwitchInsightBots', 3 in 'Bots'.
+<span class="t">[2026-10-31 14:02:09.911 INF]</span> Loaded 312 known non-existent accounts from cache file.
+<span class="t">[2026-10-31 14:02:09.925 INF]</span> Looking up 14253 accounts (15 skipped via non-existent cache)...
+<span class="t">[2026-10-31 14:02:11.587 INF]</span> Lookup progress: 2000/14253
+<span class="t">[2026-10-31 14:02:13.214 INF]</span> Lookup progress: 4000/14253
+<span class="t">[2026-10-31 14:02:14.902 INF]</span> Lookup progress: 6000/14253
+<span class="t">[2026-10-31 14:02:16.538 INF]</span> Lookup progress: 8000/14253
+<span class="t">[2026-10-31 14:02:18.177 INF]</span> Lookup progress: 10000/14253
+<span class="t">[2026-10-31 14:02:19.850 INF]</span> Lookup progress: 12000/14253
+<span class="t">[2026-10-31 14:02:21.493 INF]</span> Lookup progress: 14000/14253
+<span class="t">[2026-10-31 14:02:21.812 INF]</span> Saved non-existent cache: 314 accounts (2 new).
+<span class="t">[2026-10-31 14:02:21.813 INF]</span> Lookup done: 14251 exist, 2 newly found non-existent.
+<span class="t">[2026-10-31 14:02:21.813 INF]</span> ---------------------------------------------------------------------------------------------------------
+<span class="t">[2026-10-31 14:02:21.840 INF]</span> Removed 'viewbot_k3x9q' from 'TwitchInsightBots' (account no longer exists).
+<span class="t">[2026-10-31 14:02:21.846 INF]</span> Removed 'f0llowhub_tv' from 'TwitchInsightBots' (account no longer exists).
+<span class="t">[2026-10-31 14:02:22.105 INF]</span> Groups synced: 'TwitchInsightBots' +236 / -2, 'Bots' -0.
+<span class="t">[2026-10-31 14:02:29.562 INF]</span> Loaded 14196 existing permanent bans.
+<span class="t">[2026-10-31 14:02:29.588 INF]</span> <span class="y">Ban check: 14210 candidates, 13980 already banned, 230 to ban, 0 to unban, 41 protected.</span>
+<span class="t">[2026-10-31 14:02:29.588 INF]</span> ---------------------------------------------------------------------------------------------------------
+<span class="t">[2026-10-31 14:02:47.231 INF]</span> ---------------------------------------------------------------------------------------------------------
+<span class="t">[2026-10-31 14:02:47.231 INF]</span> <span class="g">SUMMARY (twitchinsights):</span>
+<span class="t">[2026-10-31 14:02:47.231 INF]</span> <span class="g">  TwitchInsightBots: 14248 members (+236 / -2)</span>
+<span class="t">[2026-10-31 14:02:47.231 INF]</span> <span class="g">  Bots: 3 members (-0)</span>
+<span class="t">[2026-10-31 14:02:47.232 INF]</span> <span class="g">  Bans: 230 new, 13980 already banned, 0 failed</span>
+<span class="t">[2026-10-31 14:02:47.232 INF]</span> <span class="g">  Unbans: 0 done, 0 failed | Protected: 41</span>
+<span class="t">[2026-10-31 14:02:47.232 INF]</span> ---------------------------------------------------------------------------------------------------------</pre>
+    </div>
+  </section>
+</div>
+</body>
+</html>
