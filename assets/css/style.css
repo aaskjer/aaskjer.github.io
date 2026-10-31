@@ -681,6 +681,81 @@ main > .section::before {
   font-size: 1.05rem;
 }
 
+/* ---------- filter row above the project lists ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: 0.75rem 0;
+  border-block: 1px solid var(--border);
+}
+
+.filters__label {
+  margin-right: 0.35rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.filter {
+  min-height: 36px;
+  padding-inline: 0.85rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.filter:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.filter[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--text);
+}
+
+/* the count and "Show all" stay together on the right, or on a line of their own */
+.filters__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
+.filters__count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.filters__clear,
+.grid-empty button {
+  padding: 0.3rem 0.2rem;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+:is(.filter, .filters__clear, .grid-empty button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* in place of a list that the filters left empty */
+.grid-empty {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--muted);
+}
+
 /* three cards side by side from tablet width on (never more), so the scene pictures stay small */
 .grid {
   display: grid;
@@ -769,6 +844,8 @@ main > .section::before {
 .chip--picarto { --dot: #1da456; }
 .chip--tiktok { --dot: #25f4ee; }
 .chip--windows { --dot: #0078d4; }
+.chip--discord { --dot: #5865f2; }
+.chip--obs { --dot: var(--text); }
 
 .chip--more {
   cursor: help;

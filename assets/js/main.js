@@ -353,6 +353,76 @@
     downloadHistory = await response.json();
   }
 
+  /* ---------- filters ---------- */
+
+  // The row above the lists: each pressed button keeps only the projects that have it, in all three
+  // lists (the Featured box stays as it is). The choice stays in the address, e.g. ?with=kick,obs,
+  // so a filtered list can be shared.
+  const has = (list, name) => (list || []).includes(name);
+  const FILTERS = [
+    { key: 'twitch', label: 'Twitch', test: p => has(p.platforms, 'Twitch') },
+    { key: 'youtube', label: 'YouTube', test: p => has(p.platforms, 'YouTube') },
+    { key: 'kick', label: 'Kick', test: p => has(p.platforms, 'Kick') },
+    { key: 'discord', label: 'Discord', test: p => has(p.platforms, 'Discord') || has(p.tags, 'Discord') },
+    // a repository only GitHub knows of has the topic "obs" as its platform 'OBS'
+    { key: 'obs', label: 'OBS overlay', test: p => has(p.tags, 'OBS overlay') || has(p.platforms, 'OBS') },
+  ];
+  const GRIDS = [['#tools-grid', 'stream tools'], ['#games-grid', 'chat games'], ['#more-grid', 'projects here']];
+  const active = new Set((new URLSearchParams(location.search).get('with') || '').split(','));
+
+  function applyFilters() {
+    const tests = FILTERS.filter(f => active.has(f.key)).map(f => f.test);
+    const byRepo = new Map(projects.concat(extras).map(p => [p.repo, p]));
+    let shown = 0;
+    let total = 0;
+    for (const [selector, noun] of GRIDS) {
+      const grid = $(selector);
+      const cards = [...grid.children];
+      for (const card of cards) {
+        const p = byRepo.get(card.dataset.repo);
+        card.hidden = !!p && !tests.every(test => test(p));
+        total++;
+        if (!card.hidden) shown++;
+      }
+      let empty = grid.nextElementSibling;
+      if (!empty || !empty.classList.contains('grid-empty')) {
+        empty = document.createElement('p');
+        empty.className = 'grid-empty';
+        empty.innerHTML = `None of the ${noun} works with all of these. <button type="button" data-clear-filters data-track="filter-clear">Show all</button>`;
+        grid.after(empty);
+      }
+      empty.hidden = !cards.length || cards.some(card => !card.hidden);
+    }
+    for (const button of document.querySelectorAll('[data-filter]')) {
+      button.setAttribute('aria-pressed', String(active.has(button.dataset.filter)));
+    }
+    const count = $('.filters__count');
+    if (count) count.textContent = tests.length ? `${shown} of ${total} projects` : '';
+    const clear = $('.filters__clear');
+    if (clear) clear.hidden = !tests.length;
+  }
+
+  function setupFilters() {
+    const bar = $('#filters');
+    bar.innerHTML = '<span class="filters__label" aria-hidden="true">Works with</span>'
+      + FILTERS.map(f => `<button class="chip filter chip--${f.key}" type="button" aria-pressed="false" data-filter="${f.key}" data-track="filter-${f.key}">${esc(f.label)}</button>`).join('')
+      + '<span class="filters__status"><span class="filters__count" aria-live="polite"></span>'
+      + '<button class="filters__clear" type="button" data-clear-filters data-track="filter-clear" hidden>Show all</button></span>';
+    bar.hidden = false;
+    document.addEventListener('click', event => {
+      const button = event.target.closest('[data-filter], [data-clear-filters]');
+      if (!button) return;
+      const key = button.dataset.filter;
+      if (!key) active.clear();
+      else if (active.has(key)) active.delete(key);
+      else active.add(key);
+      // in the order of the buttons, so the same choice always gives the same address
+      const query = FILTERS.filter(f => active.has(f.key)).map(f => f.key).join(',');
+      history.replaceState(null, '', location.pathname + (query ? `?with=${query}` : '') + location.hash);
+      applyFilters();
+    });
+  }
+
   /* ---------- rendering ---------- */
 
   const listedAsSoon = repo => comingSoon.some(name => name.toLowerCase() === repo.toLowerCase());
@@ -385,6 +455,7 @@
     const all = projects.filter(p => p.section === 'more').concat(extras);
     $('#more').hidden = all.length === 0;
     $('#more-grid').innerHTML = all.map(card).join('');
+    applyFilters();
   }
 
   // Updates the numbers in place, so the cards and images are not rebuilt.
@@ -657,6 +728,7 @@
     }
   }
 
+  setupFilters();
   render();
   setupTheme();
   setupNav();
