@@ -35,6 +35,7 @@
  *   playground  for a game with its rules in assets/js/playground/<page folder>.js: { overlay } is
  *              the C# string in its import string that holds its OBS overlay. Its page gets a
  *              "Try it" tab with a chat and that overlay; _tools/update-pages.js copies it out (playground.html).
+ *              `{}` for a game without an overlay: the tab has the chat alone
  *   statusSince  the day `status` last changed, e.g. '2026-10-28'; set it with every change, it
  *              puts the project in the Featured box for a while
  */
@@ -241,6 +242,7 @@ window.SITE = {
       status: 'done',
       statusSince: '2026-10-26',
       name: 'Classic Chat Gamble',
+      playground: {},
       section: 'games',
       logo: 'assets/img/projects/classic-chat-gamble.png',
       scene: 'assets/img/scenes/classic-chat-gamble.jpg',
@@ -257,6 +259,7 @@ window.SITE = {
       page: 'projects/trivia-game/',
       status: 'dev',
       name: 'Trivia Game',
+      playground: {},
       section: 'games',
       logo: 'assets/img/projects/trivia-game.png',
       scene: 'assets/img/scenes/trivia-game.jpg',
@@ -274,6 +277,7 @@ window.SITE = {
       status: 'done',
       statusSince: '2026-10-26',
       name: 'Slot Machine Game',
+      playground: {},
       section: 'games',
       logo: 'assets/img/projects/slot-machine-game.png',
       scene: 'assets/img/scenes/slot-machine-game.jpg',
@@ -290,6 +294,7 @@ window.SITE = {
       page: 'projects/hangman-game/',
       status: 'dev',
       name: 'Hangman Game',
+      playground: { overlay: 'OverlayHtmlTemplate' },
       section: 'games',
       logo: 'assets/img/projects/hangman-game.png',
       scene: 'assets/img/scenes/hangman-game.jpg',
@@ -307,6 +312,7 @@ window.SITE = {
       page: 'projects/battleship-game/',
       status: 'dev',
       name: 'Battleship Game',
+      playground: { overlay: 'HtmlTemplate' },
       section: 'games',
       logo: 'assets/img/projects/battleship-game.png',
       scene: 'assets/img/scenes/battleship-game.jpg',
@@ -324,6 +330,7 @@ window.SITE = {
       page: 'projects/rhymetime/',
       status: 'dev',
       name: 'RhymeTime',
+      playground: { overlay: 'OverlayHtml' },
       section: 'games',
       mono: 'RT',
       scene: 'assets/img/scenes/rhymetime.jpg',

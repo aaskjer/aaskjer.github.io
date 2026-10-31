@@ -6,7 +6,14 @@
  *
  * A game's rules answer every chat line with frames: a chat message from the bot and the overlay's
  * state at that moment. They come out one after the other, with the pauses the game makes, so the
- * overlay deals and draws the way it does on stream.
+ * overlay deals and draws the way it does on stream. A game without an overlay (`overlay` is null)
+ * gets the chat alone.
+ *
+ * Besides its rules (`create`), a game brings: `welcome` and `note` (the first chat line and the
+ * line under the playground), `quick(engine)` (the commands to click), and for its overlay `title`,
+ * `idle` (what the empty screen says), `scene` (what is behind the see-through overlay: 'felt',
+ * 'ocean' or 'night'), `query` (for the overlay's address), `hook` (the function a state file read
+ * as a script calls) and `isActive(state)` (whether the overlay shows something; `state.active`).
  */
 (() => {
   'use strict';
@@ -14,20 +21,26 @@
   const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const VIEWER = 'viewer';
   const BOT = 'StreamBot';
+  const SCENES = ['felt', 'ocean', 'night'];
 
   function mount(root, { game, overlay, name, track }) {
-    root.innerHTML = `
-      <section class="playground" aria-label="Try ${esc(name)} in your browser">
+    const scene = SCENES.includes(game.scene) ? game.scene : SCENES[0];
+    const stage = overlay ? `
         <div class="playground__stage">
-          <div class="playground__screen">
-            <iframe class="playground__overlay" src="${esc(overlay)}" title="${esc(game.title)}" sandbox="allow-scripts" tabindex="-1"></iframe>
+          <div class="playground__screen playground__screen--${scene}">
+            <iframe class="playground__overlay" src="${esc(overlay + (game.query || ''))}" title="${esc(game.title)}" sandbox="allow-scripts" tabindex="-1"></iframe>
             <div class="playground__idle">
               <p class="playground__idle-title">${esc(game.idle[0])}</p>
               <p>${esc(game.idle[1])}</p>
             </div>
           </div>
           <p class="playground__live"><span>Live</span>OBS overlay · simulated</p>
-        </div>
+        </div>` : '';
+    const onStream = overlay
+      ? 'On stream the overlay is an OBS browser source and Streamer.bot sends it the game.'
+      : 'On stream Streamer.bot plays it in your chat.';
+    root.innerHTML = `
+      <section class="playground${overlay ? '' : ' playground--chat'}" aria-label="Try ${esc(name)} in your browser">${stage}
         <div class="playground__chat">
           <div class="playground__chat-head">
             <span>Stream chat</span>
@@ -41,7 +54,7 @@
           </form>
           <div class="playground__quick" role="group" aria-label="Quick commands"></div>
         </div>
-        <p class="playground__note">${game.note || ''} A simulation in your browser: nothing is sent anywhere. On stream the overlay is an OBS browser source and Streamer.bot sends it the game.</p>
+        <p class="playground__note">${game.note || ''} A simulation in your browser: nothing is sent anywhere. ${onStream}</p>
       </section>`;
 
     const frame = root.querySelector('iframe');
@@ -49,19 +62,21 @@
     const input = root.querySelector('input');
     const quick = root.querySelector('.playground__quick');
     const idle = root.querySelector('.playground__idle');
+    const isActive = game.isActive || (state => !!(state && state.active));
     let ready = false;
-    let shown = { active: false };
+    let shown = null;
     const queue = [];
     let playing = false;
     let started = false;
 
     function show(state) {
+      if (!frame) return;
       shown = state;
-      idle.hidden = !!state.active;
-      if (ready) frame.contentWindow.postMessage({ type: 'playground-state', hook: game.hook, state }, '*');
+      idle.hidden = !!state && !!isActive(state);
+      if (ready && state) frame.contentWindow.postMessage({ type: 'playground-state', hook: game.hook, state }, '*');
     }
 
-    addEventListener('message', event => {
+    if (frame) addEventListener('message', event => {
       if (event.source !== frame.contentWindow || !event.data || event.data.type !== 'playground-ready') return;
       ready = true;
       show(shown);
@@ -81,13 +96,16 @@
         `<button class="playground__cmd" type="button" data-command="${esc(command)}">${esc(command)}</button>`).join('');
     }
 
-    // the frames one after the other, each after its pause
+    // the frames one after the other, each after its pause; "Start over" drops the one on its way
+    let round = 0;
     function play() {
       if (playing) return;
       const next = queue.shift();
       if (!next) { refreshQuick(); return; }
       playing = true;
+      const ours = round;
       setTimeout(() => {
+        if (ours !== round) return;
         playing = false;
         if (next.text) for (const part of next.text.split('\n')) line(BOT, part, 'bot');
         if (next.note) line('', next.note, 'note');
@@ -96,13 +114,14 @@
       }, next.delay);
     }
 
+    const snapshot = () => (frame ? engine.overlay() : null);
     const engine = game.create({
       // a chat message from the bot, then the overlay as it is now
-      say(text, delay = 350) { queue.push({ text, state: engine.overlay(), delay }); play(); },
+      say(text, delay = 350) { queue.push({ text, state: snapshot(), delay }); play(); },
       // a line from the playground itself, not from the game
       note(text) { queue.push({ note: text, delay: 200 }); play(); },
       // the overlay alone, without a message
-      draw(delay = 0) { queue.push({ state: engine.overlay(), delay }); play(); },
+      draw(delay = 0) { queue.push({ state: snapshot(), delay }); play(); },
     });
 
     function send(text) {
@@ -128,9 +147,16 @@
     });
     root.querySelector('.playground__reset').addEventListener('click', () => {
       queue.length = 0;
+      round++;
+      playing = false;
       engine.reset();
       log.innerHTML = '';
-      show(engine.overlay());
+      // a fresh overlay too, without anything it still had on screen or was about to show
+      if (frame) {
+        ready = false;
+        frame.src = frame.getAttribute('src');
+        show(engine.overlay());
+      }
       refreshQuick();
       line('', game.welcome, 'note');
     });
