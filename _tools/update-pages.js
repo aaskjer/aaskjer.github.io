@@ -174,7 +174,8 @@ function importFacts(text) {
   const block = text.match(/```[^\n]*\n([\s\S]*?)```/);
   const bytes = Buffer.from(block ? block[1].replace(/\s+/g, '') : '', 'base64');
   if (bytes.subarray(0, 4).toString('latin1') !== 'SBAE') throw new Error('no import string in it');
-  const sb = JSON.parse(zlib.gunzipSync(bytes.subarray(4)).toString('utf8'));
+  // some exports carry a byte order mark in front of their JSON; Streamer.bot does not mind, JSON.parse does
+  const sb = JSON.parse(zlib.gunzipSync(bytes.subarray(4)).toString('utf8').replace(/^﻿/, ''));
   const data = sb.data || {};
   const code = [];
   const walk = list => {

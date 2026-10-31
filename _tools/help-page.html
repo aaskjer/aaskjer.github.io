@@ -87,7 +87,7 @@
 
           <section class="help__section" id="compatibility" aria-labelledby="compat-title">
             <h2 id="compat-title">Which Streamer.bot version each project needs</h2>
-            <p>Every project is exported from Streamer.bot as an import string. The version and date it was last exported with are the version and date it was last built and tested in. A newer Streamer.bot imports it fine. In one older than <b>Needs</b> its C# code does not compile, so the import fails.</p>
+            <p>Every project is an import string exported from Streamer.bot. <b>Last exported from</b> is the Streamer.bot version the project was last built and tested in, and <b>Needs</b> is the oldest version it runs in: Streamer.bot compiles the project's C# code on import, and a version older than that cannot compile it. Any version from <b>Needs</b> on imports it fine.</p>
             <div class="table-scroll">
               <table class="compat">
                 <thead>
@@ -97,7 +97,7 @@
                 </tbody>
               </table>
             </div>
-            <p class="help__note">The releases and export dates are read from each project's import string and its history on GitHub, every hour. <b>Needs</b> is what the project's code was built for.</p>
+            <p class="help__note">The releases and export dates are read from each project's import string and its history on GitHub, every hour.</p>
           </section>
 
           <section class="help__section" id="stuck" aria-labelledby="stuck-title">

@@ -152,7 +152,7 @@
 
           <section class="help__section" id="compatibility" aria-labelledby="compat-title">
             <h2 id="compat-title">Which Streamer.bot version each project needs</h2>
-            <p>Every project is exported from Streamer.bot as an import string. The version and date it was last exported with are the version and date it was last built and tested in. A newer Streamer.bot imports it fine. In one older than <b>Needs</b> its C# code does not compile, so the import fails.</p>
+            <p>Every project is an import string exported from Streamer.bot. <b>Last exported from</b> is the Streamer.bot version the project was last built and tested in, and <b>Needs</b> is the oldest version it runs in: Streamer.bot compiles the project's C# code on import, and a version older than that cannot compile it. Any version from <b>Needs</b> on imports it fine.</p>
             <div class="table-scroll">
               <table class="compat">
                 <thead>
@@ -164,7 +164,7 @@
             <tr><th scope="row"><a href="../projects/sbreffix/">SBRefFix</a></th><td>v1.0.0<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td colspan="2" class="compat__none">Runs on its own, outside Streamer.bot</td></tr>
             <tr><th scope="row"><a href="../projects/suto/">Suggestions To</a></th><td>v1.0.0<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.4 or newer</td></tr>
             <tr><th scope="row"><a href="../projects/obsnotes/">OBS Notes</a></th><td>v1.0.2<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/gamecheck/">GameCheck</a></th><td>v1.0.0<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>–<small>–</small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/gamecheck/">GameCheck</a></th><td>v1.0.0<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7 or newer</td></tr>
             <tr><th scope="row"><a href="../projects/chatcalendar/">Chat Calendar</a></th><td>v1.0.1<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0.7 or newer</td></tr>
             <tr><th scope="row"><a href="../projects/autobotcheck/">AutoBotCheck</a></th><td>v1.1.0<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.4 or newer</td></tr>
             <tr><th scope="row"><a href="../projects/blackjack-game/">Blackjack Game</a></th><td>v16.3.1<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7 or newer</td></tr>
@@ -177,7 +177,7 @@
                 </tbody>
               </table>
             </div>
-            <p class="help__note">The releases and export dates are read from each project's import string and its history on GitHub, every hour. <b>Needs</b> is what the project's code was built for.</p>
+            <p class="help__note">The releases and export dates are read from each project's import string and its history on GitHub, every hour.</p>
           </section>
 
           <section class="help__section" id="stuck" aria-labelledby="stuck-title">
