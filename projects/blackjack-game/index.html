@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/blackjack-game/">
-  <meta property="og:title" content="Blackjack Game  •  v16.3.0">
+  <meta property="og:title" content="Blackjack Game  •  v16.3.1">
   <meta property="og:description" content="Blackjack against the dealer or another chatter, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/blackjack-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v16.3.0">
+  <meta name="twitter:data1" content="v16.3.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +30,7 @@
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"16.3.0","made":"1.0.7","min":"1.0.0-alpha.1","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":[],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"16.3.1","made":"1.0.7","min":"1.0.0-alpha.1","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":[],"updateCheck":true}</script>
 </head>
 <body data-repo="Blackjack-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -724,7 +724,17 @@ deal in — the game never needs to know about it.</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Blackjack-Game/releases">releases on GitHub</a>.</p><h2>v16.3.0 — A new colour picker</h2><p class="release__date">October 26, 2026</p><p>A new colour picker in the settings window. <code>BJG-Settings.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Blackjack-Game/releases">releases on GitHub</a>.</p><h2>v16.3.1 — A solo win posts its summary once</h2><p class="release__date">October 31, 2026</p><p>One chat fix for the solo game and two fixes for the settings window. <code>BJG-Settings.json</code> is read as it stands: no settings change, and there is nothing to redo after the update.</p>
+<h5>💬 Chat</h5>
+<ul>
+<li><strong>A solo win posts its final summary once.</strong> When the dealer busted, when the player&#39;s hand was higher, or when the player won a tie-break, chat got the <code>Final - {user}: … vs dealer …</code> line twice in a row. Now it comes once, followed by the win message and the balance, in points mode and in free games alike. No message text changes.</li>
+</ul>
+<h5>🪟 Closing the window</h5>
+<ul>
+<li><strong>The title bar&#39;s X asks before it discards.</strong> It used to throw away unsaved changes without asking. Now it asks the same question as Cancel, &quot;Discard N unsaved changes?&quot;, and No keeps the window open.</li>
+<li><strong>A recompile or shutdown closes an open window.</strong> Streamer.bot recompiling the action or exiting used to leave the settings window up, still writing <code>BJG-Settings.json</code> from code that was no longer running. Now the window closes on the way out.</li>
+</ul>
+<h2>v16.3.0 — A new colour picker</h2><p class="release__date">October 26, 2026</p><p>A new colour picker in the settings window. <code>BJG-Settings.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
 <h5>🎨A new colour picker</h5>
 <ul>
 <li>A click on the swatch next to an overlay colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:<ul>
