@@ -199,7 +199,8 @@ window.SITE = {
       repo: 'AutoBotCheck',
       page: 'projects/autobotcheck/',
       name: 'AutoBotCheck',
-      section: 'tools',
+      // a helper for the channel, not a stream tool: during a live stream it gets in the way
+      section: 'more',
       mono: 'ABC',
       scene: 'assets/img/scenes/autobotcheck.jpg',
       sceneAlt: 'The Streamer.bot log of an AutoBotCheck run: the bot list is synced, the new bots are banned and the summary counts the bans.',
