@@ -734,6 +734,10 @@
     // A round on the overlay, and its end banner until the overlay fades it out endFadeSec later.
     isActive: state => !!state.active || (typeof state.endTime === 'string'
       && Date.now() - Date.parse(`${state.endTime.slice(0, 23)}Z`) < ((state.overlay && state.overlay.endFadeSec) || 0) * 1000),
+    // The overlay sits in the top left corner, for OBS to place; here it goes in the middle. It
+    // needs about 600 pixels across, so a phone shows it smaller.
+    frameCss: '#stage { inset: 0; width: fit-content; height: fit-content; margin: auto; transform-origin: center; }',
+    frameMinWidth: 640,
     quick: engine => engine.playing
       ? [...COMMON].filter(letter => !engine.guessed.includes(letter)).slice(0, 3).map(letter => `!g ${letter}`).concat('!hmr')
       : ['!hangman', '!hmp', '!hms'],

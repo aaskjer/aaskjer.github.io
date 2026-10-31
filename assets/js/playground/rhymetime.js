@@ -695,6 +695,8 @@
     welcome: 'You are "viewer" with 10.000 pretend Points. Get a word with !rhyme <bet> and answer in chat within 30 seconds, or open a battle with !rhymebattle.',
     note: 'The solo round and the battle with the game\'s default settings, cooldowns included, and its own chat lines. A rhyme nobody listed is checked against a dictionary online on stream; here a letters-only test stands in.',
     scene: 'night',
+    // the card in the middle: on stream it sits at the left edge by default
+    query: '?position=center',
     isActive,
     quick: engine => {
       const answers = engine.answers;
