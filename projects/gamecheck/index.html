@@ -29,7 +29,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="GameCheck" data-files="CHANGELOG.md|README.md|Setup-Guide.md">
+<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -73,7 +73,9 @@
       <div class="wrap project-doc project-doc--static">
       <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
         <h2 class="doc-label">Overview</h2>
-        <div class="doc-body"><h1 align="center">GameCheck</h1><p align="center">
+        <div class="doc-body"><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/logo.png" alt="GameCheck" width="200" height="200">
+</p><h1 align="center">GameCheck</h1><p align="center">
   <b>Free games and game sales, posted to Discord by Streamer.bot.</b><br>
   One Discord message per topic, edited in place whenever something changes.
 </p><p align="center">
@@ -81,7 +83,9 @@
   
   
 </p><p align="center">
+  <a href="https://github.com/aaskjer/GameCheck/releases"><b>Download</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/GameCheck/blob/main/Import-String.md"><b>Import String</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/GameCheck/blob/main/CHANGELOG.md"><b>Changelog</b></a>
 </p><hr>
 <h2>📖 Overview</h2>
@@ -154,8 +158,17 @@ is affiliated with or endorses GameCheck.</p>
 <td><code>gamecheck-settings.cs</code></td>
 </tr>
 </tbody></table>
-<p>The first release will bring an import file that sets all three up at once. Until then they are set up by hand
-once, which takes about ten minutes.</p>
+<h2>Import</h2>
+<p>Click <code>Import</code> in <a href="https://streamer.bot/">Streamer.bot</a> and drag the <code>GameCheck.sb</code> file from the
+<a href="https://github.com/aaskjer/GameCheck/releases">releases</a> into the window, or paste the
+<a href="https://github.com/aaskjer/GameCheck/blob/main/Import-String.md">import string</a> instead. Click <code>Import</code>, then <code>Yes</code> on the popups that follow.</p>
+<p>The three actions land in the group <code>GameCheck</code>, with their triggers already set: the two checks start with
+Streamer.bot (<code>Streamer.bot Started</code>), the settings window opens from its <code>Test</code> trigger. Nothing is posted until
+Discord is set up in the window, so go on with <a href="#1-discord">1. Discord</a> and <a href="#4-first-start">4. First start</a>.
+Steps 2 and 3 are only for setting the actions up by hand.</p>
+<p><strong>Already running Free Game Check or Game Sale Check?</strong> Do not import over them: the import would add a second copy
+of both, and two copies post twice. Paste the new scripts into your existing actions as in step 2 and add only the
+settings action as in step 3 (see also <a href="#coming-from-set-arguments">Coming from Set Arguments</a>).</p>
 <h2>1. Discord</h2>
 <p>Each action posts either with a <strong>bot</strong> or through a <strong>webhook</strong>. A bot can pin its messages and clean up older
 copies; a webhook needs no bot at all. One bot and one channel for both actions is the usual setup.</p>
@@ -171,8 +184,8 @@ invite the bot to your server.</li>
 </ol>
 <p><strong>Webhook</strong></p>
 <p>In the channel&#39;s settings: <code>Integrations</code> → <code>Webhooks</code> → <code>New Webhook</code> → <code>Copy Webhook URL</code>.</p>
-<h2>2. The two actions</h2>
-<p>Do this once for <code>Free Game Check</code> with <code>freegamecheck.cs</code> and once for <code>Game Sale Check</code> with
+<h2>2. The two actions (by hand)</h2>
+<p>The scripts are inside the import; the release has them as files too. Do this once for <code>Free Game Check</code> with <code>freegamecheck.cs</code> and once for <code>Game Sale Check</code> with
 <code>gamesalecheck.cs</code>:</p>
 <ol>
 <li>In Streamer.bot, open <code>Actions</code>, right-click the action list, choose <code>Add</code> and enter the name.</li>
@@ -185,7 +198,7 @@ script.</li>
 then on every run plans the next one itself. Add <code>Core</code> → <code>Test</code> as well if you want to start a check by hand.</li>
 </ol>
 <p>No <code>Set Argument</code> sub-actions are needed. The settings come from the window.</p>
-<h2>3. The settings window</h2>
+<h2>3. The settings window (by hand)</h2>
 <ol>
 <li>Add an action <code>GameCheck - Settings</code> and give it an <code>Execute C# Code</code> sub-action with <code>gamecheck-settings.cs</code>.</li>
 <li>It needs these eight references: <code>mscorlib.dll</code>, <code>System.dll</code>, <code>System.Core.dll</code>, <code>System.Net.Http.dll</code>,
@@ -240,9 +253,14 @@ They say which store failed, or that the bot token or channel is missing.</li>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
-<h2>[Unreleased]</h2>
+<h2>[1.0.0] - 2026-10-31</h2>
+<p>The first release of GameCheck: Free Game Check and Game Sale Check as one project, with a settings window and an
+import that sets everything up at once.</p>
 <h3>Added</h3>
 <ul>
+<li><strong>An import.</strong> <code>GameCheck.sb</code> and the <a href="https://github.com/aaskjer/GameCheck/blob/main/Import-String.md">import string</a> set up all three actions at once, triggers
+included, with no secrets and no settings in them. Every reference holds wherever Streamer.bot is installed.</li>
+<li><strong>A logo</strong>, also in the settings window&#39;s About page.</li>
 <li><strong>A settings window.</strong> The action &quot;GameCheck - Settings&quot; opens a window in the style of the Chat Games for both
 actions: Discord, what is posted, timing, platforms and colours. It writes <code>GameCheck-Settings.json</code> in the folder
 <code>GameCheck</code> next to Streamer.bot, and the bot token, webhook URL and IsThereAnyDeal key into the persisted global
