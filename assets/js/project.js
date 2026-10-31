@@ -197,12 +197,15 @@
 
   function needs() {
     const rows = [];
-    if (FACTS) rows.push(['Streamer.bot', FACTS.min ? `${versionLine(FACTS.min)} or newer${FACTS.made ? `, made with ${FACTS.made}` : ''}` : '']);
+    // the oldest Streamer.bot it runs in: projects.js knows, the import string only carries the version Streamer.bot wrote into it
+    const min = p.streamerbot || (FACTS && FACTS.min);
+    if (p.streamerbot !== false && (min || FACTS)) rows.push(['Streamer.bot', min ? `${versionLine(min)} or newer${FACTS && FACTS.made ? `, made with ${FACTS.made}` : ''}` : '']);
     const streaming = (p.platforms || []).filter(name => STREAMING.includes(name));
     if (streaming.length) rows.push(['Platform', `${orList(streaming)}, connected in Streamer.bot`]);
     if ((p.tags || []).includes('OBS overlay')) rows.push(['OBS Studio', 'for the overlay, as a browser source']);
     const sends = (p.tags || []).filter(name => SENDS_TO.includes(name));
-    if (FACTS && sends.length) rows.push(['Sends to', orList(sends)]);
+    if (p.streamerbot !== false && sends.length) rows.push(['Sends to', orList(sends)]);
+    for (const need of p.needs || []) rows.push([need.name, need.what]);
     if (!FACTS && (p.platforms || []).includes('Windows')) rows.push(['Windows', (p.tags || []).includes('PowerShell') ? 'with PowerShell' : '']);
     return rows.map(([name, value]) => `<div><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('');
   }
