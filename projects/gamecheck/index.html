@@ -14,10 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/gamecheck/">
-  <meta property="og:title" content="GameCheck">
+  <meta property="og:title" content="GameCheck  •  v1.0.0">
   <meta property="og:description" content="Free games and the best game deals in your Discord, kept up to date on their own. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/gamecheck.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:label1" content="Version">
+  <meta name="twitter:data1" content="v1.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -79,6 +81,9 @@
   <b>Free games and game sales, posted to Discord by Streamer.bot.</b><br>
   One Discord message per topic, edited in place whenever something changes.
 </p><p align="center">
+  
+  
+  
   
   
   
@@ -153,7 +158,7 @@ is affiliated with or endorses GameCheck.</p>
 <td><code>gamesalecheck.cs</code></td>
 </tr>
 <tr>
-<td><code>GameCheck - Settings</code></td>
+<td><code>[CG] - Settings</code></td>
 <td>the settings window for both</td>
 <td><code>gamecheck-settings.cs</code></td>
 </tr>
@@ -200,7 +205,7 @@ then on every run plans the next one itself. Add <code>Core</code> → <code>Tes
 <p>No <code>Set Argument</code> sub-actions are needed. The settings come from the window.</p>
 <h2>3. The settings window (by hand)</h2>
 <ol>
-<li>Add an action <code>GameCheck - Settings</code> and give it an <code>Execute C# Code</code> sub-action with <code>gamecheck-settings.cs</code>.</li>
+<li>Add an action <code>[CG] - Settings</code> and give it an <code>Execute C# Code</code> sub-action with <code>gamecheck-settings.cs</code>.</li>
 <li>It needs these eight references: <code>mscorlib.dll</code>, <code>System.dll</code>, <code>System.Core.dll</code>, <code>System.Net.Http.dll</code>,
 <code>Newtonsoft.Json.dll</code>, <code>PresentationFramework.dll</code>, <code>PresentationCore.dll</code> and <code>WindowsBase.dll</code>. <code>Find Refs</code>
 adds most of them; add a missing one in the editor&#39;s <code>References</code> tab (right-click → <code>Add reference from file...</code>). Then <code>Save and Compile</code>.</li>
@@ -261,7 +266,7 @@ import that sets everything up at once.</p>
 <li><strong>An import.</strong> <code>GameCheck.sb</code> and the <a href="https://github.com/aaskjer/GameCheck/blob/main/Import-String.md">import string</a> set up all three actions at once, triggers
 included, with no secrets and no settings in them. Every reference holds wherever Streamer.bot is installed.</li>
 <li><strong>A logo</strong>, also in the settings window&#39;s About page.</li>
-<li><strong>A settings window.</strong> The action &quot;GameCheck - Settings&quot; opens a window in the style of the Chat Games for both
+<li><strong>A settings window.</strong> The action &quot;[CG] - Settings&quot; opens a window in the style of the Chat Games for both
 actions: Discord, what is posted, timing, platforms and colours. It writes <code>GameCheck-Settings.json</code> in the folder
 <code>GameCheck</code> next to Streamer.bot, and the bot token, webhook URL and IsThereAnyDeal key into the persisted global
 variables, so an export carries no secrets. A Set Argument value in an action still wins; the window shows such a
