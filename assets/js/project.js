@@ -625,10 +625,11 @@
   function showPlayground(article) {
     if (!playground) {
       playground = document.createElement('div');
-      playground.innerHTML = '<p class="doc-status">Setting up the table…</p>';
+      playground.innerHTML = '<p class="doc-status">Setting up the game…</p>';
+      const overlay = p.playground.overlay ? 'playground.html' : null;
       loadScript(`${ROOT}assets/js/playground.js`)
         .then(() => loadScript(`${ROOT}assets/js/playground/${p.page.split('/')[1]}.js`))
-        .then(() => window.Playground.mount(playground, { game: window.PlaygroundGames[repo], overlay: 'playground.html', name: p.name, track: repo }))
+        .then(() => window.Playground.mount(playground, { game: window.PlaygroundGames[repo], overlay, name: p.name, track: repo }))
         .catch(() => { playground.innerHTML = '<p class="doc-status">The playground could not be loaded. Please try again later.</p>'; });
     }
     article.classList.remove('md');

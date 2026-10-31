@@ -4346,6 +4346,17 @@ main > .section::before {
   overflow: hidden;
 }
 
+/* the other scenes a game can pick: open water, a dark stage */
+.playground__screen--ocean {
+  background:
+    radial-gradient(120% 90% at 50% 30%, #1d5f86 0%, #0f3a5a 52%, #071c2e 100%);
+}
+
+.playground__screen--night {
+  background:
+    radial-gradient(120% 90% at 50% 35%, #2c2754 0%, #17152f 55%, #0b0a17 100%);
+}
+
 .playground__overlay {
   position: absolute;
   inset: 0;
@@ -4441,8 +4452,8 @@ main > .section::before {
 
 .playground__log {
   flex: 1;
-  /* the playing cards (🂡) of the chat lines */
-  font-family: var(--font-body), 'Segoe UI Symbol', 'Noto Sans Symbols 2', sans-serif;
+  /* emoji in colour, and the playing cards (🂡) of the chat lines, which no emoji font has */
+  font-family: var(--font-body), 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Segoe UI Symbol', 'Noto Sans Symbols 2', sans-serif;
   min-height: 0;
   margin: 0;
   padding: 0.6rem 0.9rem;
@@ -4528,6 +4539,16 @@ main > .section::before {
   grid-column: 1 / -1;
   color: var(--faint);
   font-size: 0.84rem;
+}
+
+/* a game without an overlay: the chat alone, as wide as a chat reads well */
+.playground--chat {
+  grid-template-columns: minmax(0, 44rem);
+}
+
+.playground--chat .playground__chat {
+  height: 30rem;
+  max-height: none;
 }
 
 @media (max-width: 900px) {
