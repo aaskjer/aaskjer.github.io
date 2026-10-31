@@ -47,6 +47,18 @@ for (const p of projects.filter(x => x.page)) {
     if (strict) throw e;
     console.warn(`Releases of ${p.repo} not loaded (${e.message}), using ${p.version || 'no version'} from projects.js.`);
   }
+  // The documents project.js may load (the list there), as far as the repository has them, so the
+  // page asks for no file that is missing. Unknown (no answer from GitHub): it asks for all of them.
+  let files = null;
+  try {
+    const wanted = new Set(['README.md', 'Setup-Guide.md', 'Manual.md', 'FAQ.md', 'CHANGELOG.md',
+      p.importString || 'Import-String.md', ...(p.moreDocs || []).map(d => d.file)].map(f => f.toLowerCase()));
+    const { tree } = await getJSON(`https://api.github.com/repos/${user}/${p.repo}/git/trees/main?recursive=1`);
+    files = tree.filter(t => t.type === 'blob' && wanted.has(t.path.toLowerCase())).map(t => t.path);
+  } catch (e) {
+    if (strict) throw e;
+    console.warn(`Files of ${p.repo} not loaded (${e.message}), its page will ask for every document.`);
+  }
   const features = (p.features || []).map(f =>
     `\n          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>${esc(f)}</span></li>`).join('');
   const hero = `    <!-- shown until project.js has built the page; search engines read it too -->
@@ -71,6 +83,7 @@ for (const p of projects.filter(x => x.page)) {
   const html = template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
     if (key === 'hero') return hero;
     if (key === 'labels') return labels;
+    if (key === 'files') return files ? ` data-files="${esc(files.join('|'))}"` : '';
     if (values[key] == null) throw new Error(`nothing for {{${key}}} on the page of ${p.repo}`);
     return esc(values[key]);
   });

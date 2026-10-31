@@ -40,16 +40,17 @@ window.SITE = {
   twitch: 'https://www.twitch.tv/aaskjer',
   // Umami Cloud visitor statistics: the website ID from the Umami dashboard; leave empty to switch them off
   stats: { script: 'https://cloud.umami.is/script.js', websiteId: '1fd3cb1c-351d-4e3c-aed9-925125642e95', domain: 'aaskjer.github.io' },
-  // A repository without a release that holds only README and LICENSE shows a red "Coming Soon"
+  // A repository without a release that holds only README and LICENSE shows a "Coming Soon" label
   // instead of its buttons. Repositories listed here show it too although they already have
   // files, until their first release is out.
   comingSoon: [],
   // The Featured box above the stream tools. A project gets in for `days` after a release (a
   // pre-release too) or a change of its status, and for at least `downloads.min` downloads in the
-  // last `downloads.days` days. The newest reasons come first, at most `max` take turns, and
-  // `fallback` is shown while no project has a reason. The download history is the stats branch of
-  // this repository, recorded once a day by .github/workflows/download-counts.yml.
-  featured: { fallback: 'TwitchSentry', days: 7, max: 5, downloads: { days: 7, min: 20 } },
+  // last `downloads.days` days. The newest reason gets the big box, up to `max` - 1 more sit below
+  // it as cards (with the first sentence of their release notes after a release), and `fallback` is
+  // shown while no project has a reason. The download history is the stats branch of this
+  // repository, recorded once a day by .github/workflows/download-counts.yml.
+  featured: { fallback: 'TwitchSentry', days: 7, max: 3, downloads: { days: 7, min: 20 } },
   projects: [
     {
       repo: 'TwitchSentry',
@@ -62,7 +63,7 @@ window.SITE = {
       sceneAlt: 'TwitchSentry removes a viewer-selling spam message and an unauthorized link from chat, then a moderator gives a link permit.',
       screenshot: 'assets/img/twitchsentry-app.jpg',
       screenshotFull: 'assets/img/twitchsentry-app-full.jpg',
-      tagline: 'TwitchSentry is a fully automated moderation suite designed for quiet and crowded chats. TwitchSentry is capable to replace a human moderator in small communities and works great as backup in big communities.',
+      tagline: 'TwitchSentry is a fully automated moderation suite designed for quiet and crowded chats. It can replace a human moderator in small communities and works great as a backup in big ones.',
       description: 'A moderation suite for Streamer.bot: deletes fake gift links, sketchy URLs and copy-paste scams in Twitch chat, guards against raids and follow waves, and tells you what was removed and why.',
       preview: 'Your smart chat bodyguard for Twitch: scam links, spam and hate raids handled. A free Streamer.bot extension.',
       features: [
@@ -147,7 +148,7 @@ window.SITE = {
       logo: 'assets/img/projects/obsnotes.png',
       scene: 'assets/img/scenes/obsnotes.jpg',
       sceneAlt: 'Viewers write their Fran Bow clues into chat with !note, and each one sticks on stream as a post-it.',
-      tagline: 'Can\'t remember the code of the combination lock? Your chat can step-in an add a post-it in OBS for you!',
+      tagline: 'Can\'t remember the code of the combination lock? Your chat can step in and add a post-it in OBS for you!',
       description: 'OBS Notes for Streamer.bot: viewers write codes, quest hints and names into Twitch, YouTube or Kick chat with !note, and each note sticks on stream as a post-it, one list per game.',
       preview: 'Chat writes it down, OBS shows it as a post-it: notes from Twitch, YouTube and Kick chat, one list per game. A free Streamer.bot import.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
@@ -183,7 +184,7 @@ window.SITE = {
       logo: 'assets/img/projects/blackjack-game.png',
       scene: 'assets/img/scenes/blackjack-game.jpg',
       sceneAlt: 'A Blackjack duel on stream: both hands on the OBS overlay while chat plays with hit and stand.',
-      tagline: 'You don\'t need to go to Las Vegas to play solid Strip Poker! Play against the CPU, another Player or together against the House!',
+      tagline: 'You don\'t need to go to Las Vegas to play solid Blackjack! Play against the CPU, another Player or together against the House!',
       description: 'A real hand of Blackjack against the dealer in chat, with splits, double downs and insurance, or a duel between two chatters. A Streamer.bot extension for Twitch, YouTube and Kick.',
       preview: 'Blackjack against the dealer or another chatter, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
@@ -234,7 +235,7 @@ window.SITE = {
       logo: 'assets/img/projects/slot-machine-game.png',
       scene: 'assets/img/scenes/slot-machine-game.jpg',
       sceneAlt: 'Slot spins in chat: the reels, then the win, loss or jackpot message.',
-      tagline: 'Who needs a casino if you can play your slots right here in the chat? Spin the wheels and reach for the Jackpool!',
+      tagline: 'Who needs a casino if you can play your slots right here in the chat? Spin the wheels and reach for the Jackpot!',
       description: 'Chat spins the reels with emotes: adjustable odds, three to six reels, rare emotes pay more, and an optional jackpot pool. A Streamer.bot extension for Twitch, YouTube and Kick.',
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],

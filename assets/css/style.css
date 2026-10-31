@@ -272,16 +272,10 @@ code {
 
 /* in place of the buttons while a project is not released yet; not a link */
 .btn--soon {
-  border-color: color-mix(in srgb, #ef4444 45%, transparent);
-  background: color-mix(in srgb, #ef4444 16%, transparent);
-  color: #f87171;
+  border-color: var(--border-strong);
+  background: var(--surface);
+  color: var(--muted);
   cursor: default;
-}
-
-:root[data-theme='light'] .btn--soon {
-  border-color: #fca5a5;
-  background: #fee2e2;
-  color: #b91c1c;
 }
 
 .btn--sm {
@@ -687,9 +681,10 @@ main > .section::before {
   font-size: 1.05rem;
 }
 
+/* three cards side by side from tablet width on (never more), so the scene pictures stay small */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(260px, (100% - 2.5rem) / 3)), 1fr));
   gap: 1.25rem;
 }
 
@@ -1231,117 +1226,38 @@ main > .section::before {
   }
 }
 
-/* ---------- the Featured box: several spotlights taking turns ---------- */
-
-/* They lie on top of each other, so the box is as tall as the tallest one and does not jump
-   when the next one comes. */
-.featured__deck {
-  display: grid;
-}
-
-/* a shorter one sits in the middle, its text and picture together */
-.featured__deck > .spotlight {
-  grid-area: 1 / 1;
-  align-content: center;
-  margin-bottom: 0;
-}
-
-.featured__deck > .spotlight:not(.is-active) {
-  visibility: hidden;
-  opacity: 0;
-}
+/* ---------- the Featured box: one big spotlight, the others as cards below it ---------- */
 
 /* hidden until main.js knows which projects to show */
 .featured.is-pending .featured__inner {
   opacity: 0;
 }
 
-.featured__nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 0.9rem;
-}
-
-.featured__dots {
-  display: flex;
-}
-
-.featured__dot {
+.featured__more {
   display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  cursor: pointer;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 1.25rem;
 }
 
-.featured__dot::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--border-strong);
-}
-
-.featured__dot:hover::before {
-  background: var(--muted);
-}
-
-.featured__dot[aria-current='true']::before {
-  width: 22px;
-  background: var(--accent);
-}
-
-.featured__pause {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  padding: 0;
+/* the first sentence of the latest release notes */
+.whats-new {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
+  border-radius: 12px;
+  background: var(--tile);
   color: var(--muted);
-  cursor: pointer;
+  font-size: 0.9rem;
 }
 
-.featured__pause:hover {
+.whats-new strong {
   color: var(--text);
-  border-color: var(--border-strong);
-}
-
-.featured__pause .i {
-  width: 13px;
-  height: 13px;
-}
-
-/* the pause icon while the projects take turns, the play icon once paused */
-.featured__pause[aria-pressed='false'] .i:nth-of-type(2),
-.featured__pause[aria-pressed='true'] .i:nth-of-type(1) {
-  display: none;
-}
-
-:is(.featured__dot, .featured__pause):focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  font-weight: 600;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .featured__inner {
     transition: opacity 0.4s ease;
-  }
-
-  .featured__deck > .spotlight {
-    transition: opacity 0.6s ease, visibility 0.6s, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .featured__dot::before {
-    transition: width 0.25s ease, background-color 0.25s ease;
   }
 }
 
