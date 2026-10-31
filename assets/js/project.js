@@ -3,7 +3,8 @@
  * (README, setup guide, manual, FAQ, changelog) are in the page already, as HTML that
  * _tools/update-pages.js made from the project's GitHub repository, and so is what its
  * import string adds to Streamer.bot. A page that has not been rebuilt yet loads the
- * documents from GitHub and turns them into HTML here.
+ * documents from GitHub and turns them into HTML here. A game with a `playground` in projects.js
+ * gets a "Try it" tab, which loads assets/js/playground.js and the game's rules.
  */
 (() => {
   'use strict';
@@ -84,8 +85,7 @@
 
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
-    complete: { label: 'Feature Complete', note: 'All planned features are in: no big updates planned, only fixes and polish.' },
-    // finished projects need no label, so "Done" stays in the list but is not shown
+    // a project is either in development or has no label: finished, apart from fixes
     done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.', hidden: true },
   };
 
@@ -103,11 +103,7 @@
 
   function badges() {
     const status = STATUS[p.status];
-    let note = status ? status.note : '';
-    if ((p.status === 'complete' || p.status === 'done') && p.section === 'games') {
-      note += ' The games get one more round if Streamer.bot ships its own points system.';
-    }
-    const label = status && !status.hidden ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
+    const label = status && !status.hidden ? `<span class="badge badge--${p.status}" title="${esc(status.note)}">${status.label}</span>` : '';
     // a pre-release newer than the latest stable version, e.g. "v2.0.0 Pre-release"
     const pre = p.pre
       ? `<span class="badge badge--pre" title="${esc(p.pre.version)}, out ${esc(timeAgo(p.pre.released))}: a test version of what comes next, not finished yet">${esc(p.pre.version.replace(/-.*/, ''))} Pre-release</span>` : '';
@@ -160,7 +156,8 @@
               <div class="meta-row" id="meta">${metaRow()}</div>
               <div class="project-hero__links">
                 <a href="${REPO_URL}" data-track="github">${icon('github')}Source on GitHub</a>
-                <a href="${REPO_URL}/issues/new/choose" data-track="report">${icon('flag')}Report a problem</a>
+                <a href="${REPO_URL}/issues/new/choose" data-track="report">${icon('flag')}Report a problem</a>${p.playground ? `
+                <a href="?tab=try" data-tab="try" data-track="playground-link">${icon('play')}Try it in your browser</a>` : ''}
               </div>
             </div>
             ${picture ? `
@@ -614,6 +611,31 @@
       `<a class="toc__${h.tagName.toLowerCase()}" href="#${esc(h.id)}">${esc(h.textContent.trim())}</a>`).join('');
   }
 
+  // The "Try it" tab: the playground and the game's rules load the first time it opens, and the
+  // table stays as it was while another tab shows, so a hand in play is still there on the way back.
+  let playground = null;
+  const loadScript = src => new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
+  function showPlayground(article) {
+    if (!playground) {
+      playground = document.createElement('div');
+      playground.innerHTML = '<p class="doc-status">Setting up the table…</p>';
+      loadScript(`${ROOT}assets/js/playground.js`)
+        .then(() => loadScript(`${ROOT}assets/js/playground/${p.page.split('/')[1]}.js`))
+        .then(() => window.Playground.mount(playground, { game: window.PlaygroundGames[repo], overlay: 'playground.html', name: p.name, track: repo }))
+        .catch(() => { playground.innerHTML = '<p class="doc-status">The playground could not be loaded. Please try again later.</p>'; });
+    }
+    article.classList.remove('md');
+    article.replaceChildren(playground);
+    $('#toc').innerHTML = '';
+  }
+
   let current = null;
 
   function showTab(id, anchor, push) {
@@ -633,7 +655,14 @@
         bar.scrollLeft += t.left - b.left - (b.width - t.width) / 2;
       }
     }
-    render(doc);
+    const article = $('#doc');
+    if (doc.playground) {
+      showPlayground(article);
+    } else {
+      article.classList.add('md');
+      render(doc);
+    }
+    article.setAttribute('aria-labelledby', `tab-${doc.id}`);
     const url = (doc.id === 'overview' ? location.pathname : `?tab=${doc.id}`) + (anchor ? `#${anchor}` : '');
     history[push ? 'pushState' : 'replaceState'](null, '', url);
     let heading = anchor;
@@ -663,6 +692,8 @@
       for (const doc of found) if (doc.html == null) doc.html = window.marked.parse(doc.text, { gfm: true });
     }
     available = withAnchors(found);
+    // the playground of a game, right after its overview
+    if (p.playground && available.length) available.splice(1, 0, { id: 'try', label: 'Try it', file: '', playground: true });
     if (!available.length) {
       $('#doc').innerHTML = `<p class="doc-status">The documents could not be loaded. <a href="${REPO_URL}">Read them on GitHub</a>.</p>`;
       return;

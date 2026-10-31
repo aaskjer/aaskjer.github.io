@@ -1,6 +1,6 @@
 // Writes the page of every project with a `page` in projects.js from _tools/project-page.html,
 // the commands page (commands/), the help page (help/), the release feed feed.xml, the search index
-// assets/search.json and sitemap.xml.
+// assets/search.json and sitemap.xml, and for a game with a playground its overlay (playground.html).
 // Each page carries the project's documents (README, setup guide, manual, FAQ, changelog) already
 // turned into HTML, so it shows them at once, search engines read them, and visitors without
 // JavaScript too. It also carries what its import string adds to Streamer.bot (commands, actions,
@@ -219,8 +219,9 @@ function importFacts(text) {
     timers: (data.timers || []).length,
     sites: [...sites].sort(),
     updateCheck,
-    // for the commands page, not the project page
+    // for the commands page and the playground, not the project page
     entries,
+    sources: code,
   };
 }
 
@@ -441,6 +442,27 @@ for (const p of projects.filter(x => x.page)) {
       console.warn(`Import string of ${p.repo} not read (${e.message}).`);
     }
   }
+  // The game's own OBS overlay for its playground (see assets/js/playground.js), with
+  // playground-frame.js put in, which hands it the playground's state instead of the state file the
+  // game writes. The game carries the overlay in its C# code, as a verbatim string (@"…", a quote
+  // written "") that it writes to disk; `playground.overlay` names it. Kept from the last run when
+  // the import string cannot be read.
+  if (p.playground && facts) {
+    try {
+      const pattern = new RegExp(`\\b${p.playground.overlay}\\s*=\\s*@"((?:[^"]|"")*)"`);
+      const found = facts.sources.map(source => source.match(pattern)).find(Boolean);
+      if (!found) throw new Error(`no ${p.playground.overlay} in its code`);
+      const overlay = found[1].replace(/""/g, '"');
+      const note = `\n<!-- Written by _tools/update-pages.js from ${p.playground.overlay} in the import string of ${user}/${p.repo}, for the playground on this page. -->`;
+      const frame = '\n<meta name="robots" content="noindex">\n<script src="../../assets/js/playground-frame.js"></script>';
+      const head = /<meta\s+charset[^>]*>/i.test(overlay) ? /<meta\s+charset[^>]*>/i : /<head[^>]*>/i;
+      if (!head.test(overlay)) throw new Error('it has no <head>');
+      fs.writeFileSync(`${p.page}playground.html`, overlay.replace(/^(<!doctype[^>]*>)?/i, `$1${note}`).replace(head, `$&${frame}`));
+    } catch (e) {
+      if (strict) throw e;
+      console.warn(`Overlay of ${p.repo} not copied (${e.message}).`);
+    }
+  }
   // when the import string was last exported from Streamer.bot, for the compatibility table
   let exported = null;
   if (facts) {
@@ -518,7 +540,7 @@ for (const p of projects.filter(x => x.page)) {
       </section>`).join('')
     : `\n      <p class="doc-status">The documents load with JavaScript. You can also read them on <a href="https://github.com/${user}/${esc(p.repo)}">GitHub</a>.</p>`;
   // `<` written as \u003c, so nothing in it can end the script element
-  const data = facts ? `\n  <script type="application/json" id="import-facts">${JSON.stringify({ ...facts, entries: undefined }).replace(/</g, '\\u003c')}</script>` : '';
+  const data = facts ? `\n  <script type="application/json" id="import-facts">${JSON.stringify({ ...facts, entries: undefined, sources: undefined }).replace(/</g, '\\u003c')}</script>` : '';
   // Slack and others show it as a small column under the description
   const labels = p.version ? `\n  <meta name="twitter:label1" content="Version">\n  <meta name="twitter:data1" content="${esc(p.version)}">` : '';
   const values = {

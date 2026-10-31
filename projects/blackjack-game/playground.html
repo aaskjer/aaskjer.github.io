@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<!-- Written by _tools/update-pages.js from HtmlTemplate in the import string of aaskjer/Blackjack-Game, for the playground on this page. -->
+<!-- bjg-overlay-version: 13 -->
+<html lang='en'>
+<head>
+<meta charset='UTF-8' />
+<meta name="robots" content="noindex">
+<script src="../../assets/js/playground-frame.js"></script>
+<title>Blackjack Overlay</title>
+<style>
+  :root{
+    --card-w: 7vw;
+    --card-h: 9.6vw;
+    --red: #d3283a;
+    --black: #1a1a1a;
+    --gold: #ffce54;
+    --font-scale: 1;
+    --table-bg: transparent;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Noto Sans', Arial, sans-serif;
+    color: #fff;
+  }
+  #table {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2vh 2vw;
+    box-sizing: border-box;
+    background: var(--table-bg);
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  #table.visible { opacity: 1; }
+
+  .zone { display: flex; flex-direction: column; align-items: center; gap: .6vh; }
+  .zone.dealer-zone { align-items: center; }
+  .zone.players-zone { align-items: center; gap: 1.4vh; }
+
+  .zone-label {
+    font-size: calc(1.6vw * var(--font-scale));
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+    letter-spacing: .03em;
+  }
+  .zone-value {
+    font-weight: 400;
+    opacity: .85;
+    font-size: calc(1.2vw * var(--font-scale));
+    margin-left: .5em;
+  }
+
+  .hand-row { display: flex; align-items: center; gap: .5vw; }
+  .cards { display: flex; }
+  .card {
+    width: var(--card-w);
+    height: var(--card-h);
+    min-width: 46px;
+    min-height: 64px;
+    background: #fbfbf8;
+    border-radius: .45vw;
+    box-shadow: 0 .3vw .6vw rgba(0,0,0,.55);
+    margin-left: -2.4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .35vw .45vw;
+    box-sizing: border-box;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    transition: transform .25s cubic-bezier(.2,.8,.3,1.2), opacity .25s ease;
+  }
+  .card:first-child { margin-left: 0; }
+  .card.red { color: var(--red); }
+  .card.black { color: var(--black); }
+  .card .rank { font-size: calc(1.4vw * var(--font-scale)); }
+  .card .suit { font-size: calc(1.9vw * var(--font-scale)); align-self: center; }
+  .card .rank.bottom { align-self: flex-end; transform: rotate(180deg); }
+
+  .card.dealing {
+    animation: dealIn .32s ease-out;
+  }
+  @keyframes dealIn {
+    0%   { transform: translateY(-1.2vh) scale(.6); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  .hand-meta {
+    display: flex; flex-direction: column; align-items: flex-start; gap: .2vh;
+  }
+  .hand-name {
+    font-size: calc(1.35vw * var(--font-scale) * var(--name-scale, 1));
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+  }
+  .hand-total { font-size: calc(1.05vw * var(--font-scale)); opacity: .85; }
+
+  .hand-row.current .cards { filter: drop-shadow(0 0 .5vw var(--gold)); }
+  .hand-row.current .hand-name::after {
+    content: ' \25CF';
+    color: var(--gold);
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+  .badge {
+    font-size: calc(.95vw * var(--font-scale));
+    font-weight: 700;
+    padding: .15vh .6vw;
+    border-radius: 1vw;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .badge.win, .badge.blackjack, .badge.charlie, .badge.sevens { background: #2ecc71; color: #06210f; }
+  .badge.lose, .badge.bust, .badge.surrender { background: #e74c3c; color: #2a0505; }
+  .badge.push { background: #95a5a6; color: #1a1a1a; }
+  .badge.stand { background: #4a5b6b; color: #e8eef4; }
+
+  .players-row { display: flex; gap: 3vw; flex-wrap: wrap; justify-content: center; }
+
+  /* A house table keeps the solo layout but seats several players at once. Side by side, a row
+     of cards with its label beside it is too wide and wraps onto its own line, so each hand
+     stacks the label under the cards instead - narrow enough for the seats to sit in one row. */
+  /* The dealer is centred and the seats curve around them along an arc, the way players sit
+     around the rim of a real felt. --arc-lift is set per seat in renderSolo. */
+  #table.house .players-row { gap: 1.8vw; align-items: flex-start; }
+  /* Only the cards tilt into the arc - the name and totals stay upright and readable. */
+  #table.house .players-row .cards {
+    transform: rotate(var(--card-tilt, 0deg));
+    transform-origin: 50% 100%;
+    transition: transform .35s ease;
+  }
+  #table.house .players-row .hand-row {
+    flex-direction: column;
+    align-items: center;
+    gap: .5vh;
+    transform: translateY(calc(-1 * var(--arc-lift, 0vh)));
+    transition: transform .35s ease;
+  }
+  /* Cap the label so a long name wraps under its own cards instead of widening the seat and
+     shoving the rest of the table sideways. */
+  #table.house .players-row .hand-meta { align-items: center; text-align: center; max-width: 15vw; }
+  /* Seats are smaller here than in solo, so the cards fan out a little wider to stay readable.
+     The first-child reset has to be repeated - this selector outranks the global one. */
+  #table.house .players-row .card { margin-left: -1.5vw; }
+  #table.house .players-row .card:first-child { margin-left: 0; }
+  #table.house .players-row .hand-name { font-size: calc(1.15vw * var(--font-scale)); }
+  #table.house .players-row .hand-total { font-size: calc(.95vw * var(--font-scale)); }
+
+  /* Join window: no cards have been dealt yet, so the seats are shown as a row of chips - taken
+     ones carry the player's name and bet, the rest sit dashed and dim as open seats. */
+  .house-status {
+    font-size: calc(1.15vw * var(--font-scale));
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--gold);
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+    text-align: center;
+    margin-top: .8vh;
+  }
+  .house-status:empty { display: none; }
+
+  .lobby-seat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .3vh;
+    min-width: 8vw;
+    max-width: 14vw;
+    padding: .9vh 1vw;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: .5vw;
+    background: rgba(255,255,255,.06);
+  }
+  .lobby-seat.empty { opacity: .45; border-style: dashed; background: none; }
+  .lobby-name {
+    font-size: calc(1.15vw * var(--font-scale) * var(--name-scale, 1));
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+  }
+  .lobby-stake { font-size: calc(.95vw * var(--font-scale)); opacity: .85; }
+
+  .insurance-indicator {
+    font-size: calc(1.05vw * var(--font-scale));
+    font-weight: 600;
+    color: var(--gold);
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+    margin-top: .4vh;
+  }
+
+  /* ---------- Duel mode ---------- */
+  #duel {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 2vw;
+    box-sizing: border-box;
+    background: var(--table-bg);
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  #duel.visible { opacity: 1; }
+
+  .duel-table {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2vw;
+    width: 100%;
+  }
+  .duel-seat {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    flex: 1 1 0;
+    max-width: 40%;
+  }
+  .duel-seat.left { align-items: flex-end; }
+  .duel-seat.right { align-items: flex-start; }
+
+  /* --name-scale is set per seat from the name's length. Without the width cap the name sizes
+     itself to its content and overflows the seat - to the left on the left-hand seat, where it
+     gets clipped off the edge of the canvas rather than wrapping. */
+  .seat-name {
+    font-size: calc(1.5vw * var(--font-scale) * var(--name-scale, 1));
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+    letter-spacing: .02em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5vw;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+  }
+  .duel-seat.left .seat-name { justify-content: flex-end; text-align: right; }
+  .duel-seat.right .seat-name { justify-content: flex-start; text-align: left; }
+  .seat-stake {
+    font-size: calc(1.05vw * var(--font-scale));
+    opacity: .85;
+  }
+  .duel-seat.active .seat-name { color: var(--gold); }
+  .duel-seat.active .seat-name::after {
+    content: ' \25CF';
+    animation: pulse 1s infinite;
+  }
+  .duel-seat.waiting .seat-name::after {
+    content: ' \003F';
+    color: var(--gold);
+    animation: pulse .7s infinite;
+  }
+  .duel-seat.active .cards { filter: drop-shadow(0 0 .5vw var(--gold)); }
+
+  .duel-hand {
+    display: flex;
+    flex-direction: column;
+    gap: .3vh;
+  }
+  .duel-seat.left .duel-hand { align-items: flex-end; }
+  .duel-seat.right .duel-hand { align-items: flex-start; }
+  .duel-hand.current .cards { filter: drop-shadow(0 0 .6vw var(--gold)); }
+  .duel-hand-meta {
+    font-size: calc(1.05vw * var(--font-scale));
+    opacity: .9;
+    display: flex;
+    align-items: center;
+    gap: .5vw;
+  }
+
+  .duel-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .8vh;
+    flex: 0 0 auto;
+    min-width: 12vw;
+    align-self: center;
+  }
+  .duel-vs {
+    font-size: calc(3vw * var(--font-scale));
+    font-weight: 800;
+    color: var(--gold);
+    text-shadow: 0 .25vw .5vw rgba(0,0,0,.9);
+    letter-spacing: .06em;
+  }
+  .duel-pot {
+    font-size: calc(1.2vw * var(--font-scale));
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+  }
+  .duel-sd {
+    font-size: calc(1.05vw * var(--font-scale));
+    font-weight: 700;
+    color: #ff6b6b;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    animation: pulse 1s infinite;
+  }
+  .duel-result {
+    font-size: calc(1.8vw * var(--font-scale));
+    font-weight: 800;
+    color: var(--gold);
+    text-align: center;
+    text-shadow: 0 .25vw .5vw rgba(0,0,0,.9);
+    margin-top: 1.4vh;
+  }
+
+  .duel-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .8vh;
+    padding: 2.2vh 3vw;
+    border-radius: 1vw;
+    background: rgba(0,0,0,.72);
+    border: .2vw solid var(--gold);
+    box-shadow: 0 .6vw 1.6vw rgba(0,0,0,.6);
+  }
+  .duel-prompt.standalone { margin: 0 auto; }
+  .duel-prompt.inline { margin-top: 2.4vh; }
+  .prompt-title {
+    font-size: calc(2vw * var(--font-scale));
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .prompt-names {
+    font-size: calc(1.6vw * var(--font-scale));
+    font-weight: 700;
+    text-align: center;
+  }
+  .prompt-subtitle {
+    font-size: calc(1.15vw * var(--font-scale));
+    opacity: .9;
+    text-align: center;
+  }
+  .prompt-hint {
+    font-size: calc(1.05vw * var(--font-scale));
+    font-weight: 700;
+    letter-spacing: .04em;
+  }
+  .prompt-hint .yes { color: #2ecc71; }
+  .prompt-hint .no { color: #e74c3c; }
+
+  .timer-ring { display: block; }
+  .timer-ring circle { fill: none; stroke-width: 6; }
+  .timer-ring .bg { stroke: rgba(255,255,255,.18); }
+  .timer-ring .fg {
+    stroke: var(--gold);
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset .12s linear;
+  }
+  .timer-wrap { position: relative; width: 6vw; height: 6vw; min-width: 54px; min-height: 54px; }
+  .timer-wrap svg { width: 100%; height: 100%; }
+  .timer-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(1.4vw * var(--font-scale));
+    font-weight: 800;
+  }
+</style>
+</head>
+<body>
+  <div id='table'>
+    <div class='zone dealer-zone'>
+      <div class='zone-label'><span id='dealer-name'>Dealer</span><span class='zone-value' id='dealer-value'></span></div>
+      <div class='hand-row'><div class='cards' id='dealer-cards'></div></div>
+      <div class='insurance-indicator' id='insurance-indicator'></div>
+    </div>
+    <div class='zone players-zone'>
+      <div class='players-row' id='players-row'></div>
+      <div class='house-status' id='house-status'></div>
+    </div>
+  </div>
+
+  <div id='duel'>
+    <div class='duel-table' id='duel-table'>
+      <div class='duel-seat left' id='seat-challenger'></div>
+      <div class='duel-center' id='duel-center'></div>
+      <div class='duel-seat right' id='seat-opponent'></div>
+    </div>
+    <div id='duel-prompt-host'></div>
+  </div>
+
+<script>
+(function () {
+  var STATE_URL = 'blackjack_state.json';
+  var HOUSE_ARC_LIFT_VH = 6;    // how far the outermost house seats ride up the arc
+  var HOUSE_CARD_TILT_DEG = 6;  // how far the outermost seats' cards lean into it
+  var POLL_MS = 400;
+
+  var table = document.getElementById('table');
+  var dealerName = document.getElementById('dealer-name');
+  var dealerCards = document.getElementById('dealer-cards');
+  var dealerValue = document.getElementById('dealer-value');
+  var insuranceIndicator = document.getElementById('insurance-indicator');
+  var playersRow = document.getElementById('players-row');
+  var houseStatus = document.getElementById('house-status');
+
+  var duel = document.getElementById('duel');
+  var duelTable = document.getElementById('duel-table');
+  var seatChallenger = document.getElementById('seat-challenger');
+  var seatOpponent = document.getElementById('seat-opponent');
+  var duelCenter = document.getElementById('duel-center');
+  var promptHost = document.getElementById('duel-prompt-host');
+
+  var SUIT_SYMBOL = { S: '♠', H: '♥', D: '♦', C: '♣' };
+  var RED_SUITS = { H: true, D: true };
+
+  var prevCounts = { dealer: 0 };
+  var GAMEOVER_FADE_MS = 8000;   // fallback only - the state file carries the configured value
+  var fadeTimer = null;
+  var animationsEnabled = true;
+
+  var countdown = null;
+
+  function hexToRgba(hex, alpha) {
+    var h = (hex || '#000000').replace('#', '');
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    var r = parseInt(h.substring(0, 2), 16) || 0;
+    var g = parseInt(h.substring(2, 4), 16) || 0;
+    var b = parseInt(h.substring(4, 6), 16) || 0;
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+  }
+
+  function applyTheme(state) {
+    var root = document.documentElement.style;
+    root.setProperty('--red', (state && state.cardRedColor) || '#d3283a');
+    root.setProperty('--black', (state && state.cardBlackColor) || '#1a1a1a');
+    root.setProperty('--font-scale', (state && state.fontScale > 0) ? state.fontScale : 1);
+    var opacityPct = (state && state.backgroundOpacity > 0) ? Math.min(100, state.backgroundOpacity) : 0;
+    root.setProperty('--table-bg', opacityPct > 0 ? hexToRgba(state.backgroundColor, opacityPct / 100) : 'transparent');
+  }
+
+  // Display names and the currency name come from chat and from the settings window, and both
+  // end up inside innerHTML further down. A YouTube display name may hold any character at all,
+  // so a stray angle bracket would quietly take the layout apart.
+  function escapeHtml(text) {
+    return String(text == null ? '' : text)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  // Grouped the way chat groups it, using the separator from the settings window, so the overlay
+  // and the chat line never show the same stake two different ways.
+  // Set at the top of every render. amount() is called from deep inside the drawing code, where
+  // the state is a parameter of render() and not in reach - reading it here instead threw on the
+  // first stake and left the table with a dealer and no players.
+  var separator = '.';
+
+  function amount(value) {
+    var sep = separator;
+    var digits = String(Math.round(Math.abs(Number(value) || 0)));
+    var grouped = '';
+    for (var i = 0; i < digits.length; i++) {
+      if (i > 0 && (digits.length - i) % 3 === 0) grouped += sep;
+      grouped += digits.charAt(i);
+    }
+    return (Number(value) < 0 ? '-' : '') + grouped;
+  }
+
+  function metaLine(value, showValue, betLabel, showBet) {
+    var parts = [];
+    if (showValue) parts.push('Value: ' + value);
+    if (showBet) parts.push('Bet: ' + betLabel);
+    return parts.join(' &middot; ');
+  }
+
+  function cardEl(card, isNew) {
+    var el = document.createElement('div');
+    el.className = 'card ' + (RED_SUITS[card.suit] ? 'red' : 'black') + (isNew && animationsEnabled ? ' dealing' : '');
+    var symbol = SUIT_SYMBOL[card.suit] || card.suit;
+    el.innerHTML =
+      '<div class=\'rank\'>' + card.rank + '</div>' +
+      '<div class=\'suit\'>' + symbol + '</div>' +
+      '<div class=\'rank bottom\'>' + card.rank + '</div>';
+    return el;
+  }
+
+  function renderHand(container, cards, prevCount) {
+    container.innerHTML = '';
+    for (var i = 0; i < cards.length; i++) {
+      container.appendChild(cardEl(cards[i], i >= prevCount));
+    }
+    return cards.length;
+  }
+
+  // Display names vary wildly in length. Wrapping keeps a long one inside its seat; past a
+  // comfortable length it also steps down in size, so it stays to a line or two instead of
+  // towering over the cards it belongs to. Returns a multiplier for --name-scale.
+  function nameScale(name) {
+    var n = (name || '').length;
+    if (n <= 14) return 1;
+    if (n >= 26) return 0.66;
+    return +(1 - (n - 14) * (0.34 / 12)).toFixed(3);
+  }
+
+  function outcomeBadge(outcome) {
+    if (!outcome) return '';
+    var label = outcome.toUpperCase();
+    if (outcome === 'blackjack') label = 'BLACKJACK!';
+    if (outcome === 'charlie') label = '5-CARD CHARLIE!';
+    if (outcome === 'sevens') label = 'TRIPLE 7s!';
+    return '<span class=\'badge ' + outcome + '\'>' + label + '</span>';
+  }
+
+  function clearFadeTimer() {
+    if (fadeTimer) { clearTimeout(fadeTimer); fadeTimer = null; }
+  }
+
+  function hideAll() {
+    table.classList.remove('visible');
+    duel.classList.remove('visible');
+    dealerCards.innerHTML = '';
+    playersRow.innerHTML = '';
+    insuranceIndicator.textContent = '';
+    prevCounts = { dealer: 0 };
+    countdown = null;
+    clearFadeTimer();
+  }
+
+  /* ---------- solo ---------- */
+
+  function renderSolo(state) {
+    duel.classList.remove('visible');
+    table.classList.add('visible');
+    // House tables render through here too - they are the same shape, just several seats at once.
+    var isHouse = state.mode === 'house';
+    if (isHouse) table.classList.add('house');
+    else table.classList.remove('house');
+    dealerName.textContent = state.dealerName || 'Dealer';
+
+    var dCards = (state.dealer && state.dealer.cards) ? state.dealer.cards : [];
+    prevCounts.dealer = renderHand(dealerCards, dCards, prevCounts.dealer);
+    dealerValue.textContent = (dCards.length && state.showHandValues) ? ('(' + state.dealer.value + ')') : '';
+    if (state.showInsurance && state.insuranceBet) {
+      insuranceIndicator.textContent = state.showPoints
+        ? ('Insurance: ' + amount(state.insuranceBet) + ' ' + state.pointsName)
+        : 'Insurance Active';
+    } else {
+      insuranceIndicator.textContent = '';
+    }
+
+    playersRow.innerHTML = '';
+    houseStatus.textContent = '';
+
+    // Before the deal a house table has seats but no cards, so the players row would render
+    // empty. Show the lobby instead: who is in, which seats are still open, and the count.
+    var house = state.house;
+    if (isHouse && house && house.phase === 'open') {
+      var seated = house.seats || [];
+      for (var s = 0; s < house.maxSeats; s++) {
+        var occupant = seated[s];
+        var chip = document.createElement('div');
+        chip.className = 'lobby-seat' + (occupant ? '' : ' empty');
+
+        var chipName = document.createElement('div');
+        chipName.className = 'lobby-name';
+        chipName.textContent = occupant ? occupant.name : 'Open seat';
+        if (occupant) chipName.style.setProperty('--name-scale', nameScale(occupant.name));
+        chip.appendChild(chipName);
+
+        if (occupant && state.showPoints && !state.freeGame) {
+          var chipStake = document.createElement('div');
+          chipStake.className = 'lobby-stake';
+          chipStake.textContent = amount(occupant.staked) + ' ' + state.pointsName;
+          chip.appendChild(chipStake);
+        }
+        playersRow.appendChild(chip);
+      }
+      houseStatus.textContent = seated.length + '/' + house.maxSeats + ' seats taken';
+      for (var pk in prevCounts) { if (pk.indexOf('hand') === 0) delete prevCounts[pk]; }
+      return;
+    }
+
+    var hands = state.hands || [];
+    var seenKeys = {};
+    for (var h = 0; h < hands.length; h++) {
+      var hand = hands[h];
+      var key = 'hand' + h;
+      seenKeys[key] = true;
+      var prevCount = prevCounts[key] || 0;
+
+      var wrap = document.createElement('div');
+      wrap.className = 'hand-row' + (hand.isCurrent ? ' current' : '');
+
+      if (isHouse) {
+        // Seats sit on an arc around the dealer. The middle seat is the furthest away and stays
+        // on the baseline; the outer ones ride back up towards the dealer, so the row curves
+        // instead of running flat. Lifting rather than dropping keeps the row on screen.
+        var t = hands.length > 1 ? (h / (hands.length - 1)) * 2 - 1 : 0;
+        wrap.style.setProperty('--arc-lift', (HOUSE_ARC_LIFT_VH * t * t).toFixed(2) + 'vh');
+        // Cards lean towards the dealer - the left seats clockwise, the right seats back the
+        // other way. Only the cards turn; the label under them stays level.
+        wrap.style.setProperty('--card-tilt', (-HOUSE_CARD_TILT_DEG * t).toFixed(2) + 'deg');
+      }
+
+      var meta = document.createElement('div');
+      meta.className = 'hand-meta';
+      // House tables send the seat's name per hand; solo play leaves it empty and falls back
+      // to the single player, numbering the hands only when a split created more than one.
+      var nameText = hand.owner || (state.user + (hands.length > 1 ? ' – Hand ' + (h + 1) : ''));
+      var betText = state.freeGame ? 'Free Game' : (amount(hand.bet) + ' ' + escapeHtml(state.pointsName));
+      var metaText = metaLine(hand.value, state.showHandValues, betText, state.showPoints);
+      // Same badge rule as a duel seat: the scored outcome once there is one, otherwise STAND
+      // while a house seat waits out the rest of the table. Solo never sets stood.
+      var handBadge = '';
+      if (state.showOutcomeBadges) {
+        if (hand.outcome) handBadge = outcomeBadge(hand.outcome);
+        else if (hand.stood) handBadge = '<span class=\'badge stand\'>STAND</span>';
+      }
+      meta.innerHTML =
+        '<div class=\'hand-name\' style=\'--name-scale:' + nameScale(nameText) + '\'>' + escapeHtml(nameText) + '</div>' +
+        (metaText ? '<div class=\'hand-total\'>' + metaText + '</div>' : '') +
+        handBadge;
+
+      var cardsDiv = document.createElement('div');
+      cardsDiv.className = 'cards';
+      for (var i = 0; i < hand.cards.length; i++) {
+        cardsDiv.appendChild(cardEl(hand.cards[i], i >= prevCount));
+      }
+      prevCounts[key] = hand.cards.length;
+
+      wrap.appendChild(cardsDiv);
+      wrap.appendChild(meta);
+      playersRow.appendChild(wrap);
+    }
+    for (var k in prevCounts) {
+      if (k !== 'dealer' && k.indexOf('hand') === 0 && !seenKeys[k]) delete prevCounts[k];
+    }
+  }
+
+  /* ---------- duel ---------- */
+
+  function renderSeat(container, seat, sideKey, state, phase) {
+    container.innerHTML = '';
+    if (!seat) return;
+
+    container.className = 'duel-seat ' + (sideKey === 'c' ? 'left' : 'right')
+      + (seat.isCurrent ? ' active' : '')
+      + (seat.awaitingAnswer ? ' waiting' : '');
+
+    var nameEl = document.createElement('div');
+    nameEl.className = 'seat-name';
+    nameEl.textContent = seat.name || '';
+    nameEl.style.setProperty('--name-scale', nameScale(seat.name));
+    container.appendChild(nameEl);
+
+    if (state.showPoints && !state.freeGame && seat.staked) {
+      var stakeEl = document.createElement('div');
+      stakeEl.className = 'seat-stake';
+      stakeEl.textContent = 'Staked: ' + amount(seat.staked) + ' ' + state.pointsName;
+      container.appendChild(stakeEl);
+    }
+
+    var hands = seat.hands || [];
+    for (var i = 0; i < hands.length; i++) {
+      var hand = hands[i];
+      var key = sideKey + i;
+      var prevCount = prevCounts[key] || 0;
+
+      var handEl = document.createElement('div');
+      handEl.className = 'duel-hand' + (hand.isCurrent ? ' current' : '');
+
+      var cardsDiv = document.createElement('div');
+      cardsDiv.className = 'cards';
+      for (var j = 0; j < hand.cards.length; j++) {
+        cardsDiv.appendChild(cardEl(hand.cards[j], j >= prevCount));
+      }
+      prevCounts[key] = hand.cards.length;
+      handEl.appendChild(cardsDiv);
+
+      var bits = [];
+      if (hands.length > 1) bits.push('Hand ' + (i + 1));
+      if (state.showHandValues) bits.push('Value: ' + hand.value);
+      var metaEl = document.createElement('div');
+      metaEl.className = 'duel-hand-meta';
+      var handBadge = '';
+      if (state.showOutcomeBadges) {
+        if (hand.outcome) handBadge = ' ' + outcomeBadge(hand.outcome);
+        else if (hand.stood) handBadge = ' <span class=\'badge stand\'>STAND</span>';
+      }
+      metaEl.innerHTML = bits.join(' &middot; ') + handBadge;
+      handEl.appendChild(metaEl);
+
+      container.appendChild(handEl);
+    }
+
+    // Each hand already carries its own badge above, so the seat-level summary is only worth
+    // drawing when a split left more than one hand to sum up - otherwise it just says it twice.
+    if (phase === 'over' && state.showOutcomeBadges && seat.result && hands.length > 1) {
+      var resEl = document.createElement('div');
+      resEl.innerHTML = outcomeBadge(seat.result);
+      container.appendChild(resEl);
+    }
+  }
+
+  function buildPrompt(d, state, inline) {
+    var wrap = document.createElement('div');
+    wrap.className = 'duel-prompt ' + (inline ? 'inline' : 'standalone');
+
+    var title = document.createElement('div');
+    title.className = 'prompt-title';
+    title.textContent = d.promptTitle || 'DUEL';
+    wrap.appendChild(title);
+
+    if (d.phase === 'pending') {
+      var names = document.createElement('div');
+      names.className = 'prompt-names';
+      names.innerHTML = escapeHtml(d.challenger ? d.challenger.name : '') +
+        ' <span style=\'color:var(--gold)\'>⚔</span> ' +
+        escapeHtml(d.opponent ? d.opponent.name : '');
+      wrap.appendChild(names);
+    }
+
+    if (d.promptSubtitle) {
+      var sub = document.createElement('div');
+      sub.className = 'prompt-subtitle';
+      sub.textContent = d.promptSubtitle;
+      wrap.appendChild(sub);
+    }
+
+    var timer = document.createElement('div');
+    timer.className = 'timer-wrap';
+    timer.innerHTML =
+      '<svg class=\'timer-ring\' viewBox=\'0 0 100 100\'>' +
+      '<circle class=\'bg\' cx=\'50\' cy=\'50\' r=\'44\'></circle>' +
+      '<circle class=\'fg\' cx=\'50\' cy=\'50\' r=\'44\' stroke-dasharray=\'276.5\' stroke-dashoffset=\'0\'></circle>' +
+      '</svg><div class=\'timer-text\'></div>';
+    wrap.appendChild(timer);
+
+    var hint = document.createElement('div');
+    hint.className = 'prompt-hint';
+    hint.innerHTML = '<span class=\'yes\'>accept</span> / <span class=\'no\'>decline</span>';
+    wrap.appendChild(hint);
+
+    return wrap;
+  }
+
+  function renderDuel(state) {
+    table.classList.remove('visible');
+    duel.classList.add('visible');
+
+    var d = state.duel;
+    if (!d) return;
+
+    var phase = d.phase || 'pending';
+    var showTable = phase !== 'pending';
+    duelTable.style.display = showTable ? 'flex' : 'none';
+
+    if (showTable) {
+      renderSeat(seatChallenger, d.challenger, 'c', state, phase);
+      renderSeat(seatOpponent, d.opponent, 'o', state, phase);
+
+      duelCenter.innerHTML = '';
+      var vs = document.createElement('div');
+      vs.className = 'duel-vs';
+      vs.textContent = 'VS';
+      duelCenter.appendChild(vs);
+
+      if (state.showPoints && !state.freeGame && d.pot) {
+        var pot = document.createElement('div');
+        pot.className = 'duel-pot';
+        pot.textContent = 'POT\n' + amount(d.pot) + ' ' + state.pointsName;
+        pot.style.whiteSpace = 'pre-line';
+        duelCenter.appendChild(pot);
+      }
+
+      if (d.suddenDeathRound > 0) {
+        var sd = document.createElement('div');
+        sd.className = 'duel-sd';
+        sd.textContent = 'Sudden Death ' + d.suddenDeathRound;
+        duelCenter.appendChild(sd);
+      }
+
+      if (phase === 'over' && d.resultText) {
+        var res = document.createElement('div');
+        res.className = 'duel-result';
+        res.textContent = d.resultText;
+        duelCenter.appendChild(res);
+      }
+    }
+
+    promptHost.innerHTML = '';
+    countdown = null;
+
+    var needsPrompt = phase === 'pending' || phase === 'consent' || phase === 'suddendeath';
+    if (needsPrompt) {
+      var promptEl = buildPrompt(d, state, showTable);
+      promptHost.appendChild(promptEl);
+      countdown = {
+        el: promptEl,
+        deadline: Date.now() + (d.expiresInMs || 0),
+        total: d.timeoutMs || d.expiresInMs || 1,
+        phase: phase
+      };
+      tickCountdown();
+    }
+  }
+
+  function tickCountdown() {
+    if (!countdown) return;
+    var remaining = Math.max(0, countdown.deadline - Date.now());
+    var ring = countdown.el.querySelector('.timer-ring .fg');
+    var text = countdown.el.querySelector('.timer-text');
+    var frac = countdown.total > 0 ? Math.max(0, Math.min(1, remaining / countdown.total)) : 0;
+
+    if (ring) ring.setAttribute('stroke-dashoffset', String(276.5 * (1 - frac)));
+    if (text) text.textContent = Math.ceil(remaining / 1000);
+
+    if (remaining <= 0) {
+      countdown.el.style.display = 'none';
+      if (countdown.phase === 'pending') duel.classList.remove('visible');
+      countdown = null;
+    }
+  }
+
+  setInterval(tickCountdown, 100);
+
+  /* ---------- dispatch ---------- */
+
+  function render(state) {
+    separator = (state && typeof state.separator === 'string') ? state.separator : '.';
+    document.body.style.zoom = (state && state.scale > 0) ? state.scale : 1;
+    applyTheme(state);
+    animationsEnabled = !(state && state.animationsEnabled === false);
+
+    var isDuel = !!(state && state.mode === 'duel');
+    var effectiveActive = !!(state && state.active && !(state.freeGame && state.hideOnFreeGame));
+
+    if (!effectiveActive) {
+      hideAll();
+      return;
+    }
+
+    if (isDuel) {
+      renderDuel(state);
+    } else {
+      renderSolo(state);
+    }
+
+    var over = isDuel ? (state.duel && state.duel.phase === 'over') : state.gameOver;
+    if (over) {
+      if (!fadeTimer) {
+        var fadeMs = (state.gameOverFadeMs > 0) ? state.gameOverFadeMs : GAMEOVER_FADE_MS;
+        fadeTimer = setTimeout(function () {
+          table.classList.remove('visible');
+          duel.classList.remove('visible');
+          fadeTimer = null;
+        }, fadeMs);
+      }
+    } else {
+      clearFadeTimer();
+    }
+  }
+
+  var lastStateText = null;
+
+  // How the table state gets in. The game writes it twice, side by side: blackjack_state.js wraps
+  // it in a call to bjgOverlayState, and blackjack_state.json is the plain data.
+  //
+  // The script is the main path because a script tag loads whichever way OBS opened this page -
+  // as a Local File (served through OBS's own http://absolute/ handler), straight off a file:///
+  // URL, or from a web server. fetch() manages only the first and the last of those, and OBS 33
+  // narrowed the first: its local-file handler now turns away any request unless the page itself
+  // came from http://absolute/. The JSON stays as a fallback for anything that can still fetch it.
+  var STATE_SCRIPT = 'blackjack_state.js';
+  var startedAt = Date.now();
+  var lastReadAt = 0;
+  var lastComplaintAt = 0;
+
+  function accept(text) {
+    lastReadAt = Date.now();
+    if (text === lastStateText) return;
+    lastStateText = text;
+    render(JSON.parse(text));
+  }
+
+  window.bjgOverlayState = function (state) {
+    try { accept(JSON.stringify(state)); } catch (e) { }
+  };
+
+  // A state file caught halfway through being rewritten is a syntax error for one poll and fine
+  // on the next. Keep that out of the OBS log, which records every script error on the page. A
+  // page opened from file:/// sees those errors only as a bare "Script error.", so match that too -
+  // there is no other outside script here it could belong to.
+  window.addEventListener('error', function (e) {
+    var fromState = e && typeof e.filename === 'string' && e.filename.indexOf(STATE_SCRIPT) >= 0;
+    var muted = e && e.message === 'Script error.' && !e.filename;
+    if (fromState || muted) e.preventDefault();
+  });
+
+  // Only console.error reaches the OBS log (Help > Log Files), so that is where this goes: once
+  // after ten seconds without a single read, then at most once a minute for as long as it lasts.
+  function complainIfStuck() {
+    var now = Date.now();
+    if (lastReadAt === 0 && now - startedAt < 10000) return;
+    if (lastReadAt !== 0 && now - lastReadAt < 10000) return;
+    if (now - lastComplaintAt < 60000) return;
+    lastComplaintAt = now;
+    console.error('Blackjack overlay: cannot read the table state next to this page (' + location.href + '). ' +
+      'Open the browser source properties, tick "Local file" and pick blackjack_overlay.html in the overlay folder. ' +
+      'If it is ticked already, run any Blackjack command once so the game writes the state file.');
+  }
+
+  function fetchJson(done) {
+    if (!window.fetch) { done(); return; }
+    fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (text) { if (text !== null) accept(text); })
+      .catch(function () { })
+      .then(done);
+  }
+
+  var pollTimer = null;
+
+  function schedule(ms) {
+    if (pollTimer) clearTimeout(pollTimer);
+    pollTimer = setTimeout(poll, ms);
+  }
+
+  function poll() {
+    pollTimer = null;
+    var el = document.createElement('script');
+    var settled = false;
+
+    function finish(loaded) {
+      if (settled) return;
+      settled = true;
+      if (el.parentNode) el.parentNode.removeChild(el);
+      if (loaded) {
+        complainIfStuck();
+        schedule(POLL_MS);
+        return;
+      }
+      // No script to load: a game build from before this overlay that only writes the JSON, or a
+      // page that cannot load local scripts at all. Try the JSON before giving up on this round.
+      fetchJson(function () {
+        complainIfStuck();
+        schedule(POLL_MS);
+      });
+    }
+
+    el.onload = function () { finish(true); };
+    el.onerror = function () { finish(false); };
+    el.src = STATE_SCRIPT + '?t=' + Date.now();
+    (document.head || document.documentElement).appendChild(el);
+  }
+
+  // OBS slows a hidden source's timers to a crawl. The moment the source is shown or goes live,
+  // read the state straight away rather than waiting for a throttled timer to come round.
+  function pollNow() { schedule(0); }
+  window.addEventListener('obsSourceVisibleChanged', function (e) { if (e && e.detail && e.detail.visible) pollNow(); });
+  window.addEventListener('obsSourceActiveChanged', function (e) { if (e && e.detail && e.detail.active) pollNow(); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) pollNow(); });
+
+  poll();
+})();
+</script>
+</body>
+</html>
