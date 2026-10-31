@@ -1,0 +1,222 @@
+<!doctype html>
+<!-- help/index.html is written from this file and _tools/problems.md by _tools/update-pages.js: change
+     those and run it, never help/index.html. -->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://gateway.umami.is https://cloud.umami.is; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Help · aaskjer</title>
+  <meta name="description" content="Common problems with aaskjer's Streamer.bot extensions and how to fix them, and which Streamer.bot version each project needs.">
+  <link rel="canonical" href="https://aaskjer.github.io/help/">
+  <meta name="theme-color" content="#0b0a12">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aaskjer">
+  <meta property="og:url" content="https://aaskjer.github.io/help/">
+  <meta property="og:title" content="Something broke? Common problems and fixes">
+  <meta property="og:description" content="Common problems across aaskjer's Streamer.bot extensions, and which Streamer.bot version each one needs.">
+  <meta property="og:image" content="https://aaskjer.github.io/assets/img/og-home.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../feed.xml">
+  <link rel="icon" href="../assets/img/avatar.png" type="image/png">
+  <link rel="preload" href="../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/projects.js" defer></script>
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/search.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="../">
+        <img src="../assets/img/avatar.png" alt="" width="32" height="32">
+        <span class="brand__name">aaskjer</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a class="nav__more" href="../#tools">Tools</a>
+        <a class="nav__more" href="../#games">Games</a>
+        <a href="../commands/">Commands</a>
+        <a class="nav__more" href="../#start">Setup</a>
+        <a class="is-active" href="./" aria-current="page">Help</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-search"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
+          <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-github"/></svg>
+        </a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="i i-sun" aria-hidden="true"><use href="../assets/img/icons.svg#i-sun"/></svg>
+          <svg class="i i-moon" aria-hidden="true"><use href="../assets/img/icons.svg#i-moon"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="wrap">
+      <header class="page-head">
+        <p class="kicker">Help</p>
+        <h1>Something broke?</h1>
+        <p class="lead">The problems that come up across the projects, and how to fix them. Each project's own FAQ goes deeper.</p>
+      </header>
+
+      <div class="help">
+        <nav class="help__toc" aria-label="On this page">
+          <p class="help__toc-title">On this page</p>
+          <ol>
+            <li><a href="#problems">Common problems</a>
+              <ol><li><a href="#a-command-gets-no-answer-in-chat">A command gets no answer in chat</a></li><li><a href="#errors-about-missing-references-after-an-import">Errors about missing references after an import</a></li><li><a href="#the-obs-overlay-stays-empty">The OBS overlay stays empty</a></li><li><a href="#viewers-dont-win-or-lose-points">Viewers don't win or lose points</a></li><li><a href="#where-are-the-settings">Where are the settings?</a></li><li><a href="#how-do-i-know-a-new-version-is-out-and-how-do-i-update">How do I know a new version is out, and how do I update?</a></li><li><a href="#kick-or-youtube-chat-gets-no-answer">Kick or YouTube chat gets no answer</a></li><li><a href="#posts-to-discord-stoat-or-gamevox-dont-arrive">Posts to Discord, Stoat or GameVox don't arrive</a></li></ol>
+            </li>
+            <li><a href="#compatibility">Streamer.bot versions</a></li>
+            <li><a href="#stuck">Still stuck?</a></li>
+          </ol>
+        </nav>
+
+        <div class="help__main">
+          <section class="help__section" id="problems" aria-labelledby="problems-title">
+            <h2 id="problems-title">Common problems</h2>
+            <div class="problems">
+          <details class="problem" id="a-command-gets-no-answer-in-chat">
+            <summary><span class="problem__title">A command gets no answer in chat</span><span class="problem__for">every project with chat commands</span></summary>
+            <div class="problem__body md"><ul>
+<li><strong>Switched off.</strong> Every project&#39;s commands are imported switched off. In Streamer.bot, open the <strong>Commands</strong> tab, right-click the project&#39;s group and click <strong>Enable All</strong>. Step 3 of <a href="../#start">Get started</a> shows it.</li>
+<li><strong>Not for everyone.</strong> Some commands are for moderators or VIPs only. The <a href="../commands/">commands page</a> says who may use each one.</li>
+<li><strong>Platform left out.</strong> A platform unticked in the command&#39;s <strong>Sources</strong> gets no answer there, and Streamer.bot has to be connected to that platform&#39;s chat.</li>
+<li><strong>Cooldown.</strong> Many commands wait a few seconds before they answer the same viewer again.</li>
+</ul>
+</div>
+          </details>
+          <details class="problem" id="errors-about-missing-references-after-an-import">
+            <summary><span class="problem__title">Errors about missing references after an import</span><span class="problem__for">anything exported from Streamer.bot 1.0.7, from anyone</span></summary>
+            <div class="problem__body md"><p>Streamer.bot shows compile errors like <em>The type or namespace name … could not be found</em> or <em>are you missing an assembly reference?</em>, and <strong>Find Refs</strong> does not make them go away.</p>
+<p>An export from Streamer.bot 1.0.7 stores its .NET references relative to the folder Streamer.bot was in on the PC that made it. Where Streamer.bot sits somewhere else, those references point at nothing. <a href="../projects/sbreffix/">SBRefFix</a> rewrites them so they hold on every PC: run it on the <code>.sb</code> file or the import string before you import it, or ask whoever shared it to. If it happens with one of the projects here, please report it on the project&#39;s GitHub page.</p>
+</div>
+          </details>
+          <details class="problem" id="the-obs-overlay-stays-empty">
+            <summary><span class="problem__title">The OBS overlay stays empty</span><span class="problem__for">Blackjack, Battleship, Hangman, Trivia, RhymeTime, OBS Notes</span></summary>
+            <div class="problem__body md"><ul>
+<li><strong>The right file.</strong> The browser source has to show the overlay file the project&#39;s setup guide names, from the folder its settings window shows.</li>
+<li><strong>Nothing to show yet.</strong> Most game overlays only draw while a game is running and are invisible in between.</li>
+<li><strong>The connection.</strong> Depending on the project, Streamer.bot reaches the overlay through its connection to OBS or through its own WebSocket server. The setup guide says which; check in Streamer.bot that it is connected or started.</li>
+<li><strong>After an update.</strong> OBS keeps the page it loaded. Right-click the browser source, <strong>Properties</strong>, <strong>Refresh cache of current page</strong>.</li>
+</ul>
+<p>The FAQ of each game has an <em>OBS Overlay</em> part with more.</p>
+</div>
+          </details>
+          <details class="problem" id="viewers-dont-win-or-lose-points">
+            <summary><span class="problem__title">Viewers don't win or lose points</span><span class="problem__for">the chat games</span></summary>
+            <div class="problem__body md"><ul>
+<li><strong>The points variable.</strong> The games pay out into the variable your points system uses. Its name in the game&#39;s settings has to match exactly.</li>
+<li><strong>Free mode.</strong> With a free mode on, nobody pays or wins; the settings window says when it is on.</li>
+<li><strong>Channel points.</strong> Where a game takes Twitch channel points, some modes take no points on a loss by design.</li>
+</ul>
+<p>The <em>Points</em> part of the game&#39;s FAQ lists its own settings: <a href="../projects/blackjack-game/?tab=faq">Blackjack</a>, <a href="../projects/classic-chat-gamble/?tab=faq">Classic Chat Gamble</a>, <a href="../projects/slot-machine-game/?tab=faq">Slot Machine</a>, <a href="../projects/trivia-game/?tab=faq">Trivia</a>, <a href="../projects/hangman-game/?tab=faq">Hangman</a>, <a href="../projects/battleship-game/?tab=faq">Battleship</a>, <a href="../projects/rhymetime/?tab=faq">RhymeTime</a>.</p>
+</div>
+          </details>
+          <details class="problem" id="where-are-the-settings">
+            <summary><span class="problem__title">Where are the settings?</span><span class="problem__for">every project with a settings window</span></summary>
+            <div class="problem__body md"><p>Each project has an action that opens its settings window. In Streamer.bot, open <strong>Actions</strong>, find the project&#39;s group and its settings action, right-click its trigger and click <strong>Test Trigger</strong>. Step 3 of <a href="../#start">Get started</a> shows it. The settings themselves are files in your Streamer.bot folder, so you can back them up with it.</p>
+</div>
+          </details>
+          <details class="problem" id="how-do-i-know-a-new-version-is-out-and-how-do-i-update">
+            <summary><span class="problem__title">How do I know a new version is out, and how do I update?</span></summary>
+            <div class="problem__body md"><ul>
+<li><strong>The settings window tells you.</strong> Most projects ask GitHub for the latest release whenever their settings window opens and show an <strong>Update</strong> notice in it.</li>
+<li><strong>The release feed.</strong> The <a href="../feed.xml">release feed</a> lists every new version of every project, for any feed reader.</li>
+<li><strong>Updating.</strong> Download the new release and import it like the first time, over the old one. The settings are files of their own and stay. The project&#39;s changelog says when a version needs more than that.</li>
+</ul>
+</div>
+          </details>
+          <details class="problem" id="kick-or-youtube-chat-gets-no-answer">
+            <summary><span class="problem__title">Kick or YouTube chat gets no answer</span><span class="problem__for">projects that work on more than Twitch</span></summary>
+            <div class="problem__body md"><p>Streamer.bot has to be connected to that platform, and the platform has to be ticked in the command&#39;s <strong>Sources</strong>. Some features are Twitch only, for example <code>/me</code> messages; each project&#39;s page shows which platforms it works with.</p>
+</div>
+          </details>
+          <details class="problem" id="posts-to-discord-stoat-or-gamevox-dont-arrive">
+            <summary><span class="problem__title">Posts to Discord, Stoat or GameVox don't arrive</span><span class="problem__for">Suggestions To, Better Stream Announcements, TwitchSentry</span></summary>
+            <div class="problem__body md"><ul>
+<li><strong>The whole webhook URL.</strong> Copy it again from the channel&#39;s webhook settings; a URL cut short, or a webhook that was deleted, gets nothing through.</li>
+<li><strong>The right setting.</strong> Each service has its own setting for its webhook. The project&#39;s setup guide names them.</li>
+<li><strong>The log.</strong> Streamer.bot&#39;s log says what the service answered, which usually names the problem.</li>
+</ul>
+</div>
+          </details>
+            </div>
+          </section>
+
+          <section class="help__section" id="compatibility" aria-labelledby="compat-title">
+            <h2 id="compat-title">Which Streamer.bot version each project needs</h2>
+            <p>Every project is exported from Streamer.bot as an import string. The version and date it was last exported with are the version and date it was last built and tested in. A newer Streamer.bot normally imports it fine; one older than <b>Needs</b> does not.</p>
+            <div class="table-scroll">
+              <table class="compat">
+                <thead>
+                  <tr><th scope="col">Project</th><th scope="col">Latest release</th><th scope="col">Last exported from Streamer.bot</th><th scope="col">Needs Streamer.bot</th></tr>
+                </thead>
+                <tbody>
+            <tr><th scope="row"><a href="../projects/twitchsentry/">TwitchSentry</a></th><td>v4.0.1<small><time datetime="2026-10-23">Oct 23, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/better-stream-announcements/">Better Stream Announcements</a></th><td>v2.1.0<small><time datetime="2026-10-27">Oct 27, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/sbreffix/">SBRefFix</a></th><td>v1.0.0<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td colspan="2" class="compat__none">Runs on its own, outside Streamer.bot</td></tr>
+            <tr><th scope="row"><a href="../projects/suto/">Suggestions To</a></th><td>v1.0.0<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/obsnotes/">OBS Notes</a></th><td>v1.0.2<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/chatcalendar/">Chat Calendar</a></th><td>v1.0.1<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/blackjack-game/">Blackjack Game</a></th><td>v16.3.0<small><time datetime="2026-10-26">Oct 26, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/classic-chat-gamble/">Classic Chat Gamble</a></th><td>v24.1.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/trivia-game/">Trivia Game</a></th><td>v8.1.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/slot-machine-game/">Slot Machine Game</a></th><td>v15.0.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/hangman-game/">Hangman Game</a></th><td>v12.1.0<small><time datetime="2026-10-26">Oct 26, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/battleship-game/">Battleship Game</a></th><td>v1.0.0<small><time datetime="2026-08-22">Aug 22, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/rhymetime/">RhymeTime</a></th><td>v1.1.0<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0 or newer</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="help__note">Read from each project's import string and its history on GitHub, every hour.</p>
+          </section>
+
+          <section class="help__section" id="stuck" aria-labelledby="stuck-title">
+            <h2 id="stuck-title">Still stuck?</h2>
+            <p>Every project has its own FAQ with the questions that come up for it alone:</p>
+            <ul class="help__faqs">
+            <li><a href="../projects/twitchsentry/?tab=faq">TwitchSentry</a></li>
+            <li><a href="../projects/better-stream-announcements/?tab=faq">Better Stream Announcements</a></li>
+            <li><a href="../projects/sbreffix/?tab=faq">SBRefFix</a></li>
+            <li><a href="../projects/suto/?tab=faq">Suggestions To</a></li>
+            <li><a href="../projects/obsnotes/?tab=faq">OBS Notes</a></li>
+            <li><a href="../projects/chatcalendar/?tab=faq">Chat Calendar</a></li>
+            <li><a href="../projects/blackjack-game/?tab=faq">Blackjack Game</a></li>
+            <li><a href="../projects/classic-chat-gamble/?tab=faq">Classic Chat Gamble</a></li>
+            <li><a href="../projects/trivia-game/?tab=faq">Trivia Game</a></li>
+            <li><a href="../projects/slot-machine-game/?tab=faq">Slot Machine Game</a></li>
+            <li><a href="../projects/hangman-game/?tab=faq">Hangman Game</a></li>
+            <li><a href="../projects/battleship-game/?tab=faq">Battleship Game</a></li>
+            <li><a href="../projects/rhymetime/?tab=faq">RhymeTime</a></li>
+            </ul>
+            <p>Not in there either? Open an issue on the project's GitHub page: <b>Report a problem</b> on its page here leads there. Say which version of the project and of Streamer.bot you use, and what the Streamer.bot log says.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__about">
+        <a class="brand" href="../">
+          <img src="../assets/img/avatar.png" alt="" width="32" height="32">
+          <span>aaskjer</span>
+        </a>
+        <p>Free, open-source extensions for Streamer.bot. Found a bug or have an idea? Open an issue on the project's GitHub page.</p>
+      </div>
+      <div class="footer__meta">
+        <p>© <span id="year">2026</span> aaskjer · <a href="../commands/">Commands</a> · <a href="../feed.xml" data-track="feed">Release feed</a> · <a href="../privacy.html">Privacy</a></p>
+        <p>Not affiliated with Streamer.bot, OBS Studio, Twitch, YouTube, Kick, Owncast, Rumble, Picarto, TikTok, Discord, Stoat, GameVox, ntfy, Microsoft or the Open Trivia Database. All names and trademarks belong to their respective owners.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

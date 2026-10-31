@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>aaskjer · new releases</title>
+  <subtitle>New versions of aaskjer's Streamer.bot extensions.</subtitle>
+  <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
+  <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
+  <id>https://aaskjer.github.io/feed.xml</id>
+  <updated>2026-10-30T22:59:43Z</updated>
+  <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
+  <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>OBS Notes v1.0.2</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.2"/>
+    <id>https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.2</id>
+    <published>2026-10-30T22:59:43Z</published>
+    <updated>2026-10-30T22:59:43Z</updated>
+    <category term="OBSNotes" label="OBS Notes"/>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;When OBS is connected but no source in it shows the post-its, the first command says so in the log and names
+the Test trigger, which adds the browser source. Before, a fresh setup without the Test trigger showed nothing
+and said nothing.&lt;/li&gt;
+&lt;li&gt;New &lt;a href=&quot;https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;: what each log line means when the post-its do
+not show up in OBS, and other common questions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.2&quot;&gt;Download v1.0.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/obsnotes/&quot;&gt;OBS Notes on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>RhymeTime v1.1.0: An OBS overlay, set up and styled from the settings window</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v1.1.0"/>
+    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v1.1.0</id>
+    <published>2026-10-30T21:31:56Z</published>
+    <updated>2026-10-30T21:31:56Z</updated>
+    <category term="RhymeTime" label="RhymeTime"/>
+    <content type="html">&lt;p&gt;The round on stream. Import &lt;code&gt;RhymeTime.sb&lt;/code&gt; over the old one — &lt;code&gt;RT-settings.json&lt;/code&gt; and &lt;code&gt;RT-wordbank.json&lt;/code&gt; are yours and stay where they are — then open &lt;code&gt;[RT] - Settings&lt;/code&gt; and look at the new &lt;strong&gt;Overlay&lt;/strong&gt; page.&lt;/p&gt;
+&lt;h3&gt;📺The overlay&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A browser source that shows the round&lt;/strong&gt;: the word with its ending picked out, the countdown, the attempts left, and then the rhyme that won it and what it paid — or the rhymes that would have worked, after a lost one. A battle gets the same card in its own colour.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It ships inside the import.&lt;/strong&gt; Nothing to download and no second file to keep up to date: the settings window writes the page out, and it listens to Streamer.bot&amp;#39;s own WebSocket server (&lt;code&gt;Servers/Clients&lt;/code&gt; → &lt;code&gt;WebSocket Server&lt;/code&gt;, &lt;em&gt;Auto Start&lt;/em&gt; ticked).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One button sets it up in OBS.&lt;/strong&gt; &lt;em&gt;Set the overlay up in OBS&lt;/em&gt; creates the scene and puts a browser source in it, the size of your canvas, pointed at the overlay. A source name OBS already knows is left alone rather than overwritten. By hand still works: &lt;em&gt;Copy URL&lt;/em&gt;, then a Browser source with &lt;em&gt;Local file&lt;/em&gt; unticked.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Try the demo&lt;/strong&gt; plays sample rounds in your browser, which is the easiest way to place and size the source before anyone plays.&lt;/li&gt;
+&lt;li&gt;It stays &lt;strong&gt;off&lt;/strong&gt; until you switch it on, and a round that reaches the card still says everything it says in chat.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🎨Yours to style&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Where the card sits, how big it is, and how long a result stays up.&lt;/li&gt;
+&lt;li&gt;Switches for the ending pill, the attempt dots, the stake chip and the rhymes after a lost round.&lt;/li&gt;
+&lt;li&gt;Four colours — accent, battle, won and the card itself — with a picker behind each swatch and every lighter shade worked out from them.&lt;/li&gt;
+&lt;li&gt;All of it travels with the round, so a change is on screen the next time somebody plays and OBS is never touched again. The Browser source&amp;#39;s own &lt;em&gt;Custom CSS&lt;/em&gt; is read afterwards and still wins.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nothing else about the game changed: the same commands, the same word banks, the same 19 chat lines.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Prefer pasting over downloading? The &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt; is the same thing. The &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the Overlay page, and questions are answered in the &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v1.1.0&quot;&gt;Download v1.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>RhymeTime v1.0.0: The first release</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v1.0.0"/>
+    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v1.0.0</id>
+    <published>2026-10-29T22:06:07Z</published>
+    <updated>2026-10-29T22:06:07Z</updated>
+    <category term="RhymeTime" label="RhymeTime"/>
+    <content type="html">&lt;p&gt;The first release. Import &lt;code&gt;RhymeTime.sb&lt;/code&gt;, enable the two commands, and open &lt;code&gt;[RT] - Settings&lt;/code&gt; with a right-click on its &lt;code&gt;Test&lt;/code&gt; trigger — the &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through it.&lt;/p&gt;
+&lt;h3&gt;🎮The game&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!Rhyme&lt;/code&gt;&lt;/strong&gt; draws a word and gives the chatter a clock and a handful of attempts to rhyme with it. Answers go into ordinary chat — only the last word of the message is read, so &amp;quot;hmm maybe DREAM&amp;quot; counts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rhymes nobody listed still count.&lt;/strong&gt; The rhymes you write are examples: the longest ending enough of them share becomes what the round accepts, so &lt;code&gt;BAT, HAT, MAT&lt;/code&gt; takes any dictionary word ending in &lt;code&gt;AT&lt;/code&gt;. A listed rhyme always counts, the target word never does, and a guess that does not even end the right way is ignored instead of costing an attempt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lines to finish.&lt;/strong&gt; A target with spaces in it is a line to complete rather than a word to rhyme, and the whole reply has to match one of the answers you listed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!RhymeBattle&lt;/code&gt;&lt;/strong&gt; opens one word to the whole chat. The first valid rhyme takes the prize; nobody else pays anything. Moderators only, one battle per platform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;💰Points&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A win pays the stake times the multiplier of the bank the word came from, a loss costs the stake, and a battle pays the moderator&amp;#39;s stake or a flat reward. A battle nobody wins hands the stake back.&lt;/li&gt;
+&lt;li&gt;Chatters bet a number, or &lt;code&gt;all&lt;/code&gt;, &lt;code&gt;half&lt;/code&gt;, &lt;code&gt;third&lt;/code&gt;, &lt;code&gt;quarter&lt;/code&gt;, &lt;code&gt;random&lt;/code&gt;, framed by a minimum and a maximum. &lt;strong&gt;Put the default bet at &lt;code&gt;0&lt;/code&gt; and the whole game is free&lt;/strong&gt; — nothing staked, nothing paid.&lt;/li&gt;
+&lt;li&gt;Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own; the Game page is only for a points system of your own.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;⚙️The settings window&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Seven pages — Game, Battle, Word banks, Access, Messages, How to play, About — with &lt;code&gt;Ctrl+1&lt;/code&gt;…&lt;code&gt;Ctrl+7&lt;/code&gt;, &lt;code&gt;Ctrl+S&lt;/code&gt;, light and dark, a count of what you changed and warnings about settings that cancel each other out.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A word-bank editor&lt;/strong&gt; for the three banks, with &lt;em&gt;Restore this bank&lt;/em&gt; for the words RhymeTime ships.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;All 19 chat lines&lt;/strong&gt; in one place, grouped by when they are sent, with clickable placeholders and a live preview of how each will read in chat.&lt;/li&gt;
+&lt;li&gt;Settings and word banks are written atomically: the previous copy is kept as &lt;code&gt;.bak&lt;/code&gt;, and a damaged file is set aside as &lt;code&gt;.broken&lt;/code&gt; instead of being overwritten.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🌐Everywhere&lt;/h3&gt;
+&lt;p&gt;Twitch, YouTube and Kick all play, always, with the reply going back to the chat the command came from. There is no platform selection — restrict the commands in Streamer.bot instead.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Prefer pasting over downloading? The &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt; is the same thing. Questions are answered in the &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Chat Calendar v1.0.1: Chat Calendar v1.0.1</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.1"/>
+    <id>https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.1</id>
+    <published>2026-10-29T21:55:06Z</published>
+    <updated>2026-10-29T21:55:06Z</updated>
+    <category term="ChatCalendar" label="Chat Calendar"/>
+    <content type="html">&lt;p&gt;A maintenance release: holidays no one greets each other for may now be left without a greeting, and the regions got a thorough going-over — Bavaria keeps Mariä Himmelfahrt, and every country with regional holidays brings all of its regions along.&lt;/p&gt;
+&lt;h3&gt;✨Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Greetings may be left empty.&lt;/strong&gt; Not every holiday has one — nobody wishes a happy &amp;quot;Tag der Arbeit&amp;quot;, and there is no customary greeting for Labour Day. Clear the &lt;code&gt;Greeting&lt;/code&gt; on the Holidays page and nobody is greeted that day, while &lt;code&gt;!holiday&lt;/code&gt; still answers with the name of the day and the announcement still lists it. An emptied greeting survives the next download and the change of year, like the ones you write. Your own holidays may be left empty too.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mariä Himmelfahrt counts in Bavaria.&lt;/strong&gt; date.nager.at lists 15 August for Saarland alone; it is a holiday in the Bavarian municipalities with a Catholic majority — nearly all of Lower and Upper Bavaria. Setup now adds the region after every download and to the holidays already written, cross-checked against openholidaysapi.org.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Holidays page shows your region&amp;#39;s holidays alone.&lt;/strong&gt; It listed every holiday of the country, Bavaria&amp;#39;s Reformation Day included, while the greeting, &lt;code&gt;!nextholidays&lt;/code&gt; and the announcements had always left the others out. It now follows the region on the Calendar page before it is even saved, and the note under the list says how many of the country&amp;#39;s holidays count where you are.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Every region of every country that has regional holidays&lt;/strong&gt;, not Germany, Austria and Switzerland alone: all 50 US states, the Canadian provinces, the Australian states, the Spanish communities, the Italian regions and the rest — 259 regions in the 17 of 204 countries whose holidays differ by region. Every one is listed, not only those with a holiday of their own, so Florida and Lower Bavaria can be picked like any other. A country whose holidays never differ by region offers none.&lt;/li&gt;
+&lt;li&gt;Picking a region without a holiday of its own is no longer logged as a warning — most regions have none. Only a region belonging to another country is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;ChatCalendar.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. The &lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through every page. Your holidays, greetings and birthdays are kept: import over v1.0.0.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.1&quot;&gt;Download v1.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/chatcalendar/&quot;&gt;Chat Calendar on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>SBRefFix v1.0.0: SBRefFix v1.0.0</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/SBRefFix/releases/tag/v1.0.0"/>
+    <id>https://github.com/aaskjer/SBRefFix/releases/tag/v1.0.0</id>
+    <published>2026-10-28T19:14:53Z</published>
+    <updated>2026-10-28T19:14:53Z</updated>
+    <category term="SBRefFix" label="SBRefFix"/>
+    <content type="html">&lt;p&gt;First release.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rewrites the .NET references in a Streamer.bot v1.0.7 export that only work on the exporting PC, so the actions compile on everyone else&amp;#39;s. References inside the Streamer.bot folder stay relative, because that is what keeps them portable.&lt;/li&gt;
+&lt;li&gt;Takes a &lt;code&gt;.sb&lt;/code&gt; file, a &lt;code&gt;.txt&lt;/code&gt; or &lt;code&gt;.md&lt;/code&gt; file holding an import string (such as an &lt;code&gt;Import-String.md&lt;/code&gt;), or the import string on the clipboard.&lt;/li&gt;
+&lt;li&gt;Double-click tools: &lt;code&gt;Fix-Clipboard.cmd&lt;/code&gt;, &lt;code&gt;Fix-Export.cmd&lt;/code&gt;, &lt;code&gt;Check-Export.cmd&lt;/code&gt; (report only) and &lt;code&gt;Watch-Inbox.cmd&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;From a shell, &lt;code&gt;Fix-SBExport.ps1&lt;/code&gt; with &lt;code&gt;-Check&lt;/code&gt;, &lt;code&gt;-OutDir&lt;/code&gt;, &lt;code&gt;-NoBackup&lt;/code&gt;, &lt;code&gt;-Strict&lt;/code&gt;, &lt;code&gt;-ImportString&lt;/code&gt; and &lt;code&gt;-Clipboard&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;📦 Install&lt;/h1&gt;
+&lt;p&gt;Download &lt;strong&gt;&lt;code&gt;SBRefFix.zip&lt;/code&gt;&lt;/strong&gt; below, extract it somewhere, then double-click or drag files onto the &lt;code&gt;.cmd&lt;/code&gt; files, as in the &lt;a href=&quot;https://github.com/aaskjer/SBRefFix#how-to-use-it&quot;&gt;README&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/SBRefFix/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/sbreffix/&quot;&gt;SBRefFix on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>OBS Notes v1.0.1</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.1"/>
+    <id>https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.1</id>
+    <published>2026-10-27T19:59:11Z</published>
+    <updated>2026-10-27T19:59:11Z</updated>
+    <category term="OBSNotes" label="OBS Notes"/>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;The German chat answers are now standard German instead of Bavarian dialect.&lt;/li&gt;
+&lt;li&gt;The German command aliases are spelled out in full: &lt;code&gt;!aufschreiben&lt;/code&gt;, &lt;code&gt;!merken&lt;/code&gt;, &lt;code&gt;!merkheft&lt;/code&gt; and
+&lt;code&gt;!allesradieren&lt;/code&gt; replace &lt;code&gt;!aufschreim&lt;/code&gt;, &lt;code&gt;!merkn&lt;/code&gt;, &lt;code&gt;!merkheftl&lt;/code&gt; and &lt;code&gt;!allesradiern&lt;/code&gt;. Import the new version
+over the old one; the notes stay where they are.&lt;/li&gt;
+&lt;li&gt;Without Twitch, the Kick category picks the list: the live stream&amp;#39;s category or, offline, the latest one, read
+from Kick&amp;#39;s public channel page at most once a minute. When Kick does not answer, the last category stays; with
+neither Twitch nor Kick, the notes go to the list &lt;code&gt;global&lt;/code&gt; as before.&lt;/li&gt;
+&lt;li&gt;Updates keep the post-its in OBS: the first command after an import points every browser source that still
+shows an older page (P&amp;amp;C Notepad&amp;#39;s &lt;code&gt;notepad_overlay.html&lt;/code&gt;, or one in another folder) to the current page and
+says so in the log. Before, the post-its stood still until the Test trigger ran, without a word in the log. The
+Test trigger takes such a source over instead of adding a second one.&lt;/li&gt;
+&lt;li&gt;The post-its hang like real ones instead of at two fixed angles: one of six angles (up to about 3 degrees left
+or right) or, for about one in four, straight, and never exactly like the post-it before it or the one it is
+stuck over. The pick comes from the note itself (time, author and text), so notes with the same text still hang
+differently, and each keeps its angle when OBS reloads the page.&lt;/li&gt;
+&lt;li&gt;More post-its than fit no longer disappear: the seventh is stuck over the first, the eighth over the second, and
+so on, a little off so the older ones peek out underneath. The line &amp;quot;+ N more&amp;quot; is gone.&lt;/li&gt;
+&lt;li&gt;New setting &lt;code&gt;layout&lt;/code&gt;: &lt;code&gt;vertical&lt;/code&gt; (two post-its side by side in three rows, 600 x 800, as before) or &lt;code&gt;horizontal&lt;/code&gt;
+(three side by side in two rows, 900 x 560). The next command gives the browser source in OBS the new size; the
+Test trigger adds it in that size.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.1&quot;&gt;Download v1.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/obsnotes/&quot;&gt;OBS Notes on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Better Stream Announcements v2.1.0: Stoat &amp; GameVox copies, a new Settings window and a color picker</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.0"/>
+    <id>https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.0</id>
+    <published>2026-10-27T00:27:28Z</published>
+    <updated>2026-10-27T00:27:28Z</updated>
+    <category term="Better-Stream-Announcements" label="Better Stream Announcements"/>
+    <content type="html">&lt;p&gt;Announcements can now go to GameVox and Stoat as well, the Settings window is rebuilt around a sidebar with a Home page and a Status Log, and every embed color gets a color picker. Nothing to redo after the update: the new webhook fields start empty, and while they are empty everything is posted exactly as before.&lt;/p&gt;
+&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A copy of every announcement on GameVox and Stoat.&lt;/strong&gt; Broadcaster → Platforms and Streamer Friends → Platforms each take an optional GameVox webhook and an optional Stoat webhook. The copy follows the Discord message: updated with it and switched to its ended form when the stream ends. Your own announcement&amp;#39;s copy also comes back with it within the revive window, and a Streamer Friend&amp;#39;s copy is deleted together with the Discord message once &lt;strong&gt;Remove Old Message&lt;/strong&gt; takes it down. It is only posted together with a new announcement, so a webhook added while someone is live starts with their next stream. Every call is best effort: one retry after a rate limit or a server error, a failure is logged, and Discord carries on either way.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GameVox&lt;/strong&gt; gets the Discord post without buttons, role mentions and the embed timestamp, whose time moves into the footer (“LIVE since • 2026-10-25 20:15”).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stoat&lt;/strong&gt; (formerly Revolt) has no author line, fields or footer in its embeds, so the author line goes in bold above the embed and the fields and footer become lines of the description. No preview picture: Stoat only takes pictures uploaded through a bot account.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Home page:&lt;/strong&gt; who is live right now and where announcements go, a five-step &lt;strong&gt;Start Here&lt;/strong&gt; (can be hidden), today&amp;#39;s warnings and errors at a glance, and help links.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Status Log page&lt;/strong&gt; (Help → Status Log): everything BsA wrote to Streamer.bot&amp;#39;s log, one day at a time, including the errors Streamer.bot reports about a BsA action. Filter by day, action, level and text.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Color picker on every embed color.&lt;/strong&gt; A swatch beside each hex box shows the color; a click opens a picker right under the field — a saturation and brightness field with a hue bar to click or drag, sliders for red, green and blue (the mouse wheel nudges them by one), and the colors Discord uses most. Every change goes straight into the hex box, and typing a hex code moves the picker along.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Settings window is rebuilt around a sidebar.&lt;/strong&gt; The nested tabs are gone: the pages sit in four groups — Broadcaster, Streamer Friends, Discord Bot, Help — under the names they had as tabs. &lt;strong&gt;Ctrl+F&lt;/strong&gt; searches every setting, the footer counts unsaved changes, &lt;strong&gt;Save&lt;/strong&gt; (Ctrl+S) keeps the window open and &lt;strong&gt;Save &amp;amp; Exit&lt;/strong&gt; closes it, and closing with unsaved changes asks first. Theme and reset sit in the ☰ menu.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Placeholders for Owncast, Picarto, Rumble and TikTok friends.&lt;/strong&gt; &lt;code&gt;{user}&lt;/code&gt;, &lt;code&gt;{title}&lt;/code&gt;, &lt;code&gt;{game}&lt;/code&gt;, &lt;code&gt;{url}&lt;/code&gt; and &lt;code&gt;{viewers}&lt;/code&gt; came out as literal text, since these four only took &lt;code&gt;%user%&lt;/code&gt; and the like. Both forms work now.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;{game}&lt;/code&gt; on YouTube&lt;/strong&gt; is empty instead of literal text, since YouTube gives no category.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Removed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The 🎨 button next to &lt;strong&gt;Random Embed Color&lt;/strong&gt;, which only opened colorspicker.net; the picker beside each color replaces it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v12.1.0: A new colour picker</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v12.1.0"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v12.1.0</id>
+    <published>2026-10-26T23:43:08Z</published>
+    <updated>2026-10-26T23:43:08Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;p&gt;A new colour picker in the settings window. &lt;code&gt;configs.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;🎨Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A new colour picker&lt;/strong&gt; for the overlay colours. A click on the swatch next to a colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:&lt;ul&gt;
+&lt;li&gt;a field for saturation and brightness and a hue bar, both to click or drag,&lt;/li&gt;
+&lt;li&gt;sliders for red, green and blue — the mouse wheel nudges them by one,&lt;/li&gt;
+&lt;li&gt;a row of ready colours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v12.1.0&quot;&gt;Download v12.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Battleship Game v2.0.0-pre-release.2: A new colour picker (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.2"/>
+    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.2</id>
+    <published>2026-10-26T23:42:21Z</published>
+    <updated>2026-10-26T23:42:21Z</updated>
+    <category term="Battleship-Game" label="Battleship Game"/>
+    <content type="html">&lt;p&gt;Everything from &lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1&quot;&gt;v2.0.0-pre-release.1&lt;/a&gt;, plus a new colour picker in the settings window. &lt;code&gt;BSG-Settings.json&lt;/code&gt; is read as it stands — no setting changes.&lt;/p&gt;
+&lt;h3&gt;🎨 A new colour picker&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A click on the swatch next to an overlay colour opens the picker right under the field instead of a separate window with a colour wheel:&lt;ul&gt;
+&lt;li&gt;a field for saturation and brightness and a hue bar, both to click or drag,&lt;/li&gt;
+&lt;li&gt;sliders for red, green and blue — the mouse wheel nudges them by one,&lt;/li&gt;
+&lt;li&gt;a row of ready colours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Upgrading from pre-release.1&lt;/h3&gt;
+&lt;p&gt;The settings window&amp;#39;s update check does not tell pre-release.1 about pre-release.2, so grab it here. Import &lt;code&gt;BattleshipGame.sb&lt;/code&gt; over the old one.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.2&quot;&gt;Download v2.0.0-pre-release.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v16.3.0: A new colour picker</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.0"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.0</id>
+    <published>2026-10-26T23:41:49Z</published>
+    <updated>2026-10-26T23:41:49Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;p&gt;A new colour picker in the settings window. &lt;code&gt;BJG-Settings.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;🎨A new colour picker&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A click on the swatch next to an overlay colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:&lt;ul&gt;
+&lt;li&gt;a field for saturation and brightness and a hue bar, both to click or drag,&lt;/li&gt;
+&lt;li&gt;sliders for red, green and blue — the mouse wheel nudges them by one,&lt;/li&gt;
+&lt;li&gt;a row of ready colours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.0&quot;&gt;Download v16.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Chat Calendar v1.0.0: Chat Calendar v1.0.0</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.0"/>
+    <id>https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.0</id>
+    <published>2026-10-26T23:26:02Z</published>
+    <updated>2026-10-26T23:26:02Z</updated>
+    <category term="ChatCalendar" label="Chat Calendar"/>
+    <content type="html">&lt;p&gt;Twitch Calendar is now &lt;strong&gt;Chat Calendar&lt;/strong&gt;: holiday and birthday greetings on Twitch, YouTube and Kick, a daily post to Discord, Stoat and GameVox, and one settings window for all of it. Nothing has to be run by hand any more — the window downloads the holidays itself.&lt;/p&gt;
+&lt;h3&gt;✨Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A settings window.&lt;/strong&gt; Right-click the &lt;code&gt;Test&lt;/code&gt; trigger of &lt;code&gt;[CC] - .Settings&lt;/code&gt; and choose &lt;code&gt;Test Trigger&lt;/code&gt;. Chat, Announcements, Calendar, Holidays, Birthdays, Messages and Log, with Help and About at the foot: every greeting with a chat preview, your own holidays and the greeting of every official one, the birthdays, the webhooks and the log of what was said and posted. It saves &lt;code&gt;configs.json&lt;/code&gt; next to &lt;code&gt;holidays.json&lt;/code&gt;; a damaged file is kept as &lt;code&gt;configs.json.broken&lt;/code&gt; and the window falls back to the last save. A red pill in its header shows when a newer release is out.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;YouTube and Kick.&lt;/strong&gt; Chatters there are greeted on holidays and on their birthday, and every command answers in the chat it came from.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Birthdays.&lt;/strong&gt; Viewers save their own with &lt;code&gt;!birthday 24.12.&lt;/code&gt; (day and month only); moderators and you for others with &lt;code&gt;!birthday @name 24.12.&lt;/code&gt;. Everyone is greeted once on their day, with &lt;code&gt;{age}&lt;/code&gt; where the Birthdays page knows the year. &lt;code&gt;!nextbirthdays&lt;/code&gt; lists the next ones.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Announcements.&lt;/strong&gt; Today&amp;#39;s holidays and birthdays go to Discord, Stoat and GameVox once a day, at the time you set — no Streamer.bot timer needed. A failed webhook is tried again after 15 minutes, without posting twice to the ones that worked. Title, lines and colour are yours, the colour with a picker.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Own days.&lt;/strong&gt; Channel birthday, charity stream, anything: once on a date, or every year (&lt;code&gt;12-24&lt;/code&gt; or &lt;code&gt;24.12.&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Regions.&lt;/strong&gt; Only the holidays of your region, if you pick one — Bavaria, Vienna, Zürich … — or only the nationwide ones.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bot or broadcaster&lt;/strong&gt;, and on Twitch as a &lt;code&gt;/me&lt;/code&gt; message.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No more Set Argument sub-actions.&lt;/strong&gt; Every setting lives in the window. An argument of the same name in an action still wins, for a second action that should do something else.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nothing to run by hand.&lt;/strong&gt; &lt;code&gt;.. Setup Action ..&lt;/code&gt; is now &lt;code&gt;[CC] - Calendar Setup&lt;/code&gt; without a trigger: the window starts it when it opens without this year&amp;#39;s holidays, after saving another country, region, time zone or year, and from &lt;code&gt;Save and download now&lt;/code&gt;. A new year downloads itself.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Every chatter is greeted once per holiday&lt;/strong&gt;, also when the stream runs past midnight, in the time zone you set.&lt;/li&gt;
+&lt;li&gt;All data lives in &lt;code&gt;Chat Calendar&lt;/code&gt; next to Streamer.bot: &lt;code&gt;holidays.json&lt;/code&gt;, &lt;code&gt;birthdays.json&lt;/code&gt;, &lt;code&gt;configs.json&lt;/code&gt; and a &lt;code&gt;Logs&lt;/code&gt; folder kept for 30 days. Your own holidays and greetings survive every download.&lt;/li&gt;
+&lt;li&gt;Texts follow your country, or the chat language you pick; &lt;code&gt;Boarisch&lt;/code&gt; writes Bavarian.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Holidays download again.&lt;/strong&gt; date.nager.at dropped its CSV export; Chat Calendar uses its JSON API.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{holidayName}&lt;/code&gt; was empty, and two holidays on one day were announced as one.&lt;/li&gt;
+&lt;li&gt;The command answered nothing on a day without a holiday.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!nextholidays&lt;/code&gt; failed for countries without a translation (AT, CH, GB, PL …).&lt;/li&gt;
+&lt;li&gt;No more &lt;code&gt;Hello @,&lt;/code&gt; without a user name, and no error in the log for every viewer without pronouns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;⬆️Updating from Twitch Calendar&lt;/h3&gt;
+&lt;p&gt;Import over the old version. Your holidays (&lt;code&gt;C:\streamer.bot\Twitch Calendar&lt;/code&gt; or &lt;code&gt;Twitch Calendar&lt;/code&gt; next to Streamer.bot) are copied into &lt;code&gt;Chat Calendar&lt;/code&gt; on the first run, with your own holidays and greetings; the country, region and time zone come along. Webhook URLs and your own texts from the old Set Argument sub-actions are entered once in the settings window. The commands ship switched off: enable them under &lt;code&gt;Commands&lt;/code&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;ChatCalendar.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. The &lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through every page.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/chatcalendar/&quot;&gt;Chat Calendar on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>OBS Notes v1.0.0: Initial Release</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.0"/>
+    <id>https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.0</id>
+    <published>2026-10-26T23:24:01Z</published>
+    <updated>2026-10-26T23:24:01Z</updated>
+    <category term="OBSNotes" label="OBS Notes"/>
+    <content type="html">&lt;p&gt;First release.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Viewers save short notes with &lt;code&gt;!note&lt;/code&gt;, read them back with &lt;code&gt;!zettel&lt;/code&gt;; moderators and VIPs delete one with
+&lt;code&gt;!radier &amp;lt;number&amp;gt;&lt;/code&gt; or all with &lt;code&gt;!clearnotes&lt;/code&gt;. Every game (Twitch category) keeps its own list.&lt;/li&gt;
+&lt;li&gt;Twitch, Kick and YouTube: the answer goes to the chat the command came from, with an emote of that platform
+(Twitch and Kick global emotes, emoji on YouTube).&lt;/li&gt;
+&lt;li&gt;Post-its in OBS: the action&amp;#39;s Test trigger adds the browser source &lt;strong&gt;OBS Notes&lt;/strong&gt; to the current scene of the
+OBS connection named in &lt;code&gt;AddOBSOverlayTo&lt;/code&gt;, and refreshes it when run again. The post-its follow every command
+within two seconds, size their text to the post-it, and make room for new ones by dropping the oldest.&lt;/li&gt;
+&lt;li&gt;Settings as Set Argument sub-actions: &lt;code&gt;hideAfterMinutes&lt;/code&gt; fades the post-its out after a while without
+commands, &lt;code&gt;colorfulNotes&lt;/code&gt; switches to black on white, &lt;code&gt;showGameName&lt;/code&gt; puts the game name on the first post-it.&lt;/li&gt;
+&lt;li&gt;Chat settings: &lt;code&gt;useBot&lt;/code&gt; answers from the bot or the broadcaster account, &lt;code&gt;sendAsMe&lt;/code&gt; as a /me message, and
+&lt;code&gt;language&lt;/code&gt; switches every answer and the post-its between German (partly Bavarian) and English.&lt;/li&gt;
+&lt;li&gt;Notes added at the same moment are all kept, and a crash while saving never leaves a broken file behind.&lt;/li&gt;
+&lt;li&gt;Times in chat are shown in the streamer&amp;#39;s local time; a note too long for one chat message is shortened.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/obsnotes/&quot;&gt;OBS Notes on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Classic Chat Gamble v24.1.1: Damaged settings files are rescued instead of reset</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.1"/>
+    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.1</id>
+    <published>2026-10-25T23:35:40Z</published>
+    <updated>2026-10-25T23:35:40Z</updated>
+    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
+    <content type="html">&lt;p&gt;A hardening release for the settings files. &lt;code&gt;configs.json&lt;/code&gt; and &lt;code&gt;messages.json&lt;/code&gt; are read as they stand — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Damaged settings files are rescued instead of reset.&lt;/strong&gt; A &lt;code&gt;configs.json&lt;/code&gt; or &lt;code&gt;messages.json&lt;/code&gt; that does not parse now falls back to the &lt;code&gt;.bak&lt;/code&gt; copy beside it before the defaults, and the window says which file it read back from where. Until now a damaged file simply meant the defaults for everything it held, and the next save wrote them over it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Every save leaves a &lt;code&gt;.bak&lt;/code&gt; behind&lt;/strong&gt; — the file as it was before that save, which is what the window reads back when the live one turns out to be damaged. A file that does not parse itself never becomes the backup, so a broken one cannot overwrite the last readable copy.&lt;/li&gt;
+&lt;li&gt;Free Game Mode and the bet it returns to afterwards are carried over from a &lt;code&gt;configs.json&lt;/code&gt; rescued from its &lt;code&gt;.bak&lt;/code&gt;; only one that cannot be recovered at all is left alone. Before, any damaged &lt;code&gt;configs.json&lt;/code&gt; dropped them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Only one settings window opens.&lt;/strong&gt; A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.&lt;/li&gt;
+&lt;li&gt;Switching pages refreshes only the page in front, instead of every control in the window.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;ClassicChatGamble.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.1&quot;&gt;Download v24.1.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v16.2.1: Atomic saves and a settings file that can be rescued</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.1"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.1</id>
+    <published>2026-10-25T23:35:37Z</published>
+    <updated>2026-10-25T23:35:37Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;p&gt;A hardening release for the settings file. &lt;code&gt;BJG-Settings.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;💾The settings file&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Saving is atomic.&lt;/strong&gt; &lt;code&gt;BJG-Settings.json&lt;/code&gt; was written straight over itself, so a crash halfway through could leave a truncated file behind — the game reads it on every hand. It is now written beside the live one and swapped in, and every save leaves &lt;code&gt;BJG-Settings.json.bak&lt;/code&gt;, the file as it was before that save.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A damaged file is reported in the window&lt;/strong&gt; and kept as &lt;code&gt;BJG-Settings.json.broken&lt;/code&gt;. The window shows the settings from before the last save, or the defaults when there is no readable backup. Until now a read error raised an &amp;quot;Error loading settings&amp;quot; box from Streamer.bot&amp;#39;s own thread — a modal dialog with no window behind it, holding the action until somebody found it — and then carried on with the defaults, which the next save wrote over the damaged file without a word.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A file that cannot be opened at all no longer opens the window.&lt;/strong&gt; It said &amp;quot;damaged&amp;quot; and showed the defaults, so a save would overwrite a perfectly good file that was merely locked.&lt;/li&gt;
+&lt;li&gt;A settings file the game script is holding open is waited out instead of failing on the first try.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;⏱️Cooldowns and the window&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The cooldowns of &lt;code&gt;!blackjack&lt;/code&gt;, &lt;code&gt;!duel&lt;/code&gt; and &lt;code&gt;!house&lt;/code&gt; were set from the settings window&amp;#39;s own thread. All six are now handed to Streamer.bot&amp;#39;s thread while the window is open, as one set, so they can never be applied as a mix of two saves.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Only one settings window opens.&lt;/strong&gt; A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.&lt;/li&gt;
+&lt;li&gt;Switching pages redraws only the page in front, instead of every control in the window.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;BlackjackGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.1&quot;&gt;Download v16.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v12.0.1: A settings file that survives being locked or damaged</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.1"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.1</id>
+    <published>2026-10-25T23:35:34Z</published>
+    <updated>2026-10-25T23:35:34Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;p&gt;A hardening release for the settings file. &lt;code&gt;configs.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Reads and writes wait out a &lt;code&gt;configs.json&lt;/code&gt; the game script is holding open instead of failing on the first try.&lt;/li&gt;
+&lt;li&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt; could overwrite the good &lt;code&gt;configs.json.bak&lt;/code&gt; on the next save. The file being replaced only becomes the backup when it parses itself, so the last readable copy is never lost to a broken one.&lt;/li&gt;
+&lt;li&gt;Three places still read the settings through the path that throws on a damaged file: the first time anything in the script is touched, Reset to defaults, and closing the window. All three now fall back to the backup or the defaults, the way the window already did.&lt;/li&gt;
+&lt;li&gt;The global and per-user cooldowns are handed to Streamer.bot as one pair rather than two separate numbers, and once more after the window has closed, so a save made in the last moment is not lost.&lt;/li&gt;
+&lt;li&gt;A settings window that failed while it was being built left its thread running with nothing to show. The dispatcher is now shut down in either case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;HangmanGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.1&quot;&gt;Download v12.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Slot Machine Game v15.0.1: One swap per save, and an unreadable settings file is caught</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1</id>
+    <published>2026-10-25T23:30:41Z</published>
+    <updated>2026-10-25T23:30:41Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;p&gt;A hardening release for the settings file. &lt;code&gt;SMG-Settings.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;🔧Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Saving &lt;code&gt;SMG-Settings.json&lt;/code&gt; is one swap instead of a copy and a swap: &lt;code&gt;File.Replace&lt;/code&gt; hands the file it replaces straight to &lt;code&gt;SMG-Settings.json.bak&lt;/code&gt;, so a save no longer copies the whole file first. The backup is still only taken from a file that parses itself, so a damaged one cannot overwrite the last readable copy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;code&gt;SMG-Settings.json&lt;/code&gt; that cannot be opened at all — locked by something else, or not readable for want of rights — fell through to the defaults wherever the settings were read outside the window. It now falls back to the backup copy like a damaged file does.&lt;/li&gt;
+&lt;li&gt;A settings window that failed while it was being built left its thread running with nothing to show, and the cooldown poll behind it never ended.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;SlotMachineGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1&quot;&gt;Download v15.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Trivia Game v8.1.1: Settings window: survives a damaged configs.json</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.1"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.1</id>
+    <published>2026-10-25T23:30:39Z</published>
+    <updated>2026-10-25T23:30:39Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;p&gt;A hardening release for the settings window. &lt;code&gt;configs.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt; took the whole settings script down.&lt;/strong&gt; The settings were read into a static field, so a file that does not parse threw before anything in the script ran: the window never opened, and the only way back was deleting the file by hand. The window now names the damaged file, reads the settings back from the copy beside it or falls back to the defaults, and keeps the unreadable one as &lt;code&gt;configs.json.broken&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Every save leaves &lt;code&gt;configs.json.bak&lt;/code&gt; behind&lt;/strong&gt; — the file as it was before that save, which is what the window reads back when the live one turns out to be damaged. The custom questions are written the same way. A file that does not parse itself is never kept as the backup, so a broken one cannot overwrite the last good copy.&lt;/li&gt;
+&lt;li&gt;A &lt;code&gt;configs.json&lt;/code&gt; the game script happens to be holding open is waited out instead of failing on the first try, both when reading and when writing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Only one settings window opens.&lt;/strong&gt; A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.&lt;/li&gt;
+&lt;li&gt;A name typed into a list on the Access page and not finished with Enter or a comma was dropped when Save was clicked straight away.&lt;/li&gt;
+&lt;li&gt;The cooldowns and the auto-start interval are handed over as one set, so a save can no longer be picked up half-written.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The update check runs beside the window instead of in front of it. A GitHub call that times out used to hold the window back for its full three seconds; the Update pill appears once GitHub answers.&lt;/li&gt;
+&lt;li&gt;The Log page reads the log files the first time it is opened, not while the window is being built. Every &lt;code&gt;Trivia-log-*.txt&lt;/code&gt; in the Logs folder used to be read on every opening, for a page most openings never look at.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;TriviaGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.1&quot;&gt;Download v8.1.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Battleship Game v2.0.0-pre-release.1: Chat vs the Admiral, Team duel &amp; Click to Fire (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1"/>
+    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1</id>
+    <published>2026-10-25T23:25:00Z</published>
+    <updated>2026-10-25T23:25:00Z</updated>
+    <category term="Battleship-Game" label="Battleship Game"/>
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;[!WARNING]
+&lt;strong&gt;v2.0.0-pre-release.1 — the first test version of 2.0.0.&lt;/strong&gt; It passes every automated check, but it has not run on a live stream yet. Try it on a test setup or back up your settings first, and please tell us what breaks.
+The stable version stays &lt;strong&gt;v1.0.0&lt;/strong&gt;: the update notice in the settings window and the &lt;em&gt;stable&lt;/em&gt; badge keep pointing there until 2.0.0 is final. Once it is, this test version&amp;#39;s settings window shows the update notice for it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;📥 Install or update&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Back up &lt;code&gt;&amp;lt;Streamer.bot folder&amp;gt;\Chat Games\Battleship Game\BSG-Settings.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Download &lt;strong&gt;&lt;code&gt;BattleshipGame.sb&lt;/code&gt;&lt;/strong&gt; below and drag it into Streamer.bot&amp;#39;s &lt;strong&gt;Import&lt;/strong&gt; window — or open it in a text editor and paste its content as the import string. Click &lt;strong&gt;Yes&lt;/strong&gt; on both messages.&lt;/li&gt;
+&lt;li&gt;In the &lt;strong&gt;Commands&lt;/strong&gt; tab, right-click the group &lt;strong&gt;[BG] - Battelship Game&lt;/strong&gt; ▸ &lt;strong&gt;Enable All&lt;/strong&gt;. The new commands arrive switched off.&lt;/li&gt;
+&lt;li&gt;Open the settings: action &lt;strong&gt;[BG] - .Settings&lt;/strong&gt;, right-click &lt;strong&gt;Test&lt;/strong&gt; under &lt;em&gt;Triggers&lt;/em&gt; ▸ &lt;strong&gt;Test Trigger&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;No more &lt;strong&gt;Find Refs&lt;/strong&gt;: the references in this import hold wherever Streamer.bot is installed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Coming from 1.0.0?&lt;/strong&gt; Your settings are kept; new settings start at their defaults.
+&lt;strong&gt;Going back to 1.0.0?&lt;/strong&gt; Import its &lt;code&gt;BattleshipGame.sb&lt;/code&gt; again. 2.0 has no platform switches, so tick YouTube and Kick again in the 1.0.0 settings if you use them.&lt;/p&gt;
+&lt;p&gt;The README and the Setup Guide on the main page still describe 1.0.0 until 2.0.0 is final — this page has everything for the test.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🧪 Please test&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; The import compiles — all three actions, no errors in Streamer.bot&amp;#39;s log&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; The settings window opens, saves, and switches between dark and light&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; A solo battle: &lt;code&gt;!battleship&lt;/code&gt;, &lt;code&gt;!fire B7&lt;/code&gt;, &lt;code&gt;!fleet&lt;/code&gt;, &lt;code&gt;!board&lt;/code&gt;, running out of time&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; &lt;code&gt;!seeschlacht&lt;/code&gt;: clicking on stream and &lt;code&gt;!fire B7&lt;/code&gt; both vote, and nobody wins or loses points&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; A team duel: &lt;code&gt;!duel @name&lt;/code&gt;, &lt;code&gt;!accept&lt;/code&gt;, &lt;code&gt;!team A&lt;/code&gt; / &lt;code&gt;!team B&lt;/code&gt;, the turns, and the payout to the winners&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; &lt;code&gt;!stopbattle&lt;/code&gt; works for moderators and is refused for everybody else&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; The overlay set up with &lt;strong&gt;Set the overlay up in OBS&lt;/strong&gt; (Overlay page)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; Click to Fire with the Heat extension (Twitch)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; Saving the game action or restarting Streamer.bot during a duel sign-up gives every entry back&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Found something? &lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/issues/new&quot;&gt;Open an issue&lt;/a&gt; or write in the &lt;a href=&quot;https://discord.com/channels/834650675224248362/1447648588694818836/1447648588694818836&quot;&gt;Battleship Game thread on the Streamer.bot Discord&lt;/a&gt; — with the command you used, what happened, and the lines from Streamer.bot&amp;#39;s log.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;✨ What&amp;#39;s new&lt;/h2&gt;
+&lt;h3&gt;👥 Chat vs the Admiral — &lt;code&gt;!seeschlacht&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The whole chat is one fleet, played just for fun. Each round every viewer has one vote — a click on enemy waters or &lt;code&gt;!fire B7&lt;/code&gt; — and the square with the most votes is fired at. No points to win or lose, so every click counts, logged in to Twitch or not, with nothing to link first.&lt;/p&gt;
+&lt;h3&gt;⚔️ Team duel — &lt;code&gt;!duel&lt;/code&gt;, &lt;code&gt;!accept&lt;/code&gt;, &lt;code&gt;!team&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;One chat team against another. Challenge a viewer (or anybody), they accept, and everyone picks a side with &lt;code&gt;!team A&lt;/code&gt;, &lt;code&gt;!team B&lt;/code&gt;, &lt;code&gt;!team &amp;lt;name&amp;gt;&lt;/code&gt; or plain &lt;code&gt;!team&lt;/code&gt;. Every member pays the entry fee, the sides take turns voting on each shot, and the winners share the pot — their own entry back whole.&lt;/p&gt;
+&lt;h3&gt;🖱️ Click to Fire (Twitch)&lt;/h3&gt;
+&lt;p&gt;With the free &lt;a href=&quot;https://dashboard.twitch.tv/extensions/cr20njfkgll4okyrhag7xxph270sqk&quot;&gt;Heat&lt;/a&gt; extension, the player whose battle is on screen fires by clicking a square in enemy waters right on the stream. The first click in a battle takes control; &lt;code&gt;!fire link&lt;/code&gt; makes a link that lasts.&lt;/p&gt;
+&lt;h3&gt;🛑 Moderator stop — &lt;code&gt;!stopbattle&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Ends whatever is running and pays nothing more out; a duel&amp;#39;s entries are refunded. It comes set to the Moderators group.&lt;/p&gt;
+&lt;h3&gt;🎨 A new settings window&lt;/h3&gt;
+&lt;p&gt;In the look of the other Chat Games: ten pages in a rail (Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log, About), switches and segment bars, every chat message on one page with placeholder chips and a live chat preview, and a red pill when an update is out.&lt;/p&gt;
+&lt;h3&gt;🌐 Every platform plays&lt;/h3&gt;
+&lt;p&gt;The platform switches are gone. Twitch, YouTube and Kick always play, and every reply goes to the chat the command came from. To leave a platform out, untick it on the commands in Streamer.bot (for example &lt;em&gt;Kick Message&lt;/em&gt;).&lt;/p&gt;
+&lt;h3&gt;📺 Overlay v16&lt;/h3&gt;
+&lt;p&gt;The duel&amp;#39;s two sides, the chat&amp;#39;s votes on the board, a countdown ring for every round, and no points shown in the chat&amp;#39;s battle. The overlay reloads itself when the game installs a newer version.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🐛 Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;!board&lt;/code&gt; now comes with the import — 1.0.0 had no command for it.&lt;/li&gt;
+&lt;li&gt;The cooldowns set in the settings window reach the &lt;code&gt;!battleship&lt;/code&gt; command; in 1.0.0 they went to a command that does not exist.&lt;/li&gt;
+&lt;li&gt;A cooldown message with &lt;code&gt;{user}&lt;/code&gt; or any other brace was never sent. &lt;code&gt;{user}&lt;/code&gt; works there now.&lt;/li&gt;
+&lt;li&gt;A payout, refund or charge never writes over a balance that could not be read.&lt;/li&gt;
+&lt;li&gt;Replies to &lt;code&gt;!board&lt;/code&gt; and to votes go to the asker&amp;#39;s own chat.&lt;/li&gt;
+&lt;li&gt;Closing Streamer.bot mid-game refunds every duel entry and fades the overlay out instead of freezing it.&lt;/li&gt;
+&lt;li&gt;A damaged &lt;code&gt;BSG-Settings.json&lt;/code&gt; is reported and kept as &lt;code&gt;.broken&lt;/code&gt;, instead of being reset on the next save without a word.&lt;/li&gt;
+&lt;li&gt;A battle starting while another one plays no longer takes the overlay away from it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;⚓ Commands&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Command&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!battleship&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Start a solo battle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!fire B7&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Fire at a square, or vote for one&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!fleet&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Redeploy your ships before your first shot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!board&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Shots, accuracy, ships left, running total&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!seeschlacht&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Start Chat vs the Admiral&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!duel @name&lt;/code&gt; · &lt;code&gt;!accept&lt;/code&gt; · &lt;code&gt;!team A&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Challenge, accept, join a side&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!fire link&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Link your clicks on stream to you (Click to Fire)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!stopbattle&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Moderators: stop everything&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;!bstats&lt;/code&gt; · &lt;code&gt;!ballstats&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Records and the leaderboard&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;The game knows its commands by their IDs, so you can rename any of them in Streamer.bot.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;⚠️ Known limitations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Stopping everything when the action is saved again or Streamer.bot closes has only been tested outside Streamer.bot so far — it is on the test list above.&lt;/li&gt;
+&lt;li&gt;In the chat&amp;#39;s battle a logged-out viewer can vote again by reloading the page. That is on purpose: it is played for fun.&lt;/li&gt;
+&lt;li&gt;Viewers on the Twitch app can&amp;#39;t click — it shows no overlay extensions — so they vote with &lt;code&gt;!fire B7&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1&quot;&gt;Download v2.0.0-pre-release.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v12.0.0: Word Import, Blitz, Evil Hangman &amp; Streaks</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.0"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.0</id>
+    <published>2026-10-25T20:56:16Z</published>
+    <updated>2026-10-25T20:56:16Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Word import.&lt;/strong&gt; An Import button on the Words page fetches words with hints from four free sources, shows them for review and adds the ticked ones to a category of your choice:&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Wikidata&lt;/strong&gt; (CC0): countries, capitals, big cities, rivers, mountains, chemical elements, musical instruments, sports, dog breeds, or any Wikidata class by its Q-ID. German or English, best known first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OdeNet&lt;/strong&gt;, the open German WordNet (CC BY-SA 4.0): animals, plants, food, objects, people &amp;amp; jobs, body, places, materials, nature and feelings, each with its German definition as the hint. Downloaded once and cached for a month.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PokéAPI&lt;/strong&gt;: Pokémon names in German or English with their category as the hint, by generation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IGDB&lt;/strong&gt;: video game titles, best rated first. Needs the Client ID and Secret of a free Twitch developer app; both are kept in Streamer.bot&amp;#39;s global variables, not in &lt;code&gt;configs.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Words with digits or symbols, too many letters or too many words are skipped, accents are folded, umlauts can be written out, and a hint that names its own answer is replaced or masked. Difficulty is rated automatically from length, rare letters and how well known the word is, or set by hand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blitz rounds.&lt;/strong&gt; Shorter time, fewer lives, and every point pays a multiplier. A round turns into a blitz by chance, or a mod calls one with &lt;code&gt;!hm blitz&lt;/code&gt;. The overlay shows a pulsing BLITZ badge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Evil Hangman.&lt;/strong&gt; Once chat has lost a set share of its lives, the overlay glitches and the word is swapped. Every guess is wiped except one revealed letter, which the new word always contains. Lives either stay lost or refill, as you choose. At most once per round.&lt;ul&gt;
+&lt;li&gt;The glitch runs in stages slow enough to read on a browser source at a low frame rate: the old word breaks up, everything scrambles under scanlines with a blinking SIGNAL LOST, the new word decodes, and the surviving letter lights up in the accent colour. Its length is a setting (3 seconds by default, 0 for no effect).&lt;/li&gt;
+&lt;li&gt;Chat is told about the swap only once the glitch has played out. Until then guesses and &lt;code&gt;!hmr&lt;/code&gt; are ignored and the &amp;quot;already running&amp;quot; reply stays quiet, so nothing in chat gives the new word away early. If the round ends meanwhile, the message is dropped.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Streaks.&lt;/strong&gt; Each solved word adds to the solver&amp;#39;s streak; it breaks when a round they guessed in is lost or times out. Winning streaks are announced, can pay a capped bonus, and show up as an extra line in the personal stats (&lt;code&gt;!hmp&lt;/code&gt;). &lt;code&gt;{streak}&lt;/code&gt; and &lt;code&gt;{beststreak}&lt;/code&gt; also work in the board and stats messages, and the monthly reset clears them.&lt;/li&gt;
+&lt;li&gt;Seven new chat messages on the Messages page, under Blitz, Evil Hangman and Streaks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Refresh Overlay in OBS&lt;/strong&gt; button on the Overlay page. It reloads every OBS browser source that shows &lt;code&gt;hangman_overlay.html&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The overlay is now version 9. It replaces the old file on its own and keeps it as &lt;code&gt;hangman_overlay.html.v5.bak&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;OBS keeps running the overlay page it loaded, even after the file on disk is replaced, so an update used to stay invisible until the browser source was refreshed by hand. The game now refreshes those browser sources itself over Streamer.bot&amp;#39;s OBS connection after an update and once per Streamer.bot session, and the page reloads itself whenever a newer version is on disk.&lt;/li&gt;
+&lt;li&gt;A round ended with &lt;code&gt;!killhm&lt;/code&gt; shows &lt;strong&gt;GAME OVER - MODERATOR STOPPED&lt;/strong&gt; in orange on the overlay, instead of the red &amp;quot;GAME OVER - &lt;word&gt;&amp;quot; of a lost round.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.0&quot;&gt;Download v12.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Trivia Game v8.1.0: New question sources: Wikidata, OdeNet, PokeAPI &amp; IGDB</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0</id>
+    <published>2026-10-25T20:39:46Z</published>
+    <updated>2026-10-25T20:39:46Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Four new question sources&lt;/strong&gt; in the &lt;strong&gt;Question source&lt;/strong&gt; dropdown under &lt;strong&gt;Questions &amp;amp; Sources&lt;/strong&gt;:&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Wikidata (SPARQL)&lt;/strong&gt;: capitals, currencies, continents, cities, World Heritage Sites,
+chemical symbols, moons, painters, authors, film directors and composers, built from Wikidata&amp;#39;s
+facts. Chat can pick a topic: &lt;code&gt;!Trivia geography&lt;/code&gt;, also science, art, literature, film, music.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OdeNet (deutsches WordNet)&lt;/strong&gt;: German vocabulary: which word fits a definition, which word
+means the same. The word list (about 4 MB) downloads once, the first time a round needs it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PokeAPI&lt;/strong&gt;: types, generations, Pokédex numbers and entries, evolutions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IGDB&lt;/strong&gt;: release years, studios, platforms, and which game came out first. Needs the Client ID
+and Client Secret of a Twitch developer application; the secret field is masked.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Every new source asks in multiple choice or True/False as the Game page says, draws its wrong
+answers from facts of the same kind, and ranks difficulty by how well known the subject is.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Question language&lt;/strong&gt;: English or German for Wikidata, PokeAPI and IGDB.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Is the source reachable?&lt;/strong&gt; checks whichever source is picked, not only opentdb. For IGDB it
+asks Twitch whether the keys are accepted.&lt;/li&gt;
+&lt;li&gt;Fetched facts are kept under &lt;code&gt;Chat Games/Trivia Game/Sources&lt;/code&gt;; Wikidata&amp;#39;s sets fill and refresh in
+the background, one query at a time, so a round does not wait for them.&lt;/li&gt;
+&lt;li&gt;About lists the new sources with their licences.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!suggest&lt;/code&gt; from chat never worked.&lt;/strong&gt; The script listened for a command id the import does not
+ship, so the message fell through to the answer handler. Only the channel point route got in.
+Suggestions now come from the shipped &lt;code&gt;!suggest&lt;/code&gt; command and from the suggestion reward, side by
+side, and from no other command.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Brutal&lt;/strong&gt; difficulty preset turned into Custom on save: its fuzzy tolerance of 0 was raised
+to 1.&lt;/li&gt;
+&lt;li&gt;A number counted as a close spelling of another: &lt;code&gt;1995&lt;/code&gt; was accepted as the option &lt;code&gt;1994&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Cooldown messages printed the seconds left as the PC&amp;#39;s culture wrote them, &lt;code&gt;4,8276&lt;/code&gt; included.&lt;/li&gt;
+&lt;li&gt;The save check, the How to play page and the message help named settings by names they no longer
+have â€” &lt;em&gt;Require Mod To Start&lt;/em&gt;, &lt;em&gt;Only Channel Points&lt;/em&gt;, &lt;em&gt;Announce Each Answer&lt;/em&gt; &amp;quot;on the Game page&amp;quot;
+among them. They use the labels the window shows now.&lt;/li&gt;
+&lt;li&gt;The save check warned about an empty own-question list for any source other than opentdb.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!TriviaScoreboard&lt;/code&gt; with a &lt;code&gt;scoreBoard&lt;/code&gt; argument of 0 or less posted a bare header.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Both&lt;/strong&gt; in the source dropdown is now &lt;strong&gt;Mine + opentdb&lt;/strong&gt;, since it is no longer the only mix one
+could mean.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0&quot;&gt;Download v8.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Suggestions To v1.0.0: Suggestions to Discord, Stoat and GameVox</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/SuTo/releases/tag/v1.0.0"/>
+    <id>https://github.com/aaskjer/SuTo/releases/tag/v1.0.0</id>
+    <published>2026-10-25T19:58:22Z</published>
+    <updated>2026-10-25T19:58:22Z</updated>
+    <category term="SuTo" label="Suggestions To"/>
+    <content type="html">&lt;h1&gt;📝 Suggestions from chat, straight to your server&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;!suggestion&lt;/code&gt; and &lt;code&gt;!vorschlag&lt;/code&gt; in Twitch, YouTube and Kick chat post the idea to your &lt;strong&gt;Discord&lt;/strong&gt;, &lt;strong&gt;Stoat&lt;/strong&gt; or &lt;strong&gt;GameVox&lt;/strong&gt; server, with the viewer&amp;#39;s avatar, name, platform and the time. The viewer gets a short confirmation in chat.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One action per server: turn on one, two or all three.&lt;/li&gt;
+&lt;li&gt;Embeds coloured per platform, with your own text, colours and footer.&lt;/li&gt;
+&lt;li&gt;Date and time beside name and platform: Discord&amp;#39;s own timestamp, or your PC&amp;#39;s time in your format on Stoat and GameVox.&lt;/li&gt;
+&lt;li&gt;Discord forums: a new forum post per suggestion, or all of them in one thread.&lt;/li&gt;
+&lt;li&gt;Several webhooks at once, separated by commas.&lt;/li&gt;
+&lt;li&gt;Clear log lines when something goes wrong, with the webhook token masked.&lt;/li&gt;
+&lt;li&gt;Imports wherever Streamer.bot is installed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;📦 Install&lt;/h1&gt;
+&lt;p&gt;Download &lt;strong&gt;&lt;code&gt;SuggestionsTo.sb&lt;/code&gt;&lt;/strong&gt; below and drag it into Streamer.bot&amp;#39;s &lt;strong&gt;Import&lt;/strong&gt; window, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the commands and add your webhook URL, as in the &lt;a href=&quot;https://github.com/aaskjer/SuTo#install&quot;&gt;README&lt;/a&gt;. Every argument is in the &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/SuTo/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/suto/&quot;&gt;Suggestions To on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Better Stream Announcements v2.0.1: Connection-trouble notices for your own announcements</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.1"/>
+    <id>https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.1</id>
+    <published>2026-10-25T10:05:37Z</published>
+    <updated>2026-10-25T10:05:37Z</updated>
+    <category term="Better-Stream-Announcements" label="Better Stream Announcements"/>
+    <content type="html">&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Connection-trouble notice for your own announcements.&lt;/strong&gt; Broadcaster Online and Offline count dropouts the way Streamer Friends already did: every offline event is a drop, and once a second one lands within 30 minutes the stream is having connection trouble rather than ending. The ended embed then reads &lt;code&gt;⚠️ Connection trouble&lt;/code&gt; in place of &lt;code&gt;OFFLINE since&lt;/code&gt;, and so does the announcement that comes back up when the stream returns within the 20-minute revive window, in place of &lt;code&gt;LIVE since&lt;/code&gt;. It clears itself once the stream has held 15 minutes without dropping again. A single dropout never trips it, and two unrelated dropouts hours apart do not add up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;LIVE since&lt;/code&gt; and &lt;code&gt;OFFLINE since&lt;/code&gt; in the broadcaster footers.&lt;/strong&gt; Your own announcements carried a bare &lt;code&gt;BetterStreamAnnouncements&lt;/code&gt; footer while the Streamer Friends embeds said what their timestamp meant. The live one keeps the moment the stream went live even when the announcement is edited later, so an update no longer moves the time to &amp;quot;now&amp;quot;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Every footer separator is &lt;code&gt;•&lt;/code&gt; now.&lt;/strong&gt; Discord joins a footer and its timestamp with &lt;code&gt;•&lt;/code&gt; of its own, so the &lt;code&gt;·&lt;/code&gt; the footers used read as a second, smaller separator in the same line. All seven Streamer Friends platforms, both broadcaster embeds and the &lt;code&gt;/bsa setup&lt;/code&gt; page counter now use &lt;code&gt;•&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade notes&lt;/h2&gt;
+&lt;p&gt;Nothing to reconfigure. No settings were added, removed or renamed, and every trigger binding stays as it is.&lt;/p&gt;
+&lt;h2&gt;Install&lt;/h2&gt;
+&lt;p&gt;Import &lt;code&gt;BetterStreamAnnouncements.sb&lt;/code&gt; below, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the Streamer Friends timer for each platform you use.&lt;/p&gt;
+&lt;p&gt;Full detail in &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/CHANGELOG.md&quot;&gt;CHANGELOG.md&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.1&quot;&gt;Download v2.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v16.2.0: A real shoe, a new settings window, OBS 33</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.0"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.0</id>
+    <published>2026-10-25T09:55:25Z</published>
+    <updated>2026-10-25T09:55:25Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;h1&gt;🃏 A real shoe&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Decks in the shoe&lt;/strong&gt; and &lt;strong&gt;Reshuffle at&lt;/strong&gt; finally do what they say. There is one shoe per platform, shared by every hand and duel running there. A played card goes to the discard pile and stays out until the shoe runs down to the threshold; then the played cards go back in and it is shuffled. Eight decks no longer play like one.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A card still in a hand is never dealt twice, even when the shoe reshuffles mid-round.&lt;/li&gt;
+&lt;li&gt;Change the deck count or the threshold and the next hand starts a fresh shoe.&lt;/li&gt;
+&lt;li&gt;A House table keeps its own shoe, sized by its rule set.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🎨 The settings window, rebuilt&lt;/h1&gt;
+&lt;p&gt;Twenty-eight entries in six collapsible groups are now ten pages in a flat rail.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One &lt;strong&gt;Messages&lt;/strong&gt; page for all 169 chat lines: pick a line, edit it, and a live chat preview shows how it reads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How to play&lt;/strong&gt; summarises the rules from what the window currently says.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Log&lt;/strong&gt; page filters by result, mode, platform and day.&lt;/li&gt;
+&lt;li&gt;Ctrl+S saves, Ctrl+1 to Ctrl+9 jump between pages, ⟳ resets one page, and the footer counts unsaved changes.&lt;/li&gt;
+&lt;li&gt;The colour wheel takes a click and a drag.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;📺 The overlay and OBS 33&lt;/h1&gt;
+&lt;p&gt;OBS 33 tightened how a browser source may read files from disk. The overlay now loads the table state as a small script file, so it works however OBS opens it: as a Local file, from a &lt;code&gt;file:///&lt;/code&gt; address or off a web server. It is version 13 and replaces an older copy on the next command, keeping that one as a &lt;code&gt;.bak&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Set it up in OBS&lt;/strong&gt; creates a 1300 × 1080 source.&lt;/li&gt;
+&lt;li&gt;The overlay catches up the moment OBS shows it, and says in the OBS log when it cannot read the state.&lt;/li&gt;
+&lt;li&gt;Amounts are grouped the way chat groups them (&lt;code&gt;1.234.567&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;A display name can no longer break the layout, in a hand or in the duel challenge prompt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔧 Fixed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Open stakes are paid back when Streamer.bot closes or the code is edited, instead of vanishing.&lt;/li&gt;
+&lt;li&gt;A maximum bet or hands-per-hour limit can be set back to no limit (&lt;code&gt;0&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;A 5-card Charlie and three sevens settle the moment they happen, doubling included.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!stats&lt;/code&gt; reports House Mode, and a full stats wipe clears the House figures too.&lt;/li&gt;
+&lt;li&gt;Kick viewers are booked to Kick, not Twitch.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;all&lt;/code&gt; and the other bet shortcuts announce the stake the hand is actually played for.&lt;/li&gt;
+&lt;li&gt;The duel help named &lt;code&gt;!duel&lt;/code&gt;; the command the import creates is &lt;code&gt;!bjduel&lt;/code&gt;. A saved copy of that reply keeps its wording - reset it on the Messages page.&lt;/li&gt;
+&lt;li&gt;Quitting a seat returns its insurance stake; a player with a challenge waiting can no longer also take a seat.&lt;/li&gt;
+&lt;li&gt;Saving no longer trims spaces the chat lines rely on; three default lines no longer say &lt;code&gt;@@username&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;💬 Changed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Every chat line has been rewritten: same meaning, same placeholders, shorter.&lt;/li&gt;
+&lt;li&gt;The update check compares version numbers, so an older tag is never offered as an update.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The platform switches.&lt;/strong&gt; Streamer.bot already decides which platforms a command fires on; the game now answers wherever its commands fire. Channel points remain Twitch only.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Updating&lt;/h1&gt;
+&lt;p&gt;Import &lt;code&gt;BlackjackGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings and player statistics stay where they are.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.0&quot;&gt;Download v16.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>TwitchSentry v4.0.1: Update and language notifications</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.1"/>
+    <id>https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.1</id>
+    <published>2026-10-23T20:14:52Z</published>
+    <updated>2026-10-23T20:14:52Z</updated>
+    <category term="TwitchSentry" label="TwitchSentry"/>
+    <content type="html">&lt;h3&gt;✨ Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Update notification at start&lt;/strong&gt;: when Streamer.bot starts, TwitchSentry looks for a new release and shows a Windows notification, without the settings window having to be opened (Windows Notifications → Updates Notify: &amp;#39;On New Releases&amp;#39;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Language updates announced&lt;/strong&gt;: the same notification tells you when the window&amp;#39;s or the chat&amp;#39;s language has a newer translation; opening the settings window installs it and says so.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Translators in About&lt;/strong&gt;: the About page names every translator the published languages credit, a new one included, without waiting for a release.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Language code in share tickets&lt;/strong&gt;: a translation or complete-language ticket opened from the window carries the language code in its title.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.1&quot;&gt;Download v4.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/twitchsentry/&quot;&gt;TwitchSentry on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Better Stream Announcements v2.0.0: Slash Commands, /bsa setup &amp; new SF platforms</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0"/>
+    <id>https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0</id>
+    <published>2026-10-23T19:32:56Z</published>
+    <updated>2026-10-23T19:32:56Z</updated>
+    <category term="Better-Stream-Announcements" label="Better Stream Announcements"/>
+    <content type="html">&lt;p&gt;Announcements now run on Discord slash commands, configure themselves through &lt;code&gt;/bsa setup&lt;/code&gt;, and cover seven platforms.&lt;/p&gt;
+&lt;h2&gt;Upgrade notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The &lt;code&gt;?&lt;/code&gt; prefix commands are gone.&lt;/strong&gt; &lt;code&gt;/bsa&lt;/code&gt;, &lt;code&gt;/streamerfriends&lt;/code&gt; and &lt;code&gt;/crosspost&lt;/code&gt; replace them. The bot registers them itself when it connects — if they do not appear, invite it again with the &lt;strong&gt;bot&lt;/strong&gt; and &lt;strong&gt;applications.commands&lt;/strong&gt; scopes, then use &lt;strong&gt;Slash Commands → Register Again&lt;/strong&gt; in Discord Bot → Bot Presence.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Message Content Intent is no longer needed&lt;/strong&gt; and can be switched off in the Developer Portal. Presence Intent and Server Members Intent stay on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trigger bindings keep working&lt;/strong&gt; — every custom trigger event id is unchanged.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Removed settings:&lt;/strong&gt; &lt;code&gt;BOT_CommandPrefix&lt;/code&gt;, &lt;code&gt;SF_WizardTimeout&lt;/code&gt;, &lt;code&gt;CC_WizardTimeout&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/bsa&lt;/code&gt; admin commands now need Manage Server&lt;/strong&gt; when &lt;code&gt;BOT_AdminUserIds&lt;/code&gt; is empty, because &lt;code&gt;/bsa setup&lt;/code&gt; can change the configuration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;/bsa setup&lt;/code&gt;&lt;/strong&gt; — channels, ping roles, every ISLIVE role, presence-check roles, admins and the Self-Assign and Crosspost restrictions through Discord&amp;#39;s own channel, role and user menus. No Developer Mode, no copied IDs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TikTok as the seventh Streamer Friends platform&lt;/strong&gt;, alongside Owncast, Rumble and Picarto joining Twitch, YouTube and Kick. Members can link all seven with &lt;code&gt;/streamerfriends link&lt;/code&gt; and subscribe to them in Custom Crosspost.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Connection-trouble notice&lt;/strong&gt; — a stream that drops out and comes back twice within 30 minutes shows &lt;code&gt;⚠️ Connection trouble&lt;/code&gt; in place of &lt;code&gt;LIVE since&lt;/code&gt;, and clears once it has held for 15 minutes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optional display names for YouTube friends&lt;/strong&gt; — &lt;code&gt;UCnOML5aYvwMOYEGa8ienFEA|Sorylokan&lt;/code&gt;. The part before the pipe stays the key, so existing crosspost subscriptions keep matching.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Streamer Friends announcements reach Custom Crosspost subscribers&lt;/strong&gt; — before, only Broadcaster Online did, so platform and per-friend subscriptions never received anything.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The crosspost key is tied to your Windows account&lt;/strong&gt; via DPAPI, with a &lt;code&gt;BSA1-…&lt;/code&gt; recovery code for moving to a new PC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Install&lt;/h2&gt;
+&lt;p&gt;Import &lt;code&gt;BetterStreamAnnouncements.sb&lt;/code&gt; below, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the Streamer Friends timer for each platform you use.&lt;/p&gt;
+&lt;p&gt;Full detail in &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/CHANGELOG.md&quot;&gt;CHANGELOG.md&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Trivia Game v8.0.0: New Gui, some fixes and QoL</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v8.0.0"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v8.0.0</id>
+    <published>2026-10-21T22:14:43Z</published>
+    <updated>2026-10-21T22:14:43Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Settings window rebuilt as an icon rail — Game, Questions, Access, Messages, Log, How to play,
+About — with &lt;code&gt;Ctrl+1&lt;/code&gt;-&lt;code&gt;Ctrl+7&lt;/code&gt; to switch and &lt;code&gt;Ctrl+S&lt;/code&gt; to save.&lt;/li&gt;
+&lt;li&gt;Viewer suggestions: &lt;code&gt;!Suggest question | correct | wrong | wrong&lt;/code&gt;, guarded by a channel point
+reward, Streamer.bot groups or mod status. A Suggestions page sets the guard, the category and
+difficulty they arrive under, the per-viewer cap, and whether they are playable at once.&lt;/li&gt;
+&lt;li&gt;Chat picks the category: &lt;code&gt;!Trivia history&lt;/code&gt;, &lt;code&gt;!Trivia 3 science&lt;/code&gt;, short forms like tv, movies,
+anime, maths. Only categories a round can be drawn from are offered; an unplayable name cancels
+the round rather than substituting another.&lt;/li&gt;
+&lt;li&gt;Messages page: all 63 chat lines behind one picker, placeholder chips, and a preview of the
+finished line including how it reads as a &lt;code&gt;/me&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Difficulty dial: one slider for answer times, countdown reminders and spelling tolerance, Relaxed
+to Brutal. Every number stays editable; editing one switches the slider to Custom.&lt;/li&gt;
+&lt;li&gt;Header says what starts a round and whether the timer is on; footer counts unsaved changes.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Dispose()&lt;/code&gt; stops countdowns and closes the settings window when the action is destroyed, so a
+recompile mid-round no longer leaves the old build posting reminders.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Channel point redemptions never started a round.&lt;/strong&gt; A redemption carries a reward id and no
+command id, so it fell through to the answer handler. Start rewards are matched on the reward
+now — and the action needs a &lt;strong&gt;Twitch → Channel Point Reward Redemption&lt;/strong&gt; trigger, which older
+imports do not carry.&lt;/li&gt;
+&lt;li&gt;Round ownership: skip, force end, a stale timeout and a blitz winner each claim the round before
+announcing, first claim wins. Fixes a last-second skip paying out anyway, force end announcing an
+end it did not cause, a skip racing a blitz winner, phantom &amp;quot;remaining rounds cancelled&amp;quot; lines,
+and a force end between two questions wiped out by the next round starting.&lt;/li&gt;
+&lt;li&gt;A round that threw while starting or resolving left that platform stuck on &amp;quot;a round is already
+active&amp;quot; until recompile, with its redemption neither refunded nor fulfilled.&lt;/li&gt;
+&lt;li&gt;The update check compared release tags as strings, so a build ahead of the latest release was told
+to update back to it. The notice is a header pill now, not a dialog in the way.&lt;/li&gt;
+&lt;li&gt;A question suggested from chat while the settings window was open was overwritten by the next
+save, a theme switch included. Saves fold in what arrived meanwhile; deletions stay deleted. Same
+for the addicted list against &lt;code&gt;!TA&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;A category holding fewer questions than the cache batch failed the whole round; the game asks for
+a single question instead of giving up.&lt;/li&gt;
+&lt;li&gt;The monthly leaderboard reset wiped the board the moment it was switched on. Enabling only arms
+it, and the first wipe lands at the next month boundary.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked From Board&lt;/strong&gt; was ignored while &lt;strong&gt;Include Bot&lt;/strong&gt; was ticked.&lt;/li&gt;
+&lt;li&gt;Close spellings were rejected while normalized matching was off: &lt;code&gt;Paris.&lt;/code&gt; was turned away while
+the genuine typo &lt;code&gt;parus&lt;/code&gt; was accepted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Countdown Start&lt;/strong&gt; was raised to at least half the answer time. The configured value is what
+chat gets; only the round&amp;#39;s own length still caps it.&lt;/li&gt;
+&lt;li&gt;An empty &lt;strong&gt;Number Separator&lt;/strong&gt; printed &lt;code&gt;1,234,567&lt;/code&gt; in the game and &lt;code&gt;1234567&lt;/code&gt; on the leaderboard.&lt;/li&gt;
+&lt;li&gt;Action log: series entries carried no platform, the payout column stayed empty for currencies
+with a space in the name, and the filter now knows series, force ends, suggestions and addicted.&lt;/li&gt;
+&lt;li&gt;Closing with the title bar&amp;#39;s X discarded everything without asking, and question list edits were
+not counted as unsaved changes.&lt;/li&gt;
+&lt;li&gt;Opening or closing the settings window restarted the auto start countdown, Cancel and recompiles
+included.&lt;/li&gt;
+&lt;li&gt;A round resolving in the background read the addicted groups and the platform from whichever chat
+last sent a message, not from the round&amp;#39;s own platform.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!ForceEndTrivia&lt;/code&gt;, the addicted command and &lt;code&gt;!Suggest&lt;/code&gt; answered on switched-off platforms.&lt;/li&gt;
+&lt;li&gt;The currency lookup logged an info line for every chat message.&lt;/li&gt;
+&lt;li&gt;A redeemed reward the game does not recognise was dropped silently. The usual cause — a start
+reward wired up while &lt;strong&gt;Only Channel Points&lt;/strong&gt; is off — logs and refunds now.&lt;/li&gt;
+&lt;li&gt;A multi-round redemption with multiple rounds switched off played one round without a word.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;90s Music&lt;/code&gt; started 90 rounds of a category called &lt;code&gt;s Music&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Settings were re-read and re-parsed on every chat message; now only when a file changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The platform tick-boxes are gone.&lt;/strong&gt; Twitch, YouTube and Kick all play, and the reply goes to
+the chat the command or redemption came from. To leave a platform out, untick it on the Trivia
+commands in Streamer.bot. Channel point rewards stay Twitch-only.&lt;/li&gt;
+&lt;li&gt;An opentdb outage says so. The log repeats what their server answered instead of a bare
+&amp;quot;403 (Forbidden)&amp;quot;, and &lt;strong&gt;Questions → Sources&lt;/strong&gt; asks opentdb and reports whether it answers.&lt;/li&gt;
+&lt;li&gt;Command names on the How to play page and in the &amp;quot;no username given&amp;quot; message match what the
+import ships: &lt;code&gt;!Trivia&lt;/code&gt;, &lt;code&gt;!SkipTrivia&lt;/code&gt;, &lt;code&gt;!ForceEndTrivia&lt;/code&gt;, &lt;code&gt;!TA&lt;/code&gt;, &lt;code&gt;!TriviaScoreboard&lt;/code&gt;, &lt;code&gt;!TStats&lt;/code&gt;,
+&lt;code&gt;!TSS&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.0.0&quot;&gt;Download v8.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v11.0.0: New GUI, some fixes and QoL</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v11.0.0"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v11.0.0</id>
+    <published>2026-10-21T21:26:00Z</published>
+    <updated>2026-10-21T21:26:00Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Settings window rebuilt: icon rail instead of the sidebar, status pills in the header, sliding switches, &lt;code&gt;Ctrl+S&lt;/code&gt; to save and &lt;code&gt;Ctrl+1&lt;/code&gt;…&lt;code&gt;8&lt;/code&gt; to switch pages.&lt;/li&gt;
+&lt;li&gt;15 pages reduced to 8: Game, Words, Overlay, Access, Messages, Board, Log, About.&lt;/li&gt;
+&lt;li&gt;All 40 chat messages moved to one Messages page, with a live chat preview and placeholder chips.&lt;/li&gt;
+&lt;li&gt;Bot-account and &lt;code&gt;/me&lt;/code&gt; toggles moved to Messages, separately for game and cooldown replies.&lt;/li&gt;
+&lt;li&gt;Update check runs in the background; a pill in the header replaces the popup that used to block the window.&lt;/li&gt;
+&lt;li&gt;Wordlist and action-log tables follow the window theme instead of showing up white.&lt;/li&gt;
+&lt;li&gt;Unsaved changes show as a status line rather than a count.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt; no longer blocks the window: it is kept as &lt;code&gt;configs.json.broken&lt;/code&gt; and the settings come from &lt;code&gt;configs.json.bak&lt;/code&gt;, which every save now leaves behind, or from the defaults.&lt;/li&gt;
+&lt;li&gt;Only one settings window opens; a second trigger brings the existing one to the front.&lt;/li&gt;
+&lt;li&gt;The colour wheel takes a click or a drag to pick hue and saturation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Removed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Platform selection. Twitch, YouTube and Kick all play — restrict the game per platform in Streamer.bot instead.&lt;/li&gt;
+&lt;li&gt;Sidebar search, Reset Page, and the placeholder chips under every message box.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Upgrades from v9 forced a fixed channel point stake: the bet-mode migration ran only in the settings window, not in the game action.&lt;/li&gt;
+&lt;li&gt;25 Windows references in the export were relative to the exporting Streamer.bot&amp;#39;s folder and were dropped on import elsewhere.&lt;/li&gt;
+&lt;li&gt;A running countdown kept going after the action was destroyed; it is cancelled now.&lt;/li&gt;
+&lt;li&gt;Eight defaults disagreed between the game action and the settings window, among them round duration, maximum difficulty and the subscriber and VIP boosts.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MsgGameStart&lt;/code&gt; opened with a broken character instead of 🎮.&lt;/li&gt;
+&lt;li&gt;The update check compared tags for inequality and would offer a downgrade; it compares versions now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v11.0.0&quot;&gt;Download v11.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>TwitchSentry v4.0.0: New features, fixes, QoL</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.0"/>
+    <id>https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.0</id>
+    <published>2026-10-20T22:20:17Z</published>
+    <updated>2026-10-20T22:20:17Z</updated>
+    <category term="TwitchSentry" label="TwitchSentry"/>
+    <content type="html">&lt;h3&gt;✨ Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hate Raid Protection&lt;/strong&gt;: a new module (off by default) that recognises a hate raid in a burst of arrivals with signs of hate and locks the chat down until it has calmed down. &lt;code&gt;!hateraid&lt;/code&gt;, a deck key and the OBS dock start or lift a lockdown by hand.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shared Bot List&lt;/strong&gt;: bots the filters identify are reported to a public list on GitHub, and accounts several channels reported are banned in yours too. Only the account is shared, never a message or the channel.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chat Bot badge&lt;/strong&gt;: with a Twitch application of your own, every message TwitchSentry posts carries Twitch&amp;#39;s Chat Bot badge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stoat and GameVox&lt;/strong&gt;: Notifications sends its alerts to these two platforms as it does to Discord.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ntfy&lt;/strong&gt;: alerts arrive as push notifications on ios, android or any browser, louder the more serious they are.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chat languages&lt;/strong&gt;: TwitchSentry&amp;#39;s chat messages come in English, German, Spanish, French and Brazilian Portuguese (☰ → Change Language → &lt;em&gt;Chat Messages&lt;/em&gt;); texts you changed yourself are kept.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!antiraid&lt;/code&gt; and &lt;code&gt;!followwave&lt;/code&gt;&lt;/strong&gt;: moderators arm or disarm Raid Protection and Follow Wave Protection from chat.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow Wave Protection switches chat modes and pauses queues&lt;/strong&gt; while a wave lasts, your follow alerts for example. It also has a deck key and an OBS dock button.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shared chat modes&lt;/strong&gt;: a mode several modules switched on goes off only once none of them needs it any more.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exclude Followers works&lt;/strong&gt;: TwitchSentry keeps its own follower list, read from Twitch at start and updated with every follow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ban reasons you can edit&lt;/strong&gt; for LurkBot Filter, Shared Bot List, Hate Raid Protection, AutoMod&amp;#39;s Ban Evasion and the Message Filter, whose reason now names the check that acted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!tsundo&lt;/code&gt; lifts blocks&lt;/strong&gt; as well as bans.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Check Link answers more precisely&lt;/strong&gt;: when a message stays, the reply no longer says it was removed, and &lt;code&gt;!checklink&lt;/code&gt; without a link gets an answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hand-Off Phrases and Service Offers&lt;/strong&gt; can be edited on Known Patterns.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Languages window&lt;/strong&gt; shows who made a community translation; a double-click downloads or switches a language.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Expert mode hint&lt;/strong&gt;: a page says how many expert settings it hides, and how many of them differ from the default.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spam Learner sensitivity slider&lt;/strong&gt;: one slider from Very cautious to Very eager sets the seven learning thresholds.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manual tabs&lt;/strong&gt;: Getting Started, Pages, Terms, Commands and Deck Buttons. Terms explains 61 words of the window, A to Z, each with a link to its page; the hint about placeholder chips stands there once instead of on every Messages tab. Deck Buttons lists every deck argument with the values it takes, your saved profiles included.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Credits&lt;/strong&gt; name every data source and service TwitchSentry uses.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deck keys redraw themselves&lt;/strong&gt;: a key that shows a title, a colour or a switch state is drawn again when what it shows changes elsewhere; &lt;code&gt;tsRefresh&lt;/code&gt; redraws them at once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OBS dock buttons&lt;/strong&gt;: up to 24 of your own (✎ → &lt;em&gt;Buttons Shown&lt;/em&gt;), new ones for the panic button, Refuse Permit Request and Revoke Permit; the list has a search field and shows each module as a heading in its page&amp;#39;s colour, its functions beneath it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notifications on deck keys and in the dock&lt;/strong&gt;: &lt;code&gt;tsNotify&lt;/code&gt; switches the Discord, Stoat, GameVox, ntfy and Windows tabs on or off, and the dock shows them in a Notifications group.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tsPermitRevoke&lt;/code&gt;&lt;/strong&gt;: a deck key ends link permits early, as &lt;code&gt;!endpermit&lt;/code&gt; does; each running permit in the dock has a ✕ for it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Action Log shows the removed message&lt;/strong&gt;: the Spam Filter, the Message Filter and Raid Protection log it too, and it has a column of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dates in the window&amp;#39;s language&lt;/strong&gt;: each language file sets its date format in &lt;code&gt;&amp;quot;__dateFormat&amp;quot;&lt;/code&gt; (&lt;code&gt;dd.MM.yyyy&lt;/code&gt; in German); logs and files keep &lt;code&gt;yyyy-MM-dd&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Options window&lt;/strong&gt; (☰ → &lt;em&gt;Options...&lt;/em&gt;): tabs for Test Mode, hidden notices and the OBS dock. Each hidden notice can be brought back on its own, at once and without reopening the window.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧 Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Home rebuilt&lt;/strong&gt;: one line says whether TwitchSentry is watching or in test mode, with the profile beneath; every module and alert channel is a chip that follows its switch and opens its page; &lt;em&gt;Start Here&lt;/em&gt; has the five first steps with a button each and a link to Getting Started, and can be hidden; activity counters and compact help tiles replace the Jump To tiles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easy mode shows less&lt;/strong&gt;: the Spam Learner&amp;#39;s tuning, the pattern and conversation lists on Known Patterns, the statistics columns on Suggestions and Check Link&amp;#39;s scanner limits move to expert mode, and &lt;em&gt;controls N settings&lt;/em&gt; counts only the rows on screen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notifications&lt;/strong&gt;: one new action sends every module&amp;#39;s alerts, bundles those that arrive together and shares each platform&amp;#39;s rate limit. Discord and Windows are tabs of a new Notifications page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Several webhooks and Discord forums&lt;/strong&gt;: a webhook field takes several URLs, and a forum webhook gets one thread per module.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Discord bot (optional)&lt;/strong&gt;: a bot of your own can post the alerts and tag each module&amp;#39;s forum thread with its latest action.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Renamed&lt;/strong&gt;: Permits is now Permit, Follow Protection is now Follow Wave Protection (action &lt;strong&gt;FollowWaveProtection&lt;/strong&gt;), and the script files carry the names the window uses. Deck keys need the new names (&lt;code&gt;Permit&lt;/code&gt;, &lt;code&gt;Follow Wave Protection&lt;/code&gt;, &lt;code&gt;tsNotify&lt;/code&gt; for &lt;code&gt;Discord&lt;/code&gt;, &lt;code&gt;tsLurkBot&lt;/code&gt;); settings keep their values.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Window reorganised&lt;/strong&gt;: each module&amp;#39;s chat texts are on a &lt;em&gt;Messages&lt;/em&gt; tab of its page, the sidebar has new groups, each with one colour for all its pages, and remembers collapsed ones, and the band with title, switch and tabs stays at the top while the page scrolls.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Settings moved&lt;/strong&gt;: Whitelisted Domains and Always Allowed are on the Link Filter page again, the shared Default Action and Command Replies on General Settings, and each Message Filter check&amp;#39;s Score Hit has a card of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chat Modes rebuilt&lt;/strong&gt;: the Message Filter and Raid Protection have a Chat Modes tab whose cards each answer one question.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tab switches&lt;/strong&gt;: a tab with a main switch of its own shows it in the band and is dimmed with ○ while off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AutoMod always reports unban requests&lt;/strong&gt;; Notifications decides where they go.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow Wave blocks and LurkBot finds&lt;/strong&gt; go into monthly files in the Logs folder instead of lists in the window.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Raid Protection&lt;/strong&gt; steps up at most every 30 seconds instead of per message, and on Strict and Very strict acts on a single signal when &lt;em&gt;Require Two Signals&lt;/em&gt; is off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!checklink&lt;/code&gt;&lt;/strong&gt; no longer carries spam past the filters: only &lt;code&gt;!checklink &amp;lt;link&amp;gt;&lt;/code&gt; is left to Check Link.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clearer texts&lt;/strong&gt; in the window and docs, in all five maintained languages; a few default chat texts were reworded, your own texts stay.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scripts tidied&lt;/strong&gt;: shorter comments, a header with each script&amp;#39;s module, version and commands, no conversions from builds before v3.0.0, and less work per chat message.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open A Ticket&lt;/strong&gt; lists every module.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A deleted feed entry stays deleted.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chat command replies&lt;/strong&gt; name lists as the window does.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No more Shield Mode trigger notice&lt;/strong&gt;: the window cannot check those triggers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Less work on long lists&lt;/strong&gt;: the Spam Learner prepares its window once per run, and the deck reads its files once per change.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OBS dock&lt;/strong&gt;: removed links stand under Recent Actions with Grant Permit, beside the timeouts and bans; the Permit list keeps running permits and Channel Points requests, and Grant Permit turns green while a viewer asks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One stream at a time&lt;/strong&gt;: removed links and permit requests from before the stream went live are no longer offered; an unanswered request is refunded then, or once its viewer has left the chat.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Always Allowed on deck keys&lt;/strong&gt;: the switches for every channel&amp;#39;s links are named &lt;em&gt;All …&lt;/em&gt; (&lt;code&gt;All Kick VOD Links&lt;/code&gt;); keys need the new names.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Violation Log is now Spam Log&lt;/strong&gt; (&lt;code&gt;spam-log.txt&lt;/code&gt;), since it holds what the Spam Filter and the Link Filter removed; the old files move across.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How does this work?&lt;/strong&gt; replaces &lt;em&gt;How this works&lt;/em&gt; above every folded explanation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;☰ menu shorter&lt;/strong&gt;: Test Duration and Test Notice moved from General Settings to ☰ → Options, and so did &lt;em&gt;Set Up OBS Dock&lt;/em&gt; and &lt;em&gt;Show hidden notices again&lt;/em&gt;. Test Mode stays in the menu as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Exclude Subscribers&lt;/strong&gt; works again in eight modules which wasn&amp;#39;t the case before because of a typo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;First Message Only&lt;/strong&gt; on the Message Filter no longer switches the account age check off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Settings window&lt;/strong&gt;: unsaved changes are never lost without asking, failed saves and imports say so, chat edits made while it was open are kept, the last untranslated texts are translated, and saved profiles show their date in the window&amp;#39;s language.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backups&lt;/strong&gt; also hold profiles and the Shared Bot List&amp;#39;s bans, and Reset Everything makes one first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt;&lt;/strong&gt; opens the Damaged Files window again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upgrading from v3.x&lt;/strong&gt; carries over a few settings that were lost before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Known Patterns&lt;/strong&gt; keeps commas in phrases, and spam wording matches whole words only (&amp;quot;you won&amp;quot; no longer catches &amp;quot;you won&amp;#39;t&amp;quot;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spam Filter&lt;/strong&gt;: regulars and Trusted Users are never reported to the Shared Bot List, phrases such as &amp;quot;like, follow and sub&amp;quot; are no longer read as ads, and the conversation scam check keeps to its window.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spam Learner&lt;/strong&gt; learns phrases and domains it missed, no longer mistakes ordinary words for codes, its suggestions can become trusted again, and it posts the suggestion count in chat only when it found something new.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Link Filter and Check Link&lt;/strong&gt; read disguised, bracketed and bare links the way a browser does, and a removal message no longer repeats the link.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Word Filter&lt;/strong&gt;: entries that would hit every message are refused, entries with accents or digits match as typed, &lt;code&gt;!nuke&lt;/code&gt; reaches its full 600 seconds, and the Twitch sync no longer stalls.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AutoMod&lt;/strong&gt;: repeated denials restrict a viewer only once, whitelist entries with accents match, and its actions are logged and alerted correctly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shared Bot List&lt;/strong&gt; never bans VIPs or excluded users, and keeps an account banned that is listed again after a removal.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LurkBot Filter&lt;/strong&gt; honours Exclude Followers and leaves an account let back in with &lt;code&gt;!tsundo&lt;/code&gt; alone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow Wave Protection&lt;/strong&gt; alerts when Twitch refuses a block, and an undone block leaves the Shared Bot List.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow Wave Protection, Raid Protection and the Message Filter&lt;/strong&gt; disarm and lift their chat modes on time after a restart or after their action is saved again, without waiting for the next follow or chat message.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Raid Protection&lt;/strong&gt; no longer reports link-only swarms and disarms with the current settings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Permit&lt;/strong&gt; refunds requests left unanswered for 12 hours and keeps refunds and the removed-links list right.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Permit&lt;/strong&gt; no longer warns about every Channel Points redemption while Self-Permit is off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deck&lt;/strong&gt;: two presses at once no longer cross, and profile and permit keys behave as they should.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Shield Mode&lt;/strong&gt;: after a restart TwitchSentry asks Twitch whether it is on instead of trusting an old state.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallel runs&lt;/strong&gt;: modules share the undo list and Shield Mode safely, and two copies of one filter no longer both act on a message.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Messages close together&lt;/strong&gt;: when two chat messages arrive within milliseconds, each module now checks both, each with its own text and sender. Before, one of the two could be skipped or judged with the other&amp;#39;s details.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Domain endings list&lt;/strong&gt;: a cache from an older version, or one that is not the list, is replaced by a fresh download as soon as a message finds it. Without a network the old list stays in use, so Link Filter no longer falls back to 66 common endings and Spam Filter recognises real links again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!tsundo&lt;/code&gt;&lt;/strong&gt; skips a timeout that has run out instead of getting stuck.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Timeouts and slow mode&lt;/strong&gt; stay within Twitch&amp;#39;s limits, so Twitch no longer refuses them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User lists&lt;/strong&gt;: Trusted Raiders match the login too, and &amp;quot;name&amp;quot; entries work in every module.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test mode&lt;/strong&gt; no longer raises real Twitch Warn counts, and ends on time in Offline Protection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Message Filter and Offline Protection&lt;/strong&gt; lift their chat modes on time, also after a restart or with unreadable settings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!egadd&lt;/code&gt; and &lt;code&gt;!vegadd&lt;/code&gt;&lt;/strong&gt; find Streamer.bot groups again; &lt;code&gt;!wladd&lt;/code&gt;, &lt;code&gt;!kwadd&lt;/code&gt; and &lt;code&gt;!tldadd&lt;/code&gt; no longer create a settings file without defaults.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deck keys&lt;/strong&gt; start Raid, Hate Raid and Follow Wave Protection and Permit only through those actions, never through another action of the same name.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OBS dock&lt;/strong&gt; no longer lists entries older than 12 hours, which its ✕ could not remove and Grant Permit still granted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.0&quot;&gt;Download v4.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/twitchsentry/&quot;&gt;TwitchSentry on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Classic Chat Gamble v24.1.0: All platforms, QoL and other fixes</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.0"/>
+    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.0</id>
+    <published>2026-10-20T21:51:13Z</published>
+    <updated>2026-10-20T21:51:13Z</updated>
+    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
+    <content type="html">&lt;h3&gt;✨ Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No more platform switches.&lt;/strong&gt; Twitch, YouTube and Kick play wherever the &lt;code&gt;!gamble&lt;/code&gt; command listens. To leave a platform out, untick it on the command in Streamer.bot (for example &lt;code&gt;Kick Message&lt;/code&gt;). Heads-up when updating: YouTube and Kick used to be off by default and now play wherever the command listens to them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Free Game Mode covers channel point redemptions too.&lt;/strong&gt; Before, a Typed amount redemption could cost real points while chat said it was free.&lt;/li&gt;
+&lt;li&gt;The settings window opens straight away. The Update pill appears once GitHub answers, and only for a newer release.&lt;/li&gt;
+&lt;li&gt;After Save, the window points out settings that keep gambles from starting, like channel points without a Reward ID or a Default bet outside Minimum and Maximum.&lt;/li&gt;
+&lt;li&gt;The theme button asks before dropping unsaved changes, and unsaved changes show up in orange.&lt;/li&gt;
+&lt;li&gt;A few built-in chat texts read more naturally, and the addicted usage text names the real command, &lt;code&gt;!gambleaddict&lt;/code&gt;. Messages you already saved stay as they are.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The import works wherever Streamer.bot is installed.&lt;/strong&gt; Every Windows reference is absolute now, so &lt;code&gt;Find Refs&lt;/code&gt; is no longer needed.&lt;/li&gt;
+&lt;li&gt;The Log page can filter by platform again, next to Result and Date.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;CCG: Gamble Win&lt;/code&gt;, &lt;code&gt;Gamble Loss&lt;/code&gt; and &lt;code&gt;Gamble Jackpot&lt;/code&gt; triggers fire after the result is stored, so &lt;code&gt;GetLastGambleResult&lt;/code&gt; reads this gamble and not the one before.&lt;/li&gt;
+&lt;li&gt;Odd numbers in the settings or in a balance (NaN, infinity, huge values) no longer crash a gamble. A redemption that fails before any points move is refunded.&lt;/li&gt;
+&lt;li&gt;With channel points on and no Reward ID, the log reports an error instead of quietly skipping every redemption.&lt;/li&gt;
+&lt;li&gt;Only Twitch&amp;#39;s Reward Redemption trigger starts a channel point gamble, and a Command Cooldown trigger never starts one.&lt;/li&gt;
+&lt;li&gt;A damaged settings file no longer takes the intact one down with it: only the damaged file falls back to its defaults, and the theme button doesn&amp;#39;t overwrite the other.&lt;/li&gt;
+&lt;li&gt;Settings window:&lt;ul&gt;
+&lt;li&gt;An empty number field, or a whole number with a space in it like &lt;code&gt;1 000&lt;/code&gt;, is named and nothing is saved, instead of turning into 0.&lt;/li&gt;
+&lt;li&gt;Ctrl+S and Save keep a name that&amp;#39;s still being typed into a list.&lt;/li&gt;
+&lt;li&gt;While Free Game Mode is on, Default bet shows and keeps your real bet instead of 0.&lt;/li&gt;
+&lt;li&gt;Try a bet no longer refuses every Default bet above 10,000 as not enough.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Setup, commands and answers to common questions: &lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; · &lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.0&quot;&gt;Download v24.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Slot Machine Game v15.0.0: Bugfixes, QoL, Reworked mechanics</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.0"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.0</id>
+    <published>2026-10-19T20:21:38Z</published>
+    <updated>2026-10-19T20:21:38Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;h3&gt;✨Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The Streamer.bot log says when a Twitch chat command did nothing because the slot machine is set to channel points. A debug line does the same for a redemption left alone while it&amp;#39;s set to the chat command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Every platform plays.&lt;/strong&gt; The Twitch, YouTube and Kick switches are gone; which platforms can spin is set on the command in Streamer.bot, e.g. by unticking &lt;code&gt;Kick Message&lt;/code&gt;. Settings that switched a platform off no longer keep it out.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Channel points work as in Classic Chat Gamble.&lt;/strong&gt; In Reward cost and Fixed mode the channel points are the stake, so a loss takes no points and adds nothing to the Jackpool, while a win is paid in points. Typed amount bets the viewer&amp;#39;s own points.&lt;/li&gt;
+&lt;li&gt;Channel points switch the chat command off on Twitch only. YouTube and Kick keep spinning with it, and saving warns about a Default bet that would refuse those spins.&lt;/li&gt;
+&lt;li&gt;Minimum and Maximum bet apply to Typed amount and Fixed mode.&lt;/li&gt;
+&lt;li&gt;Without a Reward ID, no redemption starts a spin and other rewards are left alone; saving like that says so.&lt;/li&gt;
+&lt;li&gt;Channel points Free mode uses the Free messages.&lt;/li&gt;
+&lt;li&gt;&amp;quot;Send as /me&amp;quot; is marked Twitch only, and the chat preview shows YouTube and Kick as the plain chat they get.&lt;/li&gt;
+&lt;li&gt;Chat calls the jackpot pool the Jackpool; default texts nobody edited switch over by themselves.&lt;/li&gt;
+&lt;li&gt;Cooldown messages fill in &lt;code&gt;{user}&lt;/code&gt;, round the seconds up and no longer fail on a stray brace.&lt;/li&gt;
+&lt;li&gt;Each line of a message goes out as a chat message of its own, and Twitch and Kick split at 500 characters instead of 200.&lt;/li&gt;
+&lt;li&gt;The settings window opens at once; the Update pill appears as soon as GitHub answers.&lt;/li&gt;
+&lt;li&gt;Reset keeps the light or dark theme.&lt;/li&gt;
+&lt;li&gt;Clearer texts in the settings window and the log, and a reworked Setup Guide, FAQ and README.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The import works wherever Streamer.bot is installed: every Windows reference is absolute, so &lt;code&gt;Find Refs&lt;/code&gt; is no longer needed.&lt;/li&gt;
+&lt;li&gt;The jackpot message no longer counts the Jackpool twice: &lt;code&gt;{amount}&lt;/code&gt; is the win without the pool.&lt;/li&gt;
+&lt;li&gt;A balance that can&amp;#39;t be read stops the spin instead of being overwritten, and a redemption is refunded.&lt;/li&gt;
+&lt;li&gt;A redemption that can&amp;#39;t spin for lack of emotes is refunded instead of fulfilled.&lt;/li&gt;
+&lt;li&gt;With a damaged settings file, the game plays with the &lt;code&gt;.bak&lt;/code&gt;, or not at all, instead of silently without emotes.&lt;/li&gt;
+&lt;li&gt;A Reward cost redemption that arrives without its cost is refunded instead of played for 0.&lt;/li&gt;
+&lt;li&gt;Free spins never win the Jackpool.&lt;/li&gt;
+&lt;li&gt;The addicted-viewer texts no longer promise a doubled cooldown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1&gt;Important&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;YouTube and Kick now play.&lt;/strong&gt; Before v15.0.0 they were switched off by default. To keep one out, open the command &lt;code&gt;[SMG] - Play Slots&lt;/code&gt; and untick its source (&lt;code&gt;YouTube Message&lt;/code&gt; or &lt;code&gt;Kick Message&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;After importing, check that the command &lt;code&gt;[SMG] - Play Slots&lt;/code&gt; is switched on: it arrives switched off.&lt;/li&gt;
+&lt;li&gt;No more &lt;code&gt;Find Refs&lt;/code&gt;: the import works wherever Streamer.bot is installed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through everything step by step.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.0&quot;&gt;Download v15.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+</feed>
