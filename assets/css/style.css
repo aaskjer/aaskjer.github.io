@@ -4613,9 +4613,26 @@ main > .section::before {
 
 .launch {
   display: grid;
+  /* the message in the middle, the footer at the bottom */
+  grid-template-rows: 1fr auto;
   place-items: center;
   min-height: 100vh;
   text-align: center;
+}
+
+.launch__footer {
+  max-width: 40rem;
+  padding: 1.5rem 1rem 2rem;
+  color: var(--faint);
+  font-size: 0.85rem;
+}
+
+.launch__footer p + p {
+  margin-top: 0.4rem;
+}
+
+.launch__footer a {
+  color: var(--muted);
 }
 
 .launch .lead {
