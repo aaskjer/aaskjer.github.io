@@ -28,6 +28,8 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"24.1.1","made":"1.0.7","min":"1.0.0-alpha.1","actions":2,"code":2,"commands":["!gamble","!gambel","!SetFreeGamble","!EndFreeGamble","!gambleaddict"],"words":[],"timers":0,"sites":[],"updateCheck":true}</script>
 </head>
 <body data-repo="Classic-Chat-Gamble" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +46,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -61,10 +66,495 @@
       <div class="wrap">
         <h1>Classic Chat Gamble</h1>
         <p class="project-hero__lead">The most classic stream chat game ever! Highly customizable and always up to zero your balance!</p>
-        <p class="doc-status">Loading…</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/Classic-Chat-Gamble">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/CCG/Classic-Chat-Gamble-Logo.png" alt="Classic Chat Gamble" width="320" height="320">
+</p><h1 align="center">Classic Chat Gamble</h1><p align="center">
+  <b>The most classic chat game — on Twitch, YouTube and Kick.</b><br>
+  Every bet rolls against odds you set, with a jackpot on top.
+</p><p align="center">
+  
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Import-String.md"><b>Import String</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>Classic Chat Gamble is a chat game for Streamer.bot. Viewers bet with <code>!gamble</code> or a Channel Points
+reward, and each bet rolls against the odds you set: jackpot, win or loss. Wins and jackpots pay on top of
+the bet.</p>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🎲 <strong>Bets in any form.</strong> Numbers, <code>all</code>, <code>half</code>, <code>quarter</code>, <code>third</code>, <code>random</code>, percentages like <code>50%</code> or
+shorthand like <code>10k</code>, <code>2.5m</code> and <code>1b</code>.</li>
+<li>🎰 <strong>Jackpots.</strong> They have their own chance and multiplier on top of a normal win. One Fairness slider sets
+all the odds, or you tune each one by hand.</li>
+<li>🎫 <strong>Channel Points on Twitch.</strong> A reward can replace the chat command, with four bet modes: reward cost,
+typed amount, fixed or free. A redemption that does not end in a gamble is refunded. YouTube and Kick
+keep the chat command.</li>
+<li>🆓 <strong>Free play.</strong> Permanent, or switched on and off by moderator command. Nobody pays, nobody wins points.</li>
+<li>🚫 <strong>Cooldowns, blocks and an addicted list.</strong> Global and per-viewer cooldowns with their own messages,
+blocked viewers and Streamer.bot groups, and cut winnings for viewers on the addicted list.</li>
+<li>⚙️ <strong>A settings window with <code>Try a bet</code>.</strong> It plays a round with your odds and shows the exact chat message.
+Every message can be edited or translated, and a daily log records every gamble and refund.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Works with:</strong> <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> · <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a></li>
+<li><strong>Community:</strong> <a href="https://discord.com/channels/834650675224248362/1446874050310836396/1446874050310836396">Classic Chat Gamble on the Streamer.bot Discord</a></li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Import</h1>
+<p align="center"><img loading="lazy" alt="Import in Streamer.bot" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"></p><p>In <a href="https://streamer.bot/">streamer.bot</a>, click <code>Import</code> and drag the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases">ClassicChatGamble.sb</a> file into the window, or paste the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Import-String.md">import string</a>.</p>
+<p align="center"><img loading="lazy" alt="Import window" src="https://github.com/user-attachments/assets/ade12d9e-f2a7-4f0c-ab56-2cfcfc7d39b7"></p><p>Click <code>Import</code>, then <code>Yes</code> in both popups that follow.</p>
+<h2>Enable the commands</h2>
+<p align="center"><img loading="lazy" alt="Enable the commands" src="https://github.com/user-attachments/assets/7839f6b3-0b32-4b3d-8f11-e03e5589b16c"></p><p>The four commands arrive switched off. Enable them in the <code>Commands</code> tab of Streamer.bot, in the group <code>[CCG] - Classic Chat Gamble</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Who</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!gamble</code> (or <code>!gambel</code>)</td>
+<td>Everyone</td>
+<td>Plays a round, with the amount the viewer names or the Default bet</td>
+</tr>
+<tr>
+<td><code>!SetFreeGamble</code></td>
+<td>Moderators</td>
+<td>Turns Free Game Mode on</td>
+</tr>
+<tr>
+<td><code>!EndFreeGamble</code></td>
+<td>Moderators</td>
+<td>Turns Free Game Mode off</td>
+</tr>
+<tr>
+<td><code>!gambleaddict</code></td>
+<td>Moderators</td>
+<td>Puts a viewer on the addicted list (<code>add</code>) or takes them off (<code>remove</code>)</td>
+</tr>
+</tbody></table>
+<p>The moderator commands come with <code>Moderators</code> as their only allowed group, and you as the broadcaster can always use them. To change who may, edit the command&#39;s permissions in Streamer.bot.</p>
+<p>Twitch, YouTube and Kick all play. To leave a platform out, open the command and untick its source, for example <code>Kick Message</code>.</p>
+<h1>Setup</h1>
+<p align="center"><img loading="lazy" alt="Open the settings" src="https://github.com/user-attachments/assets/ad03421b-d887-4e36-91bd-d56edefdb9cd"></p><p>In the <code>Actions</code> tab, select <code>[CCG] - Settings</code>, right-click the <code>Test</code> trigger and click <code>Test Trigger</code>. The settings window opens.</p>
+<p>Hover over an option for a tooltip with the details. <code>Save</code> or <code>Ctrl+S</code> keeps your changes, <code>Save &amp; Exit</code> also closes the window, and <code>Ctrl+1</code> to <code>Ctrl+5</code> switch between the pages. Changes you haven&#39;t saved yet show up in orange at the bottom. The two buttons at the bottom left switch between dark and light and reset everything to the defaults. The strip at the top tells you whether Free Game Mode is on and how viewers play, and a red <code>Update</code> pill appears there when a new version is out.</p>
+<h2>Game</h2>
+<p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/game.png"></p><ul>
+<li><strong>Fairness</strong>: one slider sets the odds, from <code>Strict</code>, where the house wins, to <code>Classic</code>, the defaults with rare, huge jackpots. The bar shows the chance of a jackpot, a win and a loss, and the number above it what a bet of 100 brings back on average. Type your own numbers below the slider and it moves to <code>Custom</code>.</li>
+<li><strong>Bets and points</strong>: Default, Minimum and Maximum bet, the points variable and the name chat uses for your points. Currency Core by StreamUP and LOYALTY POINTS by tawmae are detected on their own.</li>
+<li><strong>Payouts</strong>: the Subscriber and VIP boosts, both Twitch only, and the cut for addicted viewers.</li>
+<li><strong>Try a bet</strong>: pick a bet and who plays, then click <code>Roll</code> to see exactly what chat would get. Nothing is saved, and nobody&#39;s points change.</li>
+</ul>
+<h2>Access</h2>
+<p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/access.png"></p><ul>
+<li><strong>How viewers play</strong>: with <code>!gamble</code> in chat, or on Twitch with a channel point reward.</li>
+<li><strong>Cooldown in seconds</strong>: one for everyone, one per viewer. Saving writes them straight into the <code>!gamble</code> command.</li>
+<li><strong>Blocked and addicted viewers and groups</strong>: type a name and press <code>Enter</code>; <code>×</code> removes it again. Blocked viewers can&#39;t play. Addicted viewers win less and get messages of their own, and <code>!gambleaddict</code> adds them from chat too.</li>
+</ul>
+<h3>Twitch Channel Points</h3>
+<p align="center"><img loading="lazy" alt="Channel points" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/access--channel-points.png"></p><ol>
+<li>Pick <code>Channel points</code>. <code>!gamble</code> is then off on Twitch, while YouTube and Kick keep using it.</li>
+<li>Paste the ID of your reward into <code>Reward ID</code>; <code>Find my reward ID</code> helps you look it up. Without one, no redemption starts a gamble.</li>
+<li>Pick what is bet:<ul>
+<li><code>Reward cost</code>: the reward&#39;s price is the bet. A loss doesn&#39;t touch the viewer&#39;s points, and a win is paid in points.</li>
+<li><code>Typed amount</code>: viewers type a bet into the reward. It&#39;s paid from their own points, just like <code>!gamble</code>.</li>
+<li><code>Fixed</code>: every redemption bets the amount you set.</li>
+<li><code>Free</code>: nothing is won or lost.</li>
+</ul>
+</li>
+</ol>
+<p>A redemption that doesn&#39;t end in a gamble is refunded, as long as the reward doesn&#39;t skip the reward requests queue.</p>
+<h2>Messages</h2>
+<p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/messages.png"></p><p>Edit any message the game sends, or translate it into your language. Pick one from the list and click a placeholder to insert it; the chat preview shows the result the way chat will read it. <code>Numbers</code> sets how chat writes numbers, like 12.345 or 12,345.</p>
+<p>Below the preview you choose the sender, your bot account or your own, and <code>Send as /me</code>, which only exists on Twitch. Game messages and cooldown messages are set separately.</p>
+<h2>Log</h2>
+<p align="center"><img loading="lazy" alt="Log page" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/log.png"></p><p>Every gamble and refund, day by day. Search for names or amounts, filter by result, platform or date, and click a line to read all of it. <code>Write a log file per day</code> turns logging on or off.</p>
+<h2>About</h2>
+<p align="center"><img loading="lazy" alt="About page" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/about.png"></p><p>The version, links, and the points systems supported out of the box.</p>
+<h1>How a gamble is decided</h1>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>When</th>
+<th>Payout</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🎰 <strong>Jackpot</strong></td>
+<td>Roll ≤ Jackpot %</td>
+<td><code>bet × random(Min×–Max×) × Jackpot×</code></td>
+</tr>
+<tr>
+<td>🎉 <strong>Win</strong></td>
+<td>Roll ≤ Win %, on top of the jackpot chance</td>
+<td><code>bet × random(Min×–Max×)</code></td>
+</tr>
+<tr>
+<td>❌ <strong>Loss</strong></td>
+<td>Everything else</td>
+<td><code>-bet</code></td>
+</tr>
+</tbody></table>
+<p>Wins and jackpots are paid on top of the bet. The Subscriber and VIP boosts raise them, and the Addicted cut lowers them.</p>
+<h1>Other features</h1>
+<h2>Arguments</h2>
+<p>After every gamble the game keeps its result, which comes in handy for further actions. Run <code>GetLastGambleResult</code> with an <code>Execute C# Method</code> sub-action to get these arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gambleOutcome</code></td>
+<td><code>WIN</code>, <code>LOSS</code>, or <code>JACKPOT</code></td>
+</tr>
+<tr>
+<td><code>gambleAmount</code></td>
+<td>Points won or lost</td>
+</tr>
+<tr>
+<td><code>gambleBetAmount</code></td>
+<td>The original bet</td>
+</tr>
+<tr>
+<td><code>gamblePreviousPoints</code></td>
+<td>Balance before the gamble</td>
+</tr>
+<tr>
+<td><code>gambleNewPoints</code></td>
+<td>Balance after the gamble</td>
+</tr>
+<tr>
+<td><code>gambleCurrency</code></td>
+<td>Currency name</td>
+</tr>
+<tr>
+<td><code>gambleOutcomeMessage</code></td>
+<td>Pre-formatted result summary</td>
+</tr>
+</tbody></table>
+<p align="center"><img loading="lazy" alt="Arguments" src="https://github.com/user-attachments/assets/f0d90ae1-4c89-4ef1-a67e-b67142354678"></p><p>The custom triggers <code>CCG: Gamble Win</code>, <code>CCG: Gamble Loss</code>, <code>CCG: Gamble Jackpot</code>, <code>CCG: Free Game Start</code> and <code>CCG: Free Game End</code> start your own actions at the right moment. A gamble&#39;s triggers fire once its result is stored, so <code>GetLastGambleResult</code> already returns that gamble.</p>
+<h2>Free Game Mode</h2>
+<p><code>!SetFreeGamble</code> turns it on and <code>!EndFreeGamble</code> turns it off again. While it&#39;s on, nobody pays or wins points, channel point redemptions included, and each viewer gets a one-time notice with their first gamble. The start and end messages go to the chat the command was used in.</p>
+<p>A Default bet of 0 doesn&#39;t make the game free: it means viewers always have to name an amount.</p>
+<hr>
+<p><a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/FAQ.md">Frequently Asked Questions</a> · <a href="https://github.com/aaskjer/Classic-Chat-Gamble/issues">Report an issue</a></p>
+</div>
+      </section>
+      <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
+        <h2 class="doc-label">FAQ</h2>
+        <div class="doc-body"><h1>Setup &amp; Configuration</h1>
+<h3>How do I install Classic Chat Gamble?</h3>
+<p>Import the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Import-String.md">import string</a> or the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases">ClassicChatGamble.sb</a> file in Streamer.bot. The <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Setup-Guide.md">Setup Guide</a> walks you through it.</p>
+<h3>Which version of Streamer.bot is required?</h3>
+<p>The latest public version is always recommended.</p>
+<h3>Where are the config files?</h3>
+<p>In your Streamer.bot folder under <code>Chat Games\Classic Chat Gamble</code>: <code>configs.json</code> holds the settings, <code>messages.json</code> the chat messages.</p>
+<h3>How do I reset all settings to default?</h3>
+<p>Click the reset button at the bottom left of the settings window and confirm, or delete <code>configs.json</code>.</p>
+<h3>What if a settings file is damaged?</h3>
+<p>The settings window still opens and tells you which file it couldn&#39;t read. That file shows its defaults and is kept next to it as a <code>.broken</code> copy, and saving writes a fresh one.</p>
+<h1>Points &amp; Currency</h1>
+<h3>Which loyalty point systems are supported?</h3>
+<p>Any custom points system works. <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> and <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a> are detected on their own, and their settings take priority over the ones in <code>configs.json</code>.</p>
+<h3>How do I connect my existing points system?</h3>
+<p>On the Game page of the settings window, enter its variable under <code>Points variable</code>. The default is <code>points</code>.</p>
+<h3>Why aren&#39;t viewers losing or gaining points?</h3>
+<p>Check these first:</p>
+<ul>
+<li>Free Game Mode is on. The strip at the top of the settings window then says <code>Free game on</code>, and <code>!EndFreeGamble</code> turns it off.</li>
+<li>Channel points are set to <code>Free</code>, or to <code>Reward cost</code> or <code>Fixed</code>, where a loss takes no points by design.</li>
+<li>The <code>Points variable</code> is wrong or missing.</li>
+</ul>
+<h3>Do different platforms have separate point balances?</h3>
+<p>Yes. Each platform keeps its own balance per viewer, while the settings apply to every platform.</p>
+<h1>Gameplay</h1>
+<h3>How do I change the gamble command?</h3>
+<p>Like any other command, in the <code>Commands</code> tab of Streamer.bot.</p>
+<h3>What bet inputs are supported?</h3>
+<p>Numbers (<code>500</code>), percentages (<code>50%</code>), shorthand (<code>10k</code>, <code>2.5m</code>, <code>1b</code>) and the keywords <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code> and <code>random</code>.</p>
+<h3>What does a Default bet of 0 do?</h3>
+<p>Viewers then always have to name an amount, and a plain <code>!gamble</code> is refused. To let everyone play for free, use Free Game Mode instead.</p>
+<h3>Why does a viewer with 0 points get an error?</h3>
+<p>That&#39;s on purpose: with an empty balance there&#39;s nothing to bet, so <code>!gamble</code> is refused as not enough points. Free Game Mode still lets everyone play.</p>
+<h3>Can viewers bet more than they have?</h3>
+<p>No. A bet is limited by the viewer&#39;s balance and by the Minimum and Maximum bet.</p>
+<h3>What does <code>!gambleaddict</code> do?</h3>
+<p>It puts a viewer on the addicted list (<code>!gambleaddict add &lt;name&gt;</code>) or takes them off (<code>!gambleaddict remove &lt;name&gt;</code>). Only moderators and the broadcaster can use it. Addicted viewers win less, by the Addicted cut on the Game page, and get messages of their own.</p>
+<h3>Who can use the moderator commands?</h3>
+<p><code>!SetFreeGamble</code>, <code>!EndFreeGamble</code> and <code>!gambleaddict</code> allow only the <code>Moderators</code> group, and the broadcaster can always use them. Change it in each command&#39;s permissions in Streamer.bot.</p>
+<h3>How does the calculation work?</h3>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>When</th>
+<th>Payout</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🎰 <strong>Jackpot</strong></td>
+<td>Roll ≤ Jackpot %</td>
+<td><code>bet × random(Min×–Max×) × Jackpot×</code></td>
+</tr>
+<tr>
+<td>🎉 <strong>Win</strong></td>
+<td>Roll ≤ Win %, on top of the jackpot chance</td>
+<td><code>bet × random(Min×–Max×)</code></td>
+</tr>
+<tr>
+<td>❌ <strong>Loss</strong></td>
+<td>Everything else</td>
+<td><code>-bet</code></td>
+</tr>
+</tbody></table>
+<p>Wins and jackpots are paid on top of the bet.</p>
+<h1>Channel Points</h1>
+<h3>Can other platforms still play while channel points are on?</h3>
+<p>Yes. Since <code>v22.0.0</code>, channel points only turn <code>!gamble</code> off on Twitch, and YouTube and Kick keep playing with it.</p>
+<h3>What are the bet modes, and when should I use which?</h3>
+<p><code>Reward cost</code>: the reward&#39;s price is the bet, so viewers don&#39;t type anything. A loss doesn&#39;t touch their points, and a win is paid in points.<br><code>Typed amount</code>: viewers type their bet into the reward&#39;s text field. Like <code>!gamble</code>, it&#39;s paid from their own points: checked against their balance and taken off on a loss. It has to be a whole number above 0.<br><code>Fixed</code>: every redemption bets the amount you set, which must be above 0. The reward&#39;s price and anything typed are ignored.<br><code>Free</code>: nothing is won or lost. Useful for events with a lot of new viewers.<br>Minimum and Maximum bet apply to <code>Typed amount</code> and <code>Fixed</code>.</p>
+<h3>Why was a redemption refunded?</h3>
+<p>It didn&#39;t end in a gamble: the viewer is blocked, a cooldown is running, or the bet didn&#39;t work, for example too few points for a typed amount. Refunds only work while the redemption waits in the queue, so the reward must not skip the reward requests queue. You can switch refunds off on the Access page.</p>
+<h3>How do I find my Reward ID?</h3>
+<p><a href="https://ayrtonalexis.com/reward_checker/reward_check.html">Find Reward ID</a> lists your rewards with their IDs. The settings window links there too.</p>
+<h1>Free Game Mode</h1>
+<h3>How do I start and stop Free Game Mode?</h3>
+<p><code>!SetFreeGamble</code> starts it, <code>!EndFreeGamble</code> stops it. Both are for moderators and the broadcaster.</p>
+<h3>Do viewers still earn points during Free Game Mode?</h3>
+<p>No. Nobody wins or loses points while it&#39;s on, channel point redemptions included.</p>
+<h3>Why aren&#39;t viewers being told about Free Game Mode?</h3>
+<p>The notice goes to each viewer only once, with their first gamble.</p>
+<h1>Cooldowns</h1>
+<h3>What&#39;s the difference between the global and the user cooldown?</h3>
+<p>The global cooldown (<code>Everyone</code>) pauses the game for all viewers, the user cooldown (<code>Per viewer</code>) only for the viewer who just played.</p>
+<h3>Why isn&#39;t the cooldown message showing up?</h3>
+<p>The message is empty, <code>messages.json</code> is damaged, or no cooldown is running.</p>
+<h3>Do cooldowns apply across platforms?</h3>
+<p>No, Streamer.bot runs the command cooldown for each platform on its own. Channel point redemptions keep a separate clock with the same durations.</p>
+<h1>Multi-Platform</h1>
+<h3>Which platforms are supported?</h3>
+<p>Twitch, YouTube and Kick.</p>
+<h3>Can I run the game on several platforms at once?</h3>
+<p>Yes. Every platform the <code>!gamble</code> command listens to can play, and the game always answers in the chat the command came from. To leave a platform out, untick its source on the command, for example <code>Kick Message</code>.</p>
+<h1>Custom Triggers &amp; Integration</h1>
+<h3>What arguments are available after each gamble?</h3>
+<p>Run <code>GetLastGambleResult</code> with an <code>Execute C# Method</code> sub-action to get them:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gambleOutcome</code></td>
+<td><code>WIN</code>, <code>LOSS</code>, or <code>JACKPOT</code></td>
+</tr>
+<tr>
+<td><code>gambleAmount</code></td>
+<td>Points won or lost</td>
+</tr>
+<tr>
+<td><code>gambleBetAmount</code></td>
+<td>The original bet</td>
+</tr>
+<tr>
+<td><code>gamblePreviousPoints</code></td>
+<td>Balance before the gamble</td>
+</tr>
+<tr>
+<td><code>gambleNewPoints</code></td>
+<td>Balance after the gamble</td>
+</tr>
+<tr>
+<td><code>gambleCurrency</code></td>
+<td>Currency name</td>
+</tr>
+<tr>
+<td><code>gambleOutcomeMessage</code></td>
+<td>Pre-formatted result summary</td>
+</tr>
+</tbody></table>
+<h3>How do I use the custom triggers in other actions?</h3>
+<p>Add a new action and give it one of the CCG custom triggers: <code>CCG: Gamble Win</code>, <code>CCG: Gamble Loss</code>, <code>CCG: Gamble Jackpot</code>, <code>CCG: Free Game Start</code> or <code>CCG: Free Game End</code>.</p>
+<h1>Logs &amp; Debugging</h1>
+<h3>Where is the action log saved?</h3>
+<p>In your Streamer.bot folder under <code>Chat Games\Logs</code>, one file per day: <code>CCG-log-yyyy-MM-dd.txt</code>. The Log page of the settings window shows them all together.</p>
+<h3>Why is nothing being logged?</h3>
+<p>Check that <code>Write a log file per day</code> is switched on, below the table on the Log page. If the log stays empty, please report it.</p>
+<h3>How do I report a bug?</h3>
+<p>Open an issue <a href="https://github.com/aaskjer/Classic-Chat-Gamble/issues">here</a>.</p>
+<h1>Messages</h1>
+<h3>How do I customize the win, loss and jackpot messages?</h3>
+<p>On the Messages page of the settings window, or directly in <code>messages.json</code>.</p>
+<h3>Which placeholders can I use?</h3>
+<p>The Messages page lists them under each message; hover over one to see what it stands for, click it to insert it.</p>
+<h3>Can I use emojis in messages?</h3>
+<p>Yes.</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases">releases on GitHub</a>.</p><h2>v24.1.1 — Damaged settings files are rescued instead of reset</h2><p class="release__date">October 25, 2026</p><p>A hardening release for the settings files. <code>configs.json</code> and <code>messages.json</code> are read as they stand — no setting changes, and nothing to redo after the update.</p>
+<h5>🐛Fixed</h5>
+<ul>
+<li><strong>Damaged settings files are rescued instead of reset.</strong> A <code>configs.json</code> or <code>messages.json</code> that does not parse now falls back to the <code>.bak</code> copy beside it before the defaults, and the window says which file it read back from where. Until now a damaged file simply meant the defaults for everything it held, and the next save wrote them over it.</li>
+<li><strong>Every save leaves a <code>.bak</code> behind</strong> — the file as it was before that save, which is what the window reads back when the live one turns out to be damaged. A file that does not parse itself never becomes the backup, so a broken one cannot overwrite the last readable copy.</li>
+<li>Free Game Mode and the bet it returns to afterwards are carried over from a <code>configs.json</code> rescued from its <code>.bak</code>; only one that cannot be recovered at all is left alone. Before, any damaged <code>configs.json</code> dropped them.</li>
+<li><strong>Only one settings window opens.</strong> A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.</li>
+<li>Switching pages refreshes only the page in front, instead of every control in the window.</li>
+</ul>
+<hr>
+<p>Import the attached <code>ClassicChatGamble.sb</code>, or paste the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Import-String.md">import string</a>.</p>
+<h2>v24.1.0 — All platforms, QoL and other fixes</h2><p class="release__date">October 20, 2026</p><h5>✨ Changed</h5>
+<ul>
+<li><strong>No more platform switches.</strong> Twitch, YouTube and Kick play wherever the <code>!gamble</code> command listens. To leave a platform out, untick it on the command in Streamer.bot (for example <code>Kick Message</code>). Heads-up when updating: YouTube and Kick used to be off by default and now play wherever the command listens to them.</li>
+<li><strong>Free Game Mode covers channel point redemptions too.</strong> Before, a Typed amount redemption could cost real points while chat said it was free.</li>
+<li>The settings window opens straight away. The Update pill appears once GitHub answers, and only for a newer release.</li>
+<li>After Save, the window points out settings that keep gambles from starting, like channel points without a Reward ID or a Default bet outside Minimum and Maximum.</li>
+<li>The theme button asks before dropping unsaved changes, and unsaved changes show up in orange.</li>
+<li>A few built-in chat texts read more naturally, and the addicted usage text names the real command, <code>!gambleaddict</code>. Messages you already saved stay as they are.</li>
+</ul>
+<h5>🐛 Fixed</h5>
+<ul>
+<li><strong>The import works wherever Streamer.bot is installed.</strong> Every Windows reference is absolute now, so <code>Find Refs</code> is no longer needed.</li>
+<li>The Log page can filter by platform again, next to Result and Date.</li>
+<li>The <code>CCG: Gamble Win</code>, <code>Gamble Loss</code> and <code>Gamble Jackpot</code> triggers fire after the result is stored, so <code>GetLastGambleResult</code> reads this gamble and not the one before.</li>
+<li>Odd numbers in the settings or in a balance (NaN, infinity, huge values) no longer crash a gamble. A redemption that fails before any points move is refunded.</li>
+<li>With channel points on and no Reward ID, the log reports an error instead of quietly skipping every redemption.</li>
+<li>Only Twitch&#39;s Reward Redemption trigger starts a channel point gamble, and a Command Cooldown trigger never starts one.</li>
+<li>A damaged settings file no longer takes the intact one down with it: only the damaged file falls back to its defaults, and the theme button doesn&#39;t overwrite the other.</li>
+<li>Settings window:<ul>
+<li>An empty number field, or a whole number with a space in it like <code>1 000</code>, is named and nothing is saved, instead of turning into 0.</li>
+<li>Ctrl+S and Save keep a name that&#39;s still being typed into a list.</li>
+<li>While Free Game Mode is on, Default bet shows and keeps your real bet instead of 0.</li>
+<li>Try a bet no longer refuses every Default bet above 10,000 as not enough.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Setup, commands and answers to common questions: <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Setup-Guide.md">Setup Guide</a> · <a href="https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/FAQ.md">FAQ</a></p>
+<h2>v24.0.0 — New GUI and small bugfix</h2><p class="release__date">September 30, 2026</p><h5>✨ Added</h5>
+<ul>
+<li>Complete GUI overhaul</li>
+<li>Intelligent preview system</li>
+<li>Changed Update notification</li>
+</ul>
+<h5>🐛 Fixed</h5>
+<ul>
+<li>Cooldown messages sending <code>{user}</code> never filled in the placeholder, so chat shows it literally (e.g. <code>&quot;@{user}, wait 5s&quot;</code>). Only <code>{0}</code> and <code>{1}</code> got replaced.</li>
+<li>Very large shorthand bets like !gamble 3B or !gamble 99999999999B aren&#39;t always refused as too much, regardless of your settings.</li>
+<li>When <code>Maximum Bet</code> is 0 (no limit) and the viewer has more than 2,147,483,647 points, the bet was quietly cut down and played.</li>
+</ul>
+<img loading="lazy" width="546" height="673" alt="grafik" src="https://github.com/user-attachments/assets/4d94aff7-e69a-40d5-b0fa-056cbf34f039" /><hr>
+<h3>Important</h3>
+<p><strong>Import should be fine</strong> i found a workaround that should ease the whole import hassle for you guys. But in case the game won&#39;t work or GUI won&#39;t show up for you: To get everything to work, you need to go into each action, expand <code>No Touchy!</code> , open <code>Execute Code</code>, press <code>Find Refs</code> at the bottom left and hit <code>OK</code> in all actions!</p>
+<h2>v23.0.3 — Channel Points Redemption update</h2><p class="release__date">August 6, 2026</p><ul>
+<li><strong>Channel Points refund logic</strong> — redemptions that don&#39;t result in a gamble now automatically get refunded instead of silently taking the viewer&#39;s points.<ul>
+<li>Refunds trigger on: platform disabled, blocked user/group, cooldown active, or an invalid bet amount.</li>
+<li>New &quot;Refund Failed Redemptions&quot; toggle on the Channel Points tab (on by default).</li>
+<li>New &quot;Redemption Refunded&quot; chat message, sent to the viewer when a refund goes through.</li>
+<li>Successful redemptions are now also marked fulfilled, so they don&#39;t pile up in the reward request queue.</li>
+</ul>
+</li>
+</ul>
+<h2>v23.0.1 — Hotfix</h2><p class="release__date">August 2, 2026</p><h5>Added</h5>
+<ul>
+<li><strong>Daily log rotation</strong> — the action log now writes to a new dated file each day (<code>Logs/CCG-log-yyyy-MM-dd.txt</code>) instead of one file that grows forever.</li>
+</ul>
+<h5>Changed</h5>
+<ul>
+<li>The Action-Log tab now loads and merges <strong>all</strong> daily log files (plus any legacy <code>CCG-log.txt</code>), sorted newest first, so nothing is hidden behind the rotation.</li>
+<li>Action-Log table columns now auto-size to fit their content instead of being split evenly across the grid.</li>
+<li>Updated the &quot;Write Log&quot; setting&#39;s tooltip to reflect the new dated log file naming.</li>
+</ul>
+<h2>v23.0.0</h2><p class="release__date">August 2, 2026</p><h5>Fixed</h5>
+<ul>
+<li>Jackpot/win odds could drift from their configured percentages under heavy chat activity. The shared random number generator wasn&#39;t thread-safe, so concurrent <code>!gamble</code> calls (bursts of viewers, raids) could corrupt its internal state and skew results — most noticeably making jackpots feel more frequent than the configured <code>Jackpot (Percent)</code> value. Rolls are now synchronized so odds stay accurate under concurrent use.</li>
+<li>Logging to <code>CCG-log.txt</code> always ran regardless of the checkbox, and the setting itself was silently reset to enabled every time Free Game Mode was toggled or the Addicted list was edited. Logging now correctly respects the setting, and the value persists properly.</li>
+<li>Free Game Mode could get out of sync with itself. Internally it was inferred from <code>Default Bet == 0</code> instead of tracking its own on/off state directly, which could misfire in edge cases. It&#39;s now driven by a dedicated, authoritative flag — starting Free Game Mode still automatically zeroes the bet and remembers your original value, restoring it exactly when Free Game Mode ends.</li>
+<li>Channel Points bets could exceed your configured Maximum Bet. In <code>Input</code> bet mode, a viewer could type an arbitrarily large number into the reward&#39;s text field with no upper limit. <code>Minimum Bet</code> / <code>Maximum Bet</code> are now enforced on Channel Points redemptions the same way they are on the chat command.</li>
+<li>Fields like <code>Jackpot (Percent)</code>, <code>Win (Percent)</code>, and the win multipliers parsed <code>,</code> as a thousands separator, so entering <code>1,5</code> silently became <code>15</code>. Comma is now treated as a decimal point, as most people intend.</li>
+<li>Betting <code>half</code>/<code>quarter</code>/<code>third</code> of a very large balance (4B+ points) could error out due to an integer overflow in the calculation. Fixed to match the existing safe handling already used for <code>all</code>.</li>
+<li>The Settings window&#39;s default Reward ID field looked like a real value (a placeholder GUID) and could accidentally get saved as-is, causing redemption matching to fail with no explanation. It now defaults to empty, which correctly surfaces a clear &quot;no Reward ID configured&quot; error instead.</li>
+<li>The &quot;No Input&quot; bet error message couldn&#39;t be customized — it was missing from the Settings UI and got wiped from <code>messages.json</code> on every save. It&#39;s now a proper, editable field under Error Reasons. It&#39;s use may never happens anyways but at least it&#39;s there.</li>
+<li>Fixed a formatting bug where the &quot;Below Minimum&quot; and &quot;Above Maximum&quot; tooltips ran two placeholder lines together with no line break.</li>
+</ul>
+<h5>Improved</h5>
+<ul>
+<li>Rewrote a batch of settings tooltips that just repeated the field&#39;s label (e.g. &quot;Set percentage of the win boost&quot;) into actual explanations with worked examples — jackpot odds, multiplier math, boost stacking, cooldowns, min/max bet, blocked users/groups, and more.</li>
+<li>Documented previously-undocumented behavior: Subscriber/VIP boosts only apply on Twitch, and the Addicted list halves payouts <em>after</em> any boost rather than removing it.</li>
+<li>Fixed several typos.</li>
+</ul>
+<h5>Internal</h5>
+<ul>
+<li>Deduplicated the hardcoded gamble command ID into a single constant in each file instead of repeating the literal GUID.</li>
+<li>The last release might bugged out on users running stable streamer.bot v1.0.4 due to some reference issues. This version was specifically exported on the stable branch.</li>
+</ul>
+<h2>v22.0.3 — Removed Trovo</h2><p class="release__date">July 24, 2026</p><ul>
+<li>Removed Trovo</li>
+<li>Updated some minor things</li>
+<li>Updated for streamer.bot 1.0.5 beta</li>
+</ul>
+<h2>v22.0.2 — Hotfix</h2><p class="release__date">June 25, 2026</p><ul>
+<li>Small fixes</li>
+<li>Updated notification hotfix</li>
+<li><em><strong>new</strong></em> Fixed botched version number (sorry)</li>
+</ul>
+<h2>v22.0.1</h2><p class="release__date">June 18, 2026</p><ul>
+<li>Boost win of subscribers and vips</li>
+<li>Modify the role boost per percentage</li>
+<li>Add users to the addicted list. Addicted users only get half of their normal win to slow them down a little.</li>
+<li>Users can be added via GUI or by chat command <code>!gambleaddict add &lt;username&gt;</code> / <code>!gambleaddict remove &lt;username&gt;</code></li>
+<li>Expanded the live preview to include the new role options</li>
+<li>New editable messages</li>
+</ul>
+<h2>v22.0.0 — Initial GitHub Release</h2><p class="release__date">June 17, 2026</p><h4>Classic Chat Gamble Rework</h4>
+<ul>
+<li>GUI was completely replaced and modernized</li>
+<li>Added own log files so users can&#39;t complain anymore that they didn&#39;t got points or points got deducted illegal</li>
+<li>Explanded block mechanics, now groups and single users can be block from playing</li>
+<li>Twitch Channel Points logic got reworked and does not block other platforms anymore from running while active</li>
+<li>Live Calculation has now a preview bet field to test other default bets without touching our current setting</li>
+<li>You can now set CCG into free mode by chat commands for the running session or enable/disable it anytime via commands dynamically</li>
+<li>Free mode got some new messages</li>
+<li>Removed some options that were obsolete or redundant</li>
+<li><code>!gamble</code> now supports percentage and shorthand bets</li>
+<li>Supports now besides StreamUP CurrencyCore also tawmae&#39;s LOYALITY POINTS</li>
+<li>Many other stuff</li>
+</ul>
+<p>For consistency, the version number persists.</p>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

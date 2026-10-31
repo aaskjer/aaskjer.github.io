@@ -61,15 +61,16 @@
     return `<div class="tile tile--mono"><span class="grad">${esc(mono)}</span></div>`;
   }
 
-  function chips(p) {
-    const platforms = p.platforms || [];
-    const shown = platforms.length > 4 ? platforms.slice(0, 3) : platforms;
-    const rest = platforms.slice(shown.length);
-    const items = shown.map(name => `<li class="chip chip--${slug(name)}">${esc(name)}</li>`);
+  // Platforms first, then tags; past `max` chips the rest share a "+3" chip, so a card keeps one row.
+  function chips(p, max = Infinity) {
+    const all = (p.platforms || []).map(name => ({ name, cls: `chip--${slug(name)}` }))
+      .concat((p.tags || []).map(name => ({ name, cls: 'chip--tag' })));
+    const shown = all.length > max ? all.slice(0, max - 1) : all;
+    const rest = all.slice(shown.length).map(item => item.name);
+    const items = shown.map(item => `<li class="chip ${item.cls}">${esc(item.name)}</li>`);
     if (rest.length) {
-      items.push(`<li class="chip chip--more" title="${esc(rest.join(', '))}">+${rest.length} more<span class="sr-only">: ${esc(rest.join(', '))}</span></li>`);
+      items.push(`<li class="chip chip--more" title="${esc(rest.join(', '))}">+${rest.length}<span class="sr-only"> more: ${esc(rest.join(', '))}</span></li>`);
     }
-    for (const tag of p.tags || []) items.push(`<li class="chip chip--tag">${esc(tag)}</li>`);
     return items.length ? `<ul class="chips" aria-label="Works with">${items.join('')}</ul>` : '';
   }
 
@@ -100,9 +101,23 @@
     return /^https?:/.test(href) ? href : `${repoUrl(p.repo)}/blob/main/${href}`;
   }
 
-  function actions(p, { github = false } = {}) {
+  // `compact`: the cards in the lists, with the guide as an icon beside the download button.
+  function actions(p, { github = false, compact = false } = {}) {
     if (p.comingSoon) return `<span class="btn btn--sm btn--soon">${icon('clock')}Coming Soon</span>`;
     const url = repoUrl(p.repo);
+    const name = p.name || p.repo;
+    if (compact) {
+      const links = [];
+      if (p.guide) {
+        links.push(`<a class="btn btn--ghost btn--sm btn--icon" href="${esc(guideUrl(p))}" data-track="guide" title="${esc(p.guide.label)}" aria-label="${esc(p.guide.label)}: ${esc(name)}">${icon('book')}</a>`);
+      }
+      if (p.download !== false) {
+        links.push(`<a class="btn btn--primary btn--sm" href="${esc(p.download || `${url}/releases/latest`)}" data-track="download" aria-label="Download ${esc(name)}">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`);
+      } else if (!p.guide) {
+        links.push(`<a class="btn btn--ghost btn--sm" href="${url}" data-track="github">${icon('github')}GitHub</a>`);
+      }
+      return links.join('');
+    }
     const links = [];
     if (p.download !== false) {
       links.push(`<a class="btn btn--primary btn--sm" href="${esc(p.download || `${url}/releases/latest`)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`);
@@ -169,7 +184,10 @@
         </button>`;
   }
 
+  // A card in the lists: picture, name, the description in two lines, one row of chips, numbers
+  // and buttons. On a phone it turns into a row of a list (see .grid > .card in style.css).
   function card(p) {
+    const text = p.tagline || 'No description yet.';
     return `
       <article class="card" data-repo="${esc(p.repo)}">
         ${shot(p)}
@@ -180,11 +198,11 @@
             ${badges(p)}
           </div>
         </div>
-        <p class="card__text">${esc(p.tagline || 'No description yet.')}</p>
-        ${chips(p)}
+        <p class="card__text" title="${esc(text)}">${esc(text)}</p>
+        ${chips(p, 4)}
         <div class="card__foot">
           <div class="meta-row">${metaRow(p)}</div>
-          <div class="actions">${actions(p)}</div>
+          <div class="actions actions--compact">${actions(p, { compact: true })}</div>
         </div>
       </article>`;
   }
@@ -258,7 +276,7 @@
             ${badges(p)}
           </div>
         </div>
-        <p class="card__text">${esc(p.tagline || 'No description yet.')}</p>
+        <p class="card__text card__text--full">${esc(p.tagline || 'No description yet.')}</p>
         ${whatsNew(p, reason)}
         <div class="card__foot">
           <div class="meta-row">${metaRow(p)}</div>
@@ -467,9 +485,12 @@
       const inMeta = meta && meta.querySelector('.badges');
       if (meta) meta.innerHTML = (inMeta ? inMeta.outerHTML : '') + metaRow(p);
       const text = node.querySelector('.card__text, .spotlight__text');
-      if (text) text.textContent = p.tagline || 'No description yet.';
+      if (text) {
+        text.textContent = p.tagline || 'No description yet.';
+        if (text.title) text.title = text.textContent;
+      }
       const buttons = node.querySelector('.actions');
-      if (buttons) buttons.innerHTML = actions(p, { github: node.classList.contains('spotlight') });
+      if (buttons) buttons.innerHTML = actions(p, { github: node.classList.contains('spotlight'), compact: buttons.classList.contains('actions--compact') });
     }
   }
 

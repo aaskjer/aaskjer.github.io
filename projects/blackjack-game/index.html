@@ -28,6 +28,8 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"16.3.0","made":"1.0.7","min":"1.0.0-alpha.1","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":[],"updateCheck":true}</script>
 </head>
 <body data-repo="Blackjack-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +46,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -61,10 +66,1102 @@
       <div class="wrap">
         <h1>Blackjack Game</h1>
         <p class="project-hero__lead">You don't need to go to Las Vegas to play solid Strip Poker! Play against the CPU, another Player or together against the House on stream with an OBS Overlay!</p>
-        <p class="doc-status">Loading…</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/Blackjack-Game">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/logo.png" alt="Blackjack Game" width="400" height="400">
+</p><h1 align="center">Blackjack Game</h1><p align="center">
+  <b>Blackjack for your chat — against the dealer, against each other or at a full table.</b><br>
+  On Twitch, YouTube and Kick, drawn live on stream through OBS.
+</p><p align="center">
+  
+  
+  <a href="https://opensource.org/licenses/MIT"></a>
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/Blackjack-Game/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md"><b>Import String</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>Blackjack Game is a chat game for Streamer.bot with three modes on one set of rules. <code>!blackjack</code> deals a
+hand against the dealer, <code>!bjduel</code> puts two chatters head to head, and <code>!house</code> seats up to six players
+against a single dealer hand. The game answers on whichever platform the command came from.</p>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🃏 <strong>Real table play.</strong> Hit, stand, double, split with resplits, surrender and insurance. Each platform has
+its own shoe of one to eight decks, and played cards stay out until the reshuffle.</li>
+<li>⚔️ <strong>Duels without the house.</strong> Points move straight from one chatter to the other. A double or a split
+becomes a raise the opponent has to accept, and a tie can go to double-or-nothing sudden death.</li>
+<li>🏠 <strong>Three casino rule sets.</strong> House Mode plays Vegas Strip, Atlantic City or European rules, each with its
+own deck count, peek, doubling, splitting, insurance and surrender.</li>
+<li>🎩 <strong>A dealer you configure.</strong> It stands on anything from 16 to 21, peeks if you want it to and breaks ties
+by your rule. Blackjack pays what you set; a 5-card Charlie pays 1.5x, three sevens pay 2x.</li>
+<li>⏱️ <strong>No hand stays open.</strong> Every deadline runs on its own. An abandoned hand refunds or plays itself out
+instead of waiting for the next chat command.</li>
+<li>📺 <strong>An overlay with real cards.</strong> Card faces, deal animations, a VS layout for duels, seats curved around
+the dealer and countdown rings on open prompts. It runs as a local file or from a web server, OBS 33
+included.</li>
+<li>💬 <strong>169 chat lines, 50 stat variables.</strong> Every message is editable with a live preview. Stats live in
+persisted <code>bjg_*</code> user variables, and the leaderboard ranks combined lifetime net from table and duels.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Works with:</strong> <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> · <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a></li>
+<li><strong>Community:</strong> <a href="https://discord.com/channels/834650675224248362/1447648588694818836/1447648588694818836">Blackjack Game on the Streamer.bot Discord</a></li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Import</h1>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"> </p> <p>Click <code>Import</code> in <a href="https://streamer.bot/">streamer.bot</a> and drag the <a href="https://github.com/aaskjer/Blackjack-Game/releases">BlackjackGame.sb</a> file into the window, or paste the <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md">import string</a> instead.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/a1c731fd-6ef0-4bf2-a312-05e3c95e0feb"> </p> <p><code>Import</code>, then <code>Yes</code> on the popups that follow.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/19cc11ee-647e-401a-aafd-cde610918e6b"> </p><p>Enable the commands in streamer.bot&#39;s <code>Commands</code> tab. They arrive switched off, so nothing answers chat until you do.</p>
+<h1>Setup</h1>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8b7c43b3-d9de-4518-94a5-e9d38c8e219d"> </p><p>Right-click <code>Test</code> in the trigger section and choose <code>Test Trigger</code> to open the settings window.</p>
+<p align="center"><img loading="lazy" alt="The Table page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-table.png" width="460"></p><p>Work through the pages in the rail, save, and you are playing. The game reads its settings fresh on every command, so nothing needs restarting.</p>
+<p>Three pages are worth a look before the first hand: <strong>Table</strong> for the stakes and the dealer, <strong>Access</strong> for the points variable and who may play, and <strong>Messages</strong> if you want the game to sound like your channel. Every chat line there comes with a live preview, filled in the way chat will see it.</p>
+<p align="center"><img loading="lazy" alt="The Messages page with its chat preview" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-messages.png" width="460"></p><h1>OBS Overlay</h1>
+<p align="center"><img loading="lazy" alt="The Overlay page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-overlay.png" width="460"></p><p>Connect streamer.bot to OBS, set the connection number, scene and source name on the <strong>Overlay</strong> page, and press <code>Set up in OBS</code>. The game creates the scene and a 1300 × 1080 browser source pointing at the overlay file — move and resize it from there as you like.</p>
+<p>Adding the source by hand works too: a Browser Source with <strong>Local file</strong> ticked, pointing at <code>blackjack_overlay.html</code> in the overlay folder. A source that points at a <code>file:///</code> address works as well, OBS 33 included.</p>
+<h2>Examples</h2>
+<h3>Duel challenge</h3>
+<p align="center"><img loading="lazy" alt="A duel challenge waiting for its answer" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/overlay-duel-challenge.png" width="320"></p>
+The challenged player has a deadline to accept or decline. Let it run out and the duel is off, with the stake returned.<h3>A duel in play</h3>
+<p align="center"><img loading="lazy" alt="A duel in play" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/overlay-duel.png" width="480"></p>
+Every solo command works here except insurance and surrender — those are dealer rules, and a duel has no dealer.<h3>A House table</h3>
+<p align="center">
+  <img loading="lazy" alt="A House lobby with two of five seats taken" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/overlay-house-lobby.png" width="380">
+  <img loading="lazy" alt="A House table with four seats" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/overlay-house.png" width="400">
+</p>
+The seats curve around the dealer. While the join window runs, the open ones show as dashed chips; once the cards are out, every hand plays against the one dealer hand.
+</div>
+      </section>
+      <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
+        <h2 class="doc-label">FAQ</h2>
+        <div class="doc-body"><h1>❓ Blackjack Game — FAQ</h1>
+<hr>
+<h2>🛠️ Setup</h2>
+<p><strong>Q: Which actions do I import?</strong></p>
+<p>Three:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Blackjack Game</strong></td>
+<td>The game. Every gameplay command points here</td>
+</tr>
+<tr>
+<td><strong>Blackjack Game - Settings</strong></td>
+<td>Opens the settings window</td>
+</tr>
+<tr>
+<td><strong>Blackjack Game - Stats</strong></td>
+<td>Handles <code>stats</code> and <code>allstats</code></td>
+</tr>
+</tbody></table>
+<p>Point <code>stats</code> and <code>allstats</code> at the Stats action and everything else at the game action. The script matches on command ID, not on the word you type, so the trigger can be anything you like as long as the ID matches.</p>
+<hr>
+<p><strong>Q: Where does everything live?</strong></p>
+<p>Under your Streamer.bot base directory:</p>
+<pre><code>Chat Games/Blackjack Game/BJG-Settings.json              ← settings and chat messages
+Chat Games/Blackjack Game/Overlay/blackjack_overlay.html ← the OBS browser source
+Chat Games/Blackjack Game/Overlay/blackjack_state.json   ← the live state the overlay reads
+Chat Games/Logs/BJG-log-yyyy-MM-dd.txt                   ← one log file per day
+</code></pre>
+<p>The overlay folder is the one piece you can move; see the Overlay section below. Nothing here needs editing by hand — the settings window writes all of it.</p>
+<hr>
+<p><strong>Q: The settings window will not open.</strong></p>
+<p>Look in the Streamer.bot log for the error, and <a href="https://github.com/aaskjer/Blackjack-Game/issues">report it</a> if it looks like a defect.</p>
+<p>A damaged <code>BJG-Settings.json</code> does not stop the window: it says so and opens with the defaults instead. Saving from there writes a fresh file — which also means anything that was still readable in the damaged one is overwritten, so move it aside first if you want to pick anything out of it.</p>
+<hr>
+<p><strong>Q: How do I put everything back to defaults?</strong></p>
+<p>The ↺ button at the bottom left of the settings window. It asks first, then rewrites <code>BJG-Settings.json</code> with the factory values and reopens. Your light or dark choice is kept.</p>
+<p>That covers settings and chat messages only. Player statistics live in user variables and are untouched — the Stats page has its own reset for those.</p>
+<p>Next to it, ⟳ resets only the page you are looking at, and writes nothing until you save.</p>
+<hr>
+<p><strong>Q: I saved, but the game still behaves the old way.</strong></p>
+<p>It should not. The game reads its configuration fresh on every command, so the next hand already has your changes. No restart.</p>
+<p>The one exception is a hand that is already on the table: it keeps the rules it was dealt under.</p>
+<hr>
+<p><strong>Q: Where is dark mode?</strong></p>
+<p>The ☀️ / 🌙 button at the bottom left. The window reopens in the other theme, since the whole tree is rebuilt in the new palette rather than recoloured in place.</p>
+<hr>
+<p><strong>Q: Any keyboard shortcuts?</strong></p>
+<p>Ctrl+S saves. Ctrl+1 to Ctrl+9 jump to the first nine pages in the rail&#39;s order.</p>
+<hr>
+<h2>🎮 Playing</h2>
+<p><strong>Q: What are the commands?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!blackjack &lt;bet&gt;</code></td>
+<td>Deals a hand</td>
+</tr>
+<tr>
+<td><code>hit</code></td>
+<td>Draw another card</td>
+</tr>
+<tr>
+<td><code>stand</code></td>
+<td>Stop and keep your total</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>Double the bet, take exactly one card, then stand</td>
+</tr>
+<tr>
+<td><code>split</code></td>
+<td>Split a starting pair into two hands</td>
+</tr>
+<tr>
+<td><code>insurance</code></td>
+<td>Cover half your bet against a dealer blackjack</td>
+</tr>
+<tr>
+<td><code>surrender</code></td>
+<td>Fold and keep half the bet</td>
+</tr>
+<tr>
+<td><code>quit</code></td>
+<td>Cancel and take the stake back - before your first move</td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td>Post your last game message again</td>
+</tr>
+<tr>
+<td><code>!bjduel @user &lt;bet&gt;</code></td>
+<td>Challenge another chatter</td>
+</tr>
+<tr>
+<td><code>accept</code> / <code>decline</code></td>
+<td>Answer whichever prompt is waiting on you</td>
+</tr>
+<tr>
+<td><code>!house [rules] [bet]</code></td>
+<td>Open a table</td>
+</tr>
+<tr>
+<td><code>join &lt;bet&gt;</code> / <code>deal</code></td>
+<td>Take a seat, or deal the table early</td>
+</tr>
+<tr>
+<td><code>stats</code> / <code>allstats</code></td>
+<td>Your own record, or the leaderboard</td>
+</tr>
+</tbody></table>
+<p>Those are the defaults — your streamer may have bound them to other words.</p>
+<hr>
+<p><strong>Q: What bet shortcuts are there?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Typed</th>
+<th>Bets</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>all</code> / <code>allin</code></td>
+<td>The whole balance</td>
+</tr>
+<tr>
+<td><code>half</code></td>
+<td>Half of it</td>
+</tr>
+<tr>
+<td><code>quarter</code> / <code>25%</code></td>
+<td>A quarter</td>
+</tr>
+<tr>
+<td><code>50%</code>, any percentage</td>
+<td>That much of the balance</td>
+</tr>
+<tr>
+<td><code>double</code> / <code>2x</code></td>
+<td>Twice the minimum bet</td>
+</tr>
+<tr>
+<td><code>random</code> / <code>rand</code></td>
+<td>Somewhere between a tenth of the balance and all of it</td>
+</tr>
+<tr>
+<td><code>max</code> / <code>maximum</code></td>
+<td>As much as the balance and the maximum bet allow</td>
+</tr>
+<tr>
+<td><code>1.5k</code> / <code>2m</code></td>
+<td>1,500 and 2,000,000</td>
+</tr>
+</tbody></table>
+<p><code>!blackjack</code> on its own — or with a word that is not one of these — uses the <strong>default bet</strong>.</p>
+<p>Each shortcut confirms itself in chat with the figure it worked out, already cut to fit the minimum and maximum, so the number chat sees is the number that gets played.</p>
+<hr>
+<p><strong>Q: Someone bet under the minimum, or over the maximum.</strong></p>
+<p>Nothing breaks. Below the minimum is raised to it, and the player still needs the balance to cover it. Above the maximum is cut down.</p>
+<p>Set a maximum of <code>0</code> for no ceiling at all. The same goes for the duel and seat maximums, and for hands per hour.</p>
+<hr>
+<p><strong>Q: Can one player have two hands running?</strong></p>
+<p>No. State is keyed per platform <em>and</em> per viewer, so one hand each — but any number of viewers can be mid-hand at once, and a Twitch hand and a YouTube hand never touch each other.</p>
+<hr>
+<p><strong>Q: Someone dealt in and walked off. Is their stake stuck?</strong></p>
+<p>No. <strong>Turn timeout</strong> on the Table page, 180 seconds by default and <code>0</code> for no limit, closes the hand out without anybody typing anything. The clock restarts on every action, so it only catches someone who really left.</p>
+<table>
+<thead>
+<tr>
+<th>What they had done</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nothing at all</td>
+<td>The hand is cancelled and the stake returned, exactly as <code>quit</code> would. Controlled by <strong>Refund a hand nobody played</strong>, on by default</td>
+</tr>
+<tr>
+<td>Anything at all</td>
+<td>The hand stands and the dealer plays it out. There is a real hand on the table by then</td>
+</tr>
+</tbody></table>
+<p>Every other deadline works the same way: an unanswered challenge, a raise, a sudden-death offer, the rule pick, the join window and a seat&#39;s turn all resolve themselves.</p>
+<hr>
+<p><strong>Q: What if Streamer.bot closes, or I edit the code, mid-hand?</strong></p>
+<p>Everything on the table is handed back. Hands live in the code&#39;s own memory and go with it when Streamer.bot tears it down, so the script settles up on the way out: unsettled solo hands, both sides of a live duel, the escrow behind an unanswered challenge and every occupied seat are credited back, and the overlay is cleared rather than left frozen on a hand nobody can finish.</p>
+<p>Nothing is said in chat about it — the connection may already be gone — but the Streamer.bot log records what went back to whom.</p>
+<hr>
+<p><strong>Q: Is it one deck per hand, or a real shoe?</strong></p>
+<p>A real shoe. One per platform, shared by every hand and duel running there, exactly as a table deals every seat from the same
+shoe. A card that has been played stays out of it until the shoe is reshuffled, so what is left genuinely shifts as the night
+goes on and anyone paying attention can tell.</p>
+<p>Two settings on the Table page run it:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Decks in the shoe</strong></td>
+<td>One to eight 52-card decks shuffled together</td>
+</tr>
+<tr>
+<td><strong>Reshuffle at</strong></td>
+<td>How little may be left before the played cards go back in and it is shuffled. Low means long runs and a count worth keeping; high means it is reshuffled so often that counting gets nobody anywhere</td>
+</tr>
+</tbody></table>
+<p>Changing either starts a fresh shoe on the next hand. A hand already in progress keeps the one it was dealt from, so its cards
+go back where they came from. House tables are the exception: a table&#39;s rule set picks its own deck count, and that shoe lives
+and dies with the table.</p>
+<hr>
+<p><strong>Q: What are the bonus hands?</strong></p>
+<p>Both settle the moment they happen, whatever the dealer is holding:</p>
+<ul>
+<li><strong>5-card Charlie</strong> — a fifth card without busting pays a 1.5x bonus.</li>
+<li><strong>Three sevens</strong> — a third seven without busting pays a 2x bonus.</li>
+</ul>
+<p>Neither waits for you to stand, so a sixth card cannot take one away again.</p>
+<hr>
+<p><strong>Q: Insurance or surrender says it is not available.</strong></p>
+<p>Both are <strong>off by default</strong>. Turn them on under <strong>🃏 Table → Optional rules</strong>. Beyond that:</p>
+<ul>
+<li><strong>Insurance</strong> is only offered against an Ace, and has to be taken before hitting, standing, doubling or splitting.</li>
+<li><strong>Surrender</strong> needs a fresh two-card hand, before any other move and before insurance.</li>
+<li>A <strong>duel</strong> has neither. They are dealer rules, and a duel has no dealer.</li>
+</ul>
+<hr>
+<p><strong>Q: How does the tie rule work?</strong></p>
+<p><strong>Break a tie with one card only</strong>, on the Table page:</p>
+<ul>
+<li><strong>On</strong> — the dealer draws exactly one card, and a tie that survives it goes to the dealer.</li>
+<li><strong>Off</strong> — the dealer keeps drawing until the tie breaks one way or the other.</li>
+</ul>
+<hr>
+<h2>⚔️ Duels</h2>
+<p><strong>Q: How does a duel run?</strong></p>
+<p><code>!bjduel @user &lt;bet&gt;</code> calls someone out. They type <code>accept</code> or <code>decline</code>. Both stakes are held from the moment of the challenge and returned on a decline, a timeout or a draw. Both hands are dealt face up from one shared shoe, the challenger acts first, then the opponent, then the showdown. No dealer and no house: the points move from one viewer to the other.</p>
+<p>The bet takes the same shortcuts as the table, and the order does not matter — <code>!bjduel 500 @user</code> works too.</p>
+<hr>
+<p><strong>Q: Chat has scrolled past the hands. Can players see them again?</strong></p>
+<p><code>repeat</code> works inside a duel. Either player, any time: it posts both hands — listed per hand if someone has split — the pot, and who everyone is waiting on. It is read-only and never touches the turn clock.</p>
+<p>Outside a duel the same command posts your last game message again.</p>
+<hr>
+<p><strong>Q: Why does splitting or doubling in a duel need the opponent&#39;s permission?</strong></p>
+<p>Because it lifts the stake for <em>both</em> of them, not just the one doing it. The opponent gets an accept or decline prompt, and declining refuses the raise only — it never ends the duel. A split that does not add a pot needs no agreement and happens at once.</p>
+<hr>
+<p><strong>Q: What is sudden death?</strong></p>
+<p>Off by default, in which case a tied duel simply returns both stakes. Switched on, a tie goes to double or nothing: both players have to accept, both stake again, and each draws one more card. A decline, a timeout or a shortfall returns everything. It repeats up to the round limit, then splits the pot.</p>
+<p>It is only offered on an unsplit duel with a single pot. Duels with splits always push on a tie.</p>
+<hr>
+<p><strong>Q: Someone walked off mid-duel.</strong></p>
+<p>Set a <strong>turn timeout</strong> on the Duel page and the abandoned player stands automatically, on time, with nobody typing anything. The same goes for an unanswered challenge (stakes returned), an unanswered raise (play continues unchanged) and an unanswered sudden-death offer (everything returned).</p>
+<p>The script runs a one-second clock while anything is live and stops it again once the last hand ends, so nothing ticks while the game is idle.</p>
+<hr>
+<p><strong>Q: Does the addiction cut apply to duel winnings?</strong></p>
+<p>Not by default. The points in a duel come from the other player rather than the house, so the cut would delete them from circulation instead of moving them. <strong>Cut an addicted player&#39;s duel winnings</strong> turns it on anyway.</p>
+<hr>
+<h2>🏠 House Mode</h2>
+<p><strong>Q: How does a table run?</strong></p>
+<p>A moderator opens one with <code>!house</code>. If more than one rule set is on offer they pick from a menu — or name it directly, as in <code>!house vegas</code>. The join window opens, viewers take seats with <code>join &lt;bet&gt;</code>, and the table deals when the last seat fills or the window runs out. Whoever opened it can skip the wait with <code>deal</code>.</p>
+<p>Then it plays like a real table: the dealer shows one card, each seat plays in turn, and once everyone is done the dealer plays a single hand that every seat is settled against.</p>
+<hr>
+<p><strong>Q: Why will my table not open?</strong></p>
+<p>Three reasons, in the order the game checks them:</p>
+<ul>
+<li><strong>House Mode is off</strong> on the House page.</li>
+<li><strong>Free Game is on.</strong> House Mode is played for real currency and refuses to open a table otherwise.</li>
+<li><strong>No rule set is ticked</strong>, so there is nothing to play under.</li>
+</ul>
+<hr>
+<p><strong>Q: What do the three rule sets change?</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Vegas Strip</th>
+<th>Atlantic City</th>
+<th>European</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Shoe</td>
+<td>4 decks</td>
+<td>8 decks</td>
+<td>2 decks</td>
+</tr>
+<tr>
+<td>Dealer peeks for blackjack</td>
+<td>yes</td>
+<td>yes</td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td>Double</td>
+<td>any two cards, after a split too</td>
+<td>any two cards, after a split too</td>
+<td>9, 10 or 11 only, never after a split</td>
+</tr>
+<tr>
+<td>Split</td>
+<td>any two 10-value cards</td>
+<td>any two 10-value cards</td>
+<td>matching ranks only</td>
+</tr>
+<tr>
+<td>Hands from splitting</td>
+<td>up to 4</td>
+<td>up to 4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Insurance</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Surrender</td>
+<td>no</td>
+<td>late surrender</td>
+<td>no</td>
+</tr>
+</tbody></table>
+<p>All three stand on soft 17, give split Aces one card each, and pay 3:2 on a blackjack. Click a name on the House page to read the full list.</p>
+<p>The European dealer not peeking is the one that bites: a dealer blackjack there takes everything staked at a seat, money added by doubling or splitting included. That is how the real rule works, and it is why the other two are kinder.</p>
+<hr>
+<p><strong>Q: Can a seat leave once the cards are out?</strong></p>
+<p><code>quit</code> returns the stake while the seat has not acted. After that the hand has to be played out, and the seat&#39;s turn is simply passed over.</p>
+<hr>
+<p><strong>Q: Are House hands in my <code>!stats</code>?</strong></p>
+<p>Yes, twice over. They count towards the hands, wins and net at the front of the line, and they get their own breakdown — <code>house 3W/1L at 4 tables</code> — so a regular at the table can see how much of the record came from there.</p>
+<hr>
+<p><strong>Q: Who can open a table?</strong></p>
+<p>Whoever the Streamer.bot trigger lets. The script does not check for itself, so set the permission on the <code>!house</code> and <code>deal</code> commands if you want them kept to moderators.</p>
+<hr>
+<h2>💰 Points and currency</h2>
+<p><strong>Q: Which points system does it use?</strong></p>
+<p>It looks for one, in this order:</p>
+<ol>
+<li><strong>StreamUP Currency Core</strong> — reads the <code>currency_ProductSettings</code> global.</li>
+<li><strong>tawmae LOYALTY POINTS</strong> — reads the <code>tawmae_Settings_LOYALTY POINTS</code> global.</li>
+<li><strong>Whatever you named</strong> — the points variable and points name on the Access page.</li>
+</ol>
+<p>Either of the first two overwrites the name on the Access page automatically. For anything else, name its variable there yourself.</p>
+<hr>
+<p><strong>Q: How do people play for nothing?</strong></p>
+<p><strong>Free Game</strong> on the Table page. Nothing is staked and nothing is won, and every line about points switches to its Free Game wording so nothing mentions money that was never on the table — the duel challenge, accept, decline, expiry and sudden-death lines included.</p>
+<p>House Mode stays shut while it is on.</p>
+<hr>
+<p><strong>Q: What does the blackjack payout change?</strong></p>
+<p>The bonus on a natural blackjack — 21 on the first two cards — paid on top of the returned stake:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>3:2</strong></td>
+<td>Casino standard, the default</td>
+</tr>
+<tr>
+<td><strong>6:5</strong></td>
+<td>House edge</td>
+</tr>
+<tr>
+<td><strong>2:1</strong></td>
+<td>Generous</td>
+</tr>
+<tr>
+<td><strong>1:1</strong></td>
+<td>No bonus</td>
+</tr>
+</tbody></table>
+<p>An ordinary win always pays 1:1, so double the stake comes back.</p>
+<hr>
+<h2>👥 Who can play</h2>
+<p><strong>Q: What is the Addicted list?</strong></p>
+<p>Viewers on it play on, with two strings attached:</p>
+<ul>
+<li><strong>Their winnings are cut</strong> by the payout cut on the Access page. Capped at 99%, so a win can never turn into a loss.</li>
+<li><strong>Their cooldown is doubled</strong> — if a user cooldown is set, they always wait twice as long.</li>
+</ul>
+<p>Add names under <strong>Addicted viewers</strong>, or whole Streamer.bot groups under <strong>Addicted groups</strong>. Either one is enough to flag someone.</p>
+<hr>
+<p><strong>Q: How do I keep someone out entirely?</strong></p>
+<p><strong>Access → Kept out.</strong> Two lists, and being in either is enough:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Blocked viewers</strong></td>
+<td>Names, without regard to case. A leading <code>@</code> is ignored, so pasting <code>@someuser</code> works</td>
+</tr>
+<tr>
+<td><strong>Blocked groups</strong></td>
+<td>Streamer.bot user groups, matched exactly</td>
+</tr>
+</tbody></table>
+<p>Unlike the Addicted list, a blocked viewer cannot start a hand, cannot start a duel, cannot accept one and cannot take a seat. Their commands are dropped without a reply, so retrying cannot spam chat.</p>
+<hr>
+<h2>🛡️ Limits and cooldowns</h2>
+<p><strong>Q: What is the difference between the two cooldowns?</strong></p>
+<ul>
+<li><strong>Everyone</strong> — after any hand, nobody can start another until it expires.</li>
+<li><strong>Per player</strong> — applies only to the viewer who just played.</li>
+</ul>
+<p>There is a pair for each mode, six in all, and each mode counts separately: a duel never blocks someone from dealing in at the table. All six are handed to Streamer.bot&#39;s own cooldown system, and <code>0</code> turns one off.</p>
+<hr>
+<p><strong>Q: What does hands per hour do?</strong></p>
+<p>Caps how many hands one viewer may start within a rolling 60 minutes. <code>0</code> for no limit. Whether duels and seats count towards it is a switch on each of their pages.</p>
+<hr>
+<p><strong>Q: The cooldown replies come from the wrong account.</strong></p>
+<p>The Messages page has its own <strong>bot account</strong> and <strong>send as /me</strong> switches for cooldown replies, separate from the game&#39;s own messages. The leaderboard has a third pair, on the Stats page.</p>
+<hr>
+<h2>💬 Messages</h2>
+<p><strong>Q: Can I change what the game says?</strong></p>
+<p>All 169 lines, on the Messages page. Pick one from the list, edit it, and the preview underneath shows how it will read in chat — filled in with sample values, sent from the account and in the style your switches are set to.</p>
+<p>The chips under the editor are that message&#39;s placeholders; clicking one drops it in at the cursor. A placeholder the game does not fill for that particular line is not offered, so the preview cannot promise something chat will never see.</p>
+<hr>
+<p><strong>Q: What happens if I empty a message?</strong></p>
+<p>Nothing is sent for it. The preview says so.</p>
+<hr>
+<p><strong>Q: Why do a couple of messages have <code>{0}</code> instead of a name?</strong></p>
+<p>The two cooldown replies number their placeholders instead of naming them, and the order matters. Every <code>{</code> and <code>}</code> in them has to belong to a placeholder — a stray brace stops the message going out at all.</p>
+<hr>
+<h2>📺 OBS Overlay</h2>
+<p><strong>Q: How do I get it on stream?</strong></p>
+<p>Two ways:</p>
+<ol>
+<li><strong>Automatic</strong> — <strong>Overlay → Set it up in OBS</strong>. Give it your OBS connection number, a scene name and a source name, then press the button. It does nothing if a source of that name is already there.</li>
+<li><strong>By hand</strong> — add a Browser Source in OBS pointing at <code>blackjack_overlay.html</code> as a <strong>Local File</strong>.</li>
+</ol>
+<p>The background is transparent, so it layers over any scene.</p>
+<hr>
+<p><strong>Q: Can the overlay live somewhere else?</strong></p>
+<p>Yes. <strong>Overlay folder</strong> takes either form:</p>
+<table>
+<thead>
+<tr>
+<th>You type</th>
+<th>Where it goes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Overlay</code></td>
+<td><code>Chat Games\Blackjack Game\Overlay\</code></td>
+</tr>
+<tr>
+<td><code>D:\Streaming\Overlays\Blackjack</code></td>
+<td>Exactly that, on any drive</td>
+</tr>
+</tbody></table>
+<p>The line under the field shows the full path it resolves to, and the ↗ button opens it. The folder is created if it is missing, and the overlay file is written there the next time the game runs. Repoint your browser source afterwards.</p>
+<hr>
+<p><strong>Q: The overlay is blank, or will not update.</strong></p>
+<p>Start with the OBS log (<strong>Help → Log Files → View Current Log</strong>). When the overlay cannot read the table state it says so there,
+once after ten seconds and then at most once a minute, in a line starting <code>[obs-browser: &#39;Blackjack Overlay&#39;] Error: Blackjack overlay: cannot read the table state</code> — together with the address it was loaded from, which usually shows the problem straight away.</p>
+<ul>
+<li>Check the path under <strong>Overlay folder</strong> against what the browser source points at. If you changed the folder, the old file is still sitting where it was.</li>
+<li>The overlay reads <code>blackjack_state.js</code> out of its own folder, so the files have to sit together. Change the setting rather than moving the HTML by hand.</li>
+<li>Run any Blackjack command once. The state file is written by the game, so a fresh install has nothing to show until the first hand.</li>
+<li>Refresh the browser source cache in OBS after the first install.</li>
+</ul>
+<p><strong>Local file</strong> ticked is still the recommended way to add it, but the overlay no longer depends on it: it also works when the
+browser source points at the file through a <code>file:///</code> address, which used to leave it blank.</p>
+<hr>
+<p><strong>Q: The overlay stopped showing after updating OBS to 33.</strong></p>
+<p>OBS 33 tightened how a browser source may read files from disk. The local-file handler that serves a &quot;Local file&quot; source now
+turns away any request unless the page itself was opened through it, and the OBS team has said they may drop that handler
+altogether in a later version.</p>
+<p>The overlay used to fetch its state through exactly that handler. It now loads the state as a small script file instead, which
+works whichever way OBS opened the page, and falls back to the old file where it can still be read. Update the game action
+and the overlay rewrites itself on the next command; your previous file is kept beside it as a <code>.bak</code>.</p>
+<p>With the old overlay, OBS 33.0.0 still shows a source that has <strong>Local file</strong> ticked. A source that points at a <code>file:///</code>
+address stays blank, and the OBS log repeats <code>blocked by CORS policy</code> for <code>blackjack_state.json</code>. Tick <strong>Local file</strong>, or update.</p>
+<hr>
+<p><strong>Q: What size should the browser source be?</strong></p>
+<p><strong>1300 × 1080</strong>, which is what <strong>Set it up in OBS</strong> creates. The overlay sizes everything in proportion to the source, so a
+different width or height changes the proportions as well; the overlay and text scale on the Overlay page adjust the size
+without touching the source.</p>
+<hr>
+<p><strong>Q: Can I hide it during Free Game?</strong></p>
+<p><strong>Hide during Free Game</strong>, on the Overlay page. There are switches for the totals, stakes, outcome badges, insurance line and animations too, plus scale, font scale, card colours, backdrop colour and opacity, and the dealer&#39;s name.</p>
+<hr>
+<p><strong>Q: A new version shipped. Do I lose my overlay changes?</strong></p>
+<p>The overlay file itself is version-stamped and rewritten when a newer one ships, with your previous file kept alongside as a <code>.bak</code>. Your <em>settings</em> live in <code>BJG-Settings.json</code> and an overlay update never touches them.</p>
+<hr>
+<h2>🏆 Statistics and leaderboard</h2>
+<p><strong>Q: Where are the statistics kept?</strong></p>
+<p>In 50 persisted Streamer.bot <strong>user variables</strong>, all named <code>bjg_*</code>. There is no stats file. Any other Streamer.bot action can read a player&#39;s record straight out of them — <code>bjg_duelsWon</code>, <code>bjg_netProfit</code>, <code>bjg_longestWinStreak</code> — without going through this game.</p>
+<hr>
+<p><strong>Q: How is <code>!allstats</code> ranked?</strong></p>
+<p>On <strong>combined lifetime net</strong>: table profit (<code>bjg_netProfit</code>) plus duel winnings (<code>bjg_duelNet</code>), so someone who only ever duels is on the board too. One to ten places, with optional 🥇🥈🥉 for the top three.</p>
+<hr>
+<p><strong>Q: How do I keep myself and my bot off the board?</strong></p>
+<p><strong>Stats → Who shows up</strong>: <strong>hide the broadcaster</strong> and <strong>hide the bot account</strong>. Both are matched by user id on the platform the command came from, so a rename cannot put them back on. Their statistics are still tracked — only the listing leaves them out.</p>
+<hr>
+<p><strong>Q: How do I start a new season?</strong></p>
+<p>Set <strong>a reset clears</strong> first:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>What goes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>The leaderboard totals only</strong></td>
+<td>Bets, winnings, net, duel points, biggest win and loss. Hands played, blackjacks, busts, streaks and the duel and House records stay</td>
+</tr>
+<tr>
+<td><strong>Every stat there is</strong></td>
+<td>Every <code>bjg_*</code> variable for every viewer, with nothing to recover</td>
+</tr>
+</tbody></table>
+<p>Then either press <strong>reset the leaderboard now</strong>, which spells out exactly what it is about to clear, or set <strong>automatically</strong> to weekly or monthly.</p>
+<hr>
+<p><strong>Q: Does turning on automatic resets wipe everything straight away?</strong></p>
+<p>No. The current period is noted first and the reset waits for the next boundary. Streamer.bot gives the script no scheduler, so the rollover is noticed the first time a Blackjack or stats command runs after it — not on the stroke of midnight.</p>
+<hr>
+<h2>🌐 Platforms</h2>
+<p><strong>Q: Which ones work?</strong></p>
+<p>Twitch, YouTube and Kick. There is nothing to switch on here: the game answers wherever its commands are set to fire, and works out
+which platform that was on its own, so points and statistics land on the right account.</p>
+<p>Which platforms a command fires on is Streamer.bot&#39;s own setting, on the trigger. Leave Kick off there and no Kick viewer can
+deal in — the game never needs to know about it.</p>
+<hr>
+<p><strong>Q: Can it run on several at once?</strong></p>
+<p>Yes. Hands, points, statistics and leaderboards are all tracked per platform, so a Twitch hand and a Kick hand can be live together without touching each other.</p>
+<hr>
+<p><strong>Q: <code>/me</code> is not working on YouTube or Kick.</strong></p>
+<p>Neither has it. <strong>Send as /me</strong> is Twitch only; everywhere else the message goes out as plain chat regardless.</p>
+<hr>
+<h2>📜 Logging</h2>
+<p><strong>Q: What goes in the log?</strong></p>
+<p>Every settled hand — win, loss, blackjack, bust, surrender, insurance, quit, timeout, and the duel and House results — with the time, viewer, platform, trigger, stake, result and the balance before and after. One file per day: <code>Chat Games/Logs/BJG-log-yyyy-MM-dd.txt</code>.</p>
+<p>Turn it off with <strong>write a log file per day</strong>, on the Log page.</p>
+<hr>
+<p><strong>Q: Can I read it without leaving Streamer.bot?</strong></p>
+<p>The <strong>📜 Log</strong> page shows it in a sortable table, with a search box and filters for the result, the mode, the platform and the day. Picking a row shows the whole line it came from, and ↗ opens the folder.</p>
+<hr>
+<h1>Is this AI slop?</h1>
+<p>Partly, and it is easier to say so than to pretend otherwise. The script was written with help from AI and with input from the Streamer.bot community, and I am not a developer by trade.</p>
+<p>What I can say is that I put real time into it. The goal was a chat game that holds up under a live chat rather than a demo that falls over, and I enjoyed building it — I used it to learn, and put the AI to something I actually wanted to exist.</p>
+<p>If the use of AI puts you off the project, I understand that completely, and I would rather be straight about it than hide it.</p>
+<hr>
+<p>AI writes bugs, and so do I. I test and fix what I find, but things get through. If you hit one, or you have something to say about it, I would rather hear it: <a href="https://github.com/aaskjer/Blackjack-Game/issues">report anything that looks wrong</a>.</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Blackjack-Game/releases">releases on GitHub</a>.</p><h2>v16.3.0 — A new colour picker</h2><p class="release__date">October 26, 2026</p><p>A new colour picker in the settings window. <code>BJG-Settings.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
+<h5>🎨A new colour picker</h5>
+<ul>
+<li>A click on the swatch next to an overlay colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:<ul>
+<li>a field for saturation and brightness and a hue bar, both to click or drag,</li>
+<li>sliders for red, green and blue — the mouse wheel nudges them by one,</li>
+<li>a row of ready colours.</li>
+</ul>
+</li>
+<li>Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.</li>
+</ul>
+<h2>v16.2.1 — Atomic saves and a settings file that can be rescued</h2><p class="release__date">October 25, 2026</p><p>A hardening release for the settings file. <code>BJG-Settings.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
+<h5>💾The settings file</h5>
+<ul>
+<li><strong>Saving is atomic.</strong> <code>BJG-Settings.json</code> was written straight over itself, so a crash halfway through could leave a truncated file behind — the game reads it on every hand. It is now written beside the live one and swapped in, and every save leaves <code>BJG-Settings.json.bak</code>, the file as it was before that save.</li>
+<li><strong>A damaged file is reported in the window</strong> and kept as <code>BJG-Settings.json.broken</code>. The window shows the settings from before the last save, or the defaults when there is no readable backup. Until now a read error raised an &quot;Error loading settings&quot; box from Streamer.bot&#39;s own thread — a modal dialog with no window behind it, holding the action until somebody found it — and then carried on with the defaults, which the next save wrote over the damaged file without a word.</li>
+<li><strong>A file that cannot be opened at all no longer opens the window.</strong> It said &quot;damaged&quot; and showed the defaults, so a save would overwrite a perfectly good file that was merely locked.</li>
+<li>A settings file the game script is holding open is waited out instead of failing on the first try.</li>
+</ul>
+<h5>⏱️Cooldowns and the window</h5>
+<ul>
+<li>The cooldowns of <code>!blackjack</code>, <code>!duel</code> and <code>!house</code> were set from the settings window&#39;s own thread. All six are now handed to Streamer.bot&#39;s thread while the window is open, as one set, so they can never be applied as a mix of two saves.</li>
+<li><strong>Only one settings window opens.</strong> A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.</li>
+<li>Switching pages redraws only the page in front, instead of every control in the window.</li>
+</ul>
+<hr>
+<p>Import the attached <code>BlackjackGame.sb</code>, or paste the <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md">import string</a>.</p>
+<h2>v16.2.0 — A real shoe, a new settings window, OBS 33</h2><p class="release__date">October 25, 2026</p><h3>🃏 A real shoe</h3>
+<p><strong>Decks in the shoe</strong> and <strong>Reshuffle at</strong> finally do what they say. There is one shoe per platform, shared by every hand and duel running there. A played card goes to the discard pile and stays out until the shoe runs down to the threshold; then the played cards go back in and it is shuffled. Eight decks no longer play like one.</p>
+<ul>
+<li>A card still in a hand is never dealt twice, even when the shoe reshuffles mid-round.</li>
+<li>Change the deck count or the threshold and the next hand starts a fresh shoe.</li>
+<li>A House table keeps its own shoe, sized by its rule set.</li>
+</ul>
+<h3>🎨 The settings window, rebuilt</h3>
+<p>Twenty-eight entries in six collapsible groups are now ten pages in a flat rail.</p>
+<ul>
+<li>One <strong>Messages</strong> page for all 169 chat lines: pick a line, edit it, and a live chat preview shows how it reads.</li>
+<li><strong>How to play</strong> summarises the rules from what the window currently says.</li>
+<li>The <strong>Log</strong> page filters by result, mode, platform and day.</li>
+<li>Ctrl+S saves, Ctrl+1 to Ctrl+9 jump between pages, ⟳ resets one page, and the footer counts unsaved changes.</li>
+<li>The colour wheel takes a click and a drag.</li>
+</ul>
+<h3>📺 The overlay and OBS 33</h3>
+<p>OBS 33 tightened how a browser source may read files from disk. The overlay now loads the table state as a small script file, so it works however OBS opens it: as a Local file, from a <code>file:///</code> address or off a web server. It is version 13 and replaces an older copy on the next command, keeping that one as a <code>.bak</code>.</p>
+<ul>
+<li><strong>Set it up in OBS</strong> creates a 1300 × 1080 source.</li>
+<li>The overlay catches up the moment OBS shows it, and says in the OBS log when it cannot read the state.</li>
+<li>Amounts are grouped the way chat groups them (<code>1.234.567</code>).</li>
+<li>A display name can no longer break the layout, in a hand or in the duel challenge prompt.</li>
+</ul>
+<h3>🔧 Fixed</h3>
+<ul>
+<li>Open stakes are paid back when Streamer.bot closes or the code is edited, instead of vanishing.</li>
+<li>A maximum bet or hands-per-hour limit can be set back to no limit (<code>0</code>).</li>
+<li>A 5-card Charlie and three sevens settle the moment they happen, doubling included.</li>
+<li><code>!stats</code> reports House Mode, and a full stats wipe clears the House figures too.</li>
+<li>Kick viewers are booked to Kick, not Twitch.</li>
+<li><code>all</code> and the other bet shortcuts announce the stake the hand is actually played for.</li>
+<li>The duel help named <code>!duel</code>; the command the import creates is <code>!bjduel</code>. A saved copy of that reply keeps its wording - reset it on the Messages page.</li>
+<li>Quitting a seat returns its insurance stake; a player with a challenge waiting can no longer also take a seat.</li>
+<li>Saving no longer trims spaces the chat lines rely on; three default lines no longer say <code>@@username</code>.</li>
+</ul>
+<h3>💬 Changed</h3>
+<ul>
+<li>Every chat line has been rewritten: same meaning, same placeholders, shorter.</li>
+<li>The update check compares version numbers, so an older tag is never offered as an update.</li>
+</ul>
+<h3>🗑️ Removed</h3>
+<ul>
+<li><strong>The platform switches.</strong> Streamer.bot already decides which platforms a command fires on; the game now answers wherever its commands fire. Channel points remain Twitch only.</li>
+</ul>
+<h3>Updating</h3>
+<p>Import <code>BlackjackGame.sb</code> below, or the <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md">import string</a>, over the existing actions. Your settings and player statistics stay where they are.</p>
+<h2>v16.1.1</h2><p class="release__date">August 11, 2026</p><ul>
+<li>New GUI with a lot of new things to explore!</li>
+<li>Updated compatibility for streamer.bot 1.0.7</li>
+</ul>
+<h2>v16.0.1 — Hotfix for the overlay</h2><p class="release__date">August 6, 2026</p><ul>
+<li>OBS overlay now shows the next running game with a prioritization</li>
+</ul>
+<html>
+<body>
+<!--StartFragment--><table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Live house table</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Live duel</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pending duel challenge</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Live solo hand</td>
+</tr>
+</tbody></table>
+<!--EndFragment-->
+</body>
+</html>
+<h2>v16.0.0 — Together against the house!</h2><p class="release__date">August 5, 2026</p><h3>🏠 House Mode</h3>
+<p>A dealer on one side and up to 6 chatters on the other, all playing the same shoe.</p>
+<p>Broadcaster/Moderator opens a table and picks a rule set, players take a seat with their own bet during
+a join window, everyone plays in seat order, then the dealer plays once and every seat is
+settled against that single hand. The table opener can join like anyone else if they also want to play.</p>
+<p><strong><em>House Mode is played for real currency only</em>. While Free Game is on, the table refuses to
+open rather than quietly taking points from a channel that thought it was playing for fun.</strong></p>
+<p><strong>Commands</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!house [rules]</code></td>
+<td>Opens a table. The rule set can be named directly to skip the menu, e.g. <code>!house vegas</code>.</td>
+</tr>
+<tr>
+<td><code>join &lt;bet&gt;</code></td>
+<td>Takes a seat while the join window is open. Accepts the same bet shortcuts as <code>!blackjack</code> (<code>all</code>, <code>half</code>, <code>max</code>, <code>1.5k</code>, <code>50%</code>, …).</td>
+</tr>
+<tr>
+<td><code>deal</code></td>
+<td>Deals immediately instead of waiting out the join window.</td>
+</tr>
+<tr>
+<td><code>hit</code> / <code>stand</code></td>
+<td>Play your hand when it&#39;s your turn.</td>
+</tr>
+<tr>
+<td><code>double</code> / <code>split</code></td>
+<td>Same as a normal game, subject to the table&#39;s rule set.</td>
+</tr>
+<tr>
+<td><code>insurance</code> / <code>surrender</code></td>
+<td>Only where the table&#39;s rule set offers them.</td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td>Reposts the table — the dealer&#39;s upcard, every seat&#39;s hand, and whose turn it is.</td>
+</tr>
+</tbody></table>
+<p><strong>Rule sets</strong></p>
+<table>
+<thead>
+<tr>
+<th>Set</th>
+<th>Shoe</th>
+<th>Notable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vegas Strip</td>
+<td>4 decks</td>
+<td>Dealer peeks, insurance, double after split, up to 4 hands</td>
+</tr>
+<tr>
+<td>Atlantic City</td>
+<td>8 decks</td>
+<td>As Vegas Strip, plus late surrender</td>
+</tr>
+<tr>
+<td>European</td>
+<td>2 decks</td>
+<td>No peek, no insurance, no surrender, double on 9/10/11 only, 2 hands max</td>
+</tr>
+</tbody></table>
+<p>Untick a set in the GUI to keep it out of the menu. With exactly one left ticked it&#39;s used automatically
+and nobody is asked to pick.</p>
+<hr>
+<h5>Added</h5>
+<ul>
+<li>House Mode rendering in the OBS overlay</li>
+<li>House join-window lobby in the overlay: per-seat chips with player name and bet, dashed placeholders for open seats.</li>
+<li>Semi-circular seat arc for House Mode in the overlay, with the dealer centred</li>
+<li>Card tilt along the arc for House Mode seats (labels stay upright)</li>
+<li><code>STAND</code> badge in the overlay for duel and house hands played out and still under 21</li>
+<li><code>Cards In Chat</code> dropdown on the General tab — <code>Cards + Numbers</code>, <code>Cards Only</code>, <code>Numbers Only</code>. Applied to solo, duel and house</li>
+<li><code>Result Hold (sec)</code> setting on the Overlay tab (default 8, minimum 1), replacing the hardcoded fade delay. Longer period to see who won and who lost.</li>
+<li><code>Sudden Death Both Busted</code> message and GUI field</li>
+<li>Diagnostic log entry when a duel accept/decline arrives with no user attached</li>
+<li>Name wrapping and length-based shrinking for duel seat names and solo/house hand labels</li>
+</ul>
+<h5>Changed</h5>
+<ul>
+<li>Dealer zone centred in single-player mode</li>
+<li>Default game-over fade raised from 6s to 8s</li>
+<li>Overlay HTML created directly in the folder when the OBS Auto-Setup button is pressed instead on the first command use after OBS Auto-Setup button was pressed.</li>
+</ul>
+<h5>Removed</h5>
+<ul>
+<li><code>Moderators Only Can Open A Table</code> setting and GUI checkbox. It&#39;s handled directly from the commands tab in streamer.bot.</li>
+<li><code>MsgHouseModOnly</code> message</li>
+<li><code>IsModeratorOrBroadcaster()</code> and all call sites</li>
+<li>Moderator exemption from the Max Games/Hour limit</li>
+<li>Duplicate seat-level outcome badge in duel overlay for single-hand seats</li>
+</ul>
+<h5>Fixed</h5>
+<ul>
+<li>Sudden death no longer loops on a double bust, doubling stakes to the round limit (thx MrSharkey for pointing it out)</li>
+<li><code>Tied at {value}</code> no longer reports only the challenger&#39;s total</li>
+<li>Stray <code>you have nothing to accept or decline</code> addressed to an empty name</li>
+<li>Long player names no longer overflow and clip off the overlay canvas</li>
+<li>Overlay file is recreated if deleted mid-session instead of staying gone until restart</li>
+</ul>
+<h2>v15.0.0 — Major Overhaul</h2><p class="release__date">August 4, 2026</p><h3>Big major update!</h3>
+<p>The first release in a long time. Alongside the classic single-player game, completely reworked codebase and many other things, this are the three major features:</p>
+<p><strong>PvP Duel Mode</strong>
+<strong>Full self creating OBS browser-source overlay</strong>
+<strong>Persistent leaderboard</strong></p>
+<p>Chatters can now play against each other, fully supported in chat and in the OBS overlay
+No more importing the overlay yourself with SourceCopy or other tinkering, everything you need is in the GUI
+The old Stats system has worn off, the new Leaderboard is now fully persistent and tracks all important things</p>
+<hr>
+<h3>⚔️Duel System</h3>
+<ul>
+<li>Both players are dealt two cards face up from a single shared deck.</li>
+<li>The challenger acts first, then the opponent, then a showdown.</li>
+<li>Bust loses immediately. A natural blackjack beats a made 21 and <strong>stands
+automatically</strong>, so a player holding one is never asked to act.</li>
+<li>Equal totals push and both stakes are refunded.</li>
+<li>Both stakes are held from the moment the challenge is made and are refunded on
+decline, timeout, or a push.</li>
+</ul>
+<p><strong>Raises need the opponent&#39;s agreement</strong></p>
+<p>Splitting and doubling down increase the stakes for <em>both</em> players, so they can&#39;t be
+one-sided. The opponent gets an accept/decline prompt, and declining refuses the raise
+only — it never ends the duel.</p>
+<ul>
+<li>Each split hand plays for its own equally funded side pot.</li>
+<li>If one player has fewer hands, their single hand defends every pot.</li>
+<li>A split that doesn&#39;t increase the pot count needs no agreement and happens instantly.</li>
+</ul>
+<p><strong>Sudden Death</strong> <em>(optional, off by default)</em></p>
+<p>When enabled, a tied duel offers double-or-nothing instead of simply refunding. Both
+players must accept, both stake another bet, and each draws one more card. Any decline,
+timeout, or shortfall refunds everything. Repeats up to a configurable round limit.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!bjduel @user &lt;bet&gt;</code></td>
+<td>Challenge a chatter. Accepts the same bet shortcuts as <code>!blackjack</code> (<code>all</code>, <code>half</code>, <code>max</code>, <code>1.5k</code>, <code>50%</code>, …). Order doesn&#39;t matter — <code>!duel 500 @user</code> works too.</td>
+</tr>
+<tr>
+<td><code>accept</code></td>
+<td>Accept whichever prompt is currently waiting on you.</td>
+</tr>
+<tr>
+<td><code>decline</code></td>
+<td>Decline whichever prompt is currently waiting on you.</td>
+</tr>
+<tr>
+<td><code>hit</code> / <code>stand</code></td>
+<td>Play your hand, same as a normal game.</td>
+</tr>
+<tr>
+<td><code>double</code> / <code>split</code></td>
+<td>Request a raise (see below).</td>
+</tr>
+<tr>
+<td><code>quit</code></td>
+<td>Forfeit the duel — your opponent takes the whole pot. (Moderators only)</td>
+</tr>
+</tbody></table>
+<p><strong>Also included</strong></p>
+<ul>
+<li>Configurable timeouts for accepting a challenge, taking a turn, and answering a raise.</li>
+<li>Full Free Game support — duels work as pure bragging rights with no points involved.</li>
+<li>Blocked groups, the Addicted List, cooldowns, and Max Games/Hour all apply to duels.</li>
+<li>A dedicated <strong>⚔️ Duel</strong> settings tab and a <strong>⚔️ Duel Messages</strong> tab with ~50
+customisable chat messages.</li>
+</ul>
+<hr>
+<h3>📺 OBS Overlay (new)</h3>
+<p>A self-contained browser source that renders the game live on stream. It is installed
+automatically into the overlay folder — no manual file copying.</p>
+<p><strong>Setup:</strong> add a Browser Source in OBS pointing at <code>blackjack_overlay.html</code>. The
+background is transparent, so it layers over any scene.</p>
+<p><strong>Renders</strong></p>
+<ul>
+<li>Dealer and player hands with real card faces, suits, and colours.</li>
+<li>Deal-in animations, an animated highlight on the hand currently in play, hand values,
+bet amounts, insurance indicator, and outcome badges (win / lose / push / bust /
+blackjack / 5-card charlie / triple 7s).</li>
+<li><strong>Duels:</strong> the two players face each other with a VS badge and the live pot between
+them. Split hands stack per side pot, and each seat gets a win / lose / push result.</li>
+<li><strong>Prompt cards</strong> with an animated countdown ring for a pending challenge, a split or
+double raise, and a sudden-death offer. The card counts down on its own and hides
+itself when the timer expires, so the overlay never sits on a dead prompt.</li>
+<li>Fades out a few seconds after a round ends.</li>
+</ul>
+<p><strong>Customisable from the OBS Overlay tab</strong></p>
+<p>Scale, font scale, card red/black colours, background colour and opacity, dealer name,
+and toggles for hand values, bet amounts, outcome badges, insurance display, animations,
+and hiding the overlay entirely during Free Game.</p>
+<p><strong>Automatic updates</strong> — the overlay file is version-stamped. When a newer version ships,
+it is written out automatically and your previous file is preserved as a <code>.bak</code> backup
+instead of being silently overwritten.</p>
+<hr>
+<h3>🏆 Leaderboard &amp; Statistics (new / reworked)</h3>
+<p><strong>Stats are no longer stored in a file.</strong> Every tracked value is written to a persisted
+Streamer.bot <strong>user variable</strong> named <code>bjg_*</code> — 44 of them, covering games, wins, losses,
+blackjacks, busts, streaks, double downs, splits, surrenders, insurance, and a complete
+separate set of duel records.</p>
+<p>This means any other Streamer.bot action can read a player&#39;s stats directly — for
+example <code>bjg_duelsWon</code> or <code>bjg_netProfit</code> — without involving this game at all.</p>
+<p><strong>Stats commands now live in their own action</strong> (<code>Blackjack Game - Stats</code>), so the
+leaderboard can be extended without touching the game.</p>
+<p><strong><code>!allstats</code> leaderboard</strong></p>
+<ul>
+<li>Ranked on <strong>combined lifetime net</strong> — dealer-game profit plus duel winnings — so
+players who only ever duel are included.</li>
+<li>🥇 🥈 🥉 medals for the top three (toggleable), numbers below that.</li>
+<li>Configurable size, 1–10 places.</li>
+<li>Optionally hide the <strong>broadcaster</strong> and the <strong>bot account</strong>, matched by user id so a
+name change can&#39;t put them back on the board.</li>
+<li>Its own Use Bot / Send As Action toggles, independent of the general message settings.</li>
+</ul>
+<p><strong>Leaderboard resets</strong></p>
+<ul>
+<li>A <strong>Reset Now</strong> button in the settings window, with a confirmation dialog spelling out
+exactly what will be cleared.</li>
+<li><strong>Automatic weekly or monthly resets</strong> for running seasons.</li>
+<li>Two scopes: <em>leaderboard totals only</em> (keeps games played, blackjacks, streaks and
+duel records intact) or <em>all stats</em>.</li>
+<li>Enabling automatic resets never wipes anything immediately — the current period is
+recorded first and the reset happens at the next boundary.</li>
+</ul>
+<p><strong><code>!stats</code></strong> now also reports your duel record, duel blackjacks, duel busts, forfeits,
+and a combined total net matching the leaderboard ranking.</p>
+<p><strong>Migration</strong> — an existing <code>CBJG-PlayerStats.json</code> is imported into user variables
+automatically on first run. The old file is left on disk as a backup and is never read
+again. No history is lost.</p>
+<hr>
+<h3>🎨 Settings Window</h3>
+<ul>
+<li>New <strong>⚔️ Duel</strong> tab — rules, betting limits, timeouts, raise behaviour, sudden death.</li>
+<li>New <strong>⚔️ Duel Messages</strong> tab — every duel chat message, grouped by phase.</li>
+<li>New <strong>🏆 Leaderboard</strong> tab — appearance, who appears, message delivery, and resets.</li>
+<li>Explanatory tooltips throughout, including placeholder lists for every message.</li>
+</ul>
+<hr>
+<h3>🆓 Free Game Mode</h3>
+<p>Free Game now has its own dedicated messages rather than reusing the ones written for
+real currency. Wins, blackjack wins, losses, quitting, and the duel challenge / expiry /
+sudden-death lines all have Free Game variants, so nothing refers to points that were
+never wagered.</p>
+<hr>
+<h4>🗑️ Removed</h4>
+<ul>
+<li><strong>Maximum Payout</strong> and <strong>Show Payout Cap Message</strong>, along with the payout-capped
+message. These predated the current payout model and no longer served a purpose.</li>
+</ul>
+<h2>v14 — Version 14</h2><p class="release__date">December 8, 2025</p><p><strong><strong>Update v4</strong></strong></p>
+<ul>
+<li>Reworked entire Codebase to implement finally a GUI.</li>
+<li>Function <code>AwardPoints</code> which decided if players win anything even if they spended points got reworked and now handles if the entire game is a <code>FreeGame</code></li>
+<li>Some features have been reworked:<ul>
+<li>The Tie logic got a little rework, you can now decide if the Dealer only picks one card only and end it&#39;s turn (default) or if the Dealer plays till it&#39;s finished</li>
+<li>Blackjack Payout is now a Dropdown Menu with common preset payout ratios.</li>
+<li><code>MaxBet</code> &amp; <code>MinBet</code> are not unlimited anymore.</li>
+</ul>
+</li>
+<li>Cooldown for commands now directly editable in the GUI including messages.</li>
+<li><strong>Many</strong> Messages are now editable directly in the GUI. - WIP!</li>
+<li>Many functions got revised and there shouldn&#39;t be no dead ends anymore (sometimes split stopped after first hand for no apparent reason)</li>
+<li>As other scripts of mine, it now supports StreamUP - Currency Core.</li>
+<li>Renamed the Game from <code>Classic Blackjack Game</code> to <code>Chat Blackjack Game</code> because it&#39;s not <em>that</em> classic in terms of game mechanics.</li>
+</ul>
+<p><strong>WIP &amp; Known issues:</strong></p>
+<ul>
+<li>Not all messages available in the GUI yet - Coming with next updates.</li>
+<li>OBS Overlay still didn&#39;t got much love and won&#39;t create itself in OBS automatically.</li>
+<li>Due to the nature of the script, Kick and Trovo may have some issues with messages because of rate limitation. Sadly, not much i can do about.</li>
+</ul>
+<h2>v13</h2><p class="release__date">November 13, 2025</p><p><strong><strong>Update v10</strong></strong></p>
+<ul>
+<li>Base preparation of the code for future enhancements and play-styles</li>
+<li>General - Settings renamed to <code>Chat Appearance</code><ul>
+<li>New argument: <code>showCapMessage</code> if you want to show an additional message why the output might missmatch the bet amount.</li>
+<li>New argument: <code>showAceMsg</code> mainly just &quot;QoL&quot; - if enabled, shows the &quot;Ace was reduced to...&quot; message</li>
+<li>New argument: <code>numberSeparator</code> - if enabled, you can set a separator like <code>.</code> to make long numbers better readable.</li>
+</ul>
+</li>
+<li>New Group: <code>Game Settings</code><ul>
+<li><code>dealerStandsOn</code> - now you can decide when the dealer stops drawing to make the dealer either more aggressive or conservatively (was hardcoded to 17 before)</li>
+<li><code>blackjackPayout</code> - Bonus multiplier for a natural blackjack which was hardcoded to a rnd 0.5 - 1.5 before</li>
+<li><code>maxGamesPerHour</code> - To tackle the hardcore addicts in your viewerlist, set a number of rounds a user can play in 1 hour.</li>
+<li><code>numDecks</code> - you can go wild and make a really big deck to draw from (mainly a future feature, already because it&#39;s a base function and was hardcoded to 1)</li>
+<li>WIP - <code>reshuffleAt</code> - percentage that sets when to reshuffle the deck (mainly a future feature but was added for testing purposes)</li>
+</ul>
+</li>
+<li>New arguments for <code>Points Settings</code> group<ul>
+<li><code>minBet</code> - Minimum bet for individual bets now must be at least <code>1</code></li>
+<li><code>maxBet</code> - Maximum bet amount now can be anything you want. (0 = no max)</li>
+<li><code>maxPayout</code> - If you really hate your viewers and don&#39;t want to let them get rich. Sets max. payout regardless of betamount.</li>
+</ul>
+</li>
+<li>Users now can use additional fixed bets like: all, half, quarter, double (double of defaultbet), max (= maxBet) or random (deducted points get announced)</li>
+<li>Probably more which i have forgot.</li>
+</ul>
+<p>OBS overlay still got not much love :Sadge~1:  i promiss to deep dive into it when i have more freetime.</p>
+<p>please let me know if anything isn&#39;t working as expected.</p>
+<h2>release — Update v11</h2><p class="release__date">October 6, 2025</p><p>Originally, i didn&#39;t wanted to push an update before i implemented a GUI and did some other things, but i want to know if you guys are satisfied with this and more people testing is more people finding bugs/things :smile:</p>
+<ul>
+<li>Stats are now accessible but not fully implemented, somehow i forgot to bind a command to it, but now you can see some of your stats. <em>This feature is WIP.</em></li>
+<li>Updates some arguments.</li>
+<li>Message handling to show once what commands are available after a game starts got optimized.</li>
+<li>Updated some messages.</li>
+<li>Removed unused lines.</li>
+<li>Added new commands:<ul>
+<li>split</li>
+<li>double</li>
+</ul>
+</li>
+</ul>
+<p>With <code>split</code> you can split up your hand in two if you have two identical cards for more luck.
+With <code>double</code> you can test your luck and double your hand at once, also work with split hands.
+credits to: @sab016 </p>
+<p>Also i&#39;m playing around with the idea to add a PvP mode where two users can play against each other as an option </p>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

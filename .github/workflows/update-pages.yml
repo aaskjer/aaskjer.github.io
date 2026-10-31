@@ -1,14 +1,15 @@
-# Keeps the project pages current: the latest version in their link previews, and
-# the About texts from GitHub in their text, by running _tools/update-pages.js once a day and after
-# every change to projects.js or the page template. It commits to main only when something changed.
+# Keeps the project pages current: their documents, what their import strings add, the latest
+# version in their link previews and the About texts from GitHub, plus the search index, by running
+# _tools/update-pages.js every hour and after every change to projects.js, the page template or the
+# script. It commits to main only when something changed.
 name: Update project pages
 
 on:
   schedule:
-    - cron: '47 4 * * *'
+    - cron: '47 * * * *'
   push:
     branches: [main]
-    paths: [assets/js/projects.js, _tools/project-page.html, _tools/update-pages.js]
+    paths: [assets/js/projects.js, _tools/project-page.html, _tools/update-pages.js, assets/js/vendor/marked.umd.js]
   workflow_dispatch:
 
 permissions:
@@ -30,7 +31,7 @@ jobs:
 
       - name: Commit the changes
         run: |
-          git add -A -- '*.html' sitemap.xml
+          git add -A -- '*.html' sitemap.xml assets/search.json
           if git diff --cached --quiet; then echo 'Nothing changed.'; exit 0; fi
           git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update the project pages'
           git push -q

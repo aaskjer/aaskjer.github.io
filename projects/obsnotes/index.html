@@ -28,6 +28,8 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"1.0.2","made":"1.0.7","min":"1.0.0-alpha.1","actions":1,"code":1,"commands":["!zettel","!schmierzettel","!merkheft","!shownotes","!note","!notiz","!postit","!aufschreiben","!merken","!delnote","!deletenote","!radier","!clearnotes","!allesradieren"],"words":[],"timers":0,"sites":["kick.com"],"updateCheck":false}</script>
 </head>
 <body data-repo="OBSNotes" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +46,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -60,11 +65,353 @@
     <section class="project-hero">
       <div class="wrap">
         <h1>OBS Notes</h1>
-        <p class="project-hero__lead">Can't remember the code of the combination lock? Your chat can step-in an add a post-it in OBS for you!</p>
-        <p class="doc-status">Loading…</p>
+        <p class="project-hero__lead">Can't remember the code of the combination lock? Your chat can step in and add a post-it in OBS for you!</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/OBSNotes">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><h1 align="center">OBS Notes</h1><p align="center">
+  <b>Can't remember the code of the combination lock? Your chat can add a post-it in OBS.</b><br>
+  Short notes from chat, one list per game, shown on stream as post-its.
+</p><p align="center">
+  
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/OBSNotes/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/OBSNotes/blob/main/Import-String.md"><b>Import String</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/OBSNotes/blob/main/CHANGELOG.md"><b>Changelog</b></a>
+</p><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/postits.png" alt="Colourful post-its with the game name" width="300">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/postits-plain.png" alt="Black on white post-its" width="300">
+</p><hr>
+<h2>📖 Overview</h2>
+<p>OBS Notes is a chat tool for Streamer.bot. Viewers write something down with <code>!note</code>, and it sticks on
+stream until somebody wipes it off. Every game keeps its own list, so yesterday&#39;s notes come back when you
+play that game again.</p>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🎮 <strong>One list per game.</strong> The list follows the Twitch category, or the Kick category when Twitch is not
+connected. Without either, all notes share one list.</li>
+<li>🔍 <strong>Readable at any size.</strong> Each note&#39;s text grows as large as its post-it allows, so <code>4711</code> stays legible
+even when the source is scaled down to a corner of the screen.</li>
+<li>📝 <strong>Post-its that hang like real ones.</strong> Each sits at one of six angles or straight, never quite like the
+one before it, and keeps its angle when OBS reloads the page.</li>
+<li>🗂️ <strong>Create Piles.</strong> Six post-its fit side by side. The seventh sticks over the first, so older
+notes peek out underneath instead of disappearing.</li>
+<li>💬 <strong>Twitch, Kick and YouTube.</strong> Replies go to the chat the command came from, with an emote of that
+platform, in German or English.</li>
+<li>💾 <strong>Nothing lost by mistake.</strong> A backup file per game keeps every note ever added, one per line.</li>
+<li>🔄 <strong>Updates without touching OBS.</strong> After an import, the first command points browser sources that still
+show an older page to the current one.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>OBS Notes: Setup Guide</h1>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Also</th>
+<th>Who</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!note &lt;text&gt;</code></td>
+<td><code>!notiz</code>, <code>!postit</code>, <code>!aufschreiben</code>, <code>!merken</code></td>
+<td>everyone</td>
+<td>Saves a note and answers with its number.</td>
+</tr>
+<tr>
+<td><code>!zettel</code></td>
+<td><code>!schmierzettel</code>, <code>!merkheft</code>, <code>!shownotes</code></td>
+<td>everyone</td>
+<td>Posts the last five notes in chat; <code>!zettel 3</code> posts note 3.</td>
+</tr>
+<tr>
+<td><code>!radier &lt;number&gt;</code></td>
+<td><code>!delnote</code>, <code>!deletenote</code></td>
+<td>Moderators, VIPs</td>
+<td>Deletes one note; the ones after it move up.</td>
+</tr>
+<tr>
+<td><code>!clearnotes</code></td>
+<td><code>!allesradieren</code></td>
+<td>Moderators, VIPs</td>
+<td>Deletes every note of the current game.</td>
+</tr>
+</tbody></table>
+<p>The commands work on Twitch, Kick and YouTube, and the answer goes to the chat the command came from, with an
+emote of that platform: Twitch and Kick global emotes, plain emoji on YouTube. Untick a source in a command to
+leave that platform out. The list follows the Twitch category. Without Twitch it follows the Kick category, read from
+Kick&#39;s public channel page (the live stream&#39;s category, offline the latest one); without either, every note goes to
+one list.</p>
+<p>Each command has a 5 second cooldown; the broadcaster is never held back. The replies in chat are in German
+or English, see <code>language</code> under <a href="#settings">Settings</a>.</p>
+<hr>
+<h2>Setup</h2>
+<ol>
+<li>Import <a href="https://github.com/aaskjer/OBSNotes/blob/main/Import-String.md">Import-String.md</a> in Streamer.bot (<em>Import</em>, paste the string), or drop
+<code>OBS-Notes.sb</code> from the <a href="https://github.com/aaskjer/OBSNotes/releases/latest">latest release</a> onto the
+import window.</li>
+<li>Turn on the four commands in the group <strong>OBS Notes</strong> (<em>Commands</em> tab). They are imported switched off.</li>
+<li>Connect OBS in Streamer.bot (<em>Stream Apps &gt; OBS</em>). OBS has to run on the same PC, because the browser source
+reads a local file.</li>
+<li>In the action <strong>OBS Notes</strong>, right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>. It adds the browser source
+<strong>OBS Notes</strong> (600 x 800, or 900 x 560 with <code>layout</code> set to <code>horizontal</code>) to the scene OBS is showing. Move and
+scale it wherever you like.</li>
+</ol>
+<p>The Test trigger&#39;s variable <code>AddOBSOverlayTo</code> names the OBS connection: <code>0</code> is the first one in Streamer.bot.
+Running the trigger again refreshes the source, or adds it to the scene that is showing now. Nothing in OBS?
+See the <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md#the-post-its-do-not-show-up-in-obs">FAQ</a>.</p>
+<p>Updates keep the post-its in OBS: the first command after an import looks in every connected OBS for a browser
+source that still shows the page of an older version, points it to the current page and says so in the log.</p>
+<hr>
+<h2>Requirements</h2>
+<ul>
+<li>Streamer.bot 1.0.7 or newer with Twitch or Kick connected (its category picks the list, Twitch first); YouTube optional</li>
+<li>OBS Studio 28 or newer (tested with 33), connected in Streamer.bot, on the same PC</li>
+</ul>
+<hr>
+</div>
+      </section>
+      <section class="md" data-doc="settings" data-label="Settings" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Settings</h2>
+        <div class="doc-body"><h2>Settings</h2>
+<p>Set Argument sub-actions in the action <strong>OBS Notes</strong>, under <em>Settings (Important to check!)</em>.</p>
+<p><strong>Chat</strong></p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>useBot</code></td>
+<td><code>True</code></td>
+<td>Answers from the bot account; <code>False</code> = from the broadcaster account. Without a connected bot account Streamer.bot uses the broadcaster account.</td>
+</tr>
+<tr>
+<td><code>sendAsMe</code></td>
+<td><code>False</code></td>
+<td><code>True</code> = answers as a /me message (Twitch only; Kick and YouTube have none).</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>DE</code></td>
+<td><code>DE</code> (German) or <code>EN</code> (English), for the chat answers and the post-its.</td>
+</tr>
+</tbody></table>
+<p><strong>Overlay</strong></p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hideAfterMinutes</code></td>
+<td><code>10</code></td>
+<td>Minutes without any command until the post-its fade out. The next command brings them back. <code>0</code> = always visible.</td>
+</tr>
+<tr>
+<td><code>colorfulNotes</code></td>
+<td><code>True</code></td>
+<td><code>False</code> = black text on white post-its.</td>
+</tr>
+<tr>
+<td><code>showGameName</code></td>
+<td><code>True</code></td>
+<td>The game name on the top left post-it.</td>
+</tr>
+<tr>
+<td><code>layout</code></td>
+<td><code>vertical</code></td>
+<td><code>vertical</code> = two post-its side by side in three rows (600 x 800), <code>horizontal</code> = three side by side in two rows (900 x 560). The browser source in OBS takes the new size with the next command.</td>
+</tr>
+</tbody></table>
+<p>Changes reach OBS with the next command or Test trigger.</p>
+<hr>
+<h2>Files</h2>
+<p>Everything lives in <code>OBS Notes</code> inside the Streamer.bot folder:</p>
+<ul>
+<li><code>&lt;Game&gt;-Notes.json</code>: the notes of one game.</li>
+<li><code>&lt;Game&gt;-Notes.json.bak</code>: every note ever added to that game, one per line, in case one was wiped by mistake.</li>
+<li><code>Overlay\notes_overlay.html</code> and <code>notes_state.json</code>: the page OBS shows and what it shows.</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
+        <h2 class="doc-label">FAQ</h2>
+        <div class="doc-body"><h1>OBS Notes: FAQ</h1>
+<p>Most answers start in the Streamer.bot log. Every line OBS Notes writes there starts with <code>[OBS Notes]</code>; the log
+files are in the <code>logs</code> folder inside the Streamer.bot folder, one per day.</p>
+<hr>
+<h2>Post-its in OBS</h2>
+<h3>The post-its do not show up in OBS</h3>
+<p>Commands never add the browser source on their own, only the Test trigger does (<a href="https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md#setup">Setup</a>,
+step 4). Run it: in the action <strong>OBS Notes</strong>, right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>. Then look for the
+line it wrote:</p>
+<table>
+<thead>
+<tr>
+<th>Log line</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>browser source &#39;OBS Notes&#39; (600 x 800) added to scene &#39;…&#39;</code></td>
+<td>It worked. Without notes the page is fully transparent.</td>
+<td>Look for <strong>OBS Notes</strong> in the sources of that scene and try <code>!note test</code>.</td>
+</tr>
+<tr>
+<td><code>OBS connection #0 is not connected. The overlay file is ready at …</code></td>
+<td>Streamer.bot does not reach OBS. A fresh OBS has its WebSocket server switched off.</td>
+<td>In OBS, <em>Tools &gt; WebSocket Server Settings</em>: tick <em>Enable WebSocket server</em>, then <em>Show Connect Info</em> for port and password. In Streamer.bot, <em>Stream Apps &gt; OBS</em>: add a connection with them and connect. Run the Test trigger again.</td>
+</tr>
+<tr>
+<td><code>no connected OBS shows the post-its (checked connection #0). …</code></td>
+<td>A command ran, but the Test trigger never did.</td>
+<td>Run the Test trigger.</td>
+</tr>
+<tr>
+<td><code>the Test trigger needs the argument AddOBSOverlayTo …</code></td>
+<td>The trigger&#39;s variable is missing or no number.</td>
+<td>Set <code>AddOBSOverlayTo</code> on the trigger <strong>Test</strong> to <code>0</code>.</td>
+</tr>
+<tr>
+<td><code>no commandId, the action was not started by one of its commands.</code></td>
+<td>The action was run some other way than by the Test trigger.</td>
+<td>Right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>.</td>
+</tr>
+<tr>
+<td><code>OBS already has a source named &#39;OBS Notes&#39; that is no browser source (…)</code></td>
+<td>The name is taken.</td>
+<td>Rename that source in OBS and run the Test trigger again.</td>
+</tr>
+<tr>
+<td><code>OBS did not create the browser source: …</code></td>
+<td>OBS turned the request down; its answer follows in the same line and names the reason.</td>
+<td>Fix what OBS names, then run the Test trigger again.</td>
+</tr>
+<tr>
+<td>No <code>[OBS Notes]</code> line at all</td>
+<td>The trigger never reached the action.</td>
+<td>Switch on the action <strong>OBS Notes</strong> and its trigger <strong>Test</strong>.</td>
+</tr>
+</tbody></table>
+<p><code>AddOBSOverlayTo</code> counts the OBS connections in Streamer.bot from <code>0</code>: with more than one OBS, it picks which one
+gets the post-its.</p>
+<h3>The source is there, but it stays empty</h3>
+<ul>
+<li><strong>No notes yet.</strong> The page is transparent until the first note. Try <code>!note test</code>.</li>
+<li><strong>Faded out.</strong> After <code>hideAfterMinutes</code> without a command the post-its fade out, and the next command brings them
+back. <code>0</code> keeps them on screen.</li>
+<li><strong>Studio Mode.</strong> The Test trigger adds the source to the scene on air (<em>Program</em>), not to the one in <em>Preview</em>.</li>
+<li><strong>Another scene.</strong> The source goes to the scene showing when the trigger ran. Run it again in another scene to
+add it there too.</li>
+<li><strong>A folder Streamer.bot cannot write to</strong>, such as <code>C:\Program Files</code>. The log says <code>overlay file write failed</code>.
+Move Streamer.bot to a folder of your own, for example in <em>Documents</em>.</li>
+<li><strong>OBS on another PC.</strong> The browser source reads a local file, so OBS has to run on the PC with Streamer.bot.</li>
+</ul>
+<h3>After an update the post-its stopped changing</h3>
+<p>The first command after an import points every browser source that still shows an older page to the current one,
+and the log says <code>browser source &#39;…&#39; on OBS connection #0 showed …; it now shows …</code>. If OBS was not connected at
+that moment, the first command a minute or more later tries again; the Test trigger does it straight away.</p>
+<h3>How do I make the post-its bigger or smaller?</h3>
+<p>Scale the source in OBS. The text on each post-it grows as large as the post-it allows, so it stays readable in a
+corner of the screen. <code>layout</code> picks the shape: <code>vertical</code> (600 x 800) or <code>horizontal</code> (900 x 560).</p>
+<hr>
+<h2>Commands</h2>
+<h3>The commands get no answer</h3>
+<ul>
+<li><strong>Switched off.</strong> The four commands are imported switched off: <em>Commands</em> tab, group <strong>OBS Notes</strong>.</li>
+<li><strong>Cooldown.</strong> Each command waits 5 seconds before it answers again; the broadcaster is never held back.</li>
+<li><strong>Not allowed.</strong> <code>!radier</code> and <code>!clearnotes</code> are for moderators and VIPs only.</li>
+<li><strong>Platform left out.</strong> A platform unticked in the command&#39;s sources gets no answer there.</li>
+</ul>
+<h3>Why do all notes go to the list &#39;global&#39;?</h3>
+<p>The list follows the Twitch category, without Twitch the Kick category. With neither connected in Streamer.bot,
+every note goes to one list, and the log says <code>Neither Twitch nor Kick is connected, so the notes go to the list &#39;global&#39;.</code></p>
+<h3>A note was deleted by mistake. Can I get it back?</h3>
+<p>Yes. <code>OBS Notes\&lt;Game&gt;-Notes.json.bak</code> in the Streamer.bot folder keeps every note ever added to that game, one per
+line. Find it there and add it again with <code>!note</code>.</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/OBSNotes/releases">releases on GitHub</a>.</p><h2>v1.0.2</h2><p class="release__date">October 30, 2026</p><ul>
+<li>When OBS is connected but no source in it shows the post-its, the first command says so in the log and names
+the Test trigger, which adds the browser source. Before, a fresh setup without the Test trigger showed nothing
+and said nothing.</li>
+<li>New <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md">FAQ</a>: what each log line means when the post-its do
+not show up in OBS, and other common questions.</li>
+</ul>
+<h2>v1.0.1</h2><p class="release__date">October 27, 2026</p><ul>
+<li>The German chat answers are now standard German instead of Bavarian dialect.</li>
+<li>The German command aliases are spelled out in full: <code>!aufschreiben</code>, <code>!merken</code>, <code>!merkheft</code> and
+<code>!allesradieren</code> replace <code>!aufschreim</code>, <code>!merkn</code>, <code>!merkheftl</code> and <code>!allesradiern</code>. Import the new version
+over the old one; the notes stay where they are.</li>
+<li>Without Twitch, the Kick category picks the list: the live stream&#39;s category or, offline, the latest one, read
+from Kick&#39;s public channel page at most once a minute. When Kick does not answer, the last category stays; with
+neither Twitch nor Kick, the notes go to the list <code>global</code> as before.</li>
+<li>Updates keep the post-its in OBS: the first command after an import points every browser source that still
+shows an older page (P&amp;C Notepad&#39;s <code>notepad_overlay.html</code>, or one in another folder) to the current page and
+says so in the log. Before, the post-its stood still until the Test trigger ran, without a word in the log. The
+Test trigger takes such a source over instead of adding a second one.</li>
+<li>The post-its hang like real ones instead of at two fixed angles: one of six angles (up to about 3 degrees left
+or right) or, for about one in four, straight, and never exactly like the post-it before it or the one it is
+stuck over. The pick comes from the note itself (time, author and text), so notes with the same text still hang
+differently, and each keeps its angle when OBS reloads the page.</li>
+<li>More post-its than fit no longer disappear: the seventh is stuck over the first, the eighth over the second, and
+so on, a little off so the older ones peek out underneath. The line &quot;+ N more&quot; is gone.</li>
+<li>New setting <code>layout</code>: <code>vertical</code> (two post-its side by side in three rows, 600 x 800, as before) or <code>horizontal</code>
+(three side by side in two rows, 900 x 560). The next command gives the browser source in OBS the new size; the
+Test trigger adds it in that size.</li>
+</ul>
+<h2>v1.0.0 — Initial Release</h2><p class="release__date">October 26, 2026</p><p>First release.</p>
+<ul>
+<li>Viewers save short notes with <code>!note</code>, read them back with <code>!zettel</code>; moderators and VIPs delete one with
+<code>!radier &lt;number&gt;</code> or all with <code>!clearnotes</code>. Every game (Twitch category) keeps its own list.</li>
+<li>Twitch, Kick and YouTube: the answer goes to the chat the command came from, with an emote of that platform
+(Twitch and Kick global emotes, emoji on YouTube).</li>
+<li>Post-its in OBS: the action&#39;s Test trigger adds the browser source <strong>OBS Notes</strong> to the current scene of the
+OBS connection named in <code>AddOBSOverlayTo</code>, and refreshes it when run again. The post-its follow every command
+within two seconds, size their text to the post-it, and make room for new ones by dropping the oldest.</li>
+<li>Settings as Set Argument sub-actions: <code>hideAfterMinutes</code> fades the post-its out after a while without
+commands, <code>colorfulNotes</code> switches to black on white, <code>showGameName</code> puts the game name on the first post-it.</li>
+<li>Chat settings: <code>useBot</code> answers from the bot or the broadcaster account, <code>sendAsMe</code> as a /me message, and
+<code>language</code> switches every answer and the post-its between German (partly Bavarian) and English.</li>
+<li>Notes added at the same moment are all kept, and a crash while saving never leaves a broken file behind.</li>
+<li>Times in chat are shown in the streamer&#39;s local time; a note too long for one chat message is shortened.</li>
+</ul>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

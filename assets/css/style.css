@@ -1001,6 +1001,53 @@ main > .section::before {
   line-height: 1.55;
 }
 
+/* in the lists: two lines, the whole text on hover and on the project's page */
+.card__text:not(.card__text--full) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.grid .card {
+  gap: 0.85rem;
+  padding: 1.1rem;
+}
+
+.grid .card__shot {
+  margin: -1.1rem -1.1rem 0.1rem;
+}
+
+.grid .card .tile {
+  width: 46px;
+  height: 46px;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.grid .card__head {
+  gap: 0.8rem;
+}
+
+.grid .card__heading {
+  gap: 0.25rem;
+}
+
+.grid .card .chips {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.grid .card__foot {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-top: 0.85rem;
+}
+
 .card__foot {
   display: flex;
   flex-direction: column;
@@ -1135,6 +1182,122 @@ main > .section::before {
 .actions .i {
   width: 16px;
   height: 16px;
+}
+
+.actions--compact {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.btn--icon {
+  padding-inline: 0.55rem;
+}
+
+/* ---------- the lists on a phone ---------- */
+
+/* one row per project: a small picture, the name, two lines and the numbers; the whole row links
+   to the project's page, where the buttons are */
+@media (max-width: 600px) {
+  .grid {
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+  }
+
+  .grid > .card {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    grid-template-areas: 'shot head' 'shot text' 'shot foot';
+    align-content: start;
+    gap: 0.25rem 0.85rem;
+    padding: 0.85rem;
+    border: 0;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .grid > .card:first-child,
+  .grid > [hidden] + .card {
+    border-top: 0;
+  }
+
+  .grid > .card:hover {
+    transform: none;
+    box-shadow: none;
+    background: var(--surface-2);
+  }
+
+  .grid > .card:has(.card__title a:focus-visible) {
+    outline-offset: -3px;
+  }
+
+  /* a tap on the picture opens the project, like the rest of the row */
+  .grid > .card .card__shot {
+    grid-area: shot;
+    align-self: start;
+    width: 104px;
+    margin: 0.15rem 0 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+
+  .grid > .card .card__head {
+    display: contents;
+  }
+
+  .grid > .card .card__heading {
+    grid-area: head;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.2rem 0.5rem;
+  }
+
+  .grid > .card .card__title {
+    font-size: 1rem;
+  }
+
+  /* without a picture the logo stands in for it */
+  .grid > .card .tile {
+    grid-area: shot;
+    justify-self: center;
+    width: 58px;
+    height: 58px;
+  }
+
+  .grid > .card:has(.card__shot) .tile,
+  .grid > .card .zoom,
+  .grid > .card .chips,
+  .grid > .card .actions,
+  .grid > .card .badge--dev,
+  .grid > .card .badge--complete,
+  .grid > .card .meta[title^='Last update'] {
+    display: none;
+  }
+
+  .grid > .card .card__text {
+    grid-area: text;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .grid > .card .card__foot {
+    grid-area: foot;
+    margin: 0.1rem 0 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .grid > .card .meta-row {
+    font-size: 0.78rem;
+  }
 }
 
 /* ---------- spotlight ---------- */
@@ -2623,15 +2786,28 @@ main > .section::before {
   margin-top: 1.1rem;
 }
 
-.project-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 1.5rem;
-}
-
 .project-hero .meta-row {
   margin-top: 1.1rem;
+}
+
+.project-hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.project-hero__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.project-hero__links a:hover {
+  color: var(--text);
 }
 
 .project-shot.card__shot {
@@ -2648,6 +2824,239 @@ main > .section::before {
 @media (max-width: 860px) {
   .project-hero__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- install box (project pages) ---------- */
+
+/* download, import string, what you need and what the import adds, in one place below the header */
+.install {
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.install__box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+
+/* without the import facts (a tool like SBRefFix) the box needs only two columns */
+.install__box:not(:has(> :nth-child(3))) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.install__title,
+.install__group h3 {
+  margin-bottom: 0.9rem;
+  color: var(--faint);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.install__actions {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.install__actions .i {
+  width: 18px;
+  height: 18px;
+}
+
+.install__note {
+  margin-top: 0.7rem;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.install__note:empty {
+  display: none;
+}
+
+.install__steps {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  list-style: none;
+  counter-reset: step;
+}
+
+.install__steps li {
+  position: relative;
+  padding-left: 1.75rem;
+  counter-increment: step;
+}
+
+.install__steps li::before {
+  content: counter(step);
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.install__needs {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.install__needs dt {
+  font-weight: 600;
+}
+
+.install__needs dd {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.install__adds {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.install__adds li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+}
+
+.install__adds li > .i {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15em;
+  color: var(--accent);
+}
+
+.install__adds b {
+  font-weight: 600;
+}
+
+.install__adds span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.install__list {
+  display: block;
+  margin-top: 0.3rem;
+  line-height: 1.9;
+}
+
+.install__list code {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.install__more {
+  display: inline;
+}
+
+.install__more summary {
+  display: inline;
+  color: var(--accent);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.install__more[open] summary {
+  display: none;
+}
+
+.install__words {
+  display: block;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 1000px) {
+  .install__box,
+  .install__box:not(:has(> :nth-child(3))) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .install__start {
+    grid-column: 1 / -1;
+  }
+
+  .install__actions {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .install__box,
+  .install__box:not(:has(> :nth-child(3))) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .install__start {
+    padding-bottom: 1rem;
+  }
+
+  /* folded on a phone (see install() in project.js) */
+  details.install__group {
+    border-top: 1px solid var(--border);
+  }
+
+  details.install__group > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  details.install__group > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details.install__group > summary::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.25rem;
+    border-right: 2px solid var(--faint);
+    border-bottom: 2px solid var(--faint);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+
+  details.install__group[open] > summary::after {
+    transform: rotate(-135deg);
+  }
+
+  details.install__group > summary h3 {
+    margin: 0;
+  }
+
+  details.install__group[open] {
+    padding-bottom: 1rem;
   }
 }
 
@@ -2759,6 +3168,22 @@ main > .section::before {
 .doc-status {
   padding: 2rem 0;
   color: var(--muted);
+}
+
+/* the documents as the page holds them, read without JavaScript: one after the other */
+.project-doc--static {
+  display: block;
+}
+
+.project-doc--static .md + .md {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-doc--static .md img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* documents rendered from Markdown */
@@ -2995,6 +3420,216 @@ main > .section::before {
 .toast.is-on {
   opacity: 1;
   transform: translate(-50%, 0);
+}
+
+/* ---------- search ---------- */
+
+/* the magnifier in the header opens it, Ctrl+K and / too (see search.js) */
+.search {
+  width: min(100% - 2rem, 640px);
+  max-height: min(78vh, 680px);
+  margin: max(8vh, 1rem) auto auto;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.75);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.search[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.search::backdrop {
+  background: rgb(5 4 10 / 0.6);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+:root[data-theme='light'] .search::backdrop {
+  background: rgb(15 23 42 / 0.35);
+}
+
+.search__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem 0.9rem 1.15rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.search__bar > .i {
+  width: 20px;
+  height: 20px;
+  color: var(--faint);
+}
+
+.search__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.35rem 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.05rem;
+  outline: none;
+}
+
+.search__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search__input::placeholder {
+  color: var(--faint);
+}
+
+.search kbd {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.search__close {
+  padding: 0.25rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.search__results {
+  flex: 1;
+  min-height: 0;
+  padding: 0.4rem 0.5rem 0.6rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.search__label {
+  padding: 0.75rem 0.7rem 0.35rem;
+  color: var(--faint);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.search__item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.search__item[aria-selected='true'] {
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.search__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--tile);
+  color: var(--accent);
+}
+
+.search__icon .i {
+  width: 18px;
+  height: 18px;
+}
+
+.search__icon--logo img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.search__icon--mono {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.search__text {
+  display: grid;
+  min-width: 0;
+}
+
+.search__title {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search__title mark {
+  border-radius: 3px;
+  background: color-mix(in srgb, #7c3aed 30%, transparent);
+  color: inherit;
+}
+
+:root[data-theme='light'] .search__title mark {
+  background: #ede9fe;
+}
+
+.search__sub {
+  color: var(--muted);
+  font-size: 0.84rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search__empty {
+  padding: 1.25rem 0.7rem;
+  color: var(--muted);
+}
+
+.search__foot {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.6rem 1.15rem;
+  border-top: 1px solid var(--border);
+  color: var(--faint);
+  font-size: 0.78rem;
+}
+
+.search__foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* touch screens have no arrow keys to show */
+@media (hover: none) {
+  .search__foot,
+  .search__close kbd {
+    display: none;
+  }
+
+  .search__close::before {
+    content: '✕';
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
 }
 
 /* ---------- privacy page ---------- */
