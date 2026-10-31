@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GameCheck scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(760px 520px at 30% 40%, rgba(124, 58, 237, .30), transparent 70%),
+      radial-gradient(900px 600px at 100% 100%, rgba(37, 99, 235, .22), transparent 70%),
+      linear-gradient(160deg, #13102a, #08080f);
+  }
+
+  /* Discord, as in the SuTo and Better Stream Announcements scenes */
+  .app { position: absolute; top: 28px; left: 28px; bottom: 28px; width: 1036px; display: flex; overflow: hidden;
+    border-radius: 14px; background: #1e1f22; box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .85); }
+  .rail { width: 72px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .rail i { width: 48px; height: 48px; border-radius: 50%; background: #313338; }
+  .rail i.on { border-radius: 16px; background: linear-gradient(135deg, #7c3aed, #2563eb); }
+  .rail hr { width: 32px; border: 0; border-top: 2px solid #35373c; margin: 2px 0; }
+
+  .side { width: 220px; flex: none; background: #2b2d31; display: flex; flex-direction: column; }
+  .server { padding: 16px; font: 700 16px/1 'Sora', sans-serif; color: #f2f3f5; border-bottom: 1px solid #1f2023; }
+  .group { margin: 18px 16px 4px; color: #949ba4; font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+  .chan { margin: 1px 8px; padding: 6px 8px; border-radius: 4px; color: #949ba4; font-size: 16px; }
+  .chan::before { content: '#'; margin-right: 8px; color: #80848e; font-size: 19px; }
+  .chan.on { background: #404249; color: #f2f3f5; }
+
+  .main { flex: 1; display: flex; flex-direction: column; background: #313338; }
+  .top { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 16px; border-bottom: 1px solid #26272b; color: #f2f3f5; font-size: 16px; font-weight: 600; }
+  .top::before { content: '#'; color: #80848e; font-size: 22px; font-weight: 400; }
+  .top span { padding-left: 12px; border-left: 1px solid #3f4147; color: #949ba4; font-weight: 400; font-size: 14px; }
+
+  .feed { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; padding: 0 24px 22px; overflow: hidden; }
+  .post { display: flex; gap: 16px; }
+  .ava { width: 40px; height: 40px; flex: none; border-radius: 50%; background: #1e1f22 url('../assets/img/projects/gamecheck.png') center / 34px no-repeat; }
+  .who { display: flex; align-items: center; gap: 6px; }
+  .who b { color: #f2f3f5; font-size: 17px; font-weight: 600; }
+  .who em { padding: 1px 5px; border-radius: 3px; background: #5865f2; color: #fff; font: 600 10px/1.4 'Segoe UI', sans-serif; font-style: normal; }
+  .who small { margin-left: 2px; color: #949ba4; font-size: 12px; }
+
+  /* the embeds GameCheck posts, in Discord's layout */
+  .embed { width: 700px; margin-top: 4px; padding: 10px 16px 12px 14px; border-left: 4px solid var(--c); border-radius: 4px; background: #2b2d31; color: #dbdee1; font-size: 15px; line-height: 1.42; }
+  .e-title { color: #f2f3f5; font-size: 16px; font-weight: 700; }
+  .e-desc { margin-top: 6px; }
+  .e-field { margin-top: 9px; }
+  .e-name { color: #f2f3f5; font-weight: 700; }
+  .e-foot { margin-top: 10px; color: #949ba4; font-size: 12px; }
+  .embed a { color: #00a8fc; font-weight: 600; text-decoration: none; }
+  .embed s { color: #949ba4; }
+  .embed .ts { padding: 0 3px; border-radius: 3px; background: rgba(255, 255, 255, .06); }
+
+  /* a screenshot of the real settings window (v1.0.0), rendered off-screen */
+  .window { position: absolute; top: 92px; right: 40px; display: block; width: 468px; height: 511px; border-radius: 10px;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .9), 0 0 0 8px rgba(124, 58, 237, .12); }
+  .caption { position: absolute; top: 640px; right: 40px; width: 468px; color: #a6a2bb; font: 600 18px/1.45 'Sora', sans-serif; text-align: center; }
+  .caption b { color: #eeedf7; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+
+  <div class="app">
+    <nav class="rail"><i class="on"></i><hr><i></i><i></i><i></i></nav>
+    <aside class="side">
+      <div class="server">aaskjer's Community</div>
+      <div class="group">Community</div>
+      <div class="chan">general</div>
+      <div class="chan">clips</div>
+      <div class="chan on">free-games</div>
+      <div class="group">Streams</div>
+      <div class="chan">live-now</div>
+    </aside>
+    <main class="main">
+      <div class="top">free-games <span>Free games and deals, kept up to date by GameCheck</span></div>
+      <div class="feed">
+        <article class="post">
+          <div class="ava"></div>
+          <div>
+            <div class="who"><b>Free Game Alert</b><em>APP</em><small>Today at 17:00</small></div>
+            <div class="embed" style="--c:#F5A623">
+              <div class="e-title">🎁 Free Games</div>
+              <div class="e-desc"><b>5 free games</b> currently available — grab them before they're gone!</div>
+              <div class="e-field">
+                <div class="e-name">✔&nbsp; Steam · 2</div>
+                <div>› 🆕 <a>Hexologic</a> &nbsp;<s>€4.99</s> · ⏳ <span class="ts">in 2 days</span></div>
+                <div>› <a>Asleep: Act 1</a> &nbsp;<s>€9.75</s> · ⏳ <span class="ts">in 4 days</span></div>
+              </div>
+              <div class="e-field">
+                <div class="e-name">⚡&nbsp; Epic Games · 1</div>
+                <div>› 🔥 <a>Sorry We're Closed</a> &nbsp;<s>€22.39</s> · ⏳ <span class="ts">in 6 hours</span></div>
+              </div>
+              <div class="e-field">
+                <div class="e-name">👑&nbsp; Prime Gaming · 2</div>
+                <div>› <a>Brothers: A Tale of Two Sons</a> &nbsp;<s>€14.99</s> · ⏳ <span class="ts">in 11 days</span></div>
+                <div>› <a>Thief Simulator</a> &nbsp;<s>€19.99</s> · ⏳ <span class="ts">in 3 weeks</span></div>
+              </div>
+              <div class="e-foot">FreeGamesCheck by aaskjer · streamer.bot</div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <div class="ava"></div>
+          <div>
+            <div class="who"><b>Game Sale Alert</b><em>APP</em><small>Today at 17:00</small></div>
+            <div class="embed" style="--c:#2ECC71">
+              <div class="e-title">💸 Top Deals</div>
+              <div class="e-desc">Popular games at <b>-50% or more</b>.</div>
+              <div class="e-field">
+                <div class="e-name">✔&nbsp; Steam</div>
+                <div>› 🆕 <a>Dead by Daylight</a> · <b>€7.99</b> <s>€19.99</s> -60% · ⏳ <span class="ts">in 2 days</span></div>
+                <div>› <a>Planet Coaster 2</a> · <b>€17.49</b> <s>€49.99</s> -65% · ⏳ <span class="ts">in 9 days</span></div>
+              </div>
+              <div class="e-field">
+                <div class="e-name">⚡&nbsp; Epic Games</div>
+                <div>› 📉 <a>Cyberpunk 2077</a> · <b>€17.99</b> <s>€59.99</s> -70% · ⏳ <span class="ts">in 2 days</span></div>
+                <div>› <a>Alan Wake 2</a> · <b>€14.99</b> <s>€49.99</s> -70% · ⏳ <span class="ts">in 2 days</span></div>
+              </div>
+              <div class="e-foot">GameSaleCheck by aaskjer · streamer.bot</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <img class="window" src="img/gamecheck-window.png" alt="">
+  <div class="caption"><b>One settings window</b> for both actions.<br>The messages keep themselves up to date.</div>
+</div>
+</body>
+</html>
