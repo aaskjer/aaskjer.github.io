@@ -1,0 +1,350 @@
+<!doctype html>
+<!-- Every project page is written from this file by _tools/update-pages.js: change this file or projects.js
+     and run it, never the pages in projects/. -->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site, GitHub (documents and their pictures) and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://gateway.umami.is https://cloud.umami.is; img-src 'self' https://raw.githubusercontent.com https://github.com https://github-production-user-asset-6210df.s3.amazonaws.com https://user-images.githubusercontent.com https://private-user-images.githubusercontent.com https://camo.githubusercontent.com; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>AutoBotCheck · aaskjer</title>
+  <meta name="description" content="AutoBotCheck for Streamer.bot: three actions that read the public bot lists of TwitchInsights, TwitchBots.info and ISDS and ban every listed account that is not banned in your Twitch channel yet, with a whitelist and a dry run.">
+  <link rel="canonical" href="https://aaskjer.github.io/projects/autobotcheck/">
+  <meta name="theme-color" content="#0b0a12">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aaskjer">
+  <meta property="og:url" content="https://aaskjer.github.io/projects/autobotcheck/">
+  <meta property="og:title" content="AutoBotCheck  •  v1.1.0">
+  <meta property="og:description" content="Bans the bots from TwitchInsights, TwitchBots.info and the ISDS lists in your Twitch channel, only what is new. A free Streamer.bot import.">
+  <meta property="og:image" content="https://aaskjer.github.io/assets/img/og-home.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:label1" content="Version">
+  <meta name="twitter:data1" content="v1.1.0">
+  <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
+  <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
+  <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/theme.js"></script>
+  <script src="../../assets/js/projects.js" defer></script>
+  <script src="../../assets/js/vendor/marked.umd.js" defer></script>
+  <script src="../../assets/js/vendor/purify.min.js" defer></script>
+  <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"1.1.0","made":"1.0.7","min":"1.0.4","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["raw.githubusercontent.com","twitch.tv","twitchbots.info","twitchinsights.net"],"updateCheck":false}</script>
+</head>
+<body data-repo="AutoBotCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="../../">
+        <img src="../../assets/img/avatar.png" alt="" width="32" height="32">
+        <span class="brand__name">aaskjer</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a class="nav__more" href="../../#tools">Tools</a>
+        <a class="nav__more" href="../../#games">Games</a>
+        <a href="../../commands/">Commands</a>
+        <a class="nav__more" href="../../#start">Setup</a>
+        <a href="../../help/">Help</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
+        </a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="i i-sun" aria-hidden="true"><use href="../../assets/img/icons.svg#i-sun"/></svg>
+          <svg class="i i-moon" aria-hidden="true"><use href="../../assets/img/icons.svg#i-moon"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- shown until project.js has built the page; search engines read it too -->
+    <section class="project-hero">
+      <div class="wrap">
+        <h1>AutoBotCheck</h1>
+        <p class="project-hero__lead">Three separate Actions that goes through public bot lists and bans any bot that is not already banned in your Twitch channel.</p>
+      </div>
+    </section>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><h1 align="center">AutoBotCheck</h1><p align="center">
+  <b>Bans the bots from public bot lists in your Twitch channel.</b><br>
+  Three lists, three actions, and every later run only bans what is new.
+</p><p align="center">
+  
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/AutoBotCheck/releases/latest"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/AutoBotCheck/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/AutoBotCheck/blob/main/Import-String.md"><b>Import String</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/AutoBotCheck/blob/main/CHANGELOG.md"><b>Changelog</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>AutoBotCheck is a set of three Streamer.bot actions. Each one downloads a public bot list (TwitchInsights,
+TwitchBots.info or the ISDS ban lists), keeps a Streamer.bot group in sync with it and bans every listed
+account that is not banned in your channel yet. The bots in your own bot group are banned along with them,
+the accounts in your whitelist never.</p>
+<pre><code>SUMMARY (twitchinsights):
+  TwitchInsightBots: 14248 members (+236 / -12)
+  Bots: 3 members (-0)
+  Bans: 230 new, 13980 already banned, 0 failed
+  Unbans: 0 done, 0 failed | Protected: 41
+</code></pre>
+<h2>✨ Highlights</h2>
+<ul>
+<li>📋 <strong>Three bot lists.</strong> TwitchInsights, TwitchBots.info and the ISDS ban lists, each in an action of its
+own. You pick which of the ISDS lists are used.</li>
+<li>⚡ <strong>Only what is new.</strong> With the broadcaster token, AutoBotCheck reads your ban list once and bans only
+the accounts that are not banned yet. Accounts are looked up 100 at a time.</li>
+<li>🛡️ <strong>Your people stay.</strong> The broadcaster, your bot account, mods, VIPs and the whitelist group are
+never banned.</li>
+<li>🤖 <strong>Service bots are left alone.</strong> Nightbot, StreamElements, Streamlabs and other hosted bots are
+skipped, unless you put them in your own bot group.</li>
+<li>↩️ <strong>Mistakes undone.</strong> A protected account that AutoBotCheck banned is unbanned on the next run. Bans
+you made yourself are never touched.</li>
+<li>🧪 <strong>Dry run.</strong> With <code>dryRun</code> set to <code>True</code> the log shows what would be banned, and nobody is.</li>
+<li>⏹️ <strong>Stops when you say so.</strong> The second <code>Test</code> trigger stops a running check at the next checkpoint.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Data &amp; services:</strong><ul>
+<li><a href="https://twitchinsights.net/bots">TwitchInsights</a>: bot list</li>
+<li><a href="https://twitchbots.info">TwitchBots.info</a>: bot list and hosted service bots</li>
+<li><a href="https://github.com/isdsdataarchive/twitch_ban_lists">ISDS Twitch ban lists</a>: ban lists, white, grey and unban lists</li>
+</ul>
+</li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+<p>None of the projects above is affiliated with or endorses AutoBotCheck.</p>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Import</h1>
+<p>Click <code>Import</code> in <a href="https://streamer.bot/">streamer.bot</a> and drag the <a href="https://github.com/aaskjer/AutoBotCheck/releases/latest">AutoBotCheck.sb</a> file into the window, or paste the <a href="https://github.com/aaskjer/AutoBotCheck/blob/main/Import-String.md">import string</a>, then click <code>Import</code>.</p>
+<p>The import brings three actions in the <code>AutoBotCheck</code> group and the queue <code>Backend - Bot</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Bot list</th>
+<th>Group it fills</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TwitchInsight</code></td>
+<td><a href="https://twitchinsights.net/bots">TwitchInsights</a></td>
+<td><code>TwitchInsightBots</code></td>
+</tr>
+<tr>
+<td><code>TwitchBots.Info</code></td>
+<td><a href="https://twitchbots.info">TwitchBots.info</a> (multi-channel bots)</td>
+<td><code>TwitchBotsInfo</code></td>
+</tr>
+<tr>
+<td><code>ISDS.BanLists</code></td>
+<td><a href="https://github.com/isdsdataarchive/twitch_ban_lists">ISDS Twitch ban lists</a></td>
+<td><code>ISDSBanLists</code></td>
+</tr>
+</tbody></table>
+<p>All three run the same code; the <code>botSource</code> argument decides which list it is.</p>
+<h2>Upgrading from 1.0</h2>
+<p>Import 1.1 over 1.0: <code>TwitchInsight</code> and <code>TwitchBots.Info</code> keep their action IDs and are replaced,
+<code>ISDS.BanLists</code> is added. The import resets the group names to <code>Bots</code> and <code>WhitelistedBots</code>, so set yours
+again if you changed them.</p>
+<h1>Setup</h1>
+<h2>Groups</h2>
+<p>Create two groups under <code>Settings &gt; Groups</code>:</p>
+<ul>
+<li><code>Bots</code>: your own extra bots. They are banned even if they are on a safelist. Accounts that no longer
+exist on Twitch are removed from the group.</li>
+<li><code>WhitelistedBots</code>: accounts that are never banned. If one of them is on the bot list or in your bot
+group, or AutoBotCheck banned it, it is unbanned.</li>
+</ul>
+<p>Add the bots you want to keep to the whitelist before the first run. The groups <code>TwitchInsightBots</code>,
+<code>TwitchBotsInfo</code> and <code>ISDSBanLists</code> are created and filled by the actions themselves.</p>
+<h2>Arguments</h2>
+<p>Each action starts with a few <code>Set Argument</code> sub-actions:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>botGroupName</code></td>
+<td><code>Bots</code></td>
+<td>name of your bot group</td>
+</tr>
+<tr>
+<td><code>whitelistGroupName</code></td>
+<td><code>WhitelistedBots</code></td>
+<td>name of your whitelist group</td>
+</tr>
+<tr>
+<td><code>botSource</code></td>
+<td>set per action</td>
+<td><code>twitchinsights</code>, <code>twitchbotsinfo</code> or <code>isds</code></td>
+</tr>
+<tr>
+<td><code>isdsLists</code></td>
+<td><code>follower_bot_list,viewer_bot_list,spam_bot_list,seller_advertising_list</code></td>
+<td><code>ISDS.BanLists</code> only, see below</td>
+</tr>
+<tr>
+<td><code>dryRun</code></td>
+<td><code>False</code></td>
+<td><code>True</code> only logs what would be banned or unbanned</td>
+</tr>
+</tbody></table>
+<p>A dry run still fills the groups and the cache of accounts that no longer exist.</p>
+<p><code>isdsLists</code> takes a comma separated list of: <code>follower_bot_list</code>, <code>viewer_bot_list</code>, <code>spam_bot_list</code>,
+<code>seller_advertising_list</code>, <code>porn_bot_acc_list</code>, <code>hate_troll_list</code> (all three parts), <code>mad_tos_list</code>,
+<code>security_ban_list</code>.</p>
+<h1>Running a check</h1>
+<p>Go to <code>Actions</code>, select one of the AutoBotCheck actions, right-click the first <code>Test</code> trigger and choose
+<code>Test Trigger</code>. The check runs in the background and writes its progress and a summary to the
+Streamer.bot log.</p>
+<p>To stop it, do the same with the second <code>Test</code> trigger, the one with <code>command = killprocess</code>. It stops at
+the next checkpoint and keeps what it has looked up so far. This only works while the action stays in a
+non-blocking queue such as <code>Backend - Bot</code>.</p>
+<ul>
+<li>The first run takes a while: Twitch allows about 800 API calls per minute. Later runs only ban the
+accounts that are not banned yet.</li>
+<li>Don&#39;t run a check while you are live.</li>
+<li>With Streamer.bot&#39;s log on debug level, a run can write a very large log file.</li>
+</ul>
+<h2>Protected accounts</h2>
+<ul>
+<li><strong>Never banned:</strong> the broadcaster, the Streamer.bot bot account, mods, VIPs and the whitelist group.</li>
+<li><strong>Skipped unless they are in your bot group:</strong> well-known service bots (Nightbot, StreamElements,
+Streamlabs, Moobot, Fossabot, ...), bots that TwitchBots.info marks as hosted services, and the
+accounts on the ISDS whitelisted, greylisted and unban lists.</li>
+<li><strong>Unbanned automatically:</strong> protected service bots and your own accounts, but only if AutoBotCheck
+banned them (the ban reason starts with <code>Suspected Harmful Bot</code> or <code>AutoBotCheck</code>). Bans with any other
+reason are never lifted.</li>
+</ul>
+<h2>Broadcaster token</h2>
+<p>AutoBotCheck talks to the Twitch API directly with Streamer.bot&#39;s token:</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Lookups</th>
+<th>Bans</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Broadcaster account</td>
+<td>100 accounts per request</td>
+<td>your ban list is read, only new bots are banned</td>
+</tr>
+<tr>
+<td>another account</td>
+<td>100 accounts per request</td>
+<td>through Streamer.bot, every run bans all bots again</td>
+</tr>
+<tr>
+<td>not available</td>
+<td>one call per account</td>
+<td>through Streamer.bot, every run bans all bots again</td>
+</tr>
+</tbody></table>
+<p>The log warns when it falls back to a slower way.</p>
+<h2>Files</h2>
+<ul>
+<li><code>&lt;Streamer.bot folder&gt;/AutoBotCheck/NonExistentBot.txt</code> keeps the accounts that no longer exist on
+Twitch, so they are not looked up again.</li>
+<li>The downloaded bot lists are reused for one hour.</li>
+</ul>
+<h2>Listed by mistake?</h2>
+<p>AutoBotCheck only downloads the lists; it does not maintain them. Ask the list&#39;s maintainer to remove an
+account. ISDS takes unban requests at <a href="mailto:unban@isds.tech">unban@isds.tech</a>.</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><h1>Changelog</h1>
+<p>Releases are in the <a href="https://github.com/aaskjer/AutoBotCheck/releases">release notes</a>.
+The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[1.1.0] - 2026-10-31</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>The ISDS ban lists.</strong> A third action, <code>ISDS.BanLists</code>, bans the accounts on the
+<a href="https://github.com/isdsdataarchive/twitch_ban_lists">ISDS Twitch ban lists</a>. The <code>isdsLists</code> argument
+picks which of them are used.</li>
+<li><strong>A dry run.</strong> With <code>dryRun</code> set to <code>True</code> the log shows what would be banned or unbanned, and nobody
+is.</li>
+<li><strong>Fast runs with the broadcaster token.</strong> Accounts are looked up 100 per request and banned directly
+through the Twitch API. The existing ban list is read first, so accounts that are already banned are
+skipped.</li>
+<li><strong>Your own people are protected.</strong> The broadcaster, the bot account, mods and VIPs are never banned.</li>
+<li><strong>Service bots are left alone.</strong> Nightbot, StreamElements and other well-known hosted bots, the hosted
+bots on TwitchBots.info and the ISDS whitelisted, greylisted and unban lists are skipped unless they are
+in your bot group.</li>
+<li><strong>Wrong bans are undone.</strong> Protected service bots and your own accounts that AutoBotCheck banned are
+unbanned. Bans with any other reason are never touched.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>One script for all actions.</strong> The <code>botSource</code> argument selects the bot list.</li>
+<li><strong>Bot lists are cached for an hour</strong> instead of a minute.</li>
+<li><strong>One check at a time.</strong> Starting an action while its check is still running no longer starts a
+second one.</li>
+<li><strong>The cache of accounts that no longer exist</strong> is also saved when a check is stopped, and is locked
+while it is written.</li>
+<li><strong>Twitch&#39;s rate limit</strong> is waited out until its reset instead of for a fixed 5 seconds.</li>
+</ul>
+<h2>[1.0.0]</h2>
+<p>The first release. Two actions, <code>TwitchInsight</code> and <code>TwitchBots.Info</code>, with a bot group of your own, a
+whitelist group and a cache of accounts that no longer exist.</p>
+</div>
+      </section>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__about">
+        <a class="brand" href="../../">
+          <img src="../../assets/img/avatar.png" alt="" width="32" height="32">
+          <span>aaskjer</span>
+        </a>
+        <p>Free, open-source extensions for Streamer.bot. Found a bug or have an idea? Open an issue on the project's GitHub page.</p>
+      </div>
+      <div class="footer__meta">
+        <p>© <span id="year">2026</span> aaskjer · <a href="../../commands/">Commands</a> · <a href="../../help/">Help</a> · <a href="../../feed.xml" data-track="feed">Release feed</a> · <a href="../../privacy.html">Privacy</a></p>
+        <p>Not affiliated with Streamer.bot, OBS Studio, Twitch, YouTube, Kick, Owncast, Rumble, Picarto, TikTok, Discord, Stoat, GameVox, ntfy, Microsoft or the Open Trivia Database. All names and trademarks belong to their respective owners.</p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Picture">
+    <div class="lightbox__bar">
+      <p class="lightbox__caption"></p>
+      <form method="dialog">
+        <button class="icon-btn" aria-label="Close"><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-x"/></svg></button>
+      </form>
+    </div>
+    <img alt="">
+  </dialog>
+</body>
+</html>

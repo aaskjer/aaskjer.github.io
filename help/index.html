@@ -152,30 +152,32 @@
 
           <section class="help__section" id="compatibility" aria-labelledby="compat-title">
             <h2 id="compat-title">Which Streamer.bot version each project needs</h2>
-            <p>Every project is exported from Streamer.bot as an import string. The version and date it was last exported with are the version and date it was last built and tested in. A newer Streamer.bot normally imports it fine; one older than <b>Needs</b> does not.</p>
+            <p>Every project is exported from Streamer.bot as an import string. The version and date it was last exported with are the version and date it was last built and tested in. A newer Streamer.bot imports it fine. In one older than <b>Needs</b> its C# code does not compile, so the import fails.</p>
             <div class="table-scroll">
               <table class="compat">
                 <thead>
                   <tr><th scope="col">Project</th><th scope="col">Latest release</th><th scope="col">Last exported from Streamer.bot</th><th scope="col">Needs Streamer.bot</th></tr>
                 </thead>
                 <tbody>
-            <tr><th scope="row"><a href="../projects/twitchsentry/">TwitchSentry</a></th><td>v4.0.1<small><time datetime="2026-10-23">Oct 23, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/better-stream-announcements/">Better Stream Announcements</a></th><td>v2.1.0<small><time datetime="2026-10-27">Oct 27, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/twitchsentry/">TwitchSentry</a></th><td>v4.0.1<small><time datetime="2026-10-23">Oct 23, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/better-stream-announcements/">Better Stream Announcements</a></th><td>v2.1.1<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7 or newer</td></tr>
             <tr><th scope="row"><a href="../projects/sbreffix/">SBRefFix</a></th><td>v1.0.0<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td colspan="2" class="compat__none">Runs on its own, outside Streamer.bot</td></tr>
-            <tr><th scope="row"><a href="../projects/suto/">Suggestions To</a></th><td>v1.0.0<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/obsnotes/">OBS Notes</a></th><td>v1.0.2<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/chatcalendar/">Chat Calendar</a></th><td>v1.0.1<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/blackjack-game/">Blackjack Game</a></th><td>v16.3.0<small><time datetime="2026-10-26">Oct 26, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/classic-chat-gamble/">Classic Chat Gamble</a></th><td>v24.1.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/trivia-game/">Trivia Game</a></th><td>v8.1.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/slot-machine-game/">Slot Machine Game</a></th><td>v15.0.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/hangman-game/">Hangman Game</a></th><td>v12.1.0<small><time datetime="2026-10-26">Oct 26, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/battleship-game/">Battleship Game</a></th><td>v1.0.0<small><time datetime="2026-08-22">Aug 22, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0 or newer</td></tr>
-            <tr><th scope="row"><a href="../projects/rhymetime/">RhymeTime</a></th><td>v1.1.0<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/suto/">Suggestions To</a></th><td>v1.0.0<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.4 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/obsnotes/">OBS Notes</a></th><td>v1.0.2<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/chatcalendar/">Chat Calendar</a></th><td>v1.0.1<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-29">Oct 29, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/gamecheck/">GameCheck</a></th><td>–</td><td>–<small>–</small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/autobotcheck/">AutoBotCheck</a></th><td>v1.1.0<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.4 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/blackjack-game/">Blackjack Game</a></th><td>v16.3.1<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-31">Oct 31, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/classic-chat-gamble/">Classic Chat Gamble</a></th><td>v24.1.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.4 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/trivia-game/">Trivia Game</a></th><td>v8.1.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/slot-machine-game/">Slot Machine Game</a></th><td>v15.0.1<small><time datetime="2026-10-25">Oct 25, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.4 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/hangman-game/">Hangman Game</a></th><td>v12.1.0<small><time datetime="2026-10-26">Oct 26, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/battleship-game/">Battleship Game</a></th><td>v1.0.0<small><time datetime="2026-08-22">Aug 22, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-28">Oct 28, 2026</time></small></td><td>1.0.7 or newer</td></tr>
+            <tr><th scope="row"><a href="../projects/rhymetime/">RhymeTime</a></th><td>v1.1.0<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7<small><time datetime="2026-10-30">Oct 30, 2026</time></small></td><td>1.0.7 or newer</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="help__note">Read from each project's import string and its history on GitHub, every hour.</p>
+            <p class="help__note">The releases and export dates are read from each project's import string and its history on GitHub, every hour. <b>Needs</b> is what the project's code was built for.</p>
           </section>
 
           <section class="help__section" id="stuck" aria-labelledby="stuck-title">
@@ -188,6 +190,8 @@
             <li><a href="../projects/suto/?tab=faq">Suggestions To</a></li>
             <li><a href="../projects/obsnotes/?tab=faq">OBS Notes</a></li>
             <li><a href="../projects/chatcalendar/?tab=faq">Chat Calendar</a></li>
+            <li><a href="../projects/gamecheck/?tab=faq">GameCheck</a></li>
+            <li><a href="../projects/autobotcheck/?tab=faq">AutoBotCheck</a></li>
             <li><a href="../projects/blackjack-game/?tab=faq">Blackjack Game</a></li>
             <li><a href="../projects/classic-chat-gamble/?tab=faq">Classic Chat Gamble</a></li>
             <li><a href="../projects/trivia-game/?tab=faq">Trivia Game</a></li>

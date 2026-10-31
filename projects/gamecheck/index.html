@@ -1,0 +1,293 @@
+<!doctype html>
+<!-- Every project page is written from this file by _tools/update-pages.js: change this file or projects.js
+     and run it, never the pages in projects/. -->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site, GitHub (documents and their pictures) and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://gateway.umami.is https://cloud.umami.is; img-src 'self' https://raw.githubusercontent.com https://github.com https://github-production-user-asset-6210df.s3.amazonaws.com https://user-images.githubusercontent.com https://private-user-images.githubusercontent.com https://camo.githubusercontent.com; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>GameCheck · aaskjer</title>
+  <meta name="description" content="GameCheck for Streamer.bot: free games, DLC, loot and demos, the store-wide sales and the top deals per store, posted to Discord as embeds that are edited in place. Reads Steam, Epic Games, GOG, Nintendo eShop, Prime Gaming and IsThereAnyDeal.">
+  <link rel="canonical" href="https://aaskjer.github.io/projects/gamecheck/">
+  <meta name="theme-color" content="#0b0a12">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aaskjer">
+  <meta property="og:url" content="https://aaskjer.github.io/projects/gamecheck/">
+  <meta property="og:title" content="GameCheck">
+  <meta property="og:description" content="Free games and game sales in your Discord, one message per topic, edited in place whenever something changes. A free Streamer.bot import.">
+  <meta property="og:image" content="https://aaskjer.github.io/assets/img/og-home.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
+  <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
+  <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/theme.js"></script>
+  <script src="../../assets/js/projects.js" defer></script>
+  <script src="../../assets/js/vendor/marked.umd.js" defer></script>
+  <script src="../../assets/js/vendor/purify.min.js" defer></script>
+  <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+</head>
+<body data-repo="GameCheck" data-files="CHANGELOG.md|README.md|Setup-Guide.md">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="../../">
+        <img src="../../assets/img/avatar.png" alt="" width="32" height="32">
+        <span class="brand__name">aaskjer</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a class="nav__more" href="../../#tools">Tools</a>
+        <a class="nav__more" href="../../#games">Games</a>
+        <a href="../../commands/">Commands</a>
+        <a class="nav__more" href="../../#start">Setup</a>
+        <a href="../../help/">Help</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
+        </a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="i i-sun" aria-hidden="true"><use href="../../assets/img/icons.svg#i-sun"/></svg>
+          <svg class="i i-moon" aria-hidden="true"><use href="../../assets/img/icons.svg#i-moon"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- shown until project.js has built the page; search engines read it too -->
+    <section class="project-hero">
+      <div class="wrap">
+        <h1>GameCheck</h1>
+        <p class="project-hero__lead">Send embeds to discord to inform about Games, Demos, DLCs, etc. for free or on sale for any platform (PC, Console, Handheld, Mobile)</p>
+      </div>
+    </section>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><h1 align="center">GameCheck</h1><p align="center">
+  <b>Free games and game sales, posted to Discord by Streamer.bot.</b><br>
+  One Discord message per topic, edited in place whenever something changes.
+</p><p align="center">
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/GameCheck/blob/main/CHANGELOG.md"><b>Changelog</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>GameCheck brings two Streamer.bot actions together:</p>
+<ul>
+<li><strong>Free Game Check</strong> keeps one embed each for 🎁 free games, 🧩 free DLC &amp; add-ons, 🎒 free loot, betas and in-game
+items, and 🧪 popular new demos.</li>
+<li><strong>Game Sale Check</strong> keeps one embed for 🎉 the store-wide sales running now and coming up (Steam&#39;s seasonal sales and
+Fests, Epic&#39;s and GOG&#39;s sales) and one for 💸 the top deals per store, with price, regular price, discount and end.</li>
+</ul>
+<p>Both run on their own: they check the stores every hour, update the messages on the minute when a giveaway or a sale
+starts or ends, and leave the messages alone when nothing changed.</p>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🏬 <strong>Straight from the stores.</strong> Steam and Epic Games are read directly, with exact end times and prices for your
+country. GOG, Nintendo&#39;s European eShop, Prime Gaming and IsThereAnyDeal fill in the rest.</li>
+<li>✏️ <strong>Edited, not spammed.</strong> Every topic is one message that is edited in place. A new entry is marked 🆕, one that ends
+soon 🔥. Optionally the messages are posted anew every few days, all together and in order.</li>
+<li>🛟 <strong>Outages don&#39;t wipe the list.</strong> A store that fails is replaced by its last good answer for up to 24 hours.</li>
+<li>🤖 <strong>Bot or webhook.</strong> With a bot the messages can be pinned and older copies cleaned up; a webhook needs no bot at all.</li>
+<li>⏱️ <strong>No timer to set up.</strong> The trigger &quot;Streamer.bot Started&quot; is enough: every run plans the next one itself.</li>
+<li>🔒 <strong>Exports without secrets.</strong> Bot token, webhook URL and IsThereAnyDeal key can live in persisted global variables.</li>
+<li>🎮 <strong>Straight into the launcher.</strong> Optionally, Steam and Epic games open in Steam or the Epic Games Launcher instead
+of the browser.</li>
+<li>🪟 <strong>A settings window.</strong> Everything is set in one window in the style of the Chat Games; the older Set Argument
+setup keeps working.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Data &amp; services:</strong><ul>
+<li><a href="https://www.gamerpower.com">GamerPower</a>: giveaways the stores don&#39;t list themselves</li>
+<li><a href="https://isthereanydeal.com">IsThereAnyDeal</a>: giveaways, deals of other shops and lowest prices (with your own key)</li>
+<li><a href="https://github.com/eikowagenknecht/lootscraper">LootScraper</a> by Eiko Wagenknecht: Prime Gaming offers</li>
+</ul>
+</li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+<p>Steam, Epic Games, GOG, Nintendo, Prime Gaming and all store and game names are trademarks of their owners. None of them
+is affiliated with or endorses GameCheck.</p>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Setup</h1>
+<p>GameCheck is three Streamer.bot actions:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>What it does</th>
+<th>Script</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Free Game Check</code></td>
+<td>the free games, DLC, loot and demos messages</td>
+<td><code>freegamecheck.cs</code></td>
+</tr>
+<tr>
+<td><code>Game Sale Check</code></td>
+<td>the sale events and top deals messages</td>
+<td><code>gamesalecheck.cs</code></td>
+</tr>
+<tr>
+<td><code>GameCheck - Settings</code></td>
+<td>the settings window for both</td>
+<td><code>gamecheck-settings.cs</code></td>
+</tr>
+</tbody></table>
+<p>The first release will bring an import file that sets all three up at once. Until then they are set up by hand
+once, which takes about ten minutes.</p>
+<h2>1. Discord</h2>
+<p>Each action posts either with a <strong>bot</strong> or through a <strong>webhook</strong>. A bot can pin its messages and clean up older
+copies; a webhook needs no bot at all. One bot and one channel for both actions is the usual setup.</p>
+<p><strong>Bot</strong></p>
+<ol>
+<li>Open the <a href="https://discord.com/developers/applications">Discord Developer Portal</a>, click <code>New Application</code>, then
+<code>Bot</code> → <code>Reset Token</code> and copy the token.</li>
+<li>Under <code>OAuth2</code> → <code>URL Generator</code> tick <code>bot</code>, then the permissions <code>View Channels</code>, <code>Send Messages</code>, <code>Embed Links</code>
+and <code>Read Message History</code>, plus <code>Pin Messages</code> if the messages should be pinned. Open the generated URL and
+invite the bot to your server.</li>
+<li>In Discord, switch on <code>User Settings</code> → <code>Advanced</code> → <code>Developer Mode</code>, right-click the channel and choose
+<code>Copy Channel ID</code>.</li>
+</ol>
+<p><strong>Webhook</strong></p>
+<p>In the channel&#39;s settings: <code>Integrations</code> → <code>Webhooks</code> → <code>New Webhook</code> → <code>Copy Webhook URL</code>.</p>
+<h2>2. The two actions</h2>
+<p>Do this once for <code>Free Game Check</code> with <code>freegamecheck.cs</code> and once for <code>Game Sale Check</code> with
+<code>gamesalecheck.cs</code>:</p>
+<ol>
+<li>In Streamer.bot, open <code>Actions</code>, right-click the action list, choose <code>Add</code> and enter the name.</li>
+<li>Right-click <code>Sub-Actions</code> → <code>Core</code> → <code>C#</code> → <code>Execute C# Code</code>. Replace the code in the editor with the whole
+script.</li>
+<li>Click <code>Find Refs</code>, then <code>Save and Compile</code>. It has to compile without errors. The references it needs are
+<code>mscorlib.dll</code>, <code>System.dll</code>, <code>System.Net.Http.dll</code>, <code>System.Runtime.Serialization.dll</code>, <code>System.Text.Json.dll</code>,
+<code>System.Reflection.Metadata.dll</code> and <code>Newtonsoft.Json.dll</code>.</li>
+<li>Right-click <code>Triggers</code> → <code>Core</code> → <code>System</code> → <code>Streamer.bot Started</code>. That is the only trigger it needs: from
+then on every run plans the next one itself. Add <code>Core</code> → <code>Test</code> as well if you want to start a check by hand.</li>
+</ol>
+<p>No <code>Set Argument</code> sub-actions are needed. The settings come from the window.</p>
+<h2>3. The settings window</h2>
+<ol>
+<li>Add an action <code>GameCheck - Settings</code> and give it an <code>Execute C# Code</code> sub-action with <code>gamecheck-settings.cs</code>.</li>
+<li>It needs these eight references: <code>mscorlib.dll</code>, <code>System.dll</code>, <code>System.Core.dll</code>, <code>System.Net.Http.dll</code>,
+<code>Newtonsoft.Json.dll</code>, <code>PresentationFramework.dll</code>, <code>PresentationCore.dll</code> and <code>WindowsBase.dll</code>. <code>Find Refs</code>
+adds most of them; add a missing one in the editor&#39;s <code>References</code> tab (right-click → <code>Add reference from file...</code>). Then <code>Save and Compile</code>.</li>
+<li>Add the trigger <code>Core</code> → <code>Test</code>. Right-click it and choose <code>Test Trigger</code>: the settings window opens.</li>
+</ol>
+<p align="center"><img loading="lazy" alt="The Discord page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/discord-dark.png" width="460"></p><h2>4. First start</h2>
+<ol>
+<li><strong>Discord:</strong> bot token and channel ID, or a webhook URL. With <em>Both actions use the same bot and channel</em>
+switched on, one set of fields serves both.</li>
+<li><strong>Free games</strong> and <strong>Sales:</strong> what is posted, your country, the platforms to leave out, the colours. An
+<a href="https://isthereanydeal.com/apps/my/">IsThereAnyDeal API key</a> is optional and adds more shops.</li>
+<li><strong>Schedule:</strong> how often the stores are read (every 60 minutes unless you change it) and whether the messages
+are posted anew every few days.</li>
+<li><code>Save</code>, then open <strong>Status</strong> and click <code>Check now</code> for each action, or restart Streamer.bot. The messages appear in
+the channel within a minute.</li>
+</ol>
+<p><code>Ctrl+1</code> … <code>Ctrl+6</code> switch pages, <code>Ctrl+F</code> searches all settings, by their label or their argument name.</p>
+<p align="center"><img loading="lazy" alt="The Status page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/status-dark.png" width="460"></p><h2>Coming from Set Arguments</h2>
+<p>Older installs set the actions up with <code>Set Argument</code> sub-actions. They keep working, and a <code>Set Argument</code> value always
+wins over the window: the window shows such a setting greyed out, with the name of the action that holds it.</p>
+<p>Paste the new scripts into both actions first and let each run once (<code>Check now</code>, or a restart): that is how the window
+learns their values. The first time it opens it takes them all over, so a first <code>Save</code> changes nothing. After that,
+delete or disable the <code>Set Argument</code> sub-actions in both actions and manage everything in the window. A timer trigger left
+over from older versions can go too; the actions plan their own runs once <code>Streamer.bot Started</code> is their trigger.</p>
+<h2>Open in the launcher</h2>
+<p><em>Open Steam and Epic games in their launcher</em> (on <strong>Free games</strong>) and <em>Open Steam and Epic deals in their launcher</em>
+(on <strong>Sales</strong>) make the game links open in Steam or the Epic Games Launcher instead of the browser. Discord only
+opens web links, so the link goes through a small page on <a href="https://aaskjer.github.io/go/">aaskjer.github.io</a> that
+hands it on. The first time, your browser asks whether it may open Steam or Epic; tick <em>Always allow</em> to skip the
+question from then on. If no launcher is installed, the page offers the store&#39;s web page instead.</p>
+<h2>Where things are kept</h2>
+<ul>
+<li>The settings: <code>GameCheck\GameCheck-Settings.json</code> in the Streamer.bot folder, written only by the window. The
+previous version is kept beside it as <code>.bak</code>.</li>
+<li>Bot token, webhook URL and IsThereAnyDeal key: only in persisted global variables (<code>FreeGameCheck_botToken</code>,
+<code>GameSaleCheck_botToken</code>, …), never in the file. An export of the actions carries no secrets.</li>
+<li>What the actions remember (message ids, what was new when): the global variables <code>checkFreeGames</code> and
+<code>checkGameSales</code>.</li>
+</ul>
+<h2>When something does not work</h2>
+<ul>
+<li><strong>Nothing is posted:</strong> open Streamer.bot&#39;s log and look for lines starting with <code>[FreeGames]</code> or <code>[GameSales]</code>.
+They say which store failed, or that the bot token or channel is missing.</li>
+<li><strong>The script does not compile:</strong> compare its references with the lists above.</li>
+<li><strong>The window does not open:</strong> only one window can be open at a time; look in the log for <code>[GameCheck/Settings]</code>.</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><h1>Changelog</h1>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[Unreleased]</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>A settings window.</strong> The action &quot;GameCheck - Settings&quot; opens a window in the style of the Chat Games for both
+actions: Discord, what is posted, timing, platforms and colours. It writes <code>GameCheck-Settings.json</code> in the folder
+<code>GameCheck</code> next to Streamer.bot, and the bot token, webhook URL and IsThereAnyDeal key into the persisted global
+variables, so an export carries no secrets. A Set Argument value in an action still wins; the window shows such a
+setting locked. Installs without the window keep working on their Set Argument values.</li>
+<li><strong><code>launcherLinks</code></strong> (default off): Steam and Epic games and deals open in Steam or the Epic Games Launcher instead
+of the browser. Discord opens only web links, so the link goes through a small page on aaskjer.github.io that
+hands it on, with the store&#39;s web page as a fallback.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Free Game Check and Game Sale Check are one project.</strong> The code both actions share (Discord, HTTP, arguments,
+state, stores, platforms) is kept once and built into both scripts. Nothing changes for an install: the same
+arguments, the same global variables, the same messages.</li>
+</ul>
+</div>
+      </section>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__about">
+        <a class="brand" href="../../">
+          <img src="../../assets/img/avatar.png" alt="" width="32" height="32">
+          <span>aaskjer</span>
+        </a>
+        <p>Free, open-source extensions for Streamer.bot. Found a bug or have an idea? Open an issue on the project's GitHub page.</p>
+      </div>
+      <div class="footer__meta">
+        <p>© <span id="year">2026</span> aaskjer · <a href="../../commands/">Commands</a> · <a href="../../help/">Help</a> · <a href="../../feed.xml" data-track="feed">Release feed</a> · <a href="../../privacy.html">Privacy</a></p>
+        <p>Not affiliated with Streamer.bot, OBS Studio, Twitch, YouTube, Kick, Owncast, Rumble, Picarto, TikTok, Discord, Stoat, GameVox, ntfy, Microsoft or the Open Trivia Database. All names and trademarks belong to their respective owners.</p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Picture">
+    <div class="lightbox__bar">
+      <p class="lightbox__caption"></p>
+      <form method="dialog">
+        <button class="icon-btn" aria-label="Close"><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-x"/></svg></button>
+      </form>
+    </div>
+    <img alt="">
+  </dialog>
+</body>
+</html>

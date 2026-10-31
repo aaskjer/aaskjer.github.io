@@ -438,6 +438,8 @@ for (const p of projects.filter(x => x.page)) {
     // a broken import string is the project's to fix, not a reason to keep the old pages
     try {
       if (text != null) facts = importFacts(text);
+      // the import string carries the minimum version Streamer.bot wrote into it, not the oldest one the code compiles in
+      if (facts && p.streamerbot) facts.min = p.streamerbot;
     } catch (e) {
       console.warn(`Import string of ${p.repo} not read (${e.message}).`);
     }
@@ -548,7 +550,8 @@ for (const p of projects.filter(x => x.page)) {
     // link preview: "TwitchSentry  •  v4.0.1"; the site name "aaskjer" shows above it
     previewTitle: [p.name, p.version].filter(Boolean).join('  •  '),
     preview: p.preview,
-    image: p.screenshot || p.scene,
+    // a project without a picture of its own shares the site's picture
+    image: p.screenshot || p.scene || 'assets/img/og-home.jpg',
   };
   const html = template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
     if (key === 'hero') return hero;
@@ -588,10 +591,11 @@ const day = date => date ? `<time datetime="${esc(date.slice(0, 10))}">${shortDa
 const compatRows = compat.map(({ p, facts, exported, release }) => {
   const name = `<th scope="row"><a href="../${esc(p.page)}">${esc(p.name)}</a></th>`;
   const version = release ? `<td>${esc(release.tag_name)}<small>${day(release.published_at)}</small></td>` : '<td>–</td>';
-  if (!facts) return `
+  if (p.streamerbot === false || (!facts && !p.streamerbot)) return `
             <tr>${name}${version}<td colspan="2" class="compat__none">Runs on its own, outside Streamer.bot</td></tr>`;
+  const min = p.streamerbot || facts.min;
   return `
-            <tr>${name}${version}<td>${esc(facts.made || '–')}<small>${day(exported)}</small></td><td>${facts.min ? `${esc(shortVersion(facts.min))} or newer` : '–'}</td></tr>`;
+            <tr>${name}${version}<td>${esc((facts && facts.made) || '–')}<small>${day(exported)}</small></td><td>${min ? `${esc(shortVersion(min))} or newer` : '–'}</td></tr>`;
 }).join('');
 writePage('help', {
   problems: problems.map(x => `

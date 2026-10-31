@@ -8,6 +8,12 @@
  * "More on GitHub".
  *
  *   repo       repository name on GitHub (required)
+ *   streamerbot  the oldest Streamer.bot the project runs in, e.g. '1.0.7': in anything older its C# code
+ *              does not compile. Shown in "What you need" on its page and in the table on the help page,
+ *              instead of the minimum version in the import string (Streamer.bot writes a low one there).
+ *              `false` for a tool that runs outside Streamer.bot
+ *   needs      what the project needs besides Streamer.bot, the platforms and the services it sends to,
+ *              e.g. an API key: [{ name, what }], as rows of "What you need" on its page
  *   tagline    only a fallback: the site shows the short description from the repository's
  *              About box on GitHub (projects under "More on GitHub" too)
  *   section    'tools', 'games' or 'more' (under "More on GitHub", before the repositories GitHub adds)
@@ -46,7 +52,7 @@ window.SITE = {
   // A repository without a release that holds only README and LICENSE shows a "Coming Soon" label
   // instead of its buttons. Repositories listed here show it too although they already have
   // files, until their first release is out.
-  comingSoon: [],
+  comingSoon: ['GameCheck'],
   // The Featured box above the stream tools. A project gets in for `days` after a release (a
   // pre-release too) or a change of its status, and for at least `downloads.min` downloads in the
   // last `downloads.days` days. The newest reason gets the big box, up to `max` - 1 more sit below
@@ -57,6 +63,7 @@ window.SITE = {
   projects: [
     {
       repo: 'TwitchSentry',
+      streamerbot: '1.0.7',
       page: 'projects/twitchsentry/',
       status: 'dev',
       name: 'TwitchSentry',
@@ -86,6 +93,7 @@ window.SITE = {
     },
     {
       repo: 'Better-Stream-Announcements',
+      streamerbot: '1.0.7',
       page: 'projects/better-stream-announcements/',
       status: 'dev',
       statusSince: '2026-10-24',
@@ -104,6 +112,7 @@ window.SITE = {
     },
     {
       repo: 'SBRefFix',
+      streamerbot: false,
       page: 'projects/sbreffix/',
       status: 'done',
       statusSince: '2026-10-26',
@@ -125,6 +134,7 @@ window.SITE = {
     },
     {
       repo: 'SuTo',
+      streamerbot: '1.0.4',
       page: 'projects/suto/',
       status: 'done',
       statusSince: '2026-10-27',
@@ -143,6 +153,7 @@ window.SITE = {
     },
     {
       repo: 'OBSNotes',
+      streamerbot: '1.0.7',
       page: 'projects/obsnotes/',
       status: 'done',
       statusSince: '2026-10-27',
@@ -161,6 +172,7 @@ window.SITE = {
     },
     {
       repo: 'ChatCalendar',
+      streamerbot: '1.0.7',
       page: 'projects/chatcalendar/',
       status: 'dev',
       name: 'Chat Calendar',
@@ -177,7 +189,44 @@ window.SITE = {
       version: 'v1.0.0', stars: 0, downloads: 0,
     },
     {
+      repo: 'GameCheck',
+      streamerbot: '1.0.7',
+      page: 'projects/gamecheck/',
+      status: 'dev',
+      statusSince: '2026-10-31',
+      name: 'GameCheck',
+      section: 'tools',
+      logo: 'assets/img/projects/gamecheck.png',
+      tagline: 'Free games and game sales, posted to Discord by Streamer.bot.',
+      description: 'GameCheck for Streamer.bot: free games, DLC, loot and demos, the store-wide sales and the top deals per store, posted to Discord as embeds that are edited in place. Reads Steam, Epic Games, GOG, Nintendo eShop, Prime Gaming and IsThereAnyDeal.',
+      preview: 'Free games and game sales in your Discord, one message per topic, edited in place whenever something changes. A free Streamer.bot import.',
+      tags: ['Discord'],
+      needs: [
+        { name: 'Discord bot or webhook', what: 'a bot token and channel ID, or a webhook URL' },
+        { name: 'IsThereAnyDeal API key', what: 'optional, adds the giveaways and deals of more shops' },
+      ],
+      guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      version: 'v1.0.0', stars: 0, downloads: 0,
+    },
+    {
+      repo: 'AutoBotCheck',
+      streamerbot: '1.0.4',
+      page: 'projects/autobotcheck/',
+      status: 'done',
+      statusSince: '2026-10-31',
+      name: 'AutoBotCheck',
+      section: 'tools',
+      mono: 'ABC',
+      tagline: 'Bans the bots from public bot lists in your Twitch channel.',
+      description: 'AutoBotCheck for Streamer.bot: three actions that read the public bot lists of TwitchInsights, TwitchBots.info and ISDS and ban every listed account that is not banned in your Twitch channel yet, with a whitelist and a dry run.',
+      preview: 'Bans the bots from TwitchInsights, TwitchBots.info and the ISDS lists in your Twitch channel, only what is new. A free Streamer.bot import.',
+      platforms: ['Twitch'],
+      guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      version: 'v1.1.0', stars: 0, downloads: 0,
+    },
+    {
       repo: 'Blackjack-Game',
+      streamerbot: '1.0.7',
       page: 'projects/blackjack-game/',
       status: 'dev',
       name: 'Blackjack Game',
@@ -196,6 +245,7 @@ window.SITE = {
     },
     {
       repo: 'Classic-Chat-Gamble',
+      streamerbot: '1.0.4',
       page: 'projects/classic-chat-gamble/',
       status: 'done',
       statusSince: '2026-10-26',
@@ -213,6 +263,7 @@ window.SITE = {
     },
     {
       repo: 'Trivia-Game',
+      streamerbot: '1.0.7',
       page: 'projects/trivia-game/',
       status: 'dev',
       name: 'Trivia Game',
@@ -229,6 +280,7 @@ window.SITE = {
     },
     {
       repo: 'Slot-Machine-Game',
+      streamerbot: '1.0.4',
       page: 'projects/slot-machine-game/',
       status: 'done',
       statusSince: '2026-10-26',
@@ -246,6 +298,7 @@ window.SITE = {
     },
     {
       repo: 'Hangman-Game',
+      streamerbot: '1.0.7',
       page: 'projects/hangman-game/',
       status: 'dev',
       name: 'Hangman Game',
@@ -263,6 +316,7 @@ window.SITE = {
     },
     {
       repo: 'Battleship-Game',
+      streamerbot: '1.0.7',
       page: 'projects/battleship-game/',
       status: 'dev',
       name: 'Battleship Game',
@@ -280,6 +334,7 @@ window.SITE = {
     },
     {
       repo: 'RhymeTime',
+      streamerbot: '1.0.7',
       page: 'projects/rhymetime/',
       status: 'dev',
       name: 'RhymeTime',

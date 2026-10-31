@@ -5,9 +5,80 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-10-30T22:59:43Z</updated>
+  <updated>2026-10-31T16:25:13Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Blackjack Game v16.3.1: A solo win posts its summary once</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.1"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.1</id>
+    <published>2026-10-31T16:25:13Z</published>
+    <updated>2026-10-31T16:25:13Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;p&gt;One chat fix for the solo game and two fixes for the settings window. &lt;code&gt;BJG-Settings.json&lt;/code&gt; is read as it stands: no settings change, and there is nothing to redo after the update.&lt;/p&gt;
+&lt;h3&gt;💬 Chat&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A solo win posts its final summary once.&lt;/strong&gt; When the dealer busted, when the player&amp;#39;s hand was higher, or when the player won a tie-break, chat got the &lt;code&gt;Final - {user}: … vs dealer …&lt;/code&gt; line twice in a row. Now it comes once, followed by the win message and the balance, in points mode and in free games alike. No message text changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🪟 Closing the window&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The title bar&amp;#39;s X asks before it discards.&lt;/strong&gt; It used to throw away unsaved changes without asking. Now it asks the same question as Cancel, &amp;quot;Discard N unsaved changes?&amp;quot;, and No keeps the window open.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A recompile or shutdown closes an open window.&lt;/strong&gt; Streamer.bot recompiling the action or exiting used to leave the settings window up, still writing &lt;code&gt;BJG-Settings.json&lt;/code&gt; from code that was no longer running. Now the window closes on the way out.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.1&quot;&gt;Download v16.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Better Stream Announcements v2.1.1: GameVox and Stoat without Discord</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.1"/>
+    <id>https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.1</id>
+    <published>2026-10-31T15:45:12Z</published>
+    <updated>2026-10-31T15:45:12Z</updated>
+    <category term="Better-Stream-Announcements" label="Better Stream Announcements"/>
+    <content type="html">&lt;p&gt;Discord, GameVox and Stoat are now three delivery targets of their own, and Discord is no longer required: a GameVox or Stoat webhook alone is enough to announce with. The Setup Guide is rewritten for the new Settings window, with a screenshot of every page.&lt;/p&gt;
+&lt;p&gt;Import the new version over the old one; your settings stay as they are. &lt;strong&gt;Afterwards, check that &lt;code&gt;Broadcaster Online&lt;/code&gt; and &lt;code&gt;Broadcaster Offline&lt;/code&gt; are enabled&lt;/strong&gt; if BsA announces your own stream: both come switched off in the import.&lt;/p&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Discord, GameVox and Stoat each stand on their own.&lt;/strong&gt; In v2.1.0 the GameVox and Stoat messages were copies that followed the Discord post, so they were only posted together with a new Discord announcement and a failed Discord post or edit held them back. Now each one is posted when a stream starts, updated while it runs, switched to its ended form when it ends, brought back with a stream that returns inside the revive window, and — for a Streamer Friend — deleted once &lt;strong&gt;Remove Old Message&lt;/strong&gt; takes it down, whatever the other two are doing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Discord is no longer required.&lt;/strong&gt; A GameVox or Stoat webhook on its own announces your stream and your Streamer Friends. Home counts a channel as ready once any one of the three is set up, and &lt;strong&gt;Posting To&lt;/strong&gt; shows GameVox and Stoat as targets of their own.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Endless Stoat retries after the Stoat webhook was replaced.&lt;/strong&gt; Stoat only lets a webhook edit and delete the messages it posted itself. A message from the previous webhook was asked about again on every cycle, forever; now it is let go after one warning and stays in the channel as it is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Documentation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt;&lt;/strong&gt; rewritten: every Settings page with a current screenshot, a table of the fifteen imported actions, and what ships switched off (the timers and Broadcaster Online/Offline).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;:&lt;/strong&gt; GameVox and Stoat, the Status Log, TikTok in &lt;code&gt;/streamerfriends link&lt;/code&gt;, Reset to Defaults in the ☰ menu, and how the update check behaves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Full details in the &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/CHANGELOG.md&quot;&gt;CHANGELOG&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.1&quot;&gt;Download v2.1.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>AutoBotCheck v1.1.0: AutoBotCheck v1.1.0</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/AutoBotCheck/releases/tag/v1.1.0"/>
+    <id>https://github.com/aaskjer/AutoBotCheck/releases/tag/v1.1.0</id>
+    <published>2026-10-31T08:43:36Z</published>
+    <updated>2026-10-31T08:43:36Z</updated>
+    <category term="AutoBotCheck" label="AutoBotCheck"/>
+    <content type="html">&lt;p&gt;AutoBotCheck 1.1 adds the ISDS ban lists as a third source and makes later runs much faster: accounts that are already banned are skipped.&lt;/p&gt;
+&lt;p&gt;Import &lt;code&gt;AutoBotCheck.sb&lt;/code&gt; over 1.0: &lt;code&gt;TwitchInsight&lt;/code&gt; and &lt;code&gt;TwitchBots.Info&lt;/code&gt; are replaced and &lt;code&gt;ISDS.BanLists&lt;/code&gt; is added. &lt;strong&gt;Afterwards, check the group names&lt;/strong&gt; in the &lt;code&gt;Set Argument&lt;/code&gt; sub-actions if you changed them in 1.0: the import resets them to &lt;code&gt;Bots&lt;/code&gt; and &lt;code&gt;WhitelistedBots&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The ISDS ban lists.&lt;/strong&gt; The new &lt;code&gt;ISDS.BanLists&lt;/code&gt; action bans the accounts on the &lt;a href=&quot;https://github.com/isdsdataarchive/twitch_ban_lists&quot;&gt;ISDS Twitch ban lists&lt;/a&gt;. The &lt;code&gt;isdsLists&lt;/code&gt; argument picks which of them are used.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast runs with the broadcaster token.&lt;/strong&gt; Accounts are looked up 100 per request, and only the ones that are not banned yet are banned.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Your own people are protected.&lt;/strong&gt; The broadcaster, the bot account, mods, VIPs and the whitelist are never banned. Nightbot, StreamElements and other hosted service bots are skipped unless they are in your bot group.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wrong bans are undone.&lt;/strong&gt; Service bots and your own accounts that AutoBotCheck banned are unbanned again. Bans with any other reason are never touched.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A dry run.&lt;/strong&gt; With &lt;code&gt;dryRun&lt;/code&gt; set to &lt;code&gt;True&lt;/code&gt; the log shows what would be banned, and nobody is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Documentation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/aaskjer/AutoBotCheck/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt;:&lt;/strong&gt; import, groups, arguments, running and stopping a check, protected accounts and the broadcaster token.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/aaskjer/AutoBotCheck/blob/main/Import-String.md&quot;&gt;Import String&lt;/a&gt;&lt;/strong&gt; to paste instead of the file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Full details in the &lt;a href=&quot;https://github.com/aaskjer/AutoBotCheck/blob/main/CHANGELOG.md&quot;&gt;CHANGELOG&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;SHA-256 of &lt;code&gt;AutoBotCheck.sb&lt;/code&gt;: &lt;code&gt;4e503b38e25f209e1f10766874de9a1d055dcde8dcddee128f5c581e6e5e64ee&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/AutoBotCheck/releases/tag/v1.1.0&quot;&gt;Download v1.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/autobotcheck/&quot;&gt;AutoBotCheck on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>OBS Notes v1.0.2</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.2"/>
@@ -905,193 +976,5 @@ import ships: &lt;code&gt;!Trivia&lt;/code&gt;, &lt;code&gt;!SkipTrivia&lt;/code
 &lt;li&gt;The update check compared tags for inequality and would offer a downgrade; it compares versions now.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v11.0.0&quot;&gt;Download v11.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>TwitchSentry v4.0.0: New features, fixes, QoL</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.0"/>
-    <id>https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.0</id>
-    <published>2026-10-20T22:20:17Z</published>
-    <updated>2026-10-20T22:20:17Z</updated>
-    <category term="TwitchSentry" label="TwitchSentry"/>
-    <content type="html">&lt;h3&gt;✨ Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Hate Raid Protection&lt;/strong&gt;: a new module (off by default) that recognises a hate raid in a burst of arrivals with signs of hate and locks the chat down until it has calmed down. &lt;code&gt;!hateraid&lt;/code&gt;, a deck key and the OBS dock start or lift a lockdown by hand.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shared Bot List&lt;/strong&gt;: bots the filters identify are reported to a public list on GitHub, and accounts several channels reported are banned in yours too. Only the account is shared, never a message or the channel.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Chat Bot badge&lt;/strong&gt;: with a Twitch application of your own, every message TwitchSentry posts carries Twitch&amp;#39;s Chat Bot badge.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stoat and GameVox&lt;/strong&gt;: Notifications sends its alerts to these two platforms as it does to Discord.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ntfy&lt;/strong&gt;: alerts arrive as push notifications on ios, android or any browser, louder the more serious they are.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Chat languages&lt;/strong&gt;: TwitchSentry&amp;#39;s chat messages come in English, German, Spanish, French and Brazilian Portuguese (☰ → Change Language → &lt;em&gt;Chat Messages&lt;/em&gt;); texts you changed yourself are kept.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!antiraid&lt;/code&gt; and &lt;code&gt;!followwave&lt;/code&gt;&lt;/strong&gt;: moderators arm or disarm Raid Protection and Follow Wave Protection from chat.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Follow Wave Protection switches chat modes and pauses queues&lt;/strong&gt; while a wave lasts, your follow alerts for example. It also has a deck key and an OBS dock button.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shared chat modes&lt;/strong&gt;: a mode several modules switched on goes off only once none of them needs it any more.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Exclude Followers works&lt;/strong&gt;: TwitchSentry keeps its own follower list, read from Twitch at start and updated with every follow.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ban reasons you can edit&lt;/strong&gt; for LurkBot Filter, Shared Bot List, Hate Raid Protection, AutoMod&amp;#39;s Ban Evasion and the Message Filter, whose reason now names the check that acted.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!tsundo&lt;/code&gt; lifts blocks&lt;/strong&gt; as well as bans.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Check Link answers more precisely&lt;/strong&gt;: when a message stays, the reply no longer says it was removed, and &lt;code&gt;!checklink&lt;/code&gt; without a link gets an answer.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Hand-Off Phrases and Service Offers&lt;/strong&gt; can be edited on Known Patterns.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Languages window&lt;/strong&gt; shows who made a community translation; a double-click downloads or switches a language.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Expert mode hint&lt;/strong&gt;: a page says how many expert settings it hides, and how many of them differ from the default.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Spam Learner sensitivity slider&lt;/strong&gt;: one slider from Very cautious to Very eager sets the seven learning thresholds.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Manual tabs&lt;/strong&gt;: Getting Started, Pages, Terms, Commands and Deck Buttons. Terms explains 61 words of the window, A to Z, each with a link to its page; the hint about placeholder chips stands there once instead of on every Messages tab. Deck Buttons lists every deck argument with the values it takes, your saved profiles included.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Credits&lt;/strong&gt; name every data source and service TwitchSentry uses.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Deck keys redraw themselves&lt;/strong&gt;: a key that shows a title, a colour or a switch state is drawn again when what it shows changes elsewhere; &lt;code&gt;tsRefresh&lt;/code&gt; redraws them at once.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OBS dock buttons&lt;/strong&gt;: up to 24 of your own (✎ → &lt;em&gt;Buttons Shown&lt;/em&gt;), new ones for the panic button, Refuse Permit Request and Revoke Permit; the list has a search field and shows each module as a heading in its page&amp;#39;s colour, its functions beneath it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Notifications on deck keys and in the dock&lt;/strong&gt;: &lt;code&gt;tsNotify&lt;/code&gt; switches the Discord, Stoat, GameVox, ntfy and Windows tabs on or off, and the dock shows them in a Notifications group.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;tsPermitRevoke&lt;/code&gt;&lt;/strong&gt;: a deck key ends link permits early, as &lt;code&gt;!endpermit&lt;/code&gt; does; each running permit in the dock has a ✕ for it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The Action Log shows the removed message&lt;/strong&gt;: the Spam Filter, the Message Filter and Raid Protection log it too, and it has a column of its own.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Dates in the window&amp;#39;s language&lt;/strong&gt;: each language file sets its date format in &lt;code&gt;&amp;quot;__dateFormat&amp;quot;&lt;/code&gt; (&lt;code&gt;dd.MM.yyyy&lt;/code&gt; in German); logs and files keep &lt;code&gt;yyyy-MM-dd&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Options window&lt;/strong&gt; (☰ → &lt;em&gt;Options...&lt;/em&gt;): tabs for Test Mode, hidden notices and the OBS dock. Each hidden notice can be brought back on its own, at once and without reopening the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🔧 Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Home rebuilt&lt;/strong&gt;: one line says whether TwitchSentry is watching or in test mode, with the profile beneath; every module and alert channel is a chip that follows its switch and opens its page; &lt;em&gt;Start Here&lt;/em&gt; has the five first steps with a button each and a link to Getting Started, and can be hidden; activity counters and compact help tiles replace the Jump To tiles.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Easy mode shows less&lt;/strong&gt;: the Spam Learner&amp;#39;s tuning, the pattern and conversation lists on Known Patterns, the statistics columns on Suggestions and Check Link&amp;#39;s scanner limits move to expert mode, and &lt;em&gt;controls N settings&lt;/em&gt; counts only the rows on screen.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Notifications&lt;/strong&gt;: one new action sends every module&amp;#39;s alerts, bundles those that arrive together and shares each platform&amp;#39;s rate limit. Discord and Windows are tabs of a new Notifications page.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Several webhooks and Discord forums&lt;/strong&gt;: a webhook field takes several URLs, and a forum webhook gets one thread per module.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Discord bot (optional)&lt;/strong&gt;: a bot of your own can post the alerts and tag each module&amp;#39;s forum thread with its latest action.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Renamed&lt;/strong&gt;: Permits is now Permit, Follow Protection is now Follow Wave Protection (action &lt;strong&gt;FollowWaveProtection&lt;/strong&gt;), and the script files carry the names the window uses. Deck keys need the new names (&lt;code&gt;Permit&lt;/code&gt;, &lt;code&gt;Follow Wave Protection&lt;/code&gt;, &lt;code&gt;tsNotify&lt;/code&gt; for &lt;code&gt;Discord&lt;/code&gt;, &lt;code&gt;tsLurkBot&lt;/code&gt;); settings keep their values.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Window reorganised&lt;/strong&gt;: each module&amp;#39;s chat texts are on a &lt;em&gt;Messages&lt;/em&gt; tab of its page, the sidebar has new groups, each with one colour for all its pages, and remembers collapsed ones, and the band with title, switch and tabs stays at the top while the page scrolls.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Settings moved&lt;/strong&gt;: Whitelisted Domains and Always Allowed are on the Link Filter page again, the shared Default Action and Command Replies on General Settings, and each Message Filter check&amp;#39;s Score Hit has a card of its own.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Chat Modes rebuilt&lt;/strong&gt;: the Message Filter and Raid Protection have a Chat Modes tab whose cards each answer one question.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tab switches&lt;/strong&gt;: a tab with a main switch of its own shows it in the band and is dimmed with ○ while off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;AutoMod always reports unban requests&lt;/strong&gt;; Notifications decides where they go.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Follow Wave blocks and LurkBot finds&lt;/strong&gt; go into monthly files in the Logs folder instead of lists in the window.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Raid Protection&lt;/strong&gt; steps up at most every 30 seconds instead of per message, and on Strict and Very strict acts on a single signal when &lt;em&gt;Require Two Signals&lt;/em&gt; is off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!checklink&lt;/code&gt;&lt;/strong&gt; no longer carries spam past the filters: only &lt;code&gt;!checklink &amp;lt;link&amp;gt;&lt;/code&gt; is left to Check Link.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Clearer texts&lt;/strong&gt; in the window and docs, in all five maintained languages; a few default chat texts were reworded, your own texts stay.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Scripts tidied&lt;/strong&gt;: shorter comments, a header with each script&amp;#39;s module, version and commands, no conversions from builds before v3.0.0, and less work per chat message.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Open A Ticket&lt;/strong&gt; lists every module.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A deleted feed entry stays deleted.&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Chat command replies&lt;/strong&gt; name lists as the window does.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;No more Shield Mode trigger notice&lt;/strong&gt;: the window cannot check those triggers.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Less work on long lists&lt;/strong&gt;: the Spam Learner prepares its window once per run, and the deck reads its files once per change.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OBS dock&lt;/strong&gt;: removed links stand under Recent Actions with Grant Permit, beside the timeouts and bans; the Permit list keeps running permits and Channel Points requests, and Grant Permit turns green while a viewer asks.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One stream at a time&lt;/strong&gt;: removed links and permit requests from before the stream went live are no longer offered; an unanswered request is refunded then, or once its viewer has left the chat.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Always Allowed on deck keys&lt;/strong&gt;: the switches for every channel&amp;#39;s links are named &lt;em&gt;All …&lt;/em&gt; (&lt;code&gt;All Kick VOD Links&lt;/code&gt;); keys need the new names.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Violation Log is now Spam Log&lt;/strong&gt; (&lt;code&gt;spam-log.txt&lt;/code&gt;), since it holds what the Spam Filter and the Link Filter removed; the old files move across.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;How does this work?&lt;/strong&gt; replaces &lt;em&gt;How this works&lt;/em&gt; above every folded explanation.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;☰ menu shorter&lt;/strong&gt;: Test Duration and Test Notice moved from General Settings to ☰ → Options, and so did &lt;em&gt;Set Up OBS Dock&lt;/em&gt; and &lt;em&gt;Show hidden notices again&lt;/em&gt;. Test Mode stays in the menu as well.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Exclude Subscribers&lt;/strong&gt; works again in eight modules which wasn&amp;#39;t the case before because of a typo.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;First Message Only&lt;/strong&gt; on the Message Filter no longer switches the account age check off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Settings window&lt;/strong&gt;: unsaved changes are never lost without asking, failed saves and imports say so, chat edits made while it was open are kept, the last untranslated texts are translated, and saved profiles show their date in the window&amp;#39;s language.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Backups&lt;/strong&gt; also hold profiles and the Shared Bot List&amp;#39;s bans, and Reset Everything makes one first.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt;&lt;/strong&gt; opens the Damaged Files window again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Upgrading from v3.x&lt;/strong&gt; carries over a few settings that were lost before.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Known Patterns&lt;/strong&gt; keeps commas in phrases, and spam wording matches whole words only (&amp;quot;you won&amp;quot; no longer catches &amp;quot;you won&amp;#39;t&amp;quot;).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Spam Filter&lt;/strong&gt;: regulars and Trusted Users are never reported to the Shared Bot List, phrases such as &amp;quot;like, follow and sub&amp;quot; are no longer read as ads, and the conversation scam check keeps to its window.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Spam Learner&lt;/strong&gt; learns phrases and domains it missed, no longer mistakes ordinary words for codes, its suggestions can become trusted again, and it posts the suggestion count in chat only when it found something new.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Link Filter and Check Link&lt;/strong&gt; read disguised, bracketed and bare links the way a browser does, and a removal message no longer repeats the link.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Word Filter&lt;/strong&gt;: entries that would hit every message are refused, entries with accents or digits match as typed, &lt;code&gt;!nuke&lt;/code&gt; reaches its full 600 seconds, and the Twitch sync no longer stalls.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;AutoMod&lt;/strong&gt;: repeated denials restrict a viewer only once, whitelist entries with accents match, and its actions are logged and alerted correctly.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shared Bot List&lt;/strong&gt; never bans VIPs or excluded users, and keeps an account banned that is listed again after a removal.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;LurkBot Filter&lt;/strong&gt; honours Exclude Followers and leaves an account let back in with &lt;code&gt;!tsundo&lt;/code&gt; alone.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Follow Wave Protection&lt;/strong&gt; alerts when Twitch refuses a block, and an undone block leaves the Shared Bot List.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Follow Wave Protection, Raid Protection and the Message Filter&lt;/strong&gt; disarm and lift their chat modes on time after a restart or after their action is saved again, without waiting for the next follow or chat message.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Raid Protection&lt;/strong&gt; no longer reports link-only swarms and disarms with the current settings.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Permit&lt;/strong&gt; refunds requests left unanswered for 12 hours and keeps refunds and the removed-links list right.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Permit&lt;/strong&gt; no longer warns about every Channel Points redemption while Self-Permit is off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Deck&lt;/strong&gt;: two presses at once no longer cross, and profile and permit keys behave as they should.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shield Mode&lt;/strong&gt;: after a restart TwitchSentry asks Twitch whether it is on instead of trusting an old state.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Parallel runs&lt;/strong&gt;: modules share the undo list and Shield Mode safely, and two copies of one filter no longer both act on a message.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Messages close together&lt;/strong&gt;: when two chat messages arrive within milliseconds, each module now checks both, each with its own text and sender. Before, one of the two could be skipped or judged with the other&amp;#39;s details.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Domain endings list&lt;/strong&gt;: a cache from an older version, or one that is not the list, is replaced by a fresh download as soon as a message finds it. Without a network the old list stays in use, so Link Filter no longer falls back to 66 common endings and Spam Filter recognises real links again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!tsundo&lt;/code&gt;&lt;/strong&gt; skips a timeout that has run out instead of getting stuck.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Timeouts and slow mode&lt;/strong&gt; stay within Twitch&amp;#39;s limits, so Twitch no longer refuses them.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;User lists&lt;/strong&gt;: Trusted Raiders match the login too, and &amp;quot;name&amp;quot; entries work in every module.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Test mode&lt;/strong&gt; no longer raises real Twitch Warn counts, and ends on time in Offline Protection.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Message Filter and Offline Protection&lt;/strong&gt; lift their chat modes on time, also after a restart or with unreadable settings.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!egadd&lt;/code&gt; and &lt;code&gt;!vegadd&lt;/code&gt;&lt;/strong&gt; find Streamer.bot groups again; &lt;code&gt;!wladd&lt;/code&gt;, &lt;code&gt;!kwadd&lt;/code&gt; and &lt;code&gt;!tldadd&lt;/code&gt; no longer create a settings file without defaults.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Deck keys&lt;/strong&gt; start Raid, Hate Raid and Follow Wave Protection and Permit only through those actions, never through another action of the same name.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OBS dock&lt;/strong&gt; no longer lists entries older than 12 hours, which its ✕ could not remove and Grant Permit still granted.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.0&quot;&gt;Download v4.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/twitchsentry/&quot;&gt;TwitchSentry on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Classic Chat Gamble v24.1.0: All platforms, QoL and other fixes</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.0"/>
-    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.0</id>
-    <published>2026-10-20T21:51:13Z</published>
-    <updated>2026-10-20T21:51:13Z</updated>
-    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
-    <content type="html">&lt;h3&gt;✨ Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;No more platform switches.&lt;/strong&gt; Twitch, YouTube and Kick play wherever the &lt;code&gt;!gamble&lt;/code&gt; command listens. To leave a platform out, untick it on the command in Streamer.bot (for example &lt;code&gt;Kick Message&lt;/code&gt;). Heads-up when updating: YouTube and Kick used to be off by default and now play wherever the command listens to them.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Free Game Mode covers channel point redemptions too.&lt;/strong&gt; Before, a Typed amount redemption could cost real points while chat said it was free.&lt;/li&gt;
-&lt;li&gt;The settings window opens straight away. The Update pill appears once GitHub answers, and only for a newer release.&lt;/li&gt;
-&lt;li&gt;After Save, the window points out settings that keep gambles from starting, like channel points without a Reward ID or a Default bet outside Minimum and Maximum.&lt;/li&gt;
-&lt;li&gt;The theme button asks before dropping unsaved changes, and unsaved changes show up in orange.&lt;/li&gt;
-&lt;li&gt;A few built-in chat texts read more naturally, and the addicted usage text names the real command, &lt;code&gt;!gambleaddict&lt;/code&gt;. Messages you already saved stay as they are.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The import works wherever Streamer.bot is installed.&lt;/strong&gt; Every Windows reference is absolute now, so &lt;code&gt;Find Refs&lt;/code&gt; is no longer needed.&lt;/li&gt;
-&lt;li&gt;The Log page can filter by platform again, next to Result and Date.&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;CCG: Gamble Win&lt;/code&gt;, &lt;code&gt;Gamble Loss&lt;/code&gt; and &lt;code&gt;Gamble Jackpot&lt;/code&gt; triggers fire after the result is stored, so &lt;code&gt;GetLastGambleResult&lt;/code&gt; reads this gamble and not the one before.&lt;/li&gt;
-&lt;li&gt;Odd numbers in the settings or in a balance (NaN, infinity, huge values) no longer crash a gamble. A redemption that fails before any points move is refunded.&lt;/li&gt;
-&lt;li&gt;With channel points on and no Reward ID, the log reports an error instead of quietly skipping every redemption.&lt;/li&gt;
-&lt;li&gt;Only Twitch&amp;#39;s Reward Redemption trigger starts a channel point gamble, and a Command Cooldown trigger never starts one.&lt;/li&gt;
-&lt;li&gt;A damaged settings file no longer takes the intact one down with it: only the damaged file falls back to its defaults, and the theme button doesn&amp;#39;t overwrite the other.&lt;/li&gt;
-&lt;li&gt;Settings window:&lt;ul&gt;
-&lt;li&gt;An empty number field, or a whole number with a space in it like &lt;code&gt;1 000&lt;/code&gt;, is named and nothing is saved, instead of turning into 0.&lt;/li&gt;
-&lt;li&gt;Ctrl+S and Save keep a name that&amp;#39;s still being typed into a list.&lt;/li&gt;
-&lt;li&gt;While Free Game Mode is on, Default bet shows and keeps your real bet instead of 0.&lt;/li&gt;
-&lt;li&gt;Try a bet no longer refuses every Default bet above 10,000 as not enough.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;Setup, commands and answers to common questions: &lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; · &lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.0&quot;&gt;Download v24.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Slot Machine Game v15.0.0: Bugfixes, QoL, Reworked mechanics</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.0"/>
-    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.0</id>
-    <published>2026-10-19T20:21:38Z</published>
-    <updated>2026-10-19T20:21:38Z</updated>
-    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
-    <content type="html">&lt;h3&gt;✨Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The Streamer.bot log says when a Twitch chat command did nothing because the slot machine is set to channel points. A debug line does the same for a redemption left alone while it&amp;#39;s set to the chat command.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🔧Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Every platform plays.&lt;/strong&gt; The Twitch, YouTube and Kick switches are gone; which platforms can spin is set on the command in Streamer.bot, e.g. by unticking &lt;code&gt;Kick Message&lt;/code&gt;. Settings that switched a platform off no longer keep it out.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Channel points work as in Classic Chat Gamble.&lt;/strong&gt; In Reward cost and Fixed mode the channel points are the stake, so a loss takes no points and adds nothing to the Jackpool, while a win is paid in points. Typed amount bets the viewer&amp;#39;s own points.&lt;/li&gt;
-&lt;li&gt;Channel points switch the chat command off on Twitch only. YouTube and Kick keep spinning with it, and saving warns about a Default bet that would refuse those spins.&lt;/li&gt;
-&lt;li&gt;Minimum and Maximum bet apply to Typed amount and Fixed mode.&lt;/li&gt;
-&lt;li&gt;Without a Reward ID, no redemption starts a spin and other rewards are left alone; saving like that says so.&lt;/li&gt;
-&lt;li&gt;Channel points Free mode uses the Free messages.&lt;/li&gt;
-&lt;li&gt;&amp;quot;Send as /me&amp;quot; is marked Twitch only, and the chat preview shows YouTube and Kick as the plain chat they get.&lt;/li&gt;
-&lt;li&gt;Chat calls the jackpot pool the Jackpool; default texts nobody edited switch over by themselves.&lt;/li&gt;
-&lt;li&gt;Cooldown messages fill in &lt;code&gt;{user}&lt;/code&gt;, round the seconds up and no longer fail on a stray brace.&lt;/li&gt;
-&lt;li&gt;Each line of a message goes out as a chat message of its own, and Twitch and Kick split at 500 characters instead of 200.&lt;/li&gt;
-&lt;li&gt;The settings window opens at once; the Update pill appears as soon as GitHub answers.&lt;/li&gt;
-&lt;li&gt;Reset keeps the light or dark theme.&lt;/li&gt;
-&lt;li&gt;Clearer texts in the settings window and the log, and a reworked Setup Guide, FAQ and README.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🐛Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The import works wherever Streamer.bot is installed: every Windows reference is absolute, so &lt;code&gt;Find Refs&lt;/code&gt; is no longer needed.&lt;/li&gt;
-&lt;li&gt;The jackpot message no longer counts the Jackpool twice: &lt;code&gt;{amount}&lt;/code&gt; is the win without the pool.&lt;/li&gt;
-&lt;li&gt;A balance that can&amp;#39;t be read stops the spin instead of being overwritten, and a redemption is refunded.&lt;/li&gt;
-&lt;li&gt;A redemption that can&amp;#39;t spin for lack of emotes is refunded instead of fulfilled.&lt;/li&gt;
-&lt;li&gt;With a damaged settings file, the game plays with the &lt;code&gt;.bak&lt;/code&gt;, or not at all, instead of silently without emotes.&lt;/li&gt;
-&lt;li&gt;A Reward cost redemption that arrives without its cost is refunded instead of played for 0.&lt;/li&gt;
-&lt;li&gt;Free spins never win the Jackpool.&lt;/li&gt;
-&lt;li&gt;The addicted-viewer texts no longer promise a doubled cooldown.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h1&gt;Important&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;YouTube and Kick now play.&lt;/strong&gt; Before v15.0.0 they were switched off by default. To keep one out, open the command &lt;code&gt;[SMG] - Play Slots&lt;/code&gt; and untick its source (&lt;code&gt;YouTube Message&lt;/code&gt; or &lt;code&gt;Kick Message&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;After importing, check that the command &lt;code&gt;[SMG] - Play Slots&lt;/code&gt; is switched on: it arrives switched off.&lt;/li&gt;
-&lt;li&gt;No more &lt;code&gt;Find Refs&lt;/code&gt;: the import works wherever Streamer.bot is installed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through everything step by step.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.0&quot;&gt;Download v15.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

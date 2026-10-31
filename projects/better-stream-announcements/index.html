@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/better-stream-announcements/">
-  <meta property="og:title" content="Better Stream Announcements  •  v2.1.0">
+  <meta property="og:title" content="Better Stream Announcements  •  v2.1.1">
   <meta property="og:description" content="Go-live and stream-ended embeds in Discord, Stoat or GameVox, for you and your streamer friends. A free Streamer.bot extension.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/better-stream-announcements.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.1.0">
+  <meta name="twitter:data1" content="v2.1.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +30,7 @@
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.1.0","made":"1.0.7","min":"1.0.0-alpha.1","actions":15,"code":14,"commands":[],"words":[],"timers":7,"sites":["discord.com","gamevox.com","googleapis.com","kick.com","picarto.tv","steamgriddb.com","stoat.chat","twitch.tv"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"2.1.1","made":"1.0.7","min":"1.0.7","actions":15,"code":14,"commands":[],"words":[],"timers":7,"sites":["discord.com","gamevox.com","googleapis.com","kick.com","picarto.tv","steamgriddb.com","stoat.chat","twitch.tv"],"updateCheck":true}</script>
 </head>
 <body data-repo="Better-Stream-Announcements" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -77,11 +77,12 @@
       <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
         <h2 class="doc-label">Overview</h2>
         <div class="doc-body"><p align="center">
-  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/Bsa-Full.png" alt="Better Stream Announcements" width="400" height="500">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/BsA-Favicon.png" alt="Better Stream Announcements" width="230" height="300">
 </p><h1 align="center">Better Stream Announcements</h1><p align="center">
   <b>Livestream announcements for your channel and your streamer friends.</b><br>
   Twitch, YouTube, Kick, Owncast, Rumble, Picarto and TikTok, straight from Streamer.bot.
 </p><p align="center">
+  
   
   
   <a href="https://opensource.org/licenses/MIT"></a>
@@ -127,64 +128,222 @@ and ISLIVE roles with Discord&#39;s own pickers, so nobody has to copy IDs by ha
       <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
         <h2 class="doc-label">Setup guide</h2>
         <div class="doc-body"><h1>Import</h1>
-<p align="center"><img loading="lazy" width="281" height="103" alt="grafik" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"></p><p>Boot up <code>streamer.bot</code> and click on <code>Import</code>.</p>
-<p align="center"><img loading="lazy" width="900" height="674" alt="grafik" src="https://github.com/user-attachments/assets/67b184cd-4799-4dba-9b68-6ddf84f2e5b5"></p><p>Drag the <code>BetterStreamAnnouncements.sb</code> into the import window. Click on <code>Yes/Ok</code> on the following popup messages to succesfully import the project.</p>
-<p align="center"><img loading="lazy" width="1280" height="720" alt="grafik" src="https://github.com/user-attachments/assets/17a5d427-e982-49ca-8f0e-57060a0d6ff4"></p><p>Enable the timers seen in the screenshot, so the scripts check on your friends from time to time.
-There is one <code>[BsA\SF]</code> timer per platform - Twitch, YouTube, Kick, Owncast, Rumble, Picarto and TikTok.
-Enable only the ones you actually use: <strong>a platform whose timer is off is never polled and never announces anything.</strong></p>
+<p align="center"><img loading="lazy" width="281" height="103" alt="The Import button in Streamer.bot" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"></p><p>Click <code>Import</code> in <a href="https://streamer.bot/">Streamer.bot</a> and drag
+<a href="https://github.com/aaskjer/Better-Stream-Announcements/releases/latest">BetterStreamAnnouncements.sb</a> into the window, or paste the
+<a href="https://github.com/aaskjer/Better-Stream-Announcements/blob/main/Import-String.md">import string</a>. Click <code>Import</code>, then <code>Yes</code> on the popups that follow.</p>
+<p>An update works the same way: import the new version over the old one. Your settings live in a file of their own
+and stay as they are.</p>
+<p>You get fifteen actions in the group <code>[BsA] - Better Stream Announcements</code>, seven timers and a queue named <code>BsA</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[BsA] - .Settings</code></td>
+<td>Opens the Settings window.</td>
+</tr>
+<tr>
+<td><code>Broadcaster Online</code></td>
+<td>Your own go-live announcement, for Twitch, YouTube and Kick.</td>
+</tr>
+<tr>
+<td><code>Broadcaster Offline</code></td>
+<td>Turns it into the stream-ended message when you stop.</td>
+</tr>
+<tr>
+<td><code>Streamer Friends (Twitch)</code>, <code>(YouTube)</code>, <code>(Kick)</code>, <code>(Owncast)</code>, <code>(Rumble)</code>, <code>(Picarto)</code>, <code>(TikTok)</code></td>
+<td>One per platform: checks your friends whenever its timer fires and announces them.</td>
+</tr>
+<tr>
+<td><code>[BsA] - Discord Bot Presence</code></td>
+<td>Your own Discord bot: the connection, its status and the slash commands. Starts with Streamer.bot.</td>
+</tr>
+<tr>
+<td><code>[SF] - Presence Role Assign</code></td>
+<td>ISLIVE roles from Discord&#39;s own &quot;Streaming&quot; activity.</td>
+</tr>
+<tr>
+<td><code>[SF] - Self Role Assign</code></td>
+<td><code>/streamerfriends</code>: members link their own streaming accounts.</td>
+</tr>
+<tr>
+<td><code>[CC] - Custom Crosspost</code></td>
+<td><code>/crosspost</code>: members subscribe a channel on their own server to your announcements.</td>
+</tr>
+<tr>
+<td><code>[CC] - Crosspost Dispatch</code></td>
+<td>Hands every new announcement to those subscriptions.</td>
+</tr>
+</tbody></table>
+<p>Leave everything inside the <code>NO TOUCHY!</code> sub-action groups as it is.</p>
+<h2>Switch On What You Use</h2>
+<p>Two things come switched off, so nothing is posted before you have set it up:</p>
+<ul>
+<li><strong>The timers.</strong> Go to <code>Timers</code>. There is one <code>[BsA\SF]</code> timer per platform: Twitch, YouTube, Kick, Owncast,
+Rumble, Picarto and TikTok. Right-click each one you use and tick <code>Enable</code>.
+<strong>A platform whose timer is off is never checked and never announces anyone.</strong> YouTube fires every 700 seconds to
+stay inside Google&#39;s API quota, the others every 400.</li>
+<li><strong><code>Broadcaster Online</code> and <code>Broadcaster Offline</code>.</strong> If BsA should announce your own stream, enable both under
+<code>Actions</code> once <a href="#platforms">Broadcaster → Platforms</a> has somewhere to post. Check them again after an update, since
+the import can bring them back switched off.</li>
+</ul>
 <hr>
-<h1>Install</h1>
-<p align="center"><img loading="lazy" width="1280" height="720" alt="grafik" src="https://github.com/user-attachments/assets/ac21effa-0e6b-4f24-b7e9-fb230e09c20d"></p><p>Go to <code>[BsA] - .Settings</code> and trigger the <code>Test</code> trigger to open up the GUI.</p>
-<p>Most of what follows can also be done from Discord with <code>/bsa setup</code>, which picks channels, ping roles,
-ISLIVE roles and bot admins through Discord&#39;s own menus, so you never have to copy an ID by hand.
-The GUI stays the place for everything else.</p>
+<h1>Setup</h1>
+<p>Go to <code>Actions</code>, select <code>[BsA] - .Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>. That opens the
+Settings window.</p>
+<p>The pages sit in a sidebar, in four groups — <strong>Broadcaster</strong>, <strong>Streamer Friends</strong>, <strong>Discord Bot</strong> and <strong>Help</strong> — with
+<strong>Home</strong> on top. <code>Ctrl+F</code> searches every page by its labels and setting keys. <code>Ctrl+S</code> saves and keeps the window open,
+<code>Save &amp; Exit</code> closes it; the footer counts what you have changed, and closing with unsaved changes asks first. The ☰ menu
+switches between the light and dark theme and resets everything to defaults.</p>
+<p>Hover over any field to read what it does. 🔗 next to a field opens the page where you get that key, ❓ explains where to
+find a Discord ID. Every setting is stored in <code>Announcements\Discord\settings.json</code> next to Streamer.bot.</p>
+<p>Most Discord picks can also be made from Discord itself: <code>/bsa setup</code> chooses channels, ping roles, ISLIVE roles and bot
+admins from Discord&#39;s own menus, so you never copy an ID by hand. It needs <a href="#create-a-discord-bot">your own bot</a>.</p>
+<h2>Home</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/home.png" alt="Home page" width="680"></p><p><strong>Right Now</strong> shows who is live, where announcements go and how many Streamer Friends each platform has. <strong>Start Here</strong>
+walks through the setup in five steps, each with a button to its page; <strong>Hide</strong> puts it away, and About brings it back.
+<strong>Today</strong> counts the announcements, warnings and errors in today&#39;s log and names the last problem.</p>
+<h2>Where Announcements Go</h2>
+<p>BsA posts to three places, and each one works on its own:</p>
+<ul>
+<li><strong>Discord</strong>, either through your own bot (a Channel-ID) or through a webhook. Only the bot gets the <strong>Watch</strong> button and
+a separate channel for stream-ended messages; everything else works with both.</li>
+<li><strong>GameVox</strong>, through a webhook. It gets the same post minus the buttons and the role mentions.</li>
+<li><strong>Stoat</strong>, through a webhook. It gets the text and the embed without a preview picture, since Stoat only takes pictures
+uploaded by a bot account.</li>
+</ul>
+<p>Set up any one of them, or all three. A target that is not set up, or that refuses a post, never holds the others back.
+Your own announcements and the Streamer Friends ones have settings of their own, so they can go to different channels.</p>
 <h2>Broadcaster</h2>
+<h3>Platforms</h3>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/broadcaster-platforms.png" alt="Broadcaster Platforms page" width="680"></p><p>Where your own announcement is posted, and the keys your platforms need:</p>
+<ul>
+<li><strong>Discord:</strong> a Channel-ID (needs the bot token under <a href="#bot-presence">Bot Presence</a>) <strong>or</strong> a webhook URL. With both set,
+the channel and the bot win.</li>
+<li><strong>GameVox</strong> and <strong>Stoat:</strong> a webhook URL each, both optional.</li>
+<li><strong>YouTube</strong> needs a Google API key, <strong>Kick</strong> a Client ID and Client Secret of its own. Twitch needs nothing here: it
+comes through Streamer.bot&#39;s own Twitch connection.</li>
+<li><strong>SteamGridDB</strong> (optional) adds the game&#39;s box art on Kick. Twitch brings its own, and YouTube reports no game.</li>
+</ul>
 <h3>Online</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/7c63b7b3-d08d-4d2a-8a41-dc7a2cb7af47"></p><p>Adjust as you like, this page is only for you as broadcaster sending out your stream announcement.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/broadcaster-online.png" alt="Broadcaster Online page" width="680"></p><p>The post that goes out when you go live:</p>
+<ul>
+<li><strong>Filters:</strong> post only for certain categories, or for titles that contain a keyword. Empty means always.</li>
+<li><strong>Mentions:</strong> @everyone, @here or roles.</li>
+<li><strong>Embed Content:</strong> game, box art, viewer and follower counts, tags.</li>
+<li><strong>Embed Behavior:</strong> keep the post up to date while you stream (<strong>Update Announcements</strong>), publish it to the servers that
+follow your announcement channel (<strong>Auto Crosspost</strong>), the <strong>Watch</strong> button, and where the color comes from — your
+profile color, a random one, or a fixed color per platform. The swatch beside each color opens a picker.</li>
+<li><strong>Messages:</strong> a line above the embed (<strong>Hypeline Message</strong>) and the embed&#39;s own text.</li>
+</ul>
 <h3>Offline</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/cd525abf-d482-433d-8894-618eab6e0f93"></p><p>Same as <code>Online</code> but you have the option to modify or send the offline announcement to another discord channel by adding a different discord channel ID in the first input field.
-<em><strong>Hover with the mouse over the options to see more details</strong></em></p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/broadcaster-offline.png" alt="Broadcaster Offline page" width="680"></p><p>What happens to that post when you stop. With <strong>Edit Live Announcement Instead</strong> on (the default), the live post turns into
+the stream-ended one; with it off, a separate message is posted, and a <strong>Channel-ID</strong> here sends that message to another
+channel (bot only). Mentions, content, a VOD or channel button, the color and the texts work as on Online.</p>
 <h2>Streamer Friends</h2>
+<h3>Platforms</h3>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/friends-platforms.png" alt="Streamer Friends Platforms page" width="680"></p><p>Where your friends are announced — Discord, GameVox and Stoat, as for your own announcement but set up separately — and
+the keys their platforms need:</p>
+<ul>
+<li><strong>Twitch:</strong> a Client ID and Client Secret of your own Twitch app. Streamer.bot&#39;s login only covers your own channel, not
+other people&#39;s.</li>
+<li><strong>YouTube:</strong> a Google API key. <strong>Kick:</strong> a Client ID and Client Secret.</li>
+<li><strong>Picarto:</strong> a Client ID and Client Secret (the token renews itself), or a bearer token.</li>
+<li><strong>Owncast, Rumble and TikTok</strong> need nothing.</li>
+</ul>
+<p>The Discord Server ID lives under <a href="#bot-presence">Bot Presence</a>; the roles, <code>/bsa setup</code> and the slash commands share it.</p>
 <h3>Promotion</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/24f95fcb-8694-4f65-bf54-79824184698f"></p><p>In this tab, you can add your friends so BsA promotes them. You can additionally add discord role IDs so they will get assigned roles when they are live. The roles get removed
-when they are detected as offline.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/friends-promotion.png" alt="Streamer Friends Promotion page" width="680"></p><p>Who gets announced. Each platform has a list of its own, comma-separated:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>What to enter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Twitch, Kick, Picarto</td>
+<td>The name from the channel URL: <code>twitch.tv/aaskjer</code> → <code>aaskjer</code></td>
+</tr>
+<tr>
+<td>YouTube</td>
+<td>The channel ID or <code>@handle</code>; <code>UC…|Name</code> shows a readable name in the Discord menus</td>
+</tr>
+<tr>
+<td>Owncast</td>
+<td>The server address, e.g. <code>stream.example.org</code></td>
+</tr>
+<tr>
+<td>Rumble</td>
+<td><code>ApiUrl|WatchUrl|DisplayName</code>; only the livestream API URL is required</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>The name from the profile URL: <code>tiktok.com/@aaskjer</code> → <code>aaskjer</code></td>
+</tr>
+</tbody></table>
+<p>With self-linking switched on (<a href="#role-assign">Role Assign</a>), members add themselves with <code>/streamerfriends link</code> instead.</p>
+<p><strong>Discord ISLIVE Role Assign</strong> gives a friend a Discord role while they are live. Link their platform name to their
+Discord user ID under <strong>Assign Role To</strong> (<code>aaskjer:123456789012345678</code>; Owncast and Rumble use <code>|</code> instead of <code>:</code>, since a
+URL already holds one). <strong>All Platforms</strong> is the role for everyone; a platform&#39;s own <strong>ISLIVE Role ID(s)</strong> replace it for
+that platform.</p>
 <h3>Online</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/42570b93-bab2-4c2f-9309-076c50dd24c7"></p><p>Basically the same as in the <code>Broadcaster</code> Section. Add unique custom descriptions to your friends announcements:
-in the action for that platform - <code>Streamer Friends (Twitch)</code>, <code>Streamer Friends (YouTube)</code> and so on, one per
-platform since this release - add an argument to the</p>
-<p align="center"><img loading="lazy" width="1280" height="720" alt="grafik" src="https://github.com/user-attachments/assets/0486c37c-4800-4be2-b578-31eee7376f9b"></p><p>sub-action group <code>Custom Messages</code>. <code>Variable Name</code> must be: <code>%StreamerFriendNameMessage%</code> (case-sensitive)</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/friends-online.png" alt="Streamer Friends Online page" width="680"></p><p>How a friend&#39;s live announcement looks: the same filters, mentions and content as your own, <strong>Update Announcements</strong>,
+<strong>Use Streamer&#39;s Profile Color</strong>, a color per platform, and a <strong>Generic Description</strong> for everyone.</p>
+<p>A friend can have a text of their own. In that platform&#39;s Streamer Friends action, add a <code>Set Argument</code> sub-action to the
+group <code>Custom Messages</code> and name the variable after the friend as they stand in your list: <code>%aaskjerMessage%</code> for the
+friend <code>aaskjer</code> (case-sensitive). A YouTube <code>@handle</code> goes in without the <code>@</code>, an Owncast friend by the server&#39;s host name
+(<code>stream.example.orgMessage</code>), a Rumble friend by their display name.</p>
 <h3>Offline</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/2b241d52-9c90-42c2-bc5e-0846af772870"></p><p>Streamer Friends are restricted to a single channel in discord. If you&#39;re using your own discord bot, <code>BsA</code> will be able to update,
-edit to offline and even remove stale announcements, so your promotion channel stays clean.</p>
-<h2>Platforms</h2>
-<h3>Broadcaster</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/b5c2bcb4-6471-40d1-86ee-745baa4550cb"></p><p>Here you can add from where <code>BsA</code> get it&#39;s information an you can decide if you use your own discord bot or a webhook.
-<em><strong>Hover with the mouse over the options to see more details</strong></em>
-Note: Using the webhook comes with limitations: updating and editing the last current announcement or removing old announcements aren&#39;t possible.</p>
-<h3>Streamer Friends</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/326276b0-2405-4b4d-8bf9-3c5690382a5a"></p><p>Same for <code>Streamer Friends</code> you can add the same details for your discord bot or webhook or use different ones.
-<em><strong>Hover with the mouse over the options to see more details</strong></em></p>
-<h3>Discord Bot</h3>
-<p align="center"><img loading="lazy" width="634" height="661" alt="grafik" src="https://github.com/user-attachments/assets/77c95f90-9472-4338-93a7-1d342e9691f8"></p><p>You&#39;re using your own discord bot exclusively for <code>BsA</code>? Then you can adjust it&#39;s discord presence here.
-Also you find settings here so users from your discord cann assign themselves to <code>BsA</code> if they want to get promoted when they go live.
-Add an exclusive role (e.g. <code>Members</code>) if you don&#39;t want literally <code>anybody</code> to be able to add themselves to the list.</p>
-<h4>Create a Discord bot</h4>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/friends-offline.png" alt="Streamer Friends Offline page" width="680"></p><p>What a friend&#39;s announcement turns into once they end: an ended message, and whether the announcement is removed
+<strong>Hour(s) till removal</strong> later — on Discord, GameVox and Stoat alike — so the promotion channel stays clean.</p>
+<h2>Discord Bot</h2>
+<h3>Bot Presence</h3>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/bot-presence.png" alt="Bot Presence page" width="680"></p><p>Your own Discord bot: its token, your <strong>Server ID</strong> and the bot admins (users or roles; while empty, everyone with
+<strong>Manage Server</strong> counts as one). Below that, the status and activity it shows, and its name, avatar, banner and
+description. A webhook alone needs none of this, but the bot is what runs the slash commands, the roles and the Watch
+button.</p>
+<p><strong>Slash Commands → Register Again</strong> pushes <code>/bsa</code>, <code>/streamerfriends</code> and <code>/crosspost</code> to Discord once more, for example
+after inviting the bot again.</p>
+<h3>Role Assign</h3>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/role-assign.png" alt="Role Assign page" width="680"></p><ul>
+<li><strong>Self-Assign</strong> lets members add themselves to Streamer Friends with <code>/streamerfriends link</code>. Limit it to roles with
+<strong>Exclusive Role ID(s)</strong> (e.g. <code>Members</code>) if not literally everybody should be able to.</li>
+<li><strong>Auto Detect Streamers By Discord Presence</strong> gives the ISLIVE roles below to members whose Discord shows them as
+streaming. It runs apart from the Streamer Friends checks; a role is only ever taken back by the side that gave it.</li>
+</ul>
+<h3>Custom Crosspost</h3>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/custom-crosspost.png" alt="Custom Crosspost page" width="680"></p><p>Members send chosen announcements to a channel on their own server through their own webhook, set up with
+<code>/crosspost setup</code>. Their webhook URLs are stored encrypted with a key tied to this Windows account: use
+<strong>Recovery Code → Show</strong> and keep the code somewhere safe, it is the only way to take the subscriptions to another PC.</p>
+<h2>Help</h2>
+<h3>Status Log</h3>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Better-Stream-Announcements/main/Assets/setup-guide/status-log.png" alt="Status Log page" width="680"></p><p>Everything BsA wrote to Streamer.bot&#39;s log, one day at a time, plus what Streamer.bot itself reported about a BsA action
+— an error naming it, or a script that would not compile. Filter by day, action, level and text; select a line to read it
+in full. Start here when something is not posted.</p>
+<hr>
+<h1>Create A Discord Bot</h1>
+<p>Needed for the slash commands, <code>/bsa setup</code>, the roles and the Watch button. Webhooks work without one.</p>
 <ul>
 <li>Go to <a href="https://discord.com/developers/applications">discord.com/developers/applications</a> and click <code>New Application</code></li>
-<li>Under <code>Bot</code> go to <code>Privileged Gateway Intents</code> and enable <code>Presence Intent</code> and <code>Server Members Intent</code>, then save<ul>
-<li><code>Message Content Intent</code> is <strong>no longer needed</strong> since v2.0.0 and can stay off - the bot runs on slash commands</li>
+<li>Under <code>Bot</code>, go to <code>Privileged Gateway Intents</code>, enable <code>Presence Intent</code> and <code>Server Members Intent</code>, then save<ul>
+<li><code>Message Content Intent</code> is not needed and can stay off: the bot runs on slash commands</li>
 </ul>
 </li>
-<li>Under <code>Bot</code> click <code>Reset Token</code> and save it somewhere</li>
-<li>Go to <code>OAuth2</code> → <code>OAuth2 URL-Generator</code>, select scopes: <code>bot</code> <strong>and</strong> <code>applications.commands</code><ul>
+<li>Under <code>Bot</code>, click <code>Reset Token</code> and paste the token into <strong>Bot Token</strong> under Discord Bot → Bot Presence</li>
+<li>Go to <code>OAuth2</code> → <code>OAuth2 URL Generator</code> and select the scopes <code>bot</code> <strong>and</strong> <code>applications.commands</code><ul>
 <li>Without <code>applications.commands</code> the slash commands never show up in your server</li>
 </ul>
 </li>
-<li>Check <code>Administrator</code> in the now appeared <code>Bot-Permissions</code> </li>
-<li>Open the generated URL, select your server and click Authorize</li>
+<li>Tick <code>Administrator</code> under the <code>Bot Permissions</code> that appear</li>
+<li>Open the generated URL, pick your server and click <code>Authorize</code></li>
 </ul>
-<p>The bot registers <code>/bsa</code>, <code>/streamerfriends</code> and <code>/crosspost</code> by itself once it connects. If they do not appear,
-use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot Presence in the settings window.</p>
+<p>The bot registers <code>/bsa</code>, <code>/streamerfriends</code> and <code>/crosspost</code> by itself once it connects. If they do not appear, use
+<strong>Slash Commands → Register Again</strong> under Discord Bot → Bot Presence. Then run <code>/bsa setup</code> in your server.</p>
+<p>All commands are listed in the <a href="https://github.com/aaskjer/Better-Stream-Announcements/blob/main/FAQ.md#-discord-bot--commands">FAQ</a>.</p>
 </div>
       </section>
       <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
@@ -196,7 +355,10 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <p>Everything lives in one shared file under your Streamer.bot base directory:</p>
 <pre><code>Announcements/Discord/settings.json   ← every setting for every feature (Broadcaster, Streamer Friends, Discord Bot, Role Assign, Custom Crosspost)
 </code></pre>
-<p>You shouldn&#39;t have to edit it by hand; the Settings GUI covers all of it. Every BsA action (Broadcaster Online/Offline, Streamer Friends, Discord Bot Presence, Presence Role Assign, Self-Assign, Custom Crosspost) reads this one file, so a change made in any tab reaches every script that cares about it.</p>
+<p>You shouldn&#39;t have to edit it by hand; the Settings GUI covers all of it. Every BsA action (Broadcaster Online/Offline, Streamer Friends, Discord Bot Presence, Presence Role Assign, Self-Assign, Custom Crosspost) reads this one file, so a change made on any page reaches every script that cares about it.</p>
+<hr>
+<p><strong>Q: Where do I see what BsA actually did?</strong></p>
+<p>In the Settings window under <strong>Help → Status Log</strong>: every line a BsA action wrote to Streamer.bot&#39;s log, one day at a time, plus what Streamer.bot itself reported about a BsA action, such as an error naming it or a script that would not compile. Filter it by day, action, level and text. <strong>Home → Today</strong> sums up today&#39;s log: announcements posted, warnings, errors, and the last problem.</p>
 <hr>
 <p><strong>Q: Do I have to copy all those Discord IDs by hand?</strong></p>
 <p>No. Run <code>/bsa setup</code> in your Discord server and pick channels, roles and bot admins straight from Discord&#39;s own menus. Every pick is saved to <code>settings.json</code> the moment you make it, and the Server ID is filled in automatically if it&#39;s still empty. The Settings GUI remains the place for everything else: texts, colors, platforms and API keys.</p>
@@ -210,7 +372,7 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 </ul>
 <hr>
 <p><strong>Q: How do I reset all settings to defaults?</strong></p>
-<p>Click <strong>Reset to Defaults</strong>, the red button at the bottom left of the Settings window (it&#39;s there on every tab). It rewrites <code>settings.json</code> with factory values and reopens the GUI. <strong>Show Debug / Testing Sections</strong> is a separate toggle under <strong>About → Advanced</strong>; it only reveals the debug checkboxes mentioned elsewhere in this FAQ and doesn&#39;t reset anything.</p>
+<p>Open the <strong>☰</strong> menu at the top left of the Settings window and pick <strong>Reset to Defaults…</strong>. It rewrites <code>settings.json</code> with factory values and reopens the window. <strong>Show Debug / Testing Sections</strong> is a separate toggle under <strong>About → Advanced</strong>; it only reveals the debug checkboxes mentioned elsewhere in this FAQ and doesn&#39;t reset anything.</p>
 <hr>
 <p><strong>Q: I saved settings but nothing changed. Why?</strong></p>
 <p>Most scripts (Streamer Friends, Broadcaster) read <code>settings.json</code> again at the start of their next <code>Execute()</code>, so the next trigger already uses your change, no restart needed. <strong>Discord Bot Presence</strong> and <strong>Presence Role Assign</strong> go further: they watch the file and apply relevant changes (presence text, bot profile, role lists) live, usually within a second.</p>
@@ -225,12 +387,22 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <li><strong>Webhook URL</strong>: no bot needed. Editing and deleting work here too, so Broadcaster Offline can turn the live announcement into the &quot;ended&quot; one, just like with the bot. A webhook is tied to one channel, though, so a separate stream-ended channel is a bot-only option.</li>
 </ul>
 <p>You only need one of the two. With both set, the channel and the bot win.</p>
+<p><strong>Q: Can BsA announce on GameVox or Stoat instead of, or as well as, Discord?</strong></p>
+<p>Yes. Broadcaster → Platforms and Streamer Friends → Platforms each take a GameVox webhook and a Stoat webhook. Discord, GameVox and Stoat are three delivery targets of their own: each one is posted when a stream starts, updated while it runs, switched to its ended form when it ends and, for a Streamer Friend, deleted once <strong>Remove Old Message</strong> takes it down. A target that isn&#39;t set up, or that refuses a post, never holds the other two back, so a GameVox or Stoat webhook on its own is enough to announce with.</p>
+<p>What each one leaves out:</p>
+<ul>
+<li><strong>GameVox</strong> speaks Discord&#39;s webhook API, so it gets the Discord post minus the buttons and the role mentions (those roles only exist on Discord). The time moves from the embed timestamp into the footer, and it posts under the webhook&#39;s own name and picture.</li>
+<li><strong>Stoat</strong> has no author line, fields or footer in its embeds, so they become lines of text, and there&#39;s no preview picture: Stoat only takes pictures uploaded through a bot account. Message and embed share Stoat&#39;s 2000 characters, so a long description is shortened.</li>
+</ul>
+<p>A message is only posted for a stream that is starting, so a webhook added while someone is live starts with their next stream.</p>
 <p><strong>Q: Why didn&#39;t my announcement post when I went live?</strong></p>
 <p>Check, in this order:</p>
 <ol>
+<li><strong>Help → Status Log</strong> in the Settings window. It usually says why in one line.</li>
+<li><strong>The actions <code>Broadcaster Online</code> and <code>Broadcaster Offline</code> are enabled</strong> in Streamer.bot. They come switched off in the import, so nothing goes out before you&#39;ve set things up.</li>
 <li><strong>Filter by Category / Filter by Title</strong> (Broadcaster → Online → Filters). If either is set, nothing gets posted unless the category matches one of your entries exactly or the title contains your keyword. Empty means no filtering.</li>
 <li>A <strong>20-minute cooldown</strong> after your last announcement keeps a shaky reconnect from posting twice. That&#39;s intentional; only the hidden <code>BA_SkipCooldown</code> debug flag bypasses it (Broadcaster → Online → Debug &amp; Testing, visible once <strong>Show Debug / Testing Sections</strong> is on in About → Advanced).</li>
-<li><code>BOT_Token</code> + <code>BA_ChannelId</code> missing or wrong, and no <code>BA_WebhookUrl</code> as fallback.</li>
+<li>Nowhere to post: <code>BOT_Token</code> + <code>BA_ChannelId</code> missing or wrong, no <code>BA_WebhookUrl</code> as fallback, and no GameVox or Stoat webhook either. <strong>Home → Right Now</strong> says so in its first line.</li>
 </ol>
 <p><strong>Q: Random Embed Color is on — do the per-platform hex colors still matter?</strong></p>
 <p>Not while it&#39;s on. <strong>Random Embed Color</strong> replaces the fixed per-platform colors completely; they&#39;re only used with it off. The one thing that beats it is <strong>Use My Profile Color</strong> / <strong>Use Streamer&#39;s Profile Color</strong>, whenever that finds a color.</p>
@@ -320,7 +492,7 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <p><strong>Q: Why did my role get stripped right after being granted?</strong></p>
 <p>A real bug in older versions. With the same role ID set up in both systems, Presence Role Assign could see &quot;not streaming, according to Discord&quot; and remove a role Streamer Friends had just granted correctly via the platform API. That happened mostly when a member doesn&#39;t use Discord&#39;s stream detection at all, or when it was slow to catch up. Fixed: Presence Role Assign now reacts only to a live→offline transition it saw itself, and only removes roles it granted itself. Roles from anywhere else stay untouched, however long Discord presence says &quot;not live&quot;.</p>
 <p><strong>Q: My member intentionally sets themselves Offline/Invisible on Discord — will they still get roles?</strong></p>
-<p>By default, yes. Streamer Friends ignores Discord status entirely, and Presence Role Assign usually can&#39;t see a &quot;Streaming&quot; activity for an Invisible member anyway, because Discord hides it. If you want Offline/Invisible members skipped, turn on <strong>Skip Offline/Invisible Discord Users</strong> in the matching tab.</p>
+<p>By default, yes. Streamer Friends ignores Discord status entirely, and Presence Role Assign usually can&#39;t see a &quot;Streaming&quot; activity for an Invisible member anyway, because Discord hides it. If you want Offline/Invisible members skipped, turn on <strong>Skip Offline/Invisible Discord Users</strong> on the matching page.</p>
 <hr>
 <h2>🤖 Discord Bot &amp; Commands</h2>
 <p><strong>Q: What are the Discord commands?</strong></p>
@@ -414,7 +586,7 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <td>How crossposting works</td>
 </tr>
 </tbody></table>
-<p><strong>Bot admins</strong> are the members, and everyone holding a role, listed under <strong>Admin User/Role (IDs)</strong> (Bot Presence tab). User and role IDs can be mixed. While that list is empty, anyone with Discord&#39;s <strong>Manage Server</strong> permission counts as one. Self-Assign and Crosspost admins come from their own <strong>Admin Role ID(s)</strong> fields.</p>
+<p><strong>Bot admins</strong> are the members, and everyone holding a role, listed under <strong>Admin User/Role (IDs)</strong> (Discord Bot → Bot Presence). User and role IDs can be mixed. While that list is empty, anyone with Discord&#39;s <strong>Manage Server</strong> permission counts as one. Self-Assign and Crosspost admins come from their own <strong>Admin Role ID(s)</strong> fields.</p>
 <p><strong>Q: Where did <code>?bsahelp</code>, <code>?cc</code>, <code>?sfadd</code> and the other <code>?</code> commands go?</strong></p>
 <p>They&#39;re replaced by the slash commands above. Discord increasingly expects bots to use slash commands, and the old prefix commands needed the <em>Message Content Intent</em>, which the bot no longer asks for. The <strong>Discord Prefix</strong> setting is gone with them. If your bot&#39;s activity text still says <code>?bsaHelp</code>, it&#39;s switched to <code>/bsa help</code> automatically, as long as it&#39;s still the old default.</p>
 <p><strong>Q: The slash commands don&#39;t show up in my server.</strong></p>
@@ -437,7 +609,7 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <p>Start with <code>/bsa status</code>. It shows the connection, whether the presence is switched on, whether the settings watcher is still alive, and any error that stopped the session. Then go down this list:</p>
 <ul>
 <li><strong>Privileged intents got switched off.</strong> The usual reason a bot that worked yesterday is offline today. Discord refuses the connection outright (close code <code>4014</code>) when the bot asks for an intent the application isn&#39;t approved for, and it revokes them by itself once an unverified bot passes 100 servers. BsA then reconnects without them, so the bot still comes online and the slash commands keep working; the log and <code>/bsa status</code> say so. Presence Role Assign stays without data until you turn the intents back on in the Developer Portal and restart the action.</li>
-<li><strong>Status is set to &quot;Offline&quot;.</strong> In the Bot Presence tab that means Discord&#39;s <em>invisible</em>, which looks exactly like a dead bot. Pick <strong>Online</strong> for the green dot.</li>
+<li><strong>Status is set to &quot;Offline&quot;.</strong> On the Bot Presence page that means Discord&#39;s <em>invisible</em>, which looks exactly like a dead bot. Pick <strong>Online</strong> for the green dot.</li>
 <li><strong>Activity Type is &quot;Streaming&quot; without a usable Stream URL.</strong> Discord quietly drops a Streaming activity unless it carries a <code>twitch.tv</code> or <code>youtube.com</code> link, leaving the bot with no activity line at all. BsA falls back to <em>Playing</em> and logs why.</li>
 <li><strong>The settings watcher died.</strong> Live updates rely on a file watcher, and Windows silently kills it when its buffer overflows or the folder gets replaced. <code>/bsa status</code> shows whether it&#39;s still watching; it&#39;s rebuilt on every reconnect anyway, and the settings are read again on every connect.</li>
 <li><strong>Something else drives this bot&#39;s presence.</strong> Switch <strong>Set Bot Presence</strong> off (next question) and let the other thing own it.</li>
@@ -453,8 +625,9 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <li><strong>YouTube:</strong> the @handle or channel ID</li>
 <li><strong>Owncast:</strong> the server address, e.g. <code>stream.example.org</code></li>
 <li><strong>Rumble:</strong> the livestream API URL, plus the channel link (optional) for the name shown in announcements</li>
+<li><strong>TikTok:</strong> the user name, as in <code>tiktok.com/@yourname</code></li>
 </ul>
-<p>The bot looks the account up before saving it, so typos and wrong platforms are caught right away. For Twitch, YouTube, Kick and Picarto this needs the credentials under Streamer Friends → Platforms.</p>
+<p>The bot looks the account up before saving it, so typos and wrong platforms are caught right away. For Twitch, YouTube, Kick and Picarto this needs the credentials under Streamer Friends → Platforms; TikTok is checked against the public profile page.</p>
 <p><strong>Q: How do &quot;Exclusive Role ID(s)&quot; work for Self-Assign?</strong></p>
 <p>Despite the label, it takes several roles, comma-separated. A member needs <em>any one</em> of them to link or unlink their own accounts. Leave it empty to allow everyone.</p>
 <p><strong>Q: Can an admin link or unlink an account for someone else?</strong></p>
@@ -494,7 +667,7 @@ use <strong>Slash Commands → Register Again</strong> under Discord Bot → Bot
 <hr>
 <h2>🔔 Update Notifications</h2>
 <p><strong>Q: How do I know when a new version is available?</strong></p>
-<p>Opening the Settings GUI checks GitHub for the latest release tag. If it&#39;s newer than what you have installed, a popup offers to open the releases page. Once you&#39;ve dismissed it, it won&#39;t ask again for that version.</p>
+<p>Opening the Settings window checks GitHub for the latest release. While that isn&#39;t the version you have installed, a popup offers to open the releases page each time the window opens, and the window&#39;s title says <strong>🔔 Update available</strong> with the new version. Home and About show the version you run.</p>
 <p><strong>Q: Can I check for updates without opening the full Settings window?</strong></p>
 <p>Not yet. The check runs when Settings opens.</p>
 <hr>
@@ -511,6 +684,27 @@ If you still find bugs or have something to say, I&#39;d love to hear it :)</p>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>All notable changes to Better Stream Announcements are documented here.</p>
+<h2>v2.1.1 — GameVox and Stoat Without Discord</h2>
+<h3>Upgrade notes</h3>
+<ul>
+<li><strong>Nothing to redo.</strong> Import the new version over the old one: ten of the fourteen scripts carry new code (Broadcaster Online and Offline, the Settings window and all seven Streamer Friends actions), and your settings stay as they are.</li>
+<li><strong>Check that <code>Broadcaster Online</code> and <code>Broadcaster Offline</code> are enabled afterwards</strong> if BsA announces your own stream. Both have come switched off in the import since v2.0.0, so nothing is posted before it&#39;s set up, and an import over an existing install can switch them off again.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Discord, GameVox and Stoat are three delivery targets of their own.</strong> In v2.1.0 the GameVox and Stoat messages were copies that followed the Discord post: they were only posted together with a new Discord announcement, and a Discord post or edit that failed held them back. Now each one is posted when a stream starts, updated while it runs, switched to its ended form when it ends, brought back with a stream that returns inside the revive window, and — for a Streamer Friend — deleted once <strong>Remove Old Message</strong> takes it down, whatever the other two are doing. A Discord post or edit that fails never holds GameVox or Stoat back, and neither holds the other back.</li>
+<li><strong>Discord is no longer required.</strong> A GameVox or Stoat webhook on its own is enough to announce with, for your own stream and for Streamer Friends alike. The Home page counts a channel as ready once any one of the three is set up, and its <strong>Posting To</strong> row shows GameVox and Stoat as targets of their own instead of as copies.</li>
+<li>The GameVox and Stoat hints on Broadcaster → Platforms and Streamer Friends → Platforms describe the new behavior.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>Endless Stoat retries after the Stoat webhook was replaced.</strong> Stoat lets a webhook edit and delete only the messages it posted itself and answers any other with <code>403 CannotEditMessage</code> / <code>CannotDeleteMessage</code>. A message posted through the previous webhook was therefore asked about again on every cycle, forever — around a thousand <code>Stoat delete failed</code> warnings a day. Such a message is now let go after one warning: it stays in the Stoat channel as it is, and nothing waits on it any more. Broadcaster Online and Offline and all seven Streamer Friends actions.</li>
+</ul>
+<h3>Documentation</h3>
+<ul>
+<li><strong>The Setup Guide is rewritten</strong> for the sidebar Settings window, with a screenshot of every page, a table of the imported actions, and the two things that come switched off: the timers and Broadcaster Online/Offline.</li>
+<li><strong>FAQ:</strong> GameVox and Stoat, the Status Log, TikTok in <code>/streamerfriends link</code>, the ☰ menu&#39;s Reset to Defaults, and how the update check really behaves.</li>
+</ul>
 <h2>v2.1.0 — Stoat &amp; GameVox Copies, a New Settings Window and a Color Picker</h2>
 <h3>Upgrade notes</h3>
 <ul>
