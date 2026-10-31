@@ -1,0 +1,713 @@
+<!doctype html>
+<!-- commands/index.html is written from this file by _tools/update-pages.js: change this file and run it,
+     never commands/index.html. -->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Only this site and Umami may load or receive anything. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://gateway.umami.is https://cloud.umami.is; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Chat commands · aaskjer</title>
+  <meta name="description" content="Every chat command of aaskjer's Streamer.bot extensions on one page, with who may use it, and a ready-made Twitch panel that tells your viewers how to play.">
+  <link rel="canonical" href="https://aaskjer.github.io/commands/">
+  <meta name="theme-color" content="#0b0a12">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aaskjer">
+  <meta property="og:url" content="https://aaskjer.github.io/commands/">
+  <meta property="og:title" content="Every chat command, on one page">
+  <meta property="og:description" content="Look up what a command does, or tick the projects you run and get a ready-made Twitch panel for your viewers.">
+  <meta property="og:image" content="https://aaskjer.github.io/assets/img/og-home.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../feed.xml">
+  <link rel="icon" href="../assets/img/avatar.png" type="image/png">
+  <link rel="preload" href="../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/projects.js" defer></script>
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/commands.js" defer></script>
+  <script src="../assets/js/search.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="../">
+        <img src="../assets/img/avatar.png" alt="" width="32" height="32">
+        <span class="brand__name">aaskjer</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a class="nav__more" href="../#tools">Tools</a>
+        <a class="nav__more" href="../#games">Games</a>
+        <a class="is-active" href="./" aria-current="page">Commands</a>
+        <a class="nav__more" href="../#start">Setup</a>
+        <a href="../help/">Help</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-search"/></svg>
+        </button>
+        <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
+          <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-github"/></svg>
+        </a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="i i-sun" aria-hidden="true"><use href="../assets/img/icons.svg#i-sun"/></svg>
+          <svg class="i i-moon" aria-hidden="true"><use href="../assets/img/icons.svg#i-moon"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="wrap">
+      <header class="page-head">
+        <p class="kicker">Commands</p>
+        <h1>Every chat command, on one page</h1>
+        <p class="lead">Look up what a command does and who may use it, or tick the projects you run and get a ready-made Twitch panel that tells your viewers how to play.</p>
+        <p class="page-head__jump" hidden><a href="#panel">Go to the panel builder</a></p>
+      </header>
+
+      <div class="cmds">
+        <section class="cmds__list" aria-label="Command reference">
+          <!-- shown by commands.js -->
+          <div class="cmds__filter" hidden>
+            <label for="cmd-filter">Filter the 98 commands</label>
+            <div class="field">
+              <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-search"/></svg>
+              <input id="cmd-filter" type="search" placeholder="e.g. !note, birthday, duel" autocomplete="off" spellcheck="false">
+            </div>
+          </div>
+          <!-- written by _tools/update-pages.js from the import strings; the descriptions are the
+               rows of the projects' own command tables, or else the command's name in Streamer.bot -->
+        <section class="cmd-group" id="blackjack-game" data-repo="Blackjack-Game" data-short="Blackjack" aria-labelledby="cmd-Blackjack-Game">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/blackjack-game.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-Blackjack-Game"><a href="../projects/blackjack-game/">Blackjack Game</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!blackjack" data-panel="pick" data-start>
+              <code class="cmd__usage">!blackjack &lt;bet&gt;</code>
+              <span class="cmd__text">Deals a hand</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!bjduel" data-panel="pick">
+              <code class="cmd__usage">!bjduel @user &lt;bet&gt;</code>
+              <span class="cmd__text">Challenge another chatter</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!accept" data-panel="can">
+              <code class="cmd__usage">!accept</code>
+              <span class="cmd__text">Accept Duel</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!decline" data-panel="can">
+              <code class="cmd__usage">!decline</code>
+              <span class="cmd__text">Decline Duel</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!house">
+              <code class="cmd__usage">!house [rules] [bet]</code>
+              <span class="cmd__text">Open a table</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!stats" data-panel="can">
+              <code class="cmd__usage">!stats</code>
+              <span class="cmd__text">Personal Stats</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!AllStats" data-panel="can">
+              <code class="cmd__usage">!AllStats</code>
+              <span class="cmd__text">All Stats</span>
+              <span class="who">Everyone</span>
+            </li>
+          </ul>
+          <p class="cmd-group__sub">Typed in chat during a game</p>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="hit" data-panel="can">
+              <code class="cmd__usage">hit</code>
+              <span class="cmd__text">Draw another card</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="double" data-panel="can">
+              <code class="cmd__usage">double</code>
+              <span class="cmd__text">Double the bet, take exactly one card, then stand</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="split" data-panel="can">
+              <code class="cmd__usage">split</code>
+              <span class="cmd__text">Split a starting pair into two hands</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="stand" data-panel="can">
+              <code class="cmd__usage">stand</code>
+              <span class="cmd__text">Stop and keep your total</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="repeat" data-panel="can">
+              <code class="cmd__usage">repeat</code>
+              <span class="cmd__text">Post your last game message again</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="resettut" data-panel="can">
+              <code class="cmd__usage">resettut</code>
+              <span class="cmd__text">Reset Tutorial</span>
+              <span class="cmd__alias">also ResetTutorial</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="quit">
+              <code class="cmd__usage">quit</code>
+              <span class="cmd__text">Cancel and take the stake back - before your first move</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="insurance" data-panel="can">
+              <code class="cmd__usage">insurance</code>
+              <span class="cmd__text">Cover half your bet against a dealer blackjack</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="surrender" data-panel="can">
+              <code class="cmd__usage">surrender</code>
+              <span class="cmd__text">Fold and keep half the bet</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="deal" data-panel="can">
+              <code class="cmd__usage">deal</code>
+              <span class="cmd__text">Take a seat, or deal the table early</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="join" data-panel="can">
+              <code class="cmd__usage">join &lt;bet&gt;</code>
+              <span class="cmd__text">Take a seat, or deal the table early</span>
+              <span class="who">Everyone</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="classic-chat-gamble" data-repo="Classic-Chat-Gamble" data-short="Classic Chat Gamble" aria-labelledby="cmd-Classic-Chat-Gamble">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/classic-chat-gamble.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-Classic-Chat-Gamble"><a href="../projects/classic-chat-gamble/">Classic Chat Gamble</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!gamble" data-panel="pick">
+              <code class="cmd__usage">!gamble</code>
+              <span class="cmd__text">Plays a round, with the amount the viewer names or the Default bet</span>
+              <span class="cmd__alias">also !gambel</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!SetFreeGamble">
+              <code class="cmd__usage">!SetFreeGamble</code>
+              <span class="cmd__text">Turns Free Game Mode on</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EndFreeGamble">
+              <code class="cmd__usage">!EndFreeGamble</code>
+              <span class="cmd__text">Turns Free Game Mode off</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!gambleaddict">
+              <code class="cmd__usage">!gambleaddict</code>
+              <span class="cmd__text">Puts a viewer on the addicted list (add) or takes them off (remove)</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="trivia-game" data-repo="Trivia-Game" data-short="Trivia" aria-labelledby="cmd-Trivia-Game">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/trivia-game.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-Trivia-Game"><a href="../projects/trivia-game/">Trivia Game</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!TriviaScoreboard" data-panel="can">
+              <code class="cmd__usage">!TriviaScoreboard</code>
+              <span class="cmd__text">Show the top-N leaderboard</span>
+              <span class="cmd__alias">also !TTB</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!TriviaScoreboardSearch" data-panel="can">
+              <code class="cmd__usage">!TriviaScoreboardSearch</code>
+              <span class="cmd__text">Somebody else's stats</span>
+              <span class="cmd__alias">also !TSS</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!TStats" data-panel="can">
+              <code class="cmd__usage">!TStats</code>
+              <span class="cmd__text">Your own stats</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!Trivia" data-panel="pick" data-start>
+              <code class="cmd__usage">!Trivia</code>
+              <span class="cmd__text">Start a new round</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!SkipTrivia" data-panel="can">
+              <code class="cmd__usage">!SkipTrivia</code>
+              <span class="cmd__text">Skip the current question</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!TA">
+              <code class="cmd__usage">!TA</code>
+              <span class="cmd__text">Manage the addicted list</span>
+              <span class="cmd__alias">also !TriviaAddict</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!ForceEndTrivia">
+              <code class="cmd__usage">!ForceEndTrivia</code>
+              <span class="cmd__text">End the round early — answers already given still score</span>
+              <span class="cmd__alias">also !FCTrivia</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!Suggest" data-panel="pick">
+              <code class="cmd__usage">!Suggest q | correct | wrong | wrong</code>
+              <span class="cmd__text">Add a question of the viewer's own</span>
+              <span class="who">Everyone</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="slot-machine-game" data-repo="Slot-Machine-Game" data-short="Slot Machine" aria-labelledby="cmd-Slot-Machine-Game">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/slot-machine-game.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-Slot-Machine-Game"><a href="../projects/slot-machine-game/">Slot Machine Game</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!slots" data-panel="pick" data-start>
+              <code class="cmd__usage">!slots</code>
+              <span class="cmd__text">Play Slots</span>
+              <span class="cmd__alias">also !spin</span>
+              <span class="who">Everyone</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="hangman-game" data-repo="Hangman-Game" data-short="Hangman" aria-labelledby="cmd-Hangman-Game">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/hangman-game.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-Hangman-Game"><a href="../projects/hangman-game/">Hangman Game</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!hmp" data-panel="can">
+              <code class="cmd__usage">!hmp</code>
+              <span class="cmd__text">Your own stats, with your streak</span>
+              <span class="cmd__alias">also !HangmanPersonal</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hms" data-panel="can">
+              <code class="cmd__usage">!hms</code>
+              <span class="cmd__text">The scoreboard for this platform</span>
+              <span class="cmd__alias">also !HangmanScoreboard</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hmlookup" data-panel="can">
+              <code class="cmd__usage">!hmlookup</code>
+              <span class="cmd__text">Someone else's stats</span>
+              <span class="cmd__alias">also !HML</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hangman" data-panel="pick" data-start>
+              <code class="cmd__usage">!hangman</code>
+              <span class="cmd__text">Start a new round</span>
+              <span class="cmd__alias">also !HM</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!killhangman">
+              <code class="cmd__usage">!killhangman</code>
+              <span class="cmd__text">Stop the current round</span>
+              <span class="cmd__alias">also !KillHM</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!guess" data-panel="pick">
+              <code class="cmd__usage">!guess</code>
+              <span class="cmd__text">Guess a letter or the full word</span>
+              <span class="cmd__alias">also !G</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hangmanrepeat" data-panel="can">
+              <code class="cmd__usage">!hangmanrepeat</code>
+              <span class="cmd__text">Repeat the current word state</span>
+              <span class="cmd__alias">also !HMR</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hangmanaddict">
+              <code class="cmd__usage">!hangmanaddict</code>
+              <span class="cmd__text">Add a user to the addicted list</span>
+              <span class="cmd__alias">also !HMA</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="battleship-game" data-repo="Battleship-Game" data-short="Battleship" aria-labelledby="cmd-Battleship-Game">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/battleship-game.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-Battleship-Game"><a href="../projects/battleship-game/">Battleship Game</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!fire" data-panel="pick">
+              <code class="cmd__usage">!fire</code>
+              <span class="cmd__text">Fire</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!fleet" data-panel="can">
+              <code class="cmd__usage">!fleet</code>
+              <span class="cmd__text">Fleet Re Roll</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!battleship" data-panel="pick" data-start>
+              <code class="cmd__usage">!battleship</code>
+              <span class="cmd__text">Start</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!bstats" data-panel="can">
+              <code class="cmd__usage">!bstats</code>
+              <span class="cmd__text">Stats</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!BAllStats" data-panel="can">
+              <code class="cmd__usage">!BAllStats</code>
+              <span class="cmd__text">All Stats</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!board" data-panel="can">
+              <code class="cmd__usage">!board</code>
+              <span class="cmd__text">Board</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!seeschlacht" data-panel="pick">
+              <code class="cmd__usage">!seeschlacht</code>
+              <span class="cmd__text">Chat vs the Admiral</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!duel" data-panel="can">
+              <code class="cmd__usage">!duel</code>
+              <span class="cmd__text">Challenge</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!accept" data-panel="can">
+              <code class="cmd__usage">!accept</code>
+              <span class="cmd__text">Accept</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!team" data-panel="can">
+              <code class="cmd__usage">!team</code>
+              <span class="cmd__text">Join a side</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!stopbattle">
+              <code class="cmd__usage">!stopbattle</code>
+              <span class="cmd__text">Stop</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="rhymetime" data-repo="RhymeTime" data-short="RhymeTime" aria-labelledby="cmd-RhymeTime">
+          <header class="cmd-group__head">
+            <span class="tile tile--mono cmd-group__tile" aria-hidden="true">RT</span>
+            <h2 id="cmd-RhymeTime"><a href="../projects/rhymetime/">RhymeTime</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!Rhyme" data-panel="pick">
+              <code class="cmd__usage">!Rhyme</code>
+              <span class="cmd__text">Starts a round at the default bet</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!RhymeBattle">
+              <code class="cmd__usage">!RhymeBattle</code>
+              <span class="cmd__text">Opens a battle paying the battle reward</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="twitchsentry" data-repo="TwitchSentry" data-short="TwitchSentry" aria-labelledby="cmd-TwitchSentry">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/twitchsentry.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-TwitchSentry"><a href="../projects/twitchsentry/">TwitchSentry</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!permit">
+              <code class="cmd__usage">!permit @user [seconds]</code>
+              <span class="cmd__text">Grants a temporary link permit</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!endpermit">
+              <code class="cmd__usage">!endpermit [@user]</code>
+              <span class="cmd__text">Ends that viewer's permit, or all of them</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!vote" data-panel="pick" data-start>
+              <code class="cmd__usage">!vote @user</code>
+              <span class="cmd__text">Starts or joins a vote (anyone)</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!EndVoting">
+              <code class="cmd__usage">!EndVoting</code>
+              <span class="cmd__text">End Voting</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!checklink" data-panel="pick">
+              <code class="cmd__usage">!checklink &lt;url&gt;</code>
+              <span class="cmd__text">Scans a link with Check Link (anyone)</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!AMAdd">
+              <code class="cmd__usage">!AMAdd</code>
+              <span class="cmd__text">Auto Mod Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!AMList">
+              <code class="cmd__usage">!AMList</code>
+              <span class="cmd__text">Auto Mod List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!AMRemove">
+              <code class="cmd__usage">!AMRemove</code>
+              <span class="cmd__text">Auto Mod Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EGAdd">
+              <code class="cmd__usage">!EGAdd</code>
+              <span class="cmd__text">Exclude Groups Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EGList">
+              <code class="cmd__usage">!EGList</code>
+              <span class="cmd__text">Exclude Groups List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EGRemove">
+              <code class="cmd__usage">!EGRemove</code>
+              <span class="cmd__text">Exclude Groups Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EUAdd">
+              <code class="cmd__usage">!EUAdd</code>
+              <span class="cmd__text">Exclude Users Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EUList">
+              <code class="cmd__usage">!EUList</code>
+              <span class="cmd__text">Exclude Users List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EURemove">
+              <code class="cmd__usage">!EURemove</code>
+              <span class="cmd__text">Exclude Users Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!KWAdd">
+              <code class="cmd__usage">!KWAdd</code>
+              <span class="cmd__text">Keywords Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!KWList">
+              <code class="cmd__usage">!KWList</code>
+              <span class="cmd__text">Keywords List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!KWRemove">
+              <code class="cmd__usage">!KWRemove</code>
+              <span class="cmd__text">Keywords Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!TLDAdd">
+              <code class="cmd__usage">!TLDAdd</code>
+              <span class="cmd__text">TLD Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!TLDList">
+              <code class="cmd__usage">!TLDList</code>
+              <span class="cmd__text">TLD List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!TLDRemove">
+              <code class="cmd__usage">!TLDRemove</code>
+              <span class="cmd__text">TLD Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!VEGAdd">
+              <code class="cmd__usage">!VEGAdd</code>
+              <span class="cmd__text">Voting Excluded Groups Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!VEGList">
+              <code class="cmd__usage">!VEGList</code>
+              <span class="cmd__text">Voting Excluded Groups List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!VEGRemove">
+              <code class="cmd__usage">!VEGRemove</code>
+              <span class="cmd__text">Voting Excluded Groups Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!VEUAdd">
+              <code class="cmd__usage">!VEUAdd</code>
+              <span class="cmd__text">Voting Excluded Users Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!VEUList">
+              <code class="cmd__usage">!VEUList</code>
+              <span class="cmd__text">Voting Excluded Users List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!VEURemove">
+              <code class="cmd__usage">!VEURemove</code>
+              <span class="cmd__text">Voting Excluded Users Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!WLAdd">
+              <code class="cmd__usage">!WLAdd</code>
+              <span class="cmd__text">Whitelist Add</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!WLList">
+              <code class="cmd__usage">!WLList</code>
+              <span class="cmd__text">Whitelist List</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!WLRemove">
+              <code class="cmd__usage">!WLRemove</code>
+              <span class="cmd__text">Whitelist Remove</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!bwadd">
+              <code class="cmd__usage">!bwadd &lt;word&gt; [2h] [twitch] [delete|timeout|ban]</code>
+              <span class="cmd__text">Blocked Words on the Word Filter page. !bwlist says only how many there are, unless whispered</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!bwlist">
+              <code class="cmd__usage">!bwlist</code>
+              <span class="cmd__text">Blocked Words on the Word Filter page. !bwlist says only how many there are, unless whispered</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!bwremove">
+              <code class="cmd__usage">!bwremove</code>
+              <span class="cmd__text">Blocked Words on the Word Filter page. !bwlist says only how many there are, unless whispered</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!tsundo">
+              <code class="cmd__usage">!tsundo [@user]</code>
+              <span class="cmd__text">Takes back the last timeout, ban, restriction, monitoring, follow block or whole nuke (or that viewer's last one)</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!antiraid">
+              <code class="cmd__usage">!antiraid [on|off]</code>
+              <span class="cmd__text">Arms Raid Protection as an incoming raid does, or disarms it. Without on or off, it toggles</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!followwave">
+              <code class="cmd__usage">!followwave [on|off]</code>
+              <span class="cmd__text">Arms Follow Wave Protection as a follow wave does, or disarms it. Without on or off, it toggles</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!nuke">
+              <code class="cmd__usage">!nuke &lt;phrase&gt; [seconds]</code>
+              <span class="cmd__text">Removes every message with that phrase from the last stretch of chat, by default with a timeout for each sender</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!hateraid">
+              <code class="cmd__usage">!hateraid [on|off]</code>
+              <span class="cmd__text">Locks the chat down as Hate Raid Protection does in a hate raid, or lifts the lockdown. Without on or off, it toggles</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="suto" data-repo="SuTo" data-short="Suggestions To" aria-labelledby="cmd-SuTo">
+          <header class="cmd-group__head">
+            <span class="tile tile--mono cmd-group__tile" aria-hidden="true">SuTo</span>
+            <h2 id="cmd-SuTo"><a href="../projects/suto/">Suggestions To</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!suggestion" data-panel="pick">
+              <code class="cmd__usage">!suggestion</code>
+              <span class="cmd__text">Suggestion</span>
+              <span class="cmd__alias">also !vorschlag</span>
+              <span class="who">Everyone</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="obsnotes" data-repo="OBSNotes" data-short="OBS Notes" aria-labelledby="cmd-OBSNotes">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/obsnotes.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-OBSNotes"><a href="../projects/obsnotes/">OBS Notes</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!zettel" data-panel="pick">
+              <code class="cmd__usage">!zettel</code>
+              <span class="cmd__text">Posts the last five notes in chat; !zettel 3 posts note 3.</span>
+              <span class="cmd__alias">also !schmierzettel !merkheft !shownotes</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!note" data-panel="pick">
+              <code class="cmd__usage">!note &lt;text&gt;</code>
+              <span class="cmd__text">Saves a note and answers with its number.</span>
+              <span class="cmd__alias">also !notiz !postit !aufschreiben !merken</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!radier">
+              <code class="cmd__usage">!radier &lt;number&gt;</code>
+              <span class="cmd__text">Deletes one note; the ones after it move up.</span>
+              <span class="cmd__alias">also !delnote !deletenote</span>
+              <span class="who who--limited">Mods, VIPs</span>
+            </li>
+            <li class="cmd" data-trigger="!clearnotes">
+              <code class="cmd__usage">!clearnotes</code>
+              <span class="cmd__text">Deletes every note of the current game.</span>
+              <span class="cmd__alias">also !allesradieren</span>
+              <span class="who who--limited">Mods, VIPs</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="chatcalendar" data-repo="ChatCalendar" data-short="Chat Calendar" aria-labelledby="cmd-ChatCalendar">
+          <header class="cmd-group__head">
+            <span class="tile cmd-group__tile"><img src="../assets/img/projects/chatcalendar.png" alt="" width="40" height="40" loading="lazy"></span>
+            <h2 id="cmd-ChatCalendar"><a href="../projects/chatcalendar/">Chat Calendar</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!nextholidays" data-panel="pick">
+              <code class="cmd__usage">!nextholidays</code>
+              <span class="cmd__text">Check next 5 holidays</span>
+              <span class="cmd__alias">also !feiertage !upcomingvacations !upcomingholidays</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!nextbirthdays" data-panel="pick">
+              <code class="cmd__usage">!nextbirthdays</code>
+              <span class="cmd__text">Check next birthdays</span>
+              <span class="cmd__alias">also !birthdays !geburtstage !upcomingbirthdays</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!holiday" data-panel="pick">
+              <code class="cmd__usage">!holiday</code>
+              <span class="cmd__text">Check for today's holiday</span>
+              <span class="cmd__alias">also !ferien !feiertag !urlaub !holidays !vacation !vacations</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!birthday" data-panel="can">
+              <code class="cmd__usage">!birthday</code>
+              <span class="cmd__text">Birthday</span>
+              <span class="cmd__alias">also !geburtstag !bday</span>
+              <span class="who">Everyone</span>
+            </li>
+          </ul>
+        </section>
+          <p class="cmds__empty" hidden></p>
+        </section>
+
+        <!-- filled by commands.js -->
+        <aside class="panel-builder" id="panel" aria-labelledby="panel-title" hidden></aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__about">
+        <a class="brand" href="../">
+          <img src="../assets/img/avatar.png" alt="" width="32" height="32">
+          <span>aaskjer</span>
+        </a>
+        <p>Free, open-source extensions for Streamer.bot. Found a bug or have an idea? Open an issue on the project's GitHub page.</p>
+      </div>
+      <div class="footer__meta">
+        <p>© <span id="year">2026</span> aaskjer · <a href="../help/">Help</a> · <a href="../feed.xml" data-track="feed">Release feed</a> · <a href="../privacy.html">Privacy</a></p>
+        <p>Not affiliated with Streamer.bot, OBS Studio, Twitch, YouTube, Kick, Owncast, Rumble, Picarto, TikTok, Discord, Stoat, GameVox, ntfy, Microsoft or the Open Trivia Database. All names and trademarks belong to their respective owners.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

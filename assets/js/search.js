@@ -1,6 +1,7 @@
 /*
  * The search behind the magnifier in the header, also on Ctrl+K (⌘K) and /. It finds projects,
- * their chat commands (!slots) and the headings of their documents, from assets/search.json,
+ * their chat commands (!slots), the headings of their documents and the common problems on the help
+ * page, from assets/search.json,
  * which _tools/update-pages.js writes. It runs on the start page and on every project page, and
  * loads the index the first time it opens.
  */
@@ -12,7 +13,7 @@
   // the site's root, from where this file sits (assets/js/)
   const ROOT = new URL('../../', document.currentScript.src);
   const LIMITS = { project: 5, command: 6, section: 8 };
-  const GROUPS = [['project', 'Projects'], ['command', 'Commands'], ['section', 'In the guides']];
+  const GROUPS = [['project', 'Projects'], ['command', 'Commands'], ['section', 'In the guides and help']];
 
   const esc = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const icon = name => `<svg class="i" aria-hidden="true"><use href="${ROOT}assets/img/icons.svg#i-${name}"/></svg>`;
@@ -40,8 +41,12 @@
             fields: [[p.name, 10], [p.repo, 6], [p.text, 2], [p.keys, 2]] })),
           ...index.commands.map(c => ({ kind: 'command', title: c.command, sub: [projects[c.p].name, c.where].filter(Boolean).join(' · '),
             href: c.href, p: projects[c.p], fields: [[c.command, 12], [projects[c.p].name, 1]] })),
-          ...index.sections.map(s => ({ kind: 'section', title: s.title, sub: `${projects[s.p].name} · ${s.where}`,
-            href: s.href, p: projects[s.p], fields: [[s.title, 6], [projects[s.p].name, 1.5], [s.where, 1]] })),
+          // p -1: a part of the commands page or the help page, of no one project
+          ...index.sections.map(s => {
+            const p = projects[s.p];
+            return { kind: 'section', title: s.title, sub: p ? `${p.name} · ${s.where}` : s.where,
+              href: s.href, p: p || null, fields: [[s.title, 6], [p && p.name, 1.5], [s.where, 1]] };
+          }),
         ];
         for (const entry of entries) entry.fields = entry.fields.filter(([text]) => text).map(([text, weight]) => [norm(text), weight]);
       })
@@ -139,7 +144,7 @@
           const url = new URL(entry.href, ROOT);
           const i = n++;
           return `<a class="search__item" role="option" id="search-r-${i}" data-i="${i}" href="${esc(url.href)}"${samePage(url)}
-                     aria-selected="false" tabindex="-1" data-track="search-result" data-project="${esc(entry.p.repo || '')}">
+                     aria-selected="false" tabindex="-1" data-track="search-result" data-project="${esc(entry.p && entry.p.repo || '')}">
             ${tile(entry)}
             <span class="search__text">
               <span class="search__title">${highlight(entry.title, query)}</span>
