@@ -28,6 +28,8 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"12.1.0","made":"1.0.7","min":"1.0.0-alpha.1","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA"],"words":[],"timers":0,"sites":["igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":true}</script>
 </head>
 <body data-repo="Hangman-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +46,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -61,10 +66,612 @@
       <div class="wrap">
         <h1>Hangman Game</h1>
         <p class="project-hero__lead">One of the most iconic Pencil&amp;Paper games. But the future is now, we play in OBS not on paper!</p>
-        <p class="doc-status">Loading…</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/Hangman-Game">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/HM/Hangman-Game-Full2.png" alt="Hangman Game" width="400" height="400">
+</p><h1 align="center">Hangman Game</h1><p align="center">
+  <b>Hangman for your chat.</b><br>
+  One word, a row of blanks, and everyone guessing at once — on Twitch, YouTube and Kick.
+</p><p align="center">
+  
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/Hangman-Game/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Hangman-Game/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md"><b>Import String</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>Hangman Game is a chat game for Streamer.bot. A round draws a word from the wordlist and shows it masked.
+Chat guesses a letter or the whole word with <code>!g</code>: a wrong letter costs one life, a wrong word two. The
+round ends when someone solves it, the lives run out or the clock does.</p>
+<h2>✨ Highlights</h2>
+<ul>
+<li>⚡ <strong>Twists to switch on.</strong> Blitz rounds bring less time, fewer lives and multiplied points. Evil Hangman
+swaps the word mid-round and keeps one revealed letter. Win streaks can pay a bonus.</li>
+<li>📺 <strong>An overlay that plays along.</strong> The gallows fills in with every wrong guess and adapts to the number of
+lives. Evil Hangman&#39;s swap plays as a glitch, and chat only hears about it once the glitch is over. After
+an update the game refreshes the browser source in OBS by itself.</li>
+<li>📚 <strong>Wordlists from free sources.</strong> The importer fills the wordlist with hints and difficulty: countries,
+capitals and rivers from Wikidata, German nouns from OdeNet, Pokémon from PokéAPI, video games from IGDB.</li>
+<li>💰 <strong>Payouts with a ceiling.</strong> A base reward for the word, optional points per letter, and a bonus for harder
+and longer words, capped so a twenty-letter answer cannot drain your currency. Subscribers and VIPs can
+earn a boost.</li>
+<li>🎫 <strong>Channel Points on Twitch.</strong> A redemption can start the round, with the stake taken from what the viewer
+typed or from the reward&#39;s cost. Wins pay out in your custom currency.</li>
+<li>💬 <strong>Control over chat.</strong> Every line is editable with a preview. A rate limit catches guess spam, blocked
+users are ignored, and a per-platform scoreboard can reset monthly.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Works with:</strong> <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> · <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a></li>
+<li><strong>Data &amp; services:</strong><ul>
+<li><a href="https://www.wikidata.org">Wikidata</a> (CC0): countries, capitals, rivers and more</li>
+<li><a href="https://github.com/hdaSprachtechnologie/odenet">OdeNet</a> (CC BY-SA 4.0): German nouns</li>
+<li><a href="https://pokeapi.co">PokéAPI</a>: Pokémon</li>
+<li><a href="https://www.igdb.com">IGDB</a>: video games</li>
+</ul>
+</li>
+<li><strong>Community:</strong> <a href="https://discord.com/channels/834650675224248362/1448251872744837203/1448251872744837203">Hangman Game on the Streamer.bot Discord</a></li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Import</h1>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"> </p> <p>Click on <code>Import</code> in <a href="https://streamer.bot/">streamer.bot</a> and drag the <a href="https://github.com/aaskjer/Hangman-Game/releases">HangmanGame.sb</a> file into the window or copy paste the <a href="https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md">import string</a>.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/4b853261-10bd-4f12-9f98-c3f99e6dc450"></p> <p>Click on <code>Import</code> and <code>Yes</code> on both following popup messages.</p>
+<h2>Enable Commands</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/a88a0e47-3c83-4806-8c67-75da34bf8b5b"></p> <p>Enable all commands in the <code>Commands</code> tab of streamer.bot.</p>
+<h1>Setup</h1>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8e6e6677-f7e8-45db-b9f8-6bfc88e06628"> </p> 
+Right-Click on `Test` and click `Test Trigger` in the trigger section of `[HM] - Settings` to open the GUI of the game.<p>The window has one page per subject, picked from the rail on the left. Every field carries a tooltip, so hovering usually answers the question faster than this page does.</p>
+<h2>Game</h2>
+<p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/game.png"></p><p>Lives, round duration and the time reminder, then when hints appear and what a win pays. Word scaling sits here too: harder and longer words earn a percentage on top, capped so a very long word cannot run away with your currency.</p>
+<p>Between the hints and the payout sit the two optional twists. <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-blitz-rounds">Blitz</a> sets how often a round turns into a short, multiplied one and whether mods may call one with <code>!hm blitz</code>. <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-evil-hangman">Evil Hangman</a> sets when the word is swapped, whether lives refill, and how long the overlay glitches.</p>
+<h2>Words</h2>
+<p align="center"><img loading="lazy" alt="Words page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/words.png"></p><p>Add, edit and delete <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-wordlist">words</a>, each with a <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-hints">hint</a>, a category and a difficulty. Ctrl+click picks single rows, Shift+click a range, Del removes the selection. The difficulty range and the categories in play are folded away above the table.</p>
+<p><em>Import</em> <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-importing-words">fetches words</a> with hints from Wikidata, OdeNet, PokéAPI or IGDB. Pick a source and a topic, fetch, untick what you don&#39;t want, and the rest lands in the category you named. Nothing is kept until you click Save.</p>
+<h2>Overlay</h2>
+<p align="center"><img loading="lazy" alt="Overlay page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/overlay.png"></p><p>A local HTML file that OBS loads as a browser source and that repaints itself as the round runs. <em>Setup Overlay in OBS</em> creates the scene and the source over your existing Streamer.bot OBS connection. The gallows, the colours, the scale and what is shown next to the word are all set here.</p>
+<p>OBS keeps showing the overlay it loaded until the browser source is refreshed. The game does that by itself after an update; <em>Refresh Overlay in OBS</em> does it on demand.</p>
+<h2>Access</h2>
+<p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/access.png"></p><p>Who may start a round and who may not play at all, the start cooldowns, the guess rate limit, and the addicted list for regulars who should earn less and pace themselves. Channel Points live here as well.</p>
+<p>Channel Points are a work in progress. The code came from another game and the author is not an affiliate, so it is not properly tested — if something misbehaves, please report it <a href="https://github.com/aaskjer/Hangman-Game/issues">here</a>.</p>
+<h2>Messages</h2>
+<p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/messages.png"></p><p>Every line the game posts, in one place. Pick a message from the list, edit it, and the preview underneath shows how it will read in chat. The chips below the box insert the placeholders that message accepts. The bot account and <code>/me</code> toggles at the bottom apply to the game&#39;s messages and to the cooldown replies separately.</p>
+<h2>Board</h2>
+<p align="center"><img loading="lazy" alt="Board page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/board.png"></p><p>How many players the scoreboard shows, who is left off it, and when it resets. Reset runs per platform or for all of them at once.</p>
+<p><a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-streaks">Streaks</a> are switched on here: from which length they are announced, and the bonus a streak adds to a win.</p>
+<h2>Log</h2>
+<p align="center"><img loading="lazy" alt="Log page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/log.png"></p><p>Every round, guess and payout, one file per day in the <code>Logs</code> folder. Filter by result or platform, or search the text.</p>
+<hr>
+<p><a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md">Frequently Asked Questions</a></p>
+</div>
+      </section>
+      <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
+        <h2 class="doc-label">FAQ</h2>
+        <div class="doc-body"><h1>❓ Hangman Game — FAQ</h1>
+<hr>
+<h2>🛠️ Setup &amp; Configuration</h2>
+<p><strong>Q: Where are the config files stored?</strong></p>
+<p>Under your Streamer.bot base directory:</p>
+<pre><code>Chat Games/Hangman Game/configs.json            ← settings and every chat message
+Chat Games/Hangman Game/Hangman-Wordlist.json   ← word pool
+Chat Games/Logs/HM-log-YYYY-MM-DD.txt           ← action log, one file per day
+Chat Games/Hangman Game/Import Cache/           ← OdeNet download for the word importer
+</code></pre>
+<p>Older installs also have a <code>messages.json</code> next to <code>configs.json</code>. Its contents were folded into <code>configs.json</code>, and the file is deleted the next time you save. Editing any of this by hand is never necessary — the settings window writes all of it.</p>
+<hr>
+<p><strong>Q: The Settings GUI won&#39;t open. What do I do?</strong></p>
+<p>If <code>configs.json</code> cannot be read at all — another program holds it, or the folder is not writable — the window says so and changes nothing. Close whatever has the file open and try again.</p>
+<p>If the file is there but its contents are damaged, the window opens anyway: the damaged file is kept beside it as <code>configs.json.broken</code>, and the settings come from <code>configs.json.bak</code>, the copy saved before the last write. If that is unusable too, you get the defaults. Either way the window tells you which of the two happened, and Save writes a healthy file again.</p>
+<p>Anything else is worth a look in the Streamer.bot log, and worth <a href="https://github.com/aaskjer/Hangman-Game/issues">reporting</a>.</p>
+<hr>
+<p><strong>Q: How do I reset all settings to defaults?</strong></p>
+<p>The ↺ button at the bottom left of the settings window. It asks first, then rewrites <code>configs.json</code> with factory values and reopens.</p>
+<hr>
+<p><strong>Q: I saved settings but nothing changed in-game. Why?</strong></p>
+<p>Save writes the file immediately, and the game reads its config fresh on every command, so the next round already runs on the new values. No restart needed.</p>
+<hr>
+<h2>🎮 Starting &amp; Stopping the Game</h2>
+<p><strong>Q: Only moderators can start the game — how do I allow everyone?</strong></p>
+<p>Settings → <strong>Access</strong> → turn off <strong>Require Mod To Start</strong>. The broadcaster can always start, whatever this is set to.</p>
+<p><strong>Q: How do I start with Channel Points instead of a chat command?</strong></p>
+<ol>
+<li>Turn on <strong>Use Channel Points To Start</strong> on the <strong>Access</strong> page.</li>
+<li>Paste your <strong>Reward ID</strong> into the field — the button beside it opens a reward lookup.</li>
+</ol>
+<p>The chat command then no longer starts a round, but everyone still guesses with <code>!g</code> as before.</p>
+<p><strong>Q: How much does a redemption stake?</strong></p>
+<p>The stake is read from the redemption, in this order:</p>
+<table>
+<thead>
+<tr>
+<th>Where it comes from</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>What the viewer typed</td>
+<td>The reward asks for text and the viewer entered a number</td>
+</tr>
+<tr>
+<td>The reward&#39;s cost</td>
+<td>No input, but the reward costs channel points</td>
+</tr>
+<tr>
+<td>Nothing</td>
+<td>Neither applies — the round is free to play</td>
+</tr>
+</tbody></table>
+<p><strong>Fixed Stake Override</strong> overrules all three. Left at <code>0</code> the detection above applies; set to anything higher, every redemption stakes exactly that. Which route was taken is written to the action log on every redemption.</p>
+<p>Older setups that used the removed Bet Mode dropdown are migrated on first load: <em>Fixed</em> keeps its amount, <em>Cost</em>, <em>Input</em> and <em>Free</em> switch to automatic detection.</p>
+<p><strong>Q: A round is stuck as active after Streamer.bot restarted. How do I clear it?</strong></p>
+<p>It already is clear — the round lives in memory only, so a restart ends it. Just start a new one. During a session, <code>!killhm</code> ends a round.</p>
+<hr>
+<h2>💬 Commands &amp; Guessing</h2>
+<p><strong>Q: What are the in-chat commands?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Who</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!hm</code> / <code>!hangman</code></td>
+<td>Mod / Broadcaster</td>
+<td>Start a new round</td>
+</tr>
+<tr>
+<td><code>!hm blitz</code></td>
+<td>Mod / Broadcaster</td>
+<td>Start a <a href="#-blitz-rounds">blitz round</a></td>
+</tr>
+<tr>
+<td><code>!killhm</code> / <code>!killhangman</code></td>
+<td>Mod / Broadcaster</td>
+<td>Stop the current round</td>
+</tr>
+<tr>
+<td><code>!g</code> / <code>!guess</code> <code>&lt;letter or word&gt;</code></td>
+<td>Everyone</td>
+<td>Guess a letter or the full word</td>
+</tr>
+<tr>
+<td><code>!hmr</code> / <code>!hangmanrepeat</code></td>
+<td>Everyone</td>
+<td>Repeat the current word state</td>
+</tr>
+<tr>
+<td><code>!hmp</code> / <code>!hangmanpersonal</code></td>
+<td>Everyone</td>
+<td>Your own stats, with your streak</td>
+</tr>
+<tr>
+<td><code>!hml</code> / <code>!hmlookup</code> <code>&lt;user&gt;</code></td>
+<td>Everyone</td>
+<td>Someone else&#39;s stats</td>
+</tr>
+<tr>
+<td><code>!hms</code> / <code>!hangmanscoreboard</code></td>
+<td>Everyone</td>
+<td>The scoreboard for this platform</td>
+</tr>
+<tr>
+<td><code>!hma</code> / <code>!hangmanaddict</code> <code>add &lt;user&gt;</code></td>
+<td>Mod / Broadcaster</td>
+<td>Add a user to the addicted list</td>
+</tr>
+<tr>
+<td><code>!hma</code> / <code>!hangmanaddict</code> <code>remove &lt;user&gt;</code></td>
+<td>Mod / Broadcaster</td>
+<td>Remove a user from the addicted list</td>
+</tr>
+</tbody></table>
+<p>These are the commands as they come in the import. You can rename them in Streamer.bot&#39;s <code>Commands</code> tab.</p>
+<p><strong>Q: How does guessing a full word work? Does it cost lives?</strong></p>
+<ul>
+<li><strong>Correct word</strong> → round is won immediately.</li>
+<li><strong>Wrong word, same length as the hidden word</strong> → costs <strong>2 lives</strong>.</li>
+<li><strong>Wrong word, shorter than the hidden word</strong> (partial guess) → costs <strong>1 life</strong>.</li>
+<li>Guessing the same wrong word twice sends a duplicate-spam message but does not cost lives again.</li>
+</ul>
+<p><strong>Q: Can the same letter be guessed twice?</strong></p>
+<p>No. A duplicate letter guess sends <code>MsgAlreadyGuessed</code> and is ignored — it does not cost lives or count toward the rate limit.</p>
+<hr>
+<h2>💰 Points &amp; Currency</h2>
+<p><strong>Q: What points system does the game use?</strong></p>
+<p>The game auto-detects your currency in this priority order:</p>
+<ol>
+<li><strong>StreamUP Currency Core</strong> — reads <code>currency_ProductSettings</code> global.</li>
+<li><strong>tawmae Loyalty Points</strong> — reads <code>tawmae_Settings_LOYALTY POINTS</code> global.</li>
+<li><strong>Config fallback</strong> — uses <code>PointsVar</code> / <code>PointsName</code> from <code>configs.json</code>.</li>
+</ol>
+<p>For a custom currency under a different variable name, set <strong>Points Variable</strong> and <strong>Points Name</strong> on the <strong>Access</strong> page.</p>
+<p><strong>Q: How are win points calculated?</strong></p>
+<p>In three steps:</p>
+<pre><code>base   = RewardWinPoints × (1 + wordBonus%) × blitz × (1 + streakBonus%)
+stake  = redeemed stake × ChannelPointPayoutMultiplier
+paid   = (base + stake) × roleMultiplier
+</code></pre>
+<p><code>wordBonus%</code> is <code>DifficultyBonusPercent</code> per difficulty level above 1, plus <code>LengthBonusPercent</code> per letter beyond <code>LengthBonusFromLetters</code>, capped at <code>MaxWordBonusPercent</code> — set that cap to <code>0</code> to lift it. Turning off <strong>Scale Win By Word</strong> drops the bonus to zero, so every word pays the base.</p>
+<p><code>blitz</code> is the <strong>Blitz Payout Multiplier</strong> in a <a href="#-blitz-rounds">blitz round</a> and 1 otherwise. <code>streakBonus%</code> comes from the winner&#39;s <a href="#-streaks">streak</a> and is 0 while streaks are off.</p>
+<p><code>roleMultiplier</code> starts at 1.0 and takes the subscriber boost, the VIP boost and the addicted penalty.</p>
+<p><strong>Q: What does &quot;Reward Per Letter&quot; do?</strong></p>
+<p>Every revealed letter pays <strong>Points Per Letter</strong> on the spot, on top of the win reward that lands when the round ends. In a blitz round it is multiplied too.</p>
+<hr>
+<h2>👥 Role Management</h2>
+<p><strong>Q: How do Subscriber / VIP boosts work?</strong></p>
+<p>Turn the boost on under <strong>Game → Role Boosts</strong> and set the percentage. They stack additively:</p>
+<pre><code>multiplier = 1.0 + (SubBoost%) + (VipBoost%)  →  then clamped to ≥ 0
+</code></pre>
+<p>Example: 10% sub boost + 20% VIP boost on a 500-pt win = <code>500 × 1.30 = 650 pts</code>.</p>
+<p><strong>Q: What is the &quot;Addicted&quot; system?</strong></p>
+<p>For the regulars who play every round. They keep playing, with two strings attached:</p>
+<ul>
+<li><strong>Points penalty</strong> — their win multiplier drops by <code>AddictedPointsPenaltyPercent</code>, so 50 means they earn half.</li>
+<li><strong>Guess interval</strong> — they wait <code>AddictedGuessIntervalSeconds</code> between their own guesses.</li>
+</ul>
+<p>Manage the list with <code>!hma add/remove &lt;user&gt;</code> (mods only) or edit <strong>Addicted Users</strong> on the <strong>Access</strong> page.</p>
+<hr>
+<h2>🧠 Hints</h2>
+<p><strong>Q: When does the game send a hint?</strong></p>
+<p>When all four hold:</p>
+<ol>
+<li><code>HintEnabled</code> is on.</li>
+<li>The word has a hint.</li>
+<li>Wrong guesses have reached <code>HintAfterWrongGuesses</code>.</li>
+<li>Less of the word is revealed than <code>HintStopRevealPercent</code> allows.</li>
+</ol>
+<p>The hint fires once per wrong guess check, not repeatedly. Keep <code>HintAfterWrongGuesses</code> below your lives — otherwise the round is over before the hint can fire, and the settings window warns you about exactly that on save.</p>
+<p><strong>Q: How do I set hints per word?</strong></p>
+<p>Fill the <strong>Hint</strong> column on the <strong>Words</strong> page. A word without a hint never triggers the hint message, even with hints switched on.</p>
+<hr>
+<h2>⚡ Blitz Rounds</h2>
+<p><strong>Q: What is a blitz round?</strong></p>
+<p>A short, sharp round. It runs on <strong>Blitz Duration</strong> and <strong>Blitz Lives</strong> instead of the normal round settings, and every point it pays — the letter rewards and the win — is multiplied by <strong>Blitz Payout Multiplier</strong>. The channel point stake is not multiplied. The overlay shows a pulsing ⚡ BLITZ badge while it runs.</p>
+<p><strong>Q: How does a round become a blitz?</strong></p>
+<p>Turn on <strong>Enable Blitz</strong> under <strong>Game → Blitz Round</strong>. Every round started from then on, by chat command or channel points, has <strong>Blitz Chance</strong> percent to be a blitz, and moderators can call one with <code>!hm blitz</code> while <strong>Allow &#39;!hangman blitz&#39;</strong> is on. Set the chance to <code>0</code> to have blitz rounds only on command.</p>
+<hr>
+<h2>👾 Evil Hangman</h2>
+<p><strong>Q: What does Evil Hangman do?</strong></p>
+<p>Once chat has used up <strong>Glitch At</strong> percent of the round&#39;s lives — 50 with 6 lives fires on the 3rd wrong guess — the overlay glitches and the word is swapped for another. Every guess is wiped except one randomly picked letter that was already revealed, and the new word always contains it. It happens at most once per round, and <strong>Evil Chance</strong> decides how many rounds are evil at all.</p>
+<p><strong>Q: Do lives refill after the swap?</strong></p>
+<p>Your choice. <strong>Refill Lives On Swap</strong> gives the new word full lives; with it off, lives already lost stay lost.</p>
+<p><strong>Q: Which word does it swap to?</strong></p>
+<p>One from the same category when <strong>Prefer Same Category</strong> is on and a word fits, otherwise from any category in play — always within your difficulty range and always containing the surviving letter. If no other word contains that letter, nothing survives.</p>
+<p><strong>Q: Why is chat quiet while the overlay glitches?</strong></p>
+<p>The swap message waits until the glitch has played out on the overlay (<strong>Glitch Duration</strong> plus half a second), and guesses, <code>!hmr</code> and the &quot;already running&quot; reply are ignored until then — any reply would show the new word before the overlay does. If the round ends during the glitch, the message is dropped. With the duration at <code>0</code>, or the overlay switched off, the swap is announced at once.</p>
+<hr>
+<h2>🛡️ Anti-Cheat &amp; Cooldowns</h2>
+<p><strong>Q: What does the rate limit do?</strong></p>
+<p>It caps how many guesses one user may make inside a rolling window. Past <code>AntiCheatMaxGuesses</code> within <code>AntiCheatWindowSeconds</code> the guess is blocked and <code>MsgAntiCheat</code> goes out. Duplicate letter guesses do not count toward it, and broadcasters are exempt. Setting the maximum to <code>0</code> switches the limit off.</p>
+<p><strong>Q: What is the difference between Global Cooldown and User Cooldown?</strong></p>
+<ul>
+<li><strong>Global Cooldown</strong> — everyone waits before the game can be started again.</li>
+<li><strong>User Cooldown</strong> — only the person who just started waits.</li>
+</ul>
+<p>Both sit on the <strong>Access</strong> page and are written straight into the Streamer.bot command when you save, through <code>CPH.CommandSetGlobalCooldownDuration</code> and <code>CPH.CommandSetUserCooldownDuration</code>.</p>
+<hr>
+<h2>📋 Wordlist</h2>
+<p><strong>Q: How do I add or edit words?</strong></p>
+<p>On the <strong>Words</strong> page. Add, delete, search and filter directly in the table; changes stay in memory until you hit Save or Save &amp; Exit.</p>
+<p><strong>Q: What does Difficulty control?</strong></p>
+<p>Each word carries a <code>Difficulty</code> of at least 1. Only words within <code>MinDifficulty … MaxDifficulty</code> are drawn. Set both to the same number to pin one tier.</p>
+<p><strong>Q: What happens when all words in the difficulty range have been used?</strong></p>
+<p>The used-word pool for that range is cleared and every word becomes eligible again. The log records it as <code>&quot;All N word(s) in current difficulty range exhausted — resetting used-word pool.&quot;</code>, and the next pick happens right away.</p>
+<p><strong>Q: The wordlist file is missing or corrupt. Will the game break?</strong></p>
+<p>No. Every round start checks <code>Hangman-Wordlist.json</code>. Missing or empty, and the built-in default list of 15 words is written to disk — the same list the <em>Load Defaults</em> button hands out.</p>
+<hr>
+<h2>📥 Importing Words</h2>
+<p><strong>Q: Where can the importer get words from?</strong></p>
+<p><em>Import</em> on the <strong>Words</strong> page fetches from four free sources:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What</th>
+<th>Language</th>
+<th>License</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.wikidata.org">Wikidata</a></td>
+<td>Countries, capitals, big cities, rivers, mountains, chemical elements, musical instruments, sports, dog breeds — or any Wikidata class by its Q-ID</td>
+<td>German, English</td>
+<td>CC0</td>
+</tr>
+<tr>
+<td><a href="https://github.com/hdaSprachtechnologie/odenet">OdeNet</a></td>
+<td>German nouns by topic — animals, plants, food, objects, people &amp; jobs, body, places, materials, nature, feelings — with their meaning as the hint</td>
+<td>German</td>
+<td>CC BY-SA 4.0</td>
+</tr>
+<tr>
+<td><a href="https://pokeapi.co">PokéAPI</a></td>
+<td>Pokémon by generation, with their category as the hint</td>
+<td>German, English</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://www.igdb.com">IGDB</a></td>
+<td>Video games, best-rated first, with year and genre as the hint</td>
+<td>English titles</td>
+<td>IGDB terms</td>
+</tr>
+</tbody></table>
+<p>You see the list before anything is added: untick what you don&#39;t want, fix a hint in the table, and the rest lands in the category you named. Nothing is kept until you click Save.</p>
+<p><strong>Q: What does the importer leave out?</strong></p>
+<p>Answers with digits or symbols, more letters than <strong>Max. Letters</strong> or more words than <strong>Max. Words Per Answer</strong>, and words already in your list. Accents are folded (é → e). Umlauts stay letters to guess, unless <strong>Write umlauts out</strong> turns them into ae, oe, ue and ss. A hint that names its own answer is swapped for another one or masked with <code>___</code>.</p>
+<p><strong>Q: How is the difficulty picked?</strong></p>
+<p><em>Auto</em> rates every word from its length, rare letters (j, q, x, y, z) and how well known it is — the rank in the result for Wikidata and IGDB, the generation for Pokémon. Or pick one fixed difficulty for the whole import.</p>
+<p><strong>Q: What does IGDB need?</strong></p>
+<p>The Client ID and Client Secret of a free Twitch developer app. Create one at <a href="https://dev.twitch.tv/console/apps">dev.twitch.tv/console/apps</a> with any name, <code>http://localhost</code> as the redirect URL and <em>Confidential</em> as the client type. Both values are kept in Streamer.bot&#39;s global variables (<code>hm_IgdbClientId</code>, <code>hm_IgdbClientSecret</code>), never in <code>configs.json</code>.</p>
+<p><strong>Q: Some OdeNet hints don&#39;t match the word.</strong></p>
+<p>OdeNet groups synonyms, and a few groups mix two meanings. The importer picks the word whose meanings fit the topic best, but read the list before you add it. The OdeNet file (about 29 MB) is downloaded once and kept in <code>Chat Games/Hangman Game/Import Cache</code> for a month.</p>
+<hr>
+<h2>🏆 Scoreboard</h2>
+<p><strong>Q: How is the leaderboard built?</strong></p>
+<p>From the players&#39; stats, read fresh every time someone asks with <code>!hms</code>. Everyone who has won at least one round on that platform is on it, ranked by wins and then by points.</p>
+<p><strong>Q: How do I exclude the broadcaster or bot from the scoreboard?</strong></p>
+<p>On the <strong>Board</strong> page, turn off <strong>Include Broadcaster</strong> or <strong>Include Bot</strong>. <strong>Blocked From Board</strong> takes a comma-separated list for anything else you want hidden, other bots for instance. Hiding someone there does not stop them playing — that list is on the <strong>Access</strong> page.</p>
+<p><strong>Q: How does the monthly auto-reset work?</strong></p>
+<p>Turn on <strong>Reset All (Monthly)</strong> or the per-platform toggles. On the first scoreboard command of a new month, or on and after the configured reset day, that platform&#39;s stats are zeroed and the board cleared. A chat message goes out and the date is stored, so it runs once.</p>
+<hr>
+<h2>🔥 Streaks</h2>
+<p><strong>Q: How do streaks work?</strong></p>
+<p>Turn on <strong>Track Streaks</strong> on the <strong>Board</strong> page. Every word a player solves adds one to their streak. It only breaks when a round they guessed in is lost — game over or time up. A round a moderator stops breaks nothing.</p>
+<p><strong>Q: Do streaks pay?</strong></p>
+<p><strong>Streak Bonus</strong> adds a percentage to the win for every win in a row after the first — 10 means the third win in a row pays +20 % — up to <strong>Max. Streak Bonus</strong>. Streaks from <strong>Announce From</strong> on are cheered after a win and called out when they end.</p>
+<p><strong>Q: Where do players see their streak?</strong></p>
+<p><code>!hmp</code> adds a line with the current and the best streak. <code>{streak}</code> and <code>{beststreak}</code> also work in the board and stats messages. The monthly reset clears streaks along with the rest of the stats.</p>
+<hr>
+<h2>🌐 Multi-Platform</h2>
+<p><strong>Q: Which platforms are supported?</strong></p>
+<p>Twitch, YouTube and Kick, all three at once and without a setting to switch them on. The platform comes from the incoming event. To keep the game off one of them, disable the trigger for it in Streamer.bot.</p>
+<p><strong>Q: Can the game run on multiple platforms at the same time?</strong></p>
+<p>Yes. Each platform has its own <code>GameState</code> in memory, so a Twitch round and a YouTube round run side by side without touching each other. Points, stats and leaderboards are kept per platform as well.</p>
+<hr>
+<h2>📺 OBS Overlay</h2>
+<p><strong>Q: What does the overlay show?</strong></p>
+<p>A local HTML file that OBS loads as a browser source and that repaints itself while the round runs: the gallows filling in with every wrong guess, the masked word, and whichever of category, lives, guessed letters, wrong letters, wrong words and hint you switch on. When the round ends it shows the answer and fades out after the delay you set — <code>0</code> makes it disappear at once.</p>
+<p><strong>Q: How do I get it into OBS?</strong></p>
+<p><em>Setup Overlay in OBS</em> on the <strong>Overlay</strong> page creates the scene and the browser source over the Streamer.bot OBS connection you already have. By hand works too: the folder button opens the directory, and <code>hangman_overlay.html</code> is a plain local file.</p>
+<p><strong>Q: What does the overlay show when a round ends?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Banner</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Solved</td>
+<td><code>SOLVED - &lt;word&gt;</code> in green</td>
+</tr>
+<tr>
+<td>Last life gone</td>
+<td><code>GAME OVER - &lt;word&gt;</code> in red</td>
+</tr>
+<tr>
+<td>Time up</td>
+<td><code>TIME UP - &lt;word&gt;</code> in red</td>
+</tr>
+<tr>
+<td><code>!killhm</code></td>
+<td><code>GAME OVER - MODERATOR STOPPED</code> in orange</td>
+</tr>
+</tbody></table>
+<p>The answer is spelled out above the banner either way.</p>
+<p><strong>Q: After an update the overlay looks the same. Why?</strong></p>
+<p>OBS keeps running the page it loaded, even when the file on disk is replaced. The game therefore refreshes every browser source that shows <code>hangman_overlay.html</code> by itself — after an update and once per Streamer.bot session — over the OBS connection set on the <strong>Overlay</strong> page. If OBS is not connected through Streamer.bot, press <strong>Refresh Overlay in OBS</strong>, or right-click the browser source in OBS and choose <em>Refresh</em>. From then on the page also reloads itself whenever a newer version lands on disk.</p>
+<p><strong>Q: Does the overlay give the hint away?</strong></p>
+<p>No. It follows the same rules as chat — <em>Use Hints</em>, <em>Hint After Wrong Guesses</em> and <em>Hints Stop Reveal</em> — so it never shows a hint chat has not earned. Showing it at all is a separate toggle.</p>
+<hr>
+<h2>🔔 Update Notifications</h2>
+<p><strong>Q: How do I know when a new version is available?</strong></p>
+<p>Opening the settings window checks GitHub for the latest release in the background. If there is a newer one, a red pill appears in the window header; clicking it opens the releases page. The check never holds the window shut — if GitHub is slow or unreachable, the pill simply does not appear.</p>
+<hr>
+<h1>Is Hangman Game an AI Slop?</h1>
+<p>Partially it is. This script has been developed with input from the streamer.bot community and is support by AI.
+But i spend a lot of time putting heart and soul in it and my goal was to create a robust and valid moderation tool for everyone and easy to use.
+I understand that people, especially IT savvy people, will dislike the project because of the use of AI and i absolutely understand and support their point of view.
+But i had a lot of fun making it as with all my other projects, so i used it to &quot;learn&quot; coding and used AI for something valuable. </p>
+<p>AI can create bugs and i am not a developer in classical terms. But i spend a reasonable amount of time fixing any bugs that occured while testing.
+If you still find bugs or have something to say, please let me hear it :)</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Hangman-Game/releases">releases on GitHub</a>.</p><h2>v12.1.0 — A new colour picker</h2><p class="release__date">October 26, 2026</p><p>A new colour picker in the settings window. <code>configs.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
+<h5>🎨Changed</h5>
+<ul>
+<li><strong>A new colour picker</strong> for the overlay colours. A click on the swatch next to a colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:<ul>
+<li>a field for saturation and brightness and a hue bar, both to click or drag,</li>
+<li>sliders for red, green and blue — the mouse wheel nudges them by one,</li>
+<li>a row of ready colours.</li>
+</ul>
+</li>
+<li>Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.</li>
+</ul>
+<h2>v12.0.1 — A settings file that survives being locked or damaged</h2><p class="release__date">October 25, 2026</p><p>A hardening release for the settings file. <code>configs.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
+<h5>🐛Fixed</h5>
+<ul>
+<li>Reads and writes wait out a <code>configs.json</code> the game script is holding open instead of failing on the first try.</li>
+<li>A damaged <code>configs.json</code> could overwrite the good <code>configs.json.bak</code> on the next save. The file being replaced only becomes the backup when it parses itself, so the last readable copy is never lost to a broken one.</li>
+<li>Three places still read the settings through the path that throws on a damaged file: the first time anything in the script is touched, Reset to defaults, and closing the window. All three now fall back to the backup or the defaults, the way the window already did.</li>
+<li>The global and per-user cooldowns are handed to Streamer.bot as one pair rather than two separate numbers, and once more after the window has closed, so a save made in the last moment is not lost.</li>
+<li>A settings window that failed while it was being built left its thread running with nothing to show. The dispatcher is now shut down in either case.</li>
+</ul>
+<hr>
+<p>Import the attached <code>HangmanGame.sb</code>, or paste the <a href="https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md">import string</a>.</p>
+<h2>v12.0.0 — Word Import, Blitz, Evil Hangman &amp; Streaks</h2><p class="release__date">October 25, 2026</p><h5>Added</h5>
+<ul>
+<li><strong>Word import.</strong> An Import button on the Words page fetches words with hints from four free sources, shows them for review and adds the ticked ones to a category of your choice:<ul>
+<li><strong>Wikidata</strong> (CC0): countries, capitals, big cities, rivers, mountains, chemical elements, musical instruments, sports, dog breeds, or any Wikidata class by its Q-ID. German or English, best known first.</li>
+<li><strong>OdeNet</strong>, the open German WordNet (CC BY-SA 4.0): animals, plants, food, objects, people &amp; jobs, body, places, materials, nature and feelings, each with its German definition as the hint. Downloaded once and cached for a month.</li>
+<li><strong>PokéAPI</strong>: Pokémon names in German or English with their category as the hint, by generation.</li>
+<li><strong>IGDB</strong>: video game titles, best rated first. Needs the Client ID and Secret of a free Twitch developer app; both are kept in Streamer.bot&#39;s global variables, not in <code>configs.json</code>.</li>
+<li>Words with digits or symbols, too many letters or too many words are skipped, accents are folded, umlauts can be written out, and a hint that names its own answer is replaced or masked. Difficulty is rated automatically from length, rare letters and how well known the word is, or set by hand.</li>
+</ul>
+</li>
+<li><strong>Blitz rounds.</strong> Shorter time, fewer lives, and every point pays a multiplier. A round turns into a blitz by chance, or a mod calls one with <code>!hm blitz</code>. The overlay shows a pulsing BLITZ badge.</li>
+<li><strong>Evil Hangman.</strong> Once chat has lost a set share of its lives, the overlay glitches and the word is swapped. Every guess is wiped except one revealed letter, which the new word always contains. Lives either stay lost or refill, as you choose. At most once per round.<ul>
+<li>The glitch runs in stages slow enough to read on a browser source at a low frame rate: the old word breaks up, everything scrambles under scanlines with a blinking SIGNAL LOST, the new word decodes, and the surviving letter lights up in the accent colour. Its length is a setting (3 seconds by default, 0 for no effect).</li>
+<li>Chat is told about the swap only once the glitch has played out. Until then guesses and <code>!hmr</code> are ignored and the &quot;already running&quot; reply stays quiet, so nothing in chat gives the new word away early. If the round ends meanwhile, the message is dropped.</li>
+</ul>
+</li>
+<li><strong>Streaks.</strong> Each solved word adds to the solver&#39;s streak; it breaks when a round they guessed in is lost or times out. Winning streaks are announced, can pay a capped bonus, and show up as an extra line in the personal stats (<code>!hmp</code>). <code>{streak}</code> and <code>{beststreak}</code> also work in the board and stats messages, and the monthly reset clears them.</li>
+<li>Seven new chat messages on the Messages page, under Blitz, Evil Hangman and Streaks.</li>
+<li><strong>Refresh Overlay in OBS</strong> button on the Overlay page. It reloads every OBS browser source that shows <code>hangman_overlay.html</code>.</li>
+</ul>
+<h5>Changed</h5>
+<ul>
+<li>The overlay is now version 9. It replaces the old file on its own and keeps it as <code>hangman_overlay.html.v5.bak</code>.</li>
+<li>OBS keeps running the overlay page it loaded, even after the file on disk is replaced, so an update used to stay invisible until the browser source was refreshed by hand. The game now refreshes those browser sources itself over Streamer.bot&#39;s OBS connection after an update and once per Streamer.bot session, and the page reloads itself whenever a newer version is on disk.</li>
+<li>A round ended with <code>!killhm</code> shows <strong>GAME OVER - MODERATOR STOPPED</strong> in orange on the overlay, instead of the red &quot;GAME OVER - <word>&quot; of a lost round.</li>
+</ul>
+<h2>v11.0.0 — New GUI, some fixes and QoL</h2><p class="release__date">October 21, 2026</p><h5>Changed</h5>
+<ul>
+<li>Settings window rebuilt: icon rail instead of the sidebar, status pills in the header, sliding switches, <code>Ctrl+S</code> to save and <code>Ctrl+1</code>…<code>8</code> to switch pages.</li>
+<li>15 pages reduced to 8: Game, Words, Overlay, Access, Messages, Board, Log, About.</li>
+<li>All 40 chat messages moved to one Messages page, with a live chat preview and placeholder chips.</li>
+<li>Bot-account and <code>/me</code> toggles moved to Messages, separately for game and cooldown replies.</li>
+<li>Update check runs in the background; a pill in the header replaces the popup that used to block the window.</li>
+<li>Wordlist and action-log tables follow the window theme instead of showing up white.</li>
+<li>Unsaved changes show as a status line rather than a count.</li>
+</ul>
+<h5>Added</h5>
+<ul>
+<li>A damaged <code>configs.json</code> no longer blocks the window: it is kept as <code>configs.json.broken</code> and the settings come from <code>configs.json.bak</code>, which every save now leaves behind, or from the defaults.</li>
+<li>Only one settings window opens; a second trigger brings the existing one to the front.</li>
+<li>The colour wheel takes a click or a drag to pick hue and saturation.</li>
+</ul>
+<h5>Removed</h5>
+<ul>
+<li>Platform selection. Twitch, YouTube and Kick all play — restrict the game per platform in Streamer.bot instead.</li>
+<li>Sidebar search, Reset Page, and the placeholder chips under every message box.</li>
+</ul>
+<h5>Fixed</h5>
+<ul>
+<li>Upgrades from v9 forced a fixed channel point stake: the bet-mode migration ran only in the settings window, not in the game action.</li>
+<li>25 Windows references in the export were relative to the exporting Streamer.bot&#39;s folder and were dropped on import elsewhere.</li>
+<li>A running countdown kept going after the action was destroyed; it is cancelled now.</li>
+<li>Eight defaults disagreed between the game action and the settings window, among them round duration, maximum difficulty and the subscriber and VIP boosts.</li>
+<li><code>MsgGameStart</code> opened with a broken character instead of 🎮.</li>
+<li>The update check compared tags for inequality and would offer a downgrade; it compares versions now.</li>
+</ul>
+<h2>v10.0.0 — Major Update Update - OBS Overlay &amp; New GUI!</h2><p class="release__date">August 7, 2026</p><h4>✨ New Settings GUI</h4>
+<p>The settings window has been rebuilt from the ground up.</p>
+<ul>
+<li><strong>Sidebar navigation</strong> replaces the tab strip. Everything is grouped under <strong>Setup</strong>, <strong>Game</strong>, <strong>Players</strong>, <strong>Results</strong> and <strong>Help</strong>, and nothing is hidden inside a sub-tab anymore.</li>
+<li><strong>Search.</strong> The box at the top of the sidebar filters by page name, setting label <em>or</em> setting key — type <code>cooldown</code>, <code>payout</code> or <code>AntiCheatWindowSeconds</code> and it takes you straight there.</li>
+<li><strong>Messages live next to the feature that sends them.</strong> The hint text is on the Hints page, the anti-spam warning on Anti-Spam, the cooldown replies on Start Cooldown. Tuning one feature no longer means hopping between tabs.</li>
+<li><strong>Placeholder chips.</strong> Every message box lists its available placeholders underneath. Click <code>{user}</code> or <code>{masked}</code> to drop it in at the cursor instead of copying it out of a tooltip.</li>
+<li><strong>Unsaved changes are visible.</strong> The footer tells you how many settings you have changed, and Cancel now asks before throwing them away.</li>
+<li><strong>Reset Page</strong> restores just the page you are looking at. The old all-or-nothing reset is still there, but you no longer have to wipe your OBS paths and Reward ID to undo one bad number.</li>
+<li><strong>Warnings on save</strong> for settings that quietly cancel each other out — a hint threshold higher than your max wrong guesses (the round always ends before the hint can fire), a difficulty range that matches no words, Channel Point start switched on while the Reward ID is still the placeholder, and so on.</li>
+<li><strong>Wordlist page</strong>: multi-select with Ctrl+click / Shift+click / Ctrl+A and Delete-key support, a live count of how many words your filter is showing, and the difficulty range and category filters moved directly above the words they apply to.</li>
+<li><strong>Folder buttons</strong> on the Wordlist and Action Log pages, so you can jump to the files on disk.</li>
+</ul>
+<h4>📺 OBS Overlay — new</h4>
+<p>Hangman can now draw itself on stream. A local HTML file acts as an OBS Browser Source and repaints itself as the round plays out — no refreshing, no scene switching, nothing to click mid-game.</p>
+<p><strong>Get it running in one click.</strong> The Overlay page has a <em>Setup Overlay in OBS</em> button that creates the scene and the browser source for you over your existing Streamer.bot OBS connection, pointed at the right file. Prefer to do it by hand? The folder is one button away and the file is a plain local <code>.html</code>.</p>
+<p><strong>The gallows draws itself.</strong> The figure is vector art that fills in as chat gets it wrong, and it adapts to however many lives you allow:</p>
+<ul>
+<li><p><strong>Proportional</strong> — the classic six body parts, spread evenly across your max wrong guesses, so the last life always completes the figure</p>
+</li>
+<li><p><strong>Classic + Gallows</strong> — ten steps, adding the base, post, beam and rope as separate stages, which suits higher life counts</p>
+</li>
+<li><p><strong>Auto</strong> — picks between the two based on your settings</p>
+</li>
+<li><p>Category, lives as hearts, guessed letters, wrong letters, wrong words and the hint are each their own toggle, so the overlay can be a full scoreboard or just a word and a gallows.</p>
+</li>
+<li><p>Independent colours for the gallows, the figure, the text and the accent, plus a background colour with its own opacity — transparent out of the box, so it drops onto any scene. Scale the whole overlay and the text separately to fit the space you have.</p>
+</li>
+<li><p>The masked word scales down to the width of your browser source and wraps if it has to, so a twenty-letter answer stays on screen instead of running off the edge. It is always drawn in uppercase for readability at a distance.</p>
+</li>
+<li><p>The hint only appears once the game actually reveals it in chat, honouring <em>Use Hints</em>, <em>Hint After Wrong Guesses</em> and <em>Hints Stop Reveal</em> — so the overlay never spoils an answer your chat has not earned yet.</p>
+</li>
+<li><p>When a round ends the overlay announces <code>SOLVED</code>, <code>GAME OVER</code> or <code>TIME UP</code> with the answer, then fades out after a delay you choose — or set it to <code>0</code> and it disappears the moment the round is done.</p>
+</li>
+</ul>
+<h4>🎯 Channel Points — the stake is now detected automatically</h4>
+<p><strong>The Bet Mode dropdown is gone.</strong> The stake is read from the redemption itself:</p>
+<ol>
+<li>The viewer typed a number into the reward → that number is the stake</li>
+<li>Otherwise, the reward costs Channel Points → the reward cost is the stake</li>
+<li>Otherwise → no stake, the round is free to play</li>
+</ol>
+<p>The old Fixed mode lives on as a single field, <strong>Fixed Stake Override</strong>: leave it at <code>0</code> to let detection do its thing, or set anything above <code>0</code> to force every redemption to stake exactly that much.</p>
+<p>Whichever route was taken is written to the action log on every redemption (<code>Stake mode: input</code>), so you can confirm what actually happened.</p>
+<p><strong>Existing setups are migrated automatically.</strong> If you were on Cost, Input or Free, the override is set to <code>0</code> and detection takes over. If you were on Fixed, your amount is kept exactly as it was.</p>
+<h4>📋 Action log</h4>
+<ul>
+<li>Logs now roll over each day to mark a clear cut between streams.</li>
+<li>Columns are now better readable and scrollable in any direction if needed.</li>
+<li>Added a folder button to open the logs folder.</li>
+</ul>
+<h4>🔠 Wordlist</h4>
+<ul>
+<li>Added a folder button to edit the file directly.</li>
+<li>Reworked the input fields, you can now edit fields faster with common text editor shortcuts.</li>
+</ul>
+<hr>
+<h3>Important</h3>
+<p>Make sure you are running the current stable <code>1.0.7</code> of streamer.bot.
+If you&#39;re still on 1.0.4 you need to go through all 3 actions, click on their <code>Execute Code</code>, click on <code>Find Refs</code> and <code>Ok</code></p>
+<p>Let me know about issues :)</p>
+<h2>v9.0.2 — Bye Trovo</h2><p class="release__date">July 24, 2026</p><ul>
+<li>Removed Trovo for good</li>
+<li>Fixed some minor things</li>
+<li>Updated for streamer.bot 1.0.5 beta</li>
+</ul>
+<h2>v9.0.1</h2><p class="release__date">June 25, 2026</p><ul>
+<li>Removed some dead code from the scoreboard</li>
+<li>updated Update notifications</li>
+<li>minor fixes and typos</li>
+</ul>
+<h2>v9.0.0 — Initial Github Release</h2><p class="release__date">June 23, 2026</p><ul>
+<li>Completely reworked Hangman gameplay</li>
+<li>You now need to use a command to participate the game, e.g. <code>!g</code></li>
+<li>Twitch Channel Points support (WIP - since i can&#39;t test it myself and adapted the same mechanic i used in other scripts)</li>
+<li>Hangman can now be locked to &quot;Mod only&quot; for starts</li>
+<li>All messages are now editable</li>
+<li>Fixed: Hangman does now correctly end itself and give a reminder before it fully ends a round</li>
+<li>Hangman now also supports Currency Core by StreamUP and LOYALITY Points by tawmae</li>
+<li>You can reward players for guessing a correct letter</li>
+<li>Anti Cheat now can block spam</li>
+<li>Addicteds can be punished and are slowed down</li>
+<li>Boost won points of subscribers/VIPs</li>
+<li>Add/Edit/Remove your wordlist right in the GUI</li>
+<li>Filter min/max difficulty used in the game</li>
+<li>Hints are now not only just the next possible letter but a real &quot;hint&quot;</li>
+<li>Scoreboard got fully reworked</li>
+<li>Action log is hardcoded to always run and logs everything</li>
+<li>Platform toggles to disable/enable a unwanted platform</li>
+<li>Many more</li>
+</ul>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

@@ -28,6 +28,8 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"1.0.0","made":"1.0.7","min":"1.0.0-alpha.1","actions":6,"code":6,"commands":["!nextholidays","!feiertage","!upcomingvacations","!upcomingholidays","!nextbirthdays","!birthdays","!geburtstage","!upcomingbirthdays","!ferien","!feiertag","!urlaub","!holiday","!holidays","!vacation","!vacations","!birthday","!geburtstag","!bday"],"words":[],"timers":0,"sites":["alejo.io","nager.at","stoat.chat"],"updateCheck":true}</script>
 </head>
 <body data-repo="ChatCalendar" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +46,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -61,10 +66,289 @@
       <div class="wrap">
         <h1>Chat Calendar</h1>
         <p class="project-hero__lead">Create your own calendar that display holidays, birthdays or other custom special days in your chat!</p>
-        <p class="doc-status">Loading…</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/ChatCalendar">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/logo/ChatCalendar.png" alt="Chat Calendar" width="220" height="220">
+</p><h1 align="center">Chat Calendar</h1><p align="center">
+  <b>Holidays, birthdays and your own special days in your chat — on Twitch, YouTube and Kick.</b><br>
+  Public holidays of 100+ countries, posted once a day to Discord, Stoat and GameVox if you like.
+</p><p align="center">
+  
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/ChatCalendar/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/ChatCalendar/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/ChatCalendar/blob/main/Import-String.md"><b>Import String</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/ChatCalendar/blob/main/CHANGELOG.md"><b>Changelog</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>Chat Calendar greets your chat on public holidays, on viewers&#39; birthdays and on days you add yourself.
+Every chatter is greeted once per holiday, also when the stream runs past midnight, and once on their
+birthday. The greetings follow your country: German, French, Spanish and a dozen more languages.
+Formerly <em>Twitch Calendar</em>.</p>
+<pre><code>mirabel_tv: hi chat!
+YourBot: Happy &#39;Christmas Day&#39;, mirabel_tv!
+
+kjell_plays: !birthday 22.7.
+YourBot: Saved, kjell_plays: your birthday is on July 22.
+</code></pre>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🗓️ <strong>Holidays for your region.</strong> The holidays come from <a href="https://date.nager.at">date.nager.at</a>. Pick a
+region such as Texas, Ontario, Bavaria or Queensland, and only its holidays count. New years download
+themselves.</li>
+<li>🎂 <strong>Birthdays.</strong> Viewers save their own with <code>!birthday 24.12.</code>, moderators set them for others. On the
+Birthdays page you add more, with a year for <code>{age}</code>.</li>
+<li>⭐ <strong>Your own days.</strong> A channel birthday, a charity stream or anything else, once on a date or every year.</li>
+<li>📣 <strong>A daily post to Discord, Stoat and GameVox.</strong> Today&#39;s holidays and birthdays go out through a webhook at
+the time you set. No Streamer.bot timer needed.</li>
+<li>💬 <strong>Answers in the chat they came from.</strong> From the bot or the broadcaster account, on Twitch as a <code>/me</code>
+message if you like.</li>
+<li>⚙️ <strong>One settings window.</strong> Country, region, time zone, every greeting with a chat preview, webhooks with a
+test button and a colour picker, and the log of what was said.</li>
+</ul>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/calendar.png" alt="The settings window" width="620"></p><hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Data &amp; services:</strong><ul>
+<li><a href="https://date.nager.at">Nager.Date</a>: public holidays</li>
+<li><a href="https://pronouns.alejo.io">pronouns.alejo.io</a> by Alejo: viewer pronouns on Twitch</li>
+</ul>
+</li>
+<li><strong>Community:</strong> <a href="https://discord.com/channels/834650675224248362/1453874519713382431">Chat Calendar on the Streamer.bot discord</a></li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+<p>None of the services above is affiliated with or endorses Chat Calendar.</p>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Import</h1>
+<p>Click <code>Import</code> in <a href="https://streamer.bot/">Streamer.bot</a> and drag the
+<a href="https://github.com/aaskjer/ChatCalendar/releases">ChatCalendar.sb</a> file into the window, or paste the
+<a href="https://github.com/aaskjer/ChatCalendar/blob/main/Import-String.md">import string</a>. Click <code>Import</code>, then <code>Yes</code> on the popups that follow.</p>
+<p>You get six actions in the group <code>ChatCalendar</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[CC] - .Settings</code></td>
+<td>Opens the Settings window.</td>
+</tr>
+<tr>
+<td><code>[CC] - Calendar Setup</code></td>
+<td>Downloads the holidays. Nothing to run here: it starts by itself when the Settings window opens without holidays, when you save another country or region, when a new year begins, and from <code>Save and download now</code>.</td>
+</tr>
+<tr>
+<td><code>Check today&#39;s holiday &amp; firstMessage</code></td>
+<td>Greets the chat; answers <code>!holiday</code>.</td>
+</tr>
+<tr>
+<td><code>Upcoming Holidays</code></td>
+<td>Answers <code>!nextholidays</code> and <code>!nextbirthdays</code>.</td>
+</tr>
+<tr>
+<td><code>Birthday Command</code></td>
+<td>Answers <code>!birthday</code>.</td>
+</tr>
+<tr>
+<td><code>Announce Holidays</code></td>
+<td>Posts to Discord, Stoat and GameVox once a day.</td>
+</tr>
+</tbody></table>
+<h2>Enable Commands</h2>
+<p>The commands ship disabled. Go to <code>Commands</code>, enable the four <code>ChatCalendar - ...</code> commands and tick
+the platforms they should answer on (Twitch, YouTube, Kick) under their sources.</p>
+<p>Which chats are greeted is up to the triggers of <code>Check today&#39;s holiday &amp; firstMessage</code>: Twitch, YouTube
+and Kick chat messages. Untick one to leave that platform out.</p>
+<h1>Setup</h1>
+<p>Go to <code>Actions</code>, select <code>[CC] - .Settings</code>, right-click the <code>Test</code> trigger and choose
+<code>Test Trigger</code>. That opens the Settings window.</p>
+<p>The first time it opens, the window downloads the holidays of your country by itself; the Calendar page
+shows how far it is. Nothing has to be run in <code>[CC] - Calendar Setup</code>.</p>
+<p>Seven pages sit on the rail down the left side — Chat, Announcements, Calendar, Holidays, Birthdays,
+Messages, Log —, Help and About at its foot. <code>Ctrl+1</code> to <code>Ctrl+9</code> jump
+between them, <code>Ctrl+S</code> saves. The sun or moon at the bottom left switches between the dark and light
+theme; the arrow next to it puts the page you are on back to its defaults. Nothing is written until you
+press <code>Save</code>.</p>
+<p>Everything lands in the folder <code>Chat Calendar</code> next to Streamer.bot: <code>configs.json</code> (this window),
+<code>holidays.json</code>, <code>birthdays.json</code> and the <code>Logs</code> folder.</p>
+<h2>Chat</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/chat.png" alt="Chat page" width="620"></p><p>Whether chatters are greeted on holidays and on their birthday — the command answers either way. Below,
+<code>!nextholidays</code>: how many holidays it lists, and whether your own holidays and the next birthdays
+follow; and <code>!nextbirthdays</code>, which lists the next birthdays alone: how many of them.</p>
+<h2>Announcements</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/announcements.png" alt="Announcements page" width="620"></p><p>Paste a webhook URL for each platform to post to; several on one platform are separated by commas.
+The URLs stay covered: the eye beside one shows it, and clicking elsewhere or leaving the page covers it again.
+<code>Test</code> saves and posts today&#39;s holidays right away (a test post on a day without one).</p>
+<ul>
+<li><strong>Discord:</strong> channel settings → <code>Integrations</code> → <code>Webhooks</code> → <code>New Webhook</code> → <code>Copy Webhook URL</code>.</li>
+<li><strong>Stoat:</strong> channel settings → <code>Webhooks</code>; the URL looks like <code>https://api.stoat.chat/webhooks/&lt;id&gt;/&lt;token&gt;</code>.</li>
+<li><strong>GameVox:</strong> Developer Portal → your application → <code>Webhooks</code> → the execute URL (cloud-hosted servers only).</li>
+</ul>
+<p>The post goes out once a day at the time you set, in the time zone of the Calendar page. Title, the line
+per holiday and per birthday, the colour and a Discord text above the post (a role mention, say) are
+yours to change. Click the colour swatch for a picker: click or drag in the field and the hue bar, or
+use the red, green and blue sliders and the colours below them.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/announcements-colour.png" alt="Colour picker" width="300"></p><h2>Calendar</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/calendar.png" alt="Calendar page" width="620"></p><p>Your <strong>country</strong>, and the <strong>region</strong> whose holidays count: some are only holidays in parts of a country
+(Epiphany in Baden-Württemberg, Bavaria and Saxony-Anhalt). <code>All regions</code> greets everyone for each of
+them, a region keeps the nationwide ones and its own, <code>Nationwide holidays only</code> keeps those alone.
+Of the 204 countries, 17 have holidays that differ by region; each of those is listed with every one of
+its regions — all 50 US states, every Canadian province, every Bundesland — and the rest with none.
+After changing the country, <code>Save</code> downloads its holidays and the list follows. The Holidays page then
+shows the holidays of that region alone — Bavaria has no Reformation Day.</p>
+<p>The <strong>time zone</strong> sets when a day begins — midnight for your viewers, not on the PC&#39;s clock. The <strong>chat
+language</strong> is the language of every text the actions write; by default it follows the country.
+<code>Boarisch</code> writes Bavarian; <code>Deutsch</code> or the default for Germany, Austria and Switzerland is standard German.</p>
+<p><code>Save and download now</code> downloads every year again. Saving another country, region, time zone or year
+runs the download too.</p>
+<h2>Holidays</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/holidays.png" alt="Holidays page" width="620"></p><p><strong>Official holidays</strong> come from date.nager.at, and only those that count in your region are listed.
+Where that source leaves a region out, Setup adds it: Mariä Himmelfahrt counts in Bavaria, not in
+Saarland alone — it is a holiday in the Bavarian municipalities with a Catholic majority, most of them.
+The <code>Greeting</code> column is what a chatter hears on that day; it is kept when next year&#39;s holidays arrive.
+Leave it empty for a day no one has a greeting for — nobody wishes a happy Labour Day: then nobody is
+greeted for it, while <code>!holiday</code> still names the day and the announcement still lists it.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/holidays-own-holidays.png" alt="Own holidays" width="620"></p><p><strong>Own holidays</strong> are yours. <code>MM-DD</code> (or <code>24.12.</code>) comes back every year; with <code>Every year</code> off the date
+counts once. They count everywhere, whatever the region, and an empty greeting greets nobody here too.</p>
+<p>Placeholders: <code>{userName}</code>, <code>{holidayName}</code>, <code>{pronounType}</code> (he, she or they from Twitch pronouns).</p>
+<h2>Birthdays</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/birthdays.png" alt="Birthdays page" width="620"></p><p>Everyone the chat congratulates. Viewers add themselves with <code>!birthday 24.12.</code>; add others here.
+A date with a year (<code>1994-12-02</code>) knows the age for <code>{age}</code>; the command never keeps the year.
+<code>Platform</code> matters only when the same name exists on another platform. A greeting here replaces the
+one on the Messages page for that person.</p>
+<h2>Messages</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/messages.png" alt="Messages page" width="620"></p><p>Your own texts for the holiday greeting, the birthday greeting and the answer on a day without a
+holiday. Empty means the built-in text in the chat language. Click a placeholder to insert it; the
+preview shows the message as the chat will see it.</p>
+<p>Under the preview: whether every message comes from your bot account or the broadcaster&#39;s, and <code>/me</code>
+on Twitch (YouTube and Kick have none and get a plain message).</p>
+<h2>Log</h2>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/ChatCalendar/main/Assets/screenshots/log.png" alt="Log page" width="620"></p><p>What was said and posted, newest first: greetings, commands, birthdays saved, webhook posts, downloads and
+errors. One file a day in <code>Logs</code>, kept for 30 days.</p>
+<h1>Updating from Twitch Calendar</h1>
+<p>Import over the old version. The holidays (<code>C:\streamer.bot\Twitch Calendar</code> or <code>Twitch Calendar</code> next to
+Streamer.bot) are copied into <code>Chat Calendar</code> on the first run, with your own holidays and greetings. The
+country, region and time zone come along; webhook URLs and your own texts from the old Set Argument
+sub-actions are entered once in the Settings window.</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><h1>Changelog</h1>
+<h2>v1.0.1 - 2026-10-29</h2>
+<h3>Added</h3>
+<ul>
+<li>Greetings may be left empty. Not every holiday has one — nobody wishes a happy &quot;Tag der Arbeit&quot;. An empty
+<code>Greeting</code> on the Holidays page (and an empty <code>DefaultMessage</code> in <code>holidays.json</code>) greets nobody on that
+day; <code>!holiday</code> answers with the name of the day instead, and the announcement still lists it. Setup keeps
+an empty greeting when the next year&#39;s holidays arrive, as it keeps the written ones.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Mariä Himmelfahrt (15 August) now counts in Bavaria, not in Saarland alone. date.nager.at lists it for
+Saarland only; it is a holiday in the Bavarian municipalities with a Catholic majority, nearly all of
+Lower and Upper Bavaria among them. Setup adds the region after every download, and to holidays already
+written, cross-checked against openholidaysapi.org.</li>
+<li>The region list covers every country whose holidays differ by region: all 50 US states, the Canadian
+provinces, the Australian states, the Spanish communities, the Italian regions and the rest — 259 regions
+in the 17 countries of the 204 that have any. Every region is listed, not only those a downloaded holiday
+happens to name, and the list follows the country as soon as it is changed.</li>
+<li>Picking a region without a holiday of its own (Florida, Lower Saxony) is no longer logged as a warning;
+only a region of another country is.</li>
+<li>The Holidays page listed every holiday of the country, Bavaria&#39;s Reformation Day included. It now shows
+the holidays of the chosen region alone, the way the greeting, Upcoming Holidays and the announcements
+have always counted them, and follows the region on the Calendar page before it is saved. The note under
+the list says how many of the country&#39;s holidays count where you are.</li>
+</ul>
+<h2>v1.0.0 - 2026-10-27</h2>
+<h3>Added</h3>
+<ul>
+<li>A Settings window: run the trigger &#39;Test&#39; of the new action &#39;[CC] - .Settings&#39;. Its pages are Chat
+(greetings on/off, <code>!nextholidays</code>, <code>!nextbirthdays</code>), Announcements (webhooks, covered with an eye to show
+them, and a Test button; time, look, a colour picker), Calendar (country, region, time zone, chat language,
+year, download), Holidays (greetings of the official holidays, your own holidays), Birthdays, Messages (your
+own texts with a chat preview, bot or broadcaster, /me), Log, Help and About. It saves <code>configs.json</code> next to
+<code>holidays.json</code>, which every action reads; a damaged file is kept as <code>configs.json.broken</code> and the window
+falls back to the last save. A red pill in its header shows when a newer release is out on GitHub.</li>
+<li>YouTube and Kick: chatters there are greeted on holidays, and both commands answer in the chat they came
+from (split for YouTube&#39;s 200 characters). Untick a trigger or a command source to leave a platform out.</li>
+<li>New action &#39;Announce Holidays&#39;: posts today&#39;s holidays to Discord, Stoat and GameVox webhooks once a day at
+the time set in the Settings window. A timer inside the script checks every minute, so no Streamer.bot timer
+is needed and the action history gets one entry a day. A failed webhook is tried again after 15 minutes, at
+most three times a day, without posting twice to the ones that worked.</li>
+<li>Own holidays without a year: a date like <code>12-24</code> (or <code>24.12.</code>) comes back every year, in the greeting,
+Upcoming Holidays and the announcements. 29 February is the 28th in other years.</li>
+<li>Birthdays in <code>birthdays.json</code>, next to <code>holidays.json</code>. Viewers save theirs with the new command
+<code>!birthday 24.12.</code> / <code>!geburtstag</code> (day and month only; <code>!birthday</code> shows it, <code>!birthday remove</code> deletes it);
+the streamer adds others on the Birthdays page, with a year for <code>{age}</code> and an own greeting. Chatters are
+greeted on their birthday once that day, the announcements list the day&#39;s birthdays, and Upcoming Holidays
+can list the next ones.</li>
+<li>Moderators and the broadcaster save, show and remove other viewers&#39; birthdays with <code>!birthday @name 24.12.</code>
+(<code>@name</code>, <code>@name remove</code>). On Twitch the name is looked up, so the entry keeps the user id; others ask in vain.</li>
+<li>Messages from the bot or the broadcaster account, and on Twitch as a /me message.</li>
+<li>Regions: official holidays that only count in other regions (e.g. Epiphany outside DE-BW, DE-BY, DE-ST) are
+left out of the greeting, Upcoming Holidays and the announcements. A code no holiday uses is named in the
+log, together with the ones that exist. Own holidays always count.</li>
+<li>Greetings on holidays and on birthdays can be switched off separately; the command still answers.</li>
+<li><code>!nextbirthdays</code> (<code>!birthdays</code>, <code>!geburtstage</code>): the next birthdays alone, 5 by default, at most 25.</li>
+<li>A log of what was said and posted: <code>Logs\ChatCalendar-YYYY-MM-DD.txt</code>, kept 30 days, shown on the Log page.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Holidays download again: date.nager.at dropped its CSV export, &#39;[CC] - Calendar Setup&#39; now uses its JSON API.</li>
+<li><code>{holidayName}</code> was empty, and two holidays on the same day were announced as one.</li>
+<li>The command answered nothing on days without a holiday.</li>
+<li>Upcoming Holidays failed for country codes without a translation (AT, CH, GB, PL ...); they get German or
+English text with their own date format now.</li>
+<li><code>IndependenceDayMessage</code> and other per-holiday arguments are found whatever their capitalisation.</li>
+<li>No more <code>Hello @,</code> when there is no user name, and no error in the log for every viewer without pronouns.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>No more Set Argument sub-actions: every setting is made in the Settings window. An argument of the same name
+in an action still wins over <code>configs.json</code>. Updating from an older version: the country, region and time
+zone in <code>holidays.json</code> are taken over; webhooks and your own texts are entered once in the window.</li>
+<li>All holidays live in <code>holidays.json</code>. <code>holidays.csv</code> is no longer read; its own holidays are taken over once.</li>
+<li>Renamed from Twitch Calendar to Chat Calendar: the action group and commands (<code>ChatCalendar - ...</code>), the log
+prefix <code>[Chat Calendar - ...]</code>, the README (<code>Chat-Calendar-README.txt</code>) and the export <code>ChatCalendar.sb</code>.</li>
+<li>Everything lives in the folder <code>Chat Calendar</code> in the Streamer.bot folder. Holidays of older versions
+(<code>C:\streamer.bot\Twitch Calendar</code>, or <code>Twitch Calendar</code> in the Streamer.bot folder) are copied over on the
+first run.</li>
+<li>&#39;.. Setup Action ..&#39; is now &#39;[CC] - Calendar Setup&#39; and has no trigger: nothing has to be run there. The Settings
+window runs it when it opens without holidays (or without this year&#39;s), and when another country, region,
+time zone or year is saved.</li>
+<li>&#39;[CC] - Calendar Setup&#39; keeps your own greetings and own holidays, also into the next year, and keeps the previous
+file as <code>holidays.json.bak</code>. &#39;Save and download now&#39; in the Settings window downloads every year again.</li>
+<li>When a new year begins (or from November on, for the next one), the other actions run &#39;[CC] - Calendar Setup&#39;
+themselves; saving another country, region, time zone or year in the Settings window runs it too.</li>
+<li>Every chatter is greeted once per holiday, also when the stream runs past midnight (trigger: Twitch Chat
+Message instead of First Words).</li>
+<li>A time zone (e.g. <code>Europe/Berlin</code>) sets when a day begins; without it, the PC&#39;s clock does.</li>
+<li>The command&#39;s answer on days without a holiday and <code>{pronounType}</code> follow the country, or the chat language
+set in the Settings window. Bavarian is the chat language &#39;Boarisch&#39;; the country BY (Belarus) gets Russian.</li>
+<li>Upcoming Holidays shows at most 25 holidays and pauses a second between chat messages.</li>
+</ul>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

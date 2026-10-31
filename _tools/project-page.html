@@ -26,6 +26,7 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>{{data}}
 </head>
 <body data-repo="{{repo}}"{{files}}>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -42,6 +43,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -55,7 +59,11 @@
 
   <main id="main">
 {{hero}}
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/{{user}}/{{repo}}">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">{{docs}}
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

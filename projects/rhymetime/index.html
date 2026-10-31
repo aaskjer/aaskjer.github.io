@@ -28,6 +28,8 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
+  <script type="application/json" id="import-facts">{"version":"1.1.0","made":"1.0.7","min":"1.0.0-alpha.1","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle"],"words":[],"timers":0,"sites":["wordotron.com"],"updateCheck":true}</script>
 </head>
 <body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +46,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -68,10 +73,622 @@
           <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>An OBS overlay for the word, the clock and the rhyme that won it</span></li>
           <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>Three word banks and all 19 chat lines in one settings window</span></li>
         </ul>
-        <p class="doc-status">Loading…</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/RhymeTime">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><h1 align="center">RhymeTime</h1><p align="center">
+  <b>Rhyme battles straight in your chat — on Twitch, YouTube and Kick.</b><br>
+  One chatter against the clock, or the whole chat racing for the same word.
+</p><p align="center">
+  
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/RhymeTime/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/RhymeTime/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/RhymeTime/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md"><b>Import String</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>RhymeTime is a chat game for Streamer.bot. A chatter starts a round with <code>!Rhyme</code>, gets a word and answers
+in ordinary chat before the clock runs out. A wrong guess costs an attempt, not the round. Moderators can
+open a battle with <code>!RhymeBattle</code>: one word for the whole chat, and the first valid rhyme takes the prize.</p>
+<pre><code>!Rhyme 250
+→ Nova, find a rhyme for: DREAM! You have 30 seconds. Bet: 250 Points
+
+i think... BEAM
+→ Nova rhymed &#39;DREAM&#39; with &#39;BEAM&#39;! +500 Points [Total: 3.250 Points]
+</code></pre>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🎤 <strong>Rhymes it was never told about.</strong> The rhymes you list are examples; the ending they share decides what
+counts. <code>BAT, HAT, MAT</code> accepts anything ending in <code>AT</code>, checked against a dictionary first, so <code>FLAT</code>
+wins and <code>XQAT</code> does not.</li>
+<li>📖 <strong>A dictionary that never blocks a correct answer.</strong> The check asks wordotron.com once per word and caches
+the result. If the lookup is slow or unreachable, the guess is accepted.</li>
+<li>✍️ <strong>Lines to finish.</strong> A target with spaces in it turns the round into a line to complete, such as
+<em>ROSES ARE RED VIOLETS ARE BLUE …</em>, and the reply has to match one of your answers.</li>
+<li>💬 <strong>No answer command.</strong> Only the last word of a message is read, so &quot;hmm maybe DREAM&quot; works. Messages that
+don&#39;t look like an attempt are ignored.</li>
+<li>📚 <strong>Three word banks.</strong> Easy, medium and hard, each with its own payout multiplier: 1.5×, 2× and 3× by
+default.</li>
+<li>💰 <strong>Bets or free play.</strong> Chatters stake a number or <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code>, <code>random</code>. A default
+bet of <code>0</code> makes the whole game free.</li>
+<li>📺 <strong>An overlay for OBS.</strong> The word on stream with its countdown and the attempts left, then the winning
+rhyme and what it paid. It ships with the import, runs on Streamer.bot&#39;s own WebSocket server, and one
+button sets it up in OBS. Place, size, colours and what it shows are all in the window.</li>
+<li>⚙️ <strong>One settings window.</strong> Eight pages with keyboard shortcuts, light and dark themes, and all 19 chat
+messages with a live preview.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Works with:</strong> <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> · <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a></li>
+<li><strong>Data &amp; services:</strong><ul>
+<li><a href="https://wordotron.com">wordotron.com</a>: dictionary check</li>
+</ul>
+</li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+<p>None of the projects above is affiliated with or endorses RhymeTime.</p>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>Import</h1>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"> </p><p>Click <code>Import</code> in <a href="https://streamer.bot/">streamer.bot</a> and drag the <a href="https://github.com/aaskjer/RhymeTime/releases">RhymeTime.sb</a> file into the window, or paste the <a href="https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md">import string</a>.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/d3d8ecfd-018d-4052-9056-c72438d5c613"></p><p>Click <code>Import</code>, then <code>Yes</code> on both popups that follow.</p>
+<h2>Enable Commands</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/004c325b-8673-430d-91b9-72c9a8931663"></p><p>Both commands ship disabled. Enable <code>!Rhyme</code> and <code>!RhymeBattle</code> in the <code>Commands</code> tab, or nothing
+answers in chat. <code>!RhymeBattle</code> is restricted to the <code>Moderators</code> group on the command itself —
+change that there if you want someone else to be able to open a battle.</p>
+<h1>Setup</h1>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[RT] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>.
+That opens the settings window.</p>
+<p>Eight pages sit on the rail down the left side. <code>Ctrl+1</code> to <code>Ctrl+8</code> jump between them, <code>Ctrl+S</code>
+saves. Every field carries a tooltip, so hovering usually answers the question faster than this page
+does.</p>
+<p>Twitch, YouTube and Kick all play, always — there is nothing to switch on. Restrict the
+Streamer.bot commands if you want the game off a platform.</p>
+<h2>Game</h2>
+<p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/game.png"></p><p>The round and what it costs. How long a chatter has to answer, how many wrong rhymes they may
+offer, which word bank a round draws from, and whether a guess that merely ends the right way is
+checked against a dictionary first.</p>
+<p>Under it the currency — the Streamer.bot user variable the stake comes out of and the name that
+fills <code>{currency}</code>. Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own
+and override both fields, Currency Core first, so those two need nothing from you.</p>
+<p>Then the bets and the payout. The default bet is what <code>!Rhyme</code> stakes without
+an amount; the minimum and maximum frame what a chatter may type. Set the default bet to <code>0</code> and the
+game is <strong>free</strong>: nothing is staked and nothing is paid out, and the header says so.</p>
+<p>The payout multipliers are per word bank: a win pays the stake times the multiplier of the bank the
+word came from.</p>
+<p>The two cooldowns at the bottom are written onto the <code>!Rhyme</code> command itself when you save, so
+Streamer.bot&#39;s own cooldown fields follow this page rather than fighting it.</p>
+<h2>Battle</h2>
+<p align="center"><img loading="lazy" alt="Battle page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/battle.png"></p><p>A moderator runs <code>!RhymeBattle</code> and the whole chat races for the same word. The first valid rhyme
+takes the prize and the battle closes; nobody else pays anything. The answer window is the same
+<em>Seconds to answer</em> as a normal round, and the word comes from the same banks.</p>
+<p>The one setting here is the prize for a battle nobody staked for. <code>!RhymeBattle 500</code> stakes 500 of
+the moderator&#39;s own instead, and then the winner takes that — if nobody rhymes in time it goes back.
+The minimum and maximum bet from the Game page apply to a staked battle as well.</p>
+<h2>Word banks</h2>
+<p align="center"><img loading="lazy" alt="Word banks page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/word-banks.png"></p><p>One target per row with its rhymes beside it, separated by commas. The picker at the top chooses
+which of the three banks you are editing; all three are saved together.</p>
+<p>The rhymes you list are examples, not the whole answer: what they have in common at the end is what
+the round accepts. Three rhymes ending in <code>AT</code> accept any dictionary word ending in <code>AT</code>. One lonely
+rhyme has nothing to agree with, so half of it is used — list two or three and the round behaves
+predictably.</p>
+<p>A target <strong>with spaces in it</strong> is a line to finish instead of a word to rhyme. Then the whole reply
+has to match one of the answers you listed, so write them out in full.</p>
+<p>A row only reaches the game once it has a target and at least one rhyme; the pill above the table
+counts the usable ones. <em>Restore this bank</em> puts the shipped words back into the bank you are
+looking at and leaves the other two alone. Nothing is written until you save.</p>
+<h2>Access</h2>
+<p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/access.png"></p><p>Who may not play. Names on the blocked list are ignored when they run the command, with no reply in
+chat; so is everyone in a blocked Streamer.bot group (<code>Settings</code> → <code>Groups</code>). A group that does not
+exist is skipped and logged rather than failing the round.</p>
+<p>Permissions themselves belong to the commands in Streamer.bot&#39;s <code>Commands</code> tab — this page only
+takes people out of the game.</p>
+<h2>Messages</h2>
+<p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/messages.png"></p><p>Every line the game says in chat behind one picker, grouped into Round, Battle, Bets and Cooldown.
+Pick one and you get its editor, the placeholders it accepts as clickable chips, and a preview of
+the finished line.</p>
+<p>The four bet reasons fill <code>{reason}</code> inside <em>Bet refused</em>, so that one line is the frame around all
+of them. Emptying <em>Examples after a loss</em> posts nothing after a lost round.</p>
+<p>The number format and which account speaks sit at the bottom — the bot account and <code>/me</code> apply
+separately to the game&#39;s messages and to the cooldown replies. <code>/me</code> is Twitch only.</p>
+<h2>Overlay</h2>
+<p align="center"><img loading="lazy" alt="Overlay page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/overlay.png"></p><p>A browser source for OBS that shows the round on stream: the word with the ending picked out, the
+clock, the attempts left, and then the rhyme that won it and what it paid. It ships inside the
+import, so there is nothing to download.</p>
+<p>Switch <em>Send rounds to the overlay</em> on, then switch Streamer.bot&#39;s own WebSocket server on under
+<code>Servers/Clients</code> → <code>WebSocket Server</code> and tick <em>Auto Start</em>. The port on this page has to be the one
+shown there, 8080 unless you changed it. If you turned its authentication on, add <code>&amp;password=</code>
+followed by that password to the end of the URL.</p>
+<h3>Set it up in OBS</h3>
+<p><strong>Set the overlay up in OBS</strong> does the rest for you: it saves, writes the overlay page, and over
+Streamer.bot&#39;s OBS connection creates the scene and puts a browser source in it, the size of your
+canvas, pointed at the overlay. OBS has to be connected in Streamer.bot under
+<code>Stream Apps</code> ▸ <code>OBS Studio</code>. <em>Connection #</em> is 0 unless you have more than one OBS there; <em>Scene</em>
+is created if it is not there yet, and a <em>Source</em> name OBS already knows is left alone rather than
+overwritten.</p>
+<p>By hand works too: <em>Copy URL</em> writes the page to <code>Chat Games/RhymeTime/Overlay</code> and copies its
+address — saving with the overlay on writes it as well — then add a <strong>Browser</strong> source in OBS,
+untick <em>Local file</em>, paste the URL and set the size to 1920 × 1080. <em>Try the demo</em> opens the same
+page in your browser playing sample rounds, which is the easiest way to place and size the source
+before anyone plays.</p>
+<h3>How it looks</h3>
+<p>Everything under <em>Size and place</em>, <em>What it shows</em> and <em>Colours</em> travels with the round itself, so a
+change is on screen the next time somebody plays and OBS never has to be touched again.</p>
+<p><em>Place</em> puts the card left, centre or right; <em>Size %</em> scales it; <em>Result shown</em> is how long the
+winning rhyme, or the rhymes after a lost round, stays up. The four switches take the ending pill,
+the attempt dots, the stake chip and the rhymes after a loss off the card. <em>Accent</em> colours the
+word&#39;s ending, the wordmark and the clock bar, with every lighter shade worked out from it;
+<em>Battle</em>, <em>Won</em> and <em>Card</em> do the same for a battle, a win and the card behind it all. Click a
+swatch for the picker.</p>
+<p>The card follows one round at a time, the newest: a battle takes the card from a single-player round
+that is still running.</p>
+<p>What this page does not reach goes in the Browser source&#39;s own <em>Custom CSS</em>, which is read after
+these settings and wins:</p>
+<pre><code class="language-css">:root { --rt-width: 480px; --rt-edge: 40px; --rt-radius: 8px; }
+</code></pre>
+<p>The URL takes <code>&amp;platform=twitch</code> to show one platform&#39;s rounds only, <code>&amp;lang=de</code> for the German
+wording, <code>&amp;position=center</code> to overrule <em>Place</em>, and <code>&amp;debug=1</code> to see whether it reached
+Streamer.bot.</p>
+<h2>How to play</h2>
+<p align="center"><img loading="lazy" alt="How to play page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/how-to-play.png"></p><p>The rules in short, and where the two files live:</p>
+<pre><code>Chat Games/RhymeTime/RT-settings.json    ← everything on these pages, every chat line
+Chat Games/RhymeTime/RT-wordbank.json    ← the three word banks
+</code></pre>
+<p>Both sit under your Streamer.bot folder. Editing them by hand is never necessary — the settings
+window writes all of it, keeps the previous copy as <code>.bak</code>, and sets a damaged file aside as
+<code>.broken</code> rather than overwriting it.</p>
+<h2>About</h2>
+<p align="center"><img loading="lazy" alt="About page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/about.png"></p><p>The version, the links to the repository and the releases, and what the buttons along the bottom do.
+Opening the window also asks GitHub for the latest release in the background; if there is a newer
+one, a pill appears in the header.</p>
+<hr>
+<p><a href="https://github.com/aaskjer/RhymeTime/blob/main/FAQ.md">Frequently Asked Questions</a></p>
+</div>
+      </section>
+      <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
+        <h2 class="doc-label">FAQ</h2>
+        <div class="doc-body"><h1>❓ RhymeTime — FAQ</h1>
+<hr>
+<h2>🛠️ Setup &amp; Configuration</h2>
+<p><strong>Q: Where are the files stored?</strong></p>
+<p>Under your Streamer.bot base directory:</p>
+<pre><code>Chat Games/RhymeTime/RT-settings.json    ← settings and every chat message
+Chat Games/RhymeTime/RT-wordbank.json    ← the three word banks
+</code></pre>
+<p>Editing either by hand is never necessary — the settings window writes both.</p>
+<hr>
+<p><strong>Q: Nothing happens when I type <code>!Rhyme</code>.</strong></p>
+<p>The commands ship disabled. Open Streamer.bot&#39;s <code>Commands</code> tab and enable <code>!Rhyme</code> and
+<code>!RhymeBattle</code>. If they are enabled and still silent, check that the <code>RhymeTime Game</code> and
+<code>RhymeTime Battle</code> actions are enabled too, and that the chosen word bank has words in it.</p>
+<hr>
+<p><strong>Q: How do I open the settings window?</strong></p>
+<p><code>Actions</code> → <code>[RT] - Settings</code> → right-click the <code>Test</code> trigger → <code>Test Trigger</code>. Only one window
+opens; triggering it again brings the one you have to the front.</p>
+<hr>
+<p><strong>Q: The settings file is damaged. Did I lose everything?</strong></p>
+<p>No. Every save keeps the copy it replaced as <code>RT-settings.json.bak</code>. If the file cannot be parsed,
+the window sets it aside as <code>RT-settings.json.broken</code>, loads the <code>.bak</code>, and tells you which of the
+two happened. The game itself falls back to the defaults for that round rather than failing, so a
+damaged file never leaves chat without an answer.</p>
+<hr>
+<p><strong>Q: How do I reset the settings?</strong></p>
+<p>The circular arrow at the bottom left resets every page, the half arrow only the page in front of
+you. Both ask first. Neither touches the word banks — those have <em>Restore this bank</em> on their own
+page, per bank.</p>
+<hr>
+<p><strong>Q: I saved but the game still behaves the old way.</strong></p>
+<p>It should not: the game reads the settings fresh on every command, so the next round already runs on
+the new values. Nothing needs restarting. The two cooldowns are the exception worth knowing about —
+they are written onto the <code>!Rhyme</code> command when you save, which is where Streamer.bot reads them.</p>
+<hr>
+<h2>🎮 Starting &amp; Ending a Round</h2>
+<p><strong>Q: Who may start a round?</strong></p>
+<p>Anyone, unless you say otherwise. Permissions live on the command in Streamer.bot&#39;s <code>Commands</code> tab —
+set a group there and only that group can run <code>!Rhyme</code>. <code>!RhymeBattle</code> ships restricted to the
+<code>Moderators</code> group the same way.</p>
+<hr>
+<p><strong>Q: Can two people play at once?</strong></p>
+<p>Yes. Every chatter has their own round, with their own word, clock and attempts. Running <code>!Rhyme</code>
+while your own round is still open gets you <em>you already have an active round!</em> and nothing else.</p>
+<p>Battles are the opposite: one per platform at a time, for everyone.</p>
+<hr>
+<p><strong>Q: How do I stop a round?</strong></p>
+<p>There is no kill command — a round ends when the clock runs out, when the attempts are used up, or
+when it is won. Rounds live in memory only, so restarting Streamer.bot clears whatever was running.</p>
+<hr>
+<p><strong>Q: Does the game reply when the command is on cooldown?</strong></p>
+<p>Yes, with the two Cooldown messages, and the stake is not taken. Set either cooldown to <code>0</code> to turn
+it off.</p>
+<hr>
+<h2>💬 Commands &amp; Answering</h2>
+<p><strong>Q: What are the in-chat commands?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Who</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!Rhyme</code></td>
+<td>Everyone</td>
+<td>Starts a round at the default bet</td>
+</tr>
+<tr>
+<td><code>!Rhyme 250</code></td>
+<td>Everyone</td>
+<td>Starts one at 250, within the minimum and maximum</td>
+</tr>
+<tr>
+<td><code>!Rhyme all</code> · <code>half</code> · <code>third</code> · <code>quarter</code> · <code>random</code></td>
+<td>Everyone</td>
+<td>Stakes a share of what they have</td>
+</tr>
+<tr>
+<td><em>just type in chat</em></td>
+<td>Everyone</td>
+<td>Your answer</td>
+</tr>
+<tr>
+<td><code>!RhymeBattle</code></td>
+<td>Moderators</td>
+<td>Opens a battle paying the battle reward</td>
+</tr>
+<tr>
+<td><code>!RhymeBattle 500</code></td>
+<td>Moderators</td>
+<td>Opens one and stakes 500 of their own</td>
+</tr>
+</tbody></table>
+<p>These are the names as they come in the import; rename them in Streamer.bot&#39;s <code>Commands</code> tab if you
+like. The scripts follow the command, not its name.</p>
+<hr>
+<p><strong>Q: How do chatters answer?</strong></p>
+<p>In ordinary chat, no command. Only the <strong>last word</strong> of the message is read, so &quot;hmm maybe DREAM&quot;
+answers <code>DREAM</code>. A line to finish reads the <strong>whole</strong> message instead, with punctuation and double
+spaces ignored.</p>
+<hr>
+<p><strong>Q: Does every wrong guess cost an attempt?</strong></p>
+<p>No — only guesses that look like an attempt. A guess counts as an attempt when it at least ends with
+the same two letters as one of the accepted endings; anything else in chat is ignored, so normal
+conversation does not burn through a round. The attempt limit is on the Game page.</p>
+<hr>
+<p><strong>Q: Does the target word itself count as a rhyme?</strong></p>
+<p>No. <code>DREAM</code> for <code>DREAM</code> is rejected, and it costs an attempt like any other miss.</p>
+<hr>
+<h2>🎯 Rhyme Matching</h2>
+<p><strong>Q: How does the game decide whether something rhymes?</strong></p>
+<p>In this order:</p>
+<ol>
+<li>The guess <strong>is the target word</strong> → never counts.</li>
+<li>The guess <strong>is one of the rhymes you listed</strong> → always counts, dictionary or not.</li>
+<li>The guess <strong>ends the way the listed rhymes end</strong> → counts if the dictionary agrees it is a word.</li>
+</ol>
+<hr>
+<p><strong>Q: Where do the accepted endings come from?</strong></p>
+<p>From the rhymes you listed. The game takes the longest ending enough of them share — at least two
+letters — so <code>BAT, HAT, MAT, FLAT</code> accepts anything ending in <code>AT</code>. A single listed rhyme has
+nothing to agree with, so half of it is used: <code>DOVE</code> alone accepts anything ending in <code>VE</code>.</p>
+<p>List two or three rhymes per word and the round behaves predictably. List one and it gets generous.</p>
+<hr>
+<p><strong>Q: What is the dictionary check?</strong></p>
+<p><em>Check guesses against a dictionary</em> on the Game page. A guess that merely ends the right way is
+looked up at <a href="https://wordotron.com">wordotron.com</a> before it counts, so <code>FLAT</code> wins and <code>XQAT</code> does
+not. Each word is asked once and the answer is remembered for the session.</p>
+<p>It <strong>fails open</strong>: if the lookup is slow or unreachable, the guess is accepted. A dictionary outage
+can let a nonsense word through, but it will never reject a correct rhyme. Switch the check off and
+anything with the right ending wins.</p>
+<hr>
+<p><strong>Q: What is a line to finish?</strong></p>
+<p>A target with spaces in it. <em>ROSES ARE RED VIOLETS ARE BLUE …</em> is not a word to rhyme but a line to
+complete, and the rhymes you list for it are the full answers. The chatter&#39;s whole message has to
+match one of them; endings and the dictionary play no part.</p>
+<hr>
+<h2>💰 Points, Bets &amp; Payout</h2>
+<p><strong>Q: What currency does the game use?</strong></p>
+<p>Whichever one you have. The game looks for them in this order:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Where it looks</th>
+<th>What it takes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Currency Core</strong> by StreamUP</td>
+<td><code>currency_ProductSettings</code> → <code>pointsVar</code>, <code>pointsName</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>LOYALTY POINTS</strong> by tawmae</td>
+<td><code>tawmae_Settings_LOYALTY POINTS</code> → <code>globalVariableName</code>, <code>pointsName</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>tawmae&#39;s older globals</td>
+<td><code>loyaltyPointsVariable</code>, <code>loyaltyPointsName</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>The settings window</td>
+<td><em>Points variable</em> and <em>Points name</em> on the Game page</td>
+</tr>
+</tbody></table>
+<p>The first one that answers wins, and the Streamer.bot log says which it was. Neither product needs
+anything configured here; the two fields on the Game page are for a points system of your own — the
+variable is the Streamer.bot user variable the stake comes out of, the name fills <code>{currency}</code> in
+chat.</p>
+<hr>
+<p><strong>Q: How is a win calculated?</strong></p>
+<pre><code>payout = stake × the multiplier of the bank the word came from
+</code></pre>
+<p>Defaults are 1.5× easy, 2× medium and 3× hard, all on the Game page. A lost round costs the stake.</p>
+<hr>
+<p><strong>Q: Can I run the game without points?</strong></p>
+<p>Yes. Put the <strong>default bet</strong> at <code>0</code> and the game is free: nothing is staked, nothing is paid out,
+and an amount typed after the command is ignored. The window shows a <em>Free game on</em> pill while that
+is the case, so a message about points means what it says.</p>
+<hr>
+<p><strong>Q: What can a chatter type as a bet?</strong></p>
+<p>A number, or <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code>, <code>random</code> — each a share of what they actually have.
+A bet below the minimum, above the maximum, above their balance, or not a number at all is refused
+with the matching reason and no round starts. Set the minimum or maximum to <code>0</code> to turn that limit
+off.</p>
+<hr>
+<p><strong>Q: When is the stake taken?</strong></p>
+<p>On a loss, not at the start. A won round adds the payout, a lost one subtracts the stake, and a
+round that never starts — refused bet, cooldown, blocked user — costs nothing.</p>
+<hr>
+<h2>⚔️ Battles</h2>
+<p><strong>Q: What is a battle?</strong></p>
+<p>One word for the whole chat. A moderator runs <code>!RhymeBattle</code>, everyone answers in chat, and the
+first valid rhyme takes the prize and closes the battle. Nobody but the moderator stakes anything,
+and losing costs nothing.</p>
+<hr>
+<p><strong>Q: What does a battle pay?</strong></p>
+<p>The <strong>battle reward</strong> on the Battle page (500 by default). <code>!RhymeBattle 500</code> instead stakes 500 of
+the moderator&#39;s own points, and the winner takes that — the minimum and maximum bet from the Game
+page apply to it. A battle nobody wins hands a staked amount straight back to the moderator who put
+it up.</p>
+<p>With the default bet above <code>0</code>, a bare <code>!RhymeBattle</code> stakes the default bet rather than paying the
+reward.</p>
+<hr>
+<p><strong>Q: Can two battles run at once?</strong></p>
+<p>One per platform. Twitch, YouTube and Kick each have their own, so a battle on Twitch does not block
+one on YouTube. A second <code>!RhymeBattle</code> on the same platform gets <em>a battle is already in progress</em>.</p>
+<hr>
+<p><strong>Q: How long is the answer window?</strong></p>
+<p>The same <em>Seconds to answer</em> as a normal round, and the word comes from the same banks and
+difficulty.</p>
+<hr>
+<h2>📚 Word Banks</h2>
+<p><strong>Q: Where do the words come from?</strong></p>
+<p><code>RT-wordbank.json</code>, edited on the <strong>Word banks</strong> page. Three banks — easy, medium and hard — each a
+list of targets with their rhymes beside them, separated by commas. The picker chooses which bank
+you are editing; all three save together.</p>
+<hr>
+<p><strong>Q: How many rhymes should I list?</strong></p>
+<p>Two or three. They are examples the game learns the accepted ending from, not the whole answer, so
+one rhyme on its own makes the round generous and five near-identical ones make it strict.</p>
+<hr>
+<p><strong>Q: A row is in the bank but never comes up.</strong></p>
+<p>A row only reaches the game once it has a target <strong>and</strong> at least one rhyme. The pill above the
+table counts the usable rows, so compare it with what you see.</p>
+<hr>
+<p><strong>Q: Which bank does a round draw from?</strong></p>
+<p><em>Difficulty</em> on the Game page. <code>Random</code> picks one of the three that actually has usable words in it.
+If the chosen bank is empty the round does not start and chat gets the <em>Empty word bank</em> message.</p>
+<hr>
+<p><strong>Q: Can I get the shipped words back?</strong></p>
+<p><em>Restore this bank</em> on the Word banks page, per bank — the other two are left alone, and nothing is
+written until you save. Resetting the settings does not touch the word banks.</p>
+<hr>
+<h2>👥 Access &amp; Cooldowns</h2>
+<p><strong>Q: How do I keep someone out of the game?</strong></p>
+<p>The <strong>Access</strong> page. A name on the blocked list is ignored when they run the command, with no reply
+in chat, and so is everyone in a blocked Streamer.bot group (<code>Settings</code> → <code>Groups</code>). A group that
+does not exist is skipped and logged rather than failing the round.</p>
+<hr>
+<p><strong>Q: Why are permissions not in the settings window?</strong></p>
+<p>Because Streamer.bot already has them, per command, with groups and users. Everything the game does
+hangs off <code>!Rhyme</code> and <code>!RhymeBattle</code>, so restricting those is the one place that cannot be
+contradicted.</p>
+<hr>
+<p><strong>Q: Which cooldown applies to what?</strong></p>
+<p>Both sit on the Game page and both belong to <code>!Rhyme</code>: one for the whole chat, one per chatter. The
+window writes them onto the command when you save. <code>!RhymeBattle</code> keeps its own cooldowns in
+Streamer.bot.</p>
+<hr>
+<h2>💬 Messages</h2>
+<p><strong>Q: Can I change what the game says?</strong></p>
+<p>All 19 lines, on the <strong>Messages</strong> page, grouped into Round, Battle, Bets and Cooldown. The preview
+under the box shows how the line will read in chat, and the chips insert the placeholders that line
+accepts. A placeholder a message does not accept is left as text.</p>
+<hr>
+<p><strong>Q: What are the four Bets reasons for?</strong></p>
+<p><em>Bet refused</em> is the frame; the four reasons fill its <code>{reason}</code> depending on what was wrong —
+not a number, cannot afford it, under the minimum, over the maximum. Rewriting the frame keeps all
+four.</p>
+<hr>
+<p><strong>Q: How do I stop the examples after a lost round?</strong></p>
+<p>Empty <em>Examples after a loss</em>. An empty message posts nothing.</p>
+<hr>
+<p><strong>Q: Why does <code>/me</code> do nothing on YouTube and Kick?</strong></p>
+<p>They have no <code>/me</code>. The toggle is Twitch only, as the pill beside it says; elsewhere the message
+goes out as plain chat. The bot account and <code>/me</code> apply separately to the game&#39;s messages and to the
+cooldown replies.</p>
+<hr>
+<h2>📺 OBS Overlay</h2>
+<p><strong>Q: What is the overlay?</strong></p>
+<p>A browser source that puts the round on stream: the word with its ending picked out, the countdown,
+the attempts left, and then the rhyme that won it and what it paid. It ships inside the import —
+the <strong>Overlay</strong> page writes the page out for you, and it talks to Streamer.bot&#39;s own WebSocket
+server, so there is nothing else to install.</p>
+<hr>
+<p><strong>Q: How do I add it to OBS?</strong></p>
+<p>Switch <em>Send rounds to the overlay</em> on, then switch Streamer.bot&#39;s WebSocket server on under
+<code>Servers/Clients</code> → <code>WebSocket Server</code> with <em>Auto Start</em> ticked. Then press <strong>Set the overlay up in
+OBS</strong>: it creates the scene and puts a browser source in it the size of your canvas, pointed at the
+overlay. OBS has to be connected in Streamer.bot under <code>Stream Apps</code> ▸ <code>OBS Studio</code>.</p>
+<p>By hand: press <em>Copy URL</em>, add a <strong>Browser</strong> source in OBS, untick <em>Local file</em>, paste the URL and
+set it to 1920 × 1080. <em>Try the demo</em> plays sample rounds in your browser so you can place the
+source before anyone plays.</p>
+<hr>
+<p><strong>Q: The OBS button says a source of that name already exists.</strong></p>
+<p>Source names are global in OBS, not per scene, so a name that is taken anywhere is left alone rather
+than overwritten. Either rename <em>Source</em> on the Overlay page and press the button again, or point
+the browser source you already have at the URL from <em>Copy URL</em>.</p>
+<hr>
+<p><strong>Q: The overlay stays empty.</strong></p>
+<p>In order: <em>Send rounds to the overlay</em> is off; Streamer.bot&#39;s WebSocket server is off or on another
+port than the one on the Overlay page; its authentication is on and the URL has no <code>&amp;password=</code>.
+Add <code>&amp;debug=1</code> to the URL and the overlay says which of those it is in the corner.</p>
+<hr>
+<p><strong>Q: Two chatters are playing — which round does the card show?</strong></p>
+<p>The newest one. Each chatter has their own round, but there is one card, so a round that starts
+takes it from the one before, and a battle takes it from a single-player round that is still
+running. The round that lost the card still finishes normally in chat.</p>
+<hr>
+<p><strong>Q: Can I move it or restyle it?</strong></p>
+<p>The Overlay page does most of it: <em>Place</em>, <em>Size %</em>, the four switches for what the card shows, and
+the four colours. Those travel with the round, so a change shows up the next time somebody plays —
+OBS needs nothing done to it. Anything else goes in the Browser source&#39;s own <em>Custom CSS</em>, which is
+read after those settings and wins: <code>--rt-width</code>, <code>--rt-edge</code> and <code>--rt-radius</code> are the ones worth
+knowing. <code>&amp;lang=de</code> switches the few words the card says itself. Nothing on the card is fetched from
+the internet, fonts included.</p>
+<hr>
+<h2>🌐 Multi-Platform</h2>
+<p><strong>Q: Which platforms play?</strong></p>
+<p>Twitch, YouTube and Kick, always. There is no platform selection — if you want the game off a
+platform, restrict the commands in Streamer.bot.</p>
+<hr>
+<p><strong>Q: Are points shared between platforms?</strong></p>
+<p>No. Points are Streamer.bot user variables, and those are per platform. A viewer on Twitch and the
+same person on YouTube are two players with two balances.</p>
+<hr>
+<p><strong>Q: Does the answer go back to the right chat?</strong></p>
+<p>Yes. The platform is read from the event, and the reply goes to the chat the command came from.</p>
+<hr>
+<h2>🔔 Update Notifications</h2>
+<p><strong>Q: How do I know when there is a new version?</strong></p>
+<p>Opening the settings window asks GitHub for the latest release in the background. If there is a
+newer one, a pill appears in the header and a click opens the releases page. The check never holds
+the window shut — if GitHub is slow or unreachable, the pill simply does not appear.</p>
+<hr>
+<p><strong>Q: Does updating lose my settings?</strong></p>
+<p>No. <code>RT-settings.json</code> and <code>RT-wordbank.json</code> are yours and stay where they are; the import replaces
+the actions, not the files. A setting a new version adds arrives at its default.</p>
+<hr>
+<h1>Is RhymeTime an AI Slop?</h1>
+<p>Partially, yes. This script grew out of input from the Streamer.bot community with AI along for the ride.
+But i put a lot of heart and time into it, with the goal of building a chat game that is robust, fair and easy to use for everyone.
+I understand that people, especially IT savvy people, will dislike the project because of the use of AI, and i absolutely understand and support their point of view.
+Still, i had a lot of fun making it, as with all my other projects — i used it to &quot;learn&quot; coding and put AI to something worthwhile.</p>
+<p>AI can create bugs, and i am not a developer in classical terms. But i spend a reasonable amount of time fixing any bug that turns up while testing.
+If you still find bugs or have something to say, please let me hear it :)</p>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><h1>Changelog</h1>
+<p>Releases are in the <a href="https://github.com/aaskjer/RhymeTime/releases">release notes</a>.
+The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[1.1.0] - 2026-10-30</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>An OBS overlay.</strong> A browser source that shows the round on stream: the word with its ending
+picked out, the countdown, the attempts left, and then the rhyme that won it and what it paid, or
+the examples after a lost one. Battles get the same card in their own colour. It ships inside the
+import — the new <strong>Overlay</strong> page writes the page out, copies the URL for OBS and opens a demo
+that plays sample rounds — and it listens to Streamer.bot&#39;s own WebSocket server, so there is
+nothing extra to download or install. Off until you switch it on.</li>
+<li><strong>One button sets the overlay up in OBS.</strong> Over Streamer.bot&#39;s OBS connection it creates the scene
+and puts a browser source in it, the size of your canvas, pointed at the overlay. A source name
+OBS already knows is left alone rather than overwritten.</li>
+<li><strong>The overlay is yours to style from the window.</strong> Where the card sits, how big it is, how long a
+result stays up, whether it shows the ending, the attempt dots, the stake and the rhymes after a
+loss, and four colours with a picker behind each swatch. All of it travels with the round, so a
+change is on screen the next time somebody plays and OBS is never touched again. The Browser
+source&#39;s own Custom CSS is still read afterwards and still wins.</li>
+</ul>
+<h2>[1.0.0] - 2026-10-29</h2>
+<p>The first release. Three actions — <code>[RT] - Settings</code>, <code>RhymeTime Game</code> and <code>RhymeTime Battle</code> — and
+two files of your own under <code>Chat Games/RhymeTime</code>.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>Single-player rounds.</strong> <code>!Rhyme</code> draws a word from one of three banks and gives the chatter a
+clock and a handful of attempts to rhyme with it. Answers go into ordinary chat: only the last
+word of the message is read, so &quot;hmm maybe DREAM&quot; counts. A win pays the stake times the bank&#39;s
+multiplier, running out of time or attempts costs it, and up to five of the rhymes you listed are
+posted after a loss.</li>
+<li><strong>Rhymes the game was never told about.</strong> The rhymes you list are examples: the longest ending
+enough of them share becomes what the round accepts, so <code>BAT, HAT, MAT</code> takes any dictionary word
+ending in <code>AT</code>. A listed rhyme always counts, the target word itself never does, and a guess that
+does not even end the right way is ignored instead of costing an attempt.</li>
+<li><strong>A dictionary check</strong> against <a href="https://wordotron.com">wordotron.com</a> for guesses that merely end
+the right way, one lookup per word and cached for the session. It fails open, so a slow or
+unreachable dictionary never rejects a correct rhyme. Switchable.</li>
+<li><strong>Lines to finish.</strong> A target with spaces in it is a line to complete rather than a word to rhyme.
+The whole reply is read, punctuation and double spaces ignored, and it has to match one of the
+answers you listed.</li>
+<li><strong>Battles.</strong> <code>!RhymeBattle</code> opens one word to the whole chat and the first valid rhyme takes the
+prize; nobody else pays anything. Moderators only, set on the command. The prize is a flat reward,
+or the moderator&#39;s own stake with <code>!RhymeBattle 500</code> — which goes back to them if nobody rhymes in
+time. One battle per platform at a time.</li>
+<li><strong>Bets.</strong> A number, or <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code> and <code>random</code>, framed by a minimum and a
+maximum, with a reason in chat for every refusal. Put the default bet at <code>0</code> and the whole game is
+free: nothing staked, nothing paid.</li>
+<li><strong>Three word banks</strong> in <code>RT-wordbank.json</code> — easy, medium and hard, each with its own payout
+multiplier. A round draws from the one you pick, or randomly from whichever have usable words.</li>
+<li><strong>A settings window</strong> on seven pages: Game, Battle, Word banks, Access, Messages, How to play and
+About. <code>Ctrl+1</code>…<code>Ctrl+7</code> jump between them, <code>Ctrl+S</code> saves, light and dark both included. It
+counts what you have changed, warns about settings that cancel each other out, and resets either
+one page or all of them.</li>
+<li><strong>A word-bank editor</strong> on its own page: add and remove rows per bank, a count of how many are
+usable, and <em>Restore this bank</em> for the words RhymeTime ships.</li>
+<li><strong>19 chat messages</strong> in one place, grouped into Round, Battle, Bets and Cooldown, each with the
+placeholders it accepts as clickable chips and a live preview of how the line will read in chat.
+The number format, the bot account and <code>/me</code> sit beside them, separately for the game and the
+cooldown replies.</li>
+<li><strong>Twitch, YouTube and Kick</strong>, always, with the reply going back to the chat the command came from.
+There is no platform selection — restrict the commands in Streamer.bot instead.</li>
+<li><strong>An access page</strong>: blocked viewers and blocked Streamer.bot groups are ignored without a word in
+chat. A group that no longer exists is logged rather than failing the round.</li>
+<li><strong>Cooldowns written onto the command.</strong> The two cooldowns on the Game page are saved onto <code>!Rhyme</code>
+itself, so Streamer.bot&#39;s own fields follow the window instead of fighting it.</li>
+<li><strong>Currency detection.</strong> Currency Core by StreamUP is picked up from its <code>currency_ProductSettings</code>
+global, LOYALTY POINTS by tawmae from <code>tawmae_Settings_LOYALTY POINTS</code> or the older
+<code>loyaltyPointsVariable</code> / <code>loyaltyPointsName</code> globals, in that order. Whichever answers first
+supplies both the variable the points live in and the name chat sees; the Game page is only for a
+points system of your own.</li>
+<li><strong>An update check</strong> in the background when the window opens, as a pill in the header rather than a
+popup that blocks the window.</li>
+<li>Settings and word banks are written atomically: the previous copy is kept as <code>.bak</code>, and a damaged
+file is set aside as <code>.broken</code> instead of being overwritten. The game falls back to the defaults
+for the round rather than leaving chat without an answer.</li>
+</ul>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">

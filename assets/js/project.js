@@ -1,8 +1,9 @@
 /*
  * A project's own page. The header comes from projects.js; the documents below it
- * (README, setup guide, manual, FAQ, changelog) are loaded live from the project's
- * GitHub repository and turned into HTML in the browser, so the page always shows
- * what the repository says.
+ * (README, setup guide, manual, FAQ, changelog) are in the page already, as HTML that
+ * _tools/update-pages.js made from the project's GitHub repository, and so is what its
+ * import string adds to Streamer.bot. A page that has not been rebuilt yet loads the
+ * documents from GitHub and turns them into HTML here.
  */
 (() => {
   'use strict';
@@ -40,6 +41,22 @@
     : null;
   // the file's name in the repository, or null when it has no such file
   const fileIn = file => FILES ? FILES.get(file.toLowerCase()) || null : file;
+
+  // The documents as update-pages.js wrote them: one [data-doc] per tab. With JavaScript on, a
+  // <noscript> holds its HTML as plain text, so nothing in it loads until a tab shows it.
+  const PRERENDERED = (() => {
+    const box = document.getElementById('docs');
+    if (!box) return [];
+    const tpl = document.createElement('template');
+    tpl.innerHTML = box.textContent;
+    return [...tpl.content.querySelectorAll('[data-doc]')].map(el => ({
+      id: el.dataset.doc, label: el.dataset.label, file: el.dataset.file, html: el.querySelector('.doc-body').innerHTML,
+    }));
+  })();
+  // What the import string adds (commands, actions, web services), read from it by update-pages.js.
+  const FACTS = (() => {
+    try { return JSON.parse(document.getElementById('import-facts').textContent); } catch (e) { return null; }
+  })();
 
   const $ = sel => document.querySelector(sel);
   const numberFormat = new Intl.NumberFormat('en');
@@ -125,7 +142,6 @@
       : `<div class="tile tile--mono"><span class="grad">${esc(p.mono || p.name.slice(0, 2))}</span></div>`;
     const picture = p.scene || p.screenshot;
     const full = p.scene || p.screenshotFull || p.screenshot;
-    const download = p.download || `${REPO_URL}/releases/latest`;
     return `
       <section class="project-hero">
         <div class="wrap">
@@ -141,13 +157,11 @@
               </div>
               <p class="project-hero__lead">${esc(p.tagline || '')}</p>
               ${chips()}
-              <div class="project-hero__actions">
-                ${p.download === false ? '' : `<a class="btn btn--primary" href="${esc(download)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`}
-                <button class="btn btn--ghost" type="button" id="copy-import" data-track="import-string" hidden>${icon('copy')}Copy import string</button>
-                <a class="btn btn--ghost" href="${REPO_URL}" data-track="github">${icon('github')}GitHub</a>
-                <a class="btn btn--ghost" href="${REPO_URL}/issues/new/choose" data-track="report">${icon('flag')}Report a problem</a>
-              </div>
               <div class="meta-row" id="meta">${metaRow()}</div>
+              <div class="project-hero__links">
+                <a href="${REPO_URL}" data-track="github">${icon('github')}Source on GitHub</a>
+                <a href="${REPO_URL}/issues/new/choose" data-track="report">${icon('flag')}Report a problem</a>
+              </div>
             </div>
             ${picture ? `
             <button class="card__shot project-shot" type="button" data-track="scene" data-full="${ROOT + esc(full)}"
@@ -158,6 +172,7 @@
           </div>
         </div>
       </section>
+      ${install()}
       <div class="tabs-bar">
         <div class="wrap"><nav class="tabs" role="tablist" aria-label="Documents" id="tabs"></nav></div>
       </div>
@@ -165,6 +180,91 @@
         <article class="md" id="doc" role="tabpanel"><p class="doc-status">Loading the documents from GitHub…</p></article>
         <aside class="toc" id="toc" aria-label="On this page"></aside>
       </div>`;
+  }
+
+  /* ---------- install ---------- */
+
+  const STREAMING = ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'];
+  const SENDS_TO = ['Discord', 'Stoat', 'GameVox', 'ntfy', 'Windows'];
+  const orList = list => list.length < 2 ? list.join('') : `${list.slice(0, -1).join(', ')} or ${list[list.length - 1]}`;
+  const plural = (n, word) => `${numberFormat.format(n)} ${word}${n === 1 ? '' : 's'}`;
+  // "1.0.0-alpha.1" → "1.0": the release line, without a test build's suffix
+  const versionLine = v => v.replace(/-.*/, '').replace(/^(\d+\.\d+)(\.0)+$/, '$1');
+  // The tab of the project's guide: the setup guide, or a manual like TwitchSentry's.
+  const GUIDE_TABS = { 'setup-guide.md': 'setup', 'manual.md': 'manual' };
+  // On a phone the box would push the documents a screen down, so its lists fold away there.
+  const FOLD = window.matchMedia('(max-width: 640px)').matches;
+  const group = (title, body) => FOLD
+    ? `<details class="install__group"><summary><h3>${title}</h3></summary>${body}</details>`
+    : `<div class="install__group"><h3>${title}</h3>${body}</div>`;
+
+  function needs() {
+    const rows = [];
+    if (FACTS) rows.push(['Streamer.bot', FACTS.min ? `${versionLine(FACTS.min)} or newer${FACTS.made ? `, made with ${FACTS.made}` : ''}` : '']);
+    const streaming = (p.platforms || []).filter(name => STREAMING.includes(name));
+    if (streaming.length) rows.push(['Platform', `${orList(streaming)}, connected in Streamer.bot`]);
+    if ((p.tags || []).includes('OBS overlay')) rows.push(['OBS Studio', 'for the overlay, as a browser source']);
+    const sends = (p.tags || []).filter(name => SENDS_TO.includes(name));
+    if (FACTS && sends.length) rows.push(['Sends to', orList(sends)]);
+    if (!FACTS && (p.platforms || []).includes('Windows')) rows.push(['Windows', (p.tags || []).includes('PowerShell') ? 'with PowerShell' : '']);
+    return rows.map(([name, value]) => `<div><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('');
+  }
+
+  function adds() {
+    if (!FACTS) return '';
+    const items = [];
+    const code = list => list.map(c => `<code>${esc(c)}</code>`).join(' ');
+    if (FACTS.commands.length) {
+      const first = FACTS.commands.slice(0, 8);
+      const rest = FACTS.commands.slice(first.length);
+      items.push(['terminal', `<b>${plural(FACTS.commands.length, 'chat command')}</b> <span class="install__list">${code(first)}${rest.length
+        ? ` <details class="install__more"><summary>and ${rest.length} more</summary>${code(rest)}</details>` : ''}</span>`
+        + (FACTS.words.length ? `<span class="install__words">In the game: ${esc(FACTS.words.join(', '))}</span>` : '')]);
+    } else if (FACTS.words.length) {
+      items.push(['terminal', `<b>Chat words</b> <span class="install__list">${code(FACTS.words)}</span>`]);
+    }
+    const withCode = FACTS.code === FACTS.actions ? (FACTS.code === 1 ? 'with C# code' : 'each with C# code') : `${numberFormat.format(FACTS.code)} with C# code`;
+    items.push(['code', `<b>${plural(FACTS.actions, 'action')}</b> <span>${withCode}, which you can read in Streamer.bot</span>`]);
+    if (FACTS.timers) items.push(['clock', `<b>${plural(FACTS.timers, 'timer')}</b>`]);
+    const online = FACTS.sites.length
+      ? `${esc(FACTS.sites.join(', '))}${FACTS.updateCheck ? ', and GitHub to look for updates' : ''}`
+      : FACTS.updateCheck ? 'Only GitHub, to look for updates' : 'None';
+    items.push(['globe', `<b>Online services</b> <span>${online}</span>`]);
+    return group('What this import adds', `
+            <ul class="install__adds">${items.map(([name, html]) => `<li>${icon(name)}<div>${html}</div></li>`).join('')}</ul>
+            <p class="install__note">Read from the import string${FACTS.version ? ` (v${esc(FACTS.version)})` : ''}. The services are the web addresses its C# code calls, found automatically.</p>`);
+  }
+
+  // The version the copy button gives, where it is not the one the download button gives.
+  function importNote() {
+    if (!FACTS || !FACTS.version || !p.version || FACTS.version === p.version.replace(/^v/i, '')) return '';
+    return `The import string is v${esc(FACTS.version)}, the download ${esc(p.version)}.`;
+  }
+
+  function install() {
+    const guide = p.guide && GUIDE_TABS[p.guide.href.toLowerCase()];
+    const guideLink = guide && fileIn(p.guide.href)
+      ? `<a href="?tab=${guide}" data-tab="${guide}" data-track="install-guide">${esc(p.guide.label.toLowerCase())}</a>` : 'setup guide';
+    const download = p.download === false ? ''
+      : `<a class="btn btn--primary" href="${esc(p.download || `${REPO_URL}/releases/latest`)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`;
+    const steps = FACTS || fileIn(IMPORT_FILE)
+      ? ['Download the file or copy the import string.', 'In Streamer.bot click Import, then drop in the file or paste the string.', `Follow the ${guideLink}.`]
+      : ['Download it.', `Follow the ${guideLink}.`];
+    return `
+      <section class="wrap install" aria-labelledby="install-title">
+        <div class="install__box">
+          <div class="install__start">
+            <h2 class="install__title" id="install-title">Install</h2>
+            <div class="install__actions">
+              ${download}
+              <button class="btn btn--ghost" type="button" data-copy-import data-track="import-string" hidden>${icon('copy')}Copy import string</button>
+            </div>
+            <p class="install__note" id="import-note">${importNote()}</p>
+            <ol class="install__steps">${steps.map(step => `<li>${step}</li>`).join('')}</ol>
+          </div>
+          ${group('What you need', `<dl class="install__needs">${needs()}</dl>`)}${adds()}
+        </div>
+      </section>`;
   }
 
   /* ---------- live numbers ---------- */
@@ -213,10 +313,11 @@
     p.firstReleased = live.firstReleased;
     p.pre = live.pre;
     // only pre-releases so far: GitHub's "latest" link would find nothing
-    const button = $('.project-hero__actions [data-track="download"]');
+    const button = $('.install [data-track="download"]');
     if (live.pre && !live.version && !p.download && button) button.href = `${REPO_URL}/releases/tag/${encodeURIComponent(live.pre.version)}`;
     $('#meta').innerHTML = metaRow();
     $('.project-hero .badges').outerHTML = badges();
+    $('#import-note').innerHTML = importNote();
   }
 
   /* ---------- import string ---------- */
@@ -244,7 +345,7 @@
   }
 
   async function setupImportString() {
-    const button = $('#copy-import');
+    const button = $('[data-copy-import]');
     const file = fileIn(IMPORT_FILE);
     if (!file) return;
     if (!FILES) {
@@ -303,14 +404,13 @@
     return available.find(d => d.file === doc.file && d.anchors && d.anchors.has(anchor)) || doc;
   }
 
-  function headingsOf(markdown) {
+  function headingsOf(html) {
     const tpl = document.createElement('template');
-    tpl.innerHTML = window.DOMPurify.sanitize(window.marked.parse(markdown, { gfm: true }));
+    tpl.innerHTML = window.DOMPurify.sanitize(html);
     return [...tpl.content.querySelectorAll('h1, h2, h3, h4')].map(h => h.textContent);
   }
 
-  // Cuts a document at its tab markers. Each tab knows its heading anchors, numbered across the
-  // whole document as on GitHub, so links to them open the right tab.
+  // Cuts a document at its tab markers (update-pages.js does the same for the pages it writes).
   function splitDoc(doc, text, taken) {
     const pieces = text.split(TAB_MARKER);
     const parts = [{ ...doc, text: pieces[0] }];
@@ -326,11 +426,19 @@
       }
       part.text += '\n\n' + pieces[i + 1];
     }
-    if (parts.length > 1) {
+    return parts;
+  }
+
+  // The tabs of a document cut in several know their heading anchors, numbered across the whole
+  // document as on GitHub, so links to them open the right tab.
+  function withAnchors(parts) {
+    for (const file of new Set(parts.map(part => part.file))) {
+      const same = parts.filter(part => part.file === file);
+      if (same.length < 2) continue;
       const used = new Set();
-      for (const part of parts) {
+      for (const part of same) {
         part.usedBefore = new Set(used);
-        part.anchors = new Set(headingsOf(part.text).map(h => anchorFor(h, used)));
+        part.anchors = new Set(headingsOf(part.html).map(h => anchorFor(h, used)));
       }
     }
     return parts;
@@ -404,8 +512,7 @@
   }
 
   function render(doc) {
-    const source = doc.html != null ? doc.html : window.marked.parse(doc.text, { gfm: true });
-    const html = window.DOMPurify.sanitize(source, { ADD_ATTR: ['align'] });
+    const html = window.DOMPurify.sanitize(doc.html, { ADD_ATTR: ['align'] });
     const tpl = document.createElement('template');
     tpl.innerHTML = html;
     const root = tpl.content;
@@ -529,22 +636,33 @@
     render(doc);
     const url = (doc.id === 'overview' ? location.pathname : `?tab=${doc.id}`) + (anchor ? `#${anchor}` : '');
     history[push ? 'pushState' : 'replaceState'](null, '', url);
-    const target = anchor && document.getElementById(anchor);
+    let heading = anchor;
+    try { heading = decodeURIComponent(anchor); } catch (e) { /* keep it as it is */ }
+    const target = heading && document.getElementById(heading);
     if (target) { reveal(target); target.scrollIntoView(); }
     else if (push) $('.tabs-bar').scrollIntoView();
   }
 
+  // From the page where update-pages.js put them, from GitHub otherwise.
   async function loadDocs() {
-    const loaded = await Promise.all(DOCS.map(async doc => {
-      const file = fileIn(doc.file);
-      const res = file && await fetch(RAW + file).catch(() => null);
-      if (res && res.ok) return { ...doc, text: await res.text() };
-      if (doc.id === 'changelog') return { ...doc, html: await changelogFromGitHub() };
-      return null;
-    }));
-    const found = loaded.filter(Boolean);
-    const taken = new Set(found.map(doc => doc.id));
-    available = found.flatMap(doc => doc.text != null ? splitDoc(doc, doc.text, taken) : [doc]);
+    let found;
+    if (PRERENDERED.length) {
+      found = PRERENDERED;
+      // no changelog and no releases when the page was written: the commit history, live
+      if (!found.some(doc => doc.id === 'changelog')) found.push({ ...DOCS.find(doc => doc.id === 'changelog'), html: await changelogFromGitHub() });
+    } else {
+      const loaded = (await Promise.all(DOCS.map(async doc => {
+        const file = fileIn(doc.file);
+        const res = file && await fetch(RAW + file).catch(() => null);
+        if (res && res.ok) return { ...doc, text: await res.text() };
+        if (doc.id === 'changelog') return { ...doc, html: await changelogFromGitHub() };
+        return null;
+      }))).filter(Boolean);
+      const taken = new Set(loaded.map(doc => doc.id));
+      found = loaded.flatMap(doc => doc.text != null ? splitDoc(doc, doc.text, taken) : [doc]);
+      for (const doc of found) if (doc.html == null) doc.html = window.marked.parse(doc.text, { gfm: true });
+    }
+    available = withAnchors(found);
     if (!available.length) {
       $('#doc').innerHTML = `<p class="doc-status">The documents could not be loaded. <a href="${REPO_URL}">Read them on GitHub</a>.</p>`;
       return;

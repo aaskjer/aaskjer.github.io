@@ -28,6 +28,7 @@
   <script src="../../assets/js/vendor/marked.umd.js" defer></script>
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
+  <script src="../../assets/js/search.js" defer></script>
 </head>
 <body data-repo="SBRefFix" data-files="README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -44,6 +45,9 @@
         <a href="../../#start">Setup</a>
       </nav>
       <div class="topbar__actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Search projects, commands and guides" aria-keyshortcuts="Control+K" title="Search (Ctrl+K)" data-track="search" hidden>
+          <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-search"/></svg>
+        </button>
         <a class="icon-btn" href="https://github.com/aaskjer" aria-label="aaskjer on GitHub" data-track="github-profile-header">
           <svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-github"/></svg>
         </a>
@@ -61,10 +65,167 @@
       <div class="wrap">
         <h1>SBRefFix</h1>
         <p class="project-hero__lead">Fixes the broken .NET references in a Streamer.bot v1.0.7 export.</p>
-        <p class="doc-status">Loading…</p>
       </div>
     </section>
-    <noscript><p class="wrap">The documentation loads with JavaScript. You can also read it on <a href="https://github.com/aaskjer/SBRefFix">GitHub</a>.</p></noscript>
+    <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
+    <noscript id="docs">
+      <div class="wrap project-doc project-doc--static">
+      <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
+        <h2 class="doc-label">Overview</h2>
+        <div class="doc-body"><h1 align="center">SBRefFix</h1><p align="center">
+  <b>Makes the .NET references in a Streamer.bot export work on everyone else's PC.</b>
+</p><p align="center">
+  
+  
+  
+  
+</p><p align="center">
+  <a href="https://github.com/aaskjer/SBRefFix/releases/latest"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/SBRefFix/blob/main/Setup-Guide.md"><b>Setup Guide</b></a>
+</p><hr>
+<h2>📖 Overview</h2>
+<p>A Streamer.bot 1.0.7 export stores framework references relative to the exporting Streamer.bot folder:</p>
+<pre><code>..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.dll
+</code></pre>
+<p>The importer counts those <code>..\</code> from their own folder. A Streamer.bot in <code>E:\Streaming\Streamer.bot</code> reads
+the line above as <code>E:\Streaming\Windows\...</code>, finds nothing and drops the reference. Streamer.bot&#39;s
+**Find Refs** button adds absolute <code>C:\Windows\...</code> entries but leaves the broken relative ones in place,
+so the errors keep coming. SBRefFix rewrites the references that would not survive the trip.</p>
+<h2>✨ Highlights</h2>
+<ul>
+<li>🎯 <strong>Only what would break.</strong> References inside the Streamer.bot folder stay relative, because that is what
+makes them portable. Making them absolute would break them for everybody else.</li>
+<li>📦 <strong>Every export format.</strong> <code>.sb</code> files, <code>.txt</code> or <code>.md</code> files that hold an import string, and the clipboard.</li>
+<li>📄 <strong>The text around it stays.</strong> In an <code>Import-String.md</code> only the string block is replaced. A wrapped string
+is wrapped again at the same width.</li>
+<li>🖱️ <strong>Four batch files.</strong> Repair the clipboard, repair dropped files, check without writing, or watch an
+<code>Inbox\</code> folder.</li>
+<li>✅ <strong>Made for publishing.</strong> A report-only mode, an all-or-nothing mode, and an exit code that says whether
+every reference now holds wherever Streamer.bot is installed.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Thanks:</strong> YOU ♡</li>
+</ul>
+</div>
+      </section>
+      <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
+        <h2 class="doc-label">Setup guide</h2>
+        <div class="doc-body"><h1>SBRefFix: Setup Guide</h1>
+<p>Download <strong><a href="https://github.com/aaskjer/SBRefFix/releases/latest/download/SBRefFix.zip"><code>SBRefFix.zip</code></a></strong> from the <a href="https://github.com/aaskjer/SBRefFix/releases/latest">latest release</a>, extract it somewhere, double-click or drag files onto:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Fix-Clipboard.cmd</code></td>
+<td>copy an import string, double-click, paste the repaired one into Streamer.bot</td>
+</tr>
+<tr>
+<td><code>Fix-Export.cmd</code></td>
+<td>drag <code>.sb</code>, <code>.txt</code> or <code>.md</code> files onto it, or double-click to do everything lying in <code>Inbox\</code></td>
+</tr>
+<tr>
+<td><code>Check-Export.cmd</code></td>
+<td>the same, but reports only and writes nothing</td>
+</tr>
+<tr>
+<td><code>Watch-Inbox.cmd</code></td>
+<td>keeps watching <code>Inbox\</code>: repaired files land in <code>Fixed\</code>, the originals in <code>Originals\</code></td>
+</tr>
+</tbody></table>
+<p>It takes an export in any of these forms:</p>
+<ul>
+<li>a <code>.sb</code> file, as Streamer.bot exports it</li>
+<li>a <code>.txt</code> or <code>.md</code> file holding an import string, such as an <code>Import-String.md</code> with a heading, badges and
+the string in a code block. The string is the block of text starting with <code>U0JBR</code>, on one line or wrapped
+over many. Only that block is replaced: the text around it stays as it was, and a wrapped string is
+wrapped again at the same width.</li>
+<li>the clipboard, with <code>Fix-Clipboard.cmd</code> or <code>-Clipboard</code>. The repaired string goes back onto the clipboard
+on one line; when nothing needs repairing, the clipboard is left alone.</li>
+</ul>
+<p>Or from a shell:</p>
+<pre><code>powershell -ExecutionPolicy Bypass -File Fix-SBExport.ps1 &lt;file.sb&gt; [&lt;Import-String.md&gt; ...]
+powershell -ExecutionPolicy Bypass -File Fix-SBExport.ps1 &lt;folder&gt; -Recurse
+powershell -ExecutionPolicy Bypass -File Fix-SBExport.ps1 -Clipboard
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>switch</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-Check</code></td>
+<td>report only, write nothing</td>
+</tr>
+<tr>
+<td><code>-OutDir &lt;dir&gt;</code></td>
+<td>write the result there instead of over the input</td>
+</tr>
+<tr>
+<td><code>-NoBackup</code></td>
+<td>do not keep a <code>.bak</code> next to an overwritten file</td>
+</tr>
+<tr>
+<td><code>-Strict</code></td>
+<td>write nothing unless every reference can be repaired</td>
+</tr>
+<tr>
+<td><code>-ImportString</code></td>
+<td>also write the repaired export as an import string on one line, <code>&lt;name&gt;.import.txt</code>, next to the repaired file</td>
+</tr>
+<tr>
+<td><code>-Clipboard</code></td>
+<td>repair the import string on the clipboard instead of files</td>
+</tr>
+<tr>
+<td><code>-SbFolder &lt;dir&gt;</code></td>
+<td>a Streamer.bot folder, so rooted paths into it can be made relative</td>
+</tr>
+<tr>
+<td><code>-Recurse</code></td>
+<td>with a folder: its subfolders too</td>
+</tr>
+<tr>
+<td><code>-Watch</code></td>
+<td>keep watching <code>Inbox\</code></td>
+</tr>
+</tbody></table>
+<p>A folder, <code>Inbox\</code> and <code>-Watch</code> take every <code>.sb</code> file, and every <code>.txt</code> or <code>.md</code> file that holds an import
+string; other text files are skipped.</p>
+<p>Exit code 0 means every reference now holds wherever Streamer.bot is installed. Exit code 1 means something
+is still broken, and the lines starting with <code>FAIL</code> say what. By default the repairable references are
+fixed even when one of them cannot be; <code>-Strict</code> turns that into all or nothing.</p>
+<p>Run it on the export you are about to publish, not on the one you just imported.</p>
+<h2>Checking a change</h2>
+<p>After changing <code>Fix-SBExport.ps1</code>, run the tests:</p>
+<pre><code>powershell -ExecutionPolicy Bypass -File Test-FixSBExport.ps1
+</code></pre>
+</div>
+      </section>
+      <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
+        <h2 class="doc-label">Changelog</h2>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/SBRefFix/releases">releases on GitHub</a>.</p><h2>v1.0.0 — SBRefFix v1.0.0</h2><p class="release__date">October 28, 2026</p><p>First release.</p>
+<ul>
+<li>Rewrites the .NET references in a Streamer.bot v1.0.7 export that only work on the exporting PC, so the actions compile on everyone else&#39;s. References inside the Streamer.bot folder stay relative, because that is what keeps them portable.</li>
+<li>Takes a <code>.sb</code> file, a <code>.txt</code> or <code>.md</code> file holding an import string (such as an <code>Import-String.md</code>), or the import string on the clipboard.</li>
+<li>Double-click tools: <code>Fix-Clipboard.cmd</code>, <code>Fix-Export.cmd</code>, <code>Check-Export.cmd</code> (report only) and <code>Watch-Inbox.cmd</code>.</li>
+<li>From a shell, <code>Fix-SBExport.ps1</code> with <code>-Check</code>, <code>-OutDir</code>, <code>-NoBackup</code>, <code>-Strict</code>, <code>-ImportString</code> and <code>-Clipboard</code>.</li>
+</ul>
+<h3>📦 Install</h3>
+<p>Download <strong><code>SBRefFix.zip</code></strong> below, extract it somewhere, then double-click or drag files onto the <code>.cmd</code> files, as in the <a href="https://github.com/aaskjer/SBRefFix#how-to-use-it">README</a>.</p>
+</div>
+      </section>
+      </div>
+    </noscript>
   </main>
 
   <footer class="footer">
