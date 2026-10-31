@@ -29,9 +29,12 @@
  *   description  for projects with a page: the text search engines show for it
  *   preview    for projects with a page: the text under a shared link to it, next to the
  *              `screenshot` (or else the `scene`)
- *   status     shown next to the version: 'dev' (yellow "In development"), 'complete' (green
- *              "Feature Complete": all planned features are in) or 'done' (finished: no label,
+ *   status     shown next to the version: 'dev' (yellow "In development") or 'done' (finished
+ *              apart from fixes: no label,
  *              the pink "Done" badge is switched off in main.js and project.js)
+ *   playground  for a game with its rules in assets/js/playground/<page folder>.js: { overlay } is
+ *              the C# string in its import string that holds its OBS overlay. Its page gets a
+ *              "Try it" tab with a chat and that overlay; _tools/update-pages.js copies it out (playground.html).
  *   statusSince  the day `status` last changed, e.g. '2026-10-28'; set it with every change, it
  *              puts the project in the Featured box for a while
  */
@@ -177,8 +180,7 @@ window.SITE = {
     {
       repo: 'ChatCalendar',
       page: 'projects/chatcalendar/',
-      status: 'complete',
-      statusSince: '2026-10-27',
+      status: 'dev',
       name: 'Chat Calendar',
       section: 'tools',
       logo: 'assets/img/projects/chatcalendar.png',
@@ -195,9 +197,9 @@ window.SITE = {
     {
       repo: 'Blackjack-Game',
       page: 'projects/blackjack-game/',
-      status: 'complete',
-      statusSince: '2026-10-28',
+      status: 'dev',
       name: 'Blackjack Game',
+      playground: { overlay: 'HtmlTemplate' },
       section: 'games',
       logo: 'assets/img/projects/blackjack-game.png',
       scene: 'assets/img/scenes/blackjack-game.jpg',
@@ -263,8 +265,7 @@ window.SITE = {
     {
       repo: 'Hangman-Game',
       page: 'projects/hangman-game/',
-      status: 'complete',
-      statusSince: '2026-10-28',
+      status: 'dev',
       name: 'Hangman Game',
       section: 'games',
       logo: 'assets/img/projects/hangman-game.png',

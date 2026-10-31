@@ -106,8 +106,13 @@
     if (p.comingSoon) return `<span class="btn btn--sm btn--soon">${icon('clock')}Coming Soon</span>`;
     const url = repoUrl(p.repo);
     const name = p.name || p.repo;
+    // a game with a playground: the "Try it" tab of its page
+    const tryIt = p.playground && p.page ? `${p.page}?tab=try` : null;
     if (compact) {
       const links = [];
+      if (tryIt) {
+        links.push(`<a class="btn btn--ghost btn--sm btn--icon" href="${esc(tryIt)}" data-track="playground-link" title="Try it in your browser" aria-label="Try ${esc(name)} in your browser">${icon('play')}</a>`);
+      }
       if (p.guide) {
         links.push(`<a class="btn btn--ghost btn--sm btn--icon" href="${esc(guideUrl(p))}" data-track="guide" title="${esc(p.guide.label)}" aria-label="${esc(p.guide.label)}: ${esc(name)}">${icon('book')}</a>`);
       }
@@ -121,6 +126,9 @@
     const links = [];
     if (p.download !== false) {
       links.push(`<a class="btn btn--primary btn--sm" href="${esc(p.download || `${url}/releases/latest`)}" data-track="download">${icon('download')}${esc(p.downloadLabel || 'Download')}</a>`);
+    }
+    if (tryIt) {
+      links.push(`<a class="btn btn--ghost btn--sm" href="${esc(tryIt)}" data-track="playground-link">${icon('play')}Try it</a>`);
     }
     if (p.guide) {
       links.push(`<a class="btn btn--ghost btn--sm" href="${esc(guideUrl(p))}" data-track="guide">${icon('book')}${esc(p.guide.label)}</a>`);
@@ -155,19 +163,14 @@
 
   const STATUS = {
     dev: { label: 'In development', note: 'Actively worked on: new features and changes are still coming.' },
-    complete: { label: 'Feature Complete', note: 'All planned features are in: no big updates planned, only fixes and polish.' },
-    // finished projects need no label, so "Done" stays in the list but is not shown
+    // a project is either in development or has no label: finished, apart from fixes
     done: { label: 'Done', note: 'Finished: no more updates planned, apart from fixes if something breaks.', hidden: true },
   };
 
   // Version and status side by side, e.g. "v16.1.1" and a yellow "In development".
   function badges(p) {
     const status = STATUS[p.status];
-    let note = status ? status.note : '';
-    if ((p.status === 'complete' || p.status === 'done') && p.section === 'games') {
-      note += ' The games get one more round if Streamer.bot ships its own points system.';
-    }
-    const label = status && !status.hidden ? `<span class="badge badge--${p.status}" title="${esc(note)}">${status.label}</span>` : '';
+    const label = status && !status.hidden ? `<span class="badge badge--${p.status}" title="${esc(status.note)}">${status.label}</span>` : '';
     return `<span class="badges">${badge(p)}${preBadge(p)}${newBadge(p)}${label}</span>`;
   }
 
@@ -301,7 +304,7 @@
   // { days: { 'YYYY-MM-DD': { repository name in lower case: downloads } } }, once loaded
   let downloadHistory = null;
 
-  const STATUS_NEWS = { dev: 'In development again', complete: 'Now Feature Complete', done: 'Now finished' };
+  const STATUS_NEWS = { dev: 'In development again', done: 'Now finished' };
 
   // Downloads in the last `downloads.days` days, from the daily counts. Until the history is that
   // long, it counts from its first day; a history that stopped two days ago counts nothing.
