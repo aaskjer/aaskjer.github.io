@@ -13,7 +13,9 @@
  * line under the playground), `quick(engine)` (the commands to click), and for its overlay `title`,
  * `idle` (what the empty screen says), `scene` (what is behind the see-through overlay: 'felt',
  * 'ocean' or 'night'), `query` (for the overlay's address), `hook` (the function a state file read
- * as a script calls) and `isActive(state)` (whether the overlay shows something; `state.active`).
+ * as a script calls), `isActive(state)` (whether the overlay shows something; `state.active`),
+ * `frameCss` (style for the overlay here, e.g. to put in the middle what OBS would place on stream)
+ * and `frameMinWidth` (the room the overlay needs across: a smaller screen shows it scaled down).
  */
 (() => {
   'use strict';
@@ -79,8 +81,24 @@
     if (frame) addEventListener('message', event => {
       if (event.source !== frame.contentWindow || !event.data || event.data.type !== 'playground-ready') return;
       ready = true;
+      if (game.frameCss) frame.contentWindow.postMessage({ type: 'playground-style', css: game.frameCss }, '*');
       show(shown);
     });
+
+    // an overlay that needs more room than the screen has: laid out at its width, shown smaller
+    if (frame && game.frameMinWidth) {
+      const screen = frame.parentElement;
+      const fit = () => {
+        if (!screen.clientWidth) return;
+        const scale = Math.min(1, screen.clientWidth / game.frameMinWidth);
+        frame.style.width = `${screen.clientWidth / scale}px`;
+        frame.style.height = `${screen.clientHeight / scale}px`;
+        frame.style.transform = scale < 1 ? `scale(${scale})` : '';
+        frame.style.transformOrigin = '0 0';
+      };
+      fit();
+      new ResizeObserver(fit).observe(screen);
+    }
 
     function line(user, text, kind) {
       const li = document.createElement('li');

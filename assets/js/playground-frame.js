@@ -106,7 +106,15 @@
 
   addEventListener('message', event => {
     const data = event.data;
-    if (event.source !== parent || !data || data.type !== 'playground-state') return;
+    if (event.source !== parent || !data) return;
+    // the playground's own touches, e.g. the overlay in the middle where OBS would place it
+    if (data.type === 'playground-style') {
+      const style = document.createElement('style');
+      style.textContent = String(data.css);
+      append.call(document.head, style);
+      return;
+    }
+    if (data.type !== 'playground-state') return;
     hook = data.hook;
     state = data.state;
     deliver();
