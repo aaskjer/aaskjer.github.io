@@ -439,8 +439,8 @@
         const bet = game.bets[i];
         const value = total(h);
         const handWin = isSplit() ? fill(MSG.handWin, { handnum: i + 1 }) : null;
+        // a win's summary goes out with the payout: award() opens its line with it
         if (dealerValue > 21 || value > dealerValue) {
-          say(summary(h));
           game.outcome[i] = 'win';
           award(h, bet, handWin, false);
         } else if (value < dealerValue) {
@@ -478,7 +478,6 @@
         say(MSG.dealerTieWin);
         loss(i, bet);
       } else {
-        say(summary(h));
         game.outcome[i] = 'win';
         award(h, bet, null, false);
       }

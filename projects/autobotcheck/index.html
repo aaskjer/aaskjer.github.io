@@ -8,15 +8,15 @@
   <!-- Only this site, GitHub (documents and their pictures) and Umami may load or receive anything. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://gateway.umami.is https://cloud.umami.is; img-src 'self' https://raw.githubusercontent.com https://github.com https://github-production-user-asset-6210df.s3.amazonaws.com https://user-images.githubusercontent.com https://private-user-images.githubusercontent.com https://camo.githubusercontent.com; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>AutoBotCheck · aaskjer</title>
-  <meta name="description" content="AutoBotCheck for Streamer.bot: three actions that read the public bot lists of TwitchInsights, TwitchBots.info and ISDS and ban every listed account that is not banned in your Twitch channel yet, with a whitelist and a dry run.">
+  <meta name="description" content="AutoBotCheck for Streamer.bot: bans the accounts on the TwitchInsights, TwitchBots.info and ISDS bot lists in your Twitch channel. Later runs only ban the new ones, and mods, VIPs, service bots and your whitelist are never banned.">
   <link rel="canonical" href="https://aaskjer.github.io/projects/autobotcheck/">
   <meta name="theme-color" content="#0b0a12">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/autobotcheck/">
   <meta property="og:title" content="AutoBotCheck  •  v1.1.0">
-  <meta property="og:description" content="Bans the bots from TwitchInsights, TwitchBots.info and the ISDS lists in your Twitch channel, only what is new. A free Streamer.bot import.">
-  <meta property="og:image" content="https://aaskjer.github.io/assets/img/og-home.jpg">
+  <meta property="og:description" content="Bans the bots from three public bot lists in your Twitch channel, and later runs only the new ones. A free Streamer.bot import.">
+  <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/autobotcheck.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
   <meta name="twitter:data1" content="v1.1.0">
@@ -69,6 +69,14 @@
       <div class="wrap">
         <h1>AutoBotCheck</h1>
         <p class="project-hero__lead">Three separate Actions that goes through public bot lists and bans any bot that is not already banned in your Twitch channel.</p>
+        <ul class="features">
+          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>Three bot lists: TwitchInsights, TwitchBots.info and the ISDS ban lists</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>Only bans what is new, looking accounts up 100 at a time</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>Never bans the broadcaster, your bot account, mods, VIPs or the whitelist</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>Leaves Nightbot, StreamElements and other service bots alone</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>Undoes its own wrong bans and never touches yours</span></li>
+          <li><svg class="i" aria-hidden="true"><use href="../../assets/img/icons.svg#i-check"/></svg><span>A dry run that only logs what would be banned</span></li>
+        </ul>
       </div>
     </section>
     <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->

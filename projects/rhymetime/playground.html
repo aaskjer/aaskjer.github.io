@@ -1,0 +1,748 @@
+<!doctype html>
+<!-- Written by _tools/update-pages.js from OverlayHtml in the import string of aaskjer/RhymeTime, for the playground on this page. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<script src="../../assets/js/playground-frame.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RhymeTime overlay</title>
+<!--
+  RhymeTime OBS overlay - https://github.com/aaskjer/RhymeTime
+
+  Add it to OBS as a Browser source, 1920 x 1080, with "Local file" unticked and the URL the
+  settings window copies for you (Overlay page). It listens to Streamer.bot's WebSocket server,
+  so there is nothing else to install.
+
+  Its colours, size, place and what it shows come from the Overlay page of the settings window
+  and travel with every message, so changing them there needs nothing done here.
+
+  URL options:  port=8080  host=127.0.0.1  endpoint=/  password=...  (only if authentication is on)
+                platform=twitch|youtube|kick  (only that platform's rounds; all of them otherwise)
+                lang=en|de  position=left|center|right  (overrides the settings window)
+                demo=1  (plays sample rounds)  debug=1  (shows the connection)
+
+  The card is set in Sora where it is installed and in the system font otherwise - no web font is
+  fetched. The browser source's own Custom CSS beats the settings window, for example:
+    :root { --rt-accent: #38bdf8; --rt-width: 480px; --rt-card: rgba(0, 0, 0, 0.8); --rt-glow: 0; }
+-->
+<style>
+:root {
+  --rt-font: 'Sora', 'Segoe UI Variable Display', 'Segoe UI', 'Noto Sans', Arial, sans-serif;
+  --rt-card: rgba(22, 14, 16, 0.78);
+  --rt-line: rgba(255, 255, 255, 0.10);
+  --rt-text: #ffffff;
+  --rt-muted: #c4a79c;
+  --rt-chip: rgba(255, 255, 255, 0.07);
+  --rt-accent: #f97316;
+  --rt-accent-soft: #fb923c;
+  --rt-accent-pale: #fdba74;
+  --rt-battle: #fb7185;
+  --rt-win: #86efac;
+  /* Shades of the three above. The settings window recomputes them whenever it sends a colour. */
+  --rt-shadow: rgba(249, 115, 22, 0.45);
+  --rt-ending-line: rgba(249, 115, 22, 0.40);
+  --rt-ending-bg: rgba(249, 115, 22, 0.14);
+  --rt-mode-bg: rgba(251, 113, 133, 0.16);
+  --rt-battle-line: rgba(251, 113, 133, 0.45);
+  --rt-lost-line: rgba(251, 113, 133, 0.35);
+  --rt-win-line: rgba(134, 239, 172, 0.45);
+  --rt-win-bg: rgba(134, 239, 172, 0.14);
+  --rt-radius: 28px;
+  --rt-width: 540px;
+  --rt-edge: 90px;
+  --rt-glow: 0.5;
+  --rt-zoom: 1;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; }
+body { font-family: var(--rt-font); color: var(--rt-text); }
+#stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+
+/* The card sits in a spot of its own, so placing it never fights its own fade-in. */
+#spot { position: absolute; top: 50%; left: var(--rt-edge); transform: translateY(-50%) scale(var(--rt-zoom)); transform-origin: left center; }
+body.center #spot { left: 50%; transform: translate(-50%, -50%) scale(var(--rt-zoom)); transform-origin: center center; }
+body.right #spot { left: auto; right: var(--rt-edge); transform-origin: right center; }
+
+#card {
+  position: relative;
+  width: var(--rt-width);
+  padding: 46px 48px 40px;
+  border: 1px solid var(--rt-line);
+  border-radius: var(--rt-radius);
+  background: var(--rt-card);
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .9);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity .35s ease, transform .35s ease, border-color .35s ease, visibility 0s linear .35s;
+}
+#card.on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .35s ease, border-color .35s ease; }
+#card.battle { border-color: var(--rt-battle-line); }
+#card.won { border-color: var(--rt-win-line); }
+#card.lost { border-color: var(--rt-lost-line); }
+
+/* The warm bloom the card floats on. --rt-glow: 0 in the Custom CSS turns it off. */
+#card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 60px;
+  left: 60px;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: var(--rt-accent);
+  filter: blur(100px);
+  opacity: var(--rt-glow);
+  transition: background .35s ease;
+}
+#card.battle::before, #card.lost::before { background: var(--rt-battle); }
+#card.won::before { background: var(--rt-win); }
+
+.bank { position: absolute; top: 36px; right: 40px; display: flex; gap: 8px; }
+.bank span {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--rt-chip);
+  color: var(--rt-accent-pale);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.bank span.mode { background: var(--rt-mode-bg); color: var(--rt-battle); }
+
+.wordmark { margin-bottom: 30px; font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
+.wordmark b { color: #fff; font-weight: 800; }
+.wordmark i { color: var(--rt-accent-soft); font-style: normal; }
+
+.label { color: var(--rt-muted); font-size: 15px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.label.win { color: var(--rt-win); }
+.label.lose { color: var(--rt-battle); }
+.label b { font-weight: 700; color: inherit; }
+
+.target {
+  margin: 14px 0 4px;
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  color: #fff;
+  overflow-wrap: anywhere;
+  text-shadow: 0 10px 40px var(--rt-shadow);
+}
+.target em { color: var(--rt-accent-soft); font-style: normal; }
+
+.ending {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 9px 16px;
+  border: 1px solid var(--rt-ending-line);
+  border-radius: 999px;
+  background: var(--rt-ending-bg);
+  color: var(--rt-accent-pale);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  overflow-wrap: anywhere;
+}
+.ending.won { border-color: var(--rt-win-line); background: var(--rt-win-bg); color: var(--rt-win); }
+
+.meters {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rt-line);
+}
+.clock { display: flex; align-items: baseline; gap: 7px; color: #fff; font-size: 38px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.clock small { color: var(--rt-muted); font-size: 17px; font-weight: 700; }
+.bar { flex: 1; height: 10px; border-radius: 999px; background: rgba(255, 255, 255, .1); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--rt-accent), var(--rt-battle)); }
+.tries { display: flex; align-items: center; gap: 9px; color: var(--rt-muted); font-size: 17px; font-weight: 700; white-space: nowrap; }
+.tries u { width: 14px; height: 14px; border-radius: 50%; background: rgba(255, 255, 255, .16); }
+.tries u.used { background: var(--rt-battle); }
+
+.outcome { display: flex; align-items: baseline; gap: 14px; margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--rt-line); }
+.outcome .who { flex: 1 1 auto; min-width: 0; color: #fff; font-size: 26px; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.outcome .gain { flex: none; color: var(--rt-win); font-size: 26px; font-weight: 800; white-space: nowrap; }
+.outcome .gain.minus { color: var(--rt-battle); }
+.total { margin-top: 8px; color: var(--rt-muted); font-size: 16px; font-weight: 700; }
+
+.examples { margin-top: 20px; color: var(--rt-muted); font-size: 18px; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
+.examples b { color: var(--rt-accent-pale); font-weight: 700; }
+
+#connection { position: absolute; left: 16px; bottom: 16px; font: 14px/1.4 sans-serif; padding: 6px 10px; border-radius: 8px; background: rgba(0, 0, 0, .75); color: #fff; display: none; }
+body.debug #connection { display: block; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="spot"><section id="card"></section></div>
+</div>
+<div id="connection"></div>
+<script>
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(location.search);
+  var cfg = {
+    host: params.get('host') || '127.0.0.1',
+    port: params.get('port') || '8080',
+    endpoint: params.get('endpoint') || '/',
+    password: params.get('password') || '',
+    platform: (params.get('platform') || '').toLowerCase(),
+    lang: (params.get('lang') || 'en').toLowerCase().slice(0, 2),
+    demo: params.get('demo') === '1',
+    debug: params.get('debug') === '1'
+  };
+  if (cfg.endpoint.charAt(0) !== '/') cfg.endpoint = '/' + cfg.endpoint;
+  var positionFromUrl = params.has('position');
+  if (cfg.debug) document.body.classList.add('debug');
+
+  var TEXT = {
+    en: {
+      find: 'Find a rhyme for', finish: 'Finish the line', battleFind: 'First to rhyme with',
+      ending: 'anything ending in …{ending}', left: 'left', battle: 'Battle',
+      bet: '{amount} {currency}', reward: '{amount} {currency}',
+      rhymed: '{user} rhymed it', wonBattle: '{user} won the battle',
+      timeUp: 'Time’s up', noTries: 'Out of attempts', nobody: 'Nobody found a rhyme',
+      examples: 'Rhymes: {examples}', total: 'Total {total}',
+      difficulty: { easy: 'Easy', medium: 'Medium', hard: 'Hard' },
+      connecting: 'Connecting to {url} …', connected: 'Connected to Streamer.bot',
+      demo: 'Demo - not connected to Streamer.bot', disconnected: 'Not connected - trying again',
+      subscribeFailed: 'Streamer.bot turned the subscription down',
+      needPassword: 'Streamer.bot wants a password - add &password=... to the URL',
+      badPassword: 'Streamer.bot turned the password down',
+      noCrypto: 'This browser cannot sign in to Streamer.bot'
+    },
+    de: {
+      find: 'Finde einen Reim auf', finish: 'Vervollständige die Zeile', battleFind: 'Wer reimt zuerst auf',
+      ending: 'alles, was auf …{ending} endet', left: 'übrig', battle: 'Battle',
+      bet: '{amount} {currency}', reward: '{amount} {currency}',
+      rhymed: '{user} hat gereimt', wonBattle: '{user} gewinnt das Battle',
+      timeUp: 'Zeit abgelaufen', noTries: 'Keine Versuche mehr', nobody: 'Niemand hat einen Reim gefunden',
+      examples: 'Reime: {examples}', total: 'Gesamt {total}',
+      difficulty: { easy: 'Leicht', medium: 'Mittel', hard: 'Schwer' },
+      connecting: 'Verbinde mit {url} …', connected: 'Mit Streamer.bot verbunden',
+      demo: 'Demo - nicht mit Streamer.bot verbunden', disconnected: 'Nicht verbunden - neuer Versuch läuft',
+      subscribeFailed: 'Streamer.bot hat das Abo abgelehnt',
+      needPassword: 'Streamer.bot verlangt ein Passwort - &password=... an die URL hängen',
+      badPassword: 'Streamer.bot hat das Passwort abgelehnt',
+      noCrypto: 'Dieser Browser kann sich nicht bei Streamer.bot anmelden'
+    }
+  };
+  var T = TEXT[cfg.lang] || TEXT.en;
+
+  var MAX_EXAMPLES = 5;
+  // A round whose end never arrives - Streamer.bot restarted, the script recompiled - clears itself.
+  var STALE_MS = 20000;
+
+  var stage = document.getElementById('stage');
+  var card = document.getElementById('card');
+  var connection = document.getElementById('connection');
+
+  function fit() {
+    stage.style.transform = 'scale(' + Math.min(window.innerWidth / 1920, window.innerHeight / 1080) + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  // Target words and guesses come out of chat and the word bank, so they only ever go in as text.
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function fill(target, children) {
+    target.textContent = '';
+    children.forEach(function (c) { if (c) target.appendChild(c); });
+  }
+
+  function fmt(template, values) {
+    return template.replace(/\{(\w+)\}/g, function (m, key) { return values[key] != null ? values[key] : m; });
+  }
+
+  function say(text) {
+    connection.textContent = text;
+    if (cfg.debug && window.console) console.log('[rhymetime overlay] ' + text);
+  }
+
+  // ---- the look, as the settings window sends it with every message ----
+
+  // Last in <head>, so it beats the defaults above - and OBS appends a browser source Custom CSS
+  // after the page has loaded, which puts that last of all and leaves the streamer the final say.
+  var styleTag = document.createElement('style');
+  document.head.appendChild(styleTag);
+  var styled = '';
+
+  function hex(value, fallback) {
+    return /^#[0-9a-f]{6}$/i.test(String(value || '')) ? String(value) : fallback;
+  }
+
+  function channels(colour) {
+    return [parseInt(colour.slice(1, 3), 16), parseInt(colour.slice(3, 5), 16), parseInt(colour.slice(5, 7), 16)];
+  }
+
+  // Towards white, for the lighter shades the card uses beside the accent itself.
+  function lighter(colour, amount) {
+    return 'rgb(' + channels(colour).map(function (v) { return Math.round(v + (255 - v) * amount); }).join(',') + ')';
+  }
+
+  function soft(colour, alpha) {
+    return 'rgba(' + channels(colour).join(',') + ',' + alpha + ')';
+  }
+
+  function clamp(value, min, max, fallback) {
+    var n = Number(value);
+    return isFinite(n) ? Math.max(min, Math.min(max, n)) : fallback;
+  }
+
+  function place(where) {
+    document.body.classList.remove('center', 'right');
+    if (where === 'center' || where === 'right') document.body.classList.add(where);
+  }
+
+  function applyStyle(st) {
+    if (!st) return;
+    var accent = hex(st.accent, '#f97316');
+    var battle = hex(st.battle, '#fb7185');
+    var won = hex(st.win, '#86efac');
+    var card = hex(st.card, '#160e10');
+    var css = ':root{' +
+      '--rt-accent:' + accent + ';' +
+      '--rt-accent-soft:' + lighter(accent, .28) + ';' +
+      '--rt-accent-pale:' + lighter(accent, .48) + ';' +
+      '--rt-battle:' + battle + ';' +
+      '--rt-win:' + won + ';' +
+      '--rt-card:' + soft(card, clamp(st.cardOpacity, 0, 100, 78) / 100) + ';' +
+      '--rt-shadow:' + soft(accent, .45) + ';' +
+      '--rt-ending-line:' + soft(accent, .4) + ';' +
+      '--rt-ending-bg:' + soft(accent, .14) + ';' +
+      '--rt-mode-bg:' + soft(battle, .16) + ';' +
+      '--rt-battle-line:' + soft(battle, .45) + ';' +
+      '--rt-lost-line:' + soft(battle, .35) + ';' +
+      '--rt-win-line:' + soft(won, .45) + ';' +
+      '--rt-win-bg:' + soft(won, .14) + ';' +
+      '--rt-glow:' + (st.glow === false ? '0' : '.5') + ';' +
+      '--rt-zoom:' + clamp(st.scale, 10, 300, 100) / 100 + ';}';
+    if (css !== styled) {
+      styled = css;
+      styleTag.textContent = css;
+    }
+
+    // A position in the URL is the streamer overruling the window, so it stays put.
+    if (!positionFromUrl) place(st.position);
+  }
+
+  if (positionFromUrl) place((params.get('position') || '').toLowerCase());
+
+  // ---- what is on screen ----
+
+  var current = null;   // { kind: 'round' | 'result', platform, roundId, data, attempts }
+  var hideTimer = 0;
+  var clockFrame = 0;
+  var clockOffset = 0;  // Streamer.bot's clock minus ours, from the last live message
+
+  function stopTimers() {
+    clearTimeout(hideTimer);
+    hideTimer = 0;
+    cancelAnimationFrame(clockFrame);
+    clockFrame = 0;
+  }
+
+  // Swaps the card's look without fading it out first when it is already showing.
+  function reveal(classes) {
+    var showing = card.classList.contains('on');
+    card.className = (classes || '') + (showing ? ' on' : '');
+    if (!showing) {
+      void card.offsetWidth;
+      card.classList.add('on');
+    }
+  }
+
+  function hide() {
+    stopTimers();
+    card.classList.remove('on');
+    current = null;
+  }
+
+  function sameRound(d) {
+    return current && current.platform === d.platform && current.roundId === d.roundId;
+  }
+
+  function wordmark() {
+    var mark = el('div', 'wordmark');
+    mark.appendChild(el('b', null, 'Rhyme'));
+    mark.appendChild(el('i', null, 'Time'));
+    return mark;
+  }
+
+  function chips(d) {
+    var bank = el('div', 'bank');
+    if (d.mode === 'battle') bank.appendChild(el('span', 'mode', T.battle));
+    else if (d.difficulty) {
+      var name = T.difficulty[String(d.difficulty).toLowerCase()] || d.difficulty;
+      bank.appendChild(el('span', null, d.multiplier ? name + ' ×' + d.multiplier : name));
+    }
+    var stake = d.mode === 'battle' ? d.reward : d.bet;
+    if (stake) bank.appendChild(el('span', null, fmt(T.bet, { amount: stake, currency: d.pointsName || '' }).trim()));
+    return bank.children.length ? bank : null;
+  }
+
+  // STREAM with its ending picked out, the way the chat message spells it.
+  function target(word, ending) {
+    var text = String(word == null ? '' : word);
+    var e = el('div', 'target');
+    var tail = String(ending == null ? '' : ending);
+    if (tail && text.length > tail.length && text.toUpperCase().slice(-tail.length) === tail.toUpperCase()) {
+      e.appendChild(document.createTextNode(text.slice(0, text.length - tail.length)));
+      e.appendChild(el('em', null, text.slice(text.length - tail.length)));
+    } else {
+      e.textContent = text;
+    }
+    return e;
+  }
+
+  function label(text, cls) {
+    return el('div', cls ? 'label ' + cls : 'label', text);
+  }
+
+  // A long word would spill out of the card and a whole line would run down it, so the target
+  // steps down in size until it fits: one line for a word, at most four for a line to finish.
+  // Measured in layout pixels - the stage is scaled, so a visual measurement would always agree.
+  function fitTarget() {
+    var e = card.querySelector('.target');
+    if (!e) return;
+    var oneWord = e.textContent.indexOf(' ') < 0;
+    var room = card.clientWidth - 96;
+    if (oneWord) e.style.whiteSpace = 'nowrap';
+    var fits = false;
+    for (var size = 96; size >= 24 && !fits; size -= 4) {
+      e.style.fontSize = size + 'px';
+      fits = oneWord ? e.scrollWidth <= room : e.offsetHeight <= size * 4.3;
+    }
+    // Nothing short of breaking it will do, for a word longer than the card is wide.
+    if (!fits && oneWord) e.style.whiteSpace = 'normal';
+  }
+
+  // The ending under the word, unless the round is a line to finish or the window turned it off.
+  function pill(d) {
+    if (!d || d.sentence || !d.ending || d.showEnding === false) return null;
+    return el('div', 'ending', fmt(T.ending, { ending: d.ending }));
+  }
+
+  function examples(list) {
+    if (!list || !list.length) return null;
+    var row = el('div', 'examples');
+    row.appendChild(document.createTextNode(fmt(T.examples, { examples: '' }).replace(/\s*$/, ' ')));
+    row.appendChild(el('b', null, list.slice(0, MAX_EXAMPLES).join(' · ')));
+    return row;
+  }
+
+  function startRound(d) {
+    var deadline = d.endsAt - clockOffset;
+    if (Date.now() - deadline > STALE_MS) return;
+    stopTimers();
+
+    var clock = el('div', 'clock');
+    var secondsLeft = el('span');
+    clock.appendChild(secondsLeft);
+    clock.appendChild(el('small', null, T.left));
+    var bar = el('div', 'bar');
+    var barFill = el('i');
+    bar.appendChild(barFill);
+    var meters = el('div', 'meters');
+    meters.appendChild(clock);
+    meters.appendChild(bar);
+    var tries = d.maxAttempts > 1 ? el('div', 'tries') : null;
+    if (tries) meters.appendChild(tries);
+
+    current = { kind: 'round', platform: d.platform, roundId: d.roundId, data: d, attempts: d.attempts || 0, tries: tries };
+    var heading = d.mode === 'battle' ? T.battleFind : d.sentence ? T.finish : T.find;
+    fill(card, [chips(d), wordmark(), label(heading), target(d.word, d.ending),
+                pill(d), meters]);
+    fitTarget();
+    showTries();
+    reveal(d.mode === 'battle' ? 'battle' : '');
+
+    var total = Math.max(1, d.seconds || 1) * 1000;
+    (function tick() {
+      var left = Math.max(0, deadline - Date.now());
+      var secs = Math.ceil(left / 1000);
+      secondsLeft.textContent = Math.floor(secs / 60) + ':' + (secs % 60 < 10 ? '0' : '') + (secs % 60);
+      barFill.style.width = Math.min(100, left / total * 100) + '%';
+      if (Date.now() - deadline > STALE_MS) { hide(); return; }
+      clockFrame = requestAnimationFrame(tick);
+    })();
+  }
+
+  function showTries() {
+    var max = current.data.maxAttempts || 0;
+    if (!current.tries || max < 2) return;
+    var dots = [];
+    for (var i = 0; i < max; i++) dots.push(el('u', i < current.attempts ? 'used' : null));
+    dots.push(el('span', null, current.attempts + '/' + max));
+    fill(current.tries, dots);
+  }
+
+  // Two attempts can overtake each other on the way here; the count only ever goes up.
+  function updateAttempts(d) {
+    if (!sameRound(d) || current.kind !== 'round') return;
+    current.attempts = Math.max(current.attempts, d.attempts || 0);
+    showTries();
+  }
+
+  function endRound(d, elapsed) {
+    var span = Math.max(1, d.resultSeconds || 8) * 1000;
+    if (elapsed >= span) {
+      if (!current || sameRound(d)) hide();
+      return;
+    }
+
+    // A round that ended while another one is up leaves that one alone.
+    if (current && current.kind === 'round' && !sameRound(d)) return;
+    var round = sameRound(d) && current.data ? current.data : d;
+    stopTimers();
+
+    var won = d.reason === 'win';
+    var heading = won
+      ? fmt(round.mode === 'battle' ? T.wonBattle : T.rhymed, { user: d.winner || '' })
+      : d.reason === 'attempts' ? T.noTries : round.mode === 'battle' ? T.nobody : T.timeUp;
+
+    var parts = [chips(round), wordmark(), label(heading, won ? 'win' : 'lose'), target(round.word, round.ending)];
+    if (won && d.guess) parts.push(el('div', 'ending won', d.guess));
+    else parts.push(pill(round));
+
+    if (d.amount) {
+      var outcome = el('div', 'outcome');
+      outcome.appendChild(el('div', 'who', (won ? '@' : '') + (d.winner || round.player || '')));
+      outcome.appendChild(el('div', 'gain' + (won ? '' : ' minus'),
+        (won ? '+' : '−') + d.amount + (round.pointsName ? ' ' + round.pointsName : '')));
+      parts.push(outcome);
+      if (d.total) parts.push(el('div', 'total', fmt(T.total, { total: d.total })));
+    }
+    if (!won) parts.push(examples(d.examples));
+
+    current = { kind: 'result', platform: d.platform, roundId: d.roundId, data: round };
+    fill(card, parts);
+    fitTarget();
+    reveal(won ? 'won' : 'lost');
+    hideTimer = setTimeout(hide, span - elapsed);
+  }
+
+  // live: it just happened. Otherwise it is the state Streamer.bot kept, picked up after a reload.
+  function apply(d, live) {
+    if (!d || d.game !== 'rhymetime') return;
+    if (cfg.platform && d.platform !== cfg.platform) return;
+    applyStyle(d.style);
+    if (live && typeof d.sentAt === 'number') clockOffset = d.sentAt - Date.now();
+    var elapsed = live ? 0 : Math.max(0, Date.now() + clockOffset - (d.sentAt || 0));
+    if (d.type === 'round_start') startRound(d);
+    else if (d.type === 'attempt') updateAttempts(d);
+    else if (d.type === 'round_end') endRound(d, elapsed);
+  }
+
+  // ---- Streamer.bot ----
+
+  var socket = null;
+  var pending = {};
+  var nextId = 1;
+  var retryMs = 1000;
+
+  function request(body) {
+    var id = 'rhymetime-' + (nextId++);
+    body.id = id;
+    return new Promise(function (resolve) {
+      pending[id] = resolve;
+      try { socket.send(JSON.stringify(body)); } catch (e) { delete pending[id]; resolve({ status: 'error' }); }
+    });
+  }
+
+  function sha256Base64(text) {
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buffer) {
+      var bytes = new Uint8Array(buffer), raw = '';
+      for (var i = 0; i < bytes.length; i++) raw += String.fromCharCode(bytes[i]);
+      return btoa(raw);
+    });
+  }
+
+  function authenticate(auth) {
+    if (!cfg.password) { say(T.needPassword); return Promise.resolve(false); }
+    if (!window.crypto || !crypto.subtle) { say(T.noCrypto); return Promise.resolve(false); }
+    return sha256Base64(cfg.password + auth.salt)
+      .then(function (secret) { return sha256Base64(secret + auth.challenge); })
+      .then(function (signed) { return request({ request: 'Authenticate', authentication: signed }); })
+      .then(function (res) {
+        if (res.status === 'ok') return true;
+        say(T.badPassword);
+        return false;
+      });
+  }
+
+  function subscribe() {
+    request({ request: 'Subscribe', events: { General: ['Custom'] } }).then(function (res) {
+      say(res.status === 'ok' ? T.connected : T.subscribeFailed);
+      catchUp();
+    });
+  }
+
+  // The game keeps its latest overlay message in RhymeTime.Overlay.<platform>, so an overlay that
+  // loads mid-round - OBS reloads browser sources on a scene switch - picks the round up again.
+  function catchUp() {
+    var platforms = cfg.platform ? [cfg.platform] : ['twitch', 'youtube', 'kick'];
+    Promise.all(platforms.map(function (p) {
+      return request({ request: 'GetGlobal', variable: 'RhymeTime.Overlay.' + p, persisted: false }).then(function (res) {
+        try {
+          var value = res.status === 'ok' && res.variable ? res.variable.value : null;
+          return typeof value === 'string' ? JSON.parse(value) : value;
+        } catch (e) {
+          return null;
+        }
+      });
+    })).then(function (states) {
+      var newest = states.filter(Boolean).sort(function (a, b) { return (b.sentAt || 0) - (a.sentAt || 0); })[0];
+      if (newest && !current) apply(newest, false);
+    });
+  }
+
+  function connect() {
+    var url = 'ws://' + cfg.host + ':' + cfg.port + cfg.endpoint;
+    say(fmt(T.connecting, { url: url }));
+    try {
+      socket = new WebSocket(url);
+    } catch (e) {
+      retry();
+      return;
+    }
+
+    var greeted = false, helloTimer = 0;
+    function begin(hello) {
+      if (greeted) return;
+      greeted = true;
+      clearTimeout(helloTimer);
+      if (hello && hello.authentication) authenticate(hello.authentication).then(function (ok) { if (ok) subscribe(); });
+      else subscribe();
+    }
+
+    socket.onopen = function () {
+      retryMs = 1000;
+      // Streamer.bot greets every client with Hello, and one that wants a password says so in it.
+      helloTimer = setTimeout(begin, 1500);
+    };
+    socket.onmessage = function (ev) {
+      var msg;
+      try { msg = JSON.parse(ev.data); } catch (e) { return; }
+      if (!msg) return;
+      if (msg.request === 'Hello') { begin(msg); return; }
+      if (msg.id && pending[msg.id]) {
+        var resolve = pending[msg.id];
+        delete pending[msg.id];
+        resolve(msg);
+        return;
+      }
+      if (msg.event && msg.event.source === 'General' && msg.event.type === 'Custom') {
+        var data = msg.data;
+        if (typeof data === 'string') {
+          try { data = JSON.parse(data); } catch (e) { return; }
+        }
+        apply(data, true);
+      } else if (msg.game === 'rhymetime') {
+        apply(msg, true);
+      }
+    };
+    socket.onclose = function () {
+      clearTimeout(helloTimer);
+      pending = {};
+      say(T.disconnected);
+      retry();
+    };
+  }
+
+  function retry() {
+    setTimeout(connect, retryMs);
+    retryMs = Math.min(retryMs * 2, 10000);
+  }
+
+  // ---- demo=1: sample rounds, to place and size the source without playing one ----
+
+  var DEMO = {
+    en: [
+      { mode: 'solo', player: 'PixelPanda', word: 'STREAM', ending: 'EAM', difficulty: 'medium', multiplier: '2.0',
+        bet: '100', seconds: 30, maxAttempts: 3, misses: 1, guess: 'GLEAM', amount: '200', total: '2.450',
+        examples: ['DREAM', 'TEAM', 'CREAM', 'BEAM', 'SCHEME'] },
+      { mode: 'battle', word: 'VICTORY', ending: 'ORY', difficulty: 'medium', reward: '500', seconds: 30,
+        guess: 'HISTORY', winner: 'NoScopeNick', amount: '500', total: '1.900',
+        examples: ['HISTORY', 'MYSTERY', 'MISERY', 'DISCOVERY'] },
+      { mode: 'solo', player: 'LunaLurks', word: 'ALGORITHM', ending: 'ITHM', difficulty: 'hard', multiplier: '3.0',
+        bet: '250', seconds: 30, maxAttempts: 3, misses: 3, reason: 'attempts', amount: '250', total: '940',
+        examples: ['RHYTHM', 'PRISM', 'SCHISM'] },
+      { mode: 'solo', player: 'CoffeePot', word: 'TWINKLE TWINKLE LITTLE STAR …', sentence: true, difficulty: 'easy',
+        multiplier: '1.5', bet: '100', seconds: 30, maxAttempts: 3, misses: 0, guess: 'HOW I WONDER WHAT YOU ARE',
+        amount: '150', total: '3.120' }
+    ],
+    de: [
+      { mode: 'solo', player: 'PixelPanda', word: 'STREAM', ending: 'EAM', difficulty: 'medium', multiplier: '2.0',
+        bet: '100', seconds: 30, maxAttempts: 3, misses: 1, guess: 'GLEAM', amount: '200', total: '2.450',
+        examples: ['DREAM', 'TEAM', 'CREAM', 'BEAM', 'SCHEME'] },
+      { mode: 'battle', word: 'VICTORY', ending: 'ORY', difficulty: 'medium', reward: '500', seconds: 30,
+        guess: 'HISTORY', winner: 'NoScopeNick', amount: '500', total: '1.900',
+        examples: ['HISTORY', 'MYSTERY', 'MISERY', 'DISCOVERY'] },
+      { mode: 'solo', player: 'LunaLurks', word: 'ALGORITHM', ending: 'ITHM', difficulty: 'hard', multiplier: '3.0',
+        bet: '250', seconds: 30, maxAttempts: 3, misses: 3, reason: 'attempts', amount: '250', total: '940',
+        examples: ['RHYTHM', 'PRISM', 'SCHISM'] },
+      { mode: 'solo', player: 'CoffeePot', word: 'TWINKLE TWINKLE LITTLE STAR …', sentence: true, difficulty: 'easy',
+        multiplier: '1.5', bet: '100', seconds: 30, maxAttempts: 3, misses: 0, guess: 'HOW I WONDER WHAT YOU ARE',
+        amount: '150', total: '3.120' }
+    ]
+  };
+
+  function demo() {
+    say(T.demo);
+    var rounds = DEMO[cfg.lang] || DEMO.en;
+    var roundId = 0;
+    function stamp(o) {
+      o.game = 'rhymetime';
+      o.v = 1;
+      o.style = { position: 'left', scale: 100, accent: '#F97316', battle: '#FB7185', win: '#86EFAC', card: '#160E10', cardOpacity: 78, glow: true };
+      o.platform = cfg.platform || 'twitch';
+      o.sentAt = Date.now();
+      return o;
+    }
+    function play(i) {
+      var r = rounds[i % rounds.length];
+      var id = 'demo-' + (++roundId);
+      // The demo runs on a short clock, so every round is seen without waiting out a real one.
+      var seconds = 9;
+      apply(stamp({ type: 'round_start', roundId: id, mode: r.mode, player: r.player, word: r.word, ending: r.ending,
+                    sentence: !!r.sentence, difficulty: r.difficulty, multiplier: r.multiplier, bet: r.bet, reward: r.reward,
+                    pointsName: 'Points', seconds: seconds, endsAt: Date.now() + seconds * 1000,
+                    attempts: 0, maxAttempts: r.maxAttempts || 0 }), true);
+      for (var miss = 1; miss <= (r.misses || 0); miss++) {
+        (function (n) {
+          setTimeout(function () { apply(stamp({ type: 'attempt', roundId: id, attempts: n }), true); }, n * 1800);
+        })(miss);
+      }
+      var endsIn = r.reason === 'attempts' ? (r.misses || 1) * 1800 + 400 : seconds * 1000;
+      setTimeout(function () {
+        apply(stamp({ type: 'round_end', roundId: id, reason: r.reason || 'win', winner: r.winner || r.player,
+                      guess: r.reason ? null : r.guess, amount: r.amount, total: r.total,
+                      examples: r.reason ? r.examples : null, resultSeconds: 7 }), true);
+        setTimeout(function () { play(i + 1); }, 8500);
+      }, endsIn);
+    }
+    play(0);
+  }
+
+  if (cfg.demo) demo();
+  else connect();
+})();
+</script>
+</body>
+</html>

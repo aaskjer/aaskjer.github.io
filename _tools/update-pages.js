@@ -448,8 +448,8 @@ for (const p of projects.filter(x => x.page)) {
   // playground-frame.js put in, which hands it the playground's state instead of the state file the
   // game writes. The game carries the overlay in its C# code, as a verbatim string (@"…", a quote
   // written "") that it writes to disk; `playground.overlay` names it. Kept from the last run when
-  // the import string cannot be read.
-  if (p.playground && facts) {
+  // the import string cannot be read. A game played in the chat alone has none.
+  if (p.playground && p.playground.overlay && facts) {
     try {
       const pattern = new RegExp(`\\b${p.playground.overlay}\\s*=\\s*@"((?:[^"]|"")*)"`);
       const found = facts.sources.map(source => source.match(pattern)).find(Boolean);

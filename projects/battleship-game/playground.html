@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<!-- Written by _tools/update-pages.js from HtmlTemplate in the import string of aaskjer/Battleship-Game, for the playground on this page. -->
+<!-- bsg-overlay-version: 16 -->
+<html lang='en'>
+<head>
+<meta charset='UTF-8' />
+<meta name="robots" content="noindex">
+<script src="../../assets/js/playground-frame.js"></script>
+<title>Battleship Overlay</title>
+<style>
+  :root{
+    --scale: 1;
+    --font-scale: 1;
+    --cells: 8;
+    --hit: #ff5a3c;
+    --miss: #8fb8d8;
+    --sunk: #d3283a;
+    --ship: #5b6b7c;
+    --grid: #4a7fa5;
+    --water: #0d2438;
+    --stage-bg: transparent;
+    --gold: #ffce54;
+    /* The centre column has to keep enough room for a result badge, and the boards would otherwise
+       eat all of it: two 12x12 boards at the comfortable cell size leave it under 11vw, which is
+       narrower than the word ABANDONED. So the cell is the smaller of the comfortable size and the
+       size that still leaves --centre-w for the middle. Only the largest boards are affected. */
+    --centre-w: 15vw;
+    --cell-max: calc(3.1vw * var(--scale));
+    --cell-fit: calc((100vw - 7.2vw - var(--centre-w)) / (2 * (var(--cells) + 0.62)) - (0.16vw * var(--scale)));
+    --cell: min(var(--cell-max), var(--cell-fit));
+    --gap: calc(0.16vw * var(--scale));
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Noto Sans', Arial, sans-serif;
+    color: #fff;
+  }
+
+  #stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(1.6vw * var(--scale));
+    box-sizing: border-box;
+    padding: 2vh 2vw;
+    background: var(--stage-bg);
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  #stage.visible { opacity: 1; }
+
+  /* ---------- panels ---------- */
+
+  .panel { display: flex; flex-direction: column; align-items: center; gap: calc(.55vh * var(--scale)); }
+
+  .panel-title {
+    display: flex; align-items: baseline; gap: .5em;
+    font-size: calc(1.05vw * var(--font-scale) * var(--scale));
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 6px rgba(0,0,0,.9);
+    max-width: calc(var(--cells) * (var(--cell) + var(--gap)) + 2.2vw);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .panel-title .remaining {
+    font-size: .82em; font-weight: 400; opacity: .8; letter-spacing: .02em; text-transform: none;
+  }
+  .panel.enemy .panel-title { color: #ffbfae; }
+  .panel.own   .panel-title { color: #b9dcff; }
+  /* A duel: the side whose turn it is. Its votes are drawn on the other side's waters. */
+  .panel.firing .panel-title { color: var(--gold); }
+
+  /* ---------- grid ---------- */
+
+  .board { display: grid; gap: var(--gap); }
+  .board.with-coords {
+    grid-template-columns: calc(var(--cell) * .62) repeat(var(--cells), var(--cell));
+    grid-template-rows: calc(var(--cell) * .62) repeat(var(--cells), var(--cell));
+  }
+  .board.no-coords {
+    grid-template-columns: repeat(var(--cells), var(--cell));
+    grid-template-rows: repeat(var(--cells), var(--cell));
+  }
+
+  .label {
+    display: flex; align-items: center; justify-content: center;
+    font-size: calc(var(--cell) * .38);
+    font-weight: 600;
+    opacity: .65;
+    text-shadow: 0 1px 3px rgba(0,0,0,.9);
+  }
+
+  .cell {
+    position: relative;
+    background: var(--water);
+    border: 1px solid color-mix(in srgb, var(--grid) 45%, transparent);
+    box-sizing: border-box;
+    border-radius: calc(var(--cell) * .08);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* undamaged hull on the player's own side */
+  .cell.ship {
+    background: var(--ship);
+    border-color: color-mix(in srgb, var(--ship) 70%, #fff);
+    box-shadow: inset 0 0 calc(var(--cell) * .18) rgba(0,0,0,.45);
+  }
+
+  .cell.miss::after {
+    content: '';
+    width: calc(var(--cell) * .22); height: calc(var(--cell) * .22);
+    border-radius: 50%;
+    background: var(--miss);
+    opacity: .85;
+  }
+
+  .cell.hit {
+    background: color-mix(in srgb, var(--hit) 30%, var(--water));
+    border-color: var(--hit);
+  }
+  .cell.hit::after {
+    content: '';
+    width: calc(var(--cell) * .52); height: calc(var(--cell) * .52);
+    background: var(--hit);
+    clip-path: polygon(50% 0%, 62% 34%, 100% 36%, 70% 58%, 82% 96%, 50% 72%, 18% 96%, 30% 58%, 0% 36%, 38% 34%);
+  }
+
+  .cell.sunk {
+    background: color-mix(in srgb, var(--sunk) 55%, #000);
+    border-color: var(--sunk);
+  }
+  .cell.sunk::after {
+    content: '';
+    width: calc(var(--cell) * .46); height: calc(var(--cell) * .46);
+    background: #fff;
+    opacity: .92;
+    clip-path: polygon(20% 0%, 50% 30%, 80% 0%, 100% 20%, 70% 50%, 100% 80%, 80% 100%, 50% 70%, 20% 100%, 0% 80%, 30% 50%, 0% 20%);
+  }
+
+  /* the shot that just landed */
+  .cell.last { z-index: 2; }
+  .cell.last::before {
+    content: '';
+    position: absolute; inset: calc(var(--cell) * -.12);
+    border: 2px solid var(--gold);
+    border-radius: calc(var(--cell) * .16);
+    box-shadow: 0 0 calc(var(--cell) * .3) var(--gold);
+  }
+  .anim .cell.last::before { animation: ping 1.1s ease-out infinite; }
+
+  @keyframes ping {
+    0%   { transform: scale(1);    opacity: 1; }
+    70%  { transform: scale(1.22); opacity: 0; }
+    100% { transform: scale(1.22); opacity: 0; }
+  }
+  .anim .cell.hit::after, .anim .cell.sunk::after { animation: pop .35s ease-out; }
+  @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+
+  /* ---------- roster ---------- */
+
+  .roster {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: calc(.35vw * var(--scale)) calc(.6vw * var(--scale));
+    max-width: calc(var(--cells) * (var(--cell) + var(--gap)) + 2.2vw);
+    margin-top: calc(.3vh * var(--scale));
+  }
+  /* One roster hidden while the other shows: the box stays, so both boards keep the same top edge.
+     Hidden on both sides the element is left empty and takes up nothing. */
+  .roster.ghost { visibility: hidden; }
+  .ship-chip {
+    display: flex; align-items: center; gap: .38em;
+    font-size: calc(.62vw * var(--font-scale) * var(--scale));
+    letter-spacing: .02em;
+    text-shadow: 0 1px 3px rgba(0,0,0,.9);
+    opacity: .95;
+  }
+  .ship-chip.is-sunk { opacity: .45; text-decoration: line-through; text-decoration-color: var(--sunk); }
+  .pips { display: flex; gap: 1px; }
+  .pip {
+    width: calc(var(--cell) * .17); height: calc(var(--cell) * .17);
+    border-radius: 1px;
+    background: var(--ship);
+    border: 1px solid rgba(255,255,255,.28);
+  }
+  .pip.dmg { background: var(--hit); border-color: var(--hit); }
+  .ship-chip.is-sunk .pip { background: var(--sunk); border-color: var(--sunk); }
+
+  /* ---------- centre column ---------- */
+
+  #centre {
+    display: flex; flex-direction: column; align-items: center;
+    gap: calc(1vh * var(--scale));
+    /* flex-shrink 0: the boards are fixed-size grids and cannot give way, so without this the
+       centre is the only thing that shrinks and it collapses under its own content. */
+    flex: 0 0 auto;
+    width: var(--centre-w);
+    min-width: var(--centre-w);
+  }
+
+  #phase {
+    font-size: calc(.72vw * var(--font-scale) * var(--scale));
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: .7;
+    text-shadow: 0 2px 5px rgba(0,0,0,.9);
+  }
+
+  .ring-wrap { position: relative; width: calc(4.6vw * var(--scale)); height: calc(4.6vw * var(--scale)); }
+  .ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring-bg { fill: none; stroke: rgba(255,255,255,.16); stroke-width: 7; }
+  .ring-fg {
+    fill: none; stroke: var(--gold); stroke-width: 7; stroke-linecap: round;
+    /* Only the sweep is animated. Transitioning `stroke` as well leaves the warning colours stuck
+       part-way, because the dash offset is rewritten every poll and the colour never settles - and
+       a countdown turning red is meant to snap, not fade in over a third of a second. */
+    transition: stroke-dashoffset .3s linear;
+  }
+  .ring-wrap.warn  .ring-fg { stroke: #ffa726; }
+  .ring-wrap.alert .ring-fg { stroke: var(--sunk); }
+  .anim .ring-wrap.alert { animation: pulse .9s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+
+  #ring-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: calc(1.2vw * var(--font-scale) * var(--scale));
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,.9);
+  }
+
+  #score { text-align: center; text-shadow: 0 2px 5px rgba(0,0,0,.9); }
+  #score .net { font-size: calc(1.15vw * var(--font-scale) * var(--scale)); font-weight: 700; }
+  #score .net.up { color: #7ddf87; }
+  #score .net.down { color: #ff8a76; }
+  #score .accuracy { font-size: calc(.62vw * var(--font-scale) * var(--scale)); opacity: .75; }
+
+  #badge {
+    font-size: calc(1.5vw * var(--font-scale) * var(--scale));
+    font-weight: 800;
+    letter-spacing: .1em;
+    padding: .3em .7em;
+    border-radius: .25em;
+    border: 2px solid currentColor;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0,0,0,.9);
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  #badge.win  { color: var(--gold);  background: rgba(255,206,84,.14); }
+  #badge.loss { color: #ff8a76;      background: rgba(211,40,58,.18); }
+  #badge.away { color: #cfd8e3;      background: rgba(255,255,255,.1); }
+
+  /* ---------- click to fire (Heat) ---------- */
+
+  #heat-hint {
+    font-size: calc(.6vw * var(--font-scale) * var(--scale));
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--gold);
+    opacity: .85;
+    text-shadow: 0 2px 5px rgba(0,0,0,.9);
+  }
+
+  /* The square a click just aimed at. An outline rather than ::before, which the last-shot marker
+     already uses - and the shot landing redraws the board, so it only lingers on a refused shot. */
+  .cell.aim { z-index: 3; outline: 2px dashed var(--gold); outline-offset: calc(var(--gap) * .5); }
+  .anim .cell.aim { animation: aim .45s ease-out; }
+  @keyframes aim { from { outline-offset: calc(var(--cell) * .35); } to { outline-offset: calc(var(--gap) * .5); } }
+
+  /* Alignment test: every click from anyone, drawn where this page thinks it landed. Plain pixels,
+     not vw - it is a diagnostic, and it has to stay readable at any overlay scale. */
+  #heat-layer { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+  .heat-mark {
+    position: absolute;
+    width: 22px; height: 22px; margin: -13px 0 0 -13px;
+    border: 2px solid #fff; border-radius: 50%;
+    color: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.65), 0 0 8px rgba(0,0,0,.6);
+    animation: heat-mark 2s ease-out forwards;
+  }
+  .heat-mark::after {
+    content: ''; position: absolute; left: 50%; top: 50%;
+    width: 4px; height: 4px; margin: -2px 0 0 -2px;
+    border-radius: 50%; background: currentColor;
+  }
+  .heat-mark.player { border-color: var(--gold); color: var(--gold); }
+  .heat-mark.anon { border-style: dashed; opacity: .75; }
+  .heat-mark span {
+    position: absolute; left: 20px; top: -16px;
+    font: 600 13px/1 'Segoe UI', Arial, sans-serif;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px #000, 0 0 2px #000;
+  }
+  @keyframes heat-mark {
+    0%   { transform: scale(1.8); opacity: 0; }
+    12%  { transform: scale(1);   opacity: 1; }
+    75%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  #heat-status {
+    position: fixed; left: 12px; top: 12px; z-index: 11;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(0,0,0,.75);
+    font: 600 13px/1.6 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+  }
+  #heat-status .dot {
+    display: inline-block; width: 9px; height: 9px; margin-right: 7px;
+    border-radius: 50%; background: #9aa5b1;
+  }
+  #heat-status .ok   { background: #7ddf87; }
+  #heat-status .wait { background: var(--gold); }
+  #heat-status .bad  { background: #ff8a76; }
+  #heat-status .name { opacity: .7; margin-right: 6px; }
+
+  /* ---------- the chat's battle: this round's ballots ---------- */
+
+  /* Tinted by share of the leading square's votes, so the crowd's favourite stands out at a glance. */
+  .cell.voted { box-shadow: inset 0 0 0 999px rgba(255, 206, 84, calc(.12 + .4 * var(--vote, 0))); }
+  .cell .votes {
+    position: absolute; right: 7%; bottom: 3%;
+    font-size: calc(var(--cell) * .36); font-weight: 800; line-height: 1;
+    color: var(--gold);
+    text-shadow: 0 1px 3px rgba(0,0,0,.95);
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div id='stage'>
+  <div class='panel own'>
+    <div class='panel-title'><span id='own-name'></span><span class='remaining' id='own-left'></span></div>
+    <div class='board' id='own-board'></div>
+    <div class='roster' id='own-roster'></div>
+  </div>
+
+  <div id='centre'>
+    <div id='phase'></div>
+    <div id='heat-hint' class='hidden'>Click enemy waters to fire</div>
+    <div class='ring-wrap' id='ring'>
+      <svg viewBox='0 0 100 100'>
+        <circle class='ring-bg' cx='50' cy='50' r='44'></circle>
+        <circle class='ring-fg' id='ring-fg' cx='50' cy='50' r='44'></circle>
+      </svg>
+      <div id='ring-text'></div>
+    </div>
+    <div id='score'>
+      <div class='net' id='net'></div>
+      <div class='accuracy' id='accuracy'></div>
+    </div>
+    <div id='badge' class='hidden'></div>
+  </div>
+
+  <div class='panel enemy'>
+    <div class='panel-title'><span id='foe-name'></span><span class='remaining' id='foe-left'></span></div>
+    <div class='board' id='foe-board'></div>
+    <div class='roster' id='foe-roster'></div>
+  </div>
+</div>
+
+<div id='heat-layer'></div>
+<div id='heat-status' class='hidden'></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STATE_URL = 'battleship_state.json';
+  var POLL_MS = 250;
+  var GAMEOVER_FADE_MS = 8000;
+
+  var stage = document.getElementById('stage');
+  var ring = document.getElementById('ring');
+  var ringFg = document.getElementById('ring-fg');
+  var ringText = document.getElementById('ring-text');
+  var badge = document.getElementById('badge');
+  var centre = document.getElementById('centre');
+  var ownPanel = document.querySelector('.panel.own');
+  var foePanel = document.querySelector('.panel.enemy');
+
+  var RING_LEN = 2 * Math.PI * 44;
+  ringFg.style.strokeDasharray = RING_LEN;
+
+  var fadeTimer = null;
+
+  function clearFadeTimer() {
+    if (fadeTimer) { clearTimeout(fadeTimer); fadeTimer = null; }
+  }
+
+  function setVar(name, value) {
+    if (value !== undefined && value !== null && value !== '') {
+      document.documentElement.style.setProperty(name, value);
+    }
+  }
+
+  /* Groups digits with the separator configured in the settings window. Deliberately not
+     toLocaleString(), which follows whatever locale the OBS browser source happens to run in and
+     would disagree with the separator used in chat. */
+  function formatNumber(value, separator) {
+    var digits = Math.abs(Math.round(value)).toString();
+    var out = '';
+    for (var i = 0; i < digits.length; i++) {
+      if (i > 0 && (digits.length - i) % 3 === 0) out += (separator || '');
+      out += digits.charAt(i);
+    }
+    return out;
+  }
+
+  function hexToRgba(hex, alpha) {
+    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '');
+    if (!m) return 'transparent';
+    return 'rgba(' + parseInt(m[1], 16) + ',' + parseInt(m[2], 16) + ',' + parseInt(m[3], 16) + ',' + alpha + ')';
+  }
+
+  /* Converts 'B7' back into zero-based column/row so the last shot can be highlighted. */
+  function parseCoord(text) {
+    if (!text || text.length < 2) return null;
+    var col = text.charCodeAt(0) - 65;
+    var row = parseInt(text.substring(1), 10) - 1;
+    if (isNaN(col) || isNaN(row) || col < 0 || row < 0) return null;
+    return { col: col, row: row };
+  }
+
+  var CLASS_FOR = { 'o': 'miss', 'x': 'hit', 'X': 'sunk', 's': 'ship' };
+
+  function renderBoard(el, side, showCoords, lastShot, votes) {
+    el.innerHTML = '';
+    if (!side || !side.rows || !side.rows.length) return;
+
+    var n = side.rows.length;
+    el.className = 'board ' + (showCoords ? 'with-coords' : 'no-coords');
+
+    if (showCoords) {
+      el.appendChild(makeLabel(''));
+      for (var c = 0; c < n; c++) el.appendChild(makeLabel(String.fromCharCode(65 + c)));
+    }
+
+    var mark = parseCoord(lastShot);
+    var topVotes = 0;
+    if (votes) for (var k in votes) if (votes[k] > topVotes) topVotes = votes[k];
+
+    for (var r = 0; r < n; r++) {
+      if (showCoords) el.appendChild(makeLabel(String(r + 1)));
+
+      for (var c2 = 0; c2 < n; c2++) {
+        var ch = side.rows[r].charAt(c2);
+        var cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.setAttribute('data-coord', String.fromCharCode(65 + c2) + (r + 1));
+        if (CLASS_FOR[ch]) cell.classList.add(CLASS_FOR[ch]);
+        if (mark && mark.col === c2 && mark.row === r) cell.classList.add('last');
+        var ballots = votes ? votes[cell.getAttribute('data-coord')] : 0;
+        if (ballots > 0) {
+          cell.classList.add('voted');
+          cell.style.setProperty('--vote', (ballots / topVotes).toFixed(2));
+          var count = document.createElement('span');
+          count.className = 'votes';
+          count.textContent = ballots;
+          cell.appendChild(count);
+        }
+        el.appendChild(cell);
+      }
+    }
+  }
+
+  function makeLabel(text) {
+    var d = document.createElement('div');
+    d.className = 'label';
+    d.textContent = text;
+    return d;
+  }
+
+  function renderRoster(el, side, show, keepSpace) {
+    el.innerHTML = '';
+    // Both fleets carry the same ships, so a roster that is built and then made invisible is
+    // exactly the height needed to hold the other side's board level with this one.
+    el.classList.toggle('ghost', !show && keepSpace);
+    if ((!show && !keepSpace) || !side || !side.roster) return;
+
+    side.roster.forEach(function (ship) {
+      var chip = document.createElement('div');
+      chip.className = 'ship-chip' + (ship.sunk ? ' is-sunk' : '');
+
+      var name = document.createElement('span');
+      name.textContent = ship.name;
+      chip.appendChild(name);
+
+      var pips = document.createElement('div');
+      pips.className = 'pips';
+      for (var i = 0; i < ship.length; i++) {
+        var pip = document.createElement('div');
+        pip.className = 'pip' + (i < ship.hits ? ' dmg' : '');
+        pips.appendChild(pip);
+      }
+      chip.appendChild(pips);
+      el.appendChild(chip);
+    });
+  }
+
+  function renderTimer(state) {
+    var show = state.showTurnTimer && state.phase !== 'over';
+    ring.classList.toggle('hidden', !show);
+    if (!show) return;
+
+    var total = state.timeoutMs > 0 ? state.timeoutMs : 1;
+    var left = Math.max(0, Math.min(state.expiresInMs, total));
+    var fraction = left / total;
+
+    ringFg.style.strokeDashoffset = RING_LEN * (1 - fraction);
+    ringText.textContent = Math.ceil(left / 1000);
+
+    // Amber and red mirror the two chat warnings, so the overlay says the same thing chat does.
+    // toggle(force) rather than remove-then-add: this runs every poll, and removing a class only to
+    // put it straight back restarts the colour transition each time, so it never actually arrives.
+    var alert = state.warnSecondMs > 0 && left <= state.warnSecondMs;
+    ring.classList.toggle('alert', alert);
+    ring.classList.toggle('warn', !alert && state.warnFirstMs > 0 && left <= state.warnFirstMs);
+  }
+
+  var BADGES = {
+    'win':  { text: 'ENEMY FLEET SUNK', cls: 'win' },
+    'loss': { text: 'FLEET LOST',       cls: 'loss' },
+    'turntimeout':   { text: 'ABANDONED', cls: 'away' },
+    'deploytimeout': { text: 'STOOD DOWN', cls: 'away' },
+    'stopped':       { text: 'STOPPED',    cls: 'away' }
+  };
+
+  /* ABANDONED and STOOD DOWN are single words: CSS has nowhere to wrap them, so on a big board they
+     used to run straight out of the centre column and under the enemy grid. Rather than hyphenate a
+     word in half, step the size down until it fits - whole words, always inside their box, whatever
+     the grid size, the overlay scale and the wording. */
+  function fitBadge() {
+    badge.style.fontSize = '';
+    var room = centre.clientWidth;
+    if (!room) return;
+
+    var size = parseFloat(getComputedStyle(badge).fontSize);
+    var floor = Math.max(8, size * 0.45);
+    while (badge.scrollWidth > room && size > floor) {
+      size -= 1;
+      badge.style.fontSize = size + 'px';
+    }
+  }
+
+  function renderBadge(state) {
+    var info = state.gameOver ? BADGES[(state.outcome || '').toLowerCase()] : null;
+    if (!info) { badge.classList.add('hidden'); return; }
+
+    // A duel has no "us": the badge names the side that won.
+    badge.textContent = state.mode === 'duel' && state.winner && info.cls === 'win'
+      ? state.winner.toUpperCase() + ' WINS' : info.text;
+    badge.className = info.cls;
+    badge.classList.remove('hidden');
+    fitBadge();
+  }
+
+  function render(state) {
+    if (!state || !state.active || (state.freeGame && state.hideOnFreeGame)) {
+      stage.classList.remove('visible');
+      return;
+    }
+
+    setVar('--scale', state.scale);
+    setVar('--font-scale', state.fontScale);
+    setVar('--hit', state.hitColor);
+    setVar('--miss', state.missColor);
+    setVar('--sunk', state.sunkColor);
+    setVar('--ship', state.shipColor);
+    setVar('--grid', state.gridColor);
+    setVar('--water', state.waterColor);
+    setVar('--cells', state.size || 8);
+    setVar('--stage-bg', hexToRgba(state.backgroundColor, state.backgroundOpacity || 0));
+
+    stage.classList.toggle('anim', !!state.animationsEnabled);
+
+    var own = state.player || {};
+    var foe = state.enemy || {};
+
+    document.getElementById('own-name').textContent = own.name || '';
+    document.getElementById('foe-name').textContent = foe.name || '';
+    document.getElementById('own-left').textContent = own.shipsRemaining + ' afloat';
+    document.getElementById('foe-left').textContent = foe.shipsRemaining + ' afloat';
+
+    // In a duel Team A is on the left and Team B on the right, and the ballots go on the waters
+    // under fire: Team B's while Team A votes, and the other way round.
+    var duel = state.mode === 'duel';
+    var chat = state.mode === 'chat' || duel;
+    var ownUnderFire = duel && state.turn === 'B';
+    renderBoard(document.getElementById('own-board'), own, state.showCoords, state.lastAdmiralShot, chat && ownUnderFire ? state.votes : null);
+    renderBoard(document.getElementById('foe-board'), foe, state.showCoords, state.lastPlayerShot, chat && !ownUnderFire ? state.votes : null);
+    renderRoster(document.getElementById('own-roster'), own, state.showPlayerRoster, state.showEnemyRoster);
+    renderRoster(document.getElementById('foe-roster'), foe, state.showEnemyRoster, state.showPlayerRoster);
+    ownPanel.classList.toggle('firing', duel && state.turn === 'A');
+    foePanel.classList.toggle('firing', duel && state.turn === 'B');
+
+    var phaseText = state.phase === 'deploy' ? 'Awaiting orders'
+                  : state.phase === 'over' ? 'Battle over'
+                  : state.phase === 'vote' ? (duel && state.turnName ? state.turnName + ' votes' : 'Vote now')
+                  : 'Open fire';
+    document.getElementById('phase').textContent = phaseText;
+
+    var scoreEl = document.getElementById('score');
+    scoreEl.classList.toggle('hidden', !state.showScore);
+    if (state.showScore) {
+      var net = document.getElementById('net');
+      // The chat's battle is played for fun, so like a free game it has no points to show.
+      if (state.freeGame || state.mode === 'chat') {
+        net.textContent = '';
+        net.className = 'net';
+      } else {
+        var value = state.net || 0;
+        var sign = value > 0 ? '+' : value < 0 ? '-' : '';
+        // A duel keeps a pot that only the winning side shares, so it says so.
+        net.textContent = (duel ? 'Pot ' : '') + sign + formatNumber(value, state.numberSeparator);
+        net.className = 'net' + (value > 0 ? ' up' : value < 0 ? ' down' : '');
+      }
+      var accuracy = state.shots > 0 ? Math.round(100 * state.hits / state.shots) : 0;
+      document.getElementById('accuracy').textContent = chat
+        ? (state.voters || 0) + ' voters - ' + state.shots + ' shots'
+        : state.shots + ' shots - ' + accuracy + '%';
+    }
+
+    renderTimer(state);
+    renderBadge(state);
+    stage.classList.add('visible');
+
+    if (state.gameOver) {
+      if (!fadeTimer) {
+        var fadeMs = state.gameOverFadeMs > 0 ? state.gameOverFadeMs : GAMEOVER_FADE_MS;
+        fadeTimer = setTimeout(function () {
+          stage.classList.remove('visible');
+          fadeTimer = null;
+        }, fadeMs);
+      }
+    } else {
+      clearFadeTimer();
+    }
+  }
+
+  /* ---------- click to fire (Heat) ----------
+     Heat is a Twitch extension that relays every click on the stream picture to a websocket, as x/y
+     fractions of that picture. This page is the only thing that knows where each square of enemy
+     waters is drawn, so clicks are turned into squares here and handed to the game action over the
+     Streamer.bot WebSocket server, which decides whose count - the player's take exactly the path
+     !fire takes.
+     Settings arrive in their own file, so an alignment test works with no battle running. */
+
+  var HEAT_CONFIG_URL = 'battleship_heat.json';
+  var HEAT_CONFIG_POLL_MS = 2000;
+  var HEAT_SERVER = 'wss://heat-api.j38.net/channel/';
+  var AIM_MS = 1500;
+  var MARK_MS = 2000;
+
+  var heatLayer = document.getElementById('heat-layer');
+  var heatStatus = document.getElementById('heat-status');
+  var heatHint = document.getElementById('heat-hint');
+  var foeBoard = document.getElementById('foe-board');
+  var ownBoard = document.getElementById('own-board');
+
+  var heatCfg = {};
+  var heatCfgText = null;
+
+  // One record per socket: the connection, what it was opened for, and its reconnect timer.
+  var heat = { ws: null, key: '', timer: null, delay: 1000, state: 'off' };
+  var sb = { ws: null, key: '', timer: null, delay: 1000, state: 'off', auth: 'none', authId: '', seq: 0, error: '' };
+
+  function num(value, fallback) {
+    var n = parseFloat(value);
+    return isFinite(n) ? n : fallback;
+  }
+
+  /* Keeps link connected to url for as long as key stays the same, redialling with backoff when it
+     drops. An empty key closes it. The key carries anything that should force a fresh connection. */
+  function keepOpen(link, key, url, onMessage) {
+    if (!key) { shut(link); link.state = 'off'; return; }
+    if (link.key === key && (link.ws || link.timer)) return;
+    shut(link);
+    link.key = key;
+    link.delay = 1000;
+    dial(link, url, onMessage);
+  }
+
+  function dial(link, url, onMessage) {
+    link.timer = null;
+    var ws;
+    try { ws = new WebSocket(url); }
+    catch (e) { link.state = 'error'; redial(link, url, onMessage); refreshHeat(); return; }
+
+    link.ws = ws;
+    link.state = 'connecting';
+    if (link === sb) { sb.auth = 'none'; sb.error = ''; }
+
+    ws.onopen = function () {
+      if (link.ws !== ws) return;
+      link.delay = 1000;
+      link.state = 'connected';
+      refreshHeat();
+    };
+    ws.onmessage = function (event) {
+      if (link.ws !== ws) return;
+      var msg;
+      try { msg = JSON.parse(event.data); } catch (e) { return; }
+      if (msg) onMessage(msg, ws);
+    };
+    ws.onclose = function () {
+      if (link.ws !== ws) return;
+      link.ws = null;
+      link.state = 'offline';
+      redial(link, url, onMessage);
+      refreshHeat();
+    };
+  }
+
+  function redial(link, url, onMessage) {
+    if (link.timer) return;
+    link.timer = setTimeout(function () { dial(link, url, onMessage); }, link.delay);
+    link.delay = Math.min(30000, link.delay * 2);
+  }
+
+  function shut(link) {
+    if (link.timer) { clearTimeout(link.timer); link.timer = null; }
+    var ws = link.ws;
+    link.ws = null;
+    link.key = '';
+    if (ws) { try { ws.close(); } catch (e) { } }
+  }
+
+  function applyHeatConfig() {
+    var on = !!heatCfg.enabled;
+    var channel = on ? String(heatCfg.channelId || '').replace(/\D/g, '') : '';
+    var server = heatCfg.server || HEAT_SERVER;
+    keepOpen(heat, channel ? server + channel : '', server + channel, onHeatMessage);
+
+    var sbUrl = on ? String(heatCfg.streamerBotUrl || '').trim() : '';
+    keepOpen(sb, sbUrl ? sbUrl + ' ' + (heatCfg.streamerBotPassword || '') : '', sbUrl, onSbMessage);
+
+    if (!heatCfg.showClicks) heatLayer.innerHTML = '';
+    refreshHeat();
+  }
+
+  /* SHA-256 by hand. The browser's own crypto.subtle only exists in a secure context, and OBS loads
+     a local browser source from http://absolute/..., which is not one - so signing in to
+     Streamer.bot cannot lean on it. */
+  var SHA256_K = [
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+  ];
+
+  function rotr(x, n) { return (x >>> n) | (x << (32 - n)); }
+
+  /* Returns base64 of the digest, which is the form Streamer.bot's handshake uses. */
+  function sha256Base64(text) {
+    var bytes = Array.prototype.slice.call(new TextEncoder().encode(text));
+    var bits = bytes.length * 8;
+    bytes.push(0x80);
+    while (bytes.length % 64 !== 56) bytes.push(0);
+    // The length as a 64-bit big-endian number. The top half is always zero for text this short.
+    bytes.push(0, 0, 0, 0, (bits >>> 24) & 255, (bits >>> 16) & 255, (bits >>> 8) & 255, bits & 255);
+
+    var h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+    var w = [];
+    for (var at = 0; at < bytes.length; at += 64) {
+      for (var i = 0; i < 64; i++) {
+        if (i < 16) {
+          w[i] = (bytes[at + 4 * i] << 24) | (bytes[at + 4 * i + 1] << 16) | (bytes[at + 4 * i + 2] << 8) | bytes[at + 4 * i + 3];
+        } else {
+          var s0 = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >>> 3);
+          var s1 = rotr(w[i - 2], 17) ^ rotr(w[i - 2], 19) ^ (w[i - 2] >>> 10);
+          w[i] = (w[i - 16] + s0 + w[i - 7] + s1) | 0;
+        }
+      }
+
+      var a = h[0], b = h[1], c = h[2], d = h[3], e = h[4], f = h[5], g = h[6], h7 = h[7];
+      for (var j = 0; j < 64; j++) {
+        var t1 = (h7 + (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)) + ((e & f) ^ (~e & g)) + SHA256_K[j] + w[j]) | 0;
+        var t2 = ((rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+        h7 = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+      }
+      h[0] = (h[0] + a) | 0; h[1] = (h[1] + b) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0;
+      h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + h7) | 0;
+    }
+
+    var binary = '';
+    for (var n = 0; n < 8; n++) {
+      binary += String.fromCharCode((h[n] >>> 24) & 255, (h[n] >>> 16) & 255, (h[n] >>> 8) & 255, h[n] & 255);
+    }
+    return btoa(binary);
+  }
+
+  /* Streamer.bot greets every connection with Hello. When the server has authentication switched
+     on, the greeting carries a salt and a challenge, and the reply is
+     base64(sha256(base64(sha256(password + salt)) + challenge)). */
+  function onSbMessage(msg, ws) {
+    if (msg.request === 'Hello') {
+      if (!msg.authentication) { sb.auth = 'none'; refreshHeat(); return; }
+
+      var password = heatCfg.streamerBotPassword || '';
+      if (!password) { sb.auth = 'needed'; refreshHeat(); return; }
+
+      try {
+        var secret = sha256Base64(password + msg.authentication.salt);
+        sb.authId = 'bsg-auth-' + Date.now();
+        sb.auth = 'pending';
+        ws.send(JSON.stringify({
+          request: 'Authenticate',
+          id: sb.authId,
+          authentication: sha256Base64(secret + msg.authentication.challenge)
+        }));
+      } catch (e) {
+        // Say what broke: this runs inside OBS, where nobody sees the console.
+        sb.auth = 'unsupported';
+        sb.error = 'cannot sign in: ' + (e && e.message ? e.message : String(e));
+        console.warn('Battleship: ' + sb.error);
+      }
+      refreshHeat();
+      return;
+    }
+
+    if (msg.id && msg.id === sb.authId) {
+      sb.auth = msg.status === 'ok' ? 'ok' : 'failed';
+      refreshHeat();
+      return;
+    }
+
+    if (msg.id && String(msg.id).indexOf('bsg-shot-') === 0) {
+      sb.error = msg.status === 'ok' ? '' : String(msg.error || 'the shot was refused');
+      if (sb.error) console.warn('Battleship: Streamer.bot did not run the shot - ' + sb.error);
+      refreshHeat();
+    }
+  }
+
+  function onHeatMessage(msg) {
+    if (msg.type !== 'click') return;
+
+    var x = parseFloat(msg.x), y = parseFloat(msg.y);
+    if (!isFinite(x) || !isFinite(y)) return;
+
+    var point = toPage(x, y);
+    var who = msg.id == null ? '' : String(msg.id);
+    var mine = isPlayer(who);
+    // Every click on enemy waters goes to the game, not only the player's. Heat hides who clicked
+    // unless the viewer shared their Twitch ID with it - which almost nobody does - so until the
+    // player links their clicks with !fire link, the game has to see who else was clicking to tell
+    // which clicks are theirs. The game decides what counts; nothing here is trusted to.
+    var voting = lastState && (lastState.mode === 'chat' || lastState.mode === 'duel');
+    var cell = boardIsLive() && (lastState.heatPlayerId || voting) ? cellAt(point.x, point.y) : null;
+
+    if (heatCfg.showClicks) markClick(point, who, mine, cell);
+    if (cell) forwardClick(cell, who, mine, msg);
+  }
+
+  /* The player as far as the overlay can tell: their Twitch ID if they shared it with Heat, or the
+     anonymous Heat ID they linked. Only used for what is drawn - the game makes its own decision. */
+  function isPlayer(who) {
+    if (!lastState || !who) return false;
+    return who === String(lastState.heatPlayerId || '') ||
+           (!!lastState.heatLinkedId && who === String(lastState.heatLinkedId));
+  }
+
+  /* Heat's fractions are of the whole stream picture; this page may only cover part of it. */
+  function toPage(x, y) {
+    var left = num(heatCfg.areaLeft, 0), top = num(heatCfg.areaTop, 0);
+    var width = num(heatCfg.areaWidth, 1), height = num(heatCfg.areaHeight, 1);
+    if (!(width > 0)) width = 1;
+    if (!(height > 0)) height = 1;
+    return {
+      x: (x - left) / width * window.innerWidth,
+      y: (y - top) / height * window.innerHeight
+    };
+  }
+
+  function boardIsLive() {
+    return !!(lastState && lastState.active && !lastState.gameOver && lastState.matchId &&
+              stage.classList.contains('visible'));
+  }
+
+  /* The waters a click aims at: the enemy's - or in a duel, those of the side not voting. */
+  function targetBoard() {
+    return lastState && lastState.mode === 'duel' && lastState.turn === 'B' ? ownBoard : foeBoard;
+  }
+
+  /* The square of enemy waters under a point, counting the hairline gap between two squares as
+     either of them. Anywhere else - the labels, the player's own board, open water around the
+     boards - is not a shot. */
+  function cellAt(px, py) {
+    var board = targetBoard();
+    var cells = board.querySelectorAll('.cell');
+    var best = null, bestDistance = Infinity;
+    for (var i = 0; i < cells.length; i++) {
+      var r = cells[i].getBoundingClientRect();
+      var distance = Math.max(r.left - px, 0, px - r.right, r.top - py, py - r.bottom);
+      if (distance < bestDistance) { bestDistance = distance; best = cells[i]; }
+    }
+    var gap = parseFloat(getComputedStyle(board).columnGap) || 0;
+    return best && bestDistance <= gap / 2 + 0.5 ? best : null;
+  }
+
+  // A crowd clicking away must not flood Streamer.bot: each viewer is passed on at most every 0.7 s,
+  // and everyone together ten times a second - a budget the player's own clicks never wait for.
+  var FORWARD_GAP_MS = 700;
+  var FORWARD_PER_SECOND = 10;
+  // In the chat's battle every logged-in viewer gets one vote a round, so the budget is wider and a
+  // viewer's further clicks in the same round are not even sent.
+  var CHAT_FORWARD_PER_SECOND = 30;
+  var votedRound = {};
+  var lastForward = {};
+  var forwardMatch = '';
+  var forwardSecond = 0;
+  var forwardCount = 0;
+
+  function forwardClick(cell, who, mine, msg) {
+    var coord = cell.getAttribute('data-coord');
+    if (mine) {
+      cell.classList.add('aim');
+      setTimeout(function () { cell.classList.remove('aim'); }, AIM_MS);
+    }
+
+    var now = Date.now();
+    // A duel votes like the chat's battle; the game then drops every click it cannot put on a side.
+    var duel = lastState.mode === 'duel';
+    var chat = lastState.mode === 'chat' || duel;
+    // Only members' clicks can vote in a duel, so theirs go ahead of the crowd's - which the game keeps
+    // only for !fire link, and so gets no more room than in a solo battle.
+    var member = duel && (lastState.voterIds || []).indexOf(who) >= 0;
+    if (forwardMatch !== lastState.matchId) { forwardMatch = lastState.matchId; lastForward = {}; votedRound = {}; }
+    if (chat) {
+      // Logged out (A...) is a new id every page load. The chat's battle counts it anyway; a duel never does.
+      if ((duel && who.charAt(0) === 'A') || votedRound[who] === lastState.round) return;
+      votedRound[who] = lastState.round;
+    }
+    if (lastForward[who] && now - lastForward[who] < FORWARD_GAP_MS) return;
+    if (now - forwardSecond >= 1000) { forwardSecond = now; forwardCount = 0; }
+    if (!mine && !member && forwardCount >= (chat && !duel ? CHAT_FORWARD_PER_SECOND : FORWARD_PER_SECOND)) return;
+    lastForward[who] = now;
+    forwardCount++;
+
+    if (!sb.ws || sb.ws.readyState !== 1 || sb.auth === 'pending' || sb.auth === 'failed' || sb.auth === 'unsupported') {
+      if (mine) console.warn('Battleship: a click on ' + coord + ' was not sent - Streamer.bot is not connected.');
+      return;
+    }
+
+    var action = {};
+    if (heatCfg.actionId) action.id = heatCfg.actionId;
+    if (heatCfg.actionName) action.name = heatCfg.actionName;
+
+    sb.ws.send(JSON.stringify({
+      request: 'DoAction',
+      id: 'bsg-shot-' + Date.now() + '-' + (++sb.seq),
+      action: action,
+      args: {
+        bsgHeatCoord: coord,
+        bsgHeatUser: who,
+        bsgHeatMatch: String(lastState.matchId),
+        // A second copy of this overlay - the same source in two scenes - hears the same click
+        // and sends it too. This is what lets the game drop the repeat.
+        bsgHeatClick: who + '|' + msg.x + '|' + msg.y
+      }
+    }));
+  }
+
+  function markClick(point, who, mine, cell) {
+    var loggedOut = who.charAt(0) === 'A', unshared = who.charAt(0) === 'U';
+    var mark = document.createElement('div');
+    mark.className = 'heat-mark' + (mine ? ' player' : '') + (loggedOut || unshared ? ' anon' : '');
+    mark.style.left = point.x + 'px';
+    mark.style.top = point.y + 'px';
+
+    var label = document.createElement('span');
+    label.textContent = cell ? cell.getAttribute('data-coord')
+                      : mine ? 'player'
+                      : loggedOut ? 'logged out'
+                      : unshared ? 'ID not shared'
+                      : 'viewer';
+    mark.appendChild(label);
+    heatLayer.appendChild(mark);
+    setTimeout(function () { if (mark.parentNode) mark.parentNode.removeChild(mark); }, MARK_MS);
+  }
+
+  var SB_AUTH_TEXT = {
+    none: 'connected',
+    ok: 'connected, signed in',
+    pending: 'signing in',
+    failed: 'wrong WebSocket password',
+    needed: 'connected - asks for a password',
+    unsupported: 'cannot sign in from this browser'
+  };
+
+  function statusLine(name, tone, text) {
+    var line = document.createElement('div');
+    var dot = document.createElement('span');
+    dot.className = 'dot ' + tone;
+    var label = document.createElement('span');
+    label.className = 'name';
+    label.textContent = name;
+    line.appendChild(dot);
+    line.appendChild(label);
+    line.appendChild(document.createTextNode(text));
+    heatStatus.appendChild(line);
+  }
+
+  /* Shown only during the alignment test: whether each link is up, and whose clicks count. */
+  function showHeatStatus() {
+    var show = !!(heatCfg.enabled && heatCfg.showClicks);
+    heatStatus.classList.toggle('hidden', !show);
+    if (!show) return;
+
+    heatStatus.innerHTML = '';
+
+    // First, because the usual reason something that was fixed still misbehaves is that OBS is
+    // running the page it loaded before the fix.
+    statusLine('Overlay', newerOnDisk ? 'wait' : 'ok', 'v' + RUNNING_VERSION +
+      (newerOnDisk ? ' - v' + newerOnDisk + ' is installed, refresh the browser source in OBS' : ''));
+
+    var channel = String(heatCfg.channelId || '');
+    statusLine('Heat', heat.state === 'connected' ? 'ok' : heat.state === 'connecting' ? 'wait' : 'bad',
+      channel ? heat.state + ' - channel ' + channel : 'no Twitch channel id');
+
+    var sbTone = sb.state === 'connected'
+      ? (sb.auth === 'failed' || sb.auth === 'unsupported' || sb.error ? 'bad' : sb.auth === 'pending' || sb.auth === 'needed' ? 'wait' : 'ok')
+      : sb.state === 'connecting' ? 'wait' : 'bad';
+    var sbText = sb.state === 'connected' ? (sb.error || SB_AUTH_TEXT[sb.auth] || 'connected') : sb.state;
+    statusLine('Streamer.bot', sbTone, sbText + (heatCfg.streamerBotUrl ? ' - ' + heatCfg.streamerBotUrl : ''));
+
+    var live = lastState && lastState.active && !lastState.gameOver;
+    var player = live ? (lastState.user || 'the player') : '';
+    statusLine('Battle', live && (lastState.mode === 'chat' || lastState.mode === 'duel' || (lastState.heatPlayerId && lastState.heatLinkedId)) ? 'ok' : 'wait',
+      !live ? 'none on the overlay'
+      : lastState.mode === 'chat' ? 'chat battle - every click on enemy waters is a vote'
+      : lastState.mode === 'duel' ? 'team duel - linked clicks vote for their side'
+      : !lastState.heatPlayerId ? 'not a Twitch player - clicks cannot fire'
+      : lastState.heatLinkedId ? 'clicks fire for ' + player
+      : heatCfg.autoLink ? 'the first click on enemy waters takes control for ' + player
+      : player + ' has not linked their clicks - click a square, then !fire link');
+  }
+
+  function showHeatHint() {
+    var duel = !!lastState && lastState.mode === 'duel';
+    var chat = !!lastState && lastState.mode === 'chat' || duel;
+    var show = !!(heatCfg.enabled && heat.state === 'connected' &&
+                  lastState && lastState.active && !lastState.gameOver && (lastState.heatPlayerId || chat));
+    heatHint.textContent = duel ? (lastState.turnName || 'Your side') + ': click to vote'
+                         : chat ? 'Click enemy waters to vote' : 'Click enemy waters to fire';
+    heatHint.classList.toggle('hidden', !show);
+  }
+
+  function refreshHeat() {
+    showHeatHint();
+    showHeatStatus();
+  }
+
+  function pollHeatConfig() {
+    fetch(HEAT_CONFIG_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .catch(function () { return ''; })
+      .then(function (text) {
+        if (text === heatCfgText) return;
+        heatCfgText = text;
+        try { heatCfg = (text && JSON.parse(text)) || {}; } catch (e) { heatCfg = {}; }
+        applyHeatConfig();
+      })
+      .catch(function () { })
+      .then(function () { setTimeout(pollHeatConfig, HEAT_CONFIG_POLL_MS); });
+  }
+
+  var lastStateText = null;
+  var lastState = null;
+
+  function poll() {
+    fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (text) {
+        if (text === null) return;
+        if (text !== lastStateText) {
+          lastStateText = text;
+          lastState = JSON.parse(text);
+          render(lastState);
+          refreshHeat();
+        } else if (lastState && lastState.active && !lastState.gameOver) {
+          // The file only changes when a shot lands, so the clock is run locally in between -
+          // otherwise the countdown ring would sit still for the whole turn.
+          lastState.expiresInMs = Math.max(0, lastState.expiresInMs - POLL_MS);
+          renderTimer(lastState);
+        }
+      })
+      .catch(function () { })
+      .then(function () { setTimeout(poll, POLL_MS); });
+  }
+
+  /* ---------- self-upgrade ----------
+     The game replaces this file when a newer version ships, but OBS goes on running the page it
+     already loaded until someone refreshes the source. So look at the file now and then and move
+     into the new one - under a fresh address, so no cache can hand back the old page. */
+
+  var VERSION_CHECK_MS = 10000;
+  var newerOnDisk = 0;
+
+  function versionOf(text) {
+    var m = /bsg-overlay-version:\s*(\d+)/.exec(text || '');
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  // The stamp in the comment above <html>, which the parser hangs off the document itself.
+  var RUNNING_VERSION = 0;
+  for (var node = document.firstChild; node; node = node.nextSibling) {
+    if (node.nodeType === 8) RUNNING_VERSION = Math.max(RUNNING_VERSION, versionOf(node.nodeValue));
+  }
+
+  function checkForNewerOverlay() {
+    fetch(location.pathname + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (text) {
+        var onDisk = versionOf(text);
+        // Only a whole file - the game may be halfway through writing it - and only once per
+        // version, so a page that somehow still comes back old cannot reload for ever.
+        if (onDisk > RUNNING_VERSION && text.indexOf('</html>') >= 0) {
+          if (!new RegExp('[?&]bsgv=' + onDisk + '(&|$)').test(location.search)) {
+            location.replace(location.pathname + '?bsgv=' + onDisk);
+            return;
+          }
+          if (newerOnDisk !== onDisk) { newerOnDisk = onDisk; showHeatStatus(); }
+        }
+      })
+      .catch(function () { })
+      .then(function () { setTimeout(checkForNewerOverlay, VERSION_CHECK_MS); });
+  }
+
+  window.addEventListener('resize', function () { if (!badge.classList.contains('hidden')) fitBadge(); });
+
+  poll();
+  pollHeatConfig();
+  setTimeout(checkForNewerOverlay, VERSION_CHECK_MS);
+})();
+</script>
+</body>
+</html>
