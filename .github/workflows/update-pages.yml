@@ -1,8 +1,8 @@
 # Keeps the project pages current: their documents, what their import strings add, the latest
 # version in their link previews and the About texts from GitHub, plus the commands page, the help
-# page, the release feed and the search index, by running _tools/update-pages.js every hour and after
-# every change to projects.js, the templates or the script. It commits to main only when something
-# changed.
+# page, the release feed, the search index and the fallback numbers in projects.js, by running
+# _tools/update-pages.js every hour and after every change to projects.js, the templates or the
+# script. It commits to main only when something changed.
 name: Update project pages
 
 on:
@@ -32,7 +32,7 @@ jobs:
 
       - name: Commit the changes
         run: |
-          git add -A -- '*.html' sitemap.xml feed.xml assets/search.json
+          git add -A -- '*.html' sitemap.xml feed.xml assets/search.json assets/js/projects.js
           if git diff --cached --quiet; then echo 'Nothing changed.'; exit 0; fi
           git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update the project pages'
           git push -q

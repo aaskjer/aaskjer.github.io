@@ -7,7 +7,8 @@
 // the web services its code calls), read from the import string itself. The description is the
 // repository's About text on GitHub (the tagline in projects.js if GitHub cannot be reached). The
 // link preview (what Discord, Slack and others show under a shared link) gets the latest version:
-// in the title and as a label.
+// in the title and as a label. The latest version, stars and downloads also go into projects.js,
+// which the site shows while the GitHub API does not answer.
 // .github/workflows/update-pages.yml runs it every hour and after every change to projects.js, the
 // templates or _tools/problems.md; by hand:  node _tools/update-pages.js
 const fs = require('fs');
@@ -365,8 +366,12 @@ const shortVersion = v => String(v || '').replace(/^v/i, '').replace(/-.*$/, '')
 
 (async () => {
 const about = new Map();
+const stars = new Map();
 try {
-  for (const r of await getJSON(`https://api.github.com/users/${user}/repos?per_page=100`)) if (r.description) about.set(r.name.toLowerCase(), r.description);
+  for (const r of await getJSON(`https://api.github.com/users/${user}/repos?per_page=100`)) {
+    if (r.description) about.set(r.name.toLowerCase(), r.description);
+    stars.set(r.name.toLowerCase(), r.stargazers_count);
+  }
 } catch (e) {
   if (strict) throw e;
   console.warn(`About texts not loaded (${e.message}), using the taglines from projects.js.`);
@@ -377,6 +382,8 @@ const index = { projects: [], commands: [], sections: [] };
 const commandGroups = [];
 const compat = [];
 const released = [];
+// the numbers projects.js shows while the GitHub API does not answer, by repository
+const fallback = new Map();
 for (const p of projects.filter(x => x.page)) {
   // the template's links lead two folders up
   if (!/^projects\/[a-z0-9-]+\/$/.test(p.page)) throw new Error(`page of ${p.repo} is not 'projects/<folder>/'`);
@@ -388,6 +395,12 @@ for (const p of projects.filter(x => x.page)) {
     releases = (await getJSON(`https://api.github.com/repos/${user}/${p.repo}/releases?per_page=100`)).filter(r => !r.draft);
     const stable = releases.find(r => !r.prerelease);
     p.version = stable ? stable.tag_name : releases.length ? `${releases[0].tag_name} Pre-release` : null;
+    // as main.js counts them: every asset of every release, and the version only from a stable one
+    if (stars.has(p.repo.toLowerCase())) fallback.set(p.repo, {
+      version: stable && stable.tag_name,
+      stars: stars.get(p.repo.toLowerCase()),
+      downloads: releases.reduce((sum, r) => sum + r.assets.reduce((n, a) => n + a.download_count, 0), 0),
+    });
   } catch (e) {
     if (strict) throw e;
     console.warn(`Releases of ${p.repo} not loaded (${e.message}), using ${p.version || 'no version'} from projects.js.`);
@@ -645,6 +658,28 @@ ${recent.map(({ p, r }) => {
 </feed>
 `;
 fs.writeFileSync('feed.xml', feed);
+
+// projects.js: the latest version, stars and downloads, which the site shows while the GitHub API
+// does not answer (it allows a visitor 60 requests an hour)
+const siteBefore = fs.readFileSync('assets/js/projects.js', 'utf8');
+let site = siteBefore;
+for (const [repo, f] of fallback) {
+  const start = site.indexOf(`repo: '${repo}',`);
+  const next = site.indexOf(`repo: '`, start + 1);
+  const end = next === -1 ? site.length : next;
+  const line = /^([ \t]*)(version: '[^']*', )?stars: \d+, downloads: \d+,/m;
+  if (start === -1 || !line.test(site.slice(start, end))) {
+    console.warn(`No line "stars: …, downloads: …," for ${repo} in projects.js, its numbers stay as they are.`);
+    continue;
+  }
+  const block = site.slice(start, end).replace(line, (all, indent, version) =>
+    `${indent}${f.version ? `version: '${f.version.replace(/[\\']/g, '\\$&')}', ` : version || ''}stars: ${f.stars}, downloads: ${f.downloads},`);
+  site = site.slice(0, start) + block + site.slice(end);
+}
+if (site !== siteBefore) {
+  fs.writeFileSync('assets/js/projects.js', site);
+  console.log('Updated the fallback versions and numbers in projects.js.');
+}
 
 fs.writeFileSync('assets/search.json', JSON.stringify(index) + '\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

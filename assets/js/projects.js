@@ -4,6 +4,8 @@
  * Add, remove or reorder entries here. Stars, downloads, versions and the
  * "updated" date are refreshed live from the GitHub API when the page loads;
  * the numbers below are only the fallback for when that request fails.
+ * _tools/update-pages.js keeps the line "version: …, stars: …, downloads: …,"
+ * of every project with a page current, so leave it on one line.
  * Public repositories that are not listed here appear on their own under
  * "More on GitHub".
  *
@@ -53,7 +55,7 @@ window.SITE = {
   // A repository without a release that holds only README and LICENSE shows a "Coming Soon" label
   // instead of its buttons. Repositories listed here show it too although they already have
   // files, until their first release is out.
-  comingSoon: ['GameCheck'],
+  comingSoon: [],
   // The Featured box above the stream tools. A project gets in for `days` after a release (a
   // pre-release too) or a change of its status, and for at least `downloads.min` downloads in the
   // last `downloads.days` days. The newest reason gets the big box, up to `max` - 1 more sit below
@@ -90,7 +92,7 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
-      version: 'v4.0.1', stars: 4, downloads: 93,
+      version: 'v4.0.1', stars: 6, downloads: 97,
     },
     {
       repo: 'Better-Stream-Announcements',
@@ -109,7 +111,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.0.0', stars: 1, downloads: 43,
+      version: 'v2.1.1', stars: 1, downloads: 69,
     },
     {
       repo: 'SBRefFix',
@@ -131,7 +133,7 @@ window.SITE = {
       download: 'https://github.com/aaskjer/SBRefFix/releases/latest/download/SBRefFix.zip',
       downloadLabel: 'Download ZIP',
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 0, downloads: 0,
+      version: 'v1.0.0', stars: 1, downloads: 1,
     },
     {
       repo: 'SuTo',
@@ -150,7 +152,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 0, downloads: 0,
+      version: 'v1.0.0', stars: 0, downloads: 1,
     },
     {
       repo: 'OBSNotes',
@@ -169,7 +171,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 0, downloads: 0,
+      version: 'v1.0.2', stars: 0, downloads: 14,
     },
     {
       repo: 'GameCheck',
@@ -190,7 +192,7 @@ window.SITE = {
         { name: 'IsThereAnyDeal API key', what: 'optional, adds the giveaways and deals of more shops' },
       ],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      stars: 0, downloads: 0,
+      version: 'v1.0.0', stars: 0, downloads: 1,
     },
     {
       repo: 'ChatCalendar',
@@ -208,7 +210,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 0, downloads: 0,
+      version: 'v1.0.1', stars: 0, downloads: 12,
     },
     {
       repo: 'AutoBotCheck',
@@ -233,7 +235,7 @@ window.SITE = {
       ],
       platforms: ['Twitch'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.1.0', stars: 0, downloads: 0,
+      version: 'v1.1.0', stars: 0, downloads: 2,
     },
     {
       repo: 'Blackjack-Game',
@@ -252,7 +254,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.1.1', stars: 2, downloads: 147,
+      version: 'v16.3.1', stars: 2, downloads: 141,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -271,7 +273,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v24.1.0', stars: 1, downloads: 124,
+      version: 'v24.1.1', stars: 1, downloads: 135,
     },
     {
       repo: 'Trivia-Game',
@@ -289,7 +291,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v8.0.0', stars: 1, downloads: 64,
+      version: 'v8.1.1', stars: 2, downloads: 75,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -308,7 +310,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v15.0.0', stars: 2, downloads: 47,
+      version: 'v15.0.1', stars: 2, downloads: 52,
     },
     {
       repo: 'Hangman-Game',
@@ -327,7 +329,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v11.0.0', stars: 2, downloads: 16,
+      version: 'v12.1.0', stars: 2, downloads: 21,
     },
     {
       repo: 'Battleship-Game',
@@ -346,7 +348,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 1, downloads: 0,
+      version: 'v1.0.0', stars: 1, downloads: 2,
     },
     {
       repo: 'RhymeTime',
@@ -372,7 +374,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.1.0', stars: 0, downloads: 0,
+      version: 'v1.1.0', stars: 0, downloads: 2,
     },
   ],
 };
