@@ -159,13 +159,16 @@
     text.value = list.map(x => `- **${x.short}**: ${x.commands.join(' · ')}`).join('\n')
       + (state.credit && list.length ? `\n\n${CREDIT}` : '');
     copy.disabled = !list.length;
-    draw(list);
+    preview(list);
     if (store) save(list);
   }
 
   /* ---------- the picture ---------- */
 
+  // Twitch takes a panel image of at most 320 × 600 pixels and 1 MB: the download is drawn at that
+  // size, the picture on the page twice as sharp
   const W = 320;
+  const MAX_H = 600;
   const SCALE = 2;
   const PAD = 16;
   const HEAD = 50;
@@ -175,7 +178,9 @@
     command: '500 12px ui-monospace, "Cascadia Code", Consolas, monospace',
     small: '400 11px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
   };
+  // measures the text for every picture; the sizes do not depend on its scale
   const ctx = canvas.getContext('2d');
+  const caption = $('figcaption', aside);
 
   // the commands of a project in lines that fit the panel, "!a · !b" broken between commands
   function lines(commands, width) {
@@ -203,55 +208,71 @@
     return `${cut.trimEnd()}…`;
   }
 
-  function draw(list) {
+  // the panel on `target`, `scale` pixels to a point; returns its height in points
+  function draw(list, target, scale) {
     const blocks = list.map(x => ({ name: x.short, lines: lines(x.commands, W - PAD * 2) }));
     let height = HEAD + 14 + (blocks.length ? blocks.reduce((h, b) => h + 18 + b.lines.length * 17 + 10, -10) : 18);
     if (state.credit && blocks.length) height += 30;
     height = Math.ceil(height + 16);
-    canvas.width = W * SCALE;
-    canvas.height = height * SCALE;
-    ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
-    ctx.fillStyle = '#15131f';
-    ctx.fillRect(0, 0, W, height);
-    const grad = ctx.createLinearGradient(0, 0, W, HEAD);
+    target.width = W * scale;
+    target.height = height * scale;
+    const g = target.getContext('2d');
+    g.setTransform(scale, 0, 0, scale, 0, 0);
+    g.fillStyle = '#15131f';
+    g.fillRect(0, 0, W, height);
+    const grad = g.createLinearGradient(0, 0, W, HEAD);
     grad.addColorStop(0, '#7c3aed');
     grad.addColorStop(0.55, '#4f46e5');
     grad.addColorStop(1, '#2563eb');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, HEAD);
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(fit(state.title.trim() || 'Chat games', FONTS.title, W - PAD * 2), PAD, HEAD / 2 + 1);
+    g.fillStyle = grad;
+    g.fillRect(0, 0, W, HEAD);
+    g.textBaseline = 'middle';
+    g.fillStyle = '#ffffff';
+    const heading = fit(state.title.trim() || 'Chat games', FONTS.title, W - PAD * 2);
+    g.font = FONTS.title;
+    g.fillText(heading, PAD, HEAD / 2 + 1);
 
     let y = HEAD + 14;
-    ctx.textBaseline = 'top';
+    g.textBaseline = 'top';
     if (!blocks.length) {
-      ctx.font = FONTS.small;
-      ctx.fillStyle = '#a6a2bb';
-      ctx.fillText('Tick “On my panel” next to a project.', PAD, y + 2);
+      g.font = FONTS.small;
+      g.fillStyle = '#a6a2bb';
+      g.fillText('Tick “On my panel” next to a project.', PAD, y + 2);
     }
     for (const b of blocks) {
-      ctx.font = FONTS.name;
-      ctx.fillStyle = '#eeedf7';
-      ctx.fillText(fit(b.name, FONTS.name, W - PAD * 2), PAD, y);
+      const name = fit(b.name, FONTS.name, W - PAD * 2);
+      g.font = FONTS.name;
+      g.fillStyle = '#eeedf7';
+      g.fillText(name, PAD, y);
       y += 18;
-      ctx.font = FONTS.command;
-      ctx.fillStyle = '#c4b5fd';
+      g.font = FONTS.command;
+      g.fillStyle = '#c4b5fd';
       for (const line of b.lines) {
-        ctx.fillText(line, PAD, y);
+        g.fillText(line, PAD, y);
         y += 17;
       }
       y += 10;
     }
     if (state.credit && blocks.length) {
       y += 2;
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-      ctx.fillRect(PAD, y, W - PAD * 2, 1);
-      ctx.font = FONTS.small;
-      ctx.fillStyle = '#a6a2bb';
-      ctx.fillText('Free Streamer.bot extensions by aaskjer.github.io', PAD, y + 10);
+      g.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      g.fillRect(PAD, y, W - PAD * 2, 1);
+      g.font = FONTS.small;
+      g.fillStyle = '#a6a2bb';
+      g.fillText('Free Streamer.bot extensions by aaskjer.github.io', PAD, y + 10);
     }
+    return height;
+  }
+
+  // the picture on the page, and under it the size of the download
+  function preview(list) {
+    const height = draw(list, canvas, SCALE);
     canvas.style.aspectRatio = `${W} / ${height}`;
+    const tall = height > MAX_H;
+    caption.classList.toggle('is-tall', tall);
+    caption.textContent = tall
+      ? `${W} × ${height} px: Twitch takes ${MAX_H} px at most, so untick a few commands`
+      : `${W} × ${height} px, for the panel's image`;
   }
 
   /* ---------- copy and download ---------- */
@@ -268,7 +289,9 @@
   });
 
   $('#panel-image', aside).addEventListener('click', () => {
-    canvas.toBlob(blob => {
+    const picture = document.createElement('canvas');
+    draw(chosen(), picture, 1);
+    picture.toBlob(blob => {
       if (!blob) return;
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -282,5 +305,5 @@
 
   update(false);
   // the title in Sora once the font is there
-  if (document.fonts) document.fonts.load(FONTS.title).then(() => draw(chosen()), () => {});
+  if (document.fonts) document.fonts.load(FONTS.title).then(() => preview(chosen()), () => {});
 })();

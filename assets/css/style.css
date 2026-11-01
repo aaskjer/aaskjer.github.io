@@ -3947,6 +3947,15 @@ main > .section::before {
 .panel-builder__picture figcaption {
   color: var(--faint);
   font-size: 0.8rem;
+  text-align: center;
+}
+
+.panel-builder__picture figcaption.is-tall {
+  color: #fbbf24;
+}
+
+:root[data-theme='light'] .panel-builder__picture figcaption.is-tall {
+  color: #92400e;
 }
 
 .panel-builder__actions {
