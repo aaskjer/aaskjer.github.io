@@ -5,9 +5,26 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-10-31T18:54:42Z</updated>
+  <updated>2026-11-02T20:22:31Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>GameCheck v1.0.1: GameCheck 1.0.1: every embed names its last update</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v1.0.1"/>
+    <id>https://github.com/aaskjer/GameCheck/releases/tag/v1.0.1</id>
+    <published>2026-11-02T20:22:31Z</published>
+    <updated>2026-11-02T20:22:31Z</updated>
+    <category term="GameCheck" label="GameCheck"/>
+    <content type="html">&lt;p&gt;A small release: every embed names its last update, and the README explains all four marks.&lt;/p&gt;
+&lt;h3&gt;✏️ Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;One footer for every embed: &lt;code&gt;GameCheck by aaskjer · updated&lt;/code&gt;.&lt;/strong&gt; The time Discord shows after it has always been the embed&amp;#39;s last update - both actions edit their messages in place on every run - and the footer now says so instead of reading like the time the message was sent. The actions&amp;#39; own names (&amp;quot;FreeGamesCheck&amp;quot;, &amp;quot;GameSaleCheck&amp;quot;) are gone from it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;README:&lt;/strong&gt; the legend names 📉 (a deal at its lowest price ever, with an IsThereAnyDeal key) and 🚫 (a giveaway the store does not offer in your country) next to 🆕 and 🔥.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;GameCheck.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. See the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; and the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/CHANGELOG.md&quot;&gt;changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/GameCheck/releases/tag/v1.0.1&quot;&gt;Download v1.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/gamecheck/&quot;&gt;GameCheck on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>GameCheck v1.0.0: GameCheck 1.0.0: free games and game sales in Discord</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v1.0.0"/>
@@ -887,86 +904,5 @@ could mean.&lt;/li&gt;
 &lt;p&gt;Import &lt;code&gt;BetterStreamAnnouncements.sb&lt;/code&gt; below, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the Streamer Friends timer for each platform you use.&lt;/p&gt;
 &lt;p&gt;Full detail in &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/CHANGELOG.md&quot;&gt;CHANGELOG.md&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v8.0.0: New Gui, some fixes and QoL</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v8.0.0"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v8.0.0</id>
-    <published>2026-10-21T22:14:43Z</published>
-    <updated>2026-10-21T22:14:43Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Settings window rebuilt as an icon rail — Game, Questions, Access, Messages, Log, How to play,
-About — with &lt;code&gt;Ctrl+1&lt;/code&gt;-&lt;code&gt;Ctrl+7&lt;/code&gt; to switch and &lt;code&gt;Ctrl+S&lt;/code&gt; to save.&lt;/li&gt;
-&lt;li&gt;Viewer suggestions: &lt;code&gt;!Suggest question | correct | wrong | wrong&lt;/code&gt;, guarded by a channel point
-reward, Streamer.bot groups or mod status. A Suggestions page sets the guard, the category and
-difficulty they arrive under, the per-viewer cap, and whether they are playable at once.&lt;/li&gt;
-&lt;li&gt;Chat picks the category: &lt;code&gt;!Trivia history&lt;/code&gt;, &lt;code&gt;!Trivia 3 science&lt;/code&gt;, short forms like tv, movies,
-anime, maths. Only categories a round can be drawn from are offered; an unplayable name cancels
-the round rather than substituting another.&lt;/li&gt;
-&lt;li&gt;Messages page: all 63 chat lines behind one picker, placeholder chips, and a preview of the
-finished line including how it reads as a &lt;code&gt;/me&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Difficulty dial: one slider for answer times, countdown reminders and spelling tolerance, Relaxed
-to Brutal. Every number stays editable; editing one switches the slider to Custom.&lt;/li&gt;
-&lt;li&gt;Header says what starts a round and whether the timer is on; footer counts unsaved changes.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Dispose()&lt;/code&gt; stops countdowns and closes the settings window when the action is destroyed, so a
-recompile mid-round no longer leaves the old build posting reminders.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Channel point redemptions never started a round.&lt;/strong&gt; A redemption carries a reward id and no
-command id, so it fell through to the answer handler. Start rewards are matched on the reward
-now — and the action needs a &lt;strong&gt;Twitch → Channel Point Reward Redemption&lt;/strong&gt; trigger, which older
-imports do not carry.&lt;/li&gt;
-&lt;li&gt;Round ownership: skip, force end, a stale timeout and a blitz winner each claim the round before
-announcing, first claim wins. Fixes a last-second skip paying out anyway, force end announcing an
-end it did not cause, a skip racing a blitz winner, phantom &amp;quot;remaining rounds cancelled&amp;quot; lines,
-and a force end between two questions wiped out by the next round starting.&lt;/li&gt;
-&lt;li&gt;A round that threw while starting or resolving left that platform stuck on &amp;quot;a round is already
-active&amp;quot; until recompile, with its redemption neither refunded nor fulfilled.&lt;/li&gt;
-&lt;li&gt;The update check compared release tags as strings, so a build ahead of the latest release was told
-to update back to it. The notice is a header pill now, not a dialog in the way.&lt;/li&gt;
-&lt;li&gt;A question suggested from chat while the settings window was open was overwritten by the next
-save, a theme switch included. Saves fold in what arrived meanwhile; deletions stay deleted. Same
-for the addicted list against &lt;code&gt;!TA&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;A category holding fewer questions than the cache batch failed the whole round; the game asks for
-a single question instead of giving up.&lt;/li&gt;
-&lt;li&gt;The monthly leaderboard reset wiped the board the moment it was switched on. Enabling only arms
-it, and the first wipe lands at the next month boundary.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Blocked From Board&lt;/strong&gt; was ignored while &lt;strong&gt;Include Bot&lt;/strong&gt; was ticked.&lt;/li&gt;
-&lt;li&gt;Close spellings were rejected while normalized matching was off: &lt;code&gt;Paris.&lt;/code&gt; was turned away while
-the genuine typo &lt;code&gt;parus&lt;/code&gt; was accepted.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Countdown Start&lt;/strong&gt; was raised to at least half the answer time. The configured value is what
-chat gets; only the round&amp;#39;s own length still caps it.&lt;/li&gt;
-&lt;li&gt;An empty &lt;strong&gt;Number Separator&lt;/strong&gt; printed &lt;code&gt;1,234,567&lt;/code&gt; in the game and &lt;code&gt;1234567&lt;/code&gt; on the leaderboard.&lt;/li&gt;
-&lt;li&gt;Action log: series entries carried no platform, the payout column stayed empty for currencies
-with a space in the name, and the filter now knows series, force ends, suggestions and addicted.&lt;/li&gt;
-&lt;li&gt;Closing with the title bar&amp;#39;s X discarded everything without asking, and question list edits were
-not counted as unsaved changes.&lt;/li&gt;
-&lt;li&gt;Opening or closing the settings window restarted the auto start countdown, Cancel and recompiles
-included.&lt;/li&gt;
-&lt;li&gt;A round resolving in the background read the addicted groups and the platform from whichever chat
-last sent a message, not from the round&amp;#39;s own platform.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;!ForceEndTrivia&lt;/code&gt;, the addicted command and &lt;code&gt;!Suggest&lt;/code&gt; answered on switched-off platforms.&lt;/li&gt;
-&lt;li&gt;The currency lookup logged an info line for every chat message.&lt;/li&gt;
-&lt;li&gt;A redeemed reward the game does not recognise was dropped silently. The usual cause — a start
-reward wired up while &lt;strong&gt;Only Channel Points&lt;/strong&gt; is off — logs and refunds now.&lt;/li&gt;
-&lt;li&gt;A multi-round redemption with multiple rounds switched off played one round without a word.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;90s Music&lt;/code&gt; started 90 rounds of a category called &lt;code&gt;s Music&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Settings were re-read and re-parsed on every chat message; now only when a file changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The platform tick-boxes are gone.&lt;/strong&gt; Twitch, YouTube and Kick all play, and the reply goes to
-the chat the command or redemption came from. To leave a platform out, untick it on the Trivia
-commands in Streamer.bot. Channel point rewards stay Twitch-only.&lt;/li&gt;
-&lt;li&gt;An opentdb outage says so. The log repeats what their server answered instead of a bare
-&amp;quot;403 (Forbidden)&amp;quot;, and &lt;strong&gt;Questions → Sources&lt;/strong&gt; asks opentdb and reports whether it answers.&lt;/li&gt;
-&lt;li&gt;Command names on the How to play page and in the &amp;quot;no username given&amp;quot; message match what the
-import ships: &lt;code&gt;!Trivia&lt;/code&gt;, &lt;code&gt;!SkipTrivia&lt;/code&gt;, &lt;code&gt;!ForceEndTrivia&lt;/code&gt;, &lt;code&gt;!TA&lt;/code&gt;, &lt;code&gt;!TriviaScoreboard&lt;/code&gt;, &lt;code&gt;!TStats&lt;/code&gt;,
-&lt;code&gt;!TSS&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.0.0&quot;&gt;Download v8.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

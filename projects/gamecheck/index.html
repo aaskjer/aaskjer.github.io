@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/gamecheck/">
-  <meta property="og:title" content="GameCheck  •  v1.0.0">
+  <meta property="og:title" content="GameCheck  •  v1.0.1">
   <meta property="og:description" content="Free games and the best game deals in your Discord, kept up to date on their own. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/gamecheck.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.0.0">
+  <meta name="twitter:data1" content="v1.0.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +30,7 @@
   <script src="../../assets/js/vendor/purify.min.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"1.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","gog.com","isthereanydeal.com","nintendo.com","steampowered.com"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"1.0.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","gog.com","isthereanydeal.com","nintendo.com","steampowered.com"],"updateCheck":true}</script>
 </head>
 <body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -109,10 +109,10 @@ starts or ends, and leave the messages alone when nothing changed.</p>
 <li>🏬 <strong>Straight from the stores.</strong> Steam and Epic Games are read directly, with exact end times and prices for your
 country. GOG, Nintendo&#39;s European eShop, Prime Gaming and IsThereAnyDeal fill in the rest.</li>
 <li>✏️ <strong>Edited, not spammed.</strong> Every topic is one message that is edited in place. A new entry is marked 🆕, one that ends
-soon 🔥. Optionally the messages are posted anew every few days, all together and in order.</li>
+soon 🔥, a deal at its lowest price ever 📉 (with an IsThereAnyDeal key), and a giveaway the store does not offer in
+your country 🚫 (struck through). Optionally the messages are posted anew every few days, all together and in order.</li>
 <li>🛟 <strong>Outages don&#39;t wipe the list.</strong> A store that fails is replaced by its last good answer for up to 24 hours.</li>
 <li>🤖 <strong>Bot or webhook.</strong> With a bot the messages can be pinned and older copies cleaned up; a webhook needs no bot at all.</li>
-<li>⏱️ <strong>No timer to set up.</strong> The trigger &quot;Streamer.bot Started&quot; is enough: every run plans the next one itself.</li>
 <li>🔒 <strong>Exports without secrets.</strong> Bot token, webhook URL and IsThereAnyDeal key can live in persisted global variables.</li>
 <li>🎮 <strong>Straight into the launcher.</strong> Optionally, Steam and Epic games open in Steam or the Epic Games Launcher instead
 of the browser.</li>
@@ -259,6 +259,13 @@ They say which store failed, or that the bot token or channel is missing.</li>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[1.0.1] - 2026-11-02</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>One footer for every embed: &quot;GameCheck by aaskjer · updated&quot;.</strong> The time after it is the embed&#39;s last update -
+both actions edit their messages in place on every run - and the footer now says so instead of reading like the
+time the message was sent. The actions&#39; own names (&quot;FreeGamesCheck&quot;, &quot;GameSaleCheck&quot;) are gone from it.</li>
+</ul>
 <h2>[1.0.0] - 2026-10-31</h2>
 <p>The first release of GameCheck: Free Game Check and Game Sale Check as one project, with a settings window and an
 import that sets everything up at once.</p>

@@ -192,7 +192,7 @@ window.SITE = {
         { name: 'IsThereAnyDeal API key', what: 'optional, adds the giveaways and deals of more shops' },
       ],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 0, downloads: 1,
+      version: 'v1.0.1', stars: 0, downloads: 2,
     },
     {
       repo: 'ChatCalendar',
@@ -254,7 +254,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.3.1', stars: 2, downloads: 141,
+      version: 'v16.3.1', stars: 2, downloads: 143,
     },
     {
       repo: 'Classic-Chat-Gamble',
