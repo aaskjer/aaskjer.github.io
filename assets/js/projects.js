@@ -171,7 +171,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.2', stars: 0, downloads: 14,
+      version: 'v1.0.2', stars: 0, downloads: 15,
     },
     {
       repo: 'GameCheck',
