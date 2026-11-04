@@ -273,7 +273,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v24.1.1', stars: 1, downloads: 135,
+      version: 'v24.1.1', stars: 1, downloads: 136,
     },
     {
       repo: 'Trivia-Game',
@@ -291,7 +291,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v8.1.1', stars: 2, downloads: 75,
+      version: 'v8.1.1', stars: 2, downloads: 76,
     },
     {
       repo: 'Slot-Machine-Game',
