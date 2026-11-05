@@ -440,6 +440,7 @@ code {
 }
 
 .stats div {
+  position: relative;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -1157,6 +1158,73 @@ main > .section::before {
 .meta .i {
   width: 14px;
   height: 14px;
+}
+
+/* 🎉 next to a number that passed a milestone this week, see milestones.js; in the hero stats it
+   floats above the number, so nothing moves when it comes in */
+.milestone {
+  padding: 0.12rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(var(--surface-2), var(--surface-2)) padding-box, var(--grad-text) border-box;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.stats .milestone {
+  position: absolute;
+  bottom: 100%;
+  left: -0.15rem;
+  margin-bottom: 0.3rem;
+}
+
+/* room for the chip when the stats take two lines */
+.stats:has(.milestone) {
+  row-gap: 2.4rem;
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti i {
+  position: absolute;
+  width: 7px;
+  height: 11px;
+  border-radius: 2px;
+}
+
+.confetti i:nth-child(3n) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .milestone {
+    transition: transform 0.15s ease;
+  }
+
+  .milestone:hover {
+    transform: translateY(-1px) rotate(-2deg);
+  }
+
+  .milestone--new {
+    animation: milestone-pop 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+}
+
+@keyframes milestone-pop {
+  from { transform: scale(0.5); }
 }
 
 .actions {

@@ -1,5 +1,6 @@
-# Records the downloads of every repository once a day in downloads.json on the stats branch, so
-# the Featured box on the start page can tell which project is downloaded a lot right now. The
+# Records the downloads and GitHub stars of every repository once a day in downloads.json on the
+# stats branch, so the Featured box on the start page can tell which project is downloaded a lot
+# right now and the site can tell when a number passed a milestone (assets/js/milestones.js). The
 # branch holds a single commit that is replaced every day; main and the site are not touched.
 name: Download counts
 
