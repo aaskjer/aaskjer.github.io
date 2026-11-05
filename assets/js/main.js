@@ -17,6 +17,8 @@
   const CACHE_TTL = 60 * 60 * 1000;
   // A change to projects.js (a new release entered, say) drops the kept answers at once.
   const SITE_STAMP = stamp(JSON.stringify(window.SITE));
+  // this site and the profile README are repositories too
+  const NOT_PROJECTS = new Set([`${user}.github.io`, user].map(name => name.toLowerCase()));
   const PLATFORM_TOPICS = { twitch: 'Twitch', youtube: 'YouTube', kick: 'Kick', discord: 'Discord', obs: 'OBS' };
 
   const $ = sel => document.querySelector(sel);
@@ -374,6 +376,30 @@
     downloadHistory = await response.json();
   }
 
+  // 🎉 when the downloads or stars of all projects pass a round number (milestones.js). The daily
+  // counts and the number now both add up the repositories of the newest count, so a project
+  // missing from the counts (archived, say) cannot look like a step passed today.
+  function celebrate() {
+    if (!window.Milestones || !downloadHistory) return;
+    const current = new Map(projects.concat(extras).map(p => [p.repo.toLowerCase(), p]));
+    for (const kind of ['downloads', 'stars']) {
+      const days = kind === 'stars' ? downloadHistory.stars : downloadHistory.days;
+      if (!days) continue;
+      const newest = days[Object.keys(days).sort().pop()];
+      const repos = Object.keys(newest).filter(name => current.has(name));
+      const sum = count => repos.reduce((n, name) => n + (count(name) || 0), 0);
+      window.Milestones.celebrate({
+        id: 'all',
+        kind,
+        days,
+        pick: day => sum(name => day[name]),
+        now: sum(name => current.get(name)[kind] ?? newest[name]),
+        place: chip => $(`[data-stat="${kind}"]`).parentElement.append(chip),
+        brief: true,
+      });
+    }
+  }
+
   /* ---------- filters ---------- */
 
   // The row above the lists: each pressed button keeps only the projects that have it, in all three
@@ -544,9 +570,8 @@
   }
 
   async function fetchLive() {
-    const skip = new Set([`${user}.github.io`, user].map(name => name.toLowerCase()));
     const repos = (await getJSON(`${API}/users/${user}/repos?per_page=100&sort=pushed`))
-      .filter(r => !r.fork && !r.archived && !skip.has(r.name.toLowerCase()));
+      .filter(r => !r.fork && !r.archived && !NOT_PROJECTS.has(r.name.toLowerCase()));
     let complete = true;
     const live = await Promise.all(repos.map(async r => {
       const releases = await getJSON(`${API}/repos/${user}/${r.name}/releases?per_page=100`).catch(() => null);
@@ -771,5 +796,6 @@
     renderFeatured();
     clearTimeout(shown);
     reveal();
+    celebrate();
   });
 })();

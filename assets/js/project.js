@@ -17,6 +17,8 @@
   const API = 'https://api.github.com';
   const RAW = `https://raw.githubusercontent.com/${user}/${repo}/main/`;
   const REPO_URL = `https://github.com/${user}/${encodeURIComponent(repo)}`;
+  // the downloads and stars of every repository once a day, recorded by .github/workflows/download-counts.yml
+  const HISTORY_URL = `https://raw.githubusercontent.com/${user}/${user}.github.io/stats/downloads.json`;
   // the start page's answers from the GitHub API, used for as long as the start page uses them
   const CACHE_KEY = 'github-live-v5';
   const CACHE_TTL = 60 * 60 * 1000;
@@ -120,8 +122,8 @@
   }
 
   function metaRow() {
-    const items = [`<span class="meta" title="GitHub stars">${icon('star')}${numberFormat.format(p.stars || 0)}<span class="sr-only"> stars</span></span>`];
-    if (p.downloads != null) items.push(`<span class="meta" title="Downloads">${icon('download')}${numberFormat.format(p.downloads)}<span class="sr-only"> downloads</span></span>`);
+    const items = [`<span class="meta" title="GitHub stars" data-meta="stars">${icon('star')}${numberFormat.format(p.stars || 0)}<span class="sr-only"> stars</span></span>`];
+    if (p.downloads != null) items.push(`<span class="meta" title="Downloads" data-meta="downloads">${icon('download')}${numberFormat.format(p.downloads)}<span class="sr-only"> downloads</span></span>`);
     if (p.updated) items.push(`<span class="meta" title="Last update">${icon('clock')}<span class="sr-only">updated </span>${timeAgo(p.updated)}</span>`);
     return items.join('');
   }
@@ -318,6 +320,25 @@
     $('#meta').innerHTML = metaRow();
     $('.project-hero .badges').outerHTML = badges();
     $('#import-note').innerHTML = importNote();
+  }
+
+  // 🎉 when this project's downloads or stars pass a round number (milestones.js)
+  async function celebrate() {
+    if (!window.Milestones) return;
+    const history = await fetch(HISTORY_URL).then(res => res.ok ? res.json() : Promise.reject(res.status));
+    const name = repo.toLowerCase();
+    for (const kind of ['downloads', 'stars']) {
+      const meta = $(`#meta [data-meta="${kind}"]`);
+      if (!meta) continue;
+      window.Milestones.celebrate({
+        id: name,
+        kind,
+        days: kind === 'stars' ? history.stars : history.days,
+        pick: day => day[name],
+        now: p[kind],
+        place: chip => meta.after(chip),
+      });
+    }
   }
 
   /* ---------- import string ---------- */
@@ -790,7 +811,7 @@
   setupEvents();
   setupStats();
   $('#year').textContent = new Date().getFullYear();
-  refreshNumbers();
+  refreshNumbers().then(celebrate).catch(() => { /* no daily counts: nothing to celebrate */ });
   setupImportString();
   loadDocs();
 })();
