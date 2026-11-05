@@ -92,7 +92,7 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
-      version: 'v4.0.1', stars: 6, downloads: 97,
+      version: 'v4.0.1', stars: 6, downloads: 98,
     },
     {
       repo: 'Better-Stream-Announcements',
