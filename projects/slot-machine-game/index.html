@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/slot-machine-game/">
-  <meta property="og:title" content="Slot Machine Game  •  v15.0.1">
+  <meta property="og:title" content="Slot Machine Game  •  v16.0.0">
   <meta property="og:description" content="A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/slot-machine-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v15.0.1">
+  <meta name="twitter:data1" content="v16.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"15.0.1","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!spin","!slots"],"words":[],"timers":0,"sites":["7tv.io","betterttv.net","jtvnw.net","twitch.tv"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"16.2.0","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!spin","!slots","!SetFreeSlots","!EndFreeSlots"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Slot-Machine-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
+<body data-repo="Slot-Machine-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -113,6 +113,14 @@ groups cannot play, viewers on the Addicted list lose a cut of every win, and Fr
 stake.</li>
 <li>💬 <strong>Messages that adapt.</strong> Every chat message is editable. Wording inside <code>{jackpot}…{/jackpot}</code> only
 reaches chat while the pool is on.</li>
+<li>🆓 <strong>Free mode from chat.</strong> <code>!SetFreeSlots</code> and <code>!EndFreeSlots</code> (moderators) switch Free mode, with a message
+to chat and a custom trigger each.</li>
+<li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every win, loss and jackpot with the spin as arguments,
+and per-viewer stats (spins, wins, jackpots, net profit, streaks, …) in Streamer.bot&#39;s user variables for a
+leaderboard of your own.</li>
+<li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>
+and downloaded on first open: light and dark themes, every message with a live preview, and a customise mode
+that lets you rename, reorder and hide pages and fields.</li>
 </ul>
 <hr>
 <h2>Credits</h2>
@@ -132,32 +140,37 @@ reaches chat while the pool is on.</li>
 <p align="center"><img loading="lazy" alt="Import window" src="https://github.com/user-attachments/assets/cd761fe1-bc20-4d0e-be24-1b00dc4bc529"></p><p>Click <code>Import</code>, then <code>Yes</code> in both popups that follow.</p>
 <h2>Enable the command</h2>
 <p align="center"><img loading="lazy" alt="Enable the command" src="https://github.com/user-attachments/assets/c4d780df-3f55-4215-a485-4b23ff8263be"></p><p>The command <code>[SMG] - Play Slots</code> arrives switched off. In the <code>Commands</code> tab, right-click the group <code>[SMG] Slot Machine Game</code> and click <code>Enable All</code>.</p>
-<p>Viewers play with <code>!slots</code> or <code>!spin</code>, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example <code>Kick Message</code>.</p>
+<p>Viewers play with <code>!slots</code> or <code>!spin</code>, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example <code>Kick Message</code>. <code>!SetFreeSlots</code> and <code>!EndFreeSlots</code> switch Free mode from chat; they come disabled and for Moderators, enable them if you want them.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="Open the settings" src="https://github.com/user-attachments/assets/71ddb888-73fb-47bd-81eb-ec314d5d69f0"></p><p>In the <code>Actions</code> tab, select <code>[SMG] - Settings</code>, right-click <code>Test</code> in its trigger list and click <code>Test Trigger</code>. The settings window opens.</p>
-<p>Hover over an option for a tooltip with the details. <code>Save</code> or <code>Ctrl+S</code> keeps your changes, <code>Save &amp; Exit</code> also closes the window, and <code>Ctrl+1</code> to <code>Ctrl+6</code> jump between the pages. The two buttons at the bottom left switch between dark and light and reset everything to the defaults. When a new version is out, a red <code>Update</code> pill shows up at the top.</p>
+<p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
+all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
+<code>Yes</code> fetches it (about 200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
+Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by
+hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
+released the same dialog comes back once; <code>Cancel</code> skips that version.</p>
+<p>Hover over an option for a tooltip with the details. <code>Save</code> or <code>Ctrl+S</code> keeps your changes, <code>Save &amp; Exit</code> also closes the window, and <code>Ctrl+1</code> to <code>Ctrl+7</code> jump between the pages. The buttons at the bottom left switch between dark and light, reset everything or only the page in front, and open the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game. When a new version of the game is out, a pill shows up in the header.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/game.png"></p><ul>
-<li><strong>Slots and odds</strong>: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play. The bar shows how often a spin really ends in a jackpot, a win or a loss, and how much a bet of 100 brings back on average.</li>
+<li><strong>Slots and odds</strong>: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play.</li>
 <li><strong>Bets and points</strong>: default, minimum and maximum bet, Free mode, and the points variable. Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own.</li>
-<li><strong>Payouts</strong>: what 2, 3, 4 and 5 alike and the jackpot pay, the Subscriber and VIP boosts, and the Addicted cut.</li>
+<li><strong>Payouts</strong>: what 2, 3, 4 and 5 alike and the jackpot pay (tiers the chosen number of slots can&#39;t land are greyed out), the Subscriber and VIP boosts, and the Addicted cut.</li>
 <li><strong>Jackpot pool</strong>: lost bets go into the Jackpool, and a jackpot with a big enough bet wins it on top.</li>
-<li><strong>Try a spin</strong>: pick a bet, who spins and the platform, then click <code>Spin</code> to see exactly what chat would get. Nothing is saved, and nobody&#39;s points change.</li>
+<li><strong>Try a spin</strong>: pick the platform whose emotes spin (a Twitch emote only exists on Twitch), a bet and who spins, then click <code>Spin</code> to see the slots as pictures and exactly what chat would get, with the settings as they stand on the page. Nothing is saved, and nobody&#39;s points change.</li>
 </ul>
 <h2>Emotes</h2>
-<p align="center"><img loading="lazy" alt="Emotes page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/emotes.png"></p><p>Each platform has its own emotes. Give every emote a weight: a low weight comes up often and pays little, a high one is rare and pays a lot. Weights can be changed right in the list, <code>×</code> takes an emote out, and <code>Reset to default</code> brings back the original set.</p>
-<p align="center"><img loading="lazy" alt="Kick emotes" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/emotes--kick.png"></p><p>Kick emotes need their ID and name. The tooltip of the ID field shows where to find it.</p>
-<p align="center"><img loading="lazy" alt="Twitch emotes from BTTV, 7TV and FFZ" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/emotes--twitch-extensions.png"></p><p>On Twitch, emotes from BTTV, 7TV and FFZ work too. The window shows them with their picture and where they come from; in chat, only viewers with that extension see them as emotes.</p>
+<p align="center"><img loading="lazy" alt="Emotes page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/emotes.png"></p><p>Each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, and its weight. A low weight comes up often and pays little, a high one is rare and pays a lot. <code>Add row</code> adds an emote, <code>×</code> takes one out, and <code>Restore defaults</code> brings back the original set of that platform.</p>
+<p>On Twitch the emote is its name, as typed in chat (case-sensitive); emotes from BTTV, 7TV and FFZ work too, the window shows their picture and names the extension in its tooltip, and in chat only viewers with that extension see them as emotes. On YouTube the row takes one of YouTube&#39;s own emojis as chat types it, <code>:face-purple-rain-drops:</code>; a Unicode emoji works too. On Kick the row takes the emote&#39;s ID and name as <code>ID:name</code>, <code>1730803:emojiRich</code>; the game sends it as <code>[emote:1730803:emojiRich]</code>, which Kick renders as the emote. The ID is the number in the address of the emote&#39;s picture.</p>
 <h2>Access</h2>
 <p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/access.png"></p><ul>
-<li><strong>How viewers play</strong>: with the chat command, or on Twitch with a channel point reward.</li>
-<li><strong>Cooldown in seconds</strong>: one for everyone, one per viewer. Saving writes them straight into the command.</li>
 <li><strong>Blocked groups, addicted viewers and groups</strong>: type a name and press <code>Enter</code>; <code>×</code> removes it again. Addicted viewers win less and get messages of their own.</li>
+<li><strong>Channel points (Twitch)</strong>: with the chat command, or on Twitch with a channel point reward.</li>
+<li><strong>Cooldowns</strong>: one for everyone, one per viewer. Saving writes them straight into the command.</li>
 </ul>
 <h3>Twitch Channel Points</h3>
 <p align="center"><img loading="lazy" alt="Channel points" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/access--channel-points.png"></p><ol>
-<li>Pick <code>Channel points</code>. The chat command is then off on Twitch, while YouTube and Kick keep using it.</li>
-<li>Paste the ID of your reward into <code>Reward ID</code>; <code>Find my reward ID</code> helps you look it up. Without one, no redemption starts a spin.</li>
+<li>Switch on <code>Channel points start a spin</code>. The chat command is then off on Twitch, while YouTube and Kick keep using it.</li>
+<li>Paste the ID of your reward into <code>Reward ID</code>; the tooltip names a page that lists your rewards with their IDs. Without one, no redemption starts a spin.</li>
 <li>Pick what is bet: <code>Reward cost</code>, <code>Typed amount</code>, <code>Fixed</code> or <code>Free</code>.</li>
 </ol>
 <p>A redemption that doesn&#39;t end in a spin is refunded, as long as the reward doesn&#39;t skip the reward requests queue.</p>
@@ -166,9 +179,9 @@ reaches chat while the pool is on.</li>
 <p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/messages.png"></p><p>Edit any message or translate it into your language. Pick one from the list and click a placeholder to insert it; the chat preview shows the result the way chat will read it. Words about the Jackpool wrapped in <code>{jackpot}…{/jackpot}</code> stay out of chat while the jackpot pool is off. <code>Numbers</code> sets how chat writes numbers, like 12.345 or 12,345.</p>
 <p>Below the preview you choose the sender, your bot account or your own, and <code>Send as /me</code>, which only exists on Twitch. Game messages and cooldown messages are set separately.</p>
 <h2>Log</h2>
-<p align="center"><img loading="lazy" alt="Log page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/log.png"></p><p>Every spin, day by day. Search for names or amounts, filter by result or date, and click a line to read all of it. <code>Write a log file per day</code> turns logging on or off.</p>
+<p align="center"><img loading="lazy" alt="Log page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/log.png"></p><p>Every spin, day by day. Search for names or amounts, filter by result, platform or day, and click a line to read all of it. <code>Write a log file per day</code> turns logging on or off.</p>
 <h2>About</h2>
-<p align="center"><img loading="lazy" alt="About page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/about.png"></p><p>The version, links, and the points systems supported out of the box.</p>
+<p align="center"><img loading="lazy" alt="About page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/about.png"></p><p>The version of the game and of UIFramework, links, and the points systems supported out of the box.</p>
 <hr>
 <p><a href="https://github.com/aaskjer/Slot-Machine-Game/blob/main/FAQ.md">Frequently Asked Questions</a> · <a href="https://github.com/aaskjer/Slot-Machine-Game/issues">Report an issue</a></p>
 </div>
@@ -180,22 +193,42 @@ reaches chat while the pool is on.</li>
 <h2>🛠️ Setup &amp; Configuration</h2>
 <p><strong>Q: Where are the config files stored?</strong></p>
 <p>In your Streamer.bot folder:</p>
-<pre><code>Chat Games/Slot Machine Game/SMG-Settings.json      ← all settings, messages &amp; emote pools
-Chat Games/Slot Machine Game/SMG-Settings.json.bak  ← automatic backup, written before every save
-Chat Games/Logs/SMG-log-yyyy-MM-dd.txt              ← action log, one file per day
+<pre><code>Chat Games/Slot Machine Game/SMG-Settings.json        ← all settings, messages &amp; emotes
+Chat Games/Slot Machine Game/SMG-Settings.json.bak    ← automatic backup, written before every save
+Chat Games/Slot Machine Game/uiframework.layout.json  ← your layout of the window: theme, renamed or hidden pages and fields
+Chat Games/Logs/SMG-log-yyyy-MM-dd.txt                ← action log, one file per day
+UIFramework/lib/&lt;version&gt;/UIFramework.dll             ← the settings window, downloaded on first open
 </code></pre>
-<p>There&#39;s no need to edit <code>SMG-Settings.json</code> by hand; the settings window covers all of it.</p>
+<p>There&#39;s no need to edit any of them by hand; the settings window covers all of it.</p>
+<p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
+<p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The
+<code>[SMG] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
+<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it
+against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot
+folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way;
+<code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the log
+says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
 <p><strong>Q: The settings window won&#39;t open or closes right away. What do I do?</strong></p>
 <ul>
 <li>Check the Streamer.bot log for the error and report it <a href="https://github.com/aaskjer/Slot-Machine-Game/issues">here</a>.</li>
 <li>A damaged <code>SMG-Settings.json</code> doesn&#39;t keep the window shut. It opens with the settings from <code>SMG-Settings.json.bak</code>, or with the defaults if there&#39;s no readable backup, and keeps the damaged file as <code>SMG-Settings.json.broken</code>. Save writes a working file again.</li>
 </ul>
+<p><strong>Q: Can I rearrange the window?</strong></p>
+<p>Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto a
+page in the rail to move it there, right-click for <em>Rename</em>, <em>Hide</em> and <em>Move to page</em>; pages can be renamed,
+reordered, given another icon or hidden the same way. The bar on top picks the accent colour, and <em>Reset layout</em>
+puts everything back. It all lives in <code>uiframework.layout.json</code> next to <code>SMG-Settings.json</code>, so an update of the
+game never undoes it. A hidden field keeps its value.</p>
 <p><strong>Q: How do I reset all settings to defaults?</strong></p>
-<p>Click the reset button at the bottom left of the settings window and confirm. The whole settings file is rewritten, default emotes for every platform included, and the command&#39;s cooldowns go back to their defaults. Only your dark or light theme stays. The window then reopens on its own.</p>
+<p>The circular arrow at the bottom left resets every page, the half arrow only the page in front of you; both ask
+first and write nothing until you save. A reset of everything puts the default emotes back on every platform and,
+once saved, takes the command&#39;s cooldowns back to 0. Your theme and your layout of the window stay.</p>
 <p><strong>Q: I saved my settings, but nothing changed in the game. Why?</strong></p>
 <p><strong>Save</strong> and <strong>Save &amp; Exit</strong> write to <code>SMG-Settings.json</code> at once, and the game reads that file fresh on every spin. The very next <code>!slots</code> uses the new settings, with no Streamer.bot restart. Cooldowns reach the command the moment you save. <strong>Cancel</strong> closes the window and drops anything unsaved.</p>
 <p><strong>Q: What does the ☀️/🌙 button at the bottom left do?</strong></p>
-<p>It switches the settings window between dark and light. The choice is saved, and the window reopens straight away, without your unsaved changes.</p>
+<p>It switches the settings window between dark and light. The choice is saved in <code>uiframework.layout.json</code> and shared with every other window built on UIFramework; the page is rebuilt in place, and your unsaved changes stay.</p>
 <hr>
 <h2>🎮 Starting &amp; Betting</h2>
 <p><strong>Q: How is the bet chosen?</strong></p>
@@ -261,15 +294,17 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 <p><code>MatchPayout%</code> comes from the payout row for the number of matching slots, 2 to 5 alike. When every slot matches, the jackpot row applies instead, whatever the number of slots. Higher-weight emotes pay proportionally more.</p>
 <p><strong>Q: What determines whether a spin wins at all?</strong></p>
 <p>The jackpot comes first: <strong>Jackpot chance %</strong> of all spins land it, every slot alike. Of the other spins, <strong>Match chance %</strong> may land matching slots. Their slots are drawn freely, so a match is likely but not certain. Every remaining spin rerolls repeats to avoid a match, and <strong>Rerolls</strong> sets how hard it tries; with a small <strong>Emote pool</strong>, an accidental match can still slip through after every reroll. Free draws can land all alike too, so jackpots come a little more often than Jackpot chance % says.</p>
-<p>So the two chances aren&#39;t the win rate itself. The bar at the top of the Game page works out the real odds of your settings: how often a spin ends in a jackpot, a win or a loss.</p>
+<p>So the two chances aren&#39;t the win rate itself. The surest way to see what your settings do is <strong>Try a spin</strong> on the Game page: it plays a round with the game&#39;s own engine and the values as they stand in the window, and shows the slots and the exact chat message.</p>
 <hr>
 <h2>🎰 Slots &amp; Emotes</h2>
 <p><strong>Q: What does an emote&#39;s weight actually do?</strong></p>
 <p>Weight works in reverse for how often an emote comes up: low-weight emotes appear often and pay less per match, high-weight ones are rarer and pay more. Only emotes with a weight between <strong>Min weight</strong> and <strong>Max weight</strong> can appear at all, which lets you leave out the cheapest or the most valuable ones.</p>
 <p><strong>Q: How do I edit the emotes?</strong></p>
-<p>On the Emotes page, pick a platform, enter the emote and its weight (Kick also needs an ID and a name) and click <strong>Add</strong>. Change a weight right in the list, or take an emote out with <strong>×</strong>. <strong>Reset to default</strong> replaces that platform&#39;s emotes with the built-in set of 10.</p>
-<p><strong>Q: Why does Kick need an ID <em>and</em> a name?</strong></p>
-<p>Kick builds its emote codes from both, e.g. <code>[emote:1730803:emojiRich]</code>. To find the ID, open the emote&#39;s picture in a new browser tab: it&#39;s the number in the address.</p>
+<p>On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, and its weight. <strong>Add row</strong> adds one, <strong>×</strong> takes one out, and <strong>Restore defaults</strong> puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.</p>
+<p><strong>Q: How do I enter a Kick emote?</strong></p>
+<p>As <code>ID:name</code>, e.g. <code>1730803:emojiRich</code>; the game sends it as <code>[emote:1730803:emojiRich]</code>, which Kick&#39;s chat renders as the emote (that full form works in the row too). To find the ID, open the emote&#39;s picture in a new browser tab: it&#39;s the number in the address (<code>https://files.kick.com/emotes/1730803/fullsize</code>).</p>
+<p><strong>Q: How do I enter a YouTube emoji?</strong></p>
+<p>As chat types it: one of YouTube&#39;s own emojis as <code>:name:</code>, e.g. <code>:face-purple-rain-drops:</code> (the window shows its picture), or a Unicode emoji like 🍒. Emotes from BTTV or 7TV only show as emotes to viewers with that extension.</p>
 <hr>
 <h2>💎 Jackpot Pool</h2>
 <p><strong>Q: How does the Jackpot Pool grow?</strong></p>
@@ -297,11 +332,13 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 <p><strong>Q: Do addicted users get different chat messages?</strong></p>
 <p>Yes. <strong>Addicted Win</strong>, <strong>Addicted Loss</strong> and <strong>Addicted Jackpot</strong> on the Messages page replace the normal ones. The default Addicted Win and Jackpot messages spell out the penalty with <code>{addictedCutPercent}</code>, e.g. <em>&quot;Addiction Fee: your win was cut by 50%&quot;</em>. Free spins always get the Free messages instead, since no points change hands there.</p>
 <p><strong>Q: Can I preview the effect before saving?</strong></p>
-<p>Yes. Under <strong>Try a spin</strong> on the Game page, pick <strong>Addicted</strong> as the one who spins: the line below shows what a win and a jackpot pay them, and <strong>Spin</strong> plays a round with their messages.</p>
+<p>Yes. Under <strong>Try a spin</strong> on the Game page, pick <strong>Addicted</strong> as the one who spins and click <strong>Spin</strong>: it plays a round with the settings as they stand in the window, saved or not, and shows the slots and the exact message with their cut applied.</p>
 <hr>
 <h2>🆓 Free Mode</h2>
 <p><strong>Q: How do I let people play without risking points?</strong></p>
 <p>Switch on <strong>Free mode</strong> on the Game page. No points change hands, and the <strong>Free Win</strong>, <strong>Free Loss</strong> and <strong>Free Jackpot</strong> messages replace the normal ones.</p>
+<p><strong>Q: Can a moderator switch Free mode from chat?</strong></p>
+<p>Yes: <code>!SetFreeSlots</code> turns it on and <code>!EndFreeSlots</code> turns it off. The two commands come with the import, disabled and for Moderators; enable them in Streamer.bot&#39;s Commands tab. The switch is written into the settings file, so the window&#39;s pill shows it, chat gets the <strong>Started</strong> or <strong>Ended</strong> message, and your own actions can listen to <code>SMG: Free Game Start</code> and <code>SMG: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action.</p>
 <hr>
 <h2>💬 Messages &amp; Customization</h2>
 <p><strong>Q: Which placeholders are available?</strong></p>
@@ -311,12 +348,12 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 <hr>
 <h2>⏱️ Cooldowns</h2>
 <p><strong>Q: How are cooldowns enforced?</strong></p>
-<p><strong>Everyone</strong> and <strong>Per viewer</strong> under <strong>Cooldown in seconds</strong> on the Access page go straight into the Streamer.bot command&#39;s own cooldowns when you save. The game itself holds nothing up; it only answers in chat when Streamer.bot reports a running cooldown. For addicted players it applies the per-viewer cooldown itself, so it holds them on channel point redemptions too (see Addicted List above).</p>
+<p><strong>Everyone</strong> and <strong>Per viewer</strong> under <strong>Cooldowns</strong> on the Access page go straight into the Streamer.bot command&#39;s own cooldowns when you save. The game itself holds nothing up; it only answers in chat when Streamer.bot reports a running cooldown. For addicted players it applies the per-viewer cooldown itself, so it holds them on channel point redemptions too (see Addicted List above).</p>
 <hr>
 <h2>🎟️ Twitch Channel Points</h2>
 <p><strong>Q: How do I let a Channel Points reward trigger a spin?</strong></p>
 <ol>
-<li>Pick <strong>Channel points</strong> under <strong>How viewers play</strong> on the Access page. On Twitch this turns the chat command off, so only the reward starts a spin there.</li>
+<li>Switch on <strong>Channel points start a spin</strong> on the Access page. On Twitch this turns the chat command off, so only the reward starts a spin there.</li>
 <li>Paste your <strong>Reward ID</strong>. Other rewards are left alone, and without a Reward ID no redemption starts a spin.</li>
 <li>Pick what is bet: <strong>Reward cost</strong>, <strong>Typed amount</strong>, <strong>Fixed</strong> or <strong>Free</strong>.</li>
 </ol>
@@ -360,7 +397,7 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 <hr>
 <h2>🔔 Updates</h2>
 <p><strong>Q: How do I know if a new version is out?</strong></p>
-<p>Every time the settings window opens, it asks GitHub&#39;s releases API in the background (3-second timeout; offline, it stays silent). If a newer version exists, a red <strong>Update</strong> pill appears at the top and the window title gets a 🔔. Click the pill to open the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">releases page</a>.</p>
+<p>Every time the settings window opens, it asks GitHub&#39;s releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">releases page</a>. A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered <code>No</code> to it.</p>
 <hr>
 <h1>Is Slot Machine Game an AI Slop?</h1>
 <p>Partially it is. This script has been developed with input from the streamer.bot community and is supported by AI.
@@ -373,126 +410,104 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">releases on GitHub</a>.</p><h2>v15.0.1 — One swap per save, and an unreadable settings file is caught</h2><p class="release__date">October 25, 2026</p><p>A hardening release for the settings file. <code>SMG-Settings.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
-<h5>🔧Changed</h5>
+        <div class="doc-body"><h1>Changelog</h1>
+<p>Releases are in the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">release notes</a>.
+The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[16.2.0] - Unreleased</h2>
+<h3>Added</h3>
 <ul>
-<li>Saving <code>SMG-Settings.json</code> is one swap instead of a copy and a swap: <code>File.Replace</code> hands the file it replaces straight to <code>SMG-Settings.json.bak</code>, so a save no longer copies the whole file first. The backup is still only taken from a file that parses itself, so a damaged one cannot overwrite the last readable copy.</li>
+<li><strong>Free mode from chat.</strong> <code>!SetFreeSlots</code> turns Free mode on and <code>!EndFreeSlots</code> turns it off (moderators; two
+new commands in the import, disabled until you enable them). The switch is written into the settings file, so the
+window&#39;s pill shows it, and chat gets the new Started and Ended messages (Messages page, Free mode). An action of
+your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code>.</li>
+<li><strong>Three more custom triggers.</strong> <code>SMG: Free Game Start</code> and <code>SMG: Free Game End</code> fire when Free mode is switched;
+<code>SMG: Spin Free</code> fires on every free spin, on top of its Win, Loss or Jackpot trigger.</li>
 </ul>
-<h5>🐛Fixed</h5>
+<h3>Changed</h3>
 <ul>
-<li>A <code>SMG-Settings.json</code> that cannot be opened at all — locked by something else, or not readable for want of rights — fell through to the defaults wherever the settings were read outside the window. It now falls back to the backup copy like a damaged file does.</li>
-<li>A settings window that failed while it was being built left its thread running with nothing to show, and the cooldown poll behind it never ended.</li>
+<li><strong>Emote lists without a name column.</strong> The name of an emote is in its code: a Twitch emote is its name, a Kick
+emote&#39;s name follows its ID, a YouTube emoji&#39;s name sits between its colons. The weight column is last.</li>
+<li><strong>YouTube&#39;s own emojis.</strong> The YouTube list takes the emojis YouTube&#39;s chat has (typed as <code>:name:</code>, like
+<code>:face-purple-rain-drops:</code>), shows their pictures and starts with ten of them; the fruit emoji of earlier versions
+were only emotes to viewers with BetterTTV. A Unicode emoji still works and shows itself.</li>
+<li><strong>Kick emotes typed short.</strong> <code>1730803:emojiRich</code> is enough; the game sends it as <code>[emote:1730803:emojiRich]</code>, the
+form Kick&#39;s chat renders (that form still works in the list too). The defaults are the short form.</li>
+<li>Needs UIFramework 0.9.4 or newer for the pictures of YouTube&#39;s emojis and of short Kick codes in the window; an
+older DLL shows the lists without those pictures.</li>
 </ul>
-<hr>
-<p>Import the attached <code>SlotMachineGame.sb</code>, or paste the <a href="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md">import string</a>.</p>
-<h2>v15.0.0 — Bugfixes, QoL, Reworked mechanics</h2><p class="release__date">October 19, 2026</p><h5>✨Added</h5>
+<h2>[16.1.0] - Unreleased</h2>
+<h3>Added</h3>
 <ul>
-<li>The Streamer.bot log says when a Twitch chat command did nothing because the slot machine is set to channel points. A debug line does the same for a redemption left alone while it&#39;s set to the chat command.</li>
+<li><strong>Custom triggers.</strong> Every settled spin fires <code>SMG: Spin Win</code>, <code>SMG: Spin Loss</code> or <code>SMG: Spin Jackpot</code> (Custom &gt;
+Chat Game &gt; Slot Machine Game) with the spin as arguments: <code>spinOutcome</code>, <code>spinUser</code>, <code>spinPlatform</code>, <code>spinSlots</code>,
+<code>spinBet</code>, <code>spinAmount</code>, <code>spinPreviousPoints</code>, <code>spinNewPoints</code>, <code>spinCurrency</code>, <code>spinJackpotPoolWon</code>, <code>spinFree</code>.
+<code>GetLastSpinResult</code>, run with an Execute C# Method sub-action on the game action, hands the same arguments to any
+other action.</li>
+<li><strong>Stats per viewer, for a leaderboard of your own.</strong> Every spin updates the viewer&#39;s user variables on the platform
+it was made on: <code>smg_spins</code>, <code>smg_wins</code>, <code>smg_losses</code>, <code>smg_jackpots</code>, <code>smg_totalBet</code>, <code>smg_totalWon</code>,
+<code>smg_totalLost</code>, <code>smg_netProfit</code>, <code>smg_biggestWin</code>, <code>smg_biggestBet</code>, <code>smg_poolWon</code>, <code>smg_currentStreak</code>,
+<code>smg_bestStreak</code>, <code>smg_userName</code>, <code>smg_firstPlayed</code>, <code>smg_lastPlayed</code>. Free spins count as spins, wins and jackpots
+but move no points.</li>
+<li><strong>German.</strong> With the window&#39;s language set to <code>de</code> (the pencil, then <em>Sprache</em>), every setting, section, page
+and message of the window reads in German. The help and about pages stay English.</li>
 </ul>
-<h5>🔧Changed</h5>
+<h3>Changed</h3>
 <ul>
-<li><strong>Every platform plays.</strong> The Twitch, YouTube and Kick switches are gone; which platforms can spin is set on the command in Streamer.bot, e.g. by unticking <code>Kick Message</code>. Settings that switched a platform off no longer keep it out.</li>
-<li><strong>Channel points work as in Classic Chat Gamble.</strong> In Reward cost and Fixed mode the channel points are the stake, so a loss takes no points and adds nothing to the Jackpool, while a win is paid in points. Typed amount bets the viewer&#39;s own points.</li>
-<li>Channel points switch the chat command off on Twitch only. YouTube and Kick keep spinning with it, and saving warns about a Default bet that would refuse those spins.</li>
-<li>Minimum and Maximum bet apply to Typed amount and Fixed mode.</li>
-<li>Without a Reward ID, no redemption starts a spin and other rewards are left alone; saving like that says so.</li>
-<li>Channel points Free mode uses the Free messages.</li>
-<li>&quot;Send as /me&quot; is marked Twitch only, and the chat preview shows YouTube and Kick as the plain chat they get.</li>
-<li>Chat calls the jackpot pool the Jackpool; default texts nobody edited switch over by themselves.</li>
-<li>Cooldown messages fill in <code>{user}</code>, round the seconds up and no longer fail on a stray brace.</li>
-<li>Each line of a message goes out as a chat message of its own, and Twitch and Kick split at 500 characters instead of 200.</li>
-<li>The settings window opens at once; the Update pill appears as soon as GitHub answers.</li>
-<li>Reset keeps the light or dark theme.</li>
-<li>Clearer texts in the settings window and the log, and a reworked Setup Guide, FAQ and README.</li>
+<li><strong>The settings action is UIFramework&#39;s generic stub.</strong> <code>[SMG] - Settings</code> carries no layout and no copy of the
+engine any more: the game action declares its window (pages, pills, the log, help and about, the <code>!slots</code>
+cooldowns) beside its settings table and answers the window itself (the test spin with the very engine that spins
+in chat, the check before saving, the emote pictures&#39; sources). Needs UIFramework 0.9.2 or newer; the stub
+fetches it.</li>
 </ul>
-<h5>🐛Fixed</h5>
+<h2>[16.0.0] - 2026-11-03</h2>
+<p>The settings window moved into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+one window shared by all of these chat games. The spin plays exactly as before; what changed is how the settings
+are shown and stored.</p>
+<h3>Changed</h3>
 <ul>
-<li>The import works wherever Streamer.bot is installed: every Windows reference is absolute, so <code>Find Refs</code> is no longer needed.</li>
-<li>The jackpot message no longer counts the Jackpool twice: <code>{amount}</code> is the win without the pool.</li>
-<li>A balance that can&#39;t be read stops the spin instead of being overwritten, and a redemption is refunded.</li>
-<li>A redemption that can&#39;t spin for lack of emotes is refunded instead of fulfilled.</li>
-<li>With a damaged settings file, the game plays with the <code>.bak</code>, or not at all, instead of silently without emotes.</li>
-<li>A Reward cost redemption that arrives without its cost is refunded instead of played for 0.</li>
-<li>Free spins never win the Jackpool.</li>
-<li>The addicted-viewer texts no longer promise a doubled cooldown.</li>
+<li><strong>One DLL, downloaded on first open.</strong> <code>[SMG] - Settings</code> is now a small stub. The first time you open the window
+it asks whether to download <code>UIFramework.dll</code> from GitHub (about 200 KB, checked against its published SHA-256)
+or to show the folder it belongs in, <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot. Nothing is fetched
+without that click. When a newer UIFramework is published, opening the window offers it once: <em>Yes</em> downloads,
+<em>No</em> asks again next time and shows a pill in the header, <em>Cancel</em> skips that version.</li>
+<li><strong>The window is built from the game&#39;s own settings table.</strong> The game declares every setting once and answers the
+window&#39;s request with it, so the window and the game can never disagree about a key, a default or a range again.</li>
+<li><strong>The test spin comes out of the game&#39;s own engine.</strong> <em>Try a spin</em> on the Game page plays one round with the very
+code that spins in chat, from the values as they stand in the window, saved or not: the slots as pictures, and the
+exact chat message. The platform whose emotes spin is picked right there, since a Twitch emote only exists on
+Twitch and a Kick emote only on Kick.</li>
+<li><strong>The emotes are three lists.</strong> Twitch, YouTube and Kick sit one under the other on the Emotes page, each row an
+emote with its picture, its weight and a name, with <em>Add row</em> and <em>Restore defaults</em>. Kick emotes are typed as
+<code>[emote:ID:name]</code>; Twitch pictures come from Twitch, 7TV, BTTV and FFZ as before.</li>
+<li><strong>Customise mode.</strong> The pencil at the bottom left lets you rename, reorder, hide and move pages and fields by drag
+and drop or from the context menu, and pick the accent colour. It lives in <code>uiframework.layout.json</code> next to
+<code>SMG-Settings.json</code> and survives every import of the game.</li>
+<li><code>SMG-Settings.json</code> keys are camelCase now (<code>useBot</code>, <code>minBet</code>, <code>matchChance</code>, <code>emotesTwitch</code>), the chances and
+the Addicted cut are stored in percent, and the emotes moved from <code>PlatformEmotes</code> to <code>emotesTwitch</code>,
+<code>emotesYoutube</code> and <code>emotesKick</code>. An existing file keeps working: the old names are read through aliases, and the
+first save writes the new ones.</li>
+<li>The cooldown messages use <code>{seconds}</code> and <code>{user}</code> instead of <code>{0}</code> and <code>{1}</code>; a text that still has the numbers
+keeps working.</li>
+<li>Light/dark and the rainbow mode live in <code>uiframework.layout.json</code> and are shared with every other window built on
+UIFramework. An existing <code>DarkMode</code> is taken over on the first open.</li>
+<li>Values typed out of range are pulled back into range when the game reads them, not only when the window saves.</li>
+<li>The footer counts what is unsaved; <em>Reset page</em> puts the defaults back on the page in front only; closing the
+window with unsaved changes asks first, from Cancel and from the title bar&#39;s X alike; a recompile or shutdown in
+Streamer.bot closes it without asking.</li>
+<li>A save that would not do what it looks like - a minimum bet above the maximum, Free mode off without a points
+variable, the jackpot pool on with a bet of 0 to win it, a smallest emote weight above the largest, channel
+points without a reward ID or with a fixed bet of 0 - lists the problem and asks before saving.</li>
+<li>Payout tiers that cannot come up with the chosen number of slots are greyed out, and the fixed bet only while
+channel points bet a fixed amount.</li>
+<li>A fresh install no longer writes <code>SMG-Settings.json</code> on the first spin; the game plays on the defaults until the
+window saves.</li>
 </ul>
-<hr>
-<h3>Important</h3>
+<h3>Removed</h3>
 <ul>
-<li><strong>YouTube and Kick now play.</strong> Before v15.0.0 they were switched off by default. To keep one out, open the command <code>[SMG] - Play Slots</code> and untick its source (<code>YouTube Message</code> or <code>Kick Message</code>).</li>
-<li>After importing, check that the command <code>[SMG] - Play Slots</code> is switched on: it arrives switched off.</li>
-<li>No more <code>Find Refs</code>: the import works wherever Streamer.bot is installed.</li>
+<li>The window&#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now.</li>
 </ul>
-<p>The <a href="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md">Setup Guide</a> walks through everything step by step.</p>
-<h2>v14.0.0 — New GUI and more!</h2><p class="release__date">October 2, 2026</p><h5>✨Added</h5>
-<ul>
-<li>Completely reworked GUI.<ul>
-<li>The Emotes page now shows each emote&#39;s picture next to its name.</li>
-<li>Kick emotes are found by their ID, and the Twitch default emotes by their Twitch ID.</li>
-<li>Other Twitch emotes are looked up by their chat code: Twitch first, then 7TV, BTTV and FFZ.</li>
-<li>7TV, BTTV and FFZ emotes are marked with their source, plus a note that only viewers with that extension see them.</li>
-</ul>
-</li>
-<li>The Messages preview notes when a message can never be sent, e.g. Loss when there are fewer emotes per spin than slots.</li>
-</ul>
-<h5>🔧Changed</h5>
-<ul>
-<li>Default Twitch emotes are Twitch globals only: <code>NotLikeThis</code>, <code>SeemsGood</code> and <code>Kreygasm</code> replace <code>monkaS</code>, <code>EZ</code> and <code>Clap</code>.</li>
-<li>Opening the settings while they&#39;re already open brings that window to the front instead of opening a second one.</li>
-<li>Whole-number fields accept only the digits 0–9; spaces are ignored, so &quot;1 0&quot; is 10.</li>
-</ul>
-<h5>🐛Fixed</h5>
-<ul>
-<li>Saving a Default bet or Fixed bet that can&#39;t work (0, below Minimum, above Maximum) saves anyway and says why, once.</li>
-<li>A very large Rerolls value with fewer emotes than slots no longer freezes the settings window or hangs a spin.</li>
-<li><code>half</code>, <code>third</code>, <code>quarter</code> and <code>random</code> no longer fail with a balance above 2,147,483,647.</li>
-<li>A refund that Twitch refuses is no longer announced in chat; it&#39;s logged as a warning instead.</li>
-<li>A settings file that is in use or can&#39;t be written is no longer treated as damaged: the window says why and changes nothing.</li>
-<li>Full-width digits and digits from other scripts no longer save as 2,147,483,647.</li>
-</ul>
-<hr>
-<h3>Important</h3>
-<p><strong>Import should be fine</strong> i found a workaround that should ease the whole import hassle for you guys. But in case the game won&#39;t work or GUI won&#39;t show up for you: To get everything to work, you need to go into each action, expand <code>No Touchy!</code> , open <code>Execute Code</code>, press <code>Find Refs</code> at the bottom left and hit <code>OK</code> in all actions!</p>
-<h2>v13.1.0 — Channel Points Redemption update</h2><p class="release__date">August 6, 2026</p><ul>
-<li><strong>Channel Points refund logic</strong> — redemptions that don&#39;t result in a gamble now automatically get refunded instead of silently taking the viewer&#39;s points.<ul>
-<li>Refunds trigger on: platform disabled, blocked user/group, cooldown active, or an invalid bet amount.</li>
-<li>New &quot;Refund Failed Redemptions&quot; toggle on the Channel Points tab (on by default).</li>
-<li>New &quot;Redemption Refunded&quot; chat message, sent to the viewer when a refund goes through.</li>
-<li>Successful redemptions are now also marked fulfilled, so they don&#39;t pile up in the reward request queue.</li>
-</ul>
-</li>
-</ul>
-<h2>v13.0.0 — First GitHub Release</h2><p class="release__date">August 2, 2026</p><p>This is the first time the Slot Machine Game scripts are being published to GitHub. Kept version number for continuity.</p>
-<h5>Added</h5>
-<ul>
-<li><strong>Addicted List</strong> — a new way to flag specific users or whole Streamer.bot groups (<code>Addicted Users</code> / <code>Addicted Groups</code>, Game tab) whose winnings get penalized:<ul>
-<li>Their win/jackpot payout is reduced by a configurable <strong>Addicted Payout Cut</strong> (default 50%, capped at 99% so a win can never flip into a net loss).</li>
-<li>If a User Cooldown is configured, addicted users always wait <strong>twice</strong> as long between spins as everyone else (tracked independently of Streamer.bot&#39;s own per-command cooldown, since that API only supports one shared duration for all users).</li>
-<li>Addicted users&#39; <strong>losses never contribute to the jackpot pool</strong>, so they can&#39;t grow it hoping to win it back later.</li>
-<li>Comes with its own dedicated chat messages — <code>AddictedWinMessage</code>, <code>AddictedLossMessage</code>, <code>AddictedJackpotMessage</code> — including an <code>{addictedCutPercent}</code> placeholder and &quot;Addiction Fee&quot; wording, distinct from the normal Win/Loss/Jackpot messages.</li>
-<li>The Game tab&#39;s Live Preview panel gained a 5th row (🎯 Addicted) that recalculates live to show the actual payout range an addicted user would receive.</li>
-</ul>
-</li>
-<li>The Game tab&#39;s Live Preview panel got completely reworked to match a distinct look.</li>
-<li><strong>Free Game messages</strong> — <code>FreeGameWinMessage</code>, <code>FreeGameLossMessage</code>, <code>FreeGameJackpotMessage</code> are now actually used by the runtime script during Free Mode spins (they existed in the settings GUI before but were never wired into the game logic, so Free Mode silently fell back to the normal paid messages).</li>
-<li><strong><code>{jackpot}...{/jackpot}</code> conditional message syntax</strong> — any text wrapped in these tags in the Win/Loss/Jackpot templates is automatically stripped whenever the <code>Jackpot Pool</code> is disabled, instead of leaving broken half-filled sentences behind (e.g. &quot;got added to the jackpot pool of now Points!&quot; with no number).</li>
-<li><strong>Daily log rotation</strong> — the action log now writes to <code>SMG-log-yyyy-MM-dd.txt</code>, rolling over to a new file every day instead of one single file that grows forever. The Action-Log tab transparently merges every day&#39;s file (plus the old undated log) into one browsable table.</li>
-</ul>
-<h5>Changed</h5>
-<ul>
-<li>Match Payout %, Allow Match/Jackpot Chance %, Subscriber/VIP Boost %, and Addicted Payout Cut % fields now reject non-numeric keystrokes and pasted text, matching the protection integer fields already had. Addicted Payout Cut also snaps back to its clamped value on focus-loss instead of silently keeping an out-of-range number.</li>
-<li>Sub-tab labels (Messages / Cooldown / Twitch Channel Points / Action-Log) switched from a too-dim gray to a readable shade.</li>
-<li><code>!slots quarter</code> / <code>viertel</code> bet alias relabeled from <code>15%</code> to <code>25%</code> to match what it&#39;s actually always computed (was mislabeled, not miscalculated).</li>
-<li>New modern and more colorful GUI design with light/dark theme</li>
-<li>An action-log to see past spins, payouts, etc.</li>
-</ul>
-<h5>Fixed</h5>
-<ul>
-<li>Emote <strong>Weight</strong> field (Platform Emotes tab) never had any input filtering at all and silently accepted letters; now digit-only like every other numeric field.</li>
-<li><code>!slots random</code> could throw an unhandled exception for users with a balance below the configured minimum bet; now falls back cleanly to existing bet validation instead of silently failing.</li>
-<li>Removed redundant <code>new Random()</code> instantiations (bet randomizer, emote-pool shuffle) in favor of the shared instance, eliminating a seed-collision edge case where near-simultaneous spins could produce correlated &quot;random&quot; results.</li>
-<li>Compile error <code>CS0103: The name &#39;Regex&#39; does not exist in the current context</code> — restored a missing <code>using System.Text.RegularExpressions;</code>.</li>
-</ul>
+<h2>[15.0.1] - 2026-10-25</h2>
+<p>See the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1">release notes</a>.</p>
 </div>
       </section>
       </div>

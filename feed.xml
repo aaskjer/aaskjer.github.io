@@ -5,9 +5,44 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-02T20:22:31Z</updated>
+  <updated>2026-11-05T21:25:22Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Slot Machine Game v16.0.0: The settings window moves into UIFramework</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0</id>
+    <published>2026-11-05T21:25:22Z</published>
+    <updated>2026-11-05T21:25:22Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;p&gt;The settings window moved into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, one window shared by all of my chat games. Import &lt;code&gt;SlotMachineGame.sb&lt;/code&gt; over the old one — &lt;code&gt;SMG-Settings.json&lt;/code&gt; is yours and stays where it is — then open &lt;code&gt;[SMG] - Settings&lt;/code&gt; and answer &lt;em&gt;Yes&lt;/em&gt; once. The spin plays exactly as before; what changed is how the settings are shown and stored.&lt;/p&gt;
+&lt;h3&gt;🪟 One window, downloaded on first open&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;[SMG] - Settings&lt;/code&gt; is a small stub now.&lt;/strong&gt; The first time you open it, it asks whether to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (about 200 KB, checked against its published SHA-256) or to show the folder it belongs in, &lt;code&gt;UIFramework\lib\&amp;lt;version&amp;gt;\&lt;/code&gt; next to Streamer.bot. Nothing is fetched without that click. When a newer UIFramework is published, opening the window offers it once: &lt;em&gt;Yes&lt;/em&gt; downloads, &lt;em&gt;No&lt;/em&gt; asks again next time and shows a pill in the header, &lt;em&gt;Cancel&lt;/em&gt; skips that version.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The window is built from the game&amp;#39;s own settings table.&lt;/strong&gt; The game declares every setting once and answers the window&amp;#39;s request with it, so the window and the game can never disagree about a key, a default or a range again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The test spin comes out of the game&amp;#39;s own engine.&lt;/strong&gt; &lt;em&gt;Try a spin&lt;/em&gt; on the Game page plays one round with the very code that spins in chat, from the values as they stand in the window, saved or not: the slots as pictures, and the exact chat message. The platform whose emotes spin is picked right there, since a Twitch emote only exists on Twitch and a Kick emote only on Kick.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The emotes are three lists.&lt;/strong&gt; Twitch, YouTube and Kick sit one under the other on the Emotes page, each row an emote with its picture, its weight and a name, with &lt;em&gt;Add row&lt;/em&gt; and &lt;em&gt;Restore defaults&lt;/em&gt;. Kick emotes are typed as &lt;code&gt;[emote:ID:name]&lt;/code&gt;; Twitch pictures come from Twitch, 7TV, BTTV and FFZ as before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; The pencil at the bottom left lets you rename, reorder, hide and move pages and fields by drag and drop or from the context menu, and pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;SMG-Settings.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;⚙️ Settings&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SMG-Settings.json&lt;/code&gt; keys are camelCase now (&lt;code&gt;useBot&lt;/code&gt;, &lt;code&gt;minBet&lt;/code&gt;, &lt;code&gt;matchChance&lt;/code&gt;, &lt;code&gt;emotesTwitch&lt;/code&gt;), the chances and the Addicted cut are stored in percent, and the emotes moved from &lt;code&gt;PlatformEmotes&lt;/code&gt; to &lt;code&gt;emotesTwitch&lt;/code&gt;, &lt;code&gt;emotesYoutube&lt;/code&gt; and &lt;code&gt;emotesKick&lt;/code&gt;. An existing file keeps working: the old names are read through aliases, and the first save writes the new ones.&lt;/li&gt;
+&lt;li&gt;The cooldown messages use &lt;code&gt;{seconds}&lt;/code&gt; and &lt;code&gt;{user}&lt;/code&gt; instead of &lt;code&gt;{0}&lt;/code&gt; and &lt;code&gt;{1}&lt;/code&gt;; a text that still has the numbers keeps working.&lt;/li&gt;
+&lt;li&gt;Light/dark and the rainbow mode live in &lt;code&gt;uiframework.layout.json&lt;/code&gt; and are shared with every other window built on UIFramework. An existing &lt;code&gt;DarkMode&lt;/code&gt; is taken over on the first open.&lt;/li&gt;
+&lt;li&gt;Values typed out of range are pulled back into range when the game reads them, not only when the window saves.&lt;/li&gt;
+&lt;li&gt;The footer counts what is unsaved; &lt;em&gt;Reset page&lt;/em&gt; puts the defaults back on the page in front only; closing the window with unsaved changes asks first, from Cancel and from the title bar&amp;#39;s X alike; a recompile or shutdown in Streamer.bot closes it without asking.&lt;/li&gt;
+&lt;li&gt;A save that would not do what it looks like - a minimum bet above the maximum, Free mode off without a points variable, the jackpot pool on with a bet of 0 to win it, a smallest emote weight above the largest, channel points without a reward ID or with a fixed bet of 0 - lists the problem and asks before saving.&lt;/li&gt;
+&lt;li&gt;Payout tiers that cannot come up with the chosen number of slots are greyed out, and the fixed bet only while channel points bet a fixed amount.&lt;/li&gt;
+&lt;li&gt;A fresh install no longer writes &lt;code&gt;SMG-Settings.json&lt;/code&gt; on the first spin; the game plays on the defaults until the window saves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🗑️ Removed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The window&amp;#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Prefer pasting over downloading? The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt; is the same thing. The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the first open and the customise mode, and questions are answered in the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0&quot;&gt;Download v16.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>GameCheck v1.0.1: GameCheck 1.0.1: every embed names its last update</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v1.0.1"/>
@@ -874,35 +909,5 @@ could mean.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Language code in share tickets&lt;/strong&gt;: a translation or complete-language ticket opened from the window carries the language code in its title.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/releases/tag/v4.0.1&quot;&gt;Download v4.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/twitchsentry/&quot;&gt;TwitchSentry on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Better Stream Announcements v2.0.0: Slash Commands, /bsa setup &amp; new SF platforms</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0"/>
-    <id>https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0</id>
-    <published>2026-10-23T19:32:56Z</published>
-    <updated>2026-10-23T19:32:56Z</updated>
-    <category term="Better-Stream-Announcements" label="Better Stream Announcements"/>
-    <content type="html">&lt;p&gt;Announcements now run on Discord slash commands, configure themselves through &lt;code&gt;/bsa setup&lt;/code&gt;, and cover seven platforms.&lt;/p&gt;
-&lt;h2&gt;Upgrade notes&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The &lt;code&gt;?&lt;/code&gt; prefix commands are gone.&lt;/strong&gt; &lt;code&gt;/bsa&lt;/code&gt;, &lt;code&gt;/streamerfriends&lt;/code&gt; and &lt;code&gt;/crosspost&lt;/code&gt; replace them. The bot registers them itself when it connects — if they do not appear, invite it again with the &lt;strong&gt;bot&lt;/strong&gt; and &lt;strong&gt;applications.commands&lt;/strong&gt; scopes, then use &lt;strong&gt;Slash Commands → Register Again&lt;/strong&gt; in Discord Bot → Bot Presence.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Message Content Intent is no longer needed&lt;/strong&gt; and can be switched off in the Developer Portal. Presence Intent and Server Members Intent stay on.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Trigger bindings keep working&lt;/strong&gt; — every custom trigger event id is unchanged.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Removed settings:&lt;/strong&gt; &lt;code&gt;BOT_CommandPrefix&lt;/code&gt;, &lt;code&gt;SF_WizardTimeout&lt;/code&gt;, &lt;code&gt;CC_WizardTimeout&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;/bsa&lt;/code&gt; admin commands now need Manage Server&lt;/strong&gt; when &lt;code&gt;BOT_AdminUserIds&lt;/code&gt; is empty, because &lt;code&gt;/bsa setup&lt;/code&gt; can change the configuration.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Added&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;/bsa setup&lt;/code&gt;&lt;/strong&gt; — channels, ping roles, every ISLIVE role, presence-check roles, admins and the Self-Assign and Crosspost restrictions through Discord&amp;#39;s own channel, role and user menus. No Developer Mode, no copied IDs.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;TikTok as the seventh Streamer Friends platform&lt;/strong&gt;, alongside Owncast, Rumble and Picarto joining Twitch, YouTube and Kick. Members can link all seven with &lt;code&gt;/streamerfriends link&lt;/code&gt; and subscribe to them in Custom Crosspost.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Connection-trouble notice&lt;/strong&gt; — a stream that drops out and comes back twice within 30 minutes shows &lt;code&gt;⚠️ Connection trouble&lt;/code&gt; in place of &lt;code&gt;LIVE since&lt;/code&gt;, and clears once it has held for 15 minutes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Optional display names for YouTube friends&lt;/strong&gt; — &lt;code&gt;UCnOML5aYvwMOYEGa8ienFEA|Sorylokan&lt;/code&gt;. The part before the pipe stays the key, so existing crosspost subscriptions keep matching.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Streamer Friends announcements reach Custom Crosspost subscribers&lt;/strong&gt; — before, only Broadcaster Online did, so platform and per-friend subscriptions never received anything.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The crosspost key is tied to your Windows account&lt;/strong&gt; via DPAPI, with a &lt;code&gt;BSA1-…&lt;/code&gt; recovery code for moving to a new PC.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Install&lt;/h2&gt;
-&lt;p&gt;Import &lt;code&gt;BetterStreamAnnouncements.sb&lt;/code&gt; below, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the Streamer Friends timer for each platform you use.&lt;/p&gt;
-&lt;p&gt;Full detail in &lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/blob/main/CHANGELOG.md&quot;&gt;CHANGELOG.md&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
