@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Written by _tools/update-pages.js from HtmlTemplate in the import string of aaskjer/Blackjack-Game, for the playground on this page. -->
-<!-- bjg-overlay-version: 13 -->
+<!-- bjg-overlay-version: 15 -->
 <html lang='en'>
 <head>
 <meta charset='UTF-8' />
@@ -415,6 +415,9 @@
 <script>
 (function () {
   var STATE_URL = 'blackjack_state.json';
+  // demo=1 in the address: the page plays made-up hands by itself, without Streamer.bot, to place and size the
+  // source. It still reads the state file beside it, but only for the look the game saved (colours, size, labels).
+  var DEMO = /[?&]demo=1(&|$)/.test(location.search);
   var HOUSE_ARC_LIFT_VH = 6;    // how far the outermost house seats ride up the arc
   var HOUSE_CARD_TILT_DEG = 6;  // how far the outermost seats' cards lean into it
   var POLL_MS = 400;
@@ -761,7 +764,7 @@
 
     var hint = document.createElement('div');
     hint.className = 'prompt-hint';
-    hint.innerHTML = '<span class=\'yes\'>accept</span> / <span class=\'no\'>decline</span>';
+    hint.innerHTML = '<span class=\'yes\'>!accept</span> / <span class=\'no\'>!decline</span>';
     wrap.appendChild(hint);
 
     return wrap;
@@ -903,6 +906,7 @@
     lastReadAt = Date.now();
     if (text === lastStateText) return;
     lastStateText = text;
+    if (DEMO) { demoLook = JSON.parse(text); return; }
     render(JSON.parse(text));
   }
 
@@ -923,6 +927,7 @@
   // Only console.error reaches the OBS log (Help > Log Files), so that is where this goes: once
   // after ten seconds without a single read, then at most once a minute for as long as it lasts.
   function complainIfStuck() {
+    if (DEMO) return;   // the demo needs no state file; one beside it only lends the look
     var now = Date.now();
     if (lastReadAt === 0 && now - startedAt < 10000) return;
     if (lastReadAt !== 0 && now - lastReadAt < 10000) return;
@@ -984,7 +989,89 @@
   window.addEventListener('obsSourceActiveChanged', function (e) { if (e && e.detail && e.detail.active) pollNow(); });
   document.addEventListener('visibilitychange', function () { if (!document.hidden) pollNow(); });
 
+  // ---- demo=1: made-up hands in a loop, a solo hand to a House table, in the look the game saved ----
+
+  var demoLook = null;
+  var LOOK_KEYS = ['pointsName', 'separator', 'scale', 'showPoints', 'dealerName', 'showHandValues', 'showOutcomeBadges',
+    'showInsurance', 'cardRedColor', 'cardBlackColor', 'backgroundColor', 'backgroundOpacity', 'animationsEnabled', 'fontScale'];
+
+  function demoCard(rank, suit) { return { rank: rank, suit: suit }; }
+  function demoHand(cards, value, bet, extra) {
+    var h = { cards: cards, value: value, bet: bet, isCurrent: false, outcome: '', stood: false, owner: '' };
+    for (var k in extra) h[k] = extra[k];
+    return h;
+  }
+  function demoSeat(name, hands, staked, extra) {
+    var s = { name: name, hands: hands, isCurrent: false, staked: staked, result: '', awaitingAnswer: false };
+    for (var k in extra) s[k] = extra[k];
+    return s;
+  }
+  function demoState(extra) {
+    var s = {
+      active: true, platform: 'twitch', pointsName: 'points', separator: '.', freeGame: false, gameOver: false,
+      insuranceBet: 0, scale: 1, showPoints: true, dealerName: 'Dealer', showHandValues: true, showOutcomeBadges: true,
+      showInsurance: true, dealerHoleHidden: false, hideOnFreeGame: false, cardRedColor: '#d3283a', cardBlackColor: '#1a1a1a',
+      backgroundColor: '#000000', backgroundOpacity: 0, animationsEnabled: true, fontScale: 1, gameOverFadeMs: 600000,
+      mode: 'solo', user: '', dealer: { cards: [], value: 0 }, hands: []
+    };
+    if (demoLook) LOOK_KEYS.forEach(function (k) { if (demoLook[k] !== undefined && demoLook[k] !== null) s[k] = demoLook[k]; });
+    for (var k in extra) s[k] = extra[k];
+    return s;
+  }
+  function demoEach(n) {
+    var sep = (demoLook && typeof demoLook.separator === 'string') ? demoLook.separator : '.';
+    var name = (demoLook && demoLook.pointsName) || 'points';
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep) + ' ' + name + ' each';
+  }
+
+  var DEMO_STEPS = [
+    [3000, function () { return demoState({ user: 'regular_bob', dealerHoleHidden: true,
+      dealer: { cards: [demoCard('10', 'H')], value: 10 },
+      hands: [demoHand([demoCard('K', 'D'), demoCard('7', 'C')], 17, 500, { isCurrent: true })] }); }],
+    [3500, function () { return demoState({ user: 'regular_bob', gameOver: true,
+      dealer: { cards: [demoCard('10', 'H'), demoCard('6', 'S'), demoCard('9', 'D')], value: 25 },
+      hands: [demoHand([demoCard('K', 'D'), demoCard('7', 'C')], 17, 500, { outcome: 'win', stood: true })] }); }],
+    [3500, function () { return demoState({ user: 'quiet_lurker', gameOver: true,
+      dealer: { cards: [demoCard('9', 'S'), demoCard('8', 'D')], value: 17 },
+      hands: [demoHand([demoCard('A', 'S'), demoCard('Q', 'H')], 21, 1000, { outcome: 'blackjack' })] }); }],
+    [4500, function () { return demoState({ mode: 'duel', user: 'art_friend', duel: {
+      phase: 'pending', pot: 0, promptTitle: 'DUEL CHALLENGE', promptSubtitle: demoEach(1500), expiresInMs: 45000, timeoutMs: 60000,
+      resultText: '', suddenDeathRound: 0, challenger: demoSeat('art_friend', [], 1500), opponent: demoSeat('pixel_pal', [], 0) } }); }],
+    [3500, function () { return demoState({ mode: 'duel', user: 'art_friend', duel: {
+      phase: 'playing', pot: 3000, promptTitle: '', promptSubtitle: '', expiresInMs: 0, timeoutMs: 0, resultText: '', suddenDeathRound: 0,
+      challenger: demoSeat('art_friend', [demoHand([demoCard('9', 'H'), demoCard('7', 'S')], 16, 1500, { isCurrent: true })], 1500, { isCurrent: true }),
+      opponent: demoSeat('pixel_pal', [demoHand([demoCard('10', 'C'), demoCard('8', 'D')], 18, 1500)], 1500) } }); }],
+    [3500, function () { return demoState({ mode: 'duel', user: 'art_friend', duel: {
+      phase: 'over', pot: 3000, promptTitle: '', promptSubtitle: '', expiresInMs: 0, timeoutMs: 0, resultText: 'PIXEL_PAL WINS', suddenDeathRound: 0,
+      challenger: demoSeat('art_friend', [demoHand([demoCard('9', 'H'), demoCard('7', 'S'), demoCard('8', 'C')], 24, 1500, { outcome: 'bust' })], 1500, { result: 'lose' }),
+      opponent: demoSeat('pixel_pal', [demoHand([demoCard('10', 'C'), demoCard('8', 'D')], 18, 1500, { stood: true })], 1500, { result: 'win' }) } }); }],
+    [3500, function () { return demoState({ mode: 'house', user: 'Atlantic City table',
+      house: { phase: 'open', rulesName: 'Atlantic City', seatsTaken: 2, maxSeats: 5,
+        seats: [{ name: 'art_friend', staked: 400 }, { name: 'regular_bob', staked: 750 }] } }); }],
+    [4500, function () { return demoState({ mode: 'house', user: 'Atlantic City table', dealerHoleHidden: true,
+      dealer: { cards: [demoCard('6', 'C')], value: 6 },
+      hands: [
+        demoHand([demoCard('10', 'S'), demoCard('9', 'H')], 19, 400, { owner: 'art_friend', stood: true }),
+        demoHand([demoCard('8', 'D'), demoCard('5', 'C'), demoCard('K', 'H')], 23, 300, { owner: 'late_joiner', outcome: 'bust' }),
+        demoHand([demoCard('A', 'H'), demoCard('6', 'D')], 17, 750, { owner: 'regular_bob', isCurrent: true }),
+        demoHand([demoCard('9', 'C'), demoCard('2', 'S')], 11, 500, { owner: 'quiet_lurker' })],
+      house: { phase: 'playing', rulesName: 'Atlantic City', seatsTaken: 4, maxSeats: 5, seats: [] } }); }],
+    [1500, function () { return demoState({ active: false }); }]
+  ];
+
+  // demostep=n holds one step still (for screenshots of the demo).
+  var demoHold = /[?&]demostep=(\d+)/.exec(location.search);
+  function demoStep(i) {
+    var step = DEMO_STEPS[i % DEMO_STEPS.length];
+    clearFadeTimer();
+    render(step[1]());
+    if (!demoHold) setTimeout(function () { demoStep(i + 1); }, step[0]);
+  }
+
+  // In a browser the demo gets a dark backdrop, or white cards vanish on a white page; OBS keeps it transparent.
+  if (DEMO && !window.obsstudio) { document.documentElement.style.background = '#1e1f24'; document.body.style.background = '#1e1f24'; }
   poll();
+  if (DEMO) setTimeout(function () { demoStep(demoHold ? parseInt(demoHold[1], 10) : 0); }, 600);   // a moment for the saved look first
 })();
 </script>
 </body>

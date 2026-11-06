@@ -254,7 +254,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.2.0', stars: 2, downloads: 143,
+      version: 'v17.2.0', stars: 2, downloads: 145,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -310,7 +310,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.0.0', stars: 3, downloads: 58,
+      version: 'v16.2.0', stars: 3, downloads: 59,
     },
     {
       repo: 'Hangman-Game',

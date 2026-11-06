@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Written by _tools/update-pages.js from HtmlTemplate in the import string of aaskjer/Battleship-Game, for the playground on this page. -->
-<!-- bsg-overlay-version: 16 -->
+<!-- bsg-overlay-version: 17 -->
 <html lang='en'>
 <head>
 <meta charset='UTF-8' />
@@ -1091,8 +1091,16 @@
         if (text !== lastStateText) {
           lastStateText = text;
           lastState = JSON.parse(text);
+          // "Show a sample round" in the settings window: the game writes a state that only asks for the demo.
+          if (lastState && lastState.demo) {
+            if (lastState.demoId !== lastDemoId) { lastDemoId = lastState.demoId; playDemo(lastState, false); }
+            return;
+          }
+          stopDemo();
           render(lastState);
           refreshHeat();
+        } else if (demoTimer) {
+          // the sample battle runs on its own clock
         } else if (lastState && lastState.active && !lastState.gameOver) {
           // The file only changes when a shot lands, so the clock is run locally in between -
           // otherwise the countdown ring would sit still for the whole turn.
@@ -1142,9 +1150,136 @@
       .then(function () { setTimeout(checkForNewerOverlay, VERSION_CHECK_MS); });
   }
 
+  /* ---------- demo ----------
+     demo=1 in the address plays a made-up battle on its own, over and over, without Streamer.bot: to see the
+     look and to place and size the source in OBS. The look is the saved one: from the sample the settings
+     window's "Try the demo" hands over, else from the state file next to this page, else the defaults.
+     The settings window's "Show a sample round" writes a state that asks for the same battle once. */
+
+  var DEMO_STEP_MS = 1100;
+  var demoTimer = null;
+  var lastDemoId = null;
+
+  var DEMO_LOOK = {
+    scale: 1, fontScale: 1, admiralName: 'The Admiral', pointsName: 'Points', numberSeparator: ',',
+    showPlayerRoster: true, showEnemyRoster: true, showCoords: true, showTurnTimer: true, showScore: true,
+    animationsEnabled: true, gameOverFadeMs: 4000
+  };
+
+  function param(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+  }
+
+  // One side's waters and roster after the shots so far: '.' water, 's' ship, 'o' miss, 'x' hit, 'X' sunk.
+  function demoSide(name, ships, shots, revealShips) {
+    var rows = [];
+    for (var r = 0; r < 8; r++) rows.push('........'.split(''));
+    var roster = [], afloat = 0;
+    ships.forEach(function (ship) {
+      var hits = ship.cells.filter(function (c) { return shots.indexOf(c) >= 0; }).length;
+      var sunk = hits === ship.cells.length;
+      if (!sunk) afloat++;
+      ship.cells.forEach(function (c) {
+        var at = parseCoord(c);
+        rows[at.row][at.col] = shots.indexOf(c) >= 0 ? (sunk ? 'X' : 'x') : (revealShips || sunk ? 's' : '.');
+      });
+      roster.push({ name: ship.name, length: ship.cells.length, hits: hits, sunk: sunk, value: ship.value });
+    });
+    shots.forEach(function (c) {
+      var at = parseCoord(c);
+      if (rows[at.row][at.col] === '.' || rows[at.row][at.col] === 's') {
+        if (!ships.some(function (s) { return s.cells.indexOf(c) >= 0; })) rows[at.row][at.col] = 'o';
+      }
+    });
+    return { name: name, size: 8, shipsRemaining: afloat, rows: rows.map(function (r) { return r.join(''); }), roster: roster };
+  }
+
+  // A short battle: a miss, a sunk destroyer, the admiral finding the cruiser, then the enemy fleet gone.
+  function demoFrames(look) {
+    var ownShips = [{ name: 'Cruiser', cells: ['B2', 'B3', 'B4'], value: 300 }, { name: 'Destroyer', cells: ['F6', 'G6'], value: 200 }];
+    var foeShips = [{ name: 'Cruiser', cells: ['C5', 'D5', 'E5'], value: 300 }, { name: 'Destroyer', cells: ['G2', 'G3'], value: 200 }];
+    var script = [['p', 'A1'], ['a', 'D7'], ['p', 'G2'], ['a', 'B3'], ['p', 'G3'], ['a', 'C3'], ['p', 'D5'], ['a', 'F6'], ['p', 'C5'], ['a', 'H8'], ['p', 'E5']];
+    var frames = [], mine = [], theirs = [], hits = 0;
+    function frame(over, lastP, lastA) {
+      var state = {};
+      for (var k in DEMO_LOOK) state[k] = DEMO_LOOK[k];
+      for (var k2 in look || {}) if (look[k2] !== undefined && look[k2] !== null && k2 !== 'demo' && k2 !== 'demoId') state[k2] = look[k2];
+      state.active = true;
+      state.freeGame = false;
+      state.mode = 'solo';
+      state.phase = over ? 'over' : 'battle';
+      state.user = 'SampleViewer';
+      state.size = 8;
+      state.shots = mine.length;
+      state.hits = hits;
+      state.net = over ? 500 : 0;
+      state.gameOver = over;
+      state.outcome = over ? 'win' : '';
+      state.timeoutMs = 90000;
+      state.expiresInMs = 90000 - 9000 * (frames.length % 6);
+      state.warnFirstMs = 30000;
+      state.warnSecondMs = 15000;
+      state.lastPlayerShot = lastP || '';
+      state.lastAdmiralShot = lastA || '';
+      state.player = demoSide('SampleViewer', ownShips, theirs, true);
+      state.enemy = demoSide(state.admiralName || 'The Admiral', foeShips, mine, over);
+      frames.push(state);
+    }
+    frame(false);
+    var lastP = '', lastA = '';
+    script.forEach(function (step, i) {
+      if (step[0] === 'p') {
+        mine.push(step[1]); lastP = step[1];
+        if (foeShips.some(function (s) { return s.cells.indexOf(step[1]) >= 0; })) hits++;
+      } else {
+        theirs.push(step[1]); lastA = step[1];
+      }
+      frame(i === script.length - 1, lastP, lastA);
+    });
+    return frames;
+  }
+
+  function stopDemo() {
+    if (demoTimer) { clearTimeout(demoTimer); demoTimer = null; }
+  }
+
+  // Plays the battle frame by frame; looped for demo=1, once for a sample round, after which the page goes
+  // back to whatever the state file says.
+  function playDemo(look, loop) {
+    stopDemo();
+    clearFadeTimer();
+    var frames = demoFrames(look);
+    var i = 0;
+    function next() {
+      if (i < frames.length) {
+        render(frames[i]);
+        i++;
+        demoTimer = setTimeout(next, i === frames.length ? (frames[frames.length - 1].gameOverFadeMs || 4000) + 1200 : DEMO_STEP_MS);
+        return;
+      }
+      demoTimer = null;
+      stage.classList.remove('visible');
+      clearFadeTimer();
+      if (loop) { demoTimer = setTimeout(function () { playDemo(look, true); }, 1500); return; }
+      lastStateText = null;   // the next poll draws the real state again
+    }
+    next();
+  }
+
   window.addEventListener('resize', function () { if (!badge.classList.contains('hidden')) fitBadge(); });
 
-  poll();
+  if (param('demo') === '1') {
+    var sample = null;
+    try { sample = param('sample') ? JSON.parse(param('sample')) : null; } catch (e) { sample = null; }
+    if (sample) playDemo(sample, true);
+    else fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; })
+      .then(function (look) { playDemo(look, true); });
+  } else {
+    poll();
+  }
   pollHeatConfig();
   setTimeout(checkForNewerOverlay, VERSION_CHECK_MS);
 })();

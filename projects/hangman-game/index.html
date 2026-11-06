@@ -104,7 +104,8 @@ round ends when someone solves it, the lives run out or the clock does.</p>
 swaps the word mid-round and keeps one revealed letter. Win streaks can pay a bonus.</li>
 <li>📺 <strong>An overlay that plays along.</strong> The gallows fills in with every wrong guess and adapts to the number of
 lives. Evil Hangman&#39;s swap plays as a glitch, and chat only hears about it once the glitch is over. After
-an update the game refreshes the browser source in OBS by itself.</li>
+an update the game refreshes the browser source in OBS by itself, and a demo or a sample round shows it in place
+before you go live.</li>
 <li>📚 <strong>Wordlists from free sources.</strong> The importer fills the wordlist with hints and difficulty: countries,
 capitals and rivers from Wikidata, German nouns from OdeNet, Pokémon from PokéAPI, video games from IGDB.</li>
 <li>💰 <strong>Payouts with a ceiling.</strong> A base reward for the word, optional points per letter, and a bonus for harder
@@ -160,6 +161,7 @@ Right-Click on `Test` and click `Test Trigger` in the trigger section of `[HM] -
 <h2>Overlay</h2>
 <p align="center"><img loading="lazy" alt="Overlay page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/overlay.png"></p><p>A local HTML file that OBS loads as a browser source and that repaints itself as the round runs. <em>Create the browser source in OBS</em> creates the scene and the source over your existing Streamer.bot OBS connection. The gallows, the colours, the scale and what is shown next to the word are all set here.</p>
 <p>OBS keeps showing the overlay it loaded until the browser source is refreshed. The game does that by itself after an update; <em>Refresh the overlay in OBS</em> does it on demand.</p>
+<p><em>Try the demo</em> opens the overlay in your browser and plays made-up rounds with your saved look, no Streamer.bot needed; <code>&amp;demo=1</code> at the end of the browser source&#39;s address in OBS does the same, so you can place and size the source. <em>Show a sample round</em> plays one made-up round on the overlay that is open, the one in OBS included, then puts it back; it waits for no one, so if you are live your viewers see it too, and it refuses while a real round runs.</p>
 <h2>Access</h2>
 <p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/access.png"></p><p>Who may start a round and who may not play at all, the start cooldowns, the guess rate limit, and the addicted list for regulars who should earn less and pace themselves. Channel Points live here as well.</p>
 <p>Channel Points are a work in progress. The code came from another game and the author is not an affiliate, so it is not properly tested — if something misbehaves, please report it <a href="https://github.com/aaskjer/Hangman-Game/issues">here</a>.</p>
@@ -482,6 +484,8 @@ paid   = (base + stake) × roleMultiplier
 <p>A local HTML file that OBS loads as a browser source and that repaints itself while the round runs: the gallows filling in with every wrong guess, the masked word, and whichever of category, lives, guessed letters, wrong letters, wrong words and hint you switch on. When the round ends it shows the answer and fades out after the delay you set — <code>0</code> makes it disappear at once.</p>
 <p><strong>Q: How do I get it into OBS?</strong></p>
 <p><em>Setup Overlay in OBS</em> on the <strong>Overlay</strong> page creates the scene and the browser source over the Streamer.bot OBS connection you already have. By hand works too: the folder button opens the directory, and <code>hangman_overlay.html</code> is a plain local file.</p>
+<p><strong>Q: How do I see the overlay without starting a round?</strong></p>
+<p><em>Try the demo</em> on the <strong>Overlay</strong> page opens it in your browser, playing made-up rounds with your saved colours and sizes. To place it in OBS, add <code>&amp;demo=1</code> to the end of the browser source&#39;s address (or <code>?demo=1</code> if the address has no <code>?</code> yet) and remove it again afterwards. <em>Show a sample round</em> plays one made-up round on the overlay that is already open, the one in OBS included, and then puts the overlay back; it does nothing while a real round runs.</p>
 <p><strong>Q: What does the overlay show when a round ends?</strong></p>
 <table>
 <thead>
@@ -529,6 +533,15 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>v13.0.0 - Unreleased</h1>
+<h3>Added</h3>
+<ul>
+<li><strong>Try the demo</strong> and <strong>Show a sample round</strong> on the Overlay page, next to the OBS buttons. <em>Try the demo</em> opens
+the overlay in your browser, playing made-up rounds without Streamer.bot in the colours and sizes you saved; in OBS,
+<code>&amp;demo=1</code> at the end of the source&#39;s address does the same, to place and size it. <em>Show a sample round</em> plays one
+made-up round on the live overlay, the one in OBS included, letters, wrong guesses, an Evil Hangman swap and a win,
+then puts the overlay back as it was; it refuses while a real round runs. The overlay is version 10 and replaces an
+older copy on the next round, keeping that one as a <code>.bak</code>.</li>
+</ul>
 <h3>Changed</h3>
 <ul>
 <li><strong>The settings window is UIFramework&#39;s.</strong> <code>[HM] - Settings</code> is now UIFramework&#39;s generic settings action: it loads

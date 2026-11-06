@@ -5,7 +5,7 @@
 <meta charset='utf-8'>
 <meta name="robots" content="noindex">
 <script src="../../assets/js/playground-frame.js"></script>
-<!-- hm-overlay-version: 9 -->
+<!-- hm-overlay-version: 10 -->
 <title>Hangman Overlay</title>
 <style>
   html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
@@ -167,7 +167,7 @@
 (function () {
   var STATE_URL = 'hangman_state.json';
   var POLL_MS = 400;
-  var PAGE_VERSION = 9;
+  var PAGE_VERSION = 10;
   var reloadedFor = (/[?&]v=(\d+)/.exec(location.search) || [])[1] || '';
 
   var ORDER_EXTENDED = ['base','post','beam','rope','head','torso','armL','armR','legL','legR'];
@@ -429,6 +429,72 @@
     }
   }
 
+  // A state the game writes back after a sample round: kept, never drawn.
+  function quiet(s) {
+    if (!s || !s.restore) return false;
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    stage.classList.add('gone');
+    return true;
+  }
+
+  // ---- demo=1: a made-up round played by the page itself, to place and size the source without Streamer.bot.
+  // The look comes from look= in the address (the game's demo page puts it there), else from the state file
+  // beside the page, else the defaults.
+  function demoLook(done) {
+    var m = /[?&]look=([^&]*)/.exec(location.search);
+    if (m) { try { done(JSON.parse(decodeURIComponent(m[1])) || {}); return; } catch (e) { } }
+    fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (s) { done(s && s.overlay ? s.overlay : {}); })
+      .catch(function () { done({}); });
+  }
+
+  function demoRounds(look) {
+    var max = look.mode === 'extended' ? 10 : 6;
+    var count = look.stageCount || (look.mode === 'extended' ? 10 : 6);
+    var loop = 0;
+    function masked(word, got) {
+      return word.split('').map(function (c) { return c === ' ' ? '\u2013' : (got.indexOf(c) >= 0 ? c : '_'); }).join(' ');
+    }
+    function state(word, got, wrong, glitch, blitz, end) {
+      var o = {}; for (var k in look) o[k] = look[k];
+      o.stage = Math.max(0, Math.min(count, Math.round(wrong.length * count / max)));
+      o.stageCount = count;
+      var s = {
+        active: !end, word: word, masked: end ? word.split('').join(' ') : masked(word, got), category: 'Demo', hint: 'Somebody who streams',
+        lives: max - wrong.length, maxlives: max, wrongCount: wrong.length, blitz: blitz, multiplier: '2', glitch: glitch,
+        guessed: got.length ? got.slice().sort().join(', ') : '-', wrong: wrong.length ? wrong.join(', ') : '-', wrongWords: '-', overlay: o
+      };
+      if (end) s.endReason = 'win';
+      return s;
+    }
+    function play() {
+      loop++;
+      var blitz = loop % 2 === 0, word = 'STREAMER', got = [], wrong = [], glitch = '', steps = [];
+      steps.push(function () { return state(word, got, wrong, glitch, blitz, false); });
+      ['E', 'X', 'R', 'A', 'Q'].forEach(function (c) {
+        steps.push(function () { if (word.indexOf(c) >= 0) got.push(c); else wrong.push(c); return state(word, got, wrong, glitch, blitz, false); });
+      });
+      // Evil Hangman: the word changes under the letters already found.
+      steps.push(function () { word = 'STRAINER'; glitch = 'demo-' + loop; return state(word, got, wrong, glitch, blitz, false); });
+      ['S', 'Z', 'T', 'I', 'N'].forEach(function (c) {
+        steps.push(function () { if (word.indexOf(c) >= 0) got.push(c); else wrong.push(c); return state(word, got, wrong, glitch, blitz, false); });
+      });
+      steps.push(function () { return state(word, got, wrong, glitch, blitz, true); });
+      var glitchMs = (typeof look.glitchSec === 'number' ? look.glitchSec : 3) * 1000;
+      var fadeMs = (typeof look.endFadeSec === 'number' ? look.endFadeSec : 8) * 1000;
+      var i = 0;
+      function next() {
+        var s = steps[i++]();
+        try { render(s); } catch (e) { if (window.console) console.error('hangman demo: ' + e); }
+        if (i < steps.length) setTimeout(next, i === 7 ? glitchMs + 1200 : 1300);
+        else setTimeout(play, Math.max(3000, fadeMs + 1500));
+      }
+      next();
+    }
+    play();
+  }
+
   function poll() {
     fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : null; })
@@ -442,6 +508,7 @@
           location.replace(location.pathname + '?v=' + s.overlayVersion);
           return;
         }
+        if (quiet(s)) return;
         try { render(s); } catch (e) { if (window.console) console.error('hangman overlay: ' + e); }
       })
       .catch(function () { })
@@ -451,7 +518,8 @@
   window.addEventListener('resize', fitWord);
   if (window.ResizeObserver) new ResizeObserver(fitWord).observe(document.documentElement);
 
-  poll();
+  if (/[?&]demo=1(&|$)/.test(location.search)) demoLook(demoRounds);
+  else poll();
 })();
 </script>
 </body>

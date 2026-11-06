@@ -540,6 +540,9 @@ body.debug #connection { display: block; }
   // live: it just happened. Otherwise it is the state Streamer.bot kept, picked up after a reload.
   function apply(d, live) {
     if (!d || d.game !== 'rhymetime') return;
+    // "Show a sample round" from the settings window: one demo round in the saved look, on every overlay, unless a
+    // real round is on the card right now.
+    if (d.type === 'preview') { if (live) preview(d); return; }
     if (cfg.platform && d.platform !== cfg.platform) return;
     applyStyle(d.style);
     if (live && typeof d.sentAt === 'number') clockOffset = d.sentAt - Date.now();
@@ -703,41 +706,63 @@ body.debug #connection { display: block; }
     ]
   };
 
-  function demo() {
-    say(T.demo);
-    var rounds = DEMO[cfg.lang] || DEMO.en;
-    var roundId = 0;
+  var DEMO_STYLE = { position: 'left', scale: 100, accent: '#F97316', battle: '#FB7185', win: '#86EFAC', card: '#160E10', cardOpacity: 78, glow: true };
+  var demoId = 0;
+
+  // One sample round: the start, its missed attempts, the result. done() runs when the result shows.
+  function demoRound(r, style, opts, done) {
+    var id = 'demo-' + (++demoId);
+    opts = opts || {};
     function stamp(o) {
       o.game = 'rhymetime';
       o.v = 1;
-      o.style = { position: 'left', scale: 100, accent: '#F97316', battle: '#FB7185', win: '#86EFAC', card: '#160E10', cardOpacity: 78, glow: true };
+      o.style = style || DEMO_STYLE;
       o.platform = cfg.platform || 'twitch';
       o.sentAt = Date.now();
       return o;
     }
-    function play(i) {
-      var r = rounds[i % rounds.length];
-      var id = 'demo-' + (++roundId);
-      // The demo runs on a short clock, so every round is seen without waiting out a real one.
-      var seconds = 9;
-      apply(stamp({ type: 'round_start', roundId: id, mode: r.mode, player: r.player, word: r.word, ending: r.ending,
-                    sentence: !!r.sentence, difficulty: r.difficulty, multiplier: r.multiplier, bet: r.bet, reward: r.reward,
-                    pointsName: 'Points', seconds: seconds, endsAt: Date.now() + seconds * 1000,
-                    attempts: 0, maxAttempts: r.maxAttempts || 0 }), true);
+    // The demo runs on a short clock, so every round is seen without waiting out a real one.
+    var seconds = 9;
+    apply(stamp({ type: 'round_start', roundId: id, mode: r.mode, player: r.player, word: r.word, ending: r.ending,
+                  sentence: !!r.sentence, showEnding: opts.showEnding !== false, difficulty: r.difficulty, multiplier: r.multiplier,
+                  bet: opts.showStake === false ? null : r.bet, reward: r.reward,
+                  pointsName: 'Points', seconds: seconds, endsAt: Date.now() + seconds * 1000,
+                  attempts: 0, maxAttempts: opts.showAttempts === false ? 0 : (r.maxAttempts || 0) }), true);
+    if (opts.showAttempts !== false)
       for (var miss = 1; miss <= (r.misses || 0); miss++) {
         (function (n) {
           setTimeout(function () { apply(stamp({ type: 'attempt', roundId: id, attempts: n }), true); }, n * 1800);
         })(miss);
       }
-      var endsIn = r.reason === 'attempts' ? (r.misses || 1) * 1800 + 400 : seconds * 1000;
-      setTimeout(function () {
-        apply(stamp({ type: 'round_end', roundId: id, reason: r.reason || 'win', winner: r.winner || r.player,
-                      guess: r.reason ? null : r.guess, amount: r.amount, total: r.total,
-                      examples: r.reason ? r.examples : null, resultSeconds: 7 }), true);
+    var endsIn = r.reason === 'attempts' ? (r.misses || 1) * 1800 + 400 : seconds * 1000;
+    setTimeout(function () {
+      apply(stamp({ type: 'round_end', roundId: id, reason: r.reason || 'win', winner: r.winner || r.player,
+                    guess: r.reason ? null : r.guess, amount: r.amount, total: r.total,
+                    examples: r.reason && opts.showExamples !== false ? r.examples : null, resultSeconds: opts.resultSeconds || 7 }), true);
+      if (done) done();
+    }, endsIn);
+  }
+
+  function demo() {
+    say(T.demo);
+    var rounds = DEMO[cfg.lang] || DEMO.en;
+    function play(i) {
+      demoRound(rounds[i % rounds.length], DEMO_STYLE, null, function () {
         setTimeout(function () { play(i + 1); }, 8500);
-      }, endsIn);
+      });
     }
     play(0);
+  }
+
+  var previewing = false;
+  function preview(d) {
+    if (previewing) return;
+    if (current && current.kind === 'round') return;
+    previewing = true;
+    var rounds = DEMO[cfg.lang] || DEMO.en;
+    demoRound(rounds[0], d.style, d, function () {
+      setTimeout(function () { previewing = false; }, ((d.resultSeconds || 7) * 1000) + 500);
+    });
   }
 
   if (cfg.demo) demo();

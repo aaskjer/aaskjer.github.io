@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"17.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"17.3.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
 <body data-repo="Blackjack-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -113,7 +113,7 @@ by your rule. Blackjack pays what you set; a 5-card Charlie pays 1.5x, three sev
 instead of waiting for the next chat command.</li>
 <li>📺 <strong>An overlay with real cards.</strong> Card faces, deal animations, a VS layout for duels, seats curved around
 the dealer and countdown rings on open prompts. It runs as a local file or from a web server, OBS 33
-included.</li>
+included. <em>Try the demo</em> plays sample hands in your browser, <em>Show a sample round</em> plays one on stream.</li>
 <li>🆓 <strong>Free Game from chat.</strong> <code>!SetFreeBlackjack</code> and <code>!EndFreeBlackjack</code> (moderators) switch Free Game, with a
 line to chat and a custom trigger each.</li>
 <li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every settled hand, duel and House seat, with the hand as
@@ -152,6 +152,7 @@ the same dialog comes back once; <code>Cancel</code> skips that version.</p>
 <p align="center"><img loading="lazy" alt="The Messages page with its chat preview" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-messages.png" width="460"></p><h1>OBS Overlay</h1>
 <p align="center"><img loading="lazy" alt="The Overlay page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-overlay.png" width="460"></p><p>Connect streamer.bot to OBS, set the connection number, scene and source name on the <strong>Overlay</strong> page, and press <code>Set up in OBS</code>. The game creates the scene and a 1300 × 1080 browser source pointing at the overlay file — move and resize it from there as you like.</p>
 <p>Adding the source by hand works too: a Browser Source with <strong>Local file</strong> ticked, pointing at <code>blackjack_overlay.html</code> in the overlay folder. A source that points at a <code>file:///</code> address works as well, OBS 33 included.</p>
+<p>To see it before anyone plays: <code>Try the demo</code> opens the overlay in your browser and plays sample hands, from a solo hand to a duel and a House table, in the look you saved. Add <code>&amp;demo=1</code> to the source&#39;s URL in OBS to place and size it the same way, and take it off again afterwards. <code>Show a sample round</code> plays one made-up hand on the overlay that is live in OBS for about ten seconds; nobody&#39;s points move, and while a game is running the overlay is left to it.</p>
 <h2>Examples</h2>
 <h3>Duel challenge</h3>
 <p align="center"><img loading="lazy" alt="A duel challenge waiting for its answer" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/overlay-duel-challenge.png" width="320"></p>
@@ -659,6 +660,7 @@ once after ten seconds and then at most once a minute, in a line starting <code>
 <li>The overlay reads <code>blackjack_state.js</code> out of its own folder, so the files have to sit together. Change the setting rather than moving the HTML by hand.</li>
 <li>Run any Blackjack command once. The state file is written by the game, so a fresh install has nothing to show until the first hand.</li>
 <li>Refresh the browser source cache in OBS after the first install.</li>
+<li>Press <strong>Show a sample round</strong> on the Overlay page: it plays one made-up hand on the overlay for about ten seconds. If that shows, the source and the folder are fine and the overlay is only waiting for a hand.</li>
 </ul>
 <p><strong>Local file</strong> ticked is still the recommended way to add it, but the overlay no longer depends on it: it also works when the
 browser source points at the file through a <code>file:///</code> address, which used to leave it blank.</p>

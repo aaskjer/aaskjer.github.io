@@ -5,9 +5,43 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-06T20:52:53Z</updated>
+  <updated>2026-11-06T22:45:35Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Slot Machine Game v16.2.0: Emotes like chat, Free mode from chat, hooks for your own actions</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0</id>
+    <published>2026-11-06T22:45:35Z</published>
+    <updated>2026-11-06T22:45:35Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;p&gt;Emote lists that read like chat, YouTube&amp;#39;s own emojis, Free mode from chat, and hooks for your own actions. Import &lt;code&gt;SlotMachineGame.sb&lt;/code&gt; over the old one — &lt;code&gt;SMG-Settings.json&lt;/code&gt; is yours and stays where it is. The spin plays as before.&lt;/p&gt;
+&lt;h3&gt;😀 Emotes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No name column.&lt;/strong&gt; The name of an emote is in its code: a Twitch emote is its name (case-sensitive), a Kick emote&amp;#39;s name follows its ID, a YouTube emoji&amp;#39;s name sits between its colons. The weight column is last and half as wide, so long emote names stay readable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;YouTube&amp;#39;s own emojis.&lt;/strong&gt; The YouTube list takes the emojis YouTube&amp;#39;s chat has, typed as &lt;code&gt;:name:&lt;/code&gt; like &lt;code&gt;:face-purple-rain-drops:&lt;/code&gt;, shows their pictures and starts with ten of them. The fruit emoji of earlier versions were only emotes to viewers with BetterTTV. A Unicode emoji still works and shows itself.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kick typed short.&lt;/strong&gt; &lt;code&gt;1730803:emojiRich&lt;/code&gt; is enough; the game sends it as &lt;code&gt;[emote:1730803:emojiRich]&lt;/code&gt;, the form Kick&amp;#39;s chat renders. The full form still works in the list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🆓 Free mode from chat&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!SetFreeSlots&lt;/code&gt; and &lt;code&gt;!EndFreeSlots&lt;/code&gt;&lt;/strong&gt; (moderators) switch Free mode from chat. They come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them. The switch is written into the settings file, so the window&amp;#39;s pill shows it, and chat gets the new &lt;em&gt;Started&lt;/em&gt; and &lt;em&gt;Ended&lt;/em&gt; lines (Messages page, Free mode).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔔 For your own actions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Custom triggers&lt;/strong&gt; (Custom &amp;gt; Chat Game &amp;gt; Slot Machine Game): &lt;code&gt;SMG: Spin Win&lt;/code&gt;, &lt;code&gt;SMG: Spin Loss&lt;/code&gt;, &lt;code&gt;SMG: Spin Jackpot&lt;/code&gt;, &lt;code&gt;SMG: Spin Free&lt;/code&gt; on top of those for a free spin, and &lt;code&gt;SMG: Free Game Start&lt;/code&gt; / &lt;code&gt;SMG: Free Game End&lt;/code&gt; when Free mode is switched.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The spin as arguments:&lt;/strong&gt; &lt;code&gt;spinOutcome&lt;/code&gt;, &lt;code&gt;spinUser&lt;/code&gt;, &lt;code&gt;spinPlatform&lt;/code&gt;, &lt;code&gt;spinSlots&lt;/code&gt;, &lt;code&gt;spinBet&lt;/code&gt;, &lt;code&gt;spinAmount&lt;/code&gt;, &lt;code&gt;spinPreviousPoints&lt;/code&gt;, &lt;code&gt;spinNewPoints&lt;/code&gt;, &lt;code&gt;spinCurrency&lt;/code&gt;, &lt;code&gt;spinJackpotPoolWon&lt;/code&gt;, &lt;code&gt;spinFree&lt;/code&gt;. &lt;code&gt;GetLastSpinResult&lt;/code&gt;, run with an Execute C# Method sub-action on the game action, hands them to any other action; &lt;code&gt;StartFreeGame&lt;/code&gt; and &lt;code&gt;EndFreeGame&lt;/code&gt; switch Free mode the same way.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stats per viewer&lt;/strong&gt; in Streamer.bot&amp;#39;s user variables, for a leaderboard of your own: &lt;code&gt;smg_spins&lt;/code&gt;, &lt;code&gt;smg_wins&lt;/code&gt;, &lt;code&gt;smg_losses&lt;/code&gt;, &lt;code&gt;smg_jackpots&lt;/code&gt;, &lt;code&gt;smg_totalBet&lt;/code&gt;, &lt;code&gt;smg_totalWon&lt;/code&gt;, &lt;code&gt;smg_totalLost&lt;/code&gt;, &lt;code&gt;smg_netProfit&lt;/code&gt;, &lt;code&gt;smg_biggestWin&lt;/code&gt;, &lt;code&gt;smg_biggestBet&lt;/code&gt;, &lt;code&gt;smg_poolWon&lt;/code&gt;, &lt;code&gt;smg_currentStreak&lt;/code&gt;, &lt;code&gt;smg_bestStreak&lt;/code&gt;, &lt;code&gt;smg_userName&lt;/code&gt;, &lt;code&gt;smg_firstPlayed&lt;/code&gt;, &lt;code&gt;smg_lastPlayed&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🪟 Settings window&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s generic stub.&lt;/strong&gt; &lt;code&gt;[SMG] - Settings&lt;/code&gt; carries no layout of its own any more; the game declares its window and answers it, the test spin included. The stub keeps UIFramework current.&lt;/li&gt;
+&lt;li&gt;The comment lines in Streamer.bot&amp;#39;s sub-action list follow the other games: title, a pointer to the settings, the chat commands.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;Prefer pasting over downloading? The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt; is the same thing. The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the window, and questions are answered in the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0&quot;&gt;Download v16.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Blackjack Game v17.2.0: One settings window for all the chat games</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.2.0"/>
@@ -903,27 +937,5 @@ among them. They use the labels the window shows now.&lt;/li&gt;
 could mean.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0&quot;&gt;Download v8.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Suggestions To v1.0.0: Suggestions to Discord, Stoat and GameVox</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/SuTo/releases/tag/v1.0.0"/>
-    <id>https://github.com/aaskjer/SuTo/releases/tag/v1.0.0</id>
-    <published>2026-10-25T19:58:22Z</published>
-    <updated>2026-10-25T19:58:22Z</updated>
-    <category term="SuTo" label="Suggestions To"/>
-    <content type="html">&lt;h1&gt;📝 Suggestions from chat, straight to your server&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;!suggestion&lt;/code&gt; and &lt;code&gt;!vorschlag&lt;/code&gt; in Twitch, YouTube and Kick chat post the idea to your &lt;strong&gt;Discord&lt;/strong&gt;, &lt;strong&gt;Stoat&lt;/strong&gt; or &lt;strong&gt;GameVox&lt;/strong&gt; server, with the viewer&amp;#39;s avatar, name, platform and the time. The viewer gets a short confirmation in chat.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;One action per server: turn on one, two or all three.&lt;/li&gt;
-&lt;li&gt;Embeds coloured per platform, with your own text, colours and footer.&lt;/li&gt;
-&lt;li&gt;Date and time beside name and platform: Discord&amp;#39;s own timestamp, or your PC&amp;#39;s time in your format on Stoat and GameVox.&lt;/li&gt;
-&lt;li&gt;Discord forums: a new forum post per suggestion, or all of them in one thread.&lt;/li&gt;
-&lt;li&gt;Several webhooks at once, separated by commas.&lt;/li&gt;
-&lt;li&gt;Clear log lines when something goes wrong, with the webhook token masked.&lt;/li&gt;
-&lt;li&gt;Imports wherever Streamer.bot is installed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;📦 Install&lt;/h1&gt;
-&lt;p&gt;Download &lt;strong&gt;&lt;code&gt;SuggestionsTo.sb&lt;/code&gt;&lt;/strong&gt; below and drag it into Streamer.bot&amp;#39;s &lt;strong&gt;Import&lt;/strong&gt; window, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the commands and add your webhook URL, as in the &lt;a href=&quot;https://github.com/aaskjer/SuTo#install&quot;&gt;README&lt;/a&gt;. Every argument is in the &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/SuTo/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/suto/&quot;&gt;Suggestions To on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"8.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"9.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
 <body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -117,6 +117,9 @@ It runs on Streamer.bot&#39;s own WebSocket server and picks a running round bac
 viewers on the addicted list docked. Leaderboard and stats can reset monthly per platform.</li>
 <li>🎫 <strong>Channel Points as a start button.</strong> On Twitch a redemption can start a round. Nothing is wagered or paid
 out in channel points.</li>
+<li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+the window every chat game of this family shares: English or German, a chat preview for every message, a
+difficulty dial, and it keeps itself up to date.</li>
 </ul>
 <p align="center">
   <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/overlay/round.png" alt="A round running on the overlay" width="49%">
@@ -149,13 +152,17 @@ affiliated with or endorses Trivia Game.</p>
 <h2>Enable Commands</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/004c325b-8673-430d-91b9-72c9a8931663"></p><p>The commands ship disabled. Enable all of them, or the parts that depend on them stay silent.</p>
 <h1>Setup</h1>
-<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[TG] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>. That opens the settings window.</p>
-<p>Eight pages sit on the rail down the left side. <code>Ctrl+1</code> to <code>Ctrl+8</code> jump between them, <code>Ctrl+S</code> saves.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[TG] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>. That opens the settings window. The first time, it fetches <code>UIFramework.dll</code> from GitHub (the window is <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>&#39;s, shared by every chat game of this family) and keeps it up to date from then on.</p>
+<p>Ten pages sit on the rail down the left side. The pencil at the bottom switches the theme and the language (English or German) and lets you rename, move or hide pages and fields.</p>
 <p>Twitch, YouTube and Kick all play, always — there is nothing to switch on. Restrict the Streamer.bot commands if you want the game off a platform.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/game.png" alt="Game page"></p><p>The round and what it pays. Difficulty, question type, category, how long answers are accepted and when the countdown speaks up; then blitz rounds, how closely an answer has to match, rounds that start themselves on a timer, the points a win is worth, and the leaderboard with its monthly reset.</p>
 <h2>Questions</h2>
-<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/questions.png" alt="Questions page"></p><p>Three tabs. The first, <strong>Custom List</strong>, holds your own questions, with search and filters — it gets the whole page, because that is where the work happens. The second, <strong>Sources</strong>, decides where each round&#39;s question comes from — opentdb, Wikidata, OdeNet, PokeAPI, IGDB, your own list, or yours mixed with opentdb — and in which language, checks that the source answers, and sets which of your own questions may be drawn. The third is whether viewers may suggest questions with <code>!Suggest</code>, and under what conditions.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/questions.png" alt="Questions page"></p><p>Your own questions, one row each: the switch that puts it in play, the question, the correct answer, the wrong answers as <code>a | b | c</code>, a category, a difficulty (easy, medium, hard or very hard) and who suggested it from chat. <code>Add row</code> adds one, <code>×</code> takes one out, <code>Restore defaults</code> brings the example questions back. Below the list: which of your own questions may be drawn.</p>
+<h2>Sources</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/sources.png" alt="Sources page"></p><p>Where each round&#39;s question comes from — opentdb, Wikidata, OdeNet, PokeAPI, IGDB or only your own list — and in which language; <code>Check</code> beside them asks the chosen source whether it answers right now. <strong>Mix in my questions</strong> adds your own list to any source, with <strong>Share of mine</strong> setting how often. The IGDB keys only show while IGDB is picked; the Client Secret is shown as dots until you click the eye.</p>
+<h2>Suggestions</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/suggestions.png" alt="Suggestions page"></p><p>Whether viewers may suggest questions with <code>!Suggest</code>, who may, and how a suggestion arrives.</p>
 <p>Wikidata, OdeNet and PokeAPI need nothing from you. OdeNet is German only and downloads its word list (about 4 MB) the first time a round needs it. IGDB needs a key of your own:</p>
 <h3>IGDB</h3>
 <p>IGDB belongs to Twitch and only answers an application registered there.</p>
@@ -163,11 +170,11 @@ affiliated with or endorses Trivia Game.</p>
 <li>Open the <a href="https://dev.twitch.tv/console/apps">Twitch developer console</a> and click <code>Register Your Application</code>.</li>
 <li>Any name, <code>http://localhost</code> as the OAuth Redirect URL, category <code>Application Integration</code>, client type <code>Confidential</code>. Click <code>Create</code>.</li>
 <li>Click <code>Manage</code> on the new application. Copy the <strong>Client ID</strong>, then click <code>New Secret</code> and copy the <strong>Client Secret</strong>.</li>
-<li>In the settings window, pick <strong>IGDB</strong> under <strong>Questions → Sources</strong>, paste both into the fields that appear, and click <code>Check</code>. <em>Twitch accepted the Client ID and Client Secret</em> means you are done — save.</li>
+<li>In the settings window, pick <strong>IGDB</strong> on the <strong>Sources</strong> page, paste both into <strong>Client ID</strong> and <strong>Client Secret</strong>, and click <code>Check</code>. <em>Twitch accepted the Client ID and Client Secret</em> means you are done — save.</li>
 </ol>
-<p>The secret is stored in <code>configs.json</code> on your PC and only ever sent to Twitch, to fetch IGDB&#39;s access token. The field hides it, so it stays safe on stream.</p>
+<p>The secret is stored in <code>configs.json</code> on your PC and only ever sent to Twitch, to fetch IGDB&#39;s access token. The field shows it as typed, so keep the window off stream while you paste it.</p>
 <h2>Access</h2>
-<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/access.png" alt="Access page"></p><p>Who gets in and how. A segment switch picks whether rounds start from <code>!trivia</code> or from a Twitch channel point reward — Twitch only, since no other platform has rewards, and chat everywhere still answers as usual. Below it: who may start and skip, the two cooldowns, and the blocked and addicted lists as name chips.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/access.png" alt="Access page"></p><p>Who gets in and how. A switch picks whether rounds start from <code>!trivia</code> or from a Twitch channel point reward — Twitch only, since no other platform has rewards, and chat everywhere still answers as usual. Below it: who may start and skip, the two cooldowns, and the blocked and addicted lists as name chips.</p>
 <h2>Messages</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/messages.png" alt="Messages page"></p><p>Every line the game says in chat behind one picker, grouped by when it is sent. Pick one and you get its editor, the placeholders it accepts as clickable chips, and a preview of the finished line. The number format and which account speaks sit here too — <code>/me</code> is Twitch only, as the pill says.</p>
 <h2>Overlay</h2>
@@ -175,10 +182,10 @@ affiliated with or endorses Trivia Game.</p>
 <ol>
 <li>In Streamer.bot, open <code>Servers/Clients</code> → <code>WebSocket Server</code>. Tick <code>Auto Start</code>, click <code>Start Server</code> and note the port — <code>8080</code> unless you changed it. If you turn on its authentication, put the password into <strong>Password</strong> on the Overlay page.</li>
 <li>Connect OBS to Streamer.bot under <code>Stream Apps</code> → <code>OBS Studio</code>, if it is not already.</li>
-<li>On the <strong>Overlay</strong> page, click <code>Set it up in OBS</code>. It switches on <strong>Send rounds to the overlay</strong>, saves, and adds a browser source called <code>Trivia Overlay</code> to the scene <code>Trivia</code> — created if needed — at the size of your canvas. Leave <strong>Scene</strong> empty to use the scene that is live in OBS instead. If OBS already has a source of that name, you are asked whether to point it at the overlay again, which is also how a changed port or password reaches OBS.</li>
+<li>On the <strong>Overlay</strong> page, switch on <strong>Send rounds to the overlay</strong>, save, and click <code>Set it up in OBS</code>. It adds a browser source called <code>Trivia Overlay</code> to the scene <code>Trivia</code> — created if needed — at the size of your canvas. Leave <strong>Scene</strong> empty to use the scene that is live in OBS instead. If OBS already has a source of that name, it is pointed at the overlay again, which is also how a changed port or password reaches OBS.</li>
 <li>Click <code>Show a sample round</code>. One made-up round plays on the overlay in OBS, so you can see where it sits and how it looks. Viewers see it too if you are live.</li>
 </ol>
-<p>Without the button: click <code>Copy URL</code>, add a <code>Browser</code> source in OBS, untick <code>Local file</code>, paste the URL into <code>URL</code> and set the size to your canvas, usually <code>1920</code> × <code>1080</code>. <code>Try the demo</code> opens the overlay in your browser, playing sample rounds the way the page is set.</p>
+<p>Without the button: click <code>Copy URL</code> (it puts the address, port and password included, on the clipboard), add a <code>Browser</code> source in OBS, untick <code>Local file</code>, paste the URL into <code>URL</code> and set the size to your canvas, usually <code>1920</code> × <code>1080</code>. <code>Try the demo</code> opens the overlay in your browser, playing sample rounds the way the page is set.</p>
 <p><strong>What it shows</strong> switches the answer count, the category and difficulty, the countdown, the winners and the leaderboard on and off on their own, and sets how long a result stays up and how many places the leaderboard lists. <strong>Look</strong> sets where the question sits, its size, the animations and five colours: accent, right answer, blitz, text and panel, with the panel&#39;s opacity. A save reaches an overlay that is already open in OBS straight away, and the labels follow the question language.</p>
 <table>
 <thead>
@@ -214,6 +221,8 @@ affiliated with or endorses Trivia Game.</p>
 <p><code>--tg-accent</code>, <code>--tg-correct</code>, <code>--tg-blitz</code>, <code>--tg-text</code>, <code>--tg-muted</code>, <code>--tg-card</code>, <code>--tg-scale</code> and <code>--tg-edge</code> (the gap to the edge of the screen) can be set the same way.</p>
 <h2>Log</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/log.png" alt="Log page"></p><p>Every round, answer and payout, searchable by user, platform or outcome. One file per day, and nothing is deleted automatically.</p>
+<h2>Checks</h2>
+<p><code>tools\check-all.ps1</code> runs everything that can be checked without Streamer.bot; <code>tools\run-window-tests.ps1</code> opens the real settings window through UIFramework&#39;s generic stub over an old-style <code>configs.json</code>.</p>
 </div>
       </section>
       <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
@@ -226,7 +235,9 @@ affiliated with or endorses Trivia Game.</p>
 <pre><code>Chat Games/Trivia Game/configs.json             ← settings and all chat messages
 Chat Games/Trivia Game/Trivia-Questions.json    ← the questions you write yourself
 Chat Games/Trivia Game/Sources/                 ← what Wikidata, OdeNet, PokeAPI and IGDB sent
-Chat Games/Trivia Game/Overlay/                 ← the OBS overlay page, written by the settings window
+Chat Games/Trivia Game/Overlay/                 ← the OBS overlay page, written by the game
+Chat Games/Trivia Game/uiframework.layout.json  ← the window&#39;s theme, language and your layout of it
+UIFramework/lib/                                ← UIFramework.dll, which the settings action fetches and keeps current
 Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per day
 </code></pre>
 <p>Settings and messages share <code>configs.json</code>. An older <code>messages.json</code> is still read if it exists and is folded into <code>configs.json</code> the next time you save. Log files are kept indefinitely — nothing is deleted automatically.</p>
@@ -235,12 +246,13 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p><strong>Q: The Settings GUI won&#39;t open / crashes immediately. What do I do?</strong></p>
 <ul>
 <li>Check the Streamer.bot log for error details and please report it on the <a href="https://github.com/aaskjer/Trivia-Game/issues">issues page</a>.</li>
-<li>A malformed <code>configs.json</code> stops the GUI opening at all. Delete the corrupt file and restart — it comes back with defaults.</li>
-<li>If <code>Trivia-Questions.json</code> cannot be read, the GUI opens with an empty question list and says so. Fix or move that file before saving, or saving overwrites it.</li>
+<li>A malformed <code>configs.json</code> opens the window on its defaults with a notice; the file is kept beside it as <code>.broken</code> and the last good copy as <code>.bak</code>. Save to write a fresh one.</li>
+<li>If <code>Trivia-Questions.json</code> cannot be read, the window shows the example questions and says so in Streamer.bot&#39;s log. Fix or move that file before saving, or saving overwrites it.</li>
+<li>The window needs <code>UIFramework.dll</code>, fetched from GitHub on first use into <code>UIFramework\lib</code> next to Streamer.bot. Without a connection the first time, the window cannot open; the Streamer.bot log says so.</li>
 </ul>
 <hr>
 <p><strong>Q: How do I reset all settings to defaults?</strong></p>
-<p>Open the Settings GUI and click the ↺ button at the bottom left. That rewrites <code>configs.json</code> with factory values and reopens the window; the questions you wrote yourself are left alone. For a single page instead, use the ↻ button beside it — that one writes nothing until you save.</p>
+<p>Open the settings window and click the ↺ button at the bottom left. That puts every setting back to its default and saves; the questions you wrote yourself are left alone (<code>Restore defaults</code> on the Questions page brings the examples back, once you save).</p>
 <hr>
 <p><strong>Q: I saved settings but nothing changed in-game. Why?</strong></p>
 <p><strong>Save</strong> writes the JSON files to disk, and the game script re-reads them whenever they change. Your next game command already runs on the new values. No Streamer.bot restart needed.</p>
@@ -425,7 +437,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>opentdb only</strong></td>
+<td><strong>opentdb</strong></td>
 <td>The <a href="https://opentdb.com">Open Trivia Database</a></td>
 <td>English</td>
 </tr>
@@ -450,16 +462,12 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <td>English or German</td>
 </tr>
 <tr>
-<td><strong>My questions only</strong></td>
-<td>Your list on the Custom List tab</td>
+<td><strong>Only my questions</strong></td>
+<td>Your list on the Questions page</td>
 <td>as you wrote it</td>
 </tr>
-<tr>
-<td><strong>Mine + opentdb</strong></td>
-<td>Both, mixed by <strong>Mine (%)</strong></td>
-<td>—</td>
-</tr>
 </tbody></table>
+<p><strong>Mix in my questions</strong> beside it draws a share of the rounds from your own list instead, whichever source is picked; <strong>Share of mine</strong> says how many (50 is roughly every other round). A settings file from before 9.0.0 with <em>Mine + opentdb</em> reads as opentdb with your questions mixed in.</p>
 <p><strong>Question language</strong> beside it picks English or German for Wikidata, PokeAPI and IGDB. The <strong>Difficulty</strong> and <strong>Question type</strong> on the Game page apply to every online source; your own questions have filters of their own, kept apart so narrowing one cannot silently empty the other.</p>
 <p>Viewers can contribute questions themselves with <code>!Suggest</code> once you allow it on the <strong>Questions</strong> page, under <em>Suggestions</em>.</p>
 <hr>
@@ -514,7 +522,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <hr>
 <h2>📺 OBS Overlay</h2>
 <p><strong>Q: How do I put the game on stream?</strong></p>
-<p>Click <code>Set it up in OBS</code> on the <strong>Overlay</strong> page of the settings window. It switches the overlay on, saves, and adds a browser source to OBS through Streamer.bot&#39;s OBS connection. Streamer.bot&#39;s WebSocket server has to be running — the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> has every step, and the way to add it by hand with <code>Copy URL</code>.</p>
+<p>Switch on <strong>Send rounds to the overlay</strong> on the <strong>Overlay</strong> page, save, and click <code>Set it up in OBS</code>. It adds a browser source to OBS through Streamer.bot&#39;s OBS connection. Streamer.bot&#39;s WebSocket server has to be running — the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> has every step, and the way to add it by hand with <code>Copy URL</code>.</p>
 <hr>
 <p><strong>Q: The overlay stays empty. What do I check?</strong></p>
 <ul>
@@ -549,7 +557,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <hr>
 <h2>🔔 Update Notifications</h2>
 <p><strong>Q: How do I know when a new version is available?</strong></p>
-<p>Opening the Settings GUI checks GitHub for the latest release tag. If that tag is genuinely newer than the version you are running, a red <strong>Update</strong> pill appears in the window header — click it to open the releases page. Nothing blocks the window, so the check never costs you the trip.</p>
+<p>Opening the settings window checks GitHub for the latest release tag. If that tag is genuinely newer than the version you are running, an <strong>Update</strong> pill appears in the window header — click it to open the releases page. Nothing blocks the window, so the check never costs you the trip. The window itself (UIFramework.dll) updates on its own; <code>autoUpdate: false</code> in <code>uiframework.layout.json</code> switches that off.</p>
 <hr>
 <p><strong>Q: Can I check for updates without opening the Settings window?</strong></p>
 <p>No — the check runs as part of the <code>Test</code> trigger that opens the settings window.</p>
@@ -568,6 +576,66 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[9.0.0] - Unreleased</h2>
+<p>The settings window moves into UIFramework for streamer.bot, so it is the same window every chat game of this
+family has, in English or German, and it keeps itself up to date. Nothing changes for chat; an existing
+<code>configs.json</code> and <code>Trivia-Questions.json</code> keep working.</p>
+<h3>Changed</h3>
+<ul>
+<li><strong>Your own questions mix with any source.</strong> <em>Mine + opentdb</em> is gone from the source dropdown: <strong>Mix in my
+questions</strong> on the Sources page now mixes your list into whichever source is picked (Wikidata, OdeNet, PokeAPI,
+IGDB or opentdb), <strong>Share of mine</strong> says how often. <em>opentdb only</em> is just <strong>opentdb</strong>, <em>My questions only</em> is
+<strong>Only my questions</strong>. A <code>configs.json</code> with the old mixed source is rewritten as opentdb with mixing on.</li>
+<li><strong>A tidier Sources page.</strong> Source, language and <code>Check</code> share one line, the answer of <code>Check</code> shows under them;
+only the description of the picked source is shown; the IGDB keys appear only while IGDB is picked, and the
+Client Secret is masked. The share of your own questions no longer reads &quot;Mine (%) (%)&quot;.</li>
+<li><strong>The question list is a table again,</strong> edited in place like before UIFramework: one line per question, a click
+into a cell edits it, a checkbox in every row switches it on or off, Delete removes the picked rows, a search box
+above. <em>Suggested by</em> is filled by the game and only read here. Needs UIFramework 0.9.9.</li>
+<li><strong>The settings window is UIFramework&#39;s.</strong> <code>[TG] - Settings</code> is now UIFramework&#39;s generic settings action: it
+fetches <code>UIFramework.dll</code> from GitHub on first use (into <code>UIFramework\lib</code> next to Streamer.bot) and keeps it
+current; the window itself is declared once in <code>Trivia-Game.cs</code>, as the table of settings the game reads, so
+the window and the game can never disagree. The same pages as before, with the Questions tabs as three pages of
+their own: <strong>Questions</strong> (your own list and which of them may be drawn), <strong>Sources</strong> (where questions come from,
+IGDB access, the reachability check) and <strong>Suggestions</strong>. The rail no longer has keyboard shortcuts.</li>
+<li><strong>German.</strong> With the window&#39;s language set to <code>de</code> (the pencil, then <em>Sprache</em>), every setting, section, page,
+option and message of the window reads in German; the help and about pages stay English.</li>
+<li><strong>The questions list</strong> is the framework&#39;s row editor: one row per question with its switch, the question, the
+correct answer, the wrong answers as <code>a | b | c</code>, category, difficulty and who suggested it. <code>Add row</code> adds one,
+<code>×</code> takes one out, <code>Restore defaults</code> brings the example questions back. The wrong answers are written to
+<code>Trivia-Questions.json</code> as that <code>a | b | c</code> text from now on; the game reads both that and the old array.</li>
+<li><strong>The difficulty dial</strong> is a slider with the same five stops, Relaxed to Brutal, filling in the same six numbers;
+Custom leaves your own numbers alone.</li>
+<li><strong>The overlay</strong> is written and set up in OBS by the game action now (the window asks it): <code>Set it up in OBS</code>,
+<code>Show a sample round</code>, <code>Copy URL</code>, <code>Try the demo</code> and the folder buttons answer in the window&#39;s footer; <code>Set it up in OBS</code> and the sample use the settings as saved, so save first. A source OBS already has is pointed at the
+overlay again without asking.</li>
+<li><strong>Settings keys.</strong> The window writes <code>configs.json</code> with camelCase keys; the old PascalCase keys are read through
+aliases and moved over on the first save. <code>CooldownGlobalSeconds</code>, <code>CooldownUserSeconds</code>, <code>VarName</code>, <code>UseBotCD</code>
+and <code>SendActionCD</code> are now <code>globalCooldown</code>, <code>userCooldown</code>, <code>pointsVariable</code>, <code>cooldownUseBot</code> and
+<code>cooldownSendAction</code>. <code>DarkMode</code> and <code>Egg</code> move into <code>uiframework.layout.json</code> next to it, with the language.</li>
+<li><strong>Custom triggers carry the round.</strong> <code>Trivia: Round Won</code>, <code>Round Timeout</code>, <code>Round Skipped</code> and <code>Round ForceEnd</code>
+fire with <code>roundOutcome</code>, <code>roundPlatform</code>, <code>roundId</code>, <code>roundBlitz</code>, <code>roundQuestion</code>, <code>roundCorrectAnswer</code>,
+<code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundSource</code>, <code>roundAnswers</code>, <code>roundWinners</code>, <code>roundWinnerCount</code>,
+<code>roundPoints</code> and <code>roundCurrency</code> as arguments, and <code>GetLastRoundResult</code> (Execute C# Method on the game action)
+hands the same to any other action. The action log&#39;s AWARD line names its change (<code>Change: +…</code>), which the Log
+page reads.</li>
+<li><strong>Tools.</strong> <code>check-settings.ps1</code> checks the settings table against the game&#39;s and the scoreboard&#39;s classes on the
+compiled scripts; <code>run-window-tests.ps1</code> opens the real window through the generic stub and writes
+<code>hosts\trivia\schema.json</code> in the UIFramework repository; <code>gui-shots.ps1</code> photographs the window through the
+framework&#39;s preview; <code>check-defaults.ps1</code>, <code>TgShotStub.cs</code>, <code>WindowTests.cs</code> and the page tests, which drove the
+old window, are gone.</li>
+</ul>
+<h3>Known gaps (the framework&#39;s, for a later release)</h3>
+<ul>
+<li>The questions list has no search or difficulty filter, no Refresh, and no confirmation before deleting a row;
+the Suggested by column can be edited; a question suggested from chat while the window is open is lost when the
+window then saves the list (the old window folded it in); <code>SuggestedAtUtc</code> is not kept by the row editor.</li>
+<li>The Client Secret and the overlay password are shown as typed; the old window masked them.</li>
+<li>The IGDB fields and the suggestion reward are greyed out, not hidden, while they do not apply.</li>
+<li>The overlay URL is not shown on the page; <code>Copy URL</code> puts it on the clipboard and says so.</li>
+<li>The help page is static: the paragraphs that summed up the current settings are gone.</li>
+<li>The placeholder chips under a message explain only the placeholders the framework knows.</li>
+</ul>
 <h2>[8.2.0] - 2026-10-30</h2>
 <p>An overlay for OBS. Nothing changes for an install that leaves it switched off.</p>
 <h3>Added</h3>

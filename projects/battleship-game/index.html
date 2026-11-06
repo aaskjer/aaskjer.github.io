@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle","!SetFreeBattleship","!EndFreeBattleship"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
 <body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -114,12 +114,16 @@ warnings at 30 and 15 seconds while the overlay ring turns amber, then red. Ship
 afloat are charged pro rata when a player times out.</li>
 <li>📺 <strong>A live OBS overlay.</strong> Your fleet in full, enemy waters fogged until something is hit, damage pips per
 ship, running points and accuracy. It installs itself and keeps the previous version as a <code>.bak</code> when it
-updates.</li>
+updates. <em>Try the demo</em> and <em>Show a sample round</em> play a made-up battle to set it up without a real one.</li>
+<li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every finished battle, the chat&#39;s battle and a duel, with
+the battle as arguments, and for Free game being switched on or off.</li>
+<li>🆓 <strong>Free game from chat.</strong> <code>!SetFreeBattleship</code> and <code>!EndFreeBattleship</code> (moderators) switch Free game, with a
+message to chat and a custom trigger each.</li>
 <li>🏆 <strong>Records other actions can read.</strong> Stats live in persisted <code>bsg_*</code> user variables. The leaderboard ranks
 net result, points won, ships sunk or accuracy, and resets weekly or monthly if you want seasons.</li>
 <li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>
-and downloaded on first open: light and dark themes, live rule summaries, one-click OBS setup, a filterable
-log and a customise mode that lets you rename, reorder and hide pages and fields. Every chat message is
+and downloaded on first open: light and dark themes, English or German, live rule summaries, one-click OBS
+setup, a filterable log and a customise mode that lets you rename, reorder and hide pages and fields. Every chat message is
 editable, and Free Game mode has its own set, so no line mentions points that were never at stake.</li>
 </ul>
 <hr>
@@ -216,6 +220,16 @@ editable, and Free Game mode has its own set, so no line mentions points that we
 <td><code>7e59baf2-0cf5-4442-963e-2df9776951be</code></td>
 </tr>
 <tr>
+<td><code>!SetFreeBattleship</code></td>
+<td>Battleship Game</td>
+<td><code>9b2d7c1e-3a4f-4e5b-8c6d-0f1e2d3c4b01</code></td>
+</tr>
+<tr>
+<td><code>!EndFreeBattleship</code></td>
+<td>Battleship Game</td>
+<td><code>9b2d7c1e-3a4f-4e5b-8c6d-0f1e2d3c4b02</code></td>
+</tr>
+<tr>
 <td><code>!bstats</code></td>
 <td>Battleship Scoreboard</td>
 <td><code>d25e44f1-2da3-435c-b1c4-fc07f02c74a4</code></td>
@@ -231,6 +245,7 @@ editable, and Free Game mode has its own set, so no line mentions points that we
 <li><code>!seeschlacht</code> starts <strong>Chat vs the Admiral</strong>, where the whole chat votes.</li>
 <li><code>!duel @name</code> challenges a viewer to a <strong>team duel</strong> (no name: anybody may accept), <code>!accept</code> takes it up, and <code>!team</code> joins a side during sign-up — <code>!team A</code>, <code>!team B</code>, <code>!team kim</code> to join kim&#39;s side, or plain <code>!team</code> for the smaller one.</li>
 <li><code>!stopbattle</code> is for moderators and comes set to the <strong>Moderators</strong> group. It ends whatever is running and pays nothing more out; a duel&#39;s entries are refunded.</li>
+<li><code>!SetFreeBattleship</code> and <code>!EndFreeBattleship</code> switch <strong>Free game</strong> from chat (moderators, disabled until you enable them). The switch lands in the settings file, so the window&#39;s pill shows it, and chat gets the Started or Ended message.</li>
 </ul>
 <p>Twitch, YouTube and Kick all play, and every reply goes to the chat the command came from. To leave a platform out, untick it in the commands&#39; sources (for example <em>Kick Message</em>).</p>
 <h2>3. Open the settings window</h2>
@@ -253,6 +268,7 @@ released the same dialog comes back once; <strong>Cancel</strong> skips that ver
 <pre><code>&lt;Streamer.bot folder&gt;\Chat Games\Battleship Game\Overlay\battleship_overlay.html
 </code></pre>
 <p align="center"><img loading="lazy" alt="The Battleship Game folder" src="https://github.com/user-attachments/assets/6d02e59c-ebbd-4b39-816a-c2be6ad5fd5d"></p><p>The Overlay page has a button that opens this folder. The background is transparent, so it layers over any scene. Make the source the size of your canvas — 1920×1080 for most — and let it cover the whole canvas; the button does exactly that, and Click to Fire relies on it.</p>
+<p>To see it without playing: <strong>Try the demo</strong> opens the overlay in your browser with a made-up battle in your saved colours, and <strong>Show a sample round</strong> plays that battle once on the overlay in OBS. With <code>?demo=1</code> on the overlay&#39;s address OBS plays the demo over and over while you place the source; take it off again before you go live.</p>
 <h2>5. Play</h2>
 <pre><code>!battleship
 !fire B7
@@ -307,7 +323,7 @@ released the same dialog comes back once; <strong>Cancel</strong> skips that ver
 </tr>
 <tr>
 <td><code>run-window-tests.ps1</code></td>
-<td>Opens the real UIFramework window through the settings stub over an old-style settings file, checks the migration, the presets and summaries, and writes the schema into the UIFramework repository</td>
+<td>Opens the real UIFramework window through the generic settings stub over an old-style settings file, checks the migration, the presets, summaries, the check before saving and the cooldowns, and writes the schema into the UIFramework repository</td>
 </tr>
 <tr>
 <td><code>sync-overlay.ps1</code></td>
@@ -350,6 +366,13 @@ start holds it and hands it over when it ends — but everyone gets full play in
 <h3>How much does it cost to play?</h3>
 <p>Nothing. There is no bet and no entry fee. You earn by sinking the Admiral&#39;s ships and you pay when
 you lose your own, at the value configured for each ship class.</p>
+<h3>Can a moderator make battles free from chat?</h3>
+<p>Yes: <code>!SetFreeBattleship</code> turns Free game on and <code>!EndFreeBattleship</code> turns it off. The two commands come
+with the import, disabled and for Moderators; enable them in Streamer.bot&#39;s Commands tab. The switch is written
+into the settings file, so the window&#39;s pill shows it, chat gets the Started or Ended message, and your own
+actions can listen to <code>BSG: Free Game Start</code> and <code>BSG: Free Game End</code>. An action of your own can do the same
+with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action. A battle already under way
+goes on as it started.</p>
 <h3>Why do I lose points during the battle rather than at the end?</h3>
 <p>So that leaving early cannot save you anything. If losses only landed at the end, the correct play
 would be to walk away the moment a battle turned — which is not much of a game. Settling as it happens
@@ -405,7 +428,8 @@ walking away would be worth precisely the same anyway.</p>
 <h3>The overlay is blank.</h3>
 <p>Check that the Browser Source points at <code>battleship_overlay.html</code> in the folder shown on the Overlay
 settings page — there is a button there to open it. The overlay only draws while a battle is
-live; between battles it is intentionally invisible.</p>
+live; between battles it is intentionally invisible. <strong>Show a sample round</strong> on the Overlay page plays a made-up
+battle on it, so you can check it without starting one.</p>
 <h3>Numbers on the overlay don&#39;t match chat.</h3>
 <p>They should — both use the <strong>Numbers</strong> separator on the Messages page. If they disagree you are looking at a
 stale overlay file; the game rewrites it automatically when the version changes, keeping your old one
@@ -568,6 +592,49 @@ Code</strong> sub-action, press <strong>Find Refs</strong>, then <strong>OK</str
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>All notable changes to this project are documented here.</p>
+<h2>[2.2.0] — Unreleased</h2>
+<h3>📺 Overlay</h3>
+<ul>
+<li><strong>Try the demo.</strong> A new button on the Overlay page opens the overlay in your browser, playing a short made-up
+battle in the saved look (a miss, a sunk destroyer, the Admiral finding your cruiser, the enemy fleet sunk),
+without Streamer.bot. With <code>?demo=1</code> on the overlay&#39;s address, OBS plays it the same way, to place and size the
+source.</li>
+<li><strong>Show a sample round.</strong> The button beside it plays that battle once on every overlay that is open, the one in OBS
+included, so you can check where it sits and how it looks; then the overlay goes back to no battle. Not while a
+real battle runs. The overlay is version 17 and replaces an older copy on the next command, keeping that one as
+a <code>.bak</code>; an overlay already open in OBS reloads itself within ten seconds.</li>
+</ul>
+<h3>🆓 Free game from chat</h3>
+<ul>
+<li><strong>Two moderator commands.</strong> <code>!SetFreeBattleship</code> turns Free game on and <code>!EndFreeBattleship</code> turns it off (they
+come with the import, disabled and set to the Moderators group). The switch is written into the settings file, so
+the window&#39;s pill shows it, and chat gets the new Started and Ended messages (Messages page, Free game). An action
+of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action.</li>
+<li><strong>Two more custom triggers.</strong> <code>BSG: Free Game Start</code> and <code>BSG: Free Game End</code> fire whenever Free game is switched
+that way.</li>
+</ul>
+<h2>[2.1.0] — Unreleased</h2>
+<h3>🔔 For your own actions</h3>
+<ul>
+<li><strong>Custom triggers.</strong> Every finished battle fires a trigger (Custom &gt; Chat Game &gt; Battleship Game): <code>BSG: Battle Won</code>, <code>BSG: Battle Lost</code>, <code>BSG: Battle Timed Out</code> or <code>BSG: Battle Stopped</code> for a solo battle, <code>BSG: Chat Battle Settled</code> for the chat&#39;s battle, <code>BSG: Duel Settled</code> for a team duel, and <code>BSG: Battle Settled</code> for every one of
+them. The trigger carries the battle as arguments: <code>battleOutcome</code> (the log&#39;s result: WIN, LOSS, TIMEOUT, NO-SHOW,
+STOPPED), <code>battleMode</code> (solo, chat or duel), <code>battleUser</code>, <code>battleUserId</code>, <code>battlePlatform</code>, <code>battleTrigger</code>
+(fire, timeout or stop), <code>battleBoard</code>, <code>battleShots</code>, <code>battleHits</code>, <code>battleAccuracy</code>, <code>battleShipsSunk</code>,
+<code>battleShipsLost</code>, <code>battleNet</code> (the battle&#39;s total, or a duel&#39;s pot), <code>battleWinner</code> (a duel&#39;s winning side) and
+<code>battleCurrency</code>. <code>GetLastBattleResult</code>, run with an Execute C# Method sub-action on the game action, hands the
+same arguments to any other action.</li>
+</ul>
+<h3>🪟 Settings window</h3>
+<ul>
+<li><strong>German.</strong> With the window&#39;s language set to <code>de</code> (the pencil, then <em>Sprache</em>), every setting, section, page
+and message of the window reads in German. The help and about pages, the summaries and the presets&#39; status
+line stay English.</li>
+<li><strong>The settings action is UIFramework&#39;s generic stub.</strong> <code>[BG] - .Settings</code> carries no layout and no code of its
+own any more: the game action declares its window (pages, the log, help and about, the cooldowns of
+<code>!battleship</code>) beside its settings table and answers the window itself. <em>Reset the leaderboard now</em>, <em>Set the
+overlay up in OBS</em> and <em>Add to OBS</em> now answer with what happened instead of &quot;queued&quot;, and a save puts the
+Click to Fire settings on a live overlay as before. Needs UIFramework 0.9.2 or newer; the stub fetches it.</li>
+</ul>
 <h2>[2.0.0] — 2026-11-03</h2>
 <p>The settings window moved into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
 one window shared by all of these chat games. Battles, the chat&#39;s battle and the duel play exactly as before;

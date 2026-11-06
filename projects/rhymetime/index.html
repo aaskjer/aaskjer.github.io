@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com","wordotron.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle","!SetFreeRhyme","!EndFreeRhyme"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com","wordotron.com"],"updateCheck":false}</script>
 </head>
 <body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -122,8 +122,12 @@ the result. If the lookup is slow or unreachable, the guess is accepted.</li>
 don&#39;t look like an attempt are ignored.</li>
 <li>📚 <strong>Three word banks.</strong> Easy, medium and hard, each with its own payout multiplier: 1.5×, 2× and 3× by
 default.</li>
-<li>💰 <strong>Bets or free play.</strong> Chatters stake a number or <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code>, <code>random</code>. A default
-bet of <code>0</code> makes the whole game free.</li>
+<li>💰 <strong>Bets or free play.</strong> Chatters stake a number or <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code>, <code>random</code>. A Free mode
+switch, or a default bet of <code>0</code>, makes the whole game free; <code>!SetFreeRhyme</code> and <code>!EndFreeRhyme</code> (moderators)
+switch it from chat.</li>
+<li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every won, lost or timed-out round and battle, and for
+Free mode switching, with the round as arguments; <code>GetLastRoundResult</code> and <code>GetLastBattleResult</code> hand them to
+any action.</li>
 <li>📺 <strong>An overlay for OBS.</strong> The word on stream with its countdown and the attempts left, then the winning
 rhyme and what it paid. It ships with the import, runs on Streamer.bot&#39;s own WebSocket server, and one
 button sets it up in OBS. Place, size, colours and what it shows are all in the window.</li>
@@ -151,9 +155,10 @@ messages with a live preview.</li>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"> </p><p>Click <code>Import</code> in <a href="https://streamer.bot/">streamer.bot</a> and drag the <a href="https://github.com/aaskjer/RhymeTime/releases">RhymeTime.sb</a> file into the window, or paste the <a href="https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md">import string</a>.</p>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/d3d8ecfd-018d-4052-9056-c72438d5c613"></p><p>Click <code>Import</code>, then <code>Yes</code> on both popups that follow.</p>
 <h2>Enable Commands</h2>
-<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/004c325b-8673-430d-91b9-72c9a8931663"></p><p>Both commands ship disabled. Enable <code>!Rhyme</code> and <code>!RhymeBattle</code> in the <code>Commands</code> tab, or nothing
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/004c325b-8673-430d-91b9-72c9a8931663"></p><p>The commands ship disabled. Enable <code>!Rhyme</code> and <code>!RhymeBattle</code> in the <code>Commands</code> tab, or nothing
 answers in chat. <code>!RhymeBattle</code> is restricted to the <code>Moderators</code> group on the command itself —
-change that there if you want someone else to be able to open a battle.</p>
+change that there if you want someone else to be able to open a battle. <code>!SetFreeRhyme</code> and
+<code>!EndFreeRhyme</code> switch Free mode from chat; they are for Moderators too, enable them if you want them.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[RT] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>.
 That opens the settings window.</p>
@@ -178,8 +183,9 @@ checked against a dictionary first.</p>
 fills <code>{currency}</code>. Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own
 and override both fields, Currency Core first, so those two need nothing from you.</p>
 <p>Then the bets and the payout. The default bet is what <code>!Rhyme</code> stakes without
-an amount; the minimum and maximum frame what a chatter may type. Set the default bet to <code>0</code> and the
-game is <strong>free</strong>: nothing is staked and nothing is paid out, and the header says so.</p>
+an amount; the minimum and maximum frame what a chatter may type. Switch on <strong>Free mode</strong>, or set the
+default bet to <code>0</code>, and the game is <strong>free</strong>: nothing is staked and nothing is paid out, and the header
+says so. <code>!SetFreeRhyme</code> and <code>!EndFreeRhyme</code> flip the switch from chat, with a message each.</p>
 <p>The payout multipliers are per word bank: a win pays the stake times the multiplier of the bank the
 word came from.</p>
 <p>The two cooldowns at the bottom are written onto the <code>!Rhyme</code> command itself when you save, so
@@ -232,7 +238,8 @@ Streamer.bot&#39;s OBS connection creates the scene and puts a browser source in
 canvas, pointed at the overlay. The outcome is in the status line and in Streamer.bot&#39;s log. OBS has to be connected in Streamer.bot under
 <code>Stream Apps</code> ▸ <code>OBS Studio</code>. <em>Connection #</em> is 0 unless you have more than one OBS there; <em>Scene</em>
 is created if it is not there yet, and a <em>Source</em> name OBS already knows is left alone rather than
-overwritten.</p>
+overwritten. <strong>Show a sample round</strong> beside it then plays one made-up round on the overlay in OBS, in the look you
+saved, so you can check where the card sits; it waits while a real round or battle is showing.</p>
 <p>By hand works too: <em>Copy the overlay URL</em> writes the page to <code>Chat Games/RhymeTime/Overlay</code> and copies
 its address — the first round with the overlay on writes it as well — then add a <strong>Browser</strong> source in
 OBS, untick <em>Local file</em>, paste the URL and set the size to 1920 × 1080. <em>Try the demo</em> opens the same
@@ -391,6 +398,11 @@ it off.</p>
 <td>Moderators</td>
 <td>Opens one and stakes 500 of their own</td>
 </tr>
+<tr>
+<td><code>!SetFreeRhyme</code> · <code>!EndFreeRhyme</code></td>
+<td>Moderators</td>
+<td>Turns Free mode on or off, with a message to chat</td>
+</tr>
 </tbody></table>
 <p>These are the names as they come in the import; rename them in Streamer.bot&#39;s <code>Commands</code> tab if you
 like. The scripts follow the command, not its name.</p>
@@ -479,9 +491,20 @@ chat.</p>
 <p>Defaults are 1.5× easy, 2× medium and 3× hard, all on the Game page. A lost round costs the stake.</p>
 <hr>
 <p><strong>Q: Can I run the game without points?</strong></p>
-<p>Yes. Put the <strong>default bet</strong> at <code>0</code> and the game is free: nothing is staked, nothing is paid out,
-and an amount typed after the command is ignored. The window shows a <em>Free game on</em> pill while that
-is the case, so a message about points means what it says.</p>
+<p>Yes. Switch on <strong>Free mode</strong> on the Game page, or put the <strong>default bet</strong> at <code>0</code>, and the game is free:
+nothing is staked, nothing is paid out, and an amount typed after the command is ignored. The window
+shows a <em>Free game on</em> pill while the switch is on. <code>!SetFreeRhyme</code> and <code>!EndFreeRhyme</code> (moderators)
+flip the switch from chat and tell chat so; your own actions can listen to <code>RT: Free Game Start</code> and
+<code>RT: Free Game End</code>, or flip it themselves with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code>.</p>
+<hr>
+<p><strong>Q: Can my own actions react to a round or a battle?</strong></p>
+<p>Yes. Every settled round fires a custom trigger (Custom &gt; Chat Game &gt; RhymeTime): <code>RT: Round Won</code>,
+<code>RT: Round Lost</code> or <code>RT: Round Timeout</code>, and <code>RT: Round Settled</code> every time, with <code>roundOutcome</code>,
+<code>roundUser</code>, <code>roundWord</code>, <code>roundGuess</code>, <code>roundBet</code>, <code>roundAmount</code>, <code>roundNewPoints</code> and more as
+arguments. A battle fires <code>RT: Battle Won</code> or <code>RT: Battle Timeout</code> and <code>RT: Battle Settled</code>, with
+<code>battleWinner</code>, <code>battleWord</code>, <code>battleReward</code> and the rest. <code>GetLastRoundResult</code> and <code>GetLastBattleResult</code>,
+run with an Execute C# Method sub-action on the game or battle action, hand the same arguments to any
+other action.</p>
 <hr>
 <p><strong>Q: What can a chatter type as a bet?</strong></p>
 <p>A number, or <code>all</code>, <code>half</code>, <code>third</code>, <code>quarter</code>, <code>random</code> — each a share of what they actually have.
@@ -586,7 +609,8 @@ OBS</strong>: it creates the scene and puts a browser source in it the size of y
 overlay. OBS has to be connected in Streamer.bot under <code>Stream Apps</code> ▸ <code>OBS Studio</code>.</p>
 <p>By hand: press <em>Copy URL</em>, add a <strong>Browser</strong> source in OBS, untick <em>Local file</em>, paste the URL and
 set it to 1920 × 1080. <em>Try the demo</em> plays sample rounds in your browser so you can place the
-source before anyone plays.</p>
+source before anyone plays, and <strong>Show a sample round</strong> plays one on the overlay already in OBS. The <em>Overlay on</em> /
+<em>Overlay off</em> pill in the window&#39;s header says whether real rounds reach it.</p>
 <hr>
 <p><strong>Q: The OBS button says a source of that name already exists.</strong></p>
 <p>Source names are global in OBS, not per scene, so a name that is taken anywhere is left alone rather
@@ -647,6 +671,31 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/RhymeTime/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.2.0] - Unreleased</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>Custom triggers.</strong> Every settled round fires <code>RT: Round Won</code>, <code>RT: Round Lost</code> or <code>RT: Round Timeout</code>, and
+<code>RT: Round Settled</code> every time (Custom &gt; Chat Game &gt; RhymeTime), with the round as arguments: <code>roundOutcome</code>,
+<code>roundUser</code>, <code>roundUserId</code>, <code>roundPlatform</code>, <code>roundWord</code>, <code>roundGuess</code>, <code>roundDifficulty</code>, <code>roundBet</code>,
+<code>roundAmount</code>, <code>roundAttempts</code>, <code>roundPreviousPoints</code>, <code>roundNewPoints</code>, <code>roundCurrency</code>, <code>roundFree</code>. A battle
+fires <code>RT: Battle Won</code> or <code>RT: Battle Timeout</code> and <code>RT: Battle Settled</code>, with <code>battleOutcome</code>, <code>battleWinner</code>,
+<code>battleWinnerId</code>, <code>battlePlatform</code>, <code>battleWord</code>, <code>battleGuess</code>, <code>battleDifficulty</code>, <code>battleStake</code>,
+<code>battleReward</code>, <code>battleStarter</code>, <code>battleStarterId</code>, <code>battlePreviousPoints</code>, <code>battleNewPoints</code>,
+<code>battleCurrency</code>. <code>GetLastRoundResult</code> (RhymeTime Game) and <code>GetLastBattleResult</code> (RhymeTime Battle), run
+with an Execute C# Method sub-action, hand the same arguments to any other action.</li>
+<li><strong>Free mode, and from chat.</strong> A <em>Free mode</em> switch on the Game page (a default bet of 0 is free as before);
+<code>!SetFreeRhyme</code> turns it on and <code>!EndFreeRhyme</code> turns it off (moderators; two new commands in the import,
+disabled until you enable them). The switch is written into the settings file, so the window&#39;s pill shows it,
+and chat gets the new Started and Ended messages (Messages page, Free mode). An action of your own can do the
+same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code>. <code>RT: Free Game Start</code> and
+<code>RT: Free Game End</code> fire with it.</li>
+<li><strong>Show a sample round.</strong> A new button beside <em>Set the overlay up in OBS</em> plays one made-up round on every overlay
+that is open, the one in OBS included, in the look saved on the Overlay page, so you can see where the card sits
+without anybody playing. It waits while a real round or battle is on the overlay. <em>Try the demo</em> still opens the
+overlay in your browser with sample rounds; the overlay buttons now sit in two rows.</li>
+<li><strong>An Overlay pill in the window&#39;s header</strong> says whether rounds reach the OBS overlay (<em>Overlay on</em> / <em>Overlay
+off</em>), like the Free game pill.</li>
+</ul>
 <h2>[2.1.0] - Unreleased</h2>
 <h3>Changed</h3>
 <ul>

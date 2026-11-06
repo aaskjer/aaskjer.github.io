@@ -72,7 +72,7 @@
         <section class="cmds__list" aria-label="Command reference">
           <!-- shown by commands.js -->
           <div class="cmds__filter" hidden>
-            <label for="cmd-filter">Filter the 104 commands</label>
+            <label for="cmd-filter">Filter the 108 commands</label>
             <div class="field">
               <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-search"/></svg>
               <input id="cmd-filter" type="search" placeholder="e.g. !note, birthday, duel" autocomplete="off" spellcheck="false">
@@ -424,6 +424,16 @@
               <span class="cmd__text">Stop</span>
               <span class="who who--limited">Mods</span>
             </li>
+            <li class="cmd" data-trigger="!SetFreeBattleship">
+              <code class="cmd__usage">!SetFreeBattleship</code>
+              <span class="cmd__text">Set Free Game</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EndFreeBattleship">
+              <code class="cmd__usage">!EndFreeBattleship</code>
+              <span class="cmd__text">End Free Game</span>
+              <span class="who who--limited">Mods</span>
+            </li>
           </ul>
         </section>
         <section class="cmd-group" id="rhymetime" data-repo="RhymeTime" data-short="RhymeTime" aria-labelledby="cmd-RhymeTime">
@@ -440,6 +450,16 @@
             <li class="cmd" data-trigger="!RhymeBattle">
               <code class="cmd__usage">!RhymeBattle</code>
               <span class="cmd__text">Opens a battle paying the battle reward</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!SetFreeRhyme">
+              <code class="cmd__usage">!SetFreeRhyme</code>
+              <span class="cmd__text">Turns Free mode on or off, with a message to chat</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EndFreeRhyme">
+              <code class="cmd__usage">!EndFreeRhyme</code>
+              <span class="cmd__text">Turns Free mode on or off, with a message to chat</span>
               <span class="who who--limited">Mods</span>
             </li>
           </ul>
