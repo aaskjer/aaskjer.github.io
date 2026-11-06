@@ -573,6 +573,9 @@ for (const p of projects.filter(x => x.page)) {
     if (key === 'data') return data;
     if (key === 'labels') return labels;
     if (key === 'files') return files ? ` data-files="${esc(files.join('|'))}"` : '';
+    // the newest release (a pre-release too) the documents are from; project.js loads them from
+    // GitHub when it finds a newer one
+    if (key === 'release') return releases ? ` data-release="${esc(releases.length ? releases[0].tag_name : '')}"` : '';
     if (values[key] == null) throw new Error(`nothing for {{${key}}} on the page of ${p.repo}`);
     return esc(values[key]);
   });
