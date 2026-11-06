@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"12.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA"],"words":[],"timers":0,"sites":["igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"13.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -114,6 +114,13 @@ earn a boost.</li>
 typed or from the reward&#39;s cost. Wins pay out in your custom currency.</li>
 <li>💬 <strong>Control over chat.</strong> Every line is editable with a preview. A rate limit catches guess spam, blocked
 users are ignored, and a per-platform scoreboard can reset monthly.</li>
+<li>🆓 <strong>Free mode.</strong> A switch, or <code>!SetFreeHangman</code> / <code>!EndFreeHangman</code> from chat (moderators): rounds pay nothing,
+with a message to chat and a custom trigger each.</li>
+<li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every round that starts, is won, lost, stopped or times
+out, with the round as arguments, and <code>GetLastRoundResult</code> for an Execute C# Method.</li>
+<li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+shared with the other chat games: it downloads itself on the first open and keeps itself current, reads English or
+German, and lets you rename, move or hide pages and fields.</li>
 </ul>
 <hr>
 <h2>Credits</h2>
@@ -142,26 +149,29 @@ users are ignored, and a per-platform scoreboard can reset monthly.</li>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/a88a0e47-3c83-4806-8c67-75da34bf8b5b"></p> <p>Enable all commands in the <code>Commands</code> tab of streamer.bot.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8e6e6677-f7e8-45db-b9f8-6bfc88e06628"> </p> 
-Right-Click on `Test` and click `Test Trigger` in the trigger section of `[HM] - Settings` to open the GUI of the game.<p>The window has one page per subject, picked from the rail on the left. Every field carries a tooltip, so hovering usually answers the question faster than this page does.</p>
+Right-Click on `Test` and click `Test Trigger` in the trigger section of `[HM] - Settings` to open the GUI of the game.<p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> - the settings window itself, shared by all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <code>Yes</code> fetches it (checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot; <code>No</code> opens that folder so you can place the file from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> yourself. When a newer window is released, the next open offers it the same way.</p>
+<p>The window has one page per subject, picked from the rail on the left. Every field carries a tooltip, so hovering usually answers the question faster than this page does. The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and fields, pick an accent colour and the language (English or German); the window keeps that layout in <code>uiframework.layout.json</code> next to <code>configs.json</code>, through every update of the game.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/game.png"></p><p>Lives, round duration and the time reminder, then when hints appear and what a win pays. Word scaling sits here too: harder and longer words earn a percentage on top, capped so a very long word cannot run away with your currency.</p>
 <p>Between the hints and the payout sit the two optional twists. <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-blitz-rounds">Blitz</a> sets how often a round turns into a short, multiplied one and whether mods may call one with <code>!hm blitz</code>. <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-evil-hangman">Evil Hangman</a> sets when the word is swapped, whether lives refill, and how long the overlay glitches.</p>
 <h2>Words</h2>
-<p align="center"><img loading="lazy" alt="Words page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/words.png"></p><p>Add, edit and delete <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-wordlist">words</a>, each with a <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-hints">hint</a>, a category and a difficulty. Ctrl+click picks single rows, Shift+click a range, Del removes the selection. The difficulty range and the categories in play are folded away above the table.</p>
-<p><em>Import</em> <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-importing-words">fetches words</a> with hints from Wikidata, OdeNet, PokéAPI or IGDB. Pick a source and a topic, fetch, untick what you don&#39;t want, and the rest lands in the category you named. Nothing is kept until you click Save.</p>
+<p align="center"><img loading="lazy" alt="Words page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/words.png"></p><p>Add, edit and delete <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-wordlist">words</a>, one row each with a <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-hints">hint</a>, a category and a difficulty; <code>Add row</code> adds one, <code>×</code> takes one out, <code>Restore defaults</code> brings the built-in list back. The difficulty range and the categories left out sit above the list.</p>
+<p><em>Import words</em> <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-importing-words">fetches words</a> with hints from Wikidata, OdeNet, PokéAPI or IGDB: pick a source, a topic and the limits, then <em>Import now</em>. Words the list already holds are skipped, the rest lands in <code>Hangman-Wordlist.json</code> in the category you named - reopen the window to see them in the list.</p>
 <h2>Overlay</h2>
-<p align="center"><img loading="lazy" alt="Overlay page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/overlay.png"></p><p>A local HTML file that OBS loads as a browser source and that repaints itself as the round runs. <em>Setup Overlay in OBS</em> creates the scene and the source over your existing Streamer.bot OBS connection. The gallows, the colours, the scale and what is shown next to the word are all set here.</p>
-<p>OBS keeps showing the overlay it loaded until the browser source is refreshed. The game does that by itself after an update; <em>Refresh Overlay in OBS</em> does it on demand.</p>
+<p align="center"><img loading="lazy" alt="Overlay page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/overlay.png"></p><p>A local HTML file that OBS loads as a browser source and that repaints itself as the round runs. <em>Create the browser source in OBS</em> creates the scene and the source over your existing Streamer.bot OBS connection. The gallows, the colours, the scale and what is shown next to the word are all set here.</p>
+<p>OBS keeps showing the overlay it loaded until the browser source is refreshed. The game does that by itself after an update; <em>Refresh the overlay in OBS</em> does it on demand.</p>
 <h2>Access</h2>
 <p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/access.png"></p><p>Who may start a round and who may not play at all, the start cooldowns, the guess rate limit, and the addicted list for regulars who should earn less and pace themselves. Channel Points live here as well.</p>
 <p>Channel Points are a work in progress. The code came from another game and the author is not an affiliate, so it is not properly tested — if something misbehaves, please report it <a href="https://github.com/aaskjer/Hangman-Game/issues">here</a>.</p>
 <h2>Messages</h2>
-<p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/messages.png"></p><p>Every line the game posts, in one place. Pick a message from the list, edit it, and the preview underneath shows how it will read in chat. The chips below the box insert the placeholders that message accepts. The bot account and <code>/me</code> toggles at the bottom apply to the game&#39;s messages and to the cooldown replies separately.</p>
+<p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/messages.png"></p><p>Every line the game posts, in one place. Pick a message, edit it, and the preview shows how it will read in chat; the chips under the box insert the placeholders that message accepts. The bot account and <code>/me</code> switches apply to the game&#39;s messages and to the cooldown replies separately. The Free mode messages are here too.</p>
 <h2>Board</h2>
 <p align="center"><img loading="lazy" alt="Board page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/board.png"></p><p>How many players the scoreboard shows, who is left off it, and when it resets. Reset runs per platform or for all of them at once.</p>
 <p><a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-streaks">Streaks</a> are switched on here: from which length they are announced, and the bonus a streak adds to a win.</p>
 <h2>Log</h2>
-<p align="center"><img loading="lazy" alt="Log page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/log.png"></p><p>Every round, guess and payout, one file per day in the <code>Logs</code> folder. Filter by result or platform, or search the text.</p>
+<p align="center"><img loading="lazy" alt="Log page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/log.png"></p><p>Every round, guess and payout, one file per day in the <code>Logs</code> folder. Filter by result, platform or day, or search the text; <em>Write a log file per day</em> switches the file off.</p>
+<h2>How to play, About</h2>
+<p>What a round is, every command, what a win pays, the custom triggers and where the files live, in the window itself; About names the version, the points systems the game picks up and the links.</p>
 <hr>
 <p><a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md">Frequently Asked Questions</a></p>
 </div>
@@ -174,16 +184,23 @@ Right-Click on `Test` and click `Test Trigger` in the trigger section of `[HM] -
 <p><strong>Q: Where are the config files stored?</strong></p>
 <p>Under your Streamer.bot base directory:</p>
 <pre><code>Chat Games/Hangman Game/configs.json            ← settings and every chat message
+Chat Games/Hangman Game/uiframework.layout.json ← your layout of the window: theme, language, renamed or hidden pages and fields
 Chat Games/Hangman Game/Hangman-Wordlist.json   ← word pool
 Chat Games/Logs/HM-log-YYYY-MM-DD.txt           ← action log, one file per day
 Chat Games/Hangman Game/Import Cache/           ← OdeNet download for the word importer
+UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, downloaded on first open
 </code></pre>
-<p>Older installs also have a <code>messages.json</code> next to <code>configs.json</code>. Its contents were folded into <code>configs.json</code>, and the file is deleted the next time you save. Editing any of this by hand is never necessary — the settings window writes all of it.</p>
+<p>A <code>configs.json</code> from before v13 keeps working: the window reads its old names and writes the new ones on the first save. Older installs also have a <code>messages.json</code> next to it; a message the settings file does not hold is still read from there. Editing any of this by hand is never necessary — the settings window writes all of it.</p>
 <hr>
+<p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
+<p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[HM] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
+<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way; <code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether.</p>
 <p><strong>Q: The Settings GUI won&#39;t open. What do I do?</strong></p>
-<p>If <code>configs.json</code> cannot be read at all — another program holds it, or the folder is not writable — the window says so and changes nothing. Close whatever has the file open and try again.</p>
-<p>If the file is there but its contents are damaged, the window opens anyway: the damaged file is kept beside it as <code>configs.json.broken</code>, and the settings come from <code>configs.json.bak</code>, the copy saved before the last write. If that is unusable too, you get the defaults. Either way the window tells you which of the two happened, and Save writes a healthy file again.</p>
+<p>If the log says <code>UIFramework.dll was not found</code>, the download was declined or did not finish: open the window again and answer <code>Yes</code>, or put the DLL from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">UIFramework releases</a> into <code>UIFramework\lib\&lt;version&gt;\</code> by hand.</p>
+<p>If <code>configs.json</code> is damaged, the window opens on the defaults and says so in its banner; Save writes a healthy file again (the replaced file is kept as <code>configs.json.bak</code>). The game logs the same and plays on the defaults until then.</p>
 <p>Anything else is worth a look in the Streamer.bot log, and worth <a href="https://github.com/aaskjer/Hangman-Game/issues">reporting</a>.</p>
+<p><strong>Q: Can the window be in German?</strong></p>
+<p>Yes: the pencil at the bottom left, then the language. Every setting, section, page and message reads in German; the help and about pages stay English for now.</p>
 <hr>
 <p><strong>Q: How do I reset all settings to defaults?</strong></p>
 <p>The ↺ button at the bottom left of the settings window. It asks first, then rewrites <code>configs.json</code> with factory values and reopens.</p>
@@ -375,17 +392,17 @@ paid   = (base + stake) × roleMultiplier
 <hr>
 <h2>📋 Wordlist</h2>
 <p><strong>Q: How do I add or edit words?</strong></p>
-<p>On the <strong>Words</strong> page. Add, delete, search and filter directly in the table; changes stay in memory until you hit Save or Save &amp; Exit.</p>
+<p>On the <strong>Words</strong> page: one row per word, <code>Add row</code> adds one, <code>×</code> takes one out, <code>Restore defaults</code> brings the built-in list back. Changes stay in the window until you hit Save or Save &amp; Exit.</p>
 <p><strong>Q: What does Difficulty control?</strong></p>
 <p>Each word carries a <code>Difficulty</code> of at least 1. Only words within <code>MinDifficulty … MaxDifficulty</code> are drawn. Set both to the same number to pin one tier.</p>
 <p><strong>Q: What happens when all words in the difficulty range have been used?</strong></p>
 <p>The used-word pool for that range is cleared and every word becomes eligible again. The log records it as <code>&quot;All N word(s) in current difficulty range exhausted — resetting used-word pool.&quot;</code>, and the next pick happens right away.</p>
 <p><strong>Q: The wordlist file is missing or corrupt. Will the game break?</strong></p>
-<p>No. Every round start checks <code>Hangman-Wordlist.json</code>. Missing or empty, and the built-in default list of 15 words is written to disk — the same list the <em>Load Defaults</em> button hands out.</p>
+<p>No. Every round start checks <code>Hangman-Wordlist.json</code>. Missing or empty, and the built-in default list of 15 words is written to disk — the same list <em>Restore defaults</em> on the Words page hands out.</p>
 <hr>
 <h2>📥 Importing Words</h2>
 <p><strong>Q: Where can the importer get words from?</strong></p>
-<p><em>Import</em> on the <strong>Words</strong> page fetches from four free sources:</p>
+<p><em>Import words</em> on the <strong>Words</strong> page fetches from four free sources:</p>
 <table>
 <thead>
 <tr>
@@ -420,15 +437,23 @@ paid   = (base + stake) × roleMultiplier
 <td>IGDB terms</td>
 </tr>
 </tbody></table>
-<p>You see the list before anything is added: untick what you don&#39;t want, fix a hint in the table, and the rest lands in the category you named. Nothing is kept until you click Save.</p>
+<p>Pick the source, the topic and the limits, then <em>Import now</em>: words the list already holds are skipped, the rest lands in <code>Hangman-Wordlist.json</code> in the category you named, and the answer under the button says what came in. Reopen the window to see them in the list and fix a hint there if you like; a Save before reopening writes the list as the window shows it.</p>
 <p><strong>Q: What does the importer leave out?</strong></p>
 <p>Answers with digits or symbols, more letters than <strong>Max. Letters</strong> or more words than <strong>Max. Words Per Answer</strong>, and words already in your list. Accents are folded (é → e). Umlauts stay letters to guess, unless <strong>Write umlauts out</strong> turns them into ae, oe, ue and ss. A hint that names its own answer is swapped for another one or masked with <code>___</code>.</p>
 <p><strong>Q: How is the difficulty picked?</strong></p>
 <p><em>Auto</em> rates every word from its length, rare letters (j, q, x, y, z) and how well known it is — the rank in the result for Wikidata and IGDB, the generation for Pokémon. Or pick one fixed difficulty for the whole import.</p>
 <p><strong>Q: What does IGDB need?</strong></p>
-<p>The Client ID and Client Secret of a free Twitch developer app. Create one at <a href="https://dev.twitch.tv/console/apps">dev.twitch.tv/console/apps</a> with any name, <code>http://localhost</code> as the redirect URL and <em>Confidential</em> as the client type. Both values are kept in Streamer.bot&#39;s global variables (<code>hm_IgdbClientId</code>, <code>hm_IgdbClientSecret</code>), never in <code>configs.json</code>.</p>
+<p>The Client ID and Client Secret of a free Twitch developer app. Create one at <a href="https://dev.twitch.tv/console/apps">dev.twitch.tv/console/apps</a> with any name, <code>http://localhost</code> as the redirect URL and <em>Confidential</em> as the client type. Type both into the import fields once; after the first import they are kept in Streamer.bot&#39;s global variables (<code>hm_IgdbClientId</code>, <code>hm_IgdbClientSecret</code>), never in <code>configs.json</code>, and the fields may stay empty.</p>
 <p><strong>Q: Some OdeNet hints don&#39;t match the word.</strong></p>
 <p>OdeNet groups synonyms, and a few groups mix two meanings. The importer picks the word whose meanings fit the topic best, but read the list before you add it. The OdeNet file (about 29 MB) is downloaded once and kept in <code>Chat Games/Hangman Game/Import Cache</code> for a month.</p>
+<hr>
+<h2>🆓 Free mode</h2>
+<p><strong>Q: How do I let people play without points changing hands?</strong></p>
+<p>Switch on <strong>Free mode</strong> on the Game page: letters and wins pay nothing, the overlay and everything else runs as usual. A moderator can switch it from chat with <code>!SetFreeHangman</code> and <code>!EndFreeHangman</code>; the two commands come with the import, disabled and for Moderators, enable them in Streamer.bot&#39;s Commands tab. The switch is written into <code>configs.json</code>, so the window&#39;s pill shows it, chat gets the <strong>Started</strong> or <strong>Ended</strong> message, and your own actions can listen to <code>Hangman: Free Game Start</code> and <code>Hangman: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action.</p>
+<hr>
+<h2>🔔 Your own actions</h2>
+<p><strong>Q: Which custom triggers are there?</strong></p>
+<p>Custom &gt; Chat Game &gt; Hangman Game: <code>Hangman: Game Start</code>, <code>Game Win</code>, <code>Game Loss</code>, <code>Game Stopped</code>, <code>Timeout</code>, <code>Free Game Start</code> and <code>Free Game End</code>. A settled round carries <code>roundOutcome</code> (WIN, BLITZ-WIN, LOSS, TIMEOUT, STOPPED), <code>roundWord</code>, <code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundLetters</code>, <code>roundPlatform</code>, <code>roundWinner</code>, <code>roundWinnerId</code>, <code>roundPoints</code>, <code>roundWrongGuesses</code>, <code>roundMaxWrong</code>, <code>roundBlitz</code>, <code>roundFree</code>, <code>roundCurrency</code> and <code>roundParticipants</code>; the same values sit in the globals <code>hm_last…</code>, and <code>GetLastRoundResult</code>, run with an Execute C# Method sub-action on the game action, hands them to any other action.</p>
 <hr>
 <h2>🏆 Scoreboard</h2>
 <p><strong>Q: How is the leaderboard built?</strong></p>
@@ -503,29 +528,73 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Hangman-Game/releases">releases on GitHub</a>.</p><h2>v12.1.0 — A new colour picker</h2><p class="release__date">October 26, 2026</p><p>A new colour picker in the settings window. <code>configs.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
-<h5>🎨Changed</h5>
+        <div class="doc-body"><h1>v13.0.0 - Unreleased</h1>
+<h3>Changed</h3>
 <ul>
-<li><strong>A new colour picker</strong> for the overlay colours. A click on the swatch next to a colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:<ul>
-<li>a field for saturation and brightness and a hue bar, both to click or drag,</li>
-<li>sliders for red, green and blue — the mouse wheel nudges them by one,</li>
-<li>a row of ready colours.</li>
+<li><strong>The settings window is UIFramework&#39;s.</strong> <code>[HM] - Settings</code> is now UIFramework&#39;s generic settings action: it loads
+<code>UIFramework.dll</code> from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">UIFramework releases</a> on
+the first open (it asks first, checks the file&#39;s hash) and keeps it current, and the game itself declares every
+setting, message and page of the window in one table (<code>UiSchema.Table</code> in <code>Hangman-Game.cs</code>, carried by the
+scoreboard action too). The pages are the same - Game, Words, Overlay, Access, Messages, Board, Log - plus a help
+page and a customise mode (the pencil: rename, move or hide pages and fields, accent colour, language).</li>
+<li><strong>English or German.</strong> With the window&#39;s language set to <code>de</code>, every setting, section, page and message reads in
+German. The help and about pages, the list column headers and the name-list placeholder stay English for now.</li>
+<li><code>configs.json</code> keeps working as it is: the window reads the old names (<code>MaxWrongGuesses</code>, <code>MsgGameStart</code>, …)
+through aliases and writes the new ones on the first save. <code>OverlayBackgroundOpacity</code> is stored as a percent now
+(an old 0.5 reads as 50). <code>DarkMode</code> moves into <code>uiframework.layout.json</code>; the Egg mode is gone (the framework&#39;s
+customise mode has a rainbow of its own). <code>messages.json</code> from before v12 is still read for a message the settings
+file does not hold.</li>
+<li><strong>The log in the framework&#39;s format.</strong> Lines now read <code>[time] RESULT | User: … | Platform: … | Round: … | …</code>, which
+the Log page filters by result, platform and day; files from before v13 show as raw lines. A <em>Write a log file per
+day</em> switch sits on the Log page.</li>
+<li><strong>Importing words</strong> is a section of the Words page: source, topic, language, limits and difficulty as fields, then
+<em>Import now</em>. The fetched words skip what the list already holds and land in <code>Hangman-Wordlist.json</code>; reopen the
+window to see them in the list (a Save before that writes the list as shown). Gone with the old window: the preview
+with ticks before anything is added, search and filter in the list, Ctrl/Shift selection (a framework gap, noted
+for a later UIFramework release). The IGDB client ID and secret are typed into the import fields; they are still
+kept in Streamer.bot&#39;s global variables after the first import, never in <code>configs.json</code>.</li>
+<li><em>Categories in play</em> became <em>Categories left out</em>: type a category name and press Enter to leave it out; the
+checkbox list of the old window needed the word list at hand.</li>
+<li>What the old window did on its own - the unsaved-changes counter, the question before changes are discarded,
+number fields that refuse text, the theme - is UIFramework&#39;s now and behaves as in the other chat games. The
+ranges the old window enforced on save (at least one life, chances within 0..100, the overlay scale not below
+10 %, 1 to 25 places on the board, …) are applied by the game when it reads the file, so a hand-edited value
+cannot push it out of range either.</li>
+<li>The OBS buttons are <em>Create the browser source in OBS</em> and <em>Refresh the overlay in OBS</em>; both answer in the
+window&#39;s footer instead of a message box. <em>Open the word list folder</em> and <em>Open the overlay folder</em> buttons.</li>
 </ul>
-</li>
-<li>Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.</li>
-</ul>
-<h2>v12.0.1 — A settings file that survives being locked or damaged</h2><p class="release__date">October 25, 2026</p><p>A hardening release for the settings file. <code>configs.json</code> is read as it stands — no setting changes, and nothing to redo after the update.</p>
-<h5>🐛Fixed</h5>
+<h3>Added</h3>
 <ul>
-<li>Reads and writes wait out a <code>configs.json</code> the game script is holding open instead of failing on the first try.</li>
+<li><strong>Free mode.</strong> A switch on the Game page (and a pill in the header): letters and wins pay nothing while it is on.
+<code>!SetFreeHangman</code> and <code>!EndFreeHangman</code> switch it from chat (moderators; two new commands in the import, disabled
+until you enable them), with a Started and an Ended message and the custom triggers <code>Hangman: Free Game Start</code> and
+<code>Hangman: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or
+<code>EndFreeGame</code>.</li>
+<li><strong>The round as arguments.</strong> <code>Hangman: Game Win</code>, <code>Game Loss</code>, <code>Game Stopped</code> and <code>Timeout</code> now carry the round:
+<code>roundOutcome</code>, <code>roundWord</code>, <code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundLetters</code>, <code>roundPlatform</code>, <code>roundWinner</code>,
+<code>roundWinnerId</code>, <code>roundPoints</code>, <code>roundWrongGuesses</code>, <code>roundMaxWrong</code>, <code>roundBlitz</code>, <code>roundFree</code>, <code>roundCurrency</code>,
+<code>roundParticipants</code>; the same in the globals <code>hm_last…</code>, and <code>GetLastRoundResult</code> (an Execute C# Method on the
+game action) hands them to any other action.</li>
+</ul>
+<hr>
+<h1>v12.1.0</h1>
+<h3>Changed</h3>
+<ul>
+<li><strong>A new colour picker</strong> for the overlay colours. A click on the swatch next to a colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel: a field for saturation and brightness and a hue bar, both to click or drag, sliders for red, green and blue (the mouse wheel nudges them by one), and a row of ready colours. Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.</li>
+</ul>
+<hr>
+<h1>v12.0.1</h1>
+<h3>Fixed</h3>
+<ul>
+<li>A <code>configs.json</code> that the game script happens to be holding open is waited out instead of failing on the first try, both when reading and when writing.</li>
 <li>A damaged <code>configs.json</code> could overwrite the good <code>configs.json.bak</code> on the next save. The file being replaced only becomes the backup when it parses itself, so the last readable copy is never lost to a broken one.</li>
 <li>Three places still read the settings through the path that throws on a damaged file: the first time anything in the script is touched, Reset to defaults, and closing the window. All three now fall back to the backup or the defaults, the way the window already did.</li>
 <li>The global and per-user cooldowns are handed to Streamer.bot as one pair rather than two separate numbers, and once more after the window has closed, so a save made in the last moment is not lost.</li>
 <li>A settings window that failed while it was being built left its thread running with nothing to show. The dispatcher is now shut down in either case.</li>
 </ul>
 <hr>
-<p>Import the attached <code>HangmanGame.sb</code>, or paste the <a href="https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md">import string</a>.</p>
-<h2>v12.0.0 — Word Import, Blitz, Evil Hangman &amp; Streaks</h2><p class="release__date">October 25, 2026</p><h5>Added</h5>
+<h1>v12.0.0</h1>
+<h3>Added</h3>
 <ul>
 <li><strong>Word import.</strong> An Import button on the Words page fetches words with hints from four free sources, shows them for review and adds the ticked ones to a category of your choice:<ul>
 <li><strong>Wikidata</strong> (CC0): countries, capitals, big cities, rivers, mountains, chemical elements, musical instruments, sports, dog breeds, or any Wikidata class by its Q-ID. German or English, best known first.</li>
@@ -545,13 +614,15 @@ If you still find bugs or have something to say, please let me hear it :)</p>
 <li>Seven new chat messages on the Messages page, under Blitz, Evil Hangman and Streaks.</li>
 <li><strong>Refresh Overlay in OBS</strong> button on the Overlay page. It reloads every OBS browser source that shows <code>hangman_overlay.html</code>.</li>
 </ul>
-<h5>Changed</h5>
+<h3>Changed</h3>
 <ul>
 <li>The overlay is now version 9. It replaces the old file on its own and keeps it as <code>hangman_overlay.html.v5.bak</code>.</li>
 <li>OBS keeps running the overlay page it loaded, even after the file on disk is replaced, so an update used to stay invisible until the browser source was refreshed by hand. The game now refreshes those browser sources itself over Streamer.bot&#39;s OBS connection after an update and once per Streamer.bot session, and the page reloads itself whenever a newer version is on disk.</li>
 <li>A round ended with <code>!killhm</code> shows <strong>GAME OVER - MODERATOR STOPPED</strong> in orange on the overlay, instead of the red &quot;GAME OVER - <word>&quot; of a lost round.</li>
 </ul>
-<h2>v11.0.0 — New GUI, some fixes and QoL</h2><p class="release__date">October 21, 2026</p><h5>Changed</h5>
+<hr>
+<h1>v11.0.0</h1>
+<h3>Changed</h3>
 <ul>
 <li>Settings window rebuilt: icon rail instead of the sidebar, status pills in the header, sliding switches, <code>Ctrl+S</code> to save and <code>Ctrl+1</code>…<code>8</code> to switch pages.</li>
 <li>15 pages reduced to 8: Game, Words, Overlay, Access, Messages, Board, Log, About.</li>
@@ -561,18 +632,18 @@ If you still find bugs or have something to say, please let me hear it :)</p>
 <li>Wordlist and action-log tables follow the window theme instead of showing up white.</li>
 <li>Unsaved changes show as a status line rather than a count.</li>
 </ul>
-<h5>Added</h5>
+<h3>Added</h3>
 <ul>
 <li>A damaged <code>configs.json</code> no longer blocks the window: it is kept as <code>configs.json.broken</code> and the settings come from <code>configs.json.bak</code>, which every save now leaves behind, or from the defaults.</li>
 <li>Only one settings window opens; a second trigger brings the existing one to the front.</li>
 <li>The colour wheel takes a click or a drag to pick hue and saturation.</li>
 </ul>
-<h5>Removed</h5>
+<h3>Removed</h3>
 <ul>
 <li>Platform selection. Twitch, YouTube and Kick all play — restrict the game per platform in Streamer.bot instead.</li>
 <li>Sidebar search, Reset Page, and the placeholder chips under every message box.</li>
 </ul>
-<h5>Fixed</h5>
+<h3>Fixed</h3>
 <ul>
 <li>Upgrades from v9 forced a fixed channel point stake: the bet-mode migration ran only in the settings window, not in the game action.</li>
 <li>25 Windows references in the export were relative to the exporting Streamer.bot&#39;s folder and were dropped on import elsewhere.</li>
@@ -581,7 +652,9 @@ If you still find bugs or have something to say, please let me hear it :)</p>
 <li><code>MsgGameStart</code> opened with a broken character instead of 🎮.</li>
 <li>The update check compared tags for inequality and would offer a downgrade; it compares versions now.</li>
 </ul>
-<h2>v10.0.0 — Major Update Update - OBS Overlay &amp; New GUI!</h2><p class="release__date">August 7, 2026</p><h4>✨ New Settings GUI</h4>
+<hr>
+<h1>v10.0.0</h1>
+<h2>✨ New Settings GUI</h2>
 <p>The settings window has been rebuilt from the ground up.</p>
 <ul>
 <li><strong>Sidebar navigation</strong> replaces the tab strip. Everything is grouped under <strong>Setup</strong>, <strong>Game</strong>, <strong>Players</strong>, <strong>Results</strong> and <strong>Help</strong>, and nothing is hidden inside a sub-tab anymore.</li>
@@ -594,29 +667,21 @@ If you still find bugs or have something to say, please let me hear it :)</p>
 <li><strong>Wordlist page</strong>: multi-select with Ctrl+click / Shift+click / Ctrl+A and Delete-key support, a live count of how many words your filter is showing, and the difficulty range and category filters moved directly above the words they apply to.</li>
 <li><strong>Folder buttons</strong> on the Wordlist and Action Log pages, so you can jump to the files on disk.</li>
 </ul>
-<h4>📺 OBS Overlay — new</h4>
+<h2>📺 OBS Overlay — new</h2>
 <p>Hangman can now draw itself on stream. A local HTML file acts as an OBS Browser Source and repaints itself as the round plays out — no refreshing, no scene switching, nothing to click mid-game.</p>
 <p><strong>Get it running in one click.</strong> The Overlay page has a <em>Setup Overlay in OBS</em> button that creates the scene and the browser source for you over your existing Streamer.bot OBS connection, pointed at the right file. Prefer to do it by hand? The folder is one button away and the file is a plain local <code>.html</code>.</p>
 <p><strong>The gallows draws itself.</strong> The figure is vector art that fills in as chat gets it wrong, and it adapts to however many lives you allow:</p>
 <ul>
-<li><p><strong>Proportional</strong> — the classic six body parts, spread evenly across your max wrong guesses, so the last life always completes the figure</p>
-</li>
-<li><p><strong>Classic + Gallows</strong> — ten steps, adding the base, post, beam and rope as separate stages, which suits higher life counts</p>
-</li>
-<li><p><strong>Auto</strong> — picks between the two based on your settings</p>
-</li>
-<li><p>Category, lives as hearts, guessed letters, wrong letters, wrong words and the hint are each their own toggle, so the overlay can be a full scoreboard or just a word and a gallows.</p>
-</li>
-<li><p>Independent colours for the gallows, the figure, the text and the accent, plus a background colour with its own opacity — transparent out of the box, so it drops onto any scene. Scale the whole overlay and the text separately to fit the space you have.</p>
-</li>
-<li><p>The masked word scales down to the width of your browser source and wraps if it has to, so a twenty-letter answer stays on screen instead of running off the edge. It is always drawn in uppercase for readability at a distance.</p>
-</li>
-<li><p>The hint only appears once the game actually reveals it in chat, honouring <em>Use Hints</em>, <em>Hint After Wrong Guesses</em> and <em>Hints Stop Reveal</em> — so the overlay never spoils an answer your chat has not earned yet.</p>
-</li>
-<li><p>When a round ends the overlay announces <code>SOLVED</code>, <code>GAME OVER</code> or <code>TIME UP</code> with the answer, then fades out after a delay you choose — or set it to <code>0</code> and it disappears the moment the round is done.</p>
-</li>
+<li><strong>Proportional</strong> — the classic six body parts, spread evenly across your max wrong guesses, so the last life always completes the figure</li>
+<li><strong>Classic + Gallows</strong> — ten steps, adding the base, post, beam and rope as separate stages, which suits higher life counts</li>
+<li><strong>Auto</strong> — picks between the two based on your settings</li>
 </ul>
-<h4>🎯 Channel Points — the stake is now detected automatically</h4>
+<p><strong>Show exactly what you want.</strong> Category, lives as hearts, guessed letters, wrong letters, wrong words and the hint are each their own toggle, so the overlay can be a full scoreboard or just a word and a gallows.</p>
+<p><strong>Make it yours.</strong> Independent colours for the gallows, the figure, the text and the accent, plus a background colour with its own opacity — transparent out of the box, so it drops onto any scene. Scale the whole overlay and the text separately to fit the space you have.</p>
+<p><strong>Long words fit.</strong> The masked word scales down to the width of your browser source and wraps if it has to, so a twenty-letter answer stays on screen instead of running off the edge. It is always drawn in uppercase for readability at a distance.</p>
+<p><strong>It follows your rules.</strong> The hint only appears once the game actually reveals it in chat, honouring <em>Use Hints</em>, <em>Hint After Wrong Guesses</em> and <em>Hints Stop Reveal</em> — so the overlay never spoils an answer your chat has not earned yet.</p>
+<p><strong>It knows when to leave.</strong> When a round ends the overlay announces <code>SOLVED</code>, <code>GAME OVER</code> or <code>TIME UP</code> with the answer, then fades out after a delay you choose — or set it to <code>0</code> and it disappears the moment the round is done.</p>
+<h2>🎯 Channel Points — the stake is now detected automatically</h2>
 <p><strong>The Bet Mode dropdown is gone.</strong> The stake is read from the redemption itself:</p>
 <ol>
 <li>The viewer typed a number into the reward → that number is the stake</li>
@@ -626,51 +691,20 @@ If you still find bugs or have something to say, please let me hear it :)</p>
 <p>The old Fixed mode lives on as a single field, <strong>Fixed Stake Override</strong>: leave it at <code>0</code> to let detection do its thing, or set anything above <code>0</code> to force every redemption to stake exactly that much.</p>
 <p>Whichever route was taken is written to the action log on every redemption (<code>Stake mode: input</code>), so you can confirm what actually happened.</p>
 <p><strong>Existing setups are migrated automatically.</strong> If you were on Cost, Input or Free, the override is set to <code>0</code> and detection takes over. If you were on Fixed, your amount is kept exactly as it was.</p>
-<h4>📋 Action log</h4>
+<h2>📋 Action log</h2>
 <ul>
-<li>Logs now roll over each day to mark a clear cut between streams.</li>
-<li>Columns are now better readable and scrollable in any direction if needed.</li>
-<li>Added a folder button to open the logs folder.</li>
+<li><strong>Logs are kept forever.</strong> One file per day is still written to the <code>Logs</code> folder, and nothing is deleted automatically anymore.</li>
+<li>The <strong>Log Retention (Days)</strong> setting has been removed.</li>
 </ul>
-<h4>🔠 Wordlist</h4>
+<h2>🔠 Wordlist</h2>
 <ul>
-<li>Added a folder button to edit the file directly.</li>
-<li>Reworked the input fields, you can now edit fields faster with common text editor shortcuts.</li>
+<li><strong>The two default wordlists now match.</strong> A fresh install and the <em>Load Defaults</em> button used to hand out completely different sets of words — 24 generic ones on install, a different 15 from the button. Both now ship the same list.</li>
 </ul>
-<hr>
-<h3>Important</h3>
-<p>Make sure you are running the current stable <code>1.0.7</code> of streamer.bot.
-If you&#39;re still on 1.0.4 you need to go through all 3 actions, click on their <code>Execute Code</code>, click on <code>Find Refs</code> and <code>Ok</code></p>
-<p>Let me know about issues :)</p>
-<h2>v9.0.2 — Bye Trovo</h2><p class="release__date">July 24, 2026</p><ul>
-<li>Removed Trovo for good</li>
-<li>Fixed some minor things</li>
-<li>Updated for streamer.bot 1.0.5 beta</li>
-</ul>
-<h2>v9.0.1</h2><p class="release__date">June 25, 2026</p><ul>
-<li>Removed some dead code from the scoreboard</li>
-<li>updated Update notifications</li>
-<li>minor fixes and typos</li>
-</ul>
-<h2>v9.0.0 — Initial Github Release</h2><p class="release__date">June 23, 2026</p><ul>
-<li>Completely reworked Hangman gameplay</li>
-<li>You now need to use a command to participate the game, e.g. <code>!g</code></li>
-<li>Twitch Channel Points support (WIP - since i can&#39;t test it myself and adapted the same mechanic i used in other scripts)</li>
-<li>Hangman can now be locked to &quot;Mod only&quot; for starts</li>
-<li>All messages are now editable</li>
-<li>Fixed: Hangman does now correctly end itself and give a reminder before it fully ends a round</li>
-<li>Hangman now also supports Currency Core by StreamUP and LOYALITY Points by tawmae</li>
-<li>You can reward players for guessing a correct letter</li>
-<li>Anti Cheat now can block spam</li>
-<li>Addicteds can be punished and are slowed down</li>
-<li>Boost won points of subscribers/VIPs</li>
-<li>Add/Edit/Remove your wordlist right in the GUI</li>
-<li>Filter min/max difficulty used in the game</li>
-<li>Hints are now not only just the next possible letter but a real &quot;hint&quot;</li>
-<li>Scoreboard got fully reworked</li>
-<li>Action log is hardcoded to always run and logs everything</li>
-<li>Platform toggles to disable/enable a unwanted platform</li>
-<li>Many more</li>
+<h2>⚠️ Upgrade notes</h2>
+<ul>
+<li>Removed settings: <strong>Log Retention (Days)</strong> and <strong>Bet Mode</strong>.</li>
+<li><strong>Fixed Bet Amount</strong> is now <strong>Fixed Stake Override</strong> and defaults to <code>0</code> (automatic). See the Channel Points section above for how existing values are carried over.</li>
+<li>Your <code>configs.json</code> carries over as-is. Settings that no longer exist are ignored on load and dropped the next time you save.</li>
 </ul>
 </div>
       </section>

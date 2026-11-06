@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/blackjack-game/">
-  <meta property="og:title" content="Blackjack Game  •  v16.3.1">
+  <meta property="og:title" content="Blackjack Game  •  v17.2.0">
   <meta property="og:description" content="Blackjack against the dealer or another chatter, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/blackjack-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v16.3.1">
+  <meta name="twitter:data1" content="v17.2.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"16.3.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":[],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"17.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
 <body data-repo="Blackjack-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -114,6 +114,10 @@ instead of waiting for the next chat command.</li>
 <li>📺 <strong>An overlay with real cards.</strong> Card faces, deal animations, a VS layout for duels, seats curved around
 the dealer and countdown rings on open prompts. It runs as a local file or from a web server, OBS 33
 included.</li>
+<li>🆓 <strong>Free Game from chat.</strong> <code>!SetFreeBlackjack</code> and <code>!EndFreeBlackjack</code> (moderators) switch Free Game, with a
+line to chat and a custom trigger each.</li>
+<li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every settled hand, duel and House seat, with the hand as
+arguments.</li>
 <li>💬 <strong>169 chat lines, 50 stat variables.</strong> Every message is editable with a live preview. Stats live in
 persisted <code>bjg_*</code> user variables, and the leaderboard ranks combined lifetime net from table and duels.</li>
 </ul>
@@ -133,11 +137,18 @@ persisted <code>bjg_*</code> user variables, and the leaderboard ranks combined 
         <div class="doc-body"><h1>Import</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/2c17f5a0-15f3-4396-a277-a66638017fb3"> </p> <p>Click <code>Import</code> in <a href="https://streamer.bot/">streamer.bot</a> and drag the <a href="https://github.com/aaskjer/Blackjack-Game/releases">BlackjackGame.sb</a> file into the window, or paste the <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md">import string</a> instead.</p>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/a1c731fd-6ef0-4bf2-a312-05e3c95e0feb"> </p> <p><code>Import</code>, then <code>Yes</code> on the popups that follow.</p>
-<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/19cc11ee-647e-401a-aafd-cde610918e6b"> </p><p>Enable the commands in streamer.bot&#39;s <code>Commands</code> tab. They arrive switched off, so nothing answers chat until you do.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/19cc11ee-647e-401a-aafd-cde610918e6b"> </p><p>Enable the commands in streamer.bot&#39;s <code>Commands</code> tab. They arrive switched off, so nothing answers chat until you do. <code>!SetFreeBlackjack</code> and <code>!EndFreeBlackjack</code> (moderators) switch Free Game from chat; enable them if you want that.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8b7c43b3-d9de-4518-94a5-e9d38c8e219d"> </p><p>Right-click <code>Test</code> in the trigger section and choose <code>Test Trigger</code> to open the settings window.</p>
+<p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
+all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
+<code>Yes</code> fetches it (about 190 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
+Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by hand
+from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released
+the same dialog comes back once; <code>Cancel</code> skips that version.</p>
 <p align="center"><img loading="lazy" alt="The Table page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-table.png" width="460"></p><p>Work through the pages in the rail, save, and you are playing. The game reads its settings fresh on every command, so nothing needs restarting.</p>
 <p>Three pages are worth a look before the first hand: <strong>Table</strong> for the stakes and the dealer, <strong>Access</strong> for the points variable and who may play, and <strong>Messages</strong> if you want the game to sound like your channel. Every chat line there comes with a live preview, filled in the way chat will see it.</p>
+<p>The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game.</p>
 <p align="center"><img loading="lazy" alt="The Messages page with its chat preview" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-messages.png" width="460"></p><h1>OBS Overlay</h1>
 <p align="center"><img loading="lazy" alt="The Overlay page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-overlay.png" width="460"></p><p>Connect streamer.bot to OBS, set the connection number, scene and source name on the <strong>Overlay</strong> page, and press <code>Set up in OBS</code>. The game creates the scene and a 1300 × 1080 browser source pointing at the overlay file — move and resize it from there as you like.</p>
 <p>Adding the source by hand works too: a Browser Source with <strong>Local file</strong> ticked, pointing at <code>blackjack_overlay.html</code> in the overlay folder. A source that points at a <code>file:///</code> address works as well, OBS 33 included.</p>
@@ -173,27 +184,34 @@ The seats curve around the dealer. While the join window runs, the open ones sho
 <td>The game. Every gameplay command points here</td>
 </tr>
 <tr>
-<td><strong>Blackjack Game - Settings</strong></td>
-<td>Opens the settings window</td>
+<td><strong>[BJG] - Settings</strong></td>
+<td>Opens the settings window; downloads <code>UIFramework.dll</code> on the first open</td>
 </tr>
 <tr>
-<td><strong>Blackjack Game - Stats</strong></td>
+<td><strong>Blackjack Leaderboard</strong></td>
 <td>Handles <code>stats</code> and <code>allstats</code></td>
 </tr>
 </tbody></table>
-<p>Point <code>stats</code> and <code>allstats</code> at the Stats action and everything else at the game action. The script matches on command ID, not on the word you type, so the trigger can be anything you like as long as the ID matches.</p>
+<p>Point <code>stats</code> and <code>allstats</code> at the Leaderboard action and everything else at the game action. The script matches on command ID, not on the word you type, so the trigger can be anything you like as long as the ID matches.</p>
 <hr>
 <p><strong>Q: Where does everything live?</strong></p>
 <p>Under your Streamer.bot base directory:</p>
 <pre><code>Chat Games/Blackjack Game/BJG-Settings.json              ← settings and chat messages
+Chat Games/Blackjack Game/uiframework.layout.json        ← your layout of the window: theme, renamed or hidden pages and fields
 Chat Games/Blackjack Game/Overlay/blackjack_overlay.html ← the OBS browser source
 Chat Games/Blackjack Game/Overlay/blackjack_state.json   ← the live state the overlay reads
 Chat Games/Logs/BJG-log-yyyy-MM-dd.txt                   ← one log file per day
+UIFramework/lib/&lt;version&gt;/UIFramework.dll                ← the settings window, downloaded on first open
 </code></pre>
 <p>The overlay folder is the one piece you can move; see the Overlay section below. Nothing here needs editing by hand — the settings window writes all of it.</p>
 <hr>
+<p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
+<p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[BJG] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
+<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way; <code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. The running DLL is never overwritten — a new one goes into its own version folder and is used from the next start.</p>
+<hr>
 <p><strong>Q: The settings window will not open.</strong></p>
 <p>Look in the Streamer.bot log for the error, and <a href="https://github.com/aaskjer/Blackjack-Game/issues">report it</a> if it looks like a defect.</p>
+<p>If the log says <code>UIFramework.dll was not found</code>, the download was declined or did not finish: open the window again and answer <code>Yes</code>, or put the DLL from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">UIFramework releases</a> into <code>UIFramework\lib\&lt;version&gt;\</code> by hand.</p>
 <p>A damaged <code>BJG-Settings.json</code> does not stop the window: it says so and opens with the defaults instead. Saving from there writes a fresh file — which also means anything that was still readable in the damaged one is overwritten, so move it aside first if you want to pick anything out of it.</p>
 <hr>
 <p><strong>Q: How do I put everything back to defaults?</strong></p>
@@ -206,7 +224,10 @@ Chat Games/Logs/BJG-log-yyyy-MM-dd.txt                   ← one log file per da
 <p>The one exception is a hand that is already on the table: it keeps the rules it was dealt under.</p>
 <hr>
 <p><strong>Q: Where is dark mode?</strong></p>
-<p>The ☀️ / 🌙 button at the bottom left. The window reopens in the other theme, since the whole tree is rebuilt in the new palette rather than recoloured in place.</p>
+<p>The ☀️ / 🌙 button at the bottom left. The window reopens in the other theme, since the whole tree is rebuilt in the new palette rather than recoloured in place. The choice is kept in <code>uiframework.layout.json</code> and shared with every other window built on UIFramework.</p>
+<hr>
+<p><strong>Q: Can I rearrange the window?</strong></p>
+<p>Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto a page in the rail to move it there, right-click for <em>Rename</em>, <em>Hide</em> and <em>Move to page</em>; pages can be renamed, reordered, given another icon or hidden the same way. The bar on top picks the accent colour and the language of the shared labels, and <em>Reset layout</em> puts everything back. It all lives in <code>uiframework.layout.json</code> next to <code>BJG-Settings.json</code>, so an update of the game never undoes it. A hidden field keeps its value.</p>
 <hr>
 <p><strong>Q: Any keyboard shortcuts?</strong></p>
 <p>Ctrl+S saves. Ctrl+1 to Ctrl+9 jump to the first nine pages in the rail&#39;s order.</p>
@@ -516,6 +537,8 @@ and dies with the table.</p>
 <p><strong>Q: How do people play for nothing?</strong></p>
 <p><strong>Free Game</strong> on the Table page. Nothing is staked and nothing is won, and every line about points switches to its Free Game wording so nothing mentions money that was never on the table — the duel challenge, accept, decline, expiry and sudden-death lines included.</p>
 <p>House Mode stays shut while it is on.</p>
+<p><strong>Q: Can a moderator switch Free Game from chat?</strong></p>
+<p>Yes: <code>!SetFreeBlackjack</code> turns it on and <code>!EndFreeBlackjack</code> turns it off. The two commands come with the import, disabled and for Moderators; enable them in Streamer.bot&#39;s Commands tab. The switch is written into the settings file, so the window&#39;s pill shows it, chat gets the <strong>Started</strong> or <strong>Ended</strong> line, and your own actions can listen to <code>BJG: Free Game Start</code> and <code>BJG: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action.</p>
 <hr>
 <p><strong>Q: What does the blackjack payout change?</strong></p>
 <p>The bonus on a natural blackjack — 21 on the first two cards — paid on top of the returned stake:</p>
@@ -725,7 +748,42 @@ deal in — the game never needs to know about it.</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Blackjack-Game/releases">releases on GitHub</a>.</p><h2>v16.3.1 — A solo win posts its summary once</h2><p class="release__date">October 31, 2026</p><p>One chat fix for the solo game and two fixes for the settings window. <code>BJG-Settings.json</code> is read as it stands: no settings change, and there is nothing to redo after the update.</p>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Blackjack-Game/releases">releases on GitHub</a>.</p><h2>v17.2.0 — One settings window for all the chat games</h2><p class="release__date">November 6, 2026</p><p>The settings window moves into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, the window all of these chat games now share, and reads in English or German. The game plays as before, and your own actions can now react to every hand. <code>BJG-Settings.json</code> keeps working: old keys are read and written back under their new names on the first save.</p>
+<h3>🪟 One settings window for all the chat games</h3>
+<ul>
+<li><strong>Downloaded on first open.</strong> <code>[BJG] - Settings</code> is now a small stub. The first time you open it, it offers to download <code>UIFramework.dll</code> from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click. Newer releases are offered when you open the window, never forced; <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> turns the check off.</li>
+<li><strong>English or German.</strong> The pencil, then <em>Sprache</em>: every setting, section, page and message reads in German.</li>
+<li><strong>Customise mode.</strong> Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in <code>uiframework.layout.json</code> next to <code>BJG-Settings.json</code> and survives every import of the game.</li>
+<li><strong>The game answers the window.</strong> <em>Reset the leaderboard now</em> and <em>Set it up in OBS</em> say what happened instead of &quot;queued&quot;, and the window is built from the game&#39;s own settings table, so the two can never disagree about a key, a default or a range.</li>
+</ul>
+<h3>🔔 For your own actions</h3>
+<ul>
+<li><strong>Custom triggers</strong> (Custom &gt; Chat Game &gt; Blackjack Game): <code>BJG: Hand Won</code>, <code>BJG: Hand Lost</code>, <code>BJG: Hand Push</code>, <code>BJG: Blackjack</code> on top of Hand Won for a natural, <code>BJG: Duel Settled</code>, <code>BJG: House Hand Settled</code>, and <code>BJG: Hand Settled</code> for every hand, insurance, surrender, quit and timeout included.</li>
+<li><strong>The hand as arguments:</strong> <code>handOutcome</code>, <code>handUser</code>, <code>handPlatform</code>, <code>handMode</code> (table, duel or house), <code>handTrigger</code>, <code>handBet</code>, <code>handChange</code>, <code>handPreviousPoints</code>, <code>handNewPoints</code>, <code>handCurrency</code>. <code>GetLastHandResult</code>, run with an Execute C# Method sub-action on the game action, hands the same arguments to any other action.</li>
+</ul>
+<h3>🆓 Free Game from chat</h3>
+<ul>
+<li><strong><code>!SetFreeBlackjack</code> and <code>!EndFreeBlackjack</code></strong> (moderators) switch Free Game from chat. They come with the import, disabled: enable them in Streamer.bot&#39;s Commands tab if you want them. The switch is written into the settings file, so the window&#39;s pill shows it, and chat gets the new <em>Started</em> and <em>Ended</em> lines (Messages page, Free Game).</li>
+<li><strong><code>BJG: Free Game Start</code> and <code>BJG: Free Game End</code></strong> fire when Free Game is switched, from chat or by an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code>.</li>
+</ul>
+<h3>⚙️ Settings file</h3>
+<ul>
+<li>Keys are camelCase now (<code>useBot</code>, <code>minBet</code>, <code>addictedPayoutCut</code> as a percent). An existing file keeps working through aliases; the first save writes the new names.</li>
+<li>Light/dark and the rainbow mode live in <code>uiframework.layout.json</code>, shared with every other window built on UIFramework. An existing <code>DarkMode</code> is taken over on the first open.</li>
+<li>Values typed out of range are pulled back into range when the game reads them, not only when the window saves.</li>
+</ul>
+<h3>🔧 Fixed</h3>
+<ul>
+<li>The overlay&#39;s duel prompt names the commands chat types, <code>!accept</code> / <code>!decline</code>, instead of <code>accept</code> / <code>decline</code>. The overlay is version 14 and replaces an older copy on the next command, keeping that one as a <code>.bak</code>.</li>
+<li>The Stats page no longer names a field that no setting matches, which the window reported as a schema problem.</li>
+</ul>
+<h3>🗑️ Removed</h3>
+<ul>
+<li>The window&#39;s own WPF code and update check (about 4,800 lines) left the import; the DLL carries them now.</li>
+</ul>
+<h3>Updating</h3>
+<p>Import <code>BlackjackGame.sb</code> below, or the <a href="https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md">import string</a>, over the existing actions. Your settings and player statistics stay where they are. The two Free Game commands arrive disabled.</p>
+<h2>v16.3.1 — A solo win posts its summary once</h2><p class="release__date">October 31, 2026</p><p>One chat fix for the solo game and two fixes for the settings window. <code>BJG-Settings.json</code> is read as it stands: no settings change, and there is nothing to redo after the update.</p>
 <h5>💬 Chat</h5>
 <ul>
 <li><strong>A solo win posts its final summary once.</strong> When the dealer busted, when the player&#39;s hand was higher, or when the player won a tie-break, chat got the <code>Final - {user}: … vs dealer …</code> line twice in a row. Now it comes once, followed by the win message and the balance, in points mode and in free games alike. No message text changes.</li>

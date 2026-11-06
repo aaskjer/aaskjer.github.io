@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/battleship-game/">
-  <meta property="og:title" content="Battleship Game  •  v1.0.0">
+  <meta property="og:title" content="Battleship Game  •  v2.0.0">
   <meta property="og:description" content="Chat plays Battleship against a CPU Admiral on an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/battleship-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.0.0">
+  <meta name="twitter:data1" content="v2.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.0.0-pre-release.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle"],"words":[],"timers":0,"sites":[],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"2.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Battleship-Game" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md">
+<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -117,9 +117,10 @@ ship, running points and accuracy. It installs itself and keeps the previous ver
 updates.</li>
 <li>🏆 <strong>Records other actions can read.</strong> Stats live in persisted <code>bsg_*</code> user variables. The leaderboard ranks
 net result, points won, ships sunk or accuracy, and resets weekly or monthly if you want seasons.</li>
-<li>⚙️ <strong>One settings window.</strong> Light and dark themes, live rule summaries, one-click OBS setup and a filterable
-log. Every chat message is editable, and Free Game mode has its own set, so no line mentions points that
-were never at stake.</li>
+<li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>
+and downloaded on first open: light and dark themes, live rule summaries, one-click OBS setup, a filterable
+log and a customise mode that lets you rename, reorder and hide pages and fields. Every chat message is
+editable, and Free Game mode has its own set, so no line mentions points that were never at stake.</li>
 </ul>
 <hr>
 <h2>Credits</h2>
@@ -233,7 +234,14 @@ were never at stake.</li>
 </ul>
 <p>Twitch, YouTube and Kick all play, and every reply goes to the chat the command came from. To leave a platform out, untick it in the commands&#39; sources (for example <em>Kick Message</em>).</p>
 <h2>3. Open the settings window</h2>
-<p>Open the <strong>[BG] - .Settings</strong> action, right-click <strong>Test</strong> under <strong>Triggers</strong> and choose <strong>Test Trigger</strong>. Everything is configured there; the pages sit in the rail on the left — Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log and About (Ctrl+1 to Ctrl+0).</p>
+<p>Open the <strong>[BG] - .Settings</strong> action, right-click <strong>Test</strong> under <strong>Triggers</strong> and choose <strong>Test Trigger</strong>. Everything is configured there; the pages sit in the rail on the left — Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log, How to play and About (Ctrl+1 to Ctrl+9 for the first nine).</p>
+<p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
+all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
+<strong>Yes</strong> fetches it (about 200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
+Streamer.bot and opens the window. <strong>No</strong> opens that folder instead, for when you would rather drop the file in by
+hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
+released the same dialog comes back once; <strong>Cancel</strong> skips that version.</p>
+<p>Hover over an option for a tooltip with the details. <strong>Save</strong> or Ctrl+S keeps your changes, <strong>Save &amp; Exit</strong> also closes the window. The buttons at the bottom left switch between dark and light, reset everything or only the page in front, and open the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game.</p>
 <p>At minimum, check:</p>
 <ul>
 <li><strong>Game</strong> → your points variable, if you use neither Currency Core nor LOYALTY POINTS (both are found on their own).</li>
@@ -254,7 +262,7 @@ were never at stake.</li>
 <ol>
 <li>Install Heat on your channel and activate it as an <strong>Overlay</strong> extension.</li>
 <li>In Streamer.bot open <strong>Servers/Clients ▸ WebSocket Server</strong>, tick <strong>Auto Start</strong> and press <strong>Start Server</strong>. The overlay hands each click to the <strong>Battleship Game</strong> action through it. The default address, <code>127.0.0.1:8080</code>, needs no change.</li>
-<li>In the settings window open <strong>Clicks</strong>, switch on <strong>Fire by clicking the stream</strong> and save. Your channel ID is taken from the Twitch broadcaster account connected to Streamer.bot.</li>
+<li>In the settings window open <strong>Clicks</strong>, switch on <strong>Fire by clicking the stream</strong> and save. Your channel ID is taken from the Twitch broadcaster account connected to Streamer.bot; the page shows which one it found.</li>
 <li>If you added the browser source by hand or resized it, make it cover the whole canvas: set its width and height to your canvas size, then right-click it ▸ <strong>Transform ▸ Fit to screen</strong>. Or enter where it sits on the Clicks page.</li>
 <li>Check it: switch on <strong>Show every click on the overlay</strong>, save, then while live open your channel in a browser and click around the video. Each marker should land under the pointer, and the box in the corner says whether Heat and Streamer.bot are connected. Switch it off afterwards — viewers see it too.</li>
 </ol>
@@ -295,11 +303,11 @@ were never at stake.</li>
 </tr>
 <tr>
 <td><code>check-settings.ps1</code></td>
-<td>Catches drift between the three <code>Settings</code> classes, and control tags that name a property that does not exist</td>
+<td>Holds the settings table in the game and the scoreboard together, and checks that every setting is read and every read is declared</td>
 </tr>
 <tr>
-<td><code>gui-shots.ps1</code></td>
-<td>Renders every page of the settings window offscreen to PNG, or with <code>-Test</code> drives the real window through ~80 behaviour checks</td>
+<td><code>run-window-tests.ps1</code></td>
+<td>Opens the real UIFramework window through the settings stub over an old-style settings file, checks the migration, the presets and summaries, and writes the schema into the UIFramework repository</td>
 </tr>
 <tr>
 <td><code>sync-overlay.ps1</code></td>
@@ -509,6 +517,27 @@ Turning it on never wipes anything immediately — the current period is recorde
 happens at the next boundary. There is also a Reset Now button with a confirmation spelling out
 exactly what it will clear.</p>
 <hr>
+<h2>The settings window</h2>
+<h3>What is UIFramework.dll, and why does the window want to download something?</h3>
+<p>The settings window is no longer part of the import. It lives in
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of
+these chat games, so a fix or a new feature there reaches every game at once. The <code>[BG] - .Settings</code> action only
+loads that DLL and hands it the game&#39;s settings table.</p>
+<p>The first open asks before fetching anything. <strong>Yes</strong> downloads the file from the UIFramework releases, checks it
+against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot
+folder. **No** opens that folder so you can place the file yourself. Later releases are offered the same way;
+**Cancel** skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the
+log says <code>UIFramework.dll was not found</code>, open the window again and answer <strong>Yes</strong>, or put the DLL from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
+<h3>Can I rearrange the window?</h3>
+<p>Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto
+a page in the rail to move it there, right-click for <em>Rename</em>, <em>Hide</em> and <em>Move to page</em>; pages can be renamed,
+reordered, given another icon or hidden the same way. The bar on top picks the accent colour, and <em>Reset layout</em>
+puts everything back. It all lives in <code>uiframework.layout.json</code> next to <code>BSG-Settings.json</code>, so an update of the
+game never undoes it. A hidden field keeps its value.</p>
+<h3>I updated and my settings file looks different.</h3>
+<p><code>BSG-Settings.json</code> keys are camelCase since 2.0.0, and the percentages are stored as percent. Your old file is
+read through aliases and scaled on the way, and the first save writes the new names; nothing is lost.</p>
 <h2>Setup</h2>
 <h3>Which platforms are supported?</h3>
 <p>Twitch, YouTube and Kick. All three always play; to leave one out, untick it on the commands&#39;
@@ -521,8 +550,7 @@ variable by hand on the Game page.</p>
 <p>Whispers are Twitch-only — Streamer.bot has no whisper API for YouTube or Kick. Twitch also silently
 drops whispers from accounts without a verified phone number. Failures are logged rather than
 surfaced, and play continues, because the overlay already shows the player their own fleet. You can
-turn the whisper off entirely on the Messages page: pick <strong>Your fleet</strong> under Whisper, and the switch
-sits under its preview.</p>
+turn the whisper off entirely on the Access page, under Platforms.</p>
 <h3>Can I rename the commands?</h3>
 <p>Yes. The action routes on command IDs, not on the command text, so <code>!battleship</code> can become anything
 you like as long as the ID matches the table in the Setup Guide.</p>
@@ -531,147 +559,268 @@ you like as long as the ID matches the table in the Setup Guide.</p>
 <strong>Enable All</strong>. After updating from 1.0.0 do this again: the import brings <code>!board</code> and the commands
 for the chat&#39;s battle and the duel, which 1.0.0 did not have.</p>
 <h3>An action doesn&#39;t compile after the import.</h3>
-<p>Since 2.0.0 the import&#39;s .NET references hold wherever Streamer.bot is installed, so <strong>Find Refs</strong> is
+<p>Since 2.0.0-pre-release.1 the import&#39;s .NET references hold wherever Streamer.bot is installed, so <strong>Find Refs</strong> is
 no longer needed. If Streamer.bot still reports a missing reference, open the action&#39;s <strong>Execute
 Code</strong> sub-action, press <strong>Find Refs</strong>, then <strong>OK</strong>. The game needs Streamer.bot 1.0 or newer.</p>
 </div>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/Battleship-Game/releases">releases on GitHub</a>.</p><h2 data-prerelease>v2.0.0-pre-release.2 — A new colour picker</h2><p class="release__date">October 26, 2026 · pre-release</p><p>Everything from <a href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1">v2.0.0-pre-release.1</a>, plus a new colour picker in the settings window. <code>BSG-Settings.json</code> is read as it stands — no setting changes.</p>
-<h5>🎨 A new colour picker</h5>
+        <div class="doc-body"><h1>Changelog</h1>
+<p>All notable changes to this project are documented here.</p>
+<h2>[2.0.0] — 2026-11-03</h2>
+<p>The settings window moved into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+one window shared by all of these chat games. Battles, the chat&#39;s battle and the duel play exactly as before;
+what changed is how the settings are shown and stored.</p>
+<h3>🪟 One window, downloaded on first open</h3>
 <ul>
-<li>A click on the swatch next to an overlay colour opens the picker right under the field instead of a separate window with a colour wheel:<ul>
-<li>a field for saturation and brightness and a hue bar, both to click or drag,</li>
-<li>sliders for red, green and blue — the mouse wheel nudges them by one,</li>
-<li>a row of ready colours.</li>
+<li><strong><code>[BG] - .Settings</code> is a small stub now.</strong> The first time you open it, it asks whether to download
+<code>UIFramework.dll</code> from GitHub (about 200 KB, checked against its published SHA-256) or to show the folder it
+belongs in, <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot. Nothing is fetched without that click. When a
+newer UIFramework is published, opening the window offers it once: <em>Yes</em> downloads, <em>No</em> asks again next time
+and shows a pill in the header, <em>Cancel</em> skips that version.</li>
+<li><strong>The window is built from the game&#39;s own settings table.</strong> The game declares every setting once, the
+scoreboard carries the same table, and the window asks the game for it, so the window and the actions can never
+disagree about a key, a default or a range again.</li>
+<li><strong>The Fleet page keeps its presets and its summary.</strong> Blitz, Quick and Classic fill in the board and the ships
+as before, and the line under the ships says how many squares the fleet takes and about how many shots a battle
+needs, as the values stand. The battle clock has the same kind of summary on the Game page.</li>
+<li><strong>The Clicks page shows the broadcaster account</strong> Streamer.bot is connected to, and still adds Heat&#39;s click
+markers to OBS with one button.</li>
+<li><strong>A save that would not do what it looks like asks first</strong>: Free game off without a points variable, no ship
+sailing, a ship longer than the board, a warning that is not shorter than a turn, Click to Fire without a
+WebSocket address.</li>
+<li><strong>Customise mode.</strong> The pencil at the bottom left lets you rename, reorder, hide and move pages and fields by
+drag and drop or from the context menu, and pick the accent colour. It lives in <code>uiframework.layout.json</code> next
+to <code>BSG-Settings.json</code> and survives every import of the game.</li>
+<li>The footer counts the unsaved changes; a third button resets only the page in front, after asking, and nothing
+is written until you save; Cancel and the title bar&#39;s X ask &quot;Discard N unsaved changes?&quot; before dropping
+anything; a save that fails says so in a message box; a recompile or shutdown of Streamer.bot closes an open
+window on its way out.</li>
+</ul>
+<h3>⚙️ Settings</h3>
+<ul>
+<li><code>BSG-Settings.json</code> keys are camelCase now (<code>freeGame</code>, <code>gridSize</code>, <code>overlayHitColour</code>, <code>heatEnabled</code>), the
+percentages (the Addicted cut, the overlay scales and opacity, the blunder chance, the Heat area) are stored as
+percent instead of fractions, and &quot;Battles per hour&quot; stores 0 for no limit. An existing file keeps working: the
+old names are read through aliases and scaled on the way, and the first save writes the new ones.</li>
+<li>The cooldown messages use <code>{seconds}</code> and <code>{user}</code> instead of <code>{0}</code> and <code>{1}</code>; a text that still has the
+numbers keeps working.</li>
+<li>Light/dark lives in <code>uiframework.layout.json</code> and is shared with every other window built on UIFramework. An
+existing <code>DarkMode</code> is taken over on the first open.</li>
+<li>Values typed out of range are pulled back into range when the game reads them, not only when the window saves.</li>
+<li>The fleet whisper switch sits on the Access page under Platforms, next to the other Twitch-only notes.</li>
+</ul>
+<h3>🗑️ Removed</h3>
+<ul>
+<li>The window&#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now. The
+rainbow mode and the Egg are the framework&#39;s now.</li>
+</ul>
+<h2>[2.0.0-pre-release.2] — 2026-10-27</h2>
+<h3>🎨 A new colour picker</h3>
+<ul>
+<li>A click on the swatch next to an overlay colour opens the picker right under the field, instead of a
+separate window with a colour wheel: a field for saturation and brightness and a hue bar, both to click
+or drag, sliders for red, green and blue (the mouse wheel nudges them by one), and a row of ready
+colours. Every change goes straight into the hex box, and typing a hex code moves the picker along.
+Done or a click elsewhere closes it.</li>
+</ul>
+<h2>[2.0.0-pre-release.1] — 2026-10-26</h2>
+<h3>📦 Import</h3>
+<ul>
+<li>The import now brings all eleven commands, each wired to its action: <code>!battleship</code>, <code>!fire</code>, <code>!fleet</code>,
+<code>!board</code>, <code>!seeschlacht</code>, <code>!duel</code>, <code>!accept</code>, <code>!team</code>, <code>!stopbattle</code> (moderators only), <code>!bstats</code> and
+<code>!ballstats</code>. 1.0.0 shipped without <code>!board</code>, although the game answers it.</li>
+<li>The settings window sets the cooldowns on the <code>!battleship</code> command that comes with the import. In
+1.0.0 it set them on a command id that does not exist, so they never took effect.</li>
+<li>The .NET references are written so they hold wherever Streamer.bot is installed (repaired with
+SBRefFix).</li>
+</ul>
+<h3>🎨 Settings window in the Chat Games look</h3>
+<p>Rebuilt in the design of Classic Chat Gamble and the Slot Machine Game.</p>
+<ul>
+<li>A rail of ten pages — Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log, About
+(Ctrl+1 to Ctrl+0) — with pills in the header for Free game and the game modes that are on, and a
+footer with the theme and reset buttons, Cancel, Save and Save &amp; Exit. Switches, segment bars and
+name chips instead of tick boxes and comma lists. Shift on the theme button: rainbow, for one opening.</li>
+<li>One Messages page instead of four: pick any of the 73 messages, insert placeholders from chips and
+see it in a chat preview with that message&#39;s own senders (bot account, /me, the fleet whisper).</li>
+<li>Ship lengths and values side by side on the Fleet page; the economy, the Admiral and the battle clock
+on the Game page; the cooldowns and the blocked and addicted lists on the Access page.</li>
+<li>The update check runs while the window is open and shows a red pill only for a newer release. It
+used to hold the window up for up to 3 seconds, counted any other tag as an update, and its answer
+never reached the window.</li>
+<li>A damaged <code>BSG-Settings.json</code> is reported and kept as <code>.broken</code>, instead of being replaced with the
+defaults on the next save without a word. Saving is atomic, so the game never reads half a file,
+and every save leaves <code>BSG-Settings.json.bak</code> behind — the file as it was before that save. A
+damaged file is read back from there, and only falls to the defaults when there is no readable
+backup either; a file that does not parse itself never becomes the backup, so a broken one cannot
+overwrite the last good copy.</li>
+<li>A <code>BSG-Settings.json</code> that cannot be opened at all — locked by something else, or not readable for
+want of rights — says so and does not open the window. It used to count as damaged and show the
+defaults, where a save would have written them over a perfectly good file.</li>
+<li>Reset puts every setting back to its default (the theme stays). Closing with unsaved changes no
+longer asks; the footer says &quot;Unsaved changes&quot; instead, and the theme button still asks.</li>
+<li>The Log page reads the log files on its first visit, and filters by Stopped too.</li>
+<li>&quot;Reset the leaderboard now&quot; clears what the scope picked in the window says, not the one saved when
+it opened.</li>
+<li>A ship switched off may be longer than the board, and a ship switched on with length 0 no longer
+counts as sailing — the game drops it, so such a fleet could be saved and never start.</li>
+<li>Texts pointed to &quot;Platforms ▸ OBS&quot;; Streamer.bot has OBS under Stream Apps ▸ OBS Studio. The About
+page no longer offers Twitch channel points as a points system: the game does not use them.</li>
+</ul>
+<h3>⏳ Cooldown messages</h3>
+<ul>
+<li>A cooldown message with any brace other than <code>{0}</code> or <code>{1}</code> — <code>{user}</code>, say — was never sent: the
+game formatted it with <code>string.Format</code>, which threw, and only the log said so. The placeholders are
+now filled in by hand, as in the other Chat Games: <code>{user}</code> works in both cooldown messages, <code>{{</code> and
+<code>}}</code> still stand for a brace, anything else goes out as written, and an empty message sends nothing.</li>
+</ul>
+<h3>🌐 Platforms</h3>
+<ul>
+<li>The platform selection is gone from the settings window, the game and the stats action. Twitch,
+YouTube and Kick always play; a platform is left out by unticking it on the commands in
+Streamer.bot. Settings files that still carry the switches are read without them, and the &quot;not
+enabled on this platform&quot; message is gone.</li>
+</ul>
+<h3>🔧 Developer tooling</h3>
+<ul>
+<li><code>tools/gui-shots.ps1</code> renders every page of the real window offscreen, or with <code>-Test</code> drives it
+through 80 behaviour checks; <code>check-all.ps1</code> runs it.</li>
+<li><code>check-compile.ps1</code> makes the whole rewrite Streamer.bot makes before compiling, including the
+<code>override</code> it puts on Execute, Init and Dispose by name — a hand-written one fails there with CS1004,
+so the actions declare them plain <code>public</code>, as the docs show.</li>
+<li><code>RoslynHost</code> compiles with overflow checks, as Streamer.bot does, and like Streamer.bot only with the
+references an action lists (<code>-exclude</code>).</li>
+</ul>
+<h3>⚔️ Team duel</h3>
+<p>The third game mode: one chat team against another.</p>
+<ul>
+<li><strong>Challenge, accept, sign up.</strong> <code>!duel @name</code> challenges a viewer (no name: anybody) and captains
+Team A; <code>!accept</code> captains Team B. Then everyone picks a side with one command, <code>!team</code>, read
+dynamically: <code>A</code>/<code>B</code>, a player&#39;s name to join their side, or nothing to fill the smaller side.
+An optional limit keeps the sides within a set number of players of each other.</li>
+<li><strong>Entry fee and pot.</strong> Every member pays the entry fee; the winning side shares the whole pot
+equally. Each winner gets their own entry back whole, and only the winnings on top take the addicted
+cut and the daily cap. A challenge nobody accepts, and a duel nobody fires in, refund everyone.</li>
+<li><strong>Alternating vote rounds.</strong> The sides take turns; each turn is one voting round for that side&#39;s
+members only (<code>!fire B7</code> or a linked click), and the most-voted square is fired at. Both fleets
+stay hidden until the end. A side that lets its turn pass too often in a row gives up.</li>
+<li>Anonymous Heat clicks never count in a duel — one could be the other side spending this side&#39;s turn.
+Members&#39; own clicks are passed on ahead of the crowd&#39;s, so a busy stream cannot crowd them out.</li>
+<li>Overlay v14: Team A left, Team B right, the side whose turn it is highlighted, votes on the waters
+under fire, and a winner badge. Each member&#39;s record counts the duel as won or lost.</li>
+<li>Nothing else can start from the challenge to the last shot. An <code>!accept</code> or <code>!team</code> that arrives
+after its clock has run out is refused, and with no ships enabled <code>!duel</code> is refused before anybody
+pays.</li>
+</ul>
+<h3>🛑 Moderator stop</h3>
+<ul>
+<li><code>!stopbattle</code> ends whatever is running — solo battles, the chat&#39;s battle, a duel or a duel still
+signing up — and pays nothing more out: no win bonus, no pot, no charge for damaged ships. A duel&#39;s
+entries are refunded. Who may use it is set on the command&#39;s permissions in Streamer.bot.</li>
+<li>A shot can no longer slip in while the stop is being announced, and a battle stopped as it starts
+never announces itself.</li>
+</ul>
+<h3>🐛 Fixed</h3>
+<ul>
+<li>A payout, refund or charge never writes over a balance that could not be read. Before, a failed read
+counted as 0, so paying a sinking or a share could replace a viewer&#39;s whole balance with just that
+amount. Now the balance is left alone and the amount owed is logged, to be paid by hand.</li>
+<li>Replies to a vote in the chat&#39;s battle or a duel, and to <code>!board</code>, go to the asker&#39;s own chat, not to
+the platform the battle was started from.</li>
+<li>Closing Streamer.bot — or saving an edited version of the action — in the middle of a game no longer
+strands anything: every duel entry is refunded, each battle ends as stopped (without chat messages,
+and without counting as an abandoned game on anybody&#39;s record) and the overlay fades out instead of
+freezing on the last shot. A board left frozen by a crash is cleared the next time the action&#39;s code
+loads. A battle that fails to start is ended the same way, entries refunded.</li>
+<li>A charge that could not be written is no longer counted in a battle&#39;s net, and a payout that failed no
+longer uses up the player&#39;s daily winnings cap.</li>
+<li>The settings window could open over and over during a chat battle: if anything pointed the overlay&#39;s
+clicks or a game command at the settings action, every vote opened another window. The settings
+window now refuses game traffic (and says so in the log, once a minute), only one window opens at a
+time, and the game only learns which action the overlay should call from a real chat command.</li>
+</ul>
+<h3>👥 Chat vs the Admiral</h3>
+<p>A second game mode: the whole chat plays one fleet against the Admiral.</p>
+<ul>
+<li><strong>Voting rounds.</strong> Each viewer has one vote per round — a click on enemy waters or <code>!fire B7</code> — and
+the square with the most votes is fired at when the round ends (15 s by default). The overlay shows
+the round&#39;s votes on the board, with a countdown ring and the number of voters.</li>
+<li><strong>Played for fun.</strong> No points to win or lose: nobody pays and nobody is paid, so every viewer&#39;s
+click counts the same — logged in to Twitch or not — with nothing to link first. The win names how
+many viewers voted. (A logged-out viewer can vote again by reloading; it does no harm here. In a duel
+their clicks never count.)</li>
+<li>Started with its own command, only when no other battle is running; broken off when nobody votes
+for as long as the turn clock allows. Solo and chat battles can each be switched off.</li>
+<li>Switched on and set up on the <strong>Modes</strong> settings page; its messages are on the Messages page.</li>
+</ul>
+<h3>🖱️ Click to fire with Heat</h3>
+<p>Optional, Twitch only. With the free <a href="https://dashboard.twitch.tv/extensions/cr20njfkgll4okyrhag7xxph270sqk">Heat</a> extension on the channel, the
+player whose battle is on screen can fire by clicking a square in enemy waters right on the stream,
+instead of typing <code>!fire</code>.</p>
+<ul>
+<li>The overlay turns the click into a square — it is the only thing that knows where each one is drawn —
+and hands it to the game through the Streamer.bot WebSocket server, where it takes exactly the path
+<code>!fire</code> takes: the same chat messages, the same rules, the same clock.</li>
+<li>Heat sends nearly every click under an anonymous id — of 163 clicks sampled across 30 live channels,
+2 carried a Twitch ID — so the game works out whose clicks are whose itself:<ul>
+<li><strong>Automatically</strong> (on by default): the first click on enemy waters in the battle of a player
+without a link is taken as theirs, for that battle. It holds back when another viewer clicked
+there in the last 20 seconds, and never hands a battle to someone linked as a different player.</li>
+<li><strong><code>!fire link</code></strong>: click any square in enemy waters, then type it. Refused when more than one
+viewer clicked in the last 20 seconds; fires the click that made the link; kept in a user
+variable for later battles; overrides an automatic link a faster viewer took.</li>
+<li>A player who did share their Twitch ID with Heat needs neither.</li>
 </ul>
 </li>
-<li>Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.</li>
+<li>Only the player&#39;s clicks fire. Other viewers&#39; clicks on enemy waters reach the game only so it can
+make links — at most once every 0.7 s per viewer and ten a second in all — and the game decides
+everything rather than trusting the overlay.</li>
+<li>The same click heard by two copies of the overlay fires once.</li>
+<li>A <strong>Clicks</strong> settings page: the switch, a setup checklist, the connection (channel id detected from
+Streamer.bot, WebSocket address and optional password) and where the browser source sits on the
+canvas.</li>
+<li>An alignment test draws every click on the overlay, with a status box for Heat and Streamer.bot.</li>
+<li>An <strong>Add Heat&#39;s click markers to OBS</strong> button puts Heat&#39;s own Markers overlay — a marker where each
+viewer last clicked — into the Battleship scene at the size of the canvas. Optional: the Battleship
+overlay listens to Heat by itself.</li>
+<li>A chat hint tells a player who has not linked yet how to, when their battle comes on screen —
+editable on the Messages page, and off when emptied.</li>
+<li>Overlay v12. It reads its Click to Fire settings from <code>battleship_heat.json</code>, which is only created
+once the feature is switched on.</li>
+<li>Signing in to a password-protected Streamer.bot WebSocket server hashes in plain JavaScript: OBS
+serves a local browser source from <code>http://absolute/</code>, which is not a secure context, so the
+browser&#39;s own <code>crypto.subtle</code> is not there to use.</li>
+<li>The overlay notices when the game has installed a newer version of it and reloads itself, so an
+update no longer waits for someone to refresh the browser source in OBS. The alignment test&#39;s status
+box names the version that is running.</li>
 </ul>
-<h5>Upgrading from pre-release.1</h5>
-<p>The settings window&#39;s update check does not tell pre-release.1 about pre-release.2, so grab it here. Import <code>BattleshipGame.sb</code> over the old one.</p>
-<h2 data-prerelease>v2.0.0-pre-release.1 — Chat vs the Admiral, Team duel &amp; Click to Fire</h2><p class="release__date">October 25, 2026 · pre-release</p><blockquote>
-<p>[!WARNING]
-<strong>v2.0.0-pre-release.1 — the first test version of 2.0.0.</strong> It passes every automated check, but it has not run on a live stream yet. Try it on a test setup or back up your settings first, and please tell us what breaks.
-The stable version stays <strong>v1.0.0</strong>: the update notice in the settings window and the <em>stable</em> badge keep pointing there until 2.0.0 is final. Once it is, this test version&#39;s settings window shows the update notice for it.</p>
-</blockquote>
-<h4>📥 Install or update</h4>
-<ol>
-<li>Back up <code>&lt;Streamer.bot folder&gt;\Chat Games\Battleship Game\BSG-Settings.json</code>.</li>
-<li>Download <strong><code>BattleshipGame.sb</code></strong> below and drag it into Streamer.bot&#39;s <strong>Import</strong> window — or open it in a text editor and paste its content as the import string. Click <strong>Yes</strong> on both messages.</li>
-<li>In the <strong>Commands</strong> tab, right-click the group <strong>[BG] - Battelship Game</strong> ▸ <strong>Enable All</strong>. The new commands arrive switched off.</li>
-<li>Open the settings: action <strong>[BG] - .Settings</strong>, right-click <strong>Test</strong> under <em>Triggers</em> ▸ <strong>Test Trigger</strong>.</li>
-</ol>
-<p>No more <strong>Find Refs</strong>: the references in this import hold wherever Streamer.bot is installed.</p>
-<p><strong>Coming from 1.0.0?</strong> Your settings are kept; new settings start at their defaults.
-<strong>Going back to 1.0.0?</strong> Import its <code>BattleshipGame.sb</code> again. 2.0 has no platform switches, so tick YouTube and Kick again in the 1.0.0 settings if you use them.</p>
-<p>The README and the Setup Guide on the main page still describe 1.0.0 until 2.0.0 is final — this page has everything for the test.</p>
-<hr>
-<h4>🧪 Please test</h4>
+<h3>📺 OBS Auto-Setup</h3>
 <ul>
-<li><input disabled="" type="checkbox"> The import compiles — all three actions, no errors in Streamer.bot&#39;s log</li>
-<li><input disabled="" type="checkbox"> The settings window opens, saves, and switches between dark and light</li>
-<li><input disabled="" type="checkbox"> A solo battle: <code>!battleship</code>, <code>!fire B7</code>, <code>!fleet</code>, <code>!board</code>, running out of time</li>
-<li><input disabled="" type="checkbox"> <code>!seeschlacht</code>: clicking on stream and <code>!fire B7</code> both vote, and nobody wins or loses points</li>
-<li><input disabled="" type="checkbox"> A team duel: <code>!duel @name</code>, <code>!accept</code>, <code>!team A</code> / <code>!team B</code>, the turns, and the payout to the winners</li>
-<li><input disabled="" type="checkbox"> <code>!stopbattle</code> works for moderators and is refused for everybody else</li>
-<li><input disabled="" type="checkbox"> The overlay set up with <strong>Set the overlay up in OBS</strong> (Overlay page)</li>
-<li><input disabled="" type="checkbox"> Click to Fire with the Heat extension (Twitch)</li>
-<li><input disabled="" type="checkbox"> Saving the game action or restarting Streamer.bot during a duel sign-up gives every entry back</li>
+<li>The browser source is created at the size of your OBS canvas rather than 1280×720, so it covers the
+whole picture — which Click to Fire relies on — and renders at full resolution.</li>
+<li>The source name is checked against every source in OBS rather than only the target scene. OBS names
+are global, so a name already used in another scene could never have been created there.</li>
 </ul>
-<p>Found something? <a href="https://github.com/aaskjer/Battleship-Game/issues/new">Open an issue</a> or write in the <a href="https://discord.com/channels/834650675224248362/1447648588694818836/1447648588694818836">Battleship Game thread on the Streamer.bot Discord</a> — with the command you used, what happened, and the lines from Streamer.bot&#39;s log.</p>
-<hr>
-<h4>✨ What&#39;s new</h4>
-<h5>👥 Chat vs the Admiral — <code>!seeschlacht</code></h5>
-<p>The whole chat is one fleet, played just for fun. Each round every viewer has one vote — a click on enemy waters or <code>!fire B7</code> — and the square with the most votes is fired at. No points to win or lose, so every click counts, logged in to Twitch or not, with nothing to link first.</p>
-<h5>⚔️ Team duel — <code>!duel</code>, <code>!accept</code>, <code>!team</code></h5>
-<p>One chat team against another. Challenge a viewer (or anybody), they accept, and everyone picks a side with <code>!team A</code>, <code>!team B</code>, <code>!team &lt;name&gt;</code> or plain <code>!team</code>. Every member pays the entry fee, the sides take turns voting on each shot, and the winners share the pot — their own entry back whole.</p>
-<h5>🖱️ Click to Fire (Twitch)</h5>
-<p>With the free <a href="https://dashboard.twitch.tv/extensions/cr20njfkgll4okyrhag7xxph270sqk">Heat</a> extension, the player whose battle is on screen fires by clicking a square in enemy waters right on the stream. The first click in a battle takes control; <code>!fire link</code> makes a link that lasts.</p>
-<h5>🛑 Moderator stop — <code>!stopbattle</code></h5>
-<p>Ends whatever is running and pays nothing more out; a duel&#39;s entries are refunded. It comes set to the Moderators group.</p>
-<h5>🎨 A new settings window</h5>
-<p>In the look of the other Chat Games: ten pages in a rail (Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log, About), switches and segment bars, every chat message on one page with placeholder chips and a live chat preview, and a red pill when an update is out.</p>
-<h5>🌐 Every platform plays</h5>
-<p>The platform switches are gone. Twitch, YouTube and Kick always play, and every reply goes to the chat the command came from. To leave a platform out, untick it on the commands in Streamer.bot (for example <em>Kick Message</em>).</p>
-<h5>📺 Overlay v16</h5>
-<p>The duel&#39;s two sides, the chat&#39;s votes on the board, a countdown ring for every round, and no points shown in the chat&#39;s battle. The overlay reloads itself when the game installs a newer version.</p>
-<hr>
-<h4>🐛 Fixed</h4>
+<h3>🐛 Fixes</h3>
 <ul>
-<li><code>!board</code> now comes with the import — 1.0.0 had no command for it.</li>
-<li>The cooldowns set in the settings window reach the <code>!battleship</code> command; in 1.0.0 they went to a command that does not exist.</li>
-<li>A cooldown message with <code>{user}</code> or any other brace was never sent. <code>{user}</code> works there now.</li>
-<li>A payout, refund or charge never writes over a balance that could not be read.</li>
-<li>Replies to <code>!board</code> and to votes go to the asker&#39;s own chat.</li>
-<li>Closing Streamer.bot mid-game refunds every duel entry and fades the overlay out instead of freezing it.</li>
-<li>A damaged <code>BSG-Settings.json</code> is reported and kept as <code>.broken</code>, instead of being reset on the next save without a word.</li>
-<li>A battle starting while another one plays no longer takes the overlay away from it.</li>
+<li>A battle starting while another was being played could take the overlay off it: the &quot;oldest live
+battle&quot; was really whichever came first in a dictionary, and a finished battle&#39;s freed slot put the
+newest one first. The battle on screen now keeps the overlay until it ends, then hands it to the one
+that has waited longest — and never to a battle still being set up.</li>
 </ul>
 <hr>
-<h4>⚓ Commands</h4>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>!battleship</code></td>
-<td>Start a solo battle</td>
-</tr>
-<tr>
-<td><code>!fire B7</code></td>
-<td>Fire at a square, or vote for one</td>
-</tr>
-<tr>
-<td><code>!fleet</code></td>
-<td>Redeploy your ships before your first shot</td>
-</tr>
-<tr>
-<td><code>!board</code></td>
-<td>Shots, accuracy, ships left, running total</td>
-</tr>
-<tr>
-<td><code>!seeschlacht</code></td>
-<td>Start Chat vs the Admiral</td>
-</tr>
-<tr>
-<td><code>!duel @name</code> · <code>!accept</code> · <code>!team A</code></td>
-<td>Challenge, accept, join a side</td>
-</tr>
-<tr>
-<td><code>!fire link</code></td>
-<td>Link your clicks on stream to you (Click to Fire)</td>
-</tr>
-<tr>
-<td><code>!stopbattle</code></td>
-<td>Moderators: stop everything</td>
-</tr>
-<tr>
-<td><code>!bstats</code> · <code>!ballstats</code></td>
-<td>Records and the leaderboard</td>
-</tr>
-</tbody></table>
-<p>The game knows its commands by their IDs, so you can rename any of them in Streamer.bot.</p>
-<hr>
-<h4>⚠️ Known limitations</h4>
-<ul>
-<li>Stopping everything when the action is saved again or Streamer.bot closes has only been tested outside Streamer.bot so far — it is on the test list above.</li>
-<li>In the chat&#39;s battle a logged-out viewer can vote again by reloading the page. That is on purpose: it is played for fun.</li>
-<li>Viewers on the Twitch app can&#39;t click — it shows no overlay extensions — so they vote with <code>!fire B7</code>.</li>
-</ul>
-<h2>v1.0.0 — Initial Release</h2><p class="release__date">August 22, 2026</p><h3>Important</h3>
-<p><em>You know the drill</em>: To get everything to work, you might need to go into each action, expand <code>No Touchy!</code> , open <code>Execute Code</code>, press <code>Find Refs</code> at the bottom left and hit <code>OK</code> in all actions!</p>
-<p>This is the first release, expect bugs :D</p>
+<h2>[1.0.0] — First release</h2>
+<p>Battleship for chat, built on the framework behind the Blackjack Game and played on an OBS overlay
+rather than in chat text. Chat carries terse commands and one-line results; the overlay carries the
+grids, the pegs and the fleet roster.</p>
 <hr>
 <h3>🚢 The game</h3>
 <p>A viewer takes command of a fleet and duels a CPU opponent, the <strong>Admiral</strong>. Both fleets are placed
 at random and never revealed to the other side. Every <code>!fire</code> is a full exchange — the player shoots,
 then the Admiral shoots back — which halves the number of chat commands a battle costs.</p>
-<img loading="lazy" width="848" height="506" alt="obs64_DsdFXdjcgx" src="https://github.com/user-attachments/assets/69f27817-0c1f-4ec7-8aaf-d248a45d5470" /><img loading="lazy" width="848" height="506" alt="obs64_oxRiQFD2Yo" src="https://github.com/user-attachments/assets/4076fcfb-8c84-4ebb-a1cd-c9f22c4bec6f" /><p><strong>Commands</strong></p>
+<p><strong>Commands</strong></p>
 <table>
 <thead>
 <tr>
@@ -705,7 +854,7 @@ cost a shot.</p>
 whatever has already sunk is settled, and damaged-but-floating ships are charged pro-rata if that
 setting is on.</p>
 <hr>
-<h5>🎯 The Admiral</h5>
+<h3>🎯 The Admiral</h3>
 <p>Three skill levels, plus a blunder slider that handicaps any of them by making the AI throw away its
 plan and fire blind some percentage of the time.</p>
 <table>
@@ -734,7 +883,7 @@ the board. On Classic: roughly 96, 62 and 52.</p>
 each turned out to be, and the lengths of the ships still afloat — which sinking announcements make
 public anyway. This is enforced by the type it is handed, not by convention.</p>
 <hr>
-<h5>💰 Economy — live, symmetric, per ship</h5>
+<h3>💰 Economy — live, symmetric, per ship</h3>
 <p>There is <strong>no entry fee and no stake</strong>. Each ship class carries a configurable value, and every
 sinking is a points event applied immediately:</p>
 <ul>
@@ -752,7 +901,7 @@ normal play.</p>
 nobody plays a game they cannot lose; balances that clamp at zero; an optional daily winnings cap
 that rolls over on its own; per-user and global cooldowns; and Max Battles/Hour.</p>
 <hr>
-<h5>⏱️ Automatic timers</h5>
+<h3>⏱️ Automatic timers</h3>
 <p>Two clocks, both running on their own so an abandoned battle closes itself.</p>
 <ul>
 <li><strong>Deploy — 60s.</strong> Started a battle but never fired. Nothing has sunk, so nothing is charged and it
@@ -765,7 +914,7 @@ whatever has already sunk.</li>
 the turn clock is skipped rather than fired instantly, and the settings page renders the resulting
 sequence as a sentence so a misconfigured clock is visible at a glance.</p>
 <hr>
-<h5>📺 OBS Overlay</h5>
+<h3>📺 OBS Overlay</h3>
 <p>A self-contained browser source, installed automatically into the overlay folder — no manual file
 copying. The background is transparent.</p>
 <ul>
@@ -773,7 +922,9 @@ copying. The background is transparent.</p>
 hit. Revealing your own ships gives nothing away, since the AI reads neither chat nor the overlay.</li>
 <li>Miss pegs, impact bursts, revealed silhouettes for sunk ships, and a marker on the square that was
 just hit.</li>
-<li>Fleet roster under each board with per-ship damage pips and struck-through sinkings.</li>
+<li>Fleet roster under each board with per-ship damage pips and struck-through sinkings. Your roster
+and the Admiral&#39;s are toggled separately — the enemy one is what tells you which of their ships
+your hits have landed on. Hiding one keeps the two boards level rather than shunting one up.</li>
 <li>Countdown ring matching the chat warnings, running smoothly between updates rather than ticking
 only when a shot lands.</li>
 <li>Running points total and live accuracy, then a result badge that holds and fades —
@@ -796,14 +947,14 @@ source name. If the overlay file is not on disk yet, the setup runs the game act
 it, so a first-time setup works without anyone having played a round. It refuses to touch a source
 that already exists rather than duplicating it.</p>
 <hr>
-<h5>🔎 Whispered fleets</h5>
+<h3>🔎 Whispered fleets</h3>
 <p>Optionally whispers each player the positions of their own ships when a battle starts, and again
 after a <code>!fleet</code> reroll.</p>
 <p>Twitch only — Streamer.bot has no whisper API for YouTube or Kick, and Twitch itself drops whispers
 from accounts without a verified phone number. Best-effort by design: a failure is logged and play
 continues, because the overlay already shows the player their own fleet.</p>
 <hr>
-<h5>🏆 Leaderboard &amp; Statistics</h5>
+<h3>🏆 Leaderboard &amp; Statistics</h3>
 <p>Every tracked value is written to a persisted Streamer.bot <strong>user variable</strong> named <code>bsg_*</code>, so any
 other action can read a player&#39;s record — <code>bsg_shipsSunk</code>, <code>bsg_netProfit</code> — without involving this
 game at all.</p>
@@ -820,7 +971,7 @@ cleared, or automatically weekly or monthly for running seasons. Two scopes: run
 every statistic. Enabling automatic resets never wipes anything immediately; the current period is
 recorded first and the reset happens at the next boundary.</p>
 <hr>
-<h5>📜 Action log</h5>
+<h3>📜 Action log</h3>
 <p>Every battle is written to a daily file as a structured line, and the settings window reads those
 files back as one searchable table.</p>
 <ul>
@@ -833,7 +984,7 @@ across every column, with a count of what is showing.</li>
 <li>A <strong>Write log file</strong> tick box on the General page turns the whole thing off.</li>
 </ul>
 <hr>
-<h5>🎨 Settings window</h5>
+<h3>🎨 Settings window</h3>
 <p>Searchable page navigation and an unsaved-changes counter with a prompt on close.</p>
 <pre><code>SETUP        ⚙️ General · 📺 OBS Overlay · ⏱️ Timers &amp; Cooldowns
 BATTLESHIP   🚢 Board &amp; Fleet · 🎯 The Admiral · 💰 Ship Values &amp; Economy
@@ -855,10 +1006,51 @@ themselves at the cursor instead of only documenting themselves.</li>
 cell toggles, not just the tick box.</li>
 <li>Saving refuses rather than silently mangling a fleet that cannot fit the board.</li>
 </ul>
+<p><strong>Theme, colours and contrast</strong></p>
+<ul>
+<li><strong>Theme switch</strong> — a ☀️ / 🌙 button in the bottom bar flips between light and dark, taking effect
+at once. Whatever is typed is saved first, then the window is rebuilt against the other palette,
+so nothing is lost.</li>
+<li><strong>Colour wheel picker</strong> — every colour field opens a proper picker: hue around the wheel,
+saturation out from the middle, brightness on a slider, a live preview and the hex code.</li>
+<li><strong>Readable dropdowns</strong> — the stock WPF combo box keeps its own light chrome no matter what
+background is set on it, which would leave white text on a white button in dark mode. Every
+dropdown is drawn from the theme instead: the collapsed box, the popup, and the hover and
+selection states.</li>
+<li><strong>Accent contrast</strong> — the pastel page accents are meant for a dark panel, so on the light theme
+section headings take them down a couple of stops, and the folder buttons carry the accent as a
+fill behind near-black text.</li>
+</ul>
+<p><strong>About tab</strong> — built around the project logo and a credits block, with the prerequisite and social
+links as a two-column grid of buttons rather than a list of raw URLs. Each button carries the site&#39;s
+own favicon and a readable name, and wears that site&#39;s colour — read out of the favicon itself,
+which lands exactly on the published brand hex for Twitch, GitHub and Discord. The label flips
+between near-black and white depending on what the fill can carry, so GitHub&#39;s black and Discord&#39;s
+blurple stay as readable as the lighter ones. The full URL is on the tooltip. Buttons size to their
+own content.</p>
+<p>Icon downloads negotiate TLS 1.2 explicitly. .NET Framework still defaults to SSL3/TLS 1.0, which
+GitHub refuses outright, so without it the logos silently never arrive.</p>
 <hr>
-<h5>🆓 Free Game mode</h5>
+<h3>🆓 Free Game mode</h3>
 <p>Battles for bragging rights, with a dedicated set of chat messages so nothing refers to points that
 were never at stake. Ships still sink and the overlay still runs; nothing is credited or debited.</p>
+<hr>
+<h3>🔧 Developer tooling</h3>
+<p><code>tools/</code> holds the checks used to build this, all driven by the Roslyn assemblies that ship inside
+Streamer.bot — no .NET SDK required.</p>
+<ul>
+<li><code>run-engine-tests.ps1</code> lifts the pure-logic region straight out of <code>BattleshipGame.cs</code> and runs
+~100 assertions against it, including 10,000 self-games per difficulty per preset. What is tested
+is the exact source that ships, not a copy that can drift.</li>
+<li><code>check-compile.ps1</code> compiles all three actions the way Streamer.bot does, including the class
+rewrite and injected usings.</li>
+<li><code>check-settings.ps1</code> catches drift between the three <code>Settings</code> classes and control tags naming a
+property that does not exist — both of which fail silently at runtime.</li>
+<li><code>sync-overlay.ps1</code> makes <code>battleship_overlay.html</code> the single source of truth and the embedded C#
+copy a build product, bumping the version stamp when the content actually changes.</li>
+</ul>
+<hr>
+<p><strong>Platforms:</strong> Twitch, YouTube, and Kick, each individually toggleable.</p>
 </div>
       </section>
       </div>

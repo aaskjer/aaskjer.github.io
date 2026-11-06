@@ -72,7 +72,7 @@
         <section class="cmds__list" aria-label="Command reference">
           <!-- shown by commands.js -->
           <div class="cmds__filter" hidden>
-            <label for="cmd-filter">Filter the 100 commands</label>
+            <label for="cmd-filter">Filter the 104 commands</label>
             <div class="field">
               <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-search"/></svg>
               <input id="cmd-filter" type="search" placeholder="e.g. !note, birthday, duel" autocomplete="off" spellcheck="false">
@@ -120,6 +120,16 @@
               <code class="cmd__usage">!AllStats</code>
               <span class="cmd__text">All Stats</span>
               <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!SetFreeBlackjack">
+              <code class="cmd__usage">!SetFreeBlackjack</code>
+              <span class="cmd__text">Set Free Game</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EndFreeBlackjack">
+              <code class="cmd__usage">!EndFreeBlackjack</code>
+              <span class="cmd__text">End Free Game</span>
+              <span class="who who--limited">Mods</span>
             </li>
           </ul>
           <p class="cmd-group__sub">Typed in chat during a game</p>
@@ -339,6 +349,16 @@
               <code class="cmd__usage">!hangmanaddict</code>
               <span class="cmd__text">Add a user to the addicted list</span>
               <span class="cmd__alias">also !HMA</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!SetFreeHangman">
+              <code class="cmd__usage">!SetFreeHangman</code>
+              <span class="cmd__text">Set Free Game</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EndFreeHangman">
+              <code class="cmd__usage">!EndFreeHangman</code>
+              <span class="cmd__text">End Free Game</span>
               <span class="who who--limited">Mods</span>
             </li>
           </ul>

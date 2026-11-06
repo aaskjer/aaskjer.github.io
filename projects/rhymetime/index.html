@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"1.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle"],"words":[],"timers":0,"sites":["wordotron.com"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"2.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com","wordotron.com"],"updateCheck":false}</script>
 </head>
 <body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -157,9 +157,17 @@ change that there if you want someone else to be able to open a battle.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[RT] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>.
 That opens the settings window.</p>
+<p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
+all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
+<code>Yes</code> fetches it (about 190 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
+Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by
+hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
+released the same dialog comes back once; <code>Cancel</code> skips that version.</p>
 <p>Eight pages sit on the rail down the left side. <code>Ctrl+1</code> to <code>Ctrl+8</code> jump between them, <code>Ctrl+S</code>
 saves. Every field carries a tooltip, so hovering usually answers the question faster than this page
-does.</p>
+does. The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and
+fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that
+layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game.</p>
 <p>Twitch, YouTube and Kick all play, always — there is nothing to switch on. Restrict the
 Streamer.bot commands if you want the game off a platform.</p>
 <h2>Game</h2>
@@ -184,8 +192,9 @@ takes the prize and the battle closes; nobody else pays anything. The answer win
 the moderator&#39;s own instead, and then the winner takes that — if nobody rhymes in time it goes back.
 The minimum and maximum bet from the Game page apply to a staked battle as well.</p>
 <h2>Word banks</h2>
-<p align="center"><img loading="lazy" alt="Word banks page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/word-banks.png"></p><p>One target per row with its rhymes beside it, separated by commas. The picker at the top chooses
-which of the three banks you are editing; all three are saved together.</p>
+<p align="center"><img loading="lazy" alt="Word banks page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/word-banks.png"></p><p>One target per row with its rhymes beside it, separated by commas. The three banks sit one under the
+other, each with <em>Add row</em> and <em>Restore defaults</em>; a row&#39;s ✕ removes it, and rows left empty are dropped
+when you save. All three are saved together into <code>RT-wordbank.json</code>.</p>
 <p>The rhymes you list are examples, not the whole answer: what they have in common at the end is what
 the round accepts. Three rhymes ending in <code>AT</code> accept any dictionary word ending in <code>AT</code>. One lonely
 rhyme has nothing to agree with, so half of it is used — list two or three and the round behaves
@@ -218,15 +227,15 @@ import, so there is nothing to download.</p>
 shown there, 8080 unless you changed it. If you turned its authentication on, add <code>&amp;password=</code>
 followed by that password to the end of the URL.</p>
 <h3>Set it up in OBS</h3>
-<p><strong>Set the overlay up in OBS</strong> does the rest for you: it saves, writes the overlay page, and over
+<p>Save first, then <strong>Set the overlay up in OBS</strong> does the rest for you: it writes the overlay page, and over
 Streamer.bot&#39;s OBS connection creates the scene and puts a browser source in it, the size of your
-canvas, pointed at the overlay. OBS has to be connected in Streamer.bot under
+canvas, pointed at the overlay. The outcome is in the status line and in Streamer.bot&#39;s log. OBS has to be connected in Streamer.bot under
 <code>Stream Apps</code> ▸ <code>OBS Studio</code>. <em>Connection #</em> is 0 unless you have more than one OBS there; <em>Scene</em>
 is created if it is not there yet, and a <em>Source</em> name OBS already knows is left alone rather than
 overwritten.</p>
-<p>By hand works too: <em>Copy URL</em> writes the page to <code>Chat Games/RhymeTime/Overlay</code> and copies its
-address — saving with the overlay on writes it as well — then add a <strong>Browser</strong> source in OBS,
-untick <em>Local file</em>, paste the URL and set the size to 1920 × 1080. <em>Try the demo</em> opens the same
+<p>By hand works too: <em>Copy the overlay URL</em> writes the page to <code>Chat Games/RhymeTime/Overlay</code> and copies
+its address — the first round with the overlay on writes it as well — then add a <strong>Browser</strong> source in
+OBS, untick <em>Local file</em>, paste the URL and set the size to 1920 × 1080. <em>Try the demo</em> opens the same
 page in your browser playing sample rounds, which is the easiest way to place and size the source
 before anyone plays.</p>
 <h3>How it looks</h3>
@@ -249,16 +258,18 @@ wording, <code>&amp;position=center</code> to overrule <em>Place</em>, and <code
 Streamer.bot.</p>
 <h2>How to play</h2>
 <p align="center"><img loading="lazy" alt="How to play page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/how-to-play.png"></p><p>The rules in short, and where the two files live:</p>
-<pre><code>Chat Games/RhymeTime/RT-settings.json    ← everything on these pages, every chat line
-Chat Games/RhymeTime/RT-wordbank.json    ← the three word banks
+<pre><code>Chat Games/RhymeTime/RT-settings.json        ← everything on these pages, every chat line
+Chat Games/RhymeTime/RT-wordbank.json        ← the three word banks
+Chat Games/RhymeTime/uiframework.layout.json ← your layout of the window: theme, renamed or hidden pages and fields
+UIFramework/lib/&lt;version&gt;/UIFramework.dll    ← the settings window, downloaded on first open
 </code></pre>
-<p>Both sit under your Streamer.bot folder. Editing them by hand is never necessary — the settings
+<p>All of it sits under your Streamer.bot folder. Editing them by hand is never necessary — the settings
 window writes all of it, keeps the previous copy as <code>.bak</code>, and sets a damaged file aside as
 <code>.broken</code> rather than overwriting it.</p>
 <h2>About</h2>
 <p align="center"><img loading="lazy" alt="About page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/about.png"></p><p>The version, the links to the repository and the releases, and what the buttons along the bottom do.
-Opening the window also asks GitHub for the latest release in the background; if there is a newer
-one, a pill appears in the header.</p>
+Opening the window also asks GitHub for the latest release in the background and says so on this page
+when there is a newer one.</p>
 <hr>
 <p><a href="https://github.com/aaskjer/RhymeTime/blob/main/FAQ.md">Frequently Asked Questions</a></p>
 </div>
@@ -270,10 +281,12 @@ one, a pill appears in the header.</p>
 <h2>🛠️ Setup &amp; Configuration</h2>
 <p><strong>Q: Where are the files stored?</strong></p>
 <p>Under your Streamer.bot base directory:</p>
-<pre><code>Chat Games/RhymeTime/RT-settings.json    ← settings and every chat message
-Chat Games/RhymeTime/RT-wordbank.json    ← the three word banks
+<pre><code>Chat Games/RhymeTime/RT-settings.json        ← settings and every chat message
+Chat Games/RhymeTime/RT-wordbank.json        ← the three word banks
+Chat Games/RhymeTime/uiframework.layout.json ← your layout of the window: theme, renamed or hidden pages and fields
+UIFramework/lib/&lt;version&gt;/UIFramework.dll    ← the settings window, downloaded on first open
 </code></pre>
-<p>Editing either by hand is never necessary — the settings window writes both.</p>
+<p>Editing them by hand is never necessary — the settings window writes all of it.</p>
 <hr>
 <p><strong>Q: Nothing happens when I type <code>!Rhyme</code>.</strong></p>
 <p>The commands ship disabled. Open Streamer.bot&#39;s <code>Commands</code> tab and enable <code>!Rhyme</code> and
@@ -284,15 +297,34 @@ Chat Games/RhymeTime/RT-wordbank.json    ← the three word banks
 <p><code>Actions</code> → <code>[RT] - Settings</code> → right-click the <code>Test</code> trigger → <code>Test Trigger</code>. Only one window
 opens; triggering it again brings the one you have to the front.</p>
 <hr>
+<p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
+<p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The
+<code>[RT] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
+<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it
+against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot
+folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way;
+<code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the log
+says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
+<hr>
+<p><strong>Q: Can I rearrange the window?</strong></p>
+<p>Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto a
+page in the rail to move it there, right-click for <em>Rename</em>, <em>Hide</em> and <em>Move to page</em>; pages can be renamed,
+reordered, given another icon or hidden the same way. The bar on top picks the accent colour, and <em>Reset layout</em>
+puts everything back. It all lives in <code>uiframework.layout.json</code> next to <code>RT-settings.json</code>, so an update of the
+game never undoes it. A hidden field keeps its value.</p>
+<hr>
 <p><strong>Q: The settings file is damaged. Did I lose everything?</strong></p>
 <p>No. Every save keeps the copy it replaced as <code>RT-settings.json.bak</code>. If the file cannot be parsed,
 the window sets it aside as <code>RT-settings.json.broken</code>, loads the <code>.bak</code>, and tells you which of the
 two happened. The game itself falls back to the defaults for that round rather than failing, so a
-damaged file never leaves chat without an answer.</p>
+damaged file never leaves chat without an answer. <code>RT-wordbank.json</code> is kept the same way: a <code>.bak</code>
+beside it, a damaged file set aside as <code>.broken</code>, and the round plays on the backup or the shipped words.</p>
 <hr>
 <p><strong>Q: How do I reset the settings?</strong></p>
 <p>The circular arrow at the bottom left resets every page, the half arrow only the page in front of
-you. Both ask first. Neither touches the word banks — those have <em>Restore this bank</em> on their own
+you. Both ask first. Neither touches the word banks — those have <em>Restore defaults</em> on the Word banks
 page, per bank.</p>
 <hr>
 <p><strong>Q: I saved but the game still behaves the old way.</strong></p>
@@ -615,6 +647,55 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/RhymeTime/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.1.0] - Unreleased</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>The settings action is UIFramework&#39;s generic stub.</strong> <code>[RT] - Settings</code> carries no layout and no game code any
+more: <code>RhymeTime Game</code> declares its window (pages, the <code>!Rhyme</code> cooldowns, help and about) beside its settings
+table and answers the window itself (the Overlay page&#39;s buttons, the check before saving). Needs UIFramework
+0.9.3 or newer, which the stub fetches; the overlay URL reaches the clipboard through the window.</li>
+<li><strong>German.</strong> With the window&#39;s language set to <code>de</code> (the pencil, then <em>Sprache</em>), every setting, section, page
+and message of the window reads in German. The help and about pages stay English.</li>
+</ul>
+<h2>[2.0.0] - 2026-11-01</h2>
+<p>The settings window moved into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+one window shared by all of these chat games. The game and the battle play exactly as before; what changed is how
+the settings are shown and stored.</p>
+<h3>Changed</h3>
+<ul>
+<li><strong>One DLL, downloaded on first open.</strong> <code>[RT] - Settings</code> is now a small stub. The first time you open the window
+it asks whether to download <code>UIFramework.dll</code> from GitHub (about 190 KB, checked against its published SHA-256)
+or to show the folder it belongs in, <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot. Nothing is fetched
+without that click. When a newer UIFramework is published, opening the window offers it once: <em>Yes</em> downloads,
+<em>No</em> asks again next time, <em>Cancel</em> skips that version.</li>
+<li><strong>The window is built from the game&#39;s own settings table.</strong> The game declares every setting once and answers the
+window&#39;s <code>uiframework.describe</code> request with it, so the window and the game can never disagree about a key, a
+default or a range again.</li>
+<li><strong>The word banks are edited in place.</strong> All three sit on the Word banks page, each with <em>Add row</em> and <em>Restore
+defaults</em>, still in <code>RT-wordbank.json</code>, the file the game and the battle read. Empty rows are dropped on save.</li>
+<li><strong>Customise mode.</strong> The pencil at the bottom left lets you rename, reorder, hide and move pages and fields by drag
+and drop or from the context menu, and pick the accent colour. It lives in <code>uiframework.layout.json</code> next to
+<code>RT-settings.json</code> and survives every import of the game.</li>
+<li><code>RT-settings.json</code> keys are camelCase now (<code>useBot</code>, <code>minBet</code>, <code>globalCooldown</code>, <code>overlayAccentColour</code>). An
+existing file keeps working: the old names are read through aliases, and the first save writes the new ones.</li>
+<li>Light/dark and the rainbow mode live in <code>uiframework.layout.json</code> and are shared with every other window built on
+UIFramework. An existing <code>DarkMode</code> is taken over on the first open.</li>
+<li>Values typed out of range are pulled back into range when the game reads them, not only when the window saves.</li>
+<li>The overlay page is carried by the <code>RhymeTime Game</code> action now and written when the window asks for it (copying
+the URL, the demo, the OBS setup) or when a round with the overlay on finds it missing.</li>
+<li>Closing the window with unsaved changes asks first, from Cancel and from the title bar&#39;s X alike; a recompile or
+shutdown in Streamer.bot closes it without asking.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A damaged <code>RT-wordbank.json</code> is no longer quietly thrown away.</strong> The game sets the damaged file aside as
+<code>RT-wordbank.json.broken</code>, falls back to the <code>.bak</code> from before the last save, and never writes the shipped words
+over a file somebody typed into. The window shows the defaults for that bank until you save.</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li>The window&#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now.</li>
+</ul>
 <h2>[1.1.0] - 2026-10-30</h2>
 <h3>Added</h3>
 <ul>

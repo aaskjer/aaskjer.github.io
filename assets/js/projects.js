@@ -254,7 +254,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.3.1', stars: 2, downloads: 143,
+      version: 'v17.2.0', stars: 2, downloads: 143,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -273,7 +273,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v24.1.1', stars: 1, downloads: 136,
+      version: 'v25.0.0', stars: 1, downloads: 147,
     },
     {
       repo: 'Trivia-Game',
@@ -291,7 +291,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v8.1.1', stars: 2, downloads: 76,
+      version: 'v8.1.1', stars: 2, downloads: 77,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -348,7 +348,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.0', stars: 1, downloads: 2,
+      version: 'v2.0.0', stars: 1, downloads: 6,
     },
     {
       repo: 'RhymeTime',

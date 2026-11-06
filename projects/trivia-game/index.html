@@ -31,7 +31,7 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"8.1.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"8.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":true}</script>
 </head>
 <body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -111,8 +111,8 @@ spelling. A number is never &quot;close&quot;: 1995 is not 1994. Only a viewer&#
 redemption can play several back to back.</li>
 <li>📺 <strong>An overlay that gives nothing away.</strong> It shows the question, the countdown and how many have answered,
 never what they picked. The answer appears only once the round is over, followed by the winners and the
-leaderboard. It runs on Streamer.bot&#39;s own WebSocket server and picks a running round back up after a
-scene switch.</li>
+leaderboard. One click adds it to OBS, and its colours, size and position are set in the settings window.
+It runs on Streamer.bot&#39;s own WebSocket server and picks a running round back up after a scene switch.</li>
 <li>💰 <strong>Payouts that scale.</strong> Difficulty and blitz rounds raise the reward. Subscribers and VIPs can be boosted,
 viewers on the addicted list docked. Leaderboard and stats can reset monthly per platform.</li>
 <li>🎫 <strong>Channel Points as a start button.</strong> On Twitch a redemption can start a round. Nothing is wagered or paid
@@ -150,12 +150,12 @@ affiliated with or endorses Trivia Game.</p>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/004c325b-8673-430d-91b9-72c9a8931663"></p><p>The commands ship disabled. Enable all of them, or the parts that depend on them stay silent.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[TG] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>. That opens the settings window.</p>
-<p>Seven pages sit on the rail down the left side. <code>Ctrl+1</code> to <code>Ctrl+7</code> jump between them, <code>Ctrl+S</code> saves.</p>
+<p>Eight pages sit on the rail down the left side. <code>Ctrl+1</code> to <code>Ctrl+8</code> jump between them, <code>Ctrl+S</code> saves.</p>
 <p>Twitch, YouTube and Kick all play, always — there is nothing to switch on. Restrict the Streamer.bot commands if you want the game off a platform.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/game.png" alt="Game page"></p><p>The round and what it pays. Difficulty, question type, category, how long answers are accepted and when the countdown speaks up; then blitz rounds, how closely an answer has to match, rounds that start themselves on a timer, the points a win is worth, and the leaderboard with its monthly reset.</p>
 <h2>Questions</h2>
-<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/questions.png" alt="Questions page"></p><p>Three tabs. The first is your own question bank, with search and filters — it gets the whole page, because that is where the work happens. The second, <strong>Sources</strong>, decides where each round&#39;s question comes from — opentdb, Wikidata, OdeNet, PokeAPI, IGDB, your own list, or yours mixed with opentdb — and in which language, checks that the source answers, and sets which of your own questions may be drawn. The third is whether viewers may suggest questions with <code>!Suggest</code>, and under what conditions.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/questions.png" alt="Questions page"></p><p>Three tabs. The first, <strong>Custom List</strong>, holds your own questions, with search and filters — it gets the whole page, because that is where the work happens. The second, <strong>Sources</strong>, decides where each round&#39;s question comes from — opentdb, Wikidata, OdeNet, PokeAPI, IGDB, your own list, or yours mixed with opentdb — and in which language, checks that the source answers, and sets which of your own questions may be drawn. The third is whether viewers may suggest questions with <code>!Suggest</code>, and under what conditions.</p>
 <p>Wikidata, OdeNet and PokeAPI need nothing from you. OdeNet is German only and downloads its word list (about 4 MB) the first time a round needs it. IGDB needs a key of your own:</p>
 <h3>IGDB</h3>
 <p>IGDB belongs to Twitch and only answers an application registered there.</p>
@@ -170,6 +170,48 @@ affiliated with or endorses Trivia Game.</p>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/access.png" alt="Access page"></p><p>Who gets in and how. A segment switch picks whether rounds start from <code>!trivia</code> or from a Twitch channel point reward — Twitch only, since no other platform has rewards, and chat everywhere still answers as usual. Below it: who may start and skip, the two cooldowns, and the blocked and addicted lists as name chips.</p>
 <h2>Messages</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/messages.png" alt="Messages page"></p><p>Every line the game says in chat behind one picker, grouped by when it is sent. Pick one and you get its editor, the placeholders it accepts as clickable chips, and a preview of the finished line. The number format and which account speaks sit here too — <code>/me</code> is Twitch only, as the pill says.</p>
+<h2>Overlay</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/overlay.png" alt="Overlay page"></p><p>The OBS overlay: the running question with its countdown, then the answer, the winners and the leaderboard. It needs Streamer.bot&#39;s WebSocket server and nothing else.</p>
+<ol>
+<li>In Streamer.bot, open <code>Servers/Clients</code> → <code>WebSocket Server</code>. Tick <code>Auto Start</code>, click <code>Start Server</code> and note the port — <code>8080</code> unless you changed it. If you turn on its authentication, put the password into <strong>Password</strong> on the Overlay page.</li>
+<li>Connect OBS to Streamer.bot under <code>Stream Apps</code> → <code>OBS Studio</code>, if it is not already.</li>
+<li>On the <strong>Overlay</strong> page, click <code>Set it up in OBS</code>. It switches on <strong>Send rounds to the overlay</strong>, saves, and adds a browser source called <code>Trivia Overlay</code> to the scene <code>Trivia</code> — created if needed — at the size of your canvas. Leave <strong>Scene</strong> empty to use the scene that is live in OBS instead. If OBS already has a source of that name, you are asked whether to point it at the overlay again, which is also how a changed port or password reaches OBS.</li>
+<li>Click <code>Show a sample round</code>. One made-up round plays on the overlay in OBS, so you can see where it sits and how it looks. Viewers see it too if you are live.</li>
+</ol>
+<p>Without the button: click <code>Copy URL</code>, add a <code>Browser</code> source in OBS, untick <code>Local file</code>, paste the URL into <code>URL</code> and set the size to your canvas, usually <code>1920</code> × <code>1080</code>. <code>Try the demo</code> opens the overlay in your browser, playing sample rounds the way the page is set.</p>
+<p><strong>What it shows</strong> switches the answer count, the category and difficulty, the countdown, the winners and the leaderboard on and off on their own, and sets how long a result stays up and how many places the leaderboard lists. <strong>Look</strong> sets where the question sits, its size, the animations and five colours: accent, right answer, blitz, text and panel, with the panel&#39;s opacity. A save reaches an overlay that is already open in OBS straight away, and the labels follow the question language.</p>
+<table>
+<thead>
+<tr>
+<th>Add to the URL</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&amp;platform=twitch</code></td>
+<td>Only that platform&#39;s rounds — <code>youtube</code> and <code>kick</code> work too. All of them otherwise</td>
+</tr>
+<tr>
+<td><code>&amp;position=top</code></td>
+<td>The question at the top whatever the Overlay page says, or <code>bottom</code></td>
+</tr>
+<tr>
+<td><code>&amp;lang=de</code></td>
+<td>German labels whatever the question language, or <code>en</code></td>
+</tr>
+<tr>
+<td><code>&amp;demo=1</code></td>
+<td>Plays sample rounds without Streamer.bot, to place the source</td>
+</tr>
+<tr>
+<td><code>&amp;debug=1</code></td>
+<td>A line in the corner that says whether it reached Streamer.bot</td>
+</tr>
+</tbody></table>
+<p>Anything else goes into the source&#39;s <code>Custom CSS</code> field, which wins over the colours on the Overlay page:</p>
+<pre><code class="language-css">:root { --tg-width: 980px; --tg-radius: 8px; --tg-font: &#39;Bahnschrift&#39;, sans-serif; }
+</code></pre>
+<p><code>--tg-accent</code>, <code>--tg-correct</code>, <code>--tg-blitz</code>, <code>--tg-text</code>, <code>--tg-muted</code>, <code>--tg-card</code>, <code>--tg-scale</code> and <code>--tg-edge</code> (the gap to the edge of the screen) can be set the same way.</p>
 <h2>Log</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/log.png" alt="Log page"></p><p>Every round, answer and payout, searchable by user, platform or outcome. One file per day, and nothing is deleted automatically.</p>
 </div>
@@ -184,6 +226,7 @@ affiliated with or endorses Trivia Game.</p>
 <pre><code>Chat Games/Trivia Game/configs.json             ← settings and all chat messages
 Chat Games/Trivia Game/Trivia-Questions.json    ← the questions you write yourself
 Chat Games/Trivia Game/Sources/                 ← what Wikidata, OdeNet, PokeAPI and IGDB sent
+Chat Games/Trivia Game/Overlay/                 ← the OBS overlay page, written by the settings window
 Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per day
 </code></pre>
 <p>Settings and messages share <code>configs.json</code>. An older <code>messages.json</code> is still read if it exists and is folded into <code>configs.json</code> the next time you save. Log files are kept indefinitely — nothing is deleted automatically.</p>
@@ -408,7 +451,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 </tr>
 <tr>
 <td><strong>My questions only</strong></td>
-<td>Your list on the Question bank</td>
+<td>Your list on the Custom List tab</td>
 <td>as you wrote it</td>
 </tr>
 <tr>
@@ -469,6 +512,33 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p><strong>Q: Can I view stats for another user?</strong></p>
 <p>Yes. <code>!TSS @Username</code> looks up anyone&#39;s wins, points, blitz wins and blitz points.</p>
 <hr>
+<h2>📺 OBS Overlay</h2>
+<p><strong>Q: How do I put the game on stream?</strong></p>
+<p>Click <code>Set it up in OBS</code> on the <strong>Overlay</strong> page of the settings window. It switches the overlay on, saves, and adds a browser source to OBS through Streamer.bot&#39;s OBS connection. Streamer.bot&#39;s WebSocket server has to be running — the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> has every step, and the way to add it by hand with <code>Copy URL</code>.</p>
+<hr>
+<p><strong>Q: The overlay stays empty. What do I check?</strong></p>
+<ul>
+<li>Streamer.bot&#39;s WebSocket server is running (<code>Servers/Clients</code> → <code>WebSocket Server</code>), on the port on the Overlay page.</li>
+<li><strong>Send rounds to the overlay</strong> is on, and you saved after switching it on.</li>
+<li><code>Show a sample round</code> plays one on every overlay that is connected. If that shows, the connection is fine.</li>
+<li>Add <code>&amp;debug=1</code> to the URL: a line in the corner then says whether it is connected, still trying, or being asked for a password.</li>
+<li>With the server&#39;s authentication on, the Overlay page&#39;s <strong>Password</strong> has to match. After changing port or password, click <code>Set it up in OBS</code> again and let it point the existing source at the overlay.</li>
+<li>A URL with <code>&amp;platform=</code> only shows that platform&#39;s rounds.</li>
+</ul>
+<p><code>&amp;demo=1</code> plays sample rounds without Streamer.bot, so it tells a placement problem from a connection problem.</p>
+<hr>
+<p><strong>Q: Can viewers read the answer off the overlay?</strong></p>
+<p>No. The answer is only sent once the round is over, a skipped round never sends it, and the answer count is only a number — never which option anybody picked.</p>
+<hr>
+<p><strong>Q: OBS reloaded the overlay in the middle of a round. Is the round gone?</strong></p>
+<p>No. The game keeps its last overlay message in a temporary global per platform (<code>Trivia.Overlay.twitch</code> and so on), and the overlay asks for it whenever it connects, so it picks the running round — or the result still on screen — back up. The look comes back the same way, from the persisted global <code>Trivia.Overlay.look</code> that every save writes.</p>
+<hr>
+<p><strong>Q: The overlay&#39;s leaderboard still shows last month after a reset day. Why?</strong></p>
+<p>The monthly reset runs on the first leaderboard or stats command on or after the reset day, not on the day itself. Until somebody uses one, the stats it would wipe are still there, and the overlay shows them.</p>
+<hr>
+<p><strong>Q: Can I change how it looks?</strong></p>
+<p>Yes. The <strong>Look</strong> section of the Overlay page sets where the question sits, its size, the animations and the colours, and <strong>What it shows</strong> turns the answer count, category and difficulty, countdown, winners and leaderboard on and off. Saving there changes an overlay that is already open in OBS. For anything else, such as the font or the width, use the <code>Custom CSS</code> field of the browser source; it wins over the Overlay page, and the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> lists the variables.</p>
+<hr>
 <h2>🌐 Multi-Platform</h2>
 <p><strong>Q: Which platforms are supported?</strong></p>
 <p>Twitch, YouTube and Kick — all three, always. The game works out which one an event came from and answers in that chat, so there is nothing to switch on. To keep it off a platform, restrict the Streamer.bot commands themselves, or take that platform&#39;s chat-message trigger off the action.</p>
@@ -498,6 +568,60 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[8.2.0] - 2026-10-30</h2>
+<p>An overlay for OBS. Nothing changes for an install that leaves it switched off.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>An OBS overlay.</strong> A browser source that shows the running round: the question with its options,
+numbered the way chat lists them, a countdown with a bar, and how many have answered. When the
+round ends it marks the right answer and shows the winners with their points, then the top of
+the leaderboard. Blitz rounds are marked in red. It listens to Streamer.bot&#39;s own WebSocket
+server, so there is nothing to install beside it.</li>
+<li><strong>An Overlay page in the settings window.</strong> The switch that turns it on, the WebSocket port and
+password, what the overlay shows, and how it looks.</li>
+<li><strong><code>Set it up in OBS</code></strong>, the way Battleship and Blackjack do it: through Streamer.bot&#39;s OBS
+connection it adds a browser source the size of the canvas to a scene of your choice, created if
+needed, or to the scene that is live. A source of the same name is pointed at the overlay again
+instead of doubled up, which is also how a changed port or password reaches OBS.</li>
+<li><strong><code>Show a sample round</code></strong> plays one made-up round on every connected overlay, to see where it sits
+and how it looks in OBS. <code>Try the demo</code> plays them in the browser, the way the page is set.</li>
+<li><strong>What it shows:</strong> the answer count, category and difficulty, the countdown, the winners and the
+leaderboard each switch on and off, plus how long the result stays up and how many places the
+leaderboard lists. Category and difficulty have their own switch, apart from the chat message&#39;s.</li>
+<li><strong>Look:</strong> the question at the bottom or the top, its size from 50 to 150 %, the animations, and
+five colours with a picker — accent, right answer, blitz, text and panel — plus the panel&#39;s
+opacity. A save reaches an overlay already open in OBS, and the labels follow the question
+language. The browser source&#39;s Custom CSS still wins over all of it.</li>
+<li>The overlay picks a running round back up when OBS reloads it, from a temporary global the game
+keeps per platform (<code>Trivia.Overlay.twitch</code>, <code>.youtube</code>, <code>.kick</code>), and its look from the
+persisted global <code>Trivia.Overlay.look</code> the settings window writes on every save.</li>
+<li>URL options for one platform only, the position and language whatever the page says, sample
+rounds without Streamer.bot, and a connection line for troubleshooting.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>The settings window has eight pages. Overlay sits after Messages, so Log, How to play and About
+moved to <code>Ctrl+6</code>, <code>Ctrl+7</code> and <code>Ctrl+8</code>.</li>
+<li>The first tab of the Questions page, where your own questions live, is called <strong>Custom List</strong>
+instead of Question bank.</li>
+<li><strong>A number box left empty, or holding half a number, stops the save.</strong> It used to go in as 0 and
+come out as whatever floor applies - an empty <code>Cache size</code> saved as 1, an empty <code>Base points</code>
+as 0. Now Save names the fields and writes nothing until they hold a number.</li>
+<li><strong>The theme button asks before it switches</strong> when there are unsaved changes: save them, drop them
+or stay. It used to save every page on the way without a word. Only the theme flag is written
+now; the rest goes through Save.</li>
+</ul>
+<h3>Security</h3>
+<ul>
+<li>Everything the overlay shows goes in as text. A suggested question with markup in it is displayed
+as written, never run.</li>
+<li>The answer only reaches the overlay once the round is over, a skip never sends it, and the
+answer count is never broken down by option.</li>
+<li>A colour that is not <code>#RRGGBB</code> never reaches the overlay&#39;s styles, and the settings window saves
+it as its default.</li>
+<li>The WebSocket password is kept in <code>configs.json</code> and goes into the overlay&#39;s URL in OBS, because
+the overlay signs in with it. The settings window shows it masked, in its box and in the URL.</li>
+</ul>
 <h2>[8.1.1] - 2026-10-25</h2>
 <p>Hardening of the settings window. <code>configs.json</code> is read as it stands; no setting changes.</p>
 <h3>Fixed</h3>
