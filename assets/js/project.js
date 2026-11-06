@@ -3,7 +3,8 @@
  * (README, setup guide, manual, FAQ, changelog) are in the page already, as HTML that
  * _tools/update-pages.js made from the project's GitHub repository, and so is what its
  * import string adds to Streamer.bot. A page that has not been rebuilt yet loads the
- * documents from GitHub and turns them into HTML here. A game with a `playground` in projects.js
+ * documents from GitHub and turns them into HTML here, and so does a page written before the
+ * newest release, until the next rebuild. A game with a `playground` in projects.js
  * gets a "Try it" tab, which loads assets/js/playground.js and the game's rules.
  */
 (() => {
@@ -45,6 +46,9 @@
   // the file's name in the repository, or null when it has no such file
   const fileIn = file => FILES ? FILES.get(file.toLowerCase()) || null : file;
 
+  // The newest release when update-pages.js wrote the page ('' for none); undefined on a page
+  // written before it recorded that.
+  const BUILT_RELEASE = document.body.dataset.release;
   // The documents as update-pages.js wrote them: one [data-doc] per tab. With JavaScript on, a
   // <noscript> holds its HTML as plain text, so nothing in it loads until a tab shows it.
   const PRERENDERED = (() => {
@@ -301,7 +305,7 @@
           pre: newest && newest.prerelease ? { version: newest.tag_name, released: newest.published_at } : null,
           downloads: list && list.reduce((sum, rel) => sum + rel.assets.reduce((n, a) => n + a.download_count, 0), 0),
         };
-      } catch (e) { return; }
+      } catch (e) { return null; }
     }
     if (live.description) {
       p.tagline = live.description;
@@ -320,6 +324,15 @@
     $('#meta').innerHTML = metaRow();
     $('.project-hero .badges').outerHTML = badges();
     $('#import-note').innerHTML = importNote();
+    return live;
+  }
+
+  // A release published after update-pages.js wrote this page. The job runs every hour, but GitHub
+  // starts it hours late at times, and until then the page would show the changelog from before.
+  function newerRelease(live) {
+    if (BUILT_RELEASE == null || !live || !PRERENDERED.length) return false;
+    const newest = live.pre ? live.pre.version : live.version;
+    return newest != null && newest !== BUILT_RELEASE;
   }
 
   // 🎉 when this project's downloads or stars pass a round number (milestones.js)
@@ -663,14 +676,10 @@
 
   let current = null;
 
-  function showTab(id, anchor, push) {
-    if (!available.length) return;
-    // an address like /#-setup from before a document was split still finds its heading
-    const doc = partWith(available.find(d => d.id === id) || available[0], anchor);
-    current = doc.id;
+  function selectTab(id) {
     const bar = $('#tabs');
     for (const tab of bar.querySelectorAll('.tab')) {
-      const on = tab.dataset.tab === doc.id;
+      const on = tab.dataset.tab === id;
       tab.setAttribute('aria-selected', on);
       tab.tabIndex = on ? 0 : -1;
       // on a narrow screen the row scrolls sideways; keep the chosen tab in view
@@ -680,6 +689,14 @@
         bar.scrollLeft += t.left - b.left - (b.width - t.width) / 2;
       }
     }
+  }
+
+  function showTab(id, anchor, push) {
+    if (!available.length) return;
+    // an address like /#-setup from before a document was split still finds its heading
+    const doc = partWith(available.find(d => d.id === id) || available[0], anchor);
+    current = doc.id;
+    selectTab(doc.id);
     const article = $('#doc');
     if (doc.playground) {
       showPlayground(article);
@@ -697,21 +714,25 @@
     else if (push) $('.tabs-bar').scrollIntoView();
   }
 
-  // From the page where update-pages.js put them, from GitHub otherwise.
-  async function loadDocs() {
+  // From the page where update-pages.js put them, from GitHub otherwise or when `fromGitHub`.
+  async function loadDocs(fromGitHub = false) {
     let found;
-    if (PRERENDERED.length) {
+    if (PRERENDERED.length && !fromGitHub) {
       found = PRERENDERED;
       // no changelog and no releases when the page was written: the commit history, live
       if (!found.some(doc => doc.id === 'changelog')) found.push({ ...DOCS.find(doc => doc.id === 'changelog'), html: await changelogFromGitHub() });
     } else {
+      let failed = false;
       const loaded = (await Promise.all(DOCS.map(async doc => {
         const file = fileIn(doc.file);
         const res = file && await fetch(RAW + file).catch(() => null);
         if (res && res.ok) return { ...doc, text: await res.text() };
+        if (file) failed = true;
         if (doc.id === 'changelog') return { ...doc, html: await changelogFromGitHub() };
         return null;
       }))).filter(Boolean);
+      // the documents on the page are better than some of them
+      if (fromGitHub && failed) return;
       const taken = new Set(loaded.map(doc => doc.id));
       found = loaded.flatMap(doc => doc.text != null ? splitDoc(doc, doc.text, taken) : [doc]);
       for (const doc of found) if (doc.html == null) doc.html = window.marked.parse(doc.text, { gfm: true });
@@ -725,8 +746,18 @@
     }
     $('#tabs').innerHTML = available.map(doc =>
       `<button class="tab" type="button" role="tab" id="tab-${doc.id}" data-tab="${doc.id}" data-track="tab-${doc.id}" aria-controls="doc">${esc(doc.label)}</button>`).join('');
-    const params = new URLSearchParams(location.search);
-    showTab(params.get('tab') || 'overview', location.hash.slice(1), false);
+    if (!fromGitHub) {
+      const params = new URLSearchParams(location.search);
+      showTab(params.get('tab') || 'overview', location.hash.slice(1), false);
+    } else if (current === 'try') {
+      // a game in the playground goes on
+      selectTab(current);
+    } else {
+      // the tab in front again, where the reader is
+      const y = scrollY;
+      showTab(current, location.hash.slice(1), false);
+      scrollTo({ top: y, behavior: 'instant' });
+    }
   }
 
   /* ---------- page chrome ---------- */
@@ -811,7 +842,9 @@
   setupEvents();
   setupStats();
   $('#year').textContent = new Date().getFullYear();
-  refreshNumbers().then(celebrate).catch(() => { /* no daily counts: nothing to celebrate */ });
+  const numbers = refreshNumbers();
+  numbers.then(celebrate).catch(() => { /* no daily counts: nothing to celebrate */ });
   setupImportString();
-  loadDocs();
+  Promise.all([numbers, loadDocs()]).then(([live]) => { if (newerRelease(live)) return loadDocs(true); })
+    .catch(() => { /* the documents on the page stay */ });
 })();
