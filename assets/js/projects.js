@@ -154,7 +154,7 @@ window.SITE = {
       tags: ['C#', 'WPF', 'Developers'],
       guide: { label: 'Getting started', href: 'docs/Getting-Started.md' },
       moreDocs: [{ id: 'schema', label: 'Schema', file: 'docs/Schema.md' }],
-      version: 'v1.0.0', stars: 0, downloads: 50,
+      version: 'v1.0.0', stars: 0, downloads: 53,
     },
     {
       repo: 'SuTo',
