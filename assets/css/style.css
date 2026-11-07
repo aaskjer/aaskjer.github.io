@@ -1029,7 +1029,9 @@ main > .section::before {
   border-radius: 12px;
 }
 
+/* the logo stays level with the first line of the name, also when a long name takes two lines */
 .grid .card__head {
+  align-items: flex-start;
   gap: 0.8rem;
 }
 
