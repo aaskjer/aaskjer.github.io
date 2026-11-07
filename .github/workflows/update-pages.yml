@@ -25,14 +25,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update the pages
+      # When main moved on while the pages were built (two merges in a row), GitHub refuses the
+      # push. The pages are then built again on top of the new main rather than merged into it, so
+      # no change to projects.js gets lost; three tries, then the next run takes over.
+      - name: Update the pages and commit them
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node _tools/update-pages.js
-
-      - name: Commit the changes
         run: |
-          git add -A -- '*.html' sitemap.xml feed.xml assets/search.json assets/js/projects.js
-          if git diff --cached --quiet; then echo 'Nothing changed.'; exit 0; fi
-          git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update the project pages'
-          git push -q
+          for attempt in 1 2 3; do
+            node _tools/update-pages.js
+            git add -A -- '*.html' sitemap.xml feed.xml assets/search.json assets/js/projects.js
+            if git diff --cached --quiet; then echo 'Nothing changed.'; exit 0; fi
+            git -c user.name='github-actions[bot]' -c user.email='41898213+github-actions[bot]@users.noreply.github.com' commit -q -m 'Update the project pages'
+            if git push -q; then exit 0; fi
+            echo "main moved on (try $attempt), building the pages again on top of it."
+            git fetch -q --depth=1 origin main
+            git reset -q --hard FETCH_HEAD
+          done
+          exit 1
