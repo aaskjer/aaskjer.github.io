@@ -19,7 +19,7 @@
   const SITE_STAMP = stamp(JSON.stringify(window.SITE));
   // this site and the profile README are repositories too
   const NOT_PROJECTS = new Set([`${user}.github.io`, user].map(name => name.toLowerCase()));
-  const PLATFORM_TOPICS = { twitch: 'Twitch', youtube: 'YouTube', kick: 'Kick', discord: 'Discord', obs: 'OBS' };
+  const PLATFORM_TOPICS = { twitch: 'Twitch', youtube: 'YouTube', kick: 'Kick', discord: 'Discord', stoat: 'Stoat', gamevox: 'GameVox', obs: 'OBS' };
 
   const $ = sel => document.querySelector(sel);
   const repoUrl = repo => `https://github.com/${user}/${encodeURIComponent(repo)}`;
@@ -411,6 +411,8 @@
     { key: 'youtube', label: 'YouTube', test: p => has(p.platforms, 'YouTube') },
     { key: 'kick', label: 'Kick', test: p => has(p.platforms, 'Kick') },
     { key: 'discord', label: 'Discord', test: p => has(p.platforms, 'Discord') || has(p.tags, 'Discord') },
+    { key: 'stoat', label: 'Stoat', test: p => has(p.platforms, 'Stoat') || has(p.tags, 'Stoat') },
+    { key: 'gamevox', label: 'GameVox', test: p => has(p.platforms, 'GameVox') || has(p.tags, 'GameVox') },
     // a repository only GitHub knows of has the topic "obs" as its platform 'OBS'
     { key: 'obs', label: 'OBS overlay', test: p => has(p.tags, 'OBS overlay') || has(p.platforms, 'OBS') },
   ];
@@ -451,7 +453,7 @@
 
   function setupFilters() {
     const bar = $('#filters');
-    bar.innerHTML = '<span class="filters__label" aria-hidden="true">Works with</span>'
+    bar.innerHTML = '<span class="filters__label" aria-hidden="true">Filter by</span>'
       + FILTERS.map(f => `<button class="chip filter chip--${f.key}" type="button" aria-pressed="false" data-filter="${f.key}" data-track="filter-${f.key}">${esc(f.label)}</button>`).join('')
       + '<span class="filters__status"><span class="filters__count" aria-live="polite"></span>'
       + '<button class="filters__clear" type="button" data-clear-filters data-track="filter-clear" hidden>Show all</button></span>';
