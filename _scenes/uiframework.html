@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>UIFramework scene</title>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .bg {
+    background:
+      radial-gradient(900px 640px at 85% 15%, rgba(37, 99, 235, .38), transparent 70%),
+      radial-gradient(760px 600px at 5% 95%, rgba(124, 58, 237, .32), transparent 70%),
+      linear-gradient(160deg, #101629, #090b14);
+  }
+  .logo {
+    position: absolute;
+    left: 80px;
+    top: 120px;
+    width: 640px;
+  }
+  .claim {
+    position: absolute;
+    left: 86px;
+    top: 330px;
+    width: 600px;
+    color: #e6e6ee;
+    font: 600 40px/1.25 'Sora', sans-serif;
+  }
+  .claim small {
+    display: block;
+    margin-top: 22px;
+    color: #a8a8bb;
+    font: 400 22px/1.5 'Segoe UI', sans-serif;
+  }
+  .games {
+    position: absolute;
+    left: 86px;
+    top: 640px;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .games span {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .12);
+    color: #d4d4dc;
+    font-size: 17px;
+  }
+  .win {
+    position: absolute;
+    border-radius: 10px;
+    border: 1px solid #2c2c36;
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .95);
+    overflow: hidden;
+    background: #242424;
+  }
+  .win img { display: block; width: 100%; }
+  .win.back { left: 790px; top: 70px; width: 460px; transform: rotate(-3deg); opacity: .92; }
+  .win.front { left: 1080px; top: 140px; width: 440px; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div>
+  <img class="logo" src="img/uiframework-logo.png" alt="UIFramework">
+  <div class="claim">One settings window for every chat game.
+    <small>Pages, a tour of itself, a chat preview, a log reader and a customise mode, declared by the game in one table.</small>
+  </div>
+  <div class="games">
+    <span>Blackjack</span><span>Battleship</span><span>Hangman</span><span>Trivia</span><span>RhymeTime</span>
+    <span>Slot Machine</span><span>High-Low</span><span>Chat Gamble</span>
+  </div>
+  <div class="win back"><img src="img/uiframework-blackjack.png" alt=""></div>
+  <div class="win front"><img src="img/uiframework-tour.png" alt=""></div>
+</div>
+</body>
+</html>

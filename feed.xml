@@ -5,9 +5,362 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-07T00:10:30Z</updated>
+  <updated>2026-11-07T19:13:33Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v1.0.0: UIFramework v1.0.0</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.0.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.0.0</id>
+    <published>2026-11-07T19:13:33Z</published>
+    <updated>2026-11-07T19:13:33Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;The first stable release: the settings window every chat game of aaskjer&amp;#39;s runs on (Blackjack, Battleship, Classic
+Chat Gamble, Hangman, High-Low, RhymeTime, Slot Machine, Trivia), with a tour of itself, its problems behind one
+red button, and a Log page that reads old and new log lines alike. From here on, the host block and the settings
+action change only in ways the CHANGELOG says, and a release that breaks a game needs a new major version.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Problems behind a red &amp;quot;i&amp;quot;.&lt;/strong&gt; What the game declares that does not fit, and what fails while the window is
+open (a page that cannot be built, a handler that throws, a failed save, an unreadable layout file), no longer
+show as a banner and a list on the Log or About page. A red &lt;strong&gt;i&lt;/strong&gt; appears in the header instead; a click opens a
+panel that lists them in two groups, the failures with their time, and &lt;em&gt;Copy&lt;/em&gt; puts the whole list on the
+clipboard for a bug report. Esc, the close button or a click beside it closes it. Every line still goes to
+Streamer.bot&amp;#39;s log. The status line&amp;#39;s &amp;quot;Something went wrong&amp;quot; points at the &lt;strong&gt;i&lt;/strong&gt;. Preview:
+&lt;code&gt;-windowshots &amp;lt;folder&amp;gt; -problems&lt;/code&gt; photographs the window with the &lt;strong&gt;i&lt;/strong&gt;, then with its panel open.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A tour stop to try out.&lt;/strong&gt; &lt;code&gt;Tip(target, title, text, act: true)&lt;/code&gt; lets the user use the ringed part while the stop
+is up: clicks go through the ring to it, keys reach it, the rest of the window stays out of reach, and the ring
+follows the part as it grows (a Try button&amp;#39;s answer). The note says &lt;em&gt;Try it yourself&lt;/em&gt;. The demo game&amp;#39;s &lt;em&gt;Roll&lt;/em&gt;
+stop is one.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How to play, Log and About at the foot of the rail.&lt;/strong&gt; The three sit together at the bottom of the page list,
+in this order, whatever order a game declares them in; a game&amp;#39;s own bottom page goes above them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page reads more.&lt;/strong&gt; Older lines in columns (&lt;code&gt;yyyy-MM-dd HH:mm:ss RESULT  user  [R1|id] Key: value | ...&lt;/code&gt;)
+show their time, result, player, round and fields instead of an empty row. A column may name several keys
+(&lt;code&gt;&amp;quot;Word|Word,Word was&amp;quot;&lt;/code&gt;): the first the line has is shown. A value in one pair of single quotes loses them.
+Results read with a capital per part (&lt;em&gt;Game-Over&lt;/em&gt;, &lt;em&gt;Hit-Lettr&lt;/em&gt;), and column headers and the empty text translate
+through the game&amp;#39;s &lt;code&gt;Tx&lt;/code&gt; like every declared text.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Every chat game has a tour&lt;/strong&gt; and the current host block; High-Low and RhymeTime have a Log page now, and
+Hangman&amp;#39;s log fills every column (&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/hosts&quot;&gt;hosts/&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;1bd98cae8eac285d2e112bd1aae1e03f4768ac647e1e41f8b4fba5af1bf7cdd4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.10.0: UIFramework v0.10.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.10.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.10.0</id>
+    <published>2026-11-07T11:48:56Z</published>
+    <updated>2026-11-07T11:48:56Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;A tour of the window on its first open.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The window explains itself.&lt;/strong&gt; A game declares a tour in its window, &lt;code&gt;.Tour(Tip(target, title, text), ...)&lt;/code&gt;:
+on the window&amp;#39;s first open the window dims and one part after the other is ringed in the accent colour, with a
+note beside it (&lt;em&gt;Back&lt;/em&gt;, &lt;em&gt;Next&lt;/em&gt;, &lt;em&gt;End tour&lt;/em&gt;; Esc ends it, the arrow keys and Enter step through it). A stop
+points at a setting (its page comes to the front), a page (&lt;code&gt;page:messages&lt;/code&gt;; the page stays bright beside its
+rail entry), a part of the window (&lt;code&gt;rail&lt;/code&gt;, &lt;code&gt;save&lt;/code&gt;, &lt;code&gt;saveExit&lt;/code&gt;, &lt;code&gt;cancel&lt;/code&gt;, &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;reset&lt;/code&gt;, &lt;code&gt;resetPage&lt;/code&gt;,
+&lt;code&gt;theme&lt;/code&gt;, &lt;code&gt;customise&lt;/code&gt;, &lt;code&gt;tour&lt;/code&gt;) or nothing (&lt;code&gt;start&lt;/code&gt;, &lt;code&gt;end&lt;/code&gt;, a note of the game&amp;#39;s own). Parts and the standard
+pages bring their own texts in English, German and Spanish, a setting its label and help; the game&amp;#39;s own texts
+translate through &lt;code&gt;Tx&lt;/code&gt;. &lt;code&gt;&amp;quot;tourSeen&amp;quot;: true&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; keeps it from starting again; the &lt;strong&gt;?&lt;/strong&gt;
+at the top right shows it whenever the user wants. A stop the window cannot show (a page the user hid,
+&lt;code&gt;customise&lt;/code&gt; in a locked window) is left out; a target that is neither a setting, a page nor a part is listed
+like any other mistake in the declaration. See &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-tour&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The demo game has a tour&lt;/strong&gt;: the pages, a setting, the &lt;em&gt;Roll&lt;/em&gt; button, the Messages page, the unsaved-changes
+line, saving, resetting, the theme, the customise mode and the &lt;strong&gt;?&lt;/strong&gt; itself.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host block:&lt;/strong&gt; &lt;code&gt;UiSchema.Tip&lt;/code&gt; and &lt;code&gt;UiWindow.Tour&lt;/code&gt;. A game without a tour needs nothing new; an older DLL
+ignores a tour it does not know.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Preview:&lt;/strong&gt; &lt;code&gt;-windowshots &amp;lt;folder&amp;gt; -tour&lt;/code&gt; photographs every stop of the tour (&lt;code&gt;tour-01.png&lt;/code&gt;, ...).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;587a69a9a883a6da2251e9591171c02e43e95cd711846eccc63ea22d386d51b1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.10.0&quot;&gt;Download v0.10.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.9.13: UIFramework v0.9.13 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.13"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.13</id>
+    <published>2026-11-07T11:37:08Z</published>
+    <updated>2026-11-07T11:37:08Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;Spanish and every language offered, neutral credits, saving that keeps what the game wrote, a sturdier loader
+(stub 0.2.0), and the review&amp;#39;s findings fixed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spanish.&lt;/strong&gt; &lt;code&gt;conventions/lang/es.json&lt;/code&gt; translates every known key, page, placeholder and window text, and the
+short wordings German translates.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Every language is offered.&lt;/strong&gt; The language picker lists every language there are texts for, by its own name
+(English, Deutsch, Español): the DLL&amp;#39;s files, a file in &lt;code&gt;UIFramework\lang\&lt;/code&gt; beside Streamer.bot (a new language
+or corrections, without a release), and the languages a game brings texts for. A game without texts of its own
+gets what the conventions translate. A game that names its window&amp;#39;s language has no picker.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A game can translate the window itself&lt;/strong&gt; for a language the framework lacks: &lt;code&gt;Ui(key, text)&lt;/code&gt; and
+&lt;code&gt;Ph(placeholder, help)&lt;/code&gt; in &lt;code&gt;Lang&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A relabelled known key keeps the game&amp;#39;s wording&lt;/strong&gt; where the conventions do not translate it; before, a language
+without a conventions file showed the conventions&amp;#39; English label over the game&amp;#39;s own.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Neutral credits.&lt;/strong&gt; The framework names no author: a game without credits shows none, and every About page ends
+with the links &lt;code&gt;conventions/keys.json&lt;/code&gt; lists (&lt;code&gt;about.links&lt;/code&gt;): the UIFramework page on aaskjer.github.io,
+Streamer.bot and &lt;em&gt;Report something that looks wrong&lt;/em&gt; (the game&amp;#39;s issues when it names its repository, else the
+framework&amp;#39;s). &lt;code&gt;About(defaultLinks: false)&lt;/code&gt; leaves them out; &lt;code&gt;authorLink&lt;/code&gt; does nothing any more.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;More said to a game&amp;#39;s author:&lt;/strong&gt; a known key declared as another kind of value (it would still take the
+conventions&amp;#39; limits, old keys and translations), a section split by another on its page (its heading would show
+twice), an icon name the framework does not know (it shows a dot instead of the word).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Fixes to the fixes:&lt;/strong&gt; a request hung in the game action no longer blocks the next ones (taking over a window and
+reopening one work again); a list moving into its own file survives the open-time theme move and Reset all, and
+Reset all leaves lists in their own files; whole numbers stay exact past 2^53; the next save also writes a
+switch, dropdown or slider shown other than stored; a hidden number box without a number keeps its value; a list
+file unreadable at save keeps the window&amp;#39;s copy of its untouched lists; &lt;code&gt;UiSettings.Load&lt;/code&gt; survives a bad path; an
+older DLL gets &amp;quot;no answer&amp;quot; as before instead of the stub&amp;#39;s marker; the sample thousands separator follows the
+window&amp;#39;s language.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The host block needs no usings.&lt;/strong&gt; &lt;code&gt;stub/HostSchema.cs&lt;/code&gt; names every type in full (&lt;code&gt;Newtonsoft.Json.Linq.JObject&lt;/code&gt;,
+&lt;code&gt;System.IO.File&lt;/code&gt;, ...), so it compiles in any game action whatever its &lt;code&gt;using&lt;/code&gt; lines say, right below them, at the
+end or inside &lt;code&gt;CPHInline&lt;/code&gt;, and a game&amp;#39;s own usings can no longer clash with it (a &lt;code&gt;Path&lt;/code&gt; or &lt;code&gt;Formatting&lt;/code&gt; of
+another namespace). Before, the game&amp;#39;s action had to bring seven usings, and the file pasted alone into a new
+Execute Code failed with some 150 errors (&amp;quot;The type or namespace name &amp;#39;JObject&amp;#39; could not be found&amp;quot;).
+&lt;code&gt;tools/check-stub.ps1&lt;/code&gt; compiles the block alone now. A game&amp;#39;s present block keeps working;
+&lt;code&gt;tools/update-host-block.ps1&lt;/code&gt; brings the new one, and takes only what stands between the template&amp;#39;s markers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Getting-Started is copy and paste.&lt;/strong&gt; Five steps to the running demo game, each with the ready file to paste
+(&lt;code&gt;examples/DemoGame/DemoGame.cs&lt;/code&gt;, &lt;code&gt;stub/Stub.cs&lt;/code&gt;) and nothing to change, what to do when a step fails, then how
+to make it your own game and how to add the block to a game you already have. The demo game carries its host
+block below the usings like every game, and names its command by its text (&lt;code&gt;C(&amp;quot;!roll&amp;quot;, ...)&lt;/code&gt;), so a &lt;code&gt;!roll&lt;/code&gt;
+made by hand gets the cooldowns too.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Twitch emotes show without a Twitch login.&lt;/strong&gt; A fresh Streamer.bot has no Twitch token, so the window could not
+ask the Twitch API and Kappa, LUL and the other global emotes stayed without a picture. Their ids now ship in
+&lt;code&gt;conventions/emotes/twitch.json&lt;/code&gt;; with a login the window still asks Twitch itself, for the channel&amp;#39;s emotes too.
+&lt;code&gt;tools/update-twitch-emotes.ps1&lt;/code&gt; refreshes the list.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The coins icon shows.&lt;/strong&gt; A page with the conventions&amp;#39; &lt;code&gt;coins&lt;/code&gt; icon (Points &amp;amp; Bets) showed an empty box: 🪙 is
+missing from the emoji font WPF draws with, so it is 💰 now.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs with pictures, and the conventions published.&lt;/strong&gt; Getting-Started, Customize, Schema and the README show
+the window; &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md&quot;&gt;docs/Conventions.md&lt;/a&gt; lists the standard pages, known keys, placeholders and
+language files, and explains how to add a language. &lt;code&gt;tools/conventions-doc.ps1&lt;/code&gt; keeps its tables current, and CI
+checks them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;German windows show the cooldown senders again.&lt;/strong&gt; The Messages page&amp;#39;s &amp;quot;send as bot&amp;quot; and &amp;quot;send as action&amp;quot;
+switches for the cooldown messages were missing in German: the message groups are translated (&amp;quot;Abklingzeit&amp;quot;),
+the cooldown group was looked for in English. It is found in the window&amp;#39;s language now.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A game handler that hangs no longer freezes the window&lt;/strong&gt; (stub 0.2.0). A request that has started gets 30
+seconds, then the window carries on without its answer; before, it waited for good and could not be closed. A
+game that has not sent its schema for a minute no longer locks its settings until Streamer.bot restarts: the
+next run opens the window.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A declined save leaves nothing behind.&lt;/strong&gt; The window&amp;#39;s values go into a draft; only a save that is written
+takes them over. Before, a save declined at a warning kept them in the window&amp;#39;s copy, and after a theme or
+language switch they looked saved while the file still held the old ones.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A number pulled into its limits is written.&lt;/strong&gt; A value outside a field&amp;#39;s min/max (or no number at all) that the
+window shows as its limit or default is written with the next save, also when the user did not touch that field;
+so is what the game&amp;#39;s clamp changed. Before, the box said 25 and the game kept reading 50.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A save that cannot read the settings file stops&lt;/strong&gt; and says why, instead of writing every list file from the
+copy the window opened with. A list moving out of the settings file into its own lands there with the first
+save.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Import reads like the settings file:&lt;/strong&gt; old keys with their factors on any Windows language (an old 0.18 is 18 %
+on a German system too), old keys inside an object, the current key winning. It lays the import over the file as
+it is now and writes only the lists it brings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Reset all&lt;/strong&gt; keeps read-only settings and those on pages the user hid, and the game hears of the lists in their
+own files as they are, not as defaults.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;First install checks &lt;code&gt;minHostStub&lt;/code&gt; too&lt;/strong&gt; (stub 0.2.0): a release that needs a newer settings action is not
+installed by an older game; &amp;quot;0.2.0.0&amp;quot; no longer counts as newer than &amp;quot;0.2.0&amp;quot;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Loader details&lt;/strong&gt; (stub 0.2.0): a DLL that no longer matches its hash is set aside as &lt;code&gt;.broken&lt;/code&gt; and its version
+offered again, and an installed file that is not the published one is fetched anew; the hash file is written
+before the DLL. Every game uses the UIFramework another game already loaded, so two versions never run side by
+side, and the log says which runs. One request to the game at a time, so two runs never read each other&amp;#39;s answer;
+the run serving a reopened window hands the one-window flag back. A &lt;code&gt;latest.json&lt;/code&gt; version that is no plain number
+is refused in the release check too. A cooldown above a day is set to a day with a line in the log.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Host block:&lt;/strong&gt; &lt;code&gt;UiSettings.Long&lt;/code&gt; reads a whole number exactly (no detour through a double), and &lt;code&gt;Load&lt;/code&gt; never
+throws, also on a path with invalid characters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Conditions compare what is stored, shown or not.&lt;/strong&gt; A &lt;code&gt;percent&lt;/code&gt; compares as its fraction
+(&lt;code&gt;reshuffleThreshold&amp;gt;=0.5&lt;/code&gt; for 50 %), a &lt;code&gt;duration&lt;/code&gt; in seconds, an &amp;quot;unlimited&amp;quot; 0 as the number it is saved as; a
+field hidden by the user no longer compares differently. &lt;code&gt;!list&lt;/code&gt; holds for an empty list.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The check names a comparison that never holds:&lt;/strong&gt; &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt; against text, or on a field that holds
+no number. A slider on a scale (&lt;code&gt;min&lt;/code&gt;, &lt;code&gt;max&lt;/code&gt;, &lt;code&gt;step&lt;/code&gt;) is no longer reported as &amp;quot;without options&amp;quot;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A huge number in the settings file breaks nothing:&lt;/strong&gt; a whole number with more digits than a long reads as the
+largest value instead of failing the page.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Saving is not stopped by fields it never writes:&lt;/strong&gt; a Try field left empty, or a number hidden by a &lt;code&gt;showWhen&lt;/code&gt;
+or its section&amp;#39;s condition. Fields on another page are still checked.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A page pattern leaves the sender switches and the log switch where they are&lt;/strong&gt;, so no key gets two fields that
+overwrite each other on save. A page naming one by key is listed as a problem.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The placeholder chips&amp;#39; tooltips follow a language switch&lt;/strong&gt;; a host&amp;#39;s own help is kept.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Percent fields keep their decimals.&lt;/strong&gt; Leaving the box rewrites only a number outside its range, to that limit;
+12.345 stays 12.345. A value in the file that is no number shows the default instead of an empty box that blocks
+saving.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Customise keeps rows together.&lt;/strong&gt; A field dropped at the top or bottom of a field that shares a line goes above
+or below the whole line, not between its members. The log page&amp;#39;s &amp;quot;log file per day&amp;quot; switch is greyed in the
+customise mode, which has no Save.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A slider&amp;#39;s kept value goes on Reset page and &lt;code&gt;set&lt;/code&gt;&lt;/strong&gt; also when the slider already sits on the stop it is put
+on; its label follows.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;German windows have no English left&lt;/strong&gt; in the customise tag &amp;quot;hidden&amp;quot;, the empty-page note, the path and colour
+tooltips, an action&amp;#39;s &amp;quot;done&amp;quot;/&amp;quot;failed&amp;quot; and the table&amp;#39;s &amp;quot;Nothing here yet&amp;quot;/&amp;quot;Read again&amp;quot;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A layout file another program holds is not lost.&lt;/strong&gt; It is read again a few times; if it is still held, the
+window starts from the defaults for once and does not write over it. Only a file that is no JSON goes to &lt;code&gt;.broken&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Numbers the same on every Windows:&lt;/strong&gt; decimal boxes take a minus where the setting allows negatives and refuse a
+paste that is no number; a list cell refuses &amp;quot;1,000&amp;quot; like the table (also when saved while it has the focus) and
+shows &amp;quot;2.5&amp;quot;, not &amp;quot;2,5&amp;quot;; a value an action sets finds its option on a German system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Smaller fixes:&lt;/strong&gt; emote pictures load over HTTPS only; &lt;code&gt;update-host-block&lt;/code&gt; sees a change in letter case; the
+release workflow refuses a pre-release tag before publishing and keeps the published DLL on a re-run; the demo&amp;#39;s
+dice are thread-safe.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Settings action (stub 0.2.0):&lt;/strong&gt; a game&amp;#39;s answer is unset from Streamer.bot&amp;#39;s globals as soon as it is read, so
+the Twitch token in the emote sources no longer stays visible in the variables. A DLL saved from a browser loads
+(it was refused as &amp;quot;downloaded from the internet&amp;quot;). When the newest installed DLL cannot be loaded, the next
+older one opens the window. The hash a download was checked with is kept beside the DLL and checked on every
+load. A release that names a higher &lt;code&gt;minHostStub&lt;/code&gt; is not offered. A game takes this with its next release, by
+pasting the new &lt;code&gt;stub/Stub.cs&lt;/code&gt; as its settings action.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Nothing unchecked from &lt;code&gt;latest.json&lt;/code&gt;.&lt;/strong&gt; The settings action installs no release without a &lt;code&gt;sha256&lt;/code&gt;, fetches the
+DLL over &lt;code&gt;https://&lt;/code&gt; only and refuses a &lt;code&gt;version&lt;/code&gt; that is not a version number before it becomes a folder name.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The release check no longer holds the window up to 10 s.&lt;/strong&gt; Offline (unreachable, timed out) it does not try the
+CDN after the API; a network sign-in page instead of &lt;code&gt;latest.json&lt;/code&gt; falls back to the CDN.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A second click brings the window to the front.&lt;/strong&gt; While a game&amp;#39;s window is open (or still opening), another run
+of its settings action neither asks the game nor checks for a release again, and leaves the first run&amp;#39;s queue alone.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The hint for a hand-fetched DLL shows offline too.&lt;/strong&gt; Its example path no longer fails on &lt;code&gt;&amp;lt;version&amp;gt;&lt;/code&gt; when
+&lt;code&gt;latest.json&lt;/code&gt; cannot be read.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A save keeps what it did not change.&lt;/strong&gt; The window writes the settings file as it is at that moment with the
+fields the user changed laid over it, instead of the copy it read when it opened: a viewer added from chat, a
+question suggested from chat or a status the game wrote while the window was open survive a save that did not
+touch them. A list kept in a file of its own is written only when its list changed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A damaged list file is kept.&lt;/strong&gt; One that cannot be read is copied to &lt;code&gt;.broken&lt;/code&gt; before the window writes over it,
+and a list file (a JSON array) now gets its &lt;code&gt;.bak&lt;/code&gt; on every save like the settings file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Numbers keep their decimals.&lt;/strong&gt; A number field shows up to ten decimals instead of two, so 0.005 no longer
+shows, and saves back, as 0.01, nor 0.001 as 0.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The language switch asks first.&lt;/strong&gt; In a locked window, picking another language with unsaved changes asks to
+save them, as the theme button does, instead of dropping them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Numbers the same on every Windows.&lt;/strong&gt; Option values, dropdowns, sliders, text fields and the host block&amp;#39;s
+&lt;code&gt;UiSettings.String&lt;/code&gt;/&lt;code&gt;Double&lt;/code&gt;/&lt;code&gt;Long&lt;/code&gt; read and write numbers with a point, so a German system no longer turns 0.5
+into &amp;quot;0,5&amp;quot;; &lt;code&gt;Long&lt;/code&gt; no longer overflows on a huge stored value.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A bad stored value no longer breaks a page.&lt;/strong&gt; A number field whose value is no number shows its default, a
+number stored as text (&amp;quot;0,5&amp;quot; too) is read, and a fraction in a whole-number field is shown instead of cut.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;min&lt;/code&gt;/&lt;code&gt;max&lt;/code&gt; hold for &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;long&lt;/code&gt; and &lt;code&gt;duration&lt;/code&gt;.&lt;/strong&gt; A value outside is saved as the nearest limit, and the
+field shows what was saved; a &lt;code&gt;min&lt;/code&gt; below 0 lets the field take a minus.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A big default makes a &lt;code&gt;long&lt;/code&gt; field.&lt;/strong&gt; A whole-number default beyond an int (also where the conventions say
+&lt;code&gt;int&lt;/code&gt;) is no longer cut to 2147483647 on save.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Dropdowns and stop sliders keep an unknown value.&lt;/strong&gt; A stored value none of the options has stays as an extra
+entry, selected, and is saved back unchanged instead of the first option.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Number columns take numbers.&lt;/strong&gt; A table cell of an &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;long&lt;/code&gt; or &lt;code&gt;double&lt;/code&gt; column takes digits (and a minus,
+a decimal mark) only, and a cell that is no number goes back to what it held instead of saving 0.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;readOnly&lt;/code&gt; in both spellings; more for the host block.&lt;/strong&gt; &lt;code&gt;readOnly&lt;/code&gt; and &lt;code&gt;readonly&lt;/code&gt; are read on a setting and a
+column. &lt;code&gt;S()&lt;/code&gt; takes &lt;code&gt;readOnly&lt;/code&gt;, &lt;code&gt;step&lt;/code&gt; and &lt;code&gt;group&lt;/code&gt;. A column flag right after the kind (&lt;code&gt;&amp;quot;wins|int|readonly&amp;quot;&lt;/code&gt;,
+&lt;code&gt;&amp;quot;face|emote|twitch&amp;quot;&lt;/code&gt;) is a flag, not the label.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;null&lt;/code&gt; hides any sender switch.&lt;/strong&gt; An explicit &lt;code&gt;null&lt;/code&gt; in &lt;code&gt;senders&lt;/code&gt; hides &lt;code&gt;useBot&lt;/code&gt;, &lt;code&gt;sendAction&lt;/code&gt;,
+&lt;code&gt;cooldownUseBot&lt;/code&gt;, &lt;code&gt;cooldownSendAction&lt;/code&gt; and &lt;code&gt;cooldownGroup&lt;/code&gt;, as documented; before only &lt;code&gt;numberSeparator&lt;/code&gt; obeyed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Conditions.&lt;/strong&gt; &lt;code&gt;!key&lt;/code&gt; holds while a switch is off or a field is empty. A gate the window does not show is read
+from its saved value instead of counting as met. A field the user&amp;#39;s layout moves to another section takes that
+section&amp;#39;s condition. An answer box that moves under its row hides with its button.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Typed decimals are not guessed.&lt;/strong&gt; &amp;quot;1,000&amp;quot; or &amp;quot;1.000,5&amp;quot; in a decimal field is refused as ambiguous instead of
+read as 1.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A damaged layout file is kept.&lt;/strong&gt; &lt;code&gt;uiframework.layout.json&lt;/code&gt; that is not JSON is copied to &lt;code&gt;.broken&lt;/code&gt; and logged;
+a value of the wrong type in it (&lt;code&gt;&amp;quot;order&amp;quot;: &amp;quot;2&amp;quot;&lt;/code&gt;) reads as not set instead of breaking the window.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A check that got no answer asks.&lt;/strong&gt; When the game did not answer &lt;code&gt;validate&lt;/code&gt; (a timeout, a disabled action),
+the window asks whether to save unchecked instead of taking it for &amp;quot;no problems&amp;quot; (stub 0.2.0).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A hung game action no longer locks the window.&lt;/strong&gt; The window can be opened again while a request still hangs;
+a request the window gave up on is skipped instead of run late (stub 0.2.0). An error in a click handler is
+logged and shown in the status line instead of closing the window.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Emote sources are asked once per window&lt;/strong&gt;, not once per emote cell.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Rebuilds no longer leak.&lt;/strong&gt; A section heading follows its fields through a binding; every rebuild (language,
+theme, customise mode) kept the old page alive before.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Two windows at once&lt;/strong&gt; keep their own theme, accent, rainbow and language.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cooldowns are set safely&lt;/strong&gt; (stub 0.2.0): a misnamed key leaves the cooldown as it is instead of setting 0, one
+command that fails leaves the others set, and the game always hears of the save.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The stub writes the layout file carefully&lt;/strong&gt; (stub 0.2.0): only on a change, atomically, never over a file it
+could not read. TLS 1.2 is added without pinning the process; the download mutex is honoured; the dialogs name
+the current version&amp;#39;s folder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Customise-mode drops&lt;/strong&gt; check that the field or page came from this window; a message template can no longer be
+dropped on another page through the rail, a field dropped on its own page stays where it is, and a field moved
+to another page leaves its old row.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Release workflow&lt;/strong&gt; builds the tag&amp;#39;s own commit, carries &lt;code&gt;minHostStub&lt;/code&gt; over and never takes &lt;code&gt;latest.json&lt;/code&gt; back.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs:&lt;/strong&gt; the usings the host block needs; the nested &lt;code&gt;RunAction&lt;/code&gt; pitfall. &lt;code&gt;tools/update-host-block.ps1&lt;/code&gt; keeps a
+&lt;code&gt;.bak&lt;/code&gt; and refuses to drop lines of the game&amp;#39;s own unless &lt;code&gt;-Force&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Smaller: Ctrl+S does nothing in the customise mode; a name typed into a name list but not entered counts as a
+change when closing; an answer with only &lt;code&gt;set&lt;/code&gt;/&lt;code&gt;status&lt;/code&gt; keeps the result panel&amp;#39;s previous lines.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Text keeps its spaces.&lt;/strong&gt; A &lt;code&gt;string&lt;/code&gt; field saves what was typed, spaces at either end included (&lt;code&gt;&amp;quot; | &amp;quot;&lt;/code&gt;,
+&lt;code&gt;&amp;quot;🎲 &amp;quot;&lt;/code&gt;); names, paths, colours and tokens are still trimmed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Durations in minutes and hours.&lt;/strong&gt; A &lt;code&gt;duration&lt;/code&gt; with &lt;code&gt;unit&lt;/code&gt; &lt;code&gt;min&lt;/code&gt; or &lt;code&gt;h&lt;/code&gt; is typed and shown in that unit and
+stored in seconds (1.5 min is 90); &lt;code&gt;min&lt;/code&gt;/&lt;code&gt;max&lt;/code&gt; stay seconds.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A greyed-out field looks it&lt;/strong&gt; on every kind: a &lt;code&gt;requires&lt;/code&gt; that does not hold also dims the field.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;German follows the game&amp;#39;s own wording.&lt;/strong&gt; A conventions key the game gave a label (or help) of its own is
+translated by the game&amp;#39;s &lt;code&gt;Tx&lt;/code&gt; for that wording; without one the conventions&amp;#39; German for the key is shown, as
+before. &lt;code&gt;K(key, label)&lt;/code&gt; without a help keeps the conventions&amp;#39; help.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;stats&lt;/code&gt; and &lt;code&gt;channelPoints&lt;/code&gt; pages&lt;/strong&gt; have an icon and a place in the order (icon name &lt;code&gt;gift&lt;/code&gt; is new).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Reset all keeps what the window does not show:&lt;/strong&gt; hidden settings and keys it has no field for.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A page pattern leaves a moved field alone.&lt;/strong&gt; A field the user moved to another page is not claimed back by
+&lt;code&gt;overlay*&lt;/code&gt;; a claimed field&amp;#39;s page is the claiming one, and a template a page claims by key leaves the Messages
+picker.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;More checks:&lt;/strong&gt; a section condition for a section no setting is in, an old key that is another setting&amp;#39;s key.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Aliases:&lt;/strong&gt; an old key that is a setting of its own keeps its value instead of being moved and reset; a dotted
+alias feeds shared keys too and its old value goes also when the canonical key is in the file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Host block:&lt;/strong&gt; &lt;code&gt;UiSettings.Load&lt;/code&gt; falls back to the &lt;code&gt;.bak&lt;/code&gt; of the last save on a damaged file and says so
+(&lt;code&gt;Problem&lt;/code&gt;, &lt;code&gt;FromBackup&lt;/code&gt;, an optional log); a relative path starts in the Streamer.bot folder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs:&lt;/strong&gt; the game action&amp;#39;s code is its last sub-action.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;f61ded59d955c9b7cdf6ac1f7026d577504a555af6081c611f455de58f41f86b&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.13&quot;&gt;Download v0.9.13&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Trivia Game v9.0.0: Settings window in UIFramework, an OBS overlay &amp; your questions mixed into any source</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0"/>
@@ -211,6 +564,49 @@
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0&quot;&gt;Download v13.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
+    <title>UIFramework v0.9.12: UIFramework v0.9.12 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.12"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.12</id>
+    <published>2026-11-07T00:01:43Z</published>
+    <updated>2026-11-07T00:01:43Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;About links once, no empty logo square, a table hint that fits the table.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The About page lists every address once: a game whose own links repeat its repository or releases, which the
+framework already shows, no longer gets them twice. Without a declared logo there is no empty square beside
+the name.&lt;/li&gt;
+&lt;li&gt;The hint under a list table mentions the checkboxes only when the table has a switch column (a word list has
+none).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;a3dd9394bef0e663249ce1a18f81f018f04ea80d8216e76ea9a8a064f41651b7&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.12&quot;&gt;Download v0.9.12&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.9.11: UIFramework v0.9.11 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.11"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.11</id>
+    <published>2026-11-06T23:19:51Z</published>
+    <updated>2026-11-06T23:19:51Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;German only where a game offers it; Lock() keeps a window as declared.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;German is optional for a game: the window offers English and only the languages the game declares with &lt;code&gt;Lang&lt;/code&gt;.
+A game without &lt;code&gt;Lang(&amp;quot;de&amp;quot;)&lt;/code&gt; is never shown half in German, whatever an old layout file asks for; the language
+picker lists only what is offered and is gone when that is English alone. &lt;code&gt;Lang(&amp;quot;de&amp;quot;)&lt;/code&gt; with no texts offers
+German from the conventions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Lock()&lt;/code&gt; on the window (&lt;code&gt;&amp;quot;locked&amp;quot;: true&lt;/code&gt; in the schema) locks the layout for everyone: no customise mode, and a
+user&amp;#39;s renames, moves, hidden fields and accent colour are not applied. Theme and language stay the user&amp;#39;s; the
+language picker moves into the footer. The host block gains &lt;code&gt;Lock()&lt;/code&gt;; a game takes it with its next release.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The preview&amp;#39;s &lt;code&gt;-windowshots &amp;lt;folder&amp;gt;&lt;/code&gt; photographs the whole window per page, rail, header and footer included,
+with the page at its full height, for a game&amp;#39;s setup guide (&lt;code&gt;-pages game,emotes&lt;/code&gt;, &lt;code&gt;-names access=access--cp&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;8e77a6fd10092be4ee9485763af017104d474490538703bbd67e3fb94f8d04d5&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.11&quot;&gt;Download v0.9.11&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
     <title>Slot Machine Game v16.2.0: Emotes like chat, Free mode from chat, hooks for your own actions</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0"/>
     <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0</id>
@@ -243,6 +639,74 @@
 &lt;hr&gt;
 &lt;p&gt;Prefer pasting over downloading? The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt; is the same thing. The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the window, and questions are answered in the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0&quot;&gt;Download v16.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.9.10: UIFramework v0.9.10 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.10"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.10</id>
+    <published>2026-11-06T22:35:24Z</published>
+    <updated>2026-11-06T22:35:24Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;The customise mode in the window&amp;#39;s real layout, fields dropped beside each other; the OBS fields on one line.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The customise mode shows a page as the window lays it out, side by side where fields share a line, instead of
+one field per line. Dropping a field at the left or right edge of another puts it beside that one; at its top
+or bottom, on a line of its own. The layout file keeps it as &lt;code&gt;fields.&amp;lt;key&amp;gt;.row&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The OBS connection, scene and source sit on one line, in every game that declares &lt;code&gt;obsConnectionId&lt;/code&gt;,
+&lt;code&gt;obsSceneName&lt;/code&gt; and &lt;code&gt;obsSourceName&lt;/code&gt; (now keys of the conventions, with a &lt;code&gt;row&lt;/code&gt;). A number field on its own takes
+a third of the width, as beside two others, instead of the whole line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;619d9220e1d7c87ab6acfe0ab492bab65205812eb937bc8dfa5cf5bbf9434b29&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.10&quot;&gt;Download v0.9.10&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.9.9: UIFramework v0.9.9 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.9"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.9</id>
+    <published>2026-11-06T21:57:16Z</published>
+    <updated>2026-11-06T21:57:16Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;List tables edited in place; fields, switches and whole sections bound to a dropdown&amp;#39;s options.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The list table is edited in place, as the games&amp;#39; own windows did before UIFramework: a click into a cell edits
+it, a switch column is a checkbox in every row that toggles with one click, several rows can be picked and
+removed at once (Remove row or Delete). Alternating rows and column lines make the cells easy to tell apart.
+The edit panel under the table is gone.&lt;/li&gt;
+&lt;li&gt;Fields bound to a dropdown&amp;#39;s options, any kind of field. &lt;code&gt;showWhen&lt;/code&gt; on a setting shows it only while its
+condition holds (&lt;code&gt;questionSource=igdb&lt;/code&gt;); &lt;code&gt;=&lt;/code&gt; and &lt;code&gt;!=&lt;/code&gt; take several values (&lt;code&gt;questionSource=opentdb|wikidata&lt;/code&gt;, one
+of them; &lt;code&gt;!=custom|igdb&lt;/code&gt;, none of them), and &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; joins conditions that must all hold. &lt;code&gt;shows&lt;/code&gt; on a dropdown
+names per option the fields it shows. &lt;code&gt;.Section(name, showWhen:)&lt;/code&gt; on the window shows a whole section, heading and
+fields, on a condition. Every condition is checked when the window opens: an unknown key or a value the dropdown
+has no option for is listed on the Log page. &lt;code&gt;requires&lt;/code&gt; keeps greying out, and its &lt;code&gt;hide:&lt;/code&gt; form still works. The
+host block gains &lt;code&gt;showWhen:&lt;/code&gt; and &lt;code&gt;shows:&lt;/code&gt; on &lt;code&gt;S(...)&lt;/code&gt; and &lt;code&gt;Section(...)&lt;/code&gt; on the window; a game takes them with its
+next release.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;6bdd8600747aba8492954bfd21f6c97e44a6f5a2aaf69fa40ccdac7458db1561&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.9&quot;&gt;Download v0.9.9&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.9.8: UIFramework v0.9.8 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.8"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.8</id>
+    <published>2026-11-06T21:34:14Z</published>
+    <updated>2026-11-06T21:34:14Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;Wide lists as tables in the style of the Log page; rows with buttons; headings that hide with their fields.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A list with a &lt;code&gt;text&lt;/code&gt; column or more than three columns is a table now, in the style of the Log page: one line
+per row, a search box above, and the picked row in full underneath to edit, every column a field of its size;
+Add row, Remove row and Restore defaults below. A row keeps the properties no column shows (a timestamp the game
+writes). Lists of up to three short columns (an emote and its weight) keep the row editor.&lt;/li&gt;
+&lt;li&gt;The picked row of a grid (the Log page, a list table) is drawn in the accent colour instead of white on white.&lt;/li&gt;
+&lt;li&gt;In a named &lt;code&gt;row&lt;/code&gt; a button takes only the width it needs, and an action&amp;#39;s answer box goes under the whole row; the
+box stays hidden until there is an answer. A section heading whose fields are all hidden by &lt;code&gt;hide:&lt;/code&gt; hides too.&lt;/li&gt;
+&lt;li&gt;A column label in the host block may contain a bar (&lt;code&gt;&amp;quot;Wrong answers (a | b | c)&amp;quot;&lt;/code&gt;); trailing &lt;code&gt;readonly&lt;/code&gt; and an
+emote platform are told apart from it. German texts for the common column names (Question, Category, Word,
+Hint, Weight, …) in the conventions.&lt;/li&gt;
+&lt;li&gt;The preview&amp;#39;s &lt;code&gt;-pick n&lt;/code&gt; picks the n-th row of every grid before a shot, so a list table shows its edit panel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;6abccfb7c25ec281874e3aec059729499ba374987293a49b98cf01870ad6c445&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.8&quot;&gt;Download v0.9.8&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>Blackjack Game v17.2.0: One settings window for all the chat games</title>
@@ -356,6 +820,31 @@
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.0.0&quot;&gt;Download v25.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
+    <title>UIFramework v0.9.7: UIFramework v0.9.7 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.7"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.7</id>
+    <published>2026-11-06T10:59:13Z</published>
+    <updated>2026-11-06T10:59:13Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;Lists filled by an action, searched and with read-only columns; masked fields; requirements that hide; German deeper.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What the last hosts asked for: an action&amp;#39;s &lt;code&gt;set&lt;/code&gt; fills a &lt;code&gt;list&lt;/code&gt; (its rows as an array or as JSON text), a list
+of eight rows or more gets a search box (hidden rows are still saved), a column may be &lt;code&gt;readonly&lt;/code&gt; (the game
+fills it, the user reads it), a text field may be &lt;code&gt;masked: true&lt;/code&gt; (dots with an eye button, saved like any
+other), and &lt;code&gt;requires&lt;/code&gt; with &lt;code&gt;hide:&lt;/code&gt; in front hides a field instead of greying it out. In another language the
+window now translates list column headers, the name-list placeholders, the log page&amp;#39;s switch and the help and
+about pages line by line, through the conventions&amp;#39; &lt;code&gt;texts&lt;/code&gt; and a game&amp;#39;s &lt;code&gt;Tx&lt;/code&gt;. The preview&amp;#39;s &lt;code&gt;-shots&lt;/code&gt; wires
+requirements and live fields like the window does, so a greyed-out or hidden field shows as such. The host
+block gains &lt;code&gt;masked:&lt;/code&gt; on &lt;code&gt;S(...)&lt;/code&gt; and &lt;code&gt;|readonly&lt;/code&gt; on a column; a host takes it with its next release.&lt;/li&gt;
+&lt;li&gt;Hangman (v13.0.0) and Trivia (v9.0.0) are the seventh and eighth hosts on the generic stub; &lt;code&gt;hosts/hangman&lt;/code&gt; and
+&lt;code&gt;hosts/trivia&lt;/code&gt; carry their blocks and schemas. Gaps seen there, for later releases: an action&amp;#39;s &lt;code&gt;set&lt;/code&gt; cannot
+fill a &lt;code&gt;list&lt;/code&gt;; lists have no search, filter or read-only column; no masked field kind for secrets; &lt;code&gt;requires&lt;/code&gt;
+greys out but cannot hide; list column headers and the namelist placeholder stay English in German.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;d8e0e72af6352062a0bbc0f3a8ba0a199aeb61e3300d935672968ae1f5f0aeec&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.7&quot;&gt;Download v0.9.7&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
     <title>Slot Machine Game v16.0.0: The settings window moves into UIFramework</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0"/>
     <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0</id>
@@ -389,6 +878,24 @@
 &lt;hr&gt;
 &lt;p&gt;Prefer pasting over downloading? The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt; is the same thing. The &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the first open and the customise mode, and questions are answered in the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0&quot;&gt;Download v16.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v0.9.6: UIFramework v0.9.6 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.6"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.6</id>
+    <published>2026-11-05T20:47:19Z</published>
+    <updated>2026-11-05T20:47:19Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;Schema problems on the Log page; Free mode from chat in every host.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Schema problems are listed on the Log page, highlighted on top of the entries, where the host&amp;#39;s author looks
+for what went wrong; the banner points there. A window without a log page keeps them on the About page.&lt;/li&gt;
+&lt;li&gt;Host blocks: every host but Classic Chat Gamble gained a Free mode chat switch with a Started and an Ended
+message (Slot Machine v16.2.0, Blackjack v17.2.0, Battleship v2.2.0, RhymeTime v2.2.0, High-Low v2.1.0), High-Low
+and RhymeTime their first custom triggers. Nothing of the framework changed for it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;3f0b64f0b91e0af7dda18cfaecdb66d1781fb9a1795853142301ff7be1957e68&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.6&quot;&gt;Download v0.9.6&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>GameCheck v1.0.1: GameCheck 1.0.1: every embed names its last update</title>
@@ -658,252 +1165,5 @@ so on, a little off so the older ones peek out underneath. The line &amp;quot;+ 
 Test trigger adds it in that size.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.1&quot;&gt;Download v1.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/obsnotes/&quot;&gt;OBS Notes on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Better Stream Announcements v2.1.0: Stoat &amp; GameVox copies, a new Settings window and a color picker</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.0"/>
-    <id>https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.0</id>
-    <published>2026-10-27T00:27:28Z</published>
-    <updated>2026-10-27T00:27:28Z</updated>
-    <category term="Better-Stream-Announcements" label="Better Stream Announcements"/>
-    <content type="html">&lt;p&gt;Announcements can now go to GameVox and Stoat as well, the Settings window is rebuilt around a sidebar with a Home page and a Status Log, and every embed color gets a color picker. Nothing to redo after the update: the new webhook fields start empty, and while they are empty everything is posted exactly as before.&lt;/p&gt;
-&lt;h2&gt;Added&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A copy of every announcement on GameVox and Stoat.&lt;/strong&gt; Broadcaster → Platforms and Streamer Friends → Platforms each take an optional GameVox webhook and an optional Stoat webhook. The copy follows the Discord message: updated with it and switched to its ended form when the stream ends. Your own announcement&amp;#39;s copy also comes back with it within the revive window, and a Streamer Friend&amp;#39;s copy is deleted together with the Discord message once &lt;strong&gt;Remove Old Message&lt;/strong&gt; takes it down. It is only posted together with a new announcement, so a webhook added while someone is live starts with their next stream. Every call is best effort: one retry after a rate limit or a server error, a failure is logged, and Discord carries on either way.&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;GameVox&lt;/strong&gt; gets the Discord post without buttons, role mentions and the embed timestamp, whose time moves into the footer (“LIVE since • 2026-10-25 20:15”).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stoat&lt;/strong&gt; (formerly Revolt) has no author line, fields or footer in its embeds, so the author line goes in bold above the embed and the fields and footer become lines of the description. No preview picture: Stoat only takes pictures uploaded through a bot account.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Home page:&lt;/strong&gt; who is live right now and where announcements go, a five-step &lt;strong&gt;Start Here&lt;/strong&gt; (can be hidden), today&amp;#39;s warnings and errors at a glance, and help links.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Status Log page&lt;/strong&gt; (Help → Status Log): everything BsA wrote to Streamer.bot&amp;#39;s log, one day at a time, including the errors Streamer.bot reports about a BsA action. Filter by day, action, level and text.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Color picker on every embed color.&lt;/strong&gt; A swatch beside each hex box shows the color; a click opens a picker right under the field — a saturation and brightness field with a hue bar to click or drag, sliders for red, green and blue (the mouse wheel nudges them by one), and the colors Discord uses most. Every change goes straight into the hex box, and typing a hex code moves the picker along.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Changed&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The Settings window is rebuilt around a sidebar.&lt;/strong&gt; The nested tabs are gone: the pages sit in four groups — Broadcaster, Streamer Friends, Discord Bot, Help — under the names they had as tabs. &lt;strong&gt;Ctrl+F&lt;/strong&gt; searches every setting, the footer counts unsaved changes, &lt;strong&gt;Save&lt;/strong&gt; (Ctrl+S) keeps the window open and &lt;strong&gt;Save &amp;amp; Exit&lt;/strong&gt; closes it, and closing with unsaved changes asks first. Theme and reset sit in the ☰ menu.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Fixed&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Placeholders for Owncast, Picarto, Rumble and TikTok friends.&lt;/strong&gt; &lt;code&gt;{user}&lt;/code&gt;, &lt;code&gt;{title}&lt;/code&gt;, &lt;code&gt;{game}&lt;/code&gt;, &lt;code&gt;{url}&lt;/code&gt; and &lt;code&gt;{viewers}&lt;/code&gt; came out as literal text, since these four only took &lt;code&gt;%user%&lt;/code&gt; and the like. Both forms work now.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;{game}&lt;/code&gt; on YouTube&lt;/strong&gt; is empty instead of literal text, since YouTube gives no category.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Removed&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The 🎨 button next to &lt;strong&gt;Random Embed Color&lt;/strong&gt;, which only opened colorspicker.net; the picker beside each color replaces it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Better-Stream-Announcements/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/better-stream-announcements/&quot;&gt;Better Stream Announcements on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v12.1.0: A new colour picker</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v12.1.0"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v12.1.0</id>
-    <published>2026-10-26T23:43:08Z</published>
-    <updated>2026-10-26T23:43:08Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;p&gt;A new colour picker in the settings window. &lt;code&gt;configs.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;🎨Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A new colour picker&lt;/strong&gt; for the overlay colours. A click on the swatch next to a colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:&lt;ul&gt;
-&lt;li&gt;a field for saturation and brightness and a hue bar, both to click or drag,&lt;/li&gt;
-&lt;li&gt;sliders for red, green and blue — the mouse wheel nudges them by one,&lt;/li&gt;
-&lt;li&gt;a row of ready colours.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v12.1.0&quot;&gt;Download v12.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Battleship Game v2.0.0-pre-release.2: A new colour picker (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.2"/>
-    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.2</id>
-    <published>2026-10-26T23:42:21Z</published>
-    <updated>2026-10-26T23:42:21Z</updated>
-    <category term="Battleship-Game" label="Battleship Game"/>
-    <content type="html">&lt;p&gt;Everything from &lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1&quot;&gt;v2.0.0-pre-release.1&lt;/a&gt;, plus a new colour picker in the settings window. &lt;code&gt;BSG-Settings.json&lt;/code&gt; is read as it stands — no setting changes.&lt;/p&gt;
-&lt;h3&gt;🎨 A new colour picker&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;A click on the swatch next to an overlay colour opens the picker right under the field instead of a separate window with a colour wheel:&lt;ul&gt;
-&lt;li&gt;a field for saturation and brightness and a hue bar, both to click or drag,&lt;/li&gt;
-&lt;li&gt;sliders for red, green and blue — the mouse wheel nudges them by one,&lt;/li&gt;
-&lt;li&gt;a row of ready colours.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Upgrading from pre-release.1&lt;/h3&gt;
-&lt;p&gt;The settings window&amp;#39;s update check does not tell pre-release.1 about pre-release.2, so grab it here. Import &lt;code&gt;BattleshipGame.sb&lt;/code&gt; over the old one.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.2&quot;&gt;Download v2.0.0-pre-release.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v16.3.0: A new colour picker</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.0"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.0</id>
-    <published>2026-10-26T23:41:49Z</published>
-    <updated>2026-10-26T23:41:49Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;p&gt;A new colour picker in the settings window. &lt;code&gt;BJG-Settings.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;🎨A new colour picker&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;A click on the swatch next to an overlay colour, or on the 🎨 button beside it, opens the picker right under the field instead of a separate window with a colour wheel:&lt;ul&gt;
-&lt;li&gt;a field for saturation and brightness and a hue bar, both to click or drag,&lt;/li&gt;
-&lt;li&gt;sliders for red, green and blue — the mouse wheel nudges them by one,&lt;/li&gt;
-&lt;li&gt;a row of ready colours.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Every change goes straight into the hex box, and typing a hex code moves the picker along. Done or a click elsewhere closes it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.3.0&quot;&gt;Download v16.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Chat Calendar v1.0.0: Chat Calendar v1.0.0</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.0"/>
-    <id>https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.0</id>
-    <published>2026-10-26T23:26:02Z</published>
-    <updated>2026-10-26T23:26:02Z</updated>
-    <category term="ChatCalendar" label="Chat Calendar"/>
-    <content type="html">&lt;p&gt;Twitch Calendar is now &lt;strong&gt;Chat Calendar&lt;/strong&gt;: holiday and birthday greetings on Twitch, YouTube and Kick, a daily post to Discord, Stoat and GameVox, and one settings window for all of it. Nothing has to be run by hand any more — the window downloads the holidays itself.&lt;/p&gt;
-&lt;h3&gt;✨Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A settings window.&lt;/strong&gt; Right-click the &lt;code&gt;Test&lt;/code&gt; trigger of &lt;code&gt;[CC] - .Settings&lt;/code&gt; and choose &lt;code&gt;Test Trigger&lt;/code&gt;. Chat, Announcements, Calendar, Holidays, Birthdays, Messages and Log, with Help and About at the foot: every greeting with a chat preview, your own holidays and the greeting of every official one, the birthdays, the webhooks and the log of what was said and posted. It saves &lt;code&gt;configs.json&lt;/code&gt; next to &lt;code&gt;holidays.json&lt;/code&gt;; a damaged file is kept as &lt;code&gt;configs.json.broken&lt;/code&gt; and the window falls back to the last save. A red pill in its header shows when a newer release is out.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;YouTube and Kick.&lt;/strong&gt; Chatters there are greeted on holidays and on their birthday, and every command answers in the chat it came from.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Birthdays.&lt;/strong&gt; Viewers save their own with &lt;code&gt;!birthday 24.12.&lt;/code&gt; (day and month only); moderators and you for others with &lt;code&gt;!birthday @name 24.12.&lt;/code&gt;. Everyone is greeted once on their day, with &lt;code&gt;{age}&lt;/code&gt; where the Birthdays page knows the year. &lt;code&gt;!nextbirthdays&lt;/code&gt; lists the next ones.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Announcements.&lt;/strong&gt; Today&amp;#39;s holidays and birthdays go to Discord, Stoat and GameVox once a day, at the time you set — no Streamer.bot timer needed. A failed webhook is tried again after 15 minutes, without posting twice to the ones that worked. Title, lines and colour are yours, the colour with a picker.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Own days.&lt;/strong&gt; Channel birthday, charity stream, anything: once on a date, or every year (&lt;code&gt;12-24&lt;/code&gt; or &lt;code&gt;24.12.&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Regions.&lt;/strong&gt; Only the holidays of your region, if you pick one — Bavaria, Vienna, Zürich … — or only the nationwide ones.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Bot or broadcaster&lt;/strong&gt;, and on Twitch as a &lt;code&gt;/me&lt;/code&gt; message.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🔧Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;No more Set Argument sub-actions.&lt;/strong&gt; Every setting lives in the window. An argument of the same name in an action still wins, for a second action that should do something else.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Nothing to run by hand.&lt;/strong&gt; &lt;code&gt;.. Setup Action ..&lt;/code&gt; is now &lt;code&gt;[CC] - Calendar Setup&lt;/code&gt; without a trigger: the window starts it when it opens without this year&amp;#39;s holidays, after saving another country, region, time zone or year, and from &lt;code&gt;Save and download now&lt;/code&gt;. A new year downloads itself.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Every chatter is greeted once per holiday&lt;/strong&gt;, also when the stream runs past midnight, in the time zone you set.&lt;/li&gt;
-&lt;li&gt;All data lives in &lt;code&gt;Chat Calendar&lt;/code&gt; next to Streamer.bot: &lt;code&gt;holidays.json&lt;/code&gt;, &lt;code&gt;birthdays.json&lt;/code&gt;, &lt;code&gt;configs.json&lt;/code&gt; and a &lt;code&gt;Logs&lt;/code&gt; folder kept for 30 days. Your own holidays and greetings survive every download.&lt;/li&gt;
-&lt;li&gt;Texts follow your country, or the chat language you pick; &lt;code&gt;Boarisch&lt;/code&gt; writes Bavarian.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🐛Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Holidays download again.&lt;/strong&gt; date.nager.at dropped its CSV export; Chat Calendar uses its JSON API.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;{holidayName}&lt;/code&gt; was empty, and two holidays on one day were announced as one.&lt;/li&gt;
-&lt;li&gt;The command answered nothing on a day without a holiday.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;!nextholidays&lt;/code&gt; failed for countries without a translation (AT, CH, GB, PL …).&lt;/li&gt;
-&lt;li&gt;No more &lt;code&gt;Hello @,&lt;/code&gt; without a user name, and no error in the log for every viewer without pronouns.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;⬆️Updating from Twitch Calendar&lt;/h3&gt;
-&lt;p&gt;Import over the old version. Your holidays (&lt;code&gt;C:\streamer.bot\Twitch Calendar&lt;/code&gt; or &lt;code&gt;Twitch Calendar&lt;/code&gt; next to Streamer.bot) are copied into &lt;code&gt;Chat Calendar&lt;/code&gt; on the first run, with your own holidays and greetings; the country, region and time zone come along. Webhook URLs and your own texts from the old Set Argument sub-actions are entered once in the settings window. The commands ship switched off: enable them under &lt;code&gt;Commands&lt;/code&gt;.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Import the attached &lt;code&gt;ChatCalendar.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. The &lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through every page.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/ChatCalendar/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/chatcalendar/&quot;&gt;Chat Calendar on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>OBS Notes v1.0.0: Initial Release</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.0"/>
-    <id>https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.0</id>
-    <published>2026-10-26T23:24:01Z</published>
-    <updated>2026-10-26T23:24:01Z</updated>
-    <category term="OBSNotes" label="OBS Notes"/>
-    <content type="html">&lt;p&gt;First release.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Viewers save short notes with &lt;code&gt;!note&lt;/code&gt;, read them back with &lt;code&gt;!zettel&lt;/code&gt;; moderators and VIPs delete one with
-&lt;code&gt;!radier &amp;lt;number&amp;gt;&lt;/code&gt; or all with &lt;code&gt;!clearnotes&lt;/code&gt;. Every game (Twitch category) keeps its own list.&lt;/li&gt;
-&lt;li&gt;Twitch, Kick and YouTube: the answer goes to the chat the command came from, with an emote of that platform
-(Twitch and Kick global emotes, emoji on YouTube).&lt;/li&gt;
-&lt;li&gt;Post-its in OBS: the action&amp;#39;s Test trigger adds the browser source &lt;strong&gt;OBS Notes&lt;/strong&gt; to the current scene of the
-OBS connection named in &lt;code&gt;AddOBSOverlayTo&lt;/code&gt;, and refreshes it when run again. The post-its follow every command
-within two seconds, size their text to the post-it, and make room for new ones by dropping the oldest.&lt;/li&gt;
-&lt;li&gt;Settings as Set Argument sub-actions: &lt;code&gt;hideAfterMinutes&lt;/code&gt; fades the post-its out after a while without
-commands, &lt;code&gt;colorfulNotes&lt;/code&gt; switches to black on white, &lt;code&gt;showGameName&lt;/code&gt; puts the game name on the first post-it.&lt;/li&gt;
-&lt;li&gt;Chat settings: &lt;code&gt;useBot&lt;/code&gt; answers from the bot or the broadcaster account, &lt;code&gt;sendAsMe&lt;/code&gt; as a /me message, and
-&lt;code&gt;language&lt;/code&gt; switches every answer and the post-its between German (partly Bavarian) and English.&lt;/li&gt;
-&lt;li&gt;Notes added at the same moment are all kept, and a crash while saving never leaves a broken file behind.&lt;/li&gt;
-&lt;li&gt;Times in chat are shown in the streamer&amp;#39;s local time; a note too long for one chat message is shortened.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/OBSNotes/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/obsnotes/&quot;&gt;OBS Notes on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Classic Chat Gamble v24.1.1: Damaged settings files are rescued instead of reset</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.1"/>
-    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.1</id>
-    <published>2026-10-25T23:35:40Z</published>
-    <updated>2026-10-25T23:35:40Z</updated>
-    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
-    <content type="html">&lt;p&gt;A hardening release for the settings files. &lt;code&gt;configs.json&lt;/code&gt; and &lt;code&gt;messages.json&lt;/code&gt; are read as they stand — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;🐛Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Damaged settings files are rescued instead of reset.&lt;/strong&gt; A &lt;code&gt;configs.json&lt;/code&gt; or &lt;code&gt;messages.json&lt;/code&gt; that does not parse now falls back to the &lt;code&gt;.bak&lt;/code&gt; copy beside it before the defaults, and the window says which file it read back from where. Until now a damaged file simply meant the defaults for everything it held, and the next save wrote them over it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Every save leaves a &lt;code&gt;.bak&lt;/code&gt; behind&lt;/strong&gt; — the file as it was before that save, which is what the window reads back when the live one turns out to be damaged. A file that does not parse itself never becomes the backup, so a broken one cannot overwrite the last readable copy.&lt;/li&gt;
-&lt;li&gt;Free Game Mode and the bet it returns to afterwards are carried over from a &lt;code&gt;configs.json&lt;/code&gt; rescued from its &lt;code&gt;.bak&lt;/code&gt;; only one that cannot be recovered at all is left alone. Before, any damaged &lt;code&gt;configs.json&lt;/code&gt; dropped them.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Only one settings window opens.&lt;/strong&gt; A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.&lt;/li&gt;
-&lt;li&gt;Switching pages refreshes only the page in front, instead of every control in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;Import the attached &lt;code&gt;ClassicChatGamble.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v24.1.1&quot;&gt;Download v24.1.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v16.2.1: Atomic saves and a settings file that can be rescued</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.1"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.1</id>
-    <published>2026-10-25T23:35:37Z</published>
-    <updated>2026-10-25T23:35:37Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;p&gt;A hardening release for the settings file. &lt;code&gt;BJG-Settings.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;💾The settings file&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Saving is atomic.&lt;/strong&gt; &lt;code&gt;BJG-Settings.json&lt;/code&gt; was written straight over itself, so a crash halfway through could leave a truncated file behind — the game reads it on every hand. It is now written beside the live one and swapped in, and every save leaves &lt;code&gt;BJG-Settings.json.bak&lt;/code&gt;, the file as it was before that save.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A damaged file is reported in the window&lt;/strong&gt; and kept as &lt;code&gt;BJG-Settings.json.broken&lt;/code&gt;. The window shows the settings from before the last save, or the defaults when there is no readable backup. Until now a read error raised an &amp;quot;Error loading settings&amp;quot; box from Streamer.bot&amp;#39;s own thread — a modal dialog with no window behind it, holding the action until somebody found it — and then carried on with the defaults, which the next save wrote over the damaged file without a word.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A file that cannot be opened at all no longer opens the window.&lt;/strong&gt; It said &amp;quot;damaged&amp;quot; and showed the defaults, so a save would overwrite a perfectly good file that was merely locked.&lt;/li&gt;
-&lt;li&gt;A settings file the game script is holding open is waited out instead of failing on the first try.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;⏱️Cooldowns and the window&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The cooldowns of &lt;code&gt;!blackjack&lt;/code&gt;, &lt;code&gt;!duel&lt;/code&gt; and &lt;code&gt;!house&lt;/code&gt; were set from the settings window&amp;#39;s own thread. All six are now handed to Streamer.bot&amp;#39;s thread while the window is open, as one set, so they can never be applied as a mix of two saves.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Only one settings window opens.&lt;/strong&gt; A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.&lt;/li&gt;
-&lt;li&gt;Switching pages redraws only the page in front, instead of every control in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;Import the attached &lt;code&gt;BlackjackGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v16.2.1&quot;&gt;Download v16.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v12.0.1: A settings file that survives being locked or damaged</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.1"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.1</id>
-    <published>2026-10-25T23:35:34Z</published>
-    <updated>2026-10-25T23:35:34Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;p&gt;A hardening release for the settings file. &lt;code&gt;configs.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;🐛Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Reads and writes wait out a &lt;code&gt;configs.json&lt;/code&gt; the game script is holding open instead of failing on the first try.&lt;/li&gt;
-&lt;li&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt; could overwrite the good &lt;code&gt;configs.json.bak&lt;/code&gt; on the next save. The file being replaced only becomes the backup when it parses itself, so the last readable copy is never lost to a broken one.&lt;/li&gt;
-&lt;li&gt;Three places still read the settings through the path that throws on a damaged file: the first time anything in the script is touched, Reset to defaults, and closing the window. All three now fall back to the backup or the defaults, the way the window already did.&lt;/li&gt;
-&lt;li&gt;The global and per-user cooldowns are handed to Streamer.bot as one pair rather than two separate numbers, and once more after the window has closed, so a save made in the last moment is not lost.&lt;/li&gt;
-&lt;li&gt;A settings window that failed while it was being built left its thread running with nothing to show. The dispatcher is now shut down in either case.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;Import the attached &lt;code&gt;HangmanGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.1&quot;&gt;Download v12.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Slot Machine Game v15.0.1: One swap per save, and an unreadable settings file is caught</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1"/>
-    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1</id>
-    <published>2026-10-25T23:30:41Z</published>
-    <updated>2026-10-25T23:30:41Z</updated>
-    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
-    <content type="html">&lt;p&gt;A hardening release for the settings file. &lt;code&gt;SMG-Settings.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;🔧Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Saving &lt;code&gt;SMG-Settings.json&lt;/code&gt; is one swap instead of a copy and a swap: &lt;code&gt;File.Replace&lt;/code&gt; hands the file it replaces straight to &lt;code&gt;SMG-Settings.json.bak&lt;/code&gt;, so a save no longer copies the whole file first. The backup is still only taken from a file that parses itself, so a damaged one cannot overwrite the last readable copy.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🐛Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;A &lt;code&gt;SMG-Settings.json&lt;/code&gt; that cannot be opened at all — locked by something else, or not readable for want of rights — fell through to the defaults wherever the settings were read outside the window. It now falls back to the backup copy like a damaged file does.&lt;/li&gt;
-&lt;li&gt;A settings window that failed while it was being built left its thread running with nothing to show, and the cooldown poll behind it never ended.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;Import the attached &lt;code&gt;SlotMachineGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1&quot;&gt;Download v15.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
