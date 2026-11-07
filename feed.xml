@@ -5,9 +5,211 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-06T22:45:35Z</updated>
+  <updated>2026-11-07T00:10:30Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Trivia Game v9.0.0: Settings window in UIFramework, an OBS overlay &amp; your questions mixed into any source</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0</id>
+    <published>2026-11-07T00:10:30Z</published>
+    <updated>2026-11-07T00:10:30Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;p&gt;The settings window moves into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games now share, and reads in English or German. Rounds can now show up in OBS, your own questions mix with any source, and your own actions can react to every round. &lt;code&gt;configs.json&lt;/code&gt; and &lt;code&gt;Trivia-Questions.json&lt;/code&gt; keep working: old keys are read and written back under their new names on the first save.&lt;/p&gt;
+&lt;h1&gt;📺 An OBS overlay for the running round&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A browser source&lt;/strong&gt; that shows the question with its numbered options, a countdown and how many have answered, then the right answer, the winners with their points and the top of the leaderboard. Blitz rounds are marked in red. It listens to Streamer.bot&amp;#39;s own WebSocket server, so there is nothing else to install.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Set it up in OBS&lt;/code&gt;&lt;/strong&gt; adds the source the size of your canvas to a scene of your choice, through Streamer.bot&amp;#39;s OBS connection. &lt;strong&gt;&lt;code&gt;Show a sample round&lt;/code&gt;&lt;/strong&gt; plays one on every connected overlay, &lt;strong&gt;&lt;code&gt;Try the demo&lt;/code&gt;&lt;/strong&gt; in the browser.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Its look&lt;/strong&gt; from the Overlay page: position, size, animations, five colours and the panel&amp;#39;s opacity. A save reaches an overlay already open in OBS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[TG] - Settings&lt;/code&gt; is now a small stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Newer releases are offered when you open the window, never forced; &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; turns the check off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page, option and message reads in German.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The question list is a table&lt;/strong&gt; edited in place: one line per question, a click into a cell edits it, a checkbox in every row switches it on or off, Delete removes the picked rows, a search box above. &lt;em&gt;Suggested by&lt;/em&gt; is filled by the game and only read here.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The difficulty dial&lt;/strong&gt; is a slider with the same stops, Relaxed to Brutal, filling in the same six numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🌍 Questions from anywhere, yours mixed in&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mix in my questions&lt;/strong&gt; on the Sources page mixes your own list into whichever source is picked: opentdb, Wikidata, OdeNet, PokeAPI or IGDB. &lt;strong&gt;Share of mine&lt;/strong&gt; says how often. &lt;em&gt;Mine + opentdb&lt;/em&gt; is gone from the dropdown; a &lt;code&gt;configs.json&lt;/code&gt; with it is rewritten as opentdb with mixing on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A tidier Sources page.&lt;/strong&gt; Source, language and &lt;code&gt;Check&lt;/code&gt; share one line, only the picked source is described, the IGDB keys only show while IGDB is picked, and the Client Secret and the overlay&amp;#39;s WebSocket password are masked.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Custom triggers carry the round.&lt;/strong&gt; &lt;code&gt;Trivia: Round Won&lt;/code&gt;, &lt;code&gt;Round Timeout&lt;/code&gt;, &lt;code&gt;Round Skipped&lt;/code&gt; and &lt;code&gt;Round ForceEnd&lt;/code&gt; fire with &lt;code&gt;roundOutcome&lt;/code&gt;, &lt;code&gt;roundPlatform&lt;/code&gt;, &lt;code&gt;roundId&lt;/code&gt;, &lt;code&gt;roundBlitz&lt;/code&gt;, &lt;code&gt;roundQuestion&lt;/code&gt;, &lt;code&gt;roundCorrectAnswer&lt;/code&gt;, &lt;code&gt;roundCategory&lt;/code&gt;, &lt;code&gt;roundDifficulty&lt;/code&gt;, &lt;code&gt;roundSource&lt;/code&gt;, &lt;code&gt;roundAnswers&lt;/code&gt;, &lt;code&gt;roundWinners&lt;/code&gt;, &lt;code&gt;roundWinnerCount&lt;/code&gt;, &lt;code&gt;roundPoints&lt;/code&gt; and &lt;code&gt;roundCurrency&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;GetLastRoundResult&lt;/code&gt;&lt;/strong&gt;, run with an Execute C# Method sub-action on the game action, hands the same arguments to any other action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;⚙️ Settings file&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Keys are camelCase now; &lt;code&gt;CooldownGlobalSeconds&lt;/code&gt;, &lt;code&gt;CooldownUserSeconds&lt;/code&gt;, &lt;code&gt;VarName&lt;/code&gt;, &lt;code&gt;UseBotCD&lt;/code&gt; and &lt;code&gt;SendActionCD&lt;/code&gt; are &lt;code&gt;globalCooldown&lt;/code&gt;, &lt;code&gt;userCooldown&lt;/code&gt;, &lt;code&gt;pointsVariable&lt;/code&gt;, &lt;code&gt;cooldownUseBot&lt;/code&gt; and &lt;code&gt;cooldownSendAction&lt;/code&gt;. An existing file keeps working through aliases; the first save writes the new names.&lt;/li&gt;
+&lt;li&gt;The wrong answers are written to &lt;code&gt;Trivia-Questions.json&lt;/code&gt; as &lt;code&gt;a | b | c&lt;/code&gt; text; the game reads that and the old array alike.&lt;/li&gt;
+&lt;li&gt;Light/dark lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt;, shared with every other window built on UIFramework.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔧 Fixed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;A number box left empty, or holding half a number, stops the save instead of going in as 0.&lt;/li&gt;
+&lt;li&gt;The theme button asks before it switches when there are unsaved changes.&lt;/li&gt;
+&lt;li&gt;No label shows its unit twice any more (&amp;quot;(%) (%)&amp;quot;, &amp;quot;(s) (s)&amp;quot;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;The window&amp;#39;s own WPF code (about 6,800 lines) left the import; the DLL carries it now. The rail&amp;#39;s keyboard shortcuts went with it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Updating&lt;/h1&gt;
+&lt;p&gt;Import &lt;code&gt;TriviaGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, your questions and the scoreboard stay where they are. The overlay stays off until you switch it on.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0&quot;&gt;Download v9.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>High-Low Game v2.1.0: Higher, lower or the same, guess to find out</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0"/>
+    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0</id>
+    <published>2026-11-07T00:06:44Z</published>
+    <updated>2026-11-07T00:06:44Z</updated>
+    <category term="High-Low-Game" label="High-Low Game"/>
+    <content type="html">&lt;p&gt;The first release of High-Low Game on GitHub. There is always a number from 1 to 100 waiting; viewers guess whether the next one is higher, lower or the same, on Twitch, YouTube and Kick. The settings window is &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games share, in English or German.&lt;/p&gt;
+&lt;h1&gt;🎲 The game&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A number from the start.&lt;/strong&gt; The game draws one for each platform when Streamer.bot starts, so nobody has to run &lt;code&gt;!highlowsetup&lt;/code&gt; first. Moderators can still draw and announce a fresh one with it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!high&lt;/code&gt;, &lt;code&gt;!low&lt;/code&gt; and &lt;code&gt;!equal&lt;/code&gt;.&lt;/strong&gt; A correct high or low pays the win amount, a wrong one costs nothing; &lt;code&gt;!equal&lt;/code&gt; pays double and costs the win amount when wrong. The answer names both numbers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scoreboards.&lt;/strong&gt; &lt;code&gt;!hlgsession&lt;/code&gt;, &lt;code&gt;!hlgalltime&lt;/code&gt; and &lt;code&gt;!hlgpersonal&lt;/code&gt;, with the broadcaster and the bot account left out if you want.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🎫 Channel points on Twitch&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Three rewards, one each for high, low and equal.&lt;/strong&gt; Paste their IDs on the Channel points page; the import already carries the reward trigger.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stakes:&lt;/strong&gt; Cost and Fixed spend the channel points and pay a correct guess in points, Input takes a bet in the viewer&amp;#39;s own points (&lt;code&gt;all&lt;/code&gt;, &lt;code&gt;half&lt;/code&gt;, &lt;code&gt;2k&lt;/code&gt;, …), Free plays like the chat commands. Minimum and maximum bet apply.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Refunds.&lt;/strong&gt; A redemption that does not end in a guess is refunded, a played one is marked as fulfilled.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[HLG] - .Settings&lt;/code&gt; is UIFramework&amp;#39;s small settings stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click; newer releases are offered when you open the window, never forced.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;HLG-Settings.json&lt;/code&gt; and survives every import.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cooldowns per command,&lt;/strong&gt; written onto the Streamer.bot commands when you save, and every chat line editable with a live preview.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Custom triggers&lt;/strong&gt; (Custom &amp;gt; Chat Game &amp;gt; High-Low Game): &lt;code&gt;HLG: Guess Won&lt;/code&gt;, &lt;code&gt;HLG: Guess Lost&lt;/code&gt; and &lt;code&gt;HLG: Guess Settled&lt;/code&gt; for every guess, &lt;code&gt;HLG: New Number&lt;/code&gt; when &lt;code&gt;!highlowsetup&lt;/code&gt; draws one.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The guess as arguments:&lt;/strong&gt; &lt;code&gt;guessOutcome&lt;/code&gt;, &lt;code&gt;guessUser&lt;/code&gt;, &lt;code&gt;guessPlatform&lt;/code&gt;, &lt;code&gt;guessGuess&lt;/code&gt;, &lt;code&gt;guessPreviousNumber&lt;/code&gt;, &lt;code&gt;guessNewNumber&lt;/code&gt;, &lt;code&gt;guessMode&lt;/code&gt;, &lt;code&gt;guessStake&lt;/code&gt;, &lt;code&gt;guessAmount&lt;/code&gt;, &lt;code&gt;guessPreviousPoints&lt;/code&gt;, &lt;code&gt;guessNewPoints&lt;/code&gt;, &lt;code&gt;guessCurrency&lt;/code&gt;, &lt;code&gt;guessFree&lt;/code&gt; and more. &lt;code&gt;GetLastGuessResult&lt;/code&gt;, run with an Execute C# Method sub-action on the game action, hands them to any other action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🆓 Free mode&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A switch on the Game page,&lt;/strong&gt; or &lt;code&gt;!SetFreeHighLow&lt;/code&gt; / &lt;code&gt;!EndFreeHighLow&lt;/code&gt; from chat (moderators). Nobody wins or loses points, the guesses still count. The two commands come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;HLG: Free Game Start&lt;/code&gt; and &lt;code&gt;HLG: Free Game End&lt;/code&gt;&lt;/strong&gt; fire when it is switched, from chat or by an Execute C# Method on &lt;code&gt;StartFreeGame&lt;/code&gt; or &lt;code&gt;EndFreeGame&lt;/code&gt;, and chat gets a Started and an Ended line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;💰 Points&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Works with &lt;a href=&quot;https://streamup.tips/product/currency-core&quot;&gt;Currency Core by StreamUP&lt;/a&gt; and &lt;a href=&quot;https://tawmae.xyz/loyalty-points&quot;&gt;LOYALTY POINTS by tawmae&lt;/a&gt;: whichever is installed names the points variable and the points name. Anything else works too; name its variable on the Game page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Installing&lt;/h1&gt;
+&lt;p&gt;Import &lt;code&gt;HighLowGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, then open the settings with the &lt;em&gt;Test&lt;/em&gt; trigger of &lt;code&gt;[HLG] - .Settings&lt;/code&gt;. The &lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; walks through every page.&lt;/p&gt;
+&lt;p&gt;Coming from an earlier copy of the game? Import over the existing actions: &lt;code&gt;HLG-Settings.json&lt;/code&gt; stays where it is, old setting names are read until the window saves them under the new ones, and old cooldown messages with &lt;code&gt;{0}&lt;/code&gt; and &lt;code&gt;{1}&lt;/code&gt; still work. Trovo support and the per-platform switches are gone; leave a platform out by unticking its source on the commands.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>RhymeTime v2.2.0: One settings window, hooks for your own actions, Free mode from chat</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0"/>
+    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0</id>
+    <published>2026-11-07T00:05:17Z</published>
+    <updated>2026-11-07T00:05:17Z</updated>
+    <category term="RhymeTime" label="RhymeTime"/>
+    <content type="html">&lt;p&gt;The settings window moves into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games now share, and reads in English or German. The game and the battle play as before, your own actions can now react to every round and battle, and moderators can switch Free mode from chat. &lt;code&gt;RT-settings.json&lt;/code&gt; and &lt;code&gt;RT-wordbank.json&lt;/code&gt; keep working: old keys are read and written back under their new names on the first save.&lt;/p&gt;
+&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[RT] - Settings&lt;/code&gt; is now a small stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click. Newer releases are offered when you open the window, never forced; &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; turns the check off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The word banks are a table.&lt;/strong&gt; All three sit on the Word banks page, one word per line, edited where it stands, with a search box above, &lt;em&gt;Add row&lt;/em&gt;, &lt;em&gt;Remove row&lt;/em&gt; (or Delete) and &lt;em&gt;Restore defaults&lt;/em&gt;. Still saved into &lt;code&gt;RT-wordbank.json&lt;/code&gt;, the file the game and the battle read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;RT-settings.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The game answers the window.&lt;/strong&gt; The Overlay page&amp;#39;s buttons and the check before saving run in the game, and the window is built from the game&amp;#39;s own settings table, so the two can never disagree about a key, a default or a range.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;📺 The overlay&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Show a sample round.&lt;/strong&gt; A button beside &lt;em&gt;Set the overlay up in OBS&lt;/em&gt; plays one made-up round on every open overlay, the one in OBS included, in the look saved on the Overlay page. It waits while a real round or battle is on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An Overlay pill in the header&lt;/strong&gt; says whether rounds reach the OBS overlay, like the Free game pill.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Custom triggers&lt;/strong&gt; (Custom &amp;gt; Chat Game &amp;gt; RhymeTime): &lt;code&gt;RT: Round Won&lt;/code&gt;, &lt;code&gt;RT: Round Lost&lt;/code&gt;, &lt;code&gt;RT: Round Timeout&lt;/code&gt; and &lt;code&gt;RT: Round Settled&lt;/code&gt; every time; &lt;code&gt;RT: Battle Won&lt;/code&gt;, &lt;code&gt;RT: Battle Timeout&lt;/code&gt; and &lt;code&gt;RT: Battle Settled&lt;/code&gt; for a battle; &lt;code&gt;RT: Free Game Start&lt;/code&gt; and &lt;code&gt;RT: Free Game End&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The round as arguments:&lt;/strong&gt; &lt;code&gt;roundOutcome&lt;/code&gt;, &lt;code&gt;roundUser&lt;/code&gt;, &lt;code&gt;roundPlatform&lt;/code&gt;, &lt;code&gt;roundWord&lt;/code&gt;, &lt;code&gt;roundGuess&lt;/code&gt;, &lt;code&gt;roundDifficulty&lt;/code&gt;, &lt;code&gt;roundBet&lt;/code&gt;, &lt;code&gt;roundAmount&lt;/code&gt;, &lt;code&gt;roundAttempts&lt;/code&gt;, &lt;code&gt;roundPreviousPoints&lt;/code&gt;, &lt;code&gt;roundNewPoints&lt;/code&gt;, &lt;code&gt;roundCurrency&lt;/code&gt;, &lt;code&gt;roundFree&lt;/code&gt;, and for a battle &lt;code&gt;battleOutcome&lt;/code&gt;, &lt;code&gt;battleWinner&lt;/code&gt;, &lt;code&gt;battleWord&lt;/code&gt;, &lt;code&gt;battleStake&lt;/code&gt;, &lt;code&gt;battleReward&lt;/code&gt;, &lt;code&gt;battleStarter&lt;/code&gt; and more. &lt;code&gt;GetLastRoundResult&lt;/code&gt; and &lt;code&gt;GetLastBattleResult&lt;/code&gt;, run with an Execute C# Method sub-action, hand the same arguments to any other action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🆓 Free mode, and from chat&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A Free mode switch&lt;/strong&gt; on the Game page (a default bet of 0 is free as before).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!SetFreeRhyme&lt;/code&gt; and &lt;code&gt;!EndFreeRhyme&lt;/code&gt;&lt;/strong&gt; (moderators) switch it from chat. They come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them. The switch is written into the settings file, so the window&amp;#39;s pill shows it, and chat gets the new &lt;em&gt;Started&lt;/em&gt; and &lt;em&gt;Ended&lt;/em&gt; lines (Messages page, Free mode).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;⚙️ Settings file&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Keys are camelCase now (&lt;code&gt;useBot&lt;/code&gt;, &lt;code&gt;minBet&lt;/code&gt;, &lt;code&gt;globalCooldown&lt;/code&gt;, &lt;code&gt;overlayAccentColour&lt;/code&gt;). An existing file keeps working through aliases; the first save writes the new names.&lt;/li&gt;
+&lt;li&gt;Light/dark and the rainbow mode live in &lt;code&gt;uiframework.layout.json&lt;/code&gt;, shared with every other window built on UIFramework. An existing &lt;code&gt;DarkMode&lt;/code&gt; is taken over on the first open.&lt;/li&gt;
+&lt;li&gt;Values typed out of range are pulled back into range when the game reads them, not only when the window saves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔧 Fixed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;RT-wordbank.json&lt;/code&gt; is no longer quietly thrown away.&lt;/strong&gt; The game sets it aside as &lt;code&gt;RT-wordbank.json.broken&lt;/code&gt;, falls back to the &lt;code&gt;.bak&lt;/code&gt; from before the last save, and never writes the shipped words over a file somebody typed into.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;The window&amp;#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Updating&lt;/h1&gt;
+&lt;p&gt;Import &lt;code&gt;RhymeTime.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, word banks and player statistics stay where they are. The two Free mode commands arrive disabled. The &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the first open.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0&quot;&gt;Download v2.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v13.0.0: The settings window moves into UIFramework</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0</id>
+    <published>2026-11-07T00:04:52Z</published>
+    <updated>2026-11-07T00:04:52Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;p&gt;The settings window moves into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games now share, and reads in English or German. The game plays as before; on top come a Free mode you can switch from chat, the round as arguments for your own actions, and a demo for the overlay. &lt;code&gt;configs.json&lt;/code&gt; keeps working: old keys are read and written back under their new names on the first save.&lt;/p&gt;
+&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[HM] - Settings&lt;/code&gt; is now a small stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click. Newer releases are offered when you open the window, never forced; &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; turns the check off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The same pages:&lt;/strong&gt; Game, Words, Overlay, Access, Messages, Board and Log, plus a help page and an about page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German, the word list&amp;#39;s column headers included.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;configs.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The game answers the window.&lt;/strong&gt; The OBS buttons, &lt;em&gt;Create the browser source in OBS&lt;/em&gt; and &lt;em&gt;Refresh the overlay in OBS&lt;/em&gt;, answer in the window&amp;#39;s footer instead of a message box; &lt;em&gt;Open the word list folder&lt;/em&gt; and &lt;em&gt;Open the overlay folder&lt;/em&gt; sit next to what they open.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;📚 Words&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The word list is a table,&lt;/strong&gt; edited in place: a click into a cell edits it, a search box above, several rows picked and removed at once (Remove row or Delete).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Importing words&lt;/strong&gt; is a section of the Words page: source (Wikidata, OdeNet, PokéAPI, IGDB), topic, language, limits and difficulty as fields, then &lt;em&gt;Import now&lt;/em&gt;. The fetched words skip what the list already holds and show in the list right away. The IGDB client ID and secret are kept in Streamer.bot&amp;#39;s global variables after the first import, never in &lt;code&gt;configs.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Categories in play&lt;/em&gt; became &lt;strong&gt;Categories left out&lt;/strong&gt;: type a category name and press Enter to leave it out.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🆓 Free mode&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A switch on the Game page&lt;/strong&gt; and a pill in the header: letters and wins pay nothing while it is on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!SetFreeHangman&lt;/code&gt; and &lt;code&gt;!EndFreeHangman&lt;/code&gt;&lt;/strong&gt; (moderators) switch it from chat. They come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them. Chat gets a &lt;em&gt;Started&lt;/em&gt; and an &lt;em&gt;Ended&lt;/em&gt; line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The round as arguments.&lt;/strong&gt; &lt;code&gt;Hangman: Game Win&lt;/code&gt;, &lt;code&gt;Game Loss&lt;/code&gt;, &lt;code&gt;Game Stopped&lt;/code&gt; and &lt;code&gt;Timeout&lt;/code&gt; now carry the round: &lt;code&gt;roundOutcome&lt;/code&gt;, &lt;code&gt;roundWord&lt;/code&gt;, &lt;code&gt;roundCategory&lt;/code&gt;, &lt;code&gt;roundDifficulty&lt;/code&gt;, &lt;code&gt;roundLetters&lt;/code&gt;, &lt;code&gt;roundPlatform&lt;/code&gt;, &lt;code&gt;roundWinner&lt;/code&gt;, &lt;code&gt;roundWinnerId&lt;/code&gt;, &lt;code&gt;roundPoints&lt;/code&gt;, &lt;code&gt;roundWrongGuesses&lt;/code&gt;, &lt;code&gt;roundMaxWrong&lt;/code&gt;, &lt;code&gt;roundBlitz&lt;/code&gt;, &lt;code&gt;roundFree&lt;/code&gt;, &lt;code&gt;roundCurrency&lt;/code&gt;, &lt;code&gt;roundParticipants&lt;/code&gt;; the same in the globals &lt;code&gt;hm_last…&lt;/code&gt;, and &lt;code&gt;GetLastRoundResult&lt;/code&gt;, run with an Execute C# Method sub-action on the game action, hands them to any other action.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Hangman: Free Game Start&lt;/code&gt; and &lt;code&gt;Hangman: Free Game End&lt;/code&gt;&lt;/strong&gt; fire when Free mode is switched, from chat or by an Execute C# Method on &lt;code&gt;StartFreeGame&lt;/code&gt; or &lt;code&gt;EndFreeGame&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;📺 Overlay&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Try the demo&lt;/strong&gt; opens the overlay in your browser, playing made-up rounds without Streamer.bot in the colours and sizes you saved; &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; at the end of the OBS source&amp;#39;s address does the same, to place and size it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Show a sample round&lt;/strong&gt; plays one made-up round on the live overlay, the one in OBS included: letters, wrong guesses, an Evil Hangman swap and a win, then puts the overlay back as it was. It refuses while a real round runs.&lt;/li&gt;
+&lt;li&gt;The overlay is version 10 and replaces an older copy on the next round, keeping that one as a &lt;code&gt;.bak&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;⚙️ Settings file and log&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Keys are new (&lt;code&gt;maxWrongGuesses&lt;/code&gt;, &lt;code&gt;msgGameStart&lt;/code&gt;, …); an existing &lt;code&gt;configs.json&lt;/code&gt; keeps working through aliases, and the first save writes the new names. &lt;code&gt;OverlayBackgroundOpacity&lt;/code&gt; is stored as a percent now (an old 0.5 reads as 50). &lt;code&gt;messages.json&lt;/code&gt; from before v12 is still read for a message the settings file does not hold.&lt;/li&gt;
+&lt;li&gt;Light/dark lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt;, shared with every other window built on UIFramework; an existing &lt;code&gt;DarkMode&lt;/code&gt; is taken over on the first open.&lt;/li&gt;
+&lt;li&gt;Values typed out of range (no lives, chances outside 0 to 100, the overlay scale below 10 %, …) are pulled back into range when the game reads them, not only when the window saves.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The log in the framework&amp;#39;s format.&lt;/strong&gt; Lines read &lt;code&gt;[time] RESULT | User: … | Platform: … | Round: … | …&lt;/code&gt;, which the Log page filters by result, platform and day; files from before v13 show as raw lines. &lt;em&gt;Write a log file per day&lt;/em&gt; sits on the Log page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;The window&amp;#39;s own WPF code (about 6,000 lines) left the import; the DLL carries it now.&lt;/li&gt;
+&lt;li&gt;The Egg mode; the customise mode has a rainbow of its own.&lt;/li&gt;
+&lt;li&gt;The import preview with ticks before anything is added.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Updating&lt;/h1&gt;
+&lt;p&gt;Import &lt;code&gt;HangmanGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, word list and scoreboard stay where they are. The two Free mode commands arrive disabled.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0&quot;&gt;Download v13.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Slot Machine Game v16.2.0: Emotes like chat, Free mode from chat, hooks for your own actions</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0"/>
@@ -703,239 +905,5 @@ commands, &lt;code&gt;colorfulNotes&lt;/code&gt; switches to black on white, &lt
 &lt;hr&gt;
 &lt;p&gt;Import the attached &lt;code&gt;SlotMachineGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1&quot;&gt;Download v15.0.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v8.1.1: Settings window: survives a damaged configs.json</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.1"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.1</id>
-    <published>2026-10-25T23:30:39Z</published>
-    <updated>2026-10-25T23:30:39Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;p&gt;A hardening release for the settings window. &lt;code&gt;configs.json&lt;/code&gt; is read as it stands — no setting changes, and nothing to redo after the update.&lt;/p&gt;
-&lt;h3&gt;🐛Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt; took the whole settings script down.&lt;/strong&gt; The settings were read into a static field, so a file that does not parse threw before anything in the script ran: the window never opened, and the only way back was deleting the file by hand. The window now names the damaged file, reads the settings back from the copy beside it or falls back to the defaults, and keeps the unreadable one as &lt;code&gt;configs.json.broken&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Every save leaves &lt;code&gt;configs.json.bak&lt;/code&gt; behind&lt;/strong&gt; — the file as it was before that save, which is what the window reads back when the live one turns out to be damaged. The custom questions are written the same way. A file that does not parse itself is never kept as the backup, so a broken one cannot overwrite the last good copy.&lt;/li&gt;
-&lt;li&gt;A &lt;code&gt;configs.json&lt;/code&gt; the game script happens to be holding open is waited out instead of failing on the first try, both when reading and when writing.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Only one settings window opens.&lt;/strong&gt; A second trigger while it was up opened another one with its own copy of the settings, and whichever was saved last won. It now brings the open window to the front.&lt;/li&gt;
-&lt;li&gt;A name typed into a list on the Access page and not finished with Enter or a comma was dropped when Save was clicked straight away.&lt;/li&gt;
-&lt;li&gt;The cooldowns and the auto-start interval are handed over as one set, so a save can no longer be picked up half-written.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;🔧Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The update check runs beside the window instead of in front of it. A GitHub call that times out used to hold the window back for its full three seconds; the Update pill appears once GitHub answers.&lt;/li&gt;
-&lt;li&gt;The Log page reads the log files the first time it is opened, not while the window is being built. Every &lt;code&gt;Trivia-log-*.txt&lt;/code&gt; in the Logs folder used to be read on every opening, for a page most openings never look at.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;Import the attached &lt;code&gt;TriviaGame.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.1&quot;&gt;Download v8.1.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Battleship Game v2.0.0-pre-release.1: Chat vs the Admiral, Team duel &amp; Click to Fire (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1"/>
-    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1</id>
-    <published>2026-10-25T23:25:00Z</published>
-    <updated>2026-10-25T23:25:00Z</updated>
-    <category term="Battleship-Game" label="Battleship Game"/>
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;[!WARNING]
-&lt;strong&gt;v2.0.0-pre-release.1 — the first test version of 2.0.0.&lt;/strong&gt; It passes every automated check, but it has not run on a live stream yet. Try it on a test setup or back up your settings first, and please tell us what breaks.
-The stable version stays &lt;strong&gt;v1.0.0&lt;/strong&gt;: the update notice in the settings window and the &lt;em&gt;stable&lt;/em&gt; badge keep pointing there until 2.0.0 is final. Once it is, this test version&amp;#39;s settings window shows the update notice for it.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;📥 Install or update&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Back up &lt;code&gt;&amp;lt;Streamer.bot folder&amp;gt;\Chat Games\Battleship Game\BSG-Settings.json&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Download &lt;strong&gt;&lt;code&gt;BattleshipGame.sb&lt;/code&gt;&lt;/strong&gt; below and drag it into Streamer.bot&amp;#39;s &lt;strong&gt;Import&lt;/strong&gt; window — or open it in a text editor and paste its content as the import string. Click &lt;strong&gt;Yes&lt;/strong&gt; on both messages.&lt;/li&gt;
-&lt;li&gt;In the &lt;strong&gt;Commands&lt;/strong&gt; tab, right-click the group &lt;strong&gt;[BG] - Battelship Game&lt;/strong&gt; ▸ &lt;strong&gt;Enable All&lt;/strong&gt;. The new commands arrive switched off.&lt;/li&gt;
-&lt;li&gt;Open the settings: action &lt;strong&gt;[BG] - .Settings&lt;/strong&gt;, right-click &lt;strong&gt;Test&lt;/strong&gt; under &lt;em&gt;Triggers&lt;/em&gt; ▸ &lt;strong&gt;Test Trigger&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;No more &lt;strong&gt;Find Refs&lt;/strong&gt;: the references in this import hold wherever Streamer.bot is installed.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Coming from 1.0.0?&lt;/strong&gt; Your settings are kept; new settings start at their defaults.
-&lt;strong&gt;Going back to 1.0.0?&lt;/strong&gt; Import its &lt;code&gt;BattleshipGame.sb&lt;/code&gt; again. 2.0 has no platform switches, so tick YouTube and Kick again in the 1.0.0 settings if you use them.&lt;/p&gt;
-&lt;p&gt;The README and the Setup Guide on the main page still describe 1.0.0 until 2.0.0 is final — this page has everything for the test.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2&gt;🧪 Please test&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; The import compiles — all three actions, no errors in Streamer.bot&amp;#39;s log&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; The settings window opens, saves, and switches between dark and light&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; A solo battle: &lt;code&gt;!battleship&lt;/code&gt;, &lt;code&gt;!fire B7&lt;/code&gt;, &lt;code&gt;!fleet&lt;/code&gt;, &lt;code&gt;!board&lt;/code&gt;, running out of time&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; &lt;code&gt;!seeschlacht&lt;/code&gt;: clicking on stream and &lt;code&gt;!fire B7&lt;/code&gt; both vote, and nobody wins or loses points&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; A team duel: &lt;code&gt;!duel @name&lt;/code&gt;, &lt;code&gt;!accept&lt;/code&gt;, &lt;code&gt;!team A&lt;/code&gt; / &lt;code&gt;!team B&lt;/code&gt;, the turns, and the payout to the winners&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; &lt;code&gt;!stopbattle&lt;/code&gt; works for moderators and is refused for everybody else&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; The overlay set up with &lt;strong&gt;Set the overlay up in OBS&lt;/strong&gt; (Overlay page)&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; Click to Fire with the Heat extension (Twitch)&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&gt; Saving the game action or restarting Streamer.bot during a duel sign-up gives every entry back&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Found something? &lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/issues/new&quot;&gt;Open an issue&lt;/a&gt; or write in the &lt;a href=&quot;https://discord.com/channels/834650675224248362/1447648588694818836/1447648588694818836&quot;&gt;Battleship Game thread on the Streamer.bot Discord&lt;/a&gt; — with the command you used, what happened, and the lines from Streamer.bot&amp;#39;s log.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2&gt;✨ What&amp;#39;s new&lt;/h2&gt;
-&lt;h3&gt;👥 Chat vs the Admiral — &lt;code&gt;!seeschlacht&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;The whole chat is one fleet, played just for fun. Each round every viewer has one vote — a click on enemy waters or &lt;code&gt;!fire B7&lt;/code&gt; — and the square with the most votes is fired at. No points to win or lose, so every click counts, logged in to Twitch or not, with nothing to link first.&lt;/p&gt;
-&lt;h3&gt;⚔️ Team duel — &lt;code&gt;!duel&lt;/code&gt;, &lt;code&gt;!accept&lt;/code&gt;, &lt;code&gt;!team&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;One chat team against another. Challenge a viewer (or anybody), they accept, and everyone picks a side with &lt;code&gt;!team A&lt;/code&gt;, &lt;code&gt;!team B&lt;/code&gt;, &lt;code&gt;!team &amp;lt;name&amp;gt;&lt;/code&gt; or plain &lt;code&gt;!team&lt;/code&gt;. Every member pays the entry fee, the sides take turns voting on each shot, and the winners share the pot — their own entry back whole.&lt;/p&gt;
-&lt;h3&gt;🖱️ Click to Fire (Twitch)&lt;/h3&gt;
-&lt;p&gt;With the free &lt;a href=&quot;https://dashboard.twitch.tv/extensions/cr20njfkgll4okyrhag7xxph270sqk&quot;&gt;Heat&lt;/a&gt; extension, the player whose battle is on screen fires by clicking a square in enemy waters right on the stream. The first click in a battle takes control; &lt;code&gt;!fire link&lt;/code&gt; makes a link that lasts.&lt;/p&gt;
-&lt;h3&gt;🛑 Moderator stop — &lt;code&gt;!stopbattle&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Ends whatever is running and pays nothing more out; a duel&amp;#39;s entries are refunded. It comes set to the Moderators group.&lt;/p&gt;
-&lt;h3&gt;🎨 A new settings window&lt;/h3&gt;
-&lt;p&gt;In the look of the other Chat Games: ten pages in a rail (Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log, About), switches and segment bars, every chat message on one page with placeholder chips and a live chat preview, and a red pill when an update is out.&lt;/p&gt;
-&lt;h3&gt;🌐 Every platform plays&lt;/h3&gt;
-&lt;p&gt;The platform switches are gone. Twitch, YouTube and Kick always play, and every reply goes to the chat the command came from. To leave a platform out, untick it on the commands in Streamer.bot (for example &lt;em&gt;Kick Message&lt;/em&gt;).&lt;/p&gt;
-&lt;h3&gt;📺 Overlay v16&lt;/h3&gt;
-&lt;p&gt;The duel&amp;#39;s two sides, the chat&amp;#39;s votes on the board, a countdown ring for every round, and no points shown in the chat&amp;#39;s battle. The overlay reloads itself when the game installs a newer version.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2&gt;🐛 Fixed&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;!board&lt;/code&gt; now comes with the import — 1.0.0 had no command for it.&lt;/li&gt;
-&lt;li&gt;The cooldowns set in the settings window reach the &lt;code&gt;!battleship&lt;/code&gt; command; in 1.0.0 they went to a command that does not exist.&lt;/li&gt;
-&lt;li&gt;A cooldown message with &lt;code&gt;{user}&lt;/code&gt; or any other brace was never sent. &lt;code&gt;{user}&lt;/code&gt; works there now.&lt;/li&gt;
-&lt;li&gt;A payout, refund or charge never writes over a balance that could not be read.&lt;/li&gt;
-&lt;li&gt;Replies to &lt;code&gt;!board&lt;/code&gt; and to votes go to the asker&amp;#39;s own chat.&lt;/li&gt;
-&lt;li&gt;Closing Streamer.bot mid-game refunds every duel entry and fades the overlay out instead of freezing it.&lt;/li&gt;
-&lt;li&gt;A damaged &lt;code&gt;BSG-Settings.json&lt;/code&gt; is reported and kept as &lt;code&gt;.broken&lt;/code&gt;, instead of being reset on the next save without a word.&lt;/li&gt;
-&lt;li&gt;A battle starting while another one plays no longer takes the overlay away from it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2&gt;⚓ Commands&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Command&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!battleship&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Start a solo battle&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!fire B7&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Fire at a square, or vote for one&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!fleet&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Redeploy your ships before your first shot&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!board&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Shots, accuracy, ships left, running total&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!seeschlacht&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Start Chat vs the Admiral&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!duel @name&lt;/code&gt; · &lt;code&gt;!accept&lt;/code&gt; · &lt;code&gt;!team A&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Challenge, accept, join a side&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!fire link&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Link your clicks on stream to you (Click to Fire)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!stopbattle&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Moderators: stop everything&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;!bstats&lt;/code&gt; · &lt;code&gt;!ballstats&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Records and the leaderboard&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p&gt;The game knows its commands by their IDs, so you can rename any of them in Streamer.bot.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2&gt;⚠️ Known limitations&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Stopping everything when the action is saved again or Streamer.bot closes has only been tested outside Streamer.bot so far — it is on the test list above.&lt;/li&gt;
-&lt;li&gt;In the chat&amp;#39;s battle a logged-out viewer can vote again by reloading the page. That is on purpose: it is played for fun.&lt;/li&gt;
-&lt;li&gt;Viewers on the Twitch app can&amp;#39;t click — it shows no overlay extensions — so they vote with &lt;code&gt;!fire B7&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.0.0-pre-release.1&quot;&gt;Download v2.0.0-pre-release.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v12.0.0: Word Import, Blitz, Evil Hangman &amp; Streaks</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.0"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.0</id>
-    <published>2026-10-25T20:56:16Z</published>
-    <updated>2026-10-25T20:56:16Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Word import.&lt;/strong&gt; An Import button on the Words page fetches words with hints from four free sources, shows them for review and adds the ticked ones to a category of your choice:&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Wikidata&lt;/strong&gt; (CC0): countries, capitals, big cities, rivers, mountains, chemical elements, musical instruments, sports, dog breeds, or any Wikidata class by its Q-ID. German or English, best known first.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OdeNet&lt;/strong&gt;, the open German WordNet (CC BY-SA 4.0): animals, plants, food, objects, people &amp;amp; jobs, body, places, materials, nature and feelings, each with its German definition as the hint. Downloaded once and cached for a month.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PokéAPI&lt;/strong&gt;: Pokémon names in German or English with their category as the hint, by generation.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IGDB&lt;/strong&gt;: video game titles, best rated first. Needs the Client ID and Secret of a free Twitch developer app; both are kept in Streamer.bot&amp;#39;s global variables, not in &lt;code&gt;configs.json&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Words with digits or symbols, too many letters or too many words are skipped, accents are folded, umlauts can be written out, and a hint that names its own answer is replaced or masked. Difficulty is rated automatically from length, rare letters and how well known the word is, or set by hand.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Blitz rounds.&lt;/strong&gt; Shorter time, fewer lives, and every point pays a multiplier. A round turns into a blitz by chance, or a mod calls one with &lt;code&gt;!hm blitz&lt;/code&gt;. The overlay shows a pulsing BLITZ badge.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Evil Hangman.&lt;/strong&gt; Once chat has lost a set share of its lives, the overlay glitches and the word is swapped. Every guess is wiped except one revealed letter, which the new word always contains. Lives either stay lost or refill, as you choose. At most once per round.&lt;ul&gt;
-&lt;li&gt;The glitch runs in stages slow enough to read on a browser source at a low frame rate: the old word breaks up, everything scrambles under scanlines with a blinking SIGNAL LOST, the new word decodes, and the surviving letter lights up in the accent colour. Its length is a setting (3 seconds by default, 0 for no effect).&lt;/li&gt;
-&lt;li&gt;Chat is told about the swap only once the glitch has played out. Until then guesses and &lt;code&gt;!hmr&lt;/code&gt; are ignored and the &amp;quot;already running&amp;quot; reply stays quiet, so nothing in chat gives the new word away early. If the round ends meanwhile, the message is dropped.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Streaks.&lt;/strong&gt; Each solved word adds to the solver&amp;#39;s streak; it breaks when a round they guessed in is lost or times out. Winning streaks are announced, can pay a capped bonus, and show up as an extra line in the personal stats (&lt;code&gt;!hmp&lt;/code&gt;). &lt;code&gt;{streak}&lt;/code&gt; and &lt;code&gt;{beststreak}&lt;/code&gt; also work in the board and stats messages, and the monthly reset clears them.&lt;/li&gt;
-&lt;li&gt;Seven new chat messages on the Messages page, under Blitz, Evil Hangman and Streaks.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Refresh Overlay in OBS&lt;/strong&gt; button on the Overlay page. It reloads every OBS browser source that shows &lt;code&gt;hangman_overlay.html&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The overlay is now version 9. It replaces the old file on its own and keeps it as &lt;code&gt;hangman_overlay.html.v5.bak&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;OBS keeps running the overlay page it loaded, even after the file on disk is replaced, so an update used to stay invisible until the browser source was refreshed by hand. The game now refreshes those browser sources itself over Streamer.bot&amp;#39;s OBS connection after an update and once per Streamer.bot session, and the page reloads itself whenever a newer version is on disk.&lt;/li&gt;
-&lt;li&gt;A round ended with &lt;code&gt;!killhm&lt;/code&gt; shows &lt;strong&gt;GAME OVER - MODERATOR STOPPED&lt;/strong&gt; in orange on the overlay, instead of the red &amp;quot;GAME OVER - &lt;word&gt;&amp;quot; of a lost round.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v12.0.0&quot;&gt;Download v12.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v8.1.0: New question sources: Wikidata, OdeNet, PokeAPI &amp; IGDB</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0</id>
-    <published>2026-10-25T20:39:46Z</published>
-    <updated>2026-10-25T20:39:46Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Four new question sources&lt;/strong&gt; in the &lt;strong&gt;Question source&lt;/strong&gt; dropdown under &lt;strong&gt;Questions &amp;amp; Sources&lt;/strong&gt;:&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Wikidata (SPARQL)&lt;/strong&gt;: capitals, currencies, continents, cities, World Heritage Sites,
-chemical symbols, moons, painters, authors, film directors and composers, built from Wikidata&amp;#39;s
-facts. Chat can pick a topic: &lt;code&gt;!Trivia geography&lt;/code&gt;, also science, art, literature, film, music.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OdeNet (deutsches WordNet)&lt;/strong&gt;: German vocabulary: which word fits a definition, which word
-means the same. The word list (about 4 MB) downloads once, the first time a round needs it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PokeAPI&lt;/strong&gt;: types, generations, Pokédex numbers and entries, evolutions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IGDB&lt;/strong&gt;: release years, studios, platforms, and which game came out first. Needs the Client ID
-and Client Secret of a Twitch developer application; the secret field is masked.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Every new source asks in multiple choice or True/False as the Game page says, draws its wrong
-answers from facts of the same kind, and ranks difficulty by how well known the subject is.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Question language&lt;/strong&gt;: English or German for Wikidata, PokeAPI and IGDB.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Is the source reachable?&lt;/strong&gt; checks whichever source is picked, not only opentdb. For IGDB it
-asks Twitch whether the keys are accepted.&lt;/li&gt;
-&lt;li&gt;Fetched facts are kept under &lt;code&gt;Chat Games/Trivia Game/Sources&lt;/code&gt;; Wikidata&amp;#39;s sets fill and refresh in
-the background, one query at a time, so a round does not wait for them.&lt;/li&gt;
-&lt;li&gt;About lists the new sources with their licences.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!suggest&lt;/code&gt; from chat never worked.&lt;/strong&gt; The script listened for a command id the import does not
-ship, so the message fell through to the answer handler. Only the channel point route got in.
-Suggestions now come from the shipped &lt;code&gt;!suggest&lt;/code&gt; command and from the suggestion reward, side by
-side, and from no other command.&lt;/li&gt;
-&lt;li&gt;The &lt;strong&gt;Brutal&lt;/strong&gt; difficulty preset turned into Custom on save: its fuzzy tolerance of 0 was raised
-to 1.&lt;/li&gt;
-&lt;li&gt;A number counted as a close spelling of another: &lt;code&gt;1995&lt;/code&gt; was accepted as the option &lt;code&gt;1994&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Cooldown messages printed the seconds left as the PC&amp;#39;s culture wrote them, &lt;code&gt;4,8276&lt;/code&gt; included.&lt;/li&gt;
-&lt;li&gt;The save check, the How to play page and the message help named settings by names they no longer
-have â€” &lt;em&gt;Require Mod To Start&lt;/em&gt;, &lt;em&gt;Only Channel Points&lt;/em&gt;, &lt;em&gt;Announce Each Answer&lt;/em&gt; &amp;quot;on the Game page&amp;quot;
-among them. They use the labels the window shows now.&lt;/li&gt;
-&lt;li&gt;The save check warned about an empty own-question list for any source other than opentdb.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;!TriviaScoreboard&lt;/code&gt; with a &lt;code&gt;scoreBoard&lt;/code&gt; argument of 0 or less posted a bare header.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Both&lt;/strong&gt; in the source dropdown is now &lt;strong&gt;Mine + opentdb&lt;/strong&gt;, since it is no longer the only mix one
-could mean.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v8.1.0&quot;&gt;Download v8.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

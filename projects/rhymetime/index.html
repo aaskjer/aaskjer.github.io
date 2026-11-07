@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/rhymetime/">
-  <meta property="og:title" content="RhymeTime  •  v1.1.0">
+  <meta property="og:title" content="RhymeTime  •  v2.2.0">
   <meta property="og:description" content="Chat races the clock to rhyme for points, solo or in a battle, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/rhymetime.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.1.0">
+  <meta name="twitter:data1" content="v2.2.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,7 +33,7 @@
   <script src="../../assets/js/search.js" defer></script>
   <script type="application/json" id="import-facts">{"version":"2.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle","!SetFreeRhyme","!EndFreeRhyme"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com","wordotron.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v1.1.0">
+<body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.2.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -199,17 +199,18 @@ the moderator&#39;s own instead, and then the winner takes that — if nobody rh
 The minimum and maximum bet from the Game page apply to a staked battle as well.</p>
 <h2>Word banks</h2>
 <p align="center"><img loading="lazy" alt="Word banks page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/word-banks.png"></p><p>One target per row with its rhymes beside it, separated by commas. The three banks sit one under the
-other, each with <em>Add row</em> and <em>Restore defaults</em>; a row&#39;s ✕ removes it, and rows left empty are dropped
-when you save. All three are saved together into <code>RT-wordbank.json</code>.</p>
+other, each a table edited where it stands: click a cell to change it, <em>Add row</em> adds one, <em>Remove row</em> or
+Delete takes the picked rows out, the search box above finds a word, and <em>Restore defaults</em> puts the shipped
+words back. Rows left empty are dropped when you save. All three are saved together into <code>RT-wordbank.json</code>.</p>
 <p>The rhymes you list are examples, not the whole answer: what they have in common at the end is what
 the round accepts. Three rhymes ending in <code>AT</code> accept any dictionary word ending in <code>AT</code>. One lonely
 rhyme has nothing to agree with, so half of it is used — list two or three and the round behaves
 predictably.</p>
 <p>A target <strong>with spaces in it</strong> is a line to finish instead of a word to rhyme. Then the whole reply
 has to match one of the answers you listed, so write them out in full.</p>
-<p>A row only reaches the game once it has a target and at least one rhyme; the pill above the table
-counts the usable ones. <em>Restore this bank</em> puts the shipped words back into the bank you are
-looking at and leaves the other two alone. Nothing is written until you save.</p>
+<p>A row only reaches the game once it has a target and at least one rhyme; the count under the table
+says how many rows are filled in. <em>Restore defaults</em> puts the shipped words back into that bank and
+leaves the other two alone. Nothing is written until you save.</p>
 <h2>Access</h2>
 <p align="center"><img loading="lazy" alt="Access page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/access.png"></p><p>Who may not play. Names on the blocked list are ignored when they run the command, with no reply in
 chat; so is everyone in a blocked Streamer.bot group (<code>Settings</code> → <code>Groups</code>). A group that does not
@@ -671,7 +672,7 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/RhymeTime/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
-<h2>[2.2.0] - Unreleased</h2>
+<h2>[2.2.0] - 2026-11-07</h2>
 <h3>Added</h3>
 <ul>
 <li><strong>Custom triggers.</strong> Every settled round fires <code>RT: Round Won</code>, <code>RT: Round Lost</code> or <code>RT: Round Timeout</code>, and
@@ -696,7 +697,14 @@ overlay in your browser with sample rounds; the overlay buttons now sit in two r
 <li><strong>An Overlay pill in the window&#39;s header</strong> says whether rounds reach the OBS overlay (<em>Overlay on</em> / <em>Overlay
 off</em>), like the Free game pill.</li>
 </ul>
-<h2>[2.1.0] - Unreleased</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>The word banks are a table.</strong> One line per word, edited where it stands, with a search box above; Delete
+removes the picked rows.</li>
+<li>The host block in <code>RhymeTime Game</code> and <code>RhymeTime Battle</code> is UIFramework&#39;s current one (0.9.11). Nothing changes
+in the window; it needs UIFramework 0.9.11 or newer, which the settings action fetches.</li>
+</ul>
+<h2>[2.1.0] - 2026-11-07</h2>
 <h3>Changed</h3>
 <ul>
 <li><strong>The settings action is UIFramework&#39;s generic stub.</strong> <code>[RT] - Settings</code> carries no layout and no game code any

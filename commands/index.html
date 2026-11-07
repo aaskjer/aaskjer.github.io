@@ -72,7 +72,7 @@
         <section class="cmds__list" aria-label="Command reference">
           <!-- shown by commands.js -->
           <div class="cmds__filter" hidden>
-            <label for="cmd-filter">Filter the 108 commands</label>
+            <label for="cmd-filter">Filter the 117 commands</label>
             <div class="field">
               <svg class="i" aria-hidden="true"><use href="../assets/img/icons.svg#i-search"/></svg>
               <input id="cmd-filter" type="search" placeholder="e.g. !note, birthday, duel" autocomplete="off" spellcheck="false">
@@ -460,6 +460,59 @@
             <li class="cmd" data-trigger="!EndFreeRhyme">
               <code class="cmd__usage">!EndFreeRhyme</code>
               <span class="cmd__text">Turns Free mode on or off, with a message to chat</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+          </ul>
+        </section>
+        <section class="cmd-group" id="high-low-game" data-repo="High-Low-Game" data-short="High-Low" aria-labelledby="cmd-High-Low-Game">
+          <header class="cmd-group__head">
+            <span class="tile tile--mono cmd-group__tile" aria-hidden="true">HL</span>
+            <h2 id="cmd-High-Low-Game"><a href="../projects/high-low-game/">High-Low Game</a></h2>
+          </header>
+          <ul class="cmd-group__rows">
+            <li class="cmd" data-trigger="!hlgalltime" data-panel="can">
+              <code class="cmd__usage">!hlgalltime</code>
+              <span class="cmd__text">Alltime</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hlgsession" data-panel="can">
+              <code class="cmd__usage">!hlgsession</code>
+              <span class="cmd__text">Session</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!hlgpersonal" data-panel="can">
+              <code class="cmd__usage">!hlgpersonal</code>
+              <span class="cmd__text">Personal Stats</span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!highlowsetup">
+              <code class="cmd__usage">!highlowsetup</code>
+              <span class="cmd__text">High-Low Setup</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!high" data-panel="pick">
+              <code class="cmd__usage">!high</code>
+              <span class="cmd__text"><span class="cmd__none">See the guide</span></span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!low" data-panel="pick">
+              <code class="cmd__usage">!low</code>
+              <span class="cmd__text"><span class="cmd__none">See the guide</span></span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!equal" data-panel="pick">
+              <code class="cmd__usage">!equal</code>
+              <span class="cmd__text"><span class="cmd__none">See the guide</span></span>
+              <span class="who">Everyone</span>
+            </li>
+            <li class="cmd" data-trigger="!SetFreeHighLow">
+              <code class="cmd__usage">!SetFreeHighLow</code>
+              <span class="cmd__text">Set Free Game</span>
+              <span class="who who--limited">Mods</span>
+            </li>
+            <li class="cmd" data-trigger="!EndFreeHighLow">
+              <code class="cmd__usage">!EndFreeHighLow</code>
+              <span class="cmd__text">End Free Game</span>
               <span class="who who--limited">Mods</span>
             </li>
           </ul>

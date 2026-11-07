@@ -291,7 +291,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.0.0', stars: 2, downloads: 77,
+      version: 'v9.0.0', stars: 2, downloads: 87,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -329,7 +329,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v13.0.0', stars: 2, downloads: 21,
+      version: 'v13.0.0', stars: 2, downloads: 30,
     },
     {
       repo: 'Battleship-Game',
@@ -374,7 +374,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.2.0', stars: 0, downloads: 2,
+      version: 'v2.2.0', stars: 0, downloads: 3,
     },
     {
       repo: 'High-Low-Game',
@@ -399,7 +399,7 @@ window.SITE = {
       ],
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.1.0', stars: 0, downloads: 0,
+      version: 'v2.1.0', stars: 0, downloads: 1,
     },
   ],
 };

@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/trivia-game/">
-  <meta property="og:title" content="Trivia Game  •  v8.1.1">
+  <meta property="og:title" content="Trivia Game  •  v9.0.0">
   <meta property="og:description" content="Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/trivia-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v8.1.1">
+  <meta name="twitter:data1" content="v9.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,7 +33,7 @@
   <script src="../../assets/js/search.js" defer></script>
   <script type="application/json" id="import-facts">{"version":"9.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v8.1.1">
+<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.0.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -576,19 +576,23 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
-<h2>[9.0.0] - Unreleased</h2>
+<h2>[9.0.0] - 2026-11-07</h2>
 <p>The settings window moves into UIFramework for streamer.bot, so it is the same window every chat game of this
 family has, in English or German, and it keeps itself up to date. Nothing changes for chat; an existing
 <code>configs.json</code> and <code>Trivia-Questions.json</code> keep working.</p>
 <h3>Changed</h3>
 <ul>
+<li>Blitz <em>Chance</em>, <em>Subscriber</em>, <em>VIP</em>, the overlay&#39;s <em>Size</em> and <em>Panel opacity</em> and <em>Result shown for</em> no longer
+show their unit twice (&quot;(%) (%)&quot;, &quot;(s) (s)&quot;): the field adds it itself.</li>
+<li>The host block in <code>Trivia Game</code> is UIFramework&#39;s current one (0.9.11). The window needs UIFramework 0.9.9 or
+newer for the question table; the settings action fetches it.</li>
 <li><strong>Your own questions mix with any source.</strong> <em>Mine + opentdb</em> is gone from the source dropdown: <strong>Mix in my
 questions</strong> on the Sources page now mixes your list into whichever source is picked (Wikidata, OdeNet, PokeAPI,
 IGDB or opentdb), <strong>Share of mine</strong> says how often. <em>opentdb only</em> is just <strong>opentdb</strong>, <em>My questions only</em> is
 <strong>Only my questions</strong>. A <code>configs.json</code> with the old mixed source is rewritten as opentdb with mixing on.</li>
 <li><strong>A tidier Sources page.</strong> Source, language and <code>Check</code> share one line, the answer of <code>Check</code> shows under them;
 only the description of the picked source is shown; the IGDB keys appear only while IGDB is picked, and the
-Client Secret is masked. The share of your own questions no longer reads &quot;Mine (%) (%)&quot;.</li>
+Client Secret is masked, as is the overlay&#39;s WebSocket password. The share of your own questions no longer reads &quot;Mine (%) (%)&quot;.</li>
 <li><strong>The question list is a table again,</strong> edited in place like before UIFramework: one line per question, a click
 into a cell edits it, a checkbox in every row switches it on or off, Delete removes the picked rows, a search box
 above. <em>Suggested by</em> is filled by the game and only read here. Needs UIFramework 0.9.9.</li>
@@ -600,10 +604,10 @@ their own: <strong>Questions</strong> (your own list and which of them may be dr
 IGDB access, the reachability check) and <strong>Suggestions</strong>. The rail no longer has keyboard shortcuts.</li>
 <li><strong>German.</strong> With the window&#39;s language set to <code>de</code> (the pencil, then <em>Sprache</em>), every setting, section, page,
 option and message of the window reads in German; the help and about pages stay English.</li>
-<li><strong>The questions list</strong> is the framework&#39;s row editor: one row per question with its switch, the question, the
-correct answer, the wrong answers as <code>a | b | c</code>, category, difficulty and who suggested it. <code>Add row</code> adds one,
-<code>×</code> takes one out, <code>Restore defaults</code> brings the example questions back. The wrong answers are written to
-<code>Trivia-Questions.json</code> as that <code>a | b | c</code> text from now on; the game reads both that and the old array.</li>
+<li><strong>The questions list</strong> keeps its columns: the switch, the question, the correct answer, the wrong answers as
+<code>a | b | c</code>, category, difficulty and who suggested it; <code>Add row</code>, <code>Remove row</code> and <code>Restore defaults</code> (the
+example questions) sit under it. The wrong answers are written to <code>Trivia-Questions.json</code> as that <code>a | b | c</code>
+text from now on; the game reads both that and the old array, and a question keeps <code>SuggestedAtUtc</code>.</li>
 <li><strong>The difficulty dial</strong> is a slider with the same five stops, Relaxed to Brutal, filling in the same six numbers;
 Custom leaves your own numbers alone.</li>
 <li><strong>The overlay</strong> is written and set up in OBS by the game action now (the window asks it): <code>Set it up in OBS</code>,
@@ -627,11 +631,10 @@ old window, are gone.</li>
 </ul>
 <h3>Known gaps (the framework&#39;s, for a later release)</h3>
 <ul>
-<li>The questions list has no search or difficulty filter, no Refresh, and no confirmation before deleting a row;
-the Suggested by column can be edited; a question suggested from chat while the window is open is lost when the
-window then saves the list (the old window folded it in); <code>SuggestedAtUtc</code> is not kept by the row editor.</li>
-<li>The Client Secret and the overlay password are shown as typed; the old window masked them.</li>
-<li>The IGDB fields and the suggestion reward are greyed out, not hidden, while they do not apply.</li>
+<li>The questions list has a search but no difficulty filter and no Refresh, and no confirmation before deleting
+rows; a question suggested from chat while the window is open is lost when the window then saves the list (the
+old window folded it in).</li>
+<li>The suggestion reward is greyed out, not hidden, while it does not apply.</li>
 <li>The overlay URL is not shown on the page; <code>Copy URL</code> puts it on the clipboard and says so.</li>
 <li>The help page is static: the paragraphs that summed up the current settings are gone.</li>
 <li>The placeholder chips under a message explain only the placeholders the framework knows.</li>

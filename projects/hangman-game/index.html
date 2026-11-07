@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/hangman-game/">
-  <meta property="og:title" content="Hangman Game  •  v12.1.0">
+  <meta property="og:title" content="Hangman Game  •  v13.0.0">
   <meta property="og:description" content="Hangman for the whole chat, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/hangman-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v12.1.0">
+  <meta name="twitter:data1" content="v13.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,7 +33,7 @@
   <script src="../../assets/js/search.js" defer></script>
   <script type="application/json" id="import-facts">{"version":"13.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v12.1.0">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.0.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -532,7 +532,7 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><h1>v13.0.0 - Unreleased</h1>
+        <div class="doc-body"><h1>v13.0.0 - 2026-11-07</h1>
 <h3>Added</h3>
 <ul>
 <li><strong>Try the demo</strong> and <strong>Show a sample round</strong> on the Overlay page, next to the OBS buttons. <em>Try the demo</em> opens
@@ -551,7 +551,8 @@ setting, message and page of the window in one table (<code>UiSchema.Table</code
 scoreboard action too). The pages are the same - Game, Words, Overlay, Access, Messages, Board, Log - plus a help
 page and a customise mode (the pencil: rename, move or hide pages and fields, accent colour, language).</li>
 <li><strong>English or German.</strong> With the window&#39;s language set to <code>de</code>, every setting, section, page and message reads in
-German. The help and about pages, the list column headers and the name-list placeholder stay English for now.</li>
+German, the word list&#39;s column headers and the name-list placeholder included. The help and about pages stay
+English.</li>
 <li><code>configs.json</code> keeps working as it is: the window reads the old names (<code>MaxWrongGuesses</code>, <code>MsgGameStart</code>, …)
 through aliases and writes the new ones on the first save. <code>OverlayBackgroundOpacity</code> is stored as a percent now
 (an old 0.5 reads as 50). <code>DarkMode</code> moves into <code>uiframework.layout.json</code>; the Egg mode is gone (the framework&#39;s
@@ -561,10 +562,10 @@ file does not hold.</li>
 the Log page filters by result, platform and day; files from before v13 show as raw lines. A <em>Write a log file per
 day</em> switch sits on the Log page.</li>
 <li><strong>Importing words</strong> is a section of the Words page: source, topic, language, limits and difficulty as fields, then
-<em>Import now</em>. The fetched words skip what the list already holds and land in <code>Hangman-Wordlist.json</code>; reopen the
-window to see them in the list (a Save before that writes the list as shown). Gone with the old window: the preview
-with ticks before anything is added, search and filter in the list, Ctrl/Shift selection (a framework gap, noted
-for a later UIFramework release). The IGDB client ID and secret are typed into the import fields; they are still
+<em>Import now</em>. The fetched words skip what the list already holds, land in <code>Hangman-Wordlist.json</code> and show in
+the list right away. Gone with the old window: the preview with ticks before anything is added.</li>
+<li><strong>The word list is a table,</strong> edited in place: a click into a cell edits it, a search box above, several rows
+picked and removed at once (Remove row or Delete). The IGDB client ID and secret are typed into the import fields; they are still
 kept in Streamer.bot&#39;s global variables after the first import, never in <code>configs.json</code>.</li>
 <li><em>Categories in play</em> became <em>Categories left out</em>: type a category name and press Enter to leave it out; the
 checkbox list of the old window needed the word list at hand.</li>
@@ -575,6 +576,8 @@ ranges the old window enforced on save (at least one life, chances within 0..100
 cannot push it out of range either.</li>
 <li>The OBS buttons are <em>Create the browser source in OBS</em> and <em>Refresh the overlay in OBS</em>; both answer in the
 window&#39;s footer instead of a message box. <em>Open the word list folder</em> and <em>Open the overlay folder</em> buttons.</li>
+<li>The game and the scoreboard carry UIFramework&#39;s current host block (0.9.11). Needs UIFramework 0.9.8 or newer for
+the word table; the settings action fetches it.</li>
 </ul>
 <h3>Added</h3>
 <ul>
