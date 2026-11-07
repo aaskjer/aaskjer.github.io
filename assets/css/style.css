@@ -846,6 +846,8 @@ main > .section::before {
 .chip--tiktok { --dot: #25f4ee; }
 .chip--windows { --dot: #0078d4; }
 .chip--discord { --dot: #5865f2; }
+.chip--stoat { --dot: #00d8ff; }
+.chip--gamevox { --dot: #eb7538; }
 .chip--obs { --dot: var(--text); }
 
 .chip--more {
