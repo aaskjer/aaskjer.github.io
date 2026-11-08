@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/hangman-game/">
-  <meta property="og:title" content="Hangman Game  •  v13.1.0">
+  <meta property="og:title" content="Hangman Game  •  v13.2.0">
   <meta property="og:description" content="Hangman for the whole chat, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/hangman-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v13.1.0">
+  <meta name="twitter:data1" content="v13.2.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"13.0.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"13.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.1.0">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.2.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -78,7 +78,7 @@
       <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
         <h2 class="doc-label">Overview</h2>
         <div class="doc-body"><p align="center">
-  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/HM/Hangman-Game-Full2.png" alt="Hangman Game" width="400" height="400">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/HM/Hangman-Game-Full_blank.png" alt="Hangman Game" width="380" height="400">
 </p><h1 align="center">Hangman Game</h1><p align="center">
   <b>Hangman for your chat.</b><br>
   One word, a row of blanks, and everyone guessing at once — on Twitch, YouTube and Kick.
@@ -534,7 +534,22 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><h1>v13.1.0 - 2026-11-07</h1>
+        <div class="doc-body"><h1>v13.2.0 - 2026-11-08</h1>
+<h3>Added</h3>
+<ul>
+<li><strong>Tells you about updates.</strong> Once per Streamer.bot start, about 20 seconds in, one notice names new releases of
+this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is
+connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&#39;s
+log. <em>Tell me about updates</em> on the About page turns it off for this game. The game action is precompiled on
+application start, so the notice starts with Streamer.bot.</li>
+<li>The host block is UIFramework 1.4.0&#39;s; the settings window offers the newest UIFramework on its next open.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A timeout and the streaks a round broke are logged on the round&#39;s platform.</strong> Those two lines took the platform
+of whoever ran the action last, so a Kick round that timed out could show up as Twitch on the Log page.</li>
+</ul>
+<h1>v13.1.0 - 2026-11-07</h1>
 <h3>Added</h3>
 <ul>
 <li><strong>The Log page shows every column.</strong> Each line carries the guess, the word, the lives and the payout under the

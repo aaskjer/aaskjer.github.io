@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/uiframework/">
-  <meta property="og:title" content="UIFramework  •  v1.2.0">
+  <meta property="og:title" content="UIFramework  •  v1.0.0">
   <meta property="og:description" content="One settings window for every Streamer.bot chat game: declared in one table, with a tour, a log reader and self-updates.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/uiframework.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.2.0">
+  <meta name="twitter:data1" content="v1.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Schema.md" data-release="v1.2.0">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Schema.md" data-release="v1.4.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -129,6 +129,9 @@ theme and accent colour, and choose help as a line under each field instead of a
 <code>Lock()</code> turns the mode off for a game that wants its window exactly as declared.</li>
 <li>📜 <strong>Log, help and about pages.</strong> A filterable log reader for the game&#39;s log files, a help page from your
 notes and commands, an about page with your links. Mistakes in the schema sit behind a red <strong>i</strong> in the header.</li>
+<li>🔔 <strong>Tells you about updates.</strong> Once per Streamer.bot start, one notice names new releases of the games and of
+UIFramework: in every connected chat, or as a Windows notification while no broadcaster account is connected.
+Games choose the texts and ways; a switch on the About page turns it off.</li>
 <li>🔄 <strong>Updates itself.</strong> The stub fetches the DLL, verifies it and asks before using a newer release;
 <code>&quot;autoUpdate&quot;: false</code> turns the check off.</li>
 </ul>
@@ -202,7 +205,7 @@ add a language.</li>
 <li><strong><code>uiframework.layout.json</code></strong> next to the settings file: the user&#39;s changes. Survives every import.</li>
 </ol>
 <h2>🛠️ Development</h2>
-<p><code>dotnet build UIFramework.slnx</code> builds the DLL, the tests and the preview; <code>dotnet test</code> runs the 186 tests.
+<p><code>dotnet build UIFramework.slnx</code> builds the DLL, the tests and the preview; <code>dotnet test</code> runs the 196 tests.
 <code>src/UIFramework.Preview/bin/Debug/net48/UIFramework.Preview.exe</code> opens a Blackjack-shaped sample window, or with
 <code>-schema hosts/&lt;game&gt;/schema.json</code> the window a game declares. <code>-theme dark</code> or <code>light</code>, <code>-shots &lt;folder&gt;</code> renders
 every page to PNG, <code>-windowshots &lt;folder&gt;</code> the whole window per page at the page&#39;s full height (<code>-pages</code>, <code>-names</code>),
@@ -247,6 +250,39 @@ docs/                    Getting-Started, Schema, Conventions, Loader, Customize
 its section here before the tag is pushed. Everything before 1.0.0 was published as a pre-release; 1.0.0 and on are
 stable releases.</p>
 <h2>[Unreleased]</h2>
+<h2>[1.4.1] - 2026-11-08</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>Only round versions are stable releases</strong> (2.0.0, 3.0.0); every other version is published as a pre-release, this
+one included. The release workflow decides it from the tag.</li>
+<li><strong>Update checks count pre-releases.</strong> The update notice and the window&#39;s new-version check take a game&#39;s newest
+published release, pre-release or not (drafts never), since nearly every version between two round ones is a
+pre-release now. The log&#39;s link goes to that release.</li>
+</ul>
+<h2>[1.4.0] - 2026-11-08</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update notice comes as Streamer.bot starts, in every chat, or as a Windows notification.</strong> A game calls
+<code>UiUpdateNotice.Startup(...)</code> from its <code>Init()</code> with <em>Precompile on Application Start</em> ticked, so the notice no
+longer waits for the first use of a game. About 20 seconds after the first game starts it goes to every chat whose
+broadcaster account is connected (Twitch, YouTube, Kick); while none is, it is a Windows notification. Still once
+per Streamer.bot start, one notice for all games.</li>
+<li><strong>Games choose how they tell it:</strong> <code>UiWindow.Updates(chat, chatText, toast, toastAlways, toastTitle, toastText)</code>,
+with <code>{updates}</code> and <code>{count}</code> in the texts; in the schema <code>window.updates</code>. Games with the same texts share one
+line. The About page&#39;s switch reads <em>Tell me about updates</em>.</li>
+<li>The host block of 1.3.0, which asked on ordinary runs of the game, is still answered.</li>
+</ul>
+<h2>[1.3.0] - 2026-11-08</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>An update notice in chat, once per Streamer.bot start.</strong> A few minutes after the first game of a Streamer.bot
+run is used, one line in that chat names what is new: the games used so far whose newest release is newer than
+the version they run, UIFramework when a newer release is out, and a game whose settings action is too old for
+it. Then nothing more until Streamer.bot starts again; the links are in Streamer.bot&#39;s log. The DLL asks GitHub
+in the background at most twice a day and keeps the answers in <code>UIFramework\updates.json</code>; the game action never
+waits for it. <em>Tell chat about updates</em> on the About page leaves a game out (<code>&quot;updateNotices&quot;: false</code>). Games get
+it with the host block of this version.</li>
+</ul>
 <h2>[1.2.0] - 2026-11-08</h2>
 <p>Fixes from an audit of the whole framework, and the logo on the About page.</p>
 <h3>Added</h3>
@@ -1594,6 +1630,76 @@ this one (its editor has <em>Restore defaults</em>). A missing file shows the <c
 anyway (<code>RT-wordbank.json</code>) stays the only copy. A save writes the file only when its value changed, so a list the
 game added to while the window was open keeps those entries; a value an older version kept in the settings file
 moves into the file with the first save.</p>
+<h2>Update notice</h2>
+<p>Streamers who do not open the settings every day still hear of updates: once per Streamer.bot start, one notice
+names what is new, for example <em>🔔 Updates are out: Hangman Game v13.2.0, UIFramework v1.4.0. Details are in
+Streamer.bot&#39;s log.</em> The log has one line per update with its link.</p>
+<ul>
+<li><p><strong>Start it from <code>Init()</code>.</strong> Call <code>UiUpdateNotice.Startup(CPH, ActionName, &quot;mygame&quot;, CurrentVersion, SettingsFile)</code>
+in the game action&#39;s <code>Init()</code> and tick <em>Precompile on Application Start</em> on its Execute Code sub-action:
+Streamer.bot then runs <code>Init()</code> as it starts. The notice runs in the background and never holds the action up.</p>
+</li>
+<li><p><strong>What is in it:</strong> each game that started this way (or whose settings were opened) whose newest GitHub release
+(<code>releases</code> of its window) is newer than the version it runs; UIFramework when its newest release is newer than
+the newest <code>UIFramework.dll</code> under <code>lib\</code>; and *import it again* for a game whose settings action is older than
+that release needs (<code>minHostStub</code>; the window notes the settings action&#39;s version when it opens).</p>
+</li>
+<li><p><strong>When:</strong> about 20 seconds after the first game starts, so every game that starts with Streamer.bot is in it,
+and once GitHub&#39;s answers are there (asked in the background at most twice a day, kept in
+<code>&lt;Streamer.bot&gt;\UIFramework\updates.json</code> for every game). Then nothing more until Streamer.bot starts again.
+Nothing new: no notice. Without the DLL (the settings never opened) there is none.</p>
+</li>
+<li><p><strong>Where:</strong> a line in every chat whose broadcaster account is connected (Twitch, YouTube, Kick; it waits up to a
+minute for the first one), as the bot when the game&#39;s <code>useBot</code> is on. While no broadcaster account is connected,
+a Windows notification instead.</p>
+</li>
+<li><p><strong>How a game wants it,</strong> in its window:</p>
+<pre><code class="language-csharp">.Updates(chat: true, chatText: &quot;🎲 {updates} - grab them on GitHub!&quot;, toast: true, toastAlways: false,
+         toastTitle: &quot;My Game&quot;, toastText: &quot;New: {updates}&quot;)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>chat</code></td>
+<td><code>true</code></td>
+<td>the line in every connected chat</td>
+</tr>
+<tr>
+<td><code>chatText</code></td>
+<td>the framework&#39;s, in the window&#39;s language</td>
+<td>the line; <code>{updates}</code> is the list, <code>{count}</code> how many</td>
+</tr>
+<tr>
+<td><code>toast</code></td>
+<td><code>true</code></td>
+<td>a Windows notification</td>
+</tr>
+<tr>
+<td><code>toastAlways</code></td>
+<td><code>false</code></td>
+<td><code>false</code>: only while no broadcaster account is connected; <code>true</code>: always</td>
+</tr>
+<tr>
+<td><code>toastTitle</code>, <code>toastText</code></td>
+<td>the framework&#39;s</td>
+<td>the notification&#39;s title and text, with the same placeholders</td>
+</tr>
+</tbody></table>
+<p>One game delivers the whole notice: games with the same texts share one line, a game with texts of its own gets
+its own; UIFramework goes with the game that delivers. In the schema: <code>window.updates</code>.</p>
+</li>
+<li><p><strong>Turning it off as a streamer:</strong> the switch <em>Tell me about updates</em> on a game&#39;s About page
+(<code>&quot;updateNotices&quot;: false</code> in its <code>uiframework.layout.json</code>) leaves that game out.</p>
+</li>
+</ul>
+<p>A game gets this with the host block of UIFramework 1.4.0 or newer (<code>tools/update-host-block.ps1</code>). The host block of
+1.3.0 asked on ordinary runs of the game instead; the DLL still answers it.</p>
 <h2>Export and import</h2>
 <p>The customise mode&#39;s bar (the pen, bottom left) has <em>Export</em> and <em>Import</em>: Export writes the saved settings
 (transient ones left out, values from files of their own included) as
