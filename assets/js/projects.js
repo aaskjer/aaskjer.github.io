@@ -139,8 +139,8 @@ window.SITE = {
       repo: 'UIFramework-Streamer.bot',
       streamerbot: '1.0.7',
       page: 'projects/uiframework/',
-      status: 'done',
-      statusSince: '2026-11-07',
+      status: 'dev',
+      statusSince: '2026-11-08',
       name: 'UIFramework',
       // the settings window under every chat game; for people who build Streamer.bot extensions
       section: 'more',
