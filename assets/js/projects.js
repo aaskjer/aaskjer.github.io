@@ -153,7 +153,10 @@ window.SITE = {
       platforms: ['Windows'],
       tags: ['C#', 'WPF', 'Developers'],
       guide: { label: 'Getting started', href: 'docs/Getting-Started.md' },
-      moreDocs: [{ id: 'schema', label: 'Schema', file: 'docs/Schema.md' }],
+      moreDocs: [
+        { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
+        { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
+      ],
       version: 'v1.0.0', stars: 0, downloads: 59,
     },
     {
