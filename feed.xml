@@ -5,9 +5,31 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-08T17:35:30Z</updated>
+  <updated>2026-11-08T17:54:52Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Trivia Game v9.2.1: The overlay follows chat</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1</id>
+    <published>2026-11-08T17:54:52Z</published>
+    <updated>2026-11-08T17:54:52Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;p&gt;The OBS overlay mirrors what chat is asked again: automatic rounds only go to the platforms you are live on, a chip names the platform a question went to, a &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; left in the source&amp;#39;s URL no longer stands in for the game, and the result of a round is shown for its full time before the next question of a run.&lt;/p&gt;
+&lt;h1&gt;Added&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The overlay names the platform.&lt;/strong&gt; A chip in front of the question says whether it went to Twitch, YouTube or Kick, for streaming to more than one at once, where every platform plays a question of its own. &lt;em&gt;Which platform it came from&lt;/em&gt; under &lt;em&gt;What it shows&lt;/em&gt; on the Overlay page turns it off.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Fixed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The overlay follows chat even with &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; in its URL.&lt;/strong&gt; The &lt;em&gt;Try the demo&lt;/em&gt; answer told you to add &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; to the OBS source to place it, and an overlay with it never listened to Streamer.bot: it played its three sample questions on their own 10 to 12 second clocks for every stream after, whatever chat was asked. A demo now listens too, and the first real round ends the samples for good. The answer now points to &lt;em&gt;Show a sample round&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The overlay&amp;#39;s result is shown for its full time in a run.&lt;/strong&gt; The next question waited for &lt;em&gt;Delay between rounds&lt;/em&gt; alone, 5 seconds by default, and cut a 10 second result short. While the overlay is on, it now waits until the result, and the leaderboard after it when that is on, has been up for &lt;em&gt;Result shown for&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic rounds only go where you are live.&lt;/strong&gt; A round was offered to every platform with a connected account, or with &lt;em&gt;Only when chat has been active&lt;/em&gt; off to Twitch, YouTube and Kick alike: chats you were not streaming to got questions, and the overlay showed whichever platform&amp;#39;s question started last over the one your chat was asked. The timed action now asks each platform first: Twitch through its API with Streamer.bot&amp;#39;s own login, YouTube through the broadcasts Streamer.bot monitors, Kick through its public channel page. Where it cannot be told, recent chat decides, as before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The check before saving only asks about what you changed.&lt;/strong&gt; It named every problem the settings had on every save, so &lt;em&gt;Save &amp;amp; Exit&lt;/em&gt; right after a save asked again about something you had already kept on purpose, such as &lt;em&gt;Only when chat has been active&lt;/em&gt; switched off. It now asks only about the problems the save brings in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After importing, save the settings once with the overlay on, so the new overlay page is written to &lt;code&gt;Chat Games\Trivia Game\Overlay&lt;/code&gt;. If your OBS source&amp;#39;s URL still carries &lt;code&gt;&amp;amp;demo=1&lt;/code&gt;, click &lt;code&gt;Set it up in OBS&lt;/code&gt; to point it at the plain URL again. Rounds that start themselves now wait until you are live: nothing starts while you are offline.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1&quot;&gt;Download v9.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v1.4.3: UIFramework v1.4.3 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3"/>
@@ -993,60 +1015,5 @@ alias feeds shared keys too and its old value goes also when the canonical key i
 &lt;h1&gt;Updating&lt;/h1&gt;
 &lt;p&gt;Import &lt;code&gt;RhymeTime.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, word banks and player statistics stay where they are. The two Free mode commands arrive disabled. The &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the first open.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0&quot;&gt;Download v2.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v13.0.0: The settings window moves into UIFramework</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0</id>
-    <published>2026-11-07T00:04:52Z</published>
-    <updated>2026-11-07T00:04:52Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;p&gt;The settings window moves into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games now share, and reads in English or German. The game plays as before; on top come a Free mode you can switch from chat, the round as arguments for your own actions, and a demo for the overlay. &lt;code&gt;configs.json&lt;/code&gt; keeps working: old keys are read and written back under their new names on the first save.&lt;/p&gt;
-&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[HM] - Settings&lt;/code&gt; is now a small stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click. Newer releases are offered when you open the window, never forced; &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; turns the check off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The same pages:&lt;/strong&gt; Game, Words, Overlay, Access, Messages, Board and Log, plus a help page and an about page.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German, the word list&amp;#39;s column headers included.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;configs.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The game answers the window.&lt;/strong&gt; The OBS buttons, &lt;em&gt;Create the browser source in OBS&lt;/em&gt; and &lt;em&gt;Refresh the overlay in OBS&lt;/em&gt;, answer in the window&amp;#39;s footer instead of a message box; &lt;em&gt;Open the word list folder&lt;/em&gt; and &lt;em&gt;Open the overlay folder&lt;/em&gt; sit next to what they open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;📚 Words&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The word list is a table,&lt;/strong&gt; edited in place: a click into a cell edits it, a search box above, several rows picked and removed at once (Remove row or Delete).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Importing words&lt;/strong&gt; is a section of the Words page: source (Wikidata, OdeNet, PokéAPI, IGDB), topic, language, limits and difficulty as fields, then &lt;em&gt;Import now&lt;/em&gt;. The fetched words skip what the list already holds and show in the list right away. The IGDB client ID and secret are kept in Streamer.bot&amp;#39;s global variables after the first import, never in &lt;code&gt;configs.json&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Categories in play&lt;/em&gt; became &lt;strong&gt;Categories left out&lt;/strong&gt;: type a category name and press Enter to leave it out.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🆓 Free mode&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A switch on the Game page&lt;/strong&gt; and a pill in the header: letters and wins pay nothing while it is on.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!SetFreeHangman&lt;/code&gt; and &lt;code&gt;!EndFreeHangman&lt;/code&gt;&lt;/strong&gt; (moderators) switch it from chat. They come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them. Chat gets a &lt;em&gt;Started&lt;/em&gt; and an &lt;em&gt;Ended&lt;/em&gt; line.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The round as arguments.&lt;/strong&gt; &lt;code&gt;Hangman: Game Win&lt;/code&gt;, &lt;code&gt;Game Loss&lt;/code&gt;, &lt;code&gt;Game Stopped&lt;/code&gt; and &lt;code&gt;Timeout&lt;/code&gt; now carry the round: &lt;code&gt;roundOutcome&lt;/code&gt;, &lt;code&gt;roundWord&lt;/code&gt;, &lt;code&gt;roundCategory&lt;/code&gt;, &lt;code&gt;roundDifficulty&lt;/code&gt;, &lt;code&gt;roundLetters&lt;/code&gt;, &lt;code&gt;roundPlatform&lt;/code&gt;, &lt;code&gt;roundWinner&lt;/code&gt;, &lt;code&gt;roundWinnerId&lt;/code&gt;, &lt;code&gt;roundPoints&lt;/code&gt;, &lt;code&gt;roundWrongGuesses&lt;/code&gt;, &lt;code&gt;roundMaxWrong&lt;/code&gt;, &lt;code&gt;roundBlitz&lt;/code&gt;, &lt;code&gt;roundFree&lt;/code&gt;, &lt;code&gt;roundCurrency&lt;/code&gt;, &lt;code&gt;roundParticipants&lt;/code&gt;; the same in the globals &lt;code&gt;hm_last…&lt;/code&gt;, and &lt;code&gt;GetLastRoundResult&lt;/code&gt;, run with an Execute C# Method sub-action on the game action, hands them to any other action.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;Hangman: Free Game Start&lt;/code&gt; and &lt;code&gt;Hangman: Free Game End&lt;/code&gt;&lt;/strong&gt; fire when Free mode is switched, from chat or by an Execute C# Method on &lt;code&gt;StartFreeGame&lt;/code&gt; or &lt;code&gt;EndFreeGame&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;📺 Overlay&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Try the demo&lt;/strong&gt; opens the overlay in your browser, playing made-up rounds without Streamer.bot in the colours and sizes you saved; &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; at the end of the OBS source&amp;#39;s address does the same, to place and size it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Show a sample round&lt;/strong&gt; plays one made-up round on the live overlay, the one in OBS included: letters, wrong guesses, an Evil Hangman swap and a win, then puts the overlay back as it was. It refuses while a real round runs.&lt;/li&gt;
-&lt;li&gt;The overlay is version 10 and replaces an older copy on the next round, keeping that one as a &lt;code&gt;.bak&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;⚙️ Settings file and log&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Keys are new (&lt;code&gt;maxWrongGuesses&lt;/code&gt;, &lt;code&gt;msgGameStart&lt;/code&gt;, …); an existing &lt;code&gt;configs.json&lt;/code&gt; keeps working through aliases, and the first save writes the new names. &lt;code&gt;OverlayBackgroundOpacity&lt;/code&gt; is stored as a percent now (an old 0.5 reads as 50). &lt;code&gt;messages.json&lt;/code&gt; from before v12 is still read for a message the settings file does not hold.&lt;/li&gt;
-&lt;li&gt;Light/dark lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt;, shared with every other window built on UIFramework; an existing &lt;code&gt;DarkMode&lt;/code&gt; is taken over on the first open.&lt;/li&gt;
-&lt;li&gt;Values typed out of range (no lives, chances outside 0 to 100, the overlay scale below 10 %, …) are pulled back into range when the game reads them, not only when the window saves.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The log in the framework&amp;#39;s format.&lt;/strong&gt; Lines read &lt;code&gt;[time] RESULT | User: … | Platform: … | Round: … | …&lt;/code&gt;, which the Log page filters by result, platform and day; files from before v13 show as raw lines. &lt;em&gt;Write a log file per day&lt;/em&gt; sits on the Log page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;The window&amp;#39;s own WPF code (about 6,000 lines) left the import; the DLL carries it now.&lt;/li&gt;
-&lt;li&gt;The Egg mode; the customise mode has a rainbow of its own.&lt;/li&gt;
-&lt;li&gt;The import preview with ticks before anything is added.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Updating&lt;/h1&gt;
-&lt;p&gt;Import &lt;code&gt;HangmanGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, word list and scoreboard stay where they are. The two Free mode commands arrive disabled.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0&quot;&gt;Download v13.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

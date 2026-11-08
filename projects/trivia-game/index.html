@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/trivia-game/">
-  <meta property="og:title" content="Trivia Game  •  v9.2.0">
+  <meta property="og:title" content="Trivia Game  •  v9.2.1">
   <meta property="og:description" content="Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/trivia-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v9.2.0">
+  <meta name="twitter:data1" content="v9.2.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"9.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"9.2.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","kick.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.2.0">
+<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.2.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -186,7 +186,7 @@ affiliated with or endorses Trivia Game.</p>
 <li>Click <code>Show a sample round</code>. One made-up round plays on the overlay in OBS, so you can see where it sits and how it looks. Viewers see it too if you are live.</li>
 </ol>
 <p>Without the button: click <code>Copy URL</code> (it puts the address, port and password included, on the clipboard), add a <code>Browser</code> source in OBS, untick <code>Local file</code>, paste the URL into <code>URL</code> and set the size to your canvas, usually <code>1920</code> × <code>1080</code>. <code>Try the demo</code> opens the overlay in your browser, playing sample rounds the way the page is set.</p>
-<p><strong>What it shows</strong> switches the answer count, the category and difficulty, the countdown, the winners and the leaderboard on and off on their own, and sets how long a result stays up and how many places the leaderboard lists. <strong>Look</strong> sets where the question sits, its size, the animations and five colours: accent, right answer, blitz, text and panel, with the panel&#39;s opacity. A save reaches an overlay that is already open in OBS straight away, and the labels follow the question language.</p>
+<p><strong>What it shows</strong> switches the platform the question went to, the answer count, the category and difficulty, the countdown, the winners and the leaderboard on and off on their own, and sets how long a result stays up and how many places the leaderboard lists. <strong>Look</strong> sets where the question sits, its size, the animations and five colours: accent, right answer, blitz, text and panel, with the panel&#39;s opacity. A save reaches an overlay that is already open in OBS straight away, and the labels follow the question language.</p>
 <table>
 <thead>
 <tr>
@@ -208,7 +208,7 @@ affiliated with or endorses Trivia Game.</p>
 </tr>
 <tr>
 <td><code>&amp;demo=1</code></td>
-<td>Plays sample rounds without Streamer.bot, to place the source</td>
+<td>Plays sample rounds until the first real round, with or without Streamer.bot, to place the source</td>
 </tr>
 <tr>
 <td><code>&amp;debug=1</code></td>
@@ -533,7 +533,19 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <li>With the server&#39;s authentication on, the Overlay page&#39;s <strong>Password</strong> has to match. After changing port or password, click <code>Set it up in OBS</code> again and let it point the existing source at the overlay.</li>
 <li>A URL with <code>&amp;platform=</code> only shows that platform&#39;s rounds.</li>
 </ul>
-<p><code>&amp;demo=1</code> plays sample rounds without Streamer.bot, so it tells a placement problem from a connection problem.</p>
+<p><code>&amp;demo=1</code> plays sample rounds whether Streamer.bot is there or not, so it tells a placement problem from a connection problem. The first real round ends them.</p>
+<hr>
+<p><strong>Q: The overlay shows a different question from the one in chat. Why?</strong></p>
+<ul>
+<li><strong>An old <code>&amp;demo=1</code> in the source&#39;s URL.</strong> Up to v9.2.0 a demo overlay never listened to Streamer.bot and played its sample questions (<em>What is the capital of Australia?</em> and two more) on their own clock for good. From v9.2.1 the first real round takes over; click <code>Set it up in OBS</code> to point the source at the plain URL again.</li>
+<li><strong>Rounds on more than one platform.</strong> Every platform plays its own question, and the overlay shows whichever started last; the chip in front of the question says which platform it went to. Add <code>&amp;platform=twitch</code> (or <code>youtube</code>, <code>kick</code>) to the URL so it follows one chat. Up to v9.2.0, automatic rounds went to every platform with a connected account, or with <strong>Only when chat has been active</strong> off to all three, so chats you were not streaming to got questions too; from v9.2.1 they only go where you are live.</li>
+</ul>
+<hr>
+<p><strong>Q: Rounds that start themselves don&#39;t come.</strong></p>
+<p>From v9.2.1 an automatic round only goes to a platform you are live on. Each time the timed action fires, the game asks Twitch (through its API, with the account Streamer.bot is logged in with), YouTube (the broadcasts Streamer.bot monitors) and Kick (its public channel page). While you are offline nothing starts, which is on purpose. If a platform cannot be asked, for example because Twitch turned the login down or kick.com did not answer, chat from the last <strong>Chat within</strong> minutes decides for that platform instead. With <strong>Only when chat has been active</strong> on, a live platform also needs recent chat. Streamer.bot&#39;s debug log says why a platform was skipped.</p>
+<hr>
+<p><strong>Q: The next question of a run comes before the overlay&#39;s result is over.</strong></p>
+<p>Up to v9.2.0 the next question waited for <strong>Delay between rounds</strong> alone, 5 seconds by default, which cut a 10 second result short. From v9.2.1, while the overlay is on, the next question waits until the result — and the leaderboard after it, when that is on — has been up for <strong>Result shown for</strong>.</p>
 <hr>
 <p><strong>Q: Can viewers read the answer off the overlay?</strong></p>
 <p>No. The answer is only sent once the round is over, a skipped round never sends it, and the answer count is only a number — never which option anybody picked.</p>
@@ -545,7 +557,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p>The monthly reset runs on the first leaderboard or stats command on or after the reset day, not on the day itself. Until somebody uses one, the stats it would wipe are still there, and the overlay shows them.</p>
 <hr>
 <p><strong>Q: Can I change how it looks?</strong></p>
-<p>Yes. The <strong>Look</strong> section of the Overlay page sets where the question sits, its size, the animations and the colours, and <strong>What it shows</strong> turns the answer count, category and difficulty, countdown, winners and leaderboard on and off. Saving there changes an overlay that is already open in OBS. For anything else, such as the font or the width, use the <code>Custom CSS</code> field of the browser source; it wins over the Overlay page, and the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> lists the variables.</p>
+<p>Yes. The <strong>Look</strong> section of the Overlay page sets where the question sits, its size, the animations and the colours, and <strong>What it shows</strong> turns the platform, the answer count, category and difficulty, countdown, winners and leaderboard on and off. Saving there changes an overlay that is already open in OBS. For anything else, such as the font or the width, use the <code>Custom CSS</code> field of the browser source; it wins over the Overlay page, and the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> lists the variables.</p>
 <hr>
 <h2>🌐 Multi-Platform</h2>
 <p><strong>Q: Which platforms are supported?</strong></p>
@@ -576,6 +588,32 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[9.2.1] - 2026-11-08</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>The overlay names the platform.</strong> A chip in front of the question says whether it went to Twitch, YouTube or
+Kick, for streaming to more than one at once, where every platform plays a question of its own. <em>Which platform it
+came from</em> under <em>What it shows</em> on the Overlay page turns it off.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The overlay follows chat even with <code>&amp;demo=1</code> in its URL.</strong> The <em>Try the demo</em> answer told you to add <code>&amp;demo=1</code>
+to the OBS source to place it, and an overlay with it never listened to Streamer.bot: it played its three sample
+questions on their own 10 to 12 second clocks for every stream after, whatever chat was asked. A demo now listens
+too, and the first real round ends the samples for good. The answer now points to <em>Show a sample round</em>.</li>
+<li><strong>The overlay&#39;s result is shown for its full time in a run.</strong> The next question waited for <em>Delay between
+rounds</em> alone, 5 seconds by default, and cut a 10 second result short. While the overlay is on, it now waits
+until the result, and the leaderboard after it when that is on, has been up for <em>Result shown for</em>.</li>
+<li><strong>Automatic rounds only go where you are live.</strong> A round was offered to every platform with a connected account,
+or with <em>Only when chat has been active</em> off to Twitch, YouTube and Kick alike: chats you were not streaming to got
+questions, and the overlay showed whichever platform&#39;s question started last over the one your chat was asked.
+The timed action now asks each platform first: Twitch through its API with Streamer.bot&#39;s own login, YouTube
+through the broadcasts Streamer.bot monitors, Kick through its public channel page. Where it cannot be told,
+recent chat decides, as before.</li>
+<li><strong>The check before saving only asks about what you changed.</strong> It named every problem the settings had on every
+save, so <em>Save &amp; Exit</em> right after a save asked again about something you had already kept on purpose, such as
+<em>Only when chat has been active</em> switched off. It now asks only about the problems the save brings in.</li>
+</ul>
 <h2>[9.2.0] - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>

@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 68,
+      version: 'v1.0.0', stars: 0, downloads: 72,
     },
     {
       repo: 'SuTo',
@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.2.0', stars: 2, downloads: 93,
+      version: 'v9.2.1', stars: 2, downloads: 93,
     },
     {
       repo: 'Slot-Machine-Game',
