@@ -152,6 +152,8 @@ window.SITE = {
       preview: 'One settings window for every Streamer.bot chat game: declared in one table, with a tour, a log reader and self-updates.',
       platforms: ['Windows'],
       tags: ['C#', 'WPF', 'Developers'],
+      // the DLL is built for it (WPF)
+      needs: [{ name: '.NET Framework 4.8', what: 'part of Windows 10 (version 1903 or later) and Windows 11' }],
       guide: { label: 'Getting started', href: 'docs/Getting-Started.md' },
       moreDocs: [
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
