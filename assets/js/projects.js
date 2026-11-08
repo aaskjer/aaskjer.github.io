@@ -111,7 +111,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.1.1', stars: 1, downloads: 69,
+      version: 'v2.1.1', stars: 1, downloads: 70,
     },
     {
       repo: 'SBRefFix',
@@ -157,7 +157,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 59,
+      version: 'v1.0.0', stars: 0, downloads: 67,
     },
     {
       repo: 'SuTo',
@@ -278,7 +278,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.4.0', stars: 2, downloads: 147,
+      version: 'v17.4.0', stars: 2, downloads: 148,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -297,7 +297,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v25.2.0', stars: 1, downloads: 149,
+      version: 'v25.2.0', stars: 1, downloads: 152,
     },
     {
       repo: 'Trivia-Game',
@@ -315,7 +315,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.2.0', stars: 2, downloads: 88,
+      version: 'v9.2.0', stars: 2, downloads: 92,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -334,7 +334,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.4.0', stars: 3, downloads: 61,
+      version: 'v16.4.0', stars: 3, downloads: 62,
     },
     {
       repo: 'Hangman-Game',
@@ -353,7 +353,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v13.2.0', stars: 2, downloads: 31,
+      version: 'v13.2.0', stars: 2, downloads: 32,
     },
     {
       repo: 'Battleship-Game',
@@ -372,7 +372,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.3.0', stars: 1, downloads: 7,
+      version: 'v2.3.0', stars: 1, downloads: 8,
     },
     {
       repo: 'RhymeTime',
@@ -398,7 +398,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.4.0', stars: 0, downloads: 4,
+      version: 'v2.4.0', stars: 0, downloads: 7,
     },
     {
       repo: 'High-Low-Game',
@@ -423,7 +423,7 @@ window.SITE = {
       ],
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.3.0', stars: 0, downloads: 2,
+      version: 'v2.3.0', stars: 0, downloads: 5,
     },
   ],
 };
