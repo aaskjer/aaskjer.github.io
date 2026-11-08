@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/trivia-game/">
-  <meta property="og:title" content="Trivia Game  •  v9.2.1">
+  <meta property="og:title" content="Trivia Game  •  v9.2.2">
   <meta property="og:description" content="Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/trivia-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v9.2.1">
+  <meta name="twitter:data1" content="v9.2.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"9.2.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","kick.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"9.2.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","kick.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.2.1">
+<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.2.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -588,6 +588,13 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[9.2.2] - 2026-11-08</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>Every time field says its unit.</strong> Answer time, first reminder, delay between rounds, the blitz times, both
+cooldowns and the overlay&#39;s result time carried no unit in the settings window, while the automatic-round fields
+said &quot;(minutes)&quot;. They now read &quot;(s)&quot;, and those two &quot;(min)&quot;.</li>
+</ul>
 <h2>[9.2.1] - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>

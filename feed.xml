@@ -5,9 +5,24 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-08T17:54:52Z</updated>
+  <updated>2026-11-08T18:26:14Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Trivia Game v9.2.2: Every time field says its unit</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2</id>
+    <published>2026-11-08T18:26:14Z</published>
+    <updated>2026-11-08T18:26:14Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;p&gt;The settings window now names the unit of every time field, so it is clear that the delay between rounds is in seconds.&lt;/p&gt;
+&lt;h1&gt;Fixed&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Every time field says its unit.&lt;/strong&gt; Answer time, first reminder, delay between rounds, the blitz times, both cooldowns and the overlay&amp;#39;s result time carried no unit in the settings window, while the automatic-round fields said &amp;quot;(minutes)&amp;quot;. They now read &amp;quot;(s)&amp;quot;, and those two &amp;quot;(min)&amp;quot;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Your settings stay as they are: the values were always seconds and minutes, only the labels changed.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2&quot;&gt;Download v9.2.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Trivia Game v9.2.1: The overlay follows chat</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1"/>
@@ -966,54 +981,5 @@ alias feeds shared keys too and its old value goes also when the canonical key i
 &lt;p&gt;Import &lt;code&gt;HighLowGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, then open the settings with the &lt;em&gt;Test&lt;/em&gt; trigger of &lt;code&gt;[HLG] - .Settings&lt;/code&gt;. The &lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; walks through every page.&lt;/p&gt;
 &lt;p&gt;Coming from an earlier copy of the game? Import over the existing actions: &lt;code&gt;HLG-Settings.json&lt;/code&gt; stays where it is, old setting names are read until the window saves them under the new ones, and old cooldown messages with &lt;code&gt;{0}&lt;/code&gt; and &lt;code&gt;{1}&lt;/code&gt; still work. Trovo support and the per-platform switches are gone; leave a platform out by unticking its source on the commands.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>RhymeTime v2.2.0: One settings window, hooks for your own actions, Free mode from chat</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0"/>
-    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0</id>
-    <published>2026-11-07T00:05:17Z</published>
-    <updated>2026-11-07T00:05:17Z</updated>
-    <category term="RhymeTime" label="RhymeTime"/>
-    <content type="html">&lt;p&gt;The settings window moves into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games now share, and reads in English or German. The game and the battle play as before, your own actions can now react to every round and battle, and moderators can switch Free mode from chat. &lt;code&gt;RT-settings.json&lt;/code&gt; and &lt;code&gt;RT-wordbank.json&lt;/code&gt; keep working: old keys are read and written back under their new names on the first save.&lt;/p&gt;
-&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[RT] - Settings&lt;/code&gt; is now a small stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click. Newer releases are offered when you open the window, never forced; &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; turns the check off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The word banks are a table.&lt;/strong&gt; All three sit on the Word banks page, one word per line, edited where it stands, with a search box above, &lt;em&gt;Add row&lt;/em&gt;, &lt;em&gt;Remove row&lt;/em&gt; (or Delete) and &lt;em&gt;Restore defaults&lt;/em&gt;. Still saved into &lt;code&gt;RT-wordbank.json&lt;/code&gt;, the file the game and the battle read.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;RT-settings.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The game answers the window.&lt;/strong&gt; The Overlay page&amp;#39;s buttons and the check before saving run in the game, and the window is built from the game&amp;#39;s own settings table, so the two can never disagree about a key, a default or a range.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;📺 The overlay&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Show a sample round.&lt;/strong&gt; A button beside &lt;em&gt;Set the overlay up in OBS&lt;/em&gt; plays one made-up round on every open overlay, the one in OBS included, in the look saved on the Overlay page. It waits while a real round or battle is on.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;An Overlay pill in the header&lt;/strong&gt; says whether rounds reach the OBS overlay, like the Free game pill.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Custom triggers&lt;/strong&gt; (Custom &amp;gt; Chat Game &amp;gt; RhymeTime): &lt;code&gt;RT: Round Won&lt;/code&gt;, &lt;code&gt;RT: Round Lost&lt;/code&gt;, &lt;code&gt;RT: Round Timeout&lt;/code&gt; and &lt;code&gt;RT: Round Settled&lt;/code&gt; every time; &lt;code&gt;RT: Battle Won&lt;/code&gt;, &lt;code&gt;RT: Battle Timeout&lt;/code&gt; and &lt;code&gt;RT: Battle Settled&lt;/code&gt; for a battle; &lt;code&gt;RT: Free Game Start&lt;/code&gt; and &lt;code&gt;RT: Free Game End&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The round as arguments:&lt;/strong&gt; &lt;code&gt;roundOutcome&lt;/code&gt;, &lt;code&gt;roundUser&lt;/code&gt;, &lt;code&gt;roundPlatform&lt;/code&gt;, &lt;code&gt;roundWord&lt;/code&gt;, &lt;code&gt;roundGuess&lt;/code&gt;, &lt;code&gt;roundDifficulty&lt;/code&gt;, &lt;code&gt;roundBet&lt;/code&gt;, &lt;code&gt;roundAmount&lt;/code&gt;, &lt;code&gt;roundAttempts&lt;/code&gt;, &lt;code&gt;roundPreviousPoints&lt;/code&gt;, &lt;code&gt;roundNewPoints&lt;/code&gt;, &lt;code&gt;roundCurrency&lt;/code&gt;, &lt;code&gt;roundFree&lt;/code&gt;, and for a battle &lt;code&gt;battleOutcome&lt;/code&gt;, &lt;code&gt;battleWinner&lt;/code&gt;, &lt;code&gt;battleWord&lt;/code&gt;, &lt;code&gt;battleStake&lt;/code&gt;, &lt;code&gt;battleReward&lt;/code&gt;, &lt;code&gt;battleStarter&lt;/code&gt; and more. &lt;code&gt;GetLastRoundResult&lt;/code&gt; and &lt;code&gt;GetLastBattleResult&lt;/code&gt;, run with an Execute C# Method sub-action, hand the same arguments to any other action.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🆓 Free mode, and from chat&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A Free mode switch&lt;/strong&gt; on the Game page (a default bet of 0 is free as before).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!SetFreeRhyme&lt;/code&gt; and &lt;code&gt;!EndFreeRhyme&lt;/code&gt;&lt;/strong&gt; (moderators) switch it from chat. They come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them. The switch is written into the settings file, so the window&amp;#39;s pill shows it, and chat gets the new &lt;em&gt;Started&lt;/em&gt; and &lt;em&gt;Ended&lt;/em&gt; lines (Messages page, Free mode).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;⚙️ Settings file&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Keys are camelCase now (&lt;code&gt;useBot&lt;/code&gt;, &lt;code&gt;minBet&lt;/code&gt;, &lt;code&gt;globalCooldown&lt;/code&gt;, &lt;code&gt;overlayAccentColour&lt;/code&gt;). An existing file keeps working through aliases; the first save writes the new names.&lt;/li&gt;
-&lt;li&gt;Light/dark and the rainbow mode live in &lt;code&gt;uiframework.layout.json&lt;/code&gt;, shared with every other window built on UIFramework. An existing &lt;code&gt;DarkMode&lt;/code&gt; is taken over on the first open.&lt;/li&gt;
-&lt;li&gt;Values typed out of range are pulled back into range when the game reads them, not only when the window saves.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔧 Fixed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;RT-wordbank.json&lt;/code&gt; is no longer quietly thrown away.&lt;/strong&gt; The game sets it aside as &lt;code&gt;RT-wordbank.json.broken&lt;/code&gt;, falls back to the &lt;code&gt;.bak&lt;/code&gt; from before the last save, and never writes the shipped words over a file somebody typed into.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;The window&amp;#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Updating&lt;/h1&gt;
-&lt;p&gt;Import &lt;code&gt;RhymeTime.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, word banks and player statistics stay where they are. The two Free mode commands arrive disabled. The &lt;a href=&quot;https://github.com/aaskjer/RhymeTime/blob/main/Setup-Guide.md&quot;&gt;Setup Guide&lt;/a&gt; walks through the first open.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.2.0&quot;&gt;Download v2.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
