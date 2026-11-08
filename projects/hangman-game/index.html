@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/hangman-game/">
-  <meta property="og:title" content="Hangman Game  •  v13.0.0">
+  <meta property="og:title" content="Hangman Game  •  v13.1.0">
   <meta property="og:description" content="Hangman for the whole chat, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/hangman-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v13.0.0">
+  <meta name="twitter:data1" content="v13.1.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"13.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"13.0.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.0.0">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.1.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -194,7 +194,7 @@ Chat Games/Logs/HM-log-YYYY-MM-DD.txt           ← action log, one file per day
 Chat Games/Hangman Game/Import Cache/           ← OdeNet download for the word importer
 UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, downloaded on first open
 </code></pre>
-<p>A <code>configs.json</code> from before v13 keeps working: the window reads its old names and writes the new ones on the first save. Older installs also have a <code>messages.json</code> next to it; a message the settings file does not hold is still read from there. Editing any of this by hand is never necessary — the settings window writes all of it.</p>
+<p>A <code>configs.json</code> from before v13 keeps working: the window reads its old names and writes the new ones on the first save. Older installs also have a <code>messages.json</code> next to it; since v13.1.0 its messages move into <code>configs.json</code> on the first run of the game or of the settings window, and the file stays as <code>messages.json.migrated</code>. Editing any of this by hand is never necessary — the settings window writes all of it.</p>
 <hr>
 <p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
 <p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[HM] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
@@ -534,7 +534,36 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><h1>v13.0.0 - 2026-11-07</h1>
+        <div class="doc-body"><h1>v13.1.0 - 2026-11-07</h1>
+<h3>Added</h3>
+<ul>
+<li><strong>The Log page shows every column.</strong> Each line carries the guess, the word, the lives and the payout under the
+keys the Log page reads (Guess, Word, Wrong, Reward), and Round is the round&#39;s number. A win is logged once instead
+of twice, and the guess that ends a round and its payout carry the round too. Lines written before v13 read again
+as well (time, result, player, round) with UIFramework 1.0.0, and those from v13.0 fill the Guess, Word and Wrong
+columns.</li>
+<li><strong>A tour of the settings window.</strong> The first time the window opens, a short tour rings one part after the other
+(the pages, saving, the customise mode) and says what it does; the <strong>?</strong> at the top right shows it again.</li>
+<li><strong>UIFramework 1.0.0.</strong> Problems the window finds sit behind a red <strong>i</strong> in its header instead of on the About or
+Log page, and <em>How to play</em>, <em>Log</em> and <em>About</em> sit together at the foot of the page list. The settings action
+offers the new framework on its next open.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Messages from an old <code>messages.json</code> show in the settings window.</strong> Before, only the game read that file: the
+window showed the default texts in their place, and a save wrote those over your messages. The messages now move
+into <code>configs.json</code> on the first run of the game or of the window, and the file stays as <code>messages.json.migrated</code>.</li>
+<li><strong>Import words shows only what the source uses.</strong> <em>Topic</em> appears for Wikidata and OdeNet, the Q-ID for
+Wikidata&#39;s custom topic, the generations for PokéAPI and the IGDB fields for IGDB; before, the others stood there
+greyed out.</li>
+<li><strong>The settings action is UIFramework&#39;s stub 0.2.0.</strong> When the game action hangs, the settings window waits 30
+seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not
+described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the
+window.</li>
+<li>The host block is UIFramework&#39;s current one (1.0.0). It names every type in full, so it no longer depends on the
+action&#39;s <code>using</code> lines, and it can declare a tour of the window. Nothing changes in the window.</li>
+</ul>
+<h1>v13.0.0 - 2026-11-07</h1>
 <h3>Added</h3>
 <ul>
 <li><strong>Try the demo</strong> and <strong>Show a sample round</strong> on the Overlay page, next to the OBS buttons. <em>Try the demo</em> opens

@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/battleship-game/">
-  <meta property="og:title" content="Battleship Game  •  v2.0.0">
+  <meta property="og:title" content="Battleship Game  •  v2.2.0">
   <meta property="og:description" content="Chat plays Battleship against a CPU Admiral on an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/battleship-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.0.0">
+  <meta name="twitter:data1" content="v2.2.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,7 +33,7 @@
   <script src="../../assets/js/search.js" defer></script>
   <script type="application/json" id="import-facts">{"version":"2.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle","!SetFreeBattleship","!EndFreeBattleship"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.0.0">
+<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.2.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -595,6 +595,14 @@ Code</strong> sub-action, press <strong>Find Refs</strong>, then <strong>OK</str
         <div class="doc-body"><h1>Changelog</h1>
 <p>All notable changes to this project are documented here.</p>
 <h2>[2.2.0] — Unreleased</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>A tour of the settings window.</strong> The first time the window opens, a short tour rings one part after the other
+(the pages, saving, the customise mode) and says what it does; the <strong>?</strong> at the top right shows it again.</li>
+<li><strong>UIFramework 1.0.0.</strong> Problems the window finds sit behind a red <strong>i</strong> in its header instead of on the About or
+Log page, and <em>How to play</em>, <em>Log</em> and <em>About</em> sit together at the foot of the page list. The settings action
+offers the new framework on its next open.</li>
+</ul>
 <h3>📺 Overlay</h3>
 <ul>
 <li><strong>Try the demo.</strong> A new button on the Overlay page opens the overlay in your browser, playing a short made-up
@@ -614,6 +622,15 @@ the window&#39;s pill shows it, and chat gets the new Started and Ended messages
 of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action.</li>
 <li><strong>Two more custom triggers.</strong> <code>BSG: Free Game Start</code> and <code>BSG: Free Game End</code> fire whenever Free game is switched
 that way.</li>
+</ul>
+<h3>🪟 Settings window</h3>
+<ul>
+<li><strong>The settings action is UIFramework&#39;s stub 0.2.0.</strong> When the game action hangs, the settings window waits 30
+seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not
+described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the
+window.</li>
+<li>The host block is UIFramework&#39;s current one (1.0.0). It names every type in full, so it no longer depends on the
+action&#39;s <code>using</code> lines, and it can declare a tour of the window. Nothing changes in the window.</li>
 </ul>
 <h2>[2.1.0] — Unreleased</h2>
 <h3>🔔 For your own actions</h3>

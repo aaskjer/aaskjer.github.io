@@ -154,7 +154,7 @@ window.SITE = {
       tags: ['C#', 'WPF', 'Developers'],
       guide: { label: 'Getting started', href: 'docs/Getting-Started.md' },
       moreDocs: [{ id: 'schema', label: 'Schema', file: 'docs/Schema.md' }],
-      version: 'v1.0.0', stars: 0, downloads: 54,
+      version: 'v1.2.0', stars: 0, downloads: 56,
     },
     {
       repo: 'SuTo',
@@ -275,7 +275,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.2.0', stars: 2, downloads: 145,
+      version: 'v17.3.0', stars: 2, downloads: 147,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -294,7 +294,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v25.0.0', stars: 1, downloads: 147,
+      version: 'v25.1.0', stars: 1, downloads: 149,
     },
     {
       repo: 'Trivia-Game',
@@ -312,7 +312,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.0.0', stars: 2, downloads: 87,
+      version: 'v9.1.0', stars: 2, downloads: 88,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -331,7 +331,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.2.0', stars: 3, downloads: 60,
+      version: 'v16.3.0', stars: 3, downloads: 61,
     },
     {
       repo: 'Hangman-Game',
@@ -350,7 +350,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v13.0.0', stars: 2, downloads: 30,
+      version: 'v13.1.0', stars: 2, downloads: 31,
     },
     {
       repo: 'Battleship-Game',
@@ -369,7 +369,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.0.0', stars: 1, downloads: 6,
+      version: 'v2.2.0', stars: 1, downloads: 7,
     },
     {
       repo: 'RhymeTime',
@@ -395,7 +395,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.2.0', stars: 0, downloads: 3,
+      version: 'v2.3.0', stars: 0, downloads: 4,
     },
     {
       repo: 'High-Low-Game',
@@ -420,7 +420,7 @@ window.SITE = {
       ],
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.1.0', stars: 0, downloads: 1,
+      version: 'v2.2.0', stars: 0, downloads: 2,
     },
   ],
 };

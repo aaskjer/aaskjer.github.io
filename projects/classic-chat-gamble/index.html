@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/classic-chat-gamble/">
-  <meta property="og:title" content="Classic Chat Gamble  •  v25.0.0">
+  <meta property="og:title" content="Classic Chat Gamble  •  v25.1.0">
   <meta property="og:description" content="Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/classic-chat-gamble.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v25.0.0">
+  <meta name="twitter:data1" content="v25.1.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,7 +33,7 @@
   <script src="../../assets/js/search.js" defer></script>
   <script type="application/json" id="import-facts">{"version":"25.1.0","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!gamble","!gambel","!SetFreeGamble","!EndFreeGamble","!gambleaddict"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Classic-Chat-Gamble" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v25.0.0">
+<body data-repo="Classic-Chat-Gamble" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v25.1.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -290,7 +290,7 @@ released the same dialog comes back once; <code>Cancel</code> skips that version
 <h3>Which version of Streamer.bot is required?</h3>
 <p>The latest public version is always recommended.</p>
 <h3>Where are the config files?</h3>
-<p>In your Streamer.bot folder under <code>Chat Games\Classic Chat Gamble</code>: <code>configs.json</code> holds the settings, <code>messages.json</code> the chat messages, <code>uiframework.layout.json</code> your layout of the window (theme, renamed or hidden pages and fields). The window itself is <code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code> next to Streamer.bot, downloaded on first open.</p>
+<p>In your Streamer.bot folder under <code>Chat Games\Classic Chat Gamble</code>: <code>configs.json</code> holds the settings and the chat messages, <code>uiframework.layout.json</code> your layout of the window (theme, renamed or hidden pages and fields). The window itself is <code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code> next to Streamer.bot, downloaded on first open.</p>
 <h3>What is UIFramework.dll, and why does the window want to download something?</h3>
 <p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[CCG] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.
 The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way; <code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the log says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
@@ -301,7 +301,7 @@ The first open asks before fetching anything. <code>Yes</code> downloads the fil
 <h3>What if a settings file is damaged?</h3>
 <p>The settings window still opens: a damaged <code>configs.json</code> falls back to the <code>.bak</code> beside it, or to the defaults, and is kept as a <code>.broken</code> copy; saving writes a fresh one. The game does the same, so a gamble never fails on a damaged file.</p>
 <h3>I updated and configs.json looks different.</h3>
-<p>Its keys are camelCase since 25.0.0 (<code>freeGame</code>, <code>minBet</code>, <code>jackpotPercent</code>). Your old file is read through aliases, and the first save writes the new names; nothing is lost. <code>messages.json</code> is unchanged.</p>
+<p>Its keys are camelCase since 25.0.0 (<code>freeGame</code>, <code>minBet</code>, <code>jackpotPercent</code>). Your old file is read through aliases, and the first save writes the new names; nothing is lost. Since 25.1.0 the chat messages are in <code>configs.json</code> too: an old <code>messages.json</code> is moved in on the first run and kept as <code>messages.json.migrated</code>.</p>
 <h1>Points &amp; Currency</h1>
 <h3>Which loyalty point systems are supported?</h3>
 <p>Any custom points system works. <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> and <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a> are detected on their own, and their settings take priority over the ones in <code>configs.json</code>.</p>
@@ -377,7 +377,7 @@ The first open asks before fetching anything. <code>Yes</code> downloads the fil
 <h3>What&#39;s the difference between the global and the user cooldown?</h3>
 <p>The global cooldown (<code>Everyone</code>) pauses the game for all viewers, the user cooldown (<code>Per viewer</code>) only for the viewer who just played.</p>
 <h3>Why isn&#39;t the cooldown message showing up?</h3>
-<p>The message is empty, <code>messages.json</code> is damaged, or no cooldown is running.</p>
+<p>The message is empty, or no cooldown is running.</p>
 <h3>Do cooldowns apply across platforms?</h3>
 <p>No, Streamer.bot runs the command cooldown for each platform on its own. Channel point redemptions keep a separate clock with the same durations.</p>
 <h1>Multi-Platform</h1>
@@ -435,7 +435,7 @@ The first open asks before fetching anything. <code>Yes</code> downloads the fil
 <p>Open an issue <a href="https://github.com/aaskjer/Classic-Chat-Gamble/issues">here</a>.</p>
 <h1>Messages</h1>
 <h3>How do I customize the win, loss and jackpot messages?</h3>
-<p>On the Messages page of the settings window, or directly in <code>messages.json</code>.</p>
+<p>On the Messages page of the settings window, or directly in <code>configs.json</code>.</p>
 <h3>Which placeholders can I use?</h3>
 <p>The Messages page lists them under each message; hover over one to see what it stands for, click it to insert it.</p>
 <h3>Can I use emojis in messages?</h3>
@@ -447,14 +447,38 @@ The first open asks before fetching anything. <code>Yes</code> downloads the fil
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases">release notes</a>.</p>
 <h2>v25.1.0</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>A tour of the settings window.</strong> The first time the window opens, a short tour rings one part after the other
+(the pages, saving, the customise mode) and says what it does; the <strong>?</strong> at the top right shows it again.</li>
+<li><strong>UIFramework 1.0.0.</strong> Problems the window finds sit behind a red <strong>i</strong> in its header instead of on the About or
+Log page, and <em>How to play</em>, <em>Log</em> and <em>About</em> sit together at the foot of the page list. The settings action
+offers the new framework on its next open.</li>
+</ul>
 <h3>Changed</h3>
 <ul>
+<li><strong>The chat messages are in <code>configs.json</code>.</strong> Every setting now sits in one file, as in the other games. An old
+<code>messages.json</code> moves in on the first run of the game or of the settings window: each message goes into
+<code>configs.json</code> under its new name (one set to null becomes an empty message, which still sends nothing), and the
+file stays beside it as <code>messages.json.migrated</code>.</li>
+<li>When the window opens on the numbers of another fairness stop, the slider moves there without a <em>filled in</em>
+note in the footer; the note is for a stop you pick.</li>
+<li><strong>Fixed bet only in Fixed mode.</strong> <em>Fixed bet</em> under Channel points shows while the bet mode is <em>Fixed</em>;
+before, it stood there greyed out in the other modes.</li>
 <li><strong>The settings action is UIFramework&#39;s generic stub.</strong> <code>[CCG] - Settings</code> carries no layout and no game code any
 more: the game action declares its window (pages, pills, the log, help and about, the <code>!gamble</code> cooldowns)
 beside its settings table and answers the window itself (the fairness stops, the odds, a test roll, the check
 before saving). Needs UIFramework 0.9.2 or newer; the stub fetches it.</li>
 <li><strong>German.</strong> With the window&#39;s language set to <code>de</code> (the pencil, then <em>Sprache</em>), every setting, section, page
 and message of the window reads in German. The help and about pages stay English.</li>
+<li><strong>The settings action is UIFramework&#39;s stub 0.2.0.</strong> When the game action hangs, the settings window waits 30
+seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not
+described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the
+window.</li>
+<li>The host block is UIFramework&#39;s current one (1.0.0). It names every type in full, so it no longer depends on the
+action&#39;s <code>using</code> lines, and it can declare a tour of the window. Nothing changes in the window.</li>
+<li>A chance, multiplier or percentage written as NaN or infinity into <code>configs.json</code> still falls back the way it did;
+the new host block alone would read it as 0.</li>
 </ul>
 <h2>v25.0.0</h2>
 <p>The settings window moved into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,

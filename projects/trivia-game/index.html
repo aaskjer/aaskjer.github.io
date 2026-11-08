@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/trivia-game/">
-  <meta property="og:title" content="Trivia Game  •  v9.0.0">
+  <meta property="og:title" content="Trivia Game  •  v9.1.0">
   <meta property="og:description" content="Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/trivia-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v9.0.0">
+  <meta name="twitter:data1" content="v9.1.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"9.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"9.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.0.0">
+<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.1.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -240,7 +240,7 @@ Chat Games/Trivia Game/uiframework.layout.json  ← the window&#39;s theme, lang
 UIFramework/lib/                                ← UIFramework.dll, which the settings action fetches and keeps current
 Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per day
 </code></pre>
-<p>Settings and messages share <code>configs.json</code>. An older <code>messages.json</code> is still read if it exists and is folded into <code>configs.json</code> the next time you save. Log files are kept indefinitely — nothing is deleted automatically.</p>
+<p>Settings and messages share <code>configs.json</code>. An older <code>messages.json</code> moves into <code>configs.json</code> on the first run of the game or of the settings window and stays as <code>messages.json.migrated</code>. Log files are kept indefinitely — nothing is deleted automatically.</p>
 <p>You should never need to edit these by hand — use the built-in Settings GUI instead.</p>
 <hr>
 <p><strong>Q: The Settings GUI won&#39;t open / crashes immediately. What do I do?</strong></p>
@@ -576,6 +576,32 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[9.1.0] - 2026-11-07</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>A tour of the settings window.</strong> The first time the window opens, a short tour rings one part after the other
+(the pages, saving, the customise mode) and says what it does; the <strong>?</strong> at the top right shows it again.</li>
+<li><strong>UIFramework 1.0.0.</strong> Problems the window finds sit behind a red <strong>i</strong> in its header instead of on the About or
+Log page, and <em>How to play</em>, <em>Log</em> and <em>About</em> sit together at the foot of the page list. The settings action
+offers the new framework on its next open.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Messages from an old <code>messages.json</code> show in the settings window.</strong> Before, only the game read that file: the
+window showed the default texts in their place, and a save wrote those over your messages. The messages now move
+into <code>configs.json</code> on the first run of the game or of the window, and the file stays as <code>messages.json.migrated</code>.</li>
+<li><strong>The difficulty slider follows the numbers.</strong> A panel under it, <em>How a round plays</em>, shows the answer times,
+the blitz times and the spelling tolerance as they stand, and moves the slider to the stop the numbers match, or
+to <em>Custom</em> once one of them is your own. Before, the slider opened on <em>Standard</em> whatever the saved numbers were.</li>
+<li><strong>Only the fields the source uses.</strong> <em>Fetch ahead</em> shows for opentdb only, and <em>Mix in my questions</em> is gone
+while your own questions are the source; before, they stood there greyed out.</li>
+<li><strong>The settings action is UIFramework&#39;s stub 0.2.0.</strong> When the game action hangs, the settings window waits 30
+seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not
+described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the
+window.</li>
+<li>The host block is UIFramework&#39;s current one (1.0.0). It names every type in full, so it no longer depends on the
+action&#39;s <code>using</code> lines, and it can declare a tour of the window. Nothing changes in the window.</li>
+</ul>
 <h2>[9.0.0] - 2026-11-07</h2>
 <p>The settings window moves into UIFramework for streamer.bot, so it is the same window every chat game of this
 family has, in English or German, and it keeps itself up to date. Nothing changes for chat; an existing
