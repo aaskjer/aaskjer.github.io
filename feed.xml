@@ -5,9 +5,26 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-08T10:01:49Z</updated>
+  <updated>2026-11-08T17:35:30Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v1.4.3: UIFramework v1.4.3 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3</id>
+    <published>2026-11-08T17:35:30Z</published>
+    <updated>2026-11-08T17:35:30Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A table&amp;#39;s columns end at its edge.&lt;/strong&gt; A list shown as a table (Trivia&amp;#39;s own questions) left an empty column after
+its last one: the columns were sized as if the vertical scrollbar always showed, and the whole pixels lost a few
+more. They now share the width the rows really have, with the scrollbar only while it shows, and follow it as rows
+are added or removed; what is left over goes to the widest column.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;470970bc4f801b59ae20ea96e785d633744c0da4f4066abc8031d3aff1f0d43e&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3&quot;&gt;Download v1.4.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v1.4.2: UIFramework v1.4.2 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.2"/>
@@ -1031,23 +1048,5 @@ alias feeds shared keys too and its old value goes also when the canonical key i
 &lt;h1&gt;Updating&lt;/h1&gt;
 &lt;p&gt;Import &lt;code&gt;HangmanGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, word list and scoreboard stay where they are. The two Free mode commands arrive disabled.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.0.0&quot;&gt;Download v13.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v0.9.12: UIFramework v0.9.12 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.12"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.12</id>
-    <published>2026-11-07T00:01:43Z</published>
-    <updated>2026-11-07T00:01:43Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;About links once, no empty logo square, a table hint that fits the table.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The About page lists every address once: a game whose own links repeat its repository or releases, which the
-framework already shows, no longer gets them twice. Without a declared logo there is no empty square beside
-the name.&lt;/li&gt;
-&lt;li&gt;The hint under a list table mentions the checkboxes only when the table has a switch column (a word list has
-none).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;a3dd9394bef0e663249ce1a18f81f018f04ea80d8216e76ea9a8a064f41651b7&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.12&quot;&gt;Download v0.9.12&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

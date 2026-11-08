@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Schema.md" data-release="v1.4.2">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v1.4.3">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -91,7 +91,7 @@
   
   <br>
   <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases"></a>
-  <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases"></a>
+  
   <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases"></a>
   <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/actions/workflows/ci.yml"></a>
   
@@ -205,7 +205,7 @@ add a language.</li>
 <li><strong><code>uiframework.layout.json</code></strong> next to the settings file: the user&#39;s changes. Survives every import.</li>
 </ol>
 <h2>🛠️ Development</h2>
-<p><code>dotnet build UIFramework.slnx</code> builds the DLL, the tests and the preview; <code>dotnet test</code> runs the 198 tests.
+<p><code>dotnet build UIFramework.slnx</code> builds the DLL, the tests and the preview; <code>dotnet test</code> runs the 199 tests.
 <code>src/UIFramework.Preview/bin/Debug/net48/UIFramework.Preview.exe</code> opens a Blackjack-shaped sample window, or with
 <code>-schema hosts/&lt;game&gt;/schema.json</code> the window a game declares. <code>-theme dark</code> or <code>light</code>, <code>-shots &lt;folder&gt;</code> renders
 every page to PNG, <code>-windowshots &lt;folder&gt;</code> the whole window per page at the page&#39;s full height (<code>-pages</code>, <code>-names</code>),
@@ -250,6 +250,14 @@ docs/                    Getting-Started, Schema, Conventions, Loader, Customize
 its section here before the tag is pushed. Everything before 1.0.0 was published as a pre-release; 1.0.0 and on are
 stable releases.</p>
 <h2>[Unreleased]</h2>
+<h2>[1.4.3] - 2026-11-08</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A table&#39;s columns end at its edge.</strong> A list shown as a table (Trivia&#39;s own questions) left an empty column after
+its last one: the columns were sized as if the vertical scrollbar always showed, and the whole pixels lost a few
+more. They now share the width the rows really have, with the scrollbar only while it shows, and follow it as rows
+are added or removed; what is left over goes to the widest column.</li>
+</ul>
 <h2>[1.4.2] - 2026-11-08</h2>
 <h3>Fixed</h3>
 <ul>
@@ -1007,6 +1015,295 @@ the file its game already reads.</li>
 <li>Customise mode: rename, move and hide pages and fields; <code>uiframework.layout.json</code>; accent colour and language.</li>
 <li>Blackjack v17.0.0 runs on the framework.</li>
 </ul>
+</div>
+      </section>
+      <section class="md" data-doc="get-started" data-label="Get started" data-file="docs/Getting-Started.md">
+        <h2 class="doc-label">Get started</h2>
+        <div class="doc-body"><h1>Getting started</h1>
+<p>At the end of this page the <strong>Demo Game</strong> runs in your Streamer.bot: <code>!roll</code> in chat rolls a die, and a
+settings window with pages, a Try button, a chat preview and a customise mode sets it up. Every step is copy and
+paste of a ready file; nothing needs changing. Making it your own game comes after that, in
+<a href="#make-it-your-own">Make it your own</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>In Streamer.bot</th>
+<th>File to paste</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="#step-1-the-game-action-demo-game">1</a></td>
+<td>Action <strong>Demo Game</strong></td>
+<td><a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame/DemoGame.cs"><code>examples/DemoGame/DemoGame.cs</code></a></td>
+</tr>
+<tr>
+<td><a href="#step-2-the-command-roll">2</a></td>
+<td>Command <code>!roll</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><a href="#step-3-the-settings-action-demo-game-settings">3</a></td>
+<td>Action <strong>Demo Game Settings</strong></td>
+<td><a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/Stub.cs"><code>stub/Stub.cs</code></a></td>
+</tr>
+<tr>
+<td><a href="#step-4-open-the-window">4</a></td>
+<td>Open the window</td>
+<td>–</td>
+</tr>
+<tr>
+<td><a href="#step-5-play">5</a></td>
+<td><code>!roll</code> in chat</td>
+<td>–</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>In a hurry?</strong> <em>Import</em> in Streamer.bot, drop in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame/DemoGame.sb"><code>examples/DemoGame/DemoGame.sb</code></a>:
+that is steps 1 to 3 in one go (the settings action is called <strong>.Demo GUI</strong> there, the command <strong>Run DemoGame</strong>).
+The import brings the command switched off: tick <em>Enabled</em> on it in <em>Commands</em>, then go on with
+<a href="#step-4-open-the-window">step 4</a>.</p>
+</blockquote>
+<p><strong>How to copy a file:</strong> open its <em>raw</em> link (in each step below), press <kbd>Ctrl</kbd>+<kbd>A</kbd>,
+<kbd>Ctrl</kbd>+<kbd>C</kbd>. On a file&#39;s GitHub page the <em>Copy raw file</em> button at the top right does the same.
+Always the <strong>whole</strong> file: a part of it gives compile errors.</p>
+<h2>Step 1: the game action <code>Demo Game</code></h2>
+<p>File: <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame/DemoGame.cs"><code>examples/DemoGame/DemoGame.cs</code></a> ·
+<a href="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/examples/DemoGame/DemoGame.cs">raw</a></p>
+<ol>
+<li><em>Actions</em> tab, right-click into the list of actions, <em>Add</em>. Name: <code>Demo Game</code>, exactly so: the settings
+action finds the game by this name.</li>
+<li>Select the new action. Under <em>Sub-Actions</em>: right-click, <em>Add</em> → <em>Core</em> → <em>C#</em> → <em>Execute C# Code</em>.</li>
+<li>In the code window, select all and delete it (Streamer.bot&#39;s template). Paste <code>DemoGame.cs</code>.</li>
+<li><em>Compile</em>: the log under the code reports no errors. Then <em>Save and Compile</em>.</li>
+</ol>
+<p>Nothing to add under <em>References</em>. The file is the whole game: the UIFramework host block (the settings and the
+window, declared once) right below the <code>using</code> lines, the game in the <code>CPHInline</code> class at the end.</p>
+<h2>Step 2: the command <code>!roll</code></h2>
+<ol>
+<li><em>Commands</em> tab, right-click, <em>Add</em>. Name: <code>Demo roll</code>, command: <code>!roll</code>, <em>Enabled</em> ticked. <em>OK</em>.</li>
+<li>Back on <em>Actions</em>, select <strong>Demo Game</strong>. Under <em>Triggers</em>: right-click, <em>Add</em> → <em>Core</em> → <em>Commands</em> →
+<em>Command Triggered</em>, and pick <code>Demo roll</code>.</li>
+</ol>
+<p>Leave the command&#39;s cooldowns as they are: the settings window sets them from its own settings after every save
+(10 seconds for everyone, 30 per viewer to begin with).</p>
+<h2>Step 3: the settings action <code>Demo Game Settings</code></h2>
+<p>File: <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/Stub.cs"><code>stub/Stub.cs</code></a> ·
+<a href="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/stub/Stub.cs">raw</a></p>
+<ol>
+<li><em>Actions</em>, <em>Add</em>. Name: <code>Demo Game Settings</code> (any name works here).</li>
+<li><em>Sub-Actions</em>: <em>Add</em> → <em>Core</em> → <em>C#</em> → <em>Execute C# Code</em>, select all, delete, paste <code>Stub.cs</code>.
+Change nothing: its line <code>private const string GameActionName = &quot;Demo Game&quot;;</code> already names the action from
+step 1.</li>
+<li><em>Compile</em>, then <em>Save and Compile</em>. Nothing to add under <em>References</em>.</li>
+<li>Give it a trigger that only you use, since it opens a window on your PC: a hotkey, a Stream Deck button, or a
+command (as in step 2) that only the broadcaster may run.</li>
+</ol>
+<h2>Step 4: open the window</h2>
+<p>Fire the trigger from step 3. Without a hotkey or a deck at hand: right-click the trigger under <em>Triggers</em>,
+<em>Test Trigger</em>.</p>
+<ul>
+<li><strong>The first time</strong> a question comes up: download <code>UIFramework.dll</code> into <code>&lt;Streamer.bot&gt;\UIFramework\lib\&lt;version&gt;\</code>?
+<em>Yes</em>. The file is checked against its published SHA-256 before it is used.</li>
+<li><strong>The window opens with a tour</strong> that rings one part after the other and says what it does: the pages, a
+setting, the <em>Roll</em> button that tries a roll without sending anything to chat, the <em>Messages</em> page with its
+placeholder chips and chat preview, saving, resetting, the theme and the customise mode. <em>Next</em> goes on, Esc
+ends it; it starts by itself only this once, the <strong>?</strong> at the top right shows it again. Your own game gets one
+with <code>.Tour(...)</code> in its window (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-tour">Schema.md</a>).</li>
+<li>Change a value and save. The window writes <code>&lt;Streamer.bot&gt;\Demo Game\DemoGame-Settings.json</code> and sets the
+cooldowns of <code>!roll</code>.</li>
+</ul>
+<p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/demo-tour-dark.png" width="48%" alt="The tour on the first open: a setting ringed, its note beside it">
+</p><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/demo-game-dark.png" width="32%" alt="The demo's Game page, dark">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/demo-game-light.png" width="32%" alt="The same page in the light theme">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/demo-messages-dark.png" width="32%" alt="The Messages page with placeholder chips and a chat preview">
+</p>
+<p align="center"><sub>The demo game's window: its own page in both themes, and the Messages page the framework adds.</sub></p><h2>Step 5: play</h2>
+<p>Type <code>!roll</code> in your chat. The answer reads like <code>@you rolls a 4 on a d6: no luck.</code>; the highest side wins the
+points per win, paid into the viewer&#39;s points (Currency Core&#39;s or LOYALTY POINTS&#39; when one is installed, else the
+user variable <code>points</code>).</p>
+<h3>When something does not work</h3>
+<table>
+<thead>
+<tr>
+<th>You see</th>
+<th>It is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Compile errors such as <code>The type or namespace name &#39;JObject&#39; could not be found</code></td>
+<td>Only part of the file was pasted, or <code>HostSchema.cs</code> alone in a new action. Paste the whole <code>DemoGame.cs</code> (step 1).</td>
+</tr>
+<tr>
+<td>The window says the action <em>ran but did not answer</em></td>
+<td>The game action is not named exactly <code>Demo Game</code>, its sub-action did not compile, or it is disabled. Streamer.bot&#39;s <em>Log</em> tab shows which.</td>
+</tr>
+<tr>
+<td>The window never opens, no question either</td>
+<td>The settings action did not run: check its trigger, and the log.</td>
+</tr>
+<tr>
+<td><code>!roll</code> gets no answer</td>
+<td>The command is off, or not the trigger of <strong>Demo Game</strong> (step 2). A roll inside the cooldown is ignored too.</td>
+</tr>
+</tbody></table>
+<h2>Make it your own</h2>
+<p>The demo becomes your game in <code>DemoGame.cs</code> (save it under your game&#39;s name) and one line of <code>Stub.cs</code>:</p>
+<ol>
+<li><p><strong>Names.</strong> In <code>CPHInline</code>: <code>ActionName</code> (your game action&#39;s name: the log lines carry it), <code>SettingsFile</code> (where the settings
+go, relative to the Streamer.bot folder), <code>CurrentVersion</code>, and the short host id <code>&quot;demo&quot;</code> in the
+<code>UiHost.Handle</code> call. In the settings action: <code>GameActionName</code>, the same name as <code>ActionName</code>.</p>
+</li>
+<li><p><strong>Settings,</strong> in the <code>Table</code> near the top of the host block: one line per setting your game reads.</p>
+<pre><code class="language-csharp">public static readonly Setting[] Table =
+{
+    S(&quot;useBot&quot;, true),
+    S(&quot;globalCooldown&quot;, 10),
+    S(&quot;userCooldown&quot;, 30),
+    S(&quot;sides&quot;, 6, page: &quot;game&quot;, label: &quot;Sides of the die&quot;, help: &quot;The highest one wins.&quot;, section: &quot;The die&quot;, min: 2, max: 100),
+    S(&quot;tryRoll&quot;, null, page: &quot;game&quot;, label: &quot;Roll&quot;, kind: &quot;action&quot;, section: &quot;Try a roll&quot;, live: true, panel: true),
+    Msg(&quot;Rolls&quot;, &quot;msgRoll&quot;, &quot;@{user} rolls a {roll}: {result}.&quot;, &quot;Roll&quot;, &quot;What chat gets.&quot;, new[] { &quot;user&quot;, &quot;roll&quot;, &quot;result&quot; }),
+};
+</code></pre>
+<p>Keys the framework knows (<code>useBot</code>, <code>globalCooldown</code>, <code>userCooldown</code>, <code>blockedUsers</code>, ... see
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/conventions/keys.json"><code>conventions/keys.json</code></a>) need only their default: label, help, page and limits
+come with them. <code>S(key, default, ...)</code> takes everything else as named arguments; <code>Msg(...)</code> is a chat message
+with placeholders. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">Schema.md</a> lists every argument and kind (numbers, switches, dropdowns,
+sliders, colours, paths, emotes, lists with a row editor, buttons that ask your game something).</p>
+</li>
+<li><p><strong>The window,</strong> in <code>Window</code> just above the table, as much or as little as you like:</p>
+<pre><code class="language-csharp">public static readonly UiWindow Window = new UiWindow(&quot;Demo Game&quot;, releases: &quot;you/your-repo&quot;)
+    .Pages(P(&quot;game&quot;, &quot;Game&quot;, &quot;dice&quot;), &quot;messages&quot;, &quot;help&quot;, &quot;about&quot;)
+    .Cooldowns(C(&quot;!roll&quot;, &quot;globalCooldown&quot;, &quot;userCooldown&quot;))
+    .Help(H(&quot;Playing&quot;, Cmd(&quot;!roll&quot;, &quot;Rolls the die once.&quot;)))
+    .About(credits: &quot;By you.&quot;);
+</code></pre>
+<p><code>releases</code> is your GitHub repository: it gives the About page its links, the window its &quot;new version of
+the game&quot; check, and your game a place in the update notice once per Streamer.bot start (<code>Init()</code>, see
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#update-notice">Schema.md</a>). <code>Cooldowns</code> is how the cooldown settings reach the command: after every save the settings
+action sets its global and per-user cooldown from those two keys; without it they are just numbers in the
+file. Name the command by its text (<code>&quot;!roll&quot;</code>), its name, or its id (right-click the command in Streamer.bot
+to copy it). For a game you ship, the id is the safer one: an export and import keep it, and it still holds
+when a streamer renames the command.</p>
+</li>
+<li><p><strong>The game,</strong> in <code>CPHInline</code>: read the settings with <code>UiSettings.Load(SettingsFile, CPH.LogWarn)</code> and
+<code>s.Int(&quot;sides&quot;)</code>, <code>s.Bool(&quot;useBot&quot;)</code>, <code>s.String(&quot;msgRoll&quot;)</code>. A damaged file gives the backup of the last save,
+and the log says so.</p>
+</li>
+</ol>
+<h3>A game you already have</h3>
+<ol>
+<li><p>Paste the host block from <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/HostSchema.cs"><code>stub/HostSchema.cs</code></a>
+(<a href="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/stub/HostSchema.cs">raw</a>), from
+<code>// --- UIFramework host block</code> to <code>// --- end UIFramework host block ---</code>, into your game action <strong>right below
+its <code>using</code> lines</strong>, as in <code>DemoGame.cs</code> and every game on UIFramework. It needs no usings of its own and no
+reference beyond Newtonsoft.Json, which every action has, so anywhere after the usings works as well (at the
+end, or inside the <code>CPHInline</code> class). It is not an action of its own: pasted alone into an Execute Code it
+does nothing.</p>
+</li>
+<li><p>Fill in its <code>Window</code> (<code>// __WINDOW__</code>) and <code>Table</code> (<code>// __TABLE__</code>) as above.</p>
+</li>
+<li><p>Three constants in <code>CPHInline</code>, then first thing in <code>Execute()</code> the call that answers the window:</p>
+<pre><code class="language-csharp">private const string ActionName = &quot;My Game&quot;;                          // your game action&#39;s name
+private const string SettingsFile = &quot;Chat Games/My Game/settings.json&quot;; // relative to the Streamer.bot folder
+private const string CurrentVersion = &quot;v1.0.0&quot;;
+
+public bool Execute()
+{
+    if (UiHost.Handle(args, CPH, ActionName, &quot;mygame&quot;, CurrentVersion, SettingsFile))
+        return true;
+    var s = UiSettings.Load(SettingsFile, CPH.LogWarn);
+    // ... the game, reading s.Int(&quot;...&quot;), s.Bool(&quot;...&quot;), s.String(&quot;...&quot;)
+}
+</code></pre>
+</li>
+<li><p>For the update notice once per Streamer.bot start (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#update-notice">Schema.md</a>), in <code>CPHInline</code>:</p>
+<pre><code class="language-csharp">public void Init()
+{
+    UiUpdateNotice.Startup(CPH, ActionName, &quot;mygame&quot;, CurrentVersion, SettingsFile);
+}
+</code></pre>
+<p>and tick <em>Precompile on Application Start</em> on the game action&#39;s Execute Code sub-action (right-click it).</p>
+</li>
+<li><p>The settings action as in <a href="#step-3-the-settings-action-demo-game-settings">step 3</a>, with your game action&#39;s
+name in <code>GameActionName</code>.</p>
+</li>
+</ol>
+<h2>Good to know</h2>
+<h3>The game action and the window</h3>
+<p><strong>Keep the code the game action&#39;s last sub-action</strong>, with nothing before it that acts. The window runs the whole
+action for each of its requests, and a sub-action after the code still runs once <code>Handle</code> has answered and the
+code returned <code>true</code>: a chat message or a sound there would go out every time the window asks something.</p>
+<p><code>UiHost.Handle</code> takes optional delegates, the ways the window talks to your game: <code>test</code> answers a Try button or
+a live field, <code>validate</code> checks before a save, <code>saved</code> runs after one, <code>table</code> and <code>emotes</code> fill special fields. A
+game with plain settings passes none. The demo&#39;s Try button:</p>
+<pre><code class="language-csharp">if (UiHost.Handle(args, CPH, ActionName, &quot;demo&quot;, CurrentVersion, SettingsFile,
+        test: (name, s) =&gt; name == &quot;tryRoll&quot; ? Roll(s, UiCurrency.Detect(CPH, s), &quot;alice&quot;, null) : null))
+    return true;
+</code></pre>
+<p><strong>The window waits five seconds for an answer.</strong> The settings action runs your game action with
+<code>CPH.RunAction(..., true)</code> and waits; a request it has given up on is skipped, not run late. One that has started
+gets 30 seconds more, then the window stops waiting and goes on without its answer. So inside <code>test</code>,
+<code>validate</code>, <code>saved</code>, <code>table</code> and <code>emotes</code>:</p>
+<ul>
+<li>Do not call <code>CPH.RunAction(other, true)</code> on an action that sits in the same <strong>blocking</strong> action queue as the
+settings action or your game action: it cannot start until they end, which is after the five seconds, and the
+window shows &quot;no answer&quot; (for a save: asks whether to save unchecked). Run such work with
+<code>CPH.RunAction(other, false)</code>, or keep the game action and the settings action out of blocking queues.</li>
+<li>Keep it short: no <code>CPH.Wait</code>, no web requests. Work that takes long goes into <code>saved</code> with <code>RunAction(..., false)</code>
+or into the game&#39;s own run.</li>
+<li>An action you run from there runs as usual: the host block clears the window&#39;s arguments (<code>uiframework.request</code>
+and the others) before your handler runs. A host block older than UIFramework 1.2.0 does not; see
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md">Loader.md</a> for the line to add then.</li>
+</ul>
+<h3>Points</h3>
+<p>A game that pays out declares <code>S(&quot;pointsVariable&quot;, &quot;points&quot;)</code> and <code>S(&quot;pointsName&quot;, &quot;Points&quot;)</code> and asks
+<code>UiCurrency.Detect(CPH, settings)</code> on every run: when the streamer runs StreamUP&#39;s Currency Core or Tawmae&#39;s
+LOYALTY POINTS, <code>Variable</code> and <code>Name</code> come from there and the window shows a pill saying so; otherwise the two
+settings apply. The demo pays a win into that variable with <code>CPH.GetTwitchUserVarById</code>/<code>SetTwitchUserVarById</code>
+(YouTube and Kick likewise).</p>
+<h3>What you get without writing it</h3>
+<ul>
+<li>Pages from the table, sections where <code>section</code> changes, numbers three to a line, switches two.</li>
+<li>Validation: limits, a <code>requires</code> that greys a field out, your <code>validate</code> answer before a save.</li>
+<li>A Messages page with placeholder chips and a live preview, sender switches, a cooldown group.</li>
+<li>A Log page that follows your log folder as the game writes it (<code>.Log(folder, files)</code> in the window).</li>
+<li>Reset to defaults, per page or all; unsaved-change tracking; dark and light theme; an accent colour.</li>
+<li>The customise mode: users rename, move and hide fields and pages, in <code>uiframework.layout.json</code> next to the
+settings file, surviving every import of your game (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Customize.md">Customize.md</a>).</li>
+<li>Export and import of the settings.</li>
+<li>A red <strong>i</strong> in the header when the table or the window declares something the framework cannot use (an unknown
+kind, a requirement on a key that is not there) or something fails while the window is open: a click lists it
+all, with a <em>Copy</em> button for a bug report, so you see it without reading Streamer.bot&#39;s log. The pages stay clean.</li>
+</ul>
+<h3>What your users get on their machine</h3>
+<p>This is what to tell a streamer who imports your game, or link them here:</p>
+<ul>
+<li><strong>First open:</strong> the settings action asks whether to download <code>UIFramework.dll</code> from this repository&#39;s
+release into <code>&lt;Streamer.bot&gt;\UIFramework\lib\&lt;version&gt;\</code> (for example <code>lib\1.2.0\UIFramework.dll</code>). The file is
+checked against its published SHA-256 before it is used. *No* opens the <code>lib</code> folder so they can put the DLL there
+themselves, in a folder named after its version; <em>Cancel</em> leaves everything as it is.</li>
+<li><strong>Updates:</strong> when a newer framework release is out, the window asks before it downloads anything. <em>Cancel</em>
+skips that version for good, <em>No</em> shows it as a pill in the window&#39;s header until it is taken.</li>
+<li><strong>Turning the update check off:</strong> <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code>, the file next to your
+game&#39;s settings file (<code>settingsFile</code>, relative to the Streamer.bot folder). When the file is not there yet,
+<code>{ &quot;autoUpdate&quot;: false }</code> is all it needs. The window then opens with the DLL it has and asks nothing.</li>
+<li><strong>Without the window:</strong> your game action never loads the DLL; only the settings action does. With the
+settings action disabled the game plays on with its settings file, which can still be edited by hand.</li>
+</ul>
+<p><a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md">Loader.md</a> has the details: where <code>latest.json</code> comes from, the hash on every load, what happens
+offline.</p>
+<h3>Keeping up</h3>
+<p>The host block is the same in every game. When a new framework release changes it, run</p>
+<pre><code class="language-powershell">tools\update-host-block.ps1 -File &quot;C:\...\YourGame.cs&quot;
+</code></pre>
+<p>which swaps the block and keeps your Window and Table. It keeps a copy of the file as <code>.bak</code> before it writes,
+and it refuses (and writes nothing) when the old block holds lines of yours outside the Window and the Table,
+which the swap would drop, or when the Table&#39;s end cannot be told for sure; <code>-Force</code> writes anyway, <code>-Check</code>
+only tells whether the block is current. The settings action never changes per project; replace it with the new
+<code>stub/Stub.cs</code> when a release says so.</p>
 </div>
       </section>
       <section class="md" data-doc="schema" data-label="Schema" data-file="docs/Schema.md">
