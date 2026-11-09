@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 73,
+      version: 'v1.0.0', stars: 0, downloads: 74,
     },
     {
       repo: 'SuTo',
@@ -197,7 +197,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.2', stars: 0, downloads: 15,
+      version: 'v1.0.2', stars: 0, downloads: 16,
     },
     {
       repo: 'GameCheck',
@@ -299,7 +299,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v25.2.0', stars: 1, downloads: 152,
+      version: 'v25.2.0', stars: 1, downloads: 154,
     },
     {
       repo: 'Trivia-Game',
@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.2.2', stars: 2, downloads: 96,
+      version: 'v9.2.2', stars: 2, downloads: 97,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -336,7 +336,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.4.0', stars: 3, downloads: 62,
+      version: 'v16.4.0', stars: 3, downloads: 64,
     },
     {
       repo: 'Hangman-Game',
