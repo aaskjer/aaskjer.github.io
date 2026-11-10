@@ -5,9 +5,155 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-08T18:26:14Z</updated>
+  <updated>2026-11-10T22:12:01Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v1.8.0: UIFramework v1.8.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0</id>
+    <published>2026-11-10T22:12:01Z</published>
+    <updated>2026-11-10T22:12:01Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Search with Ctrl+F.&lt;/strong&gt; Ctrl+F, or the new magnifier at the top right, opens a search bar in every window. It
+finds settings (by label, help, section, page and key), messages and pages; every word typed has to occur, in any
+order, whatever the case and the accents. Up and Down move, Enter goes there: the page comes to the front and the
+field is scrolled into view, ringed for a moment and given the cursor. Games declare nothing for it and need no
+update; &lt;code&gt;Tip(&amp;quot;search&amp;quot;)&lt;/code&gt; adds the magnifier to a window&amp;#39;s tour. See &lt;em&gt;The search&lt;/em&gt; in
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;UIFramework.Preview -windowshots &amp;lt;folder&amp;gt; -search &amp;lt;text&amp;gt;&lt;/code&gt;&lt;/strong&gt; photographs the search bar with that typed in, and
+where its first result leads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;7f71db353963f027f4528fcdf209f299779f2ae4201af3a45721a6a597cc1bf8&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0&quot;&gt;Download v1.8.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v1.7.0: UIFramework v1.7.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.7.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.7.0</id>
+    <published>2026-11-10T21:56:03Z</published>
+    <updated>2026-11-10T21:56:03Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiAdBreak&lt;/code&gt;: Twitch&amp;#39;s ad break as a window of time for a game.&lt;/strong&gt; Chat stays usable while ads run, so that is
+when a round fits. &lt;code&gt;Begin&lt;/code&gt; opens the window from Streamer.bot&amp;#39;s &lt;em&gt;Ad Run&lt;/em&gt; trigger for the ads&amp;#39; length (there is no
+trigger for their end), &lt;code&gt;Active&lt;/code&gt; and &lt;code&gt;SecondsLeft&lt;/code&gt; say whether ads run, &lt;code&gt;Announce&lt;/code&gt; answers the &lt;em&gt;Upcoming Ad&lt;/em&gt;
+trigger once per break, &lt;code&gt;RoundsThatFit&lt;/code&gt; and &lt;code&gt;WithBonus&lt;/code&gt; do the sums. See &lt;em&gt;Twitch&amp;#39;s ad breaks&lt;/em&gt; in
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An Automation page in the conventions,&lt;/strong&gt; with five keys for the ad break (&lt;code&gt;adBreakStart&lt;/code&gt;, &lt;code&gt;adBreakAnnounce&lt;/code&gt;,
+&lt;code&gt;adBreakAnnounceMinutes&lt;/code&gt;, &lt;code&gt;adBreakBonusPercent&lt;/code&gt;, &lt;code&gt;adBreakOnly&lt;/code&gt;) in English, German and Spanish.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The timer&amp;#39;s keys (&lt;code&gt;autoStart…&lt;/code&gt;) are on the Automation page&lt;/strong&gt; instead of Game. A game that names their page
+itself is not affected.&lt;/li&gt;
+&lt;li&gt;Trivia and Hangman start rounds with ad breaks and have the Automation page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;69478b3cbdd79d8067e79a99c72c3b9dbdbd3d2c9a742c440c47706151b409f2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.7.0&quot;&gt;Download v1.7.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Battleship Game v2.4.0: StartChatBattle for your own actions (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.0"/>
+    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.0</id>
+    <published>2026-11-10T21:15:49Z</published>
+    <updated>2026-11-10T21:15:49Z</updated>
+    <category term="Battleship-Game" label="Battleship Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartChatBattle&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action starts Chat vs
+the Admiral, the battle everybody takes part in, from any action: a hotkey, a Stream Deck button, a raid. The
+optional argument &lt;code&gt;battleshipPlatform&lt;/code&gt; names the chat it is announced in, and &lt;code&gt;battleshipStarted&lt;/code&gt; says whether a
+battle began. No cooldown applies; while another battle runs, nothing starts and chat hears nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.0&quot;&gt;Download v2.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v17.5.0: StartHouseTable for your own actions (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.0"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.0</id>
+    <published>2026-11-10T21:15:41Z</published>
+    <updated>2026-11-10T21:15:41Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartHouseTable&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action opens a House
+Mode table from any action: a hotkey, a Stream Deck button, a raid. Optional arguments &lt;code&gt;blackjackPlatform&lt;/code&gt; and
+&lt;code&gt;blackjackRules&lt;/code&gt; (a rule set by name or number, or &lt;code&gt;random&lt;/code&gt;); it sets &lt;code&gt;blackjackTableOpened&lt;/code&gt; and
+&lt;code&gt;blackjackRulesName&lt;/code&gt;. No cooldown applies and the rule menu is never asked; with a table already open, nothing
+opens and chat hears nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.0&quot;&gt;Download v17.5.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v1.6.0: UIFramework v1.6.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.6.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.6.0</id>
+    <published>2026-11-10T20:26:04Z</published>
+    <updated>2026-11-10T20:26:04Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Custom triggers and methods are declared once.&lt;/strong&gt; &lt;code&gt;UiWindow.Trigger&lt;/code&gt;, &lt;code&gt;Triggers&lt;/code&gt; (several that share their
+arguments) and &lt;code&gt;Method&lt;/code&gt; say what a game offers the streamer&amp;#39;s own actions. &lt;code&gt;UiTriggers.Register&lt;/code&gt; in &lt;code&gt;Init()&lt;/code&gt;
+registers the triggers from that list, and the Help page ends with &lt;em&gt;Custom triggers&lt;/em&gt; and &lt;em&gt;Methods for your own
+actions&lt;/em&gt;, each with its arguments, in English, German and Spanish.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fire with sample values.&lt;/strong&gt; A button under each trigger on the Help page has the game fire it once with its
+sample values, so an action that listens to it can be tried without playing a round.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiLive&lt;/code&gt;: whether you are live.&lt;/strong&gt; Twitch through its API with Streamer.bot&amp;#39;s token, YouTube by the monitored
+broadcasts, Kick through its channel page; &lt;code&gt;Live&lt;/code&gt;, &lt;code&gt;Offline&lt;/code&gt; or &lt;code&gt;Unknown&lt;/code&gt;, never an exception. Twitch and Kick
+are asked by the DLL, since the host block must compile in an action without &lt;code&gt;System.dll&lt;/code&gt;. Trivia&amp;#39;s own check
+moved here, and Hangman&amp;#39;s automatic rounds use it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tools\copy-host-block.ps1&lt;/code&gt;&lt;/strong&gt;, and &lt;code&gt;-Into&lt;/code&gt; / &lt;code&gt;-HostName&lt;/code&gt; on &lt;code&gt;update-host-block.ps1&lt;/code&gt;: the block a game carries
+goes into its other action and into &lt;code&gt;hosts\&amp;lt;host&amp;gt;\HostBlock.cs&lt;/code&gt; in one step, with &lt;code&gt;-Check&lt;/code&gt; to compare.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A conventions key hands on its &lt;code&gt;requires&lt;/code&gt;,&lt;/strong&gt; so the timer&amp;#39;s intervals are greyed out with their switch in a
+game that declares them with key and default alone (already in 1.5.0, not listed there).&lt;/li&gt;
+&lt;li&gt;Trivia, Hangman, Blackjack and Battleship declare their triggers and methods this way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;e65a5cea249886e4e828572a4c9f8c0b471ad4670c2b0a6a27eb7be5313d3188&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.6.0&quot;&gt;Download v1.6.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v1.5.0: UIFramework v1.5.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.5.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.5.0</id>
+    <published>2026-11-10T19:29:12Z</published>
+    <updated>2026-11-10T19:29:12Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A timed action on a random time and after chat lines.&lt;/strong&gt; Streamer.bot&amp;#39;s timer dialog offers a fixed interval, a
+random one and &amp;quot;only after so many chat lines&amp;quot;, but code can set only the interval. &lt;code&gt;UiTimer&lt;/code&gt; in the host block
+keeps the other two: &lt;code&gt;Sync&lt;/code&gt; brings the timed action in line with the settings (a running timer keeps its
+countdown unless the schedule was just saved), &lt;code&gt;Rearm&lt;/code&gt; draws a random timer&amp;#39;s next wait each time it fires, and
+&lt;code&gt;NoteLine&lt;/code&gt; / &lt;code&gt;TakeLines&lt;/code&gt; count chat lines per platform and hold a start back until there are enough. See &lt;em&gt;A timed
+action&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Five convention keys for it:&lt;/strong&gt; &lt;code&gt;autoStartEnabled&lt;/code&gt;, &lt;code&gt;autoStartIntervalMinutes&lt;/code&gt;, &lt;code&gt;autoStartRandom&lt;/code&gt;,
+&lt;code&gt;autoStartIntervalMaxMinutes&lt;/code&gt; and &lt;code&gt;autoStartMinChatLines&lt;/code&gt;, with page, row, labels and help in English, German and
+Spanish. A game declares them with key and default alone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Trivia and Hangman run their automatic rounds on it&lt;/strong&gt; (Trivia v9.3.0, Hangman v13.3.0). The host copies of
+Trivia, Hangman, Blackjack and Battleship are the games&amp;#39; current ones.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;70676b41e5f1f31e2e051684f97d102a2e0f4aa8002975b9adf0fa09b20ef976&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.5.0&quot;&gt;Download v1.5.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Trivia Game v9.2.2: Every time field says its unit</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2"/>
@@ -307,30 +453,6 @@ for. Customize: &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.2.0&quot;&gt;Download v1.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
-    <title>UIFramework v1.1.0: UIFramework v1.1.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.1.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.1.0</id>
-    <published>2026-11-08T00:38:39Z</published>
-    <updated>2026-11-08T00:38:39Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Help under fields.&lt;/strong&gt; A switch in the customise bar puts each field&amp;#39;s help as a small line under it instead of
-in its tooltip; links in it can be clicked. It is kept in &lt;code&gt;uiframework.layout.json&lt;/code&gt; as &lt;code&gt;&amp;quot;helpLines&amp;quot;: true&lt;/code&gt; and
-is off by default. Notes and lists show their help as text as before.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Column headers in German and Spanish.&lt;/strong&gt; The read-only tables (leaderboards, statistics) translate their column
-headers like the lists and the Log page do. The words the games use for them (&lt;em&gt;Player&lt;/em&gt;, &lt;em&gt;Bet&lt;/em&gt;, &lt;em&gt;Change&lt;/em&gt;, &lt;em&gt;After&lt;/em&gt;,
-&lt;em&gt;Platform&lt;/em&gt;, &lt;em&gt;Trigger&lt;/em&gt;, &lt;em&gt;Guess&lt;/em&gt;, &lt;em&gt;Lives&lt;/em&gt;, &lt;em&gt;Answer&lt;/em&gt;, &lt;em&gt;Source&lt;/em&gt; and more) are in the framework&amp;#39;s German and Spanish
-texts, so every game&amp;#39;s Log page and lists read in the window&amp;#39;s language without a new game release.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hosts/&lt;/code&gt;: Hangman v13.1.1.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;18ee57a0148cead821897b3a2be46808985df10b554ec10433ca02691cf98522&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.1.0&quot;&gt;Download v1.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
     <title>Classic Chat Gamble v25.1.0: A tour of the window, and the window in German</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.1.0"/>
     <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.1.0</id>
@@ -530,456 +652,5 @@ texts, so every game&amp;#39;s Log page and lists read in the window&amp;#39;s l
 &lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.3.0&quot;&gt;Download v16.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.0.0: UIFramework v1.0.0</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.0.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.0.0</id>
-    <published>2026-11-07T19:13:33Z</published>
-    <updated>2026-11-07T19:13:33Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;The first stable release: the settings window every chat game of aaskjer&amp;#39;s runs on (Blackjack, Battleship, Classic
-Chat Gamble, Hangman, High-Low, RhymeTime, Slot Machine, Trivia), with a tour of itself, its problems behind one
-red button, and a Log page that reads old and new log lines alike. From here on, the host block and the settings
-action change only in ways the CHANGELOG says, and a release that breaks a game needs a new major version.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Problems behind a red &amp;quot;i&amp;quot;.&lt;/strong&gt; What the game declares that does not fit, and what fails while the window is
-open (a page that cannot be built, a handler that throws, a failed save, an unreadable layout file), no longer
-show as a banner and a list on the Log or About page. A red &lt;strong&gt;i&lt;/strong&gt; appears in the header instead; a click opens a
-panel that lists them in two groups, the failures with their time, and &lt;em&gt;Copy&lt;/em&gt; puts the whole list on the
-clipboard for a bug report. Esc, the close button or a click beside it closes it. Every line still goes to
-Streamer.bot&amp;#39;s log. The status line&amp;#39;s &amp;quot;Something went wrong&amp;quot; points at the &lt;strong&gt;i&lt;/strong&gt;. Preview:
-&lt;code&gt;-windowshots &amp;lt;folder&amp;gt; -problems&lt;/code&gt; photographs the window with the &lt;strong&gt;i&lt;/strong&gt;, then with its panel open.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A tour stop to try out.&lt;/strong&gt; &lt;code&gt;Tip(target, title, text, act: true)&lt;/code&gt; lets the user use the ringed part while the stop
-is up: clicks go through the ring to it, keys reach it, the rest of the window stays out of reach, and the ring
-follows the part as it grows (a Try button&amp;#39;s answer). The note says &lt;em&gt;Try it yourself&lt;/em&gt;. The demo game&amp;#39;s &lt;em&gt;Roll&lt;/em&gt;
-stop is one.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;How to play, Log and About at the foot of the rail.&lt;/strong&gt; The three sit together at the bottom of the page list,
-in this order, whatever order a game declares them in; a game&amp;#39;s own bottom page goes above them.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The Log page reads more.&lt;/strong&gt; Older lines in columns (&lt;code&gt;yyyy-MM-dd HH:mm:ss RESULT  user  [R1|id] Key: value | ...&lt;/code&gt;)
-show their time, result, player, round and fields instead of an empty row. A column may name several keys
-(&lt;code&gt;&amp;quot;Word|Word,Word was&amp;quot;&lt;/code&gt;): the first the line has is shown. A value in one pair of single quotes loses them.
-Results read with a capital per part (&lt;em&gt;Game-Over&lt;/em&gt;, &lt;em&gt;Hit-Lettr&lt;/em&gt;), and column headers and the empty text translate
-through the game&amp;#39;s &lt;code&gt;Tx&lt;/code&gt; like every declared text.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Every chat game has a tour&lt;/strong&gt; and the current host block; High-Low and RhymeTime have a Log page now, and
-Hangman&amp;#39;s log fills every column (&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/hosts&quot;&gt;hosts/&lt;/a&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;1bd98cae8eac285d2e112bd1aae1e03f4768ac647e1e41f8b4fba5af1bf7cdd4&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.0.0&quot;&gt;Download v1.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v0.10.0: UIFramework v0.10.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.10.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.10.0</id>
-    <published>2026-11-07T11:48:56Z</published>
-    <updated>2026-11-07T11:48:56Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;A tour of the window on its first open.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The window explains itself.&lt;/strong&gt; A game declares a tour in its window, &lt;code&gt;.Tour(Tip(target, title, text), ...)&lt;/code&gt;:
-on the window&amp;#39;s first open the window dims and one part after the other is ringed in the accent colour, with a
-note beside it (&lt;em&gt;Back&lt;/em&gt;, &lt;em&gt;Next&lt;/em&gt;, &lt;em&gt;End tour&lt;/em&gt;; Esc ends it, the arrow keys and Enter step through it). A stop
-points at a setting (its page comes to the front), a page (&lt;code&gt;page:messages&lt;/code&gt;; the page stays bright beside its
-rail entry), a part of the window (&lt;code&gt;rail&lt;/code&gt;, &lt;code&gt;save&lt;/code&gt;, &lt;code&gt;saveExit&lt;/code&gt;, &lt;code&gt;cancel&lt;/code&gt;, &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;reset&lt;/code&gt;, &lt;code&gt;resetPage&lt;/code&gt;,
-&lt;code&gt;theme&lt;/code&gt;, &lt;code&gt;customise&lt;/code&gt;, &lt;code&gt;tour&lt;/code&gt;) or nothing (&lt;code&gt;start&lt;/code&gt;, &lt;code&gt;end&lt;/code&gt;, a note of the game&amp;#39;s own). Parts and the standard
-pages bring their own texts in English, German and Spanish, a setting its label and help; the game&amp;#39;s own texts
-translate through &lt;code&gt;Tx&lt;/code&gt;. &lt;code&gt;&amp;quot;tourSeen&amp;quot;: true&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; keeps it from starting again; the &lt;strong&gt;?&lt;/strong&gt;
-at the top right shows it whenever the user wants. A stop the window cannot show (a page the user hid,
-&lt;code&gt;customise&lt;/code&gt; in a locked window) is left out; a target that is neither a setting, a page nor a part is listed
-like any other mistake in the declaration. See &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-tour&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The demo game has a tour&lt;/strong&gt;: the pages, a setting, the &lt;em&gt;Roll&lt;/em&gt; button, the Messages page, the unsaved-changes
-line, saving, resetting, the theme, the customise mode and the &lt;strong&gt;?&lt;/strong&gt; itself.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Host block:&lt;/strong&gt; &lt;code&gt;UiSchema.Tip&lt;/code&gt; and &lt;code&gt;UiWindow.Tour&lt;/code&gt;. A game without a tour needs nothing new; an older DLL
-ignores a tour it does not know.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Preview:&lt;/strong&gt; &lt;code&gt;-windowshots &amp;lt;folder&amp;gt; -tour&lt;/code&gt; photographs every stop of the tour (&lt;code&gt;tour-01.png&lt;/code&gt;, ...).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;587a69a9a883a6da2251e9591171c02e43e95cd711846eccc63ea22d386d51b1&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.10.0&quot;&gt;Download v0.10.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v0.9.13: UIFramework v0.9.13 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.13"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.13</id>
-    <published>2026-11-07T11:37:08Z</published>
-    <updated>2026-11-07T11:37:08Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;Spanish and every language offered, neutral credits, saving that keeps what the game wrote, a sturdier loader
-(stub 0.2.0), and the review&amp;#39;s findings fixed.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spanish.&lt;/strong&gt; &lt;code&gt;conventions/lang/es.json&lt;/code&gt; translates every known key, page, placeholder and window text, and the
-short wordings German translates.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Every language is offered.&lt;/strong&gt; The language picker lists every language there are texts for, by its own name
-(English, Deutsch, Español): the DLL&amp;#39;s files, a file in &lt;code&gt;UIFramework\lang\&lt;/code&gt; beside Streamer.bot (a new language
-or corrections, without a release), and the languages a game brings texts for. A game without texts of its own
-gets what the conventions translate. A game that names its window&amp;#39;s language has no picker.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A game can translate the window itself&lt;/strong&gt; for a language the framework lacks: &lt;code&gt;Ui(key, text)&lt;/code&gt; and
-&lt;code&gt;Ph(placeholder, help)&lt;/code&gt; in &lt;code&gt;Lang&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A relabelled known key keeps the game&amp;#39;s wording&lt;/strong&gt; where the conventions do not translate it; before, a language
-without a conventions file showed the conventions&amp;#39; English label over the game&amp;#39;s own.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Neutral credits.&lt;/strong&gt; The framework names no author: a game without credits shows none, and every About page ends
-with the links &lt;code&gt;conventions/keys.json&lt;/code&gt; lists (&lt;code&gt;about.links&lt;/code&gt;): the UIFramework page on aaskjer.github.io,
-Streamer.bot and &lt;em&gt;Report something that looks wrong&lt;/em&gt; (the game&amp;#39;s issues when it names its repository, else the
-framework&amp;#39;s). &lt;code&gt;About(defaultLinks: false)&lt;/code&gt; leaves them out; &lt;code&gt;authorLink&lt;/code&gt; does nothing any more.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;More said to a game&amp;#39;s author:&lt;/strong&gt; a known key declared as another kind of value (it would still take the
-conventions&amp;#39; limits, old keys and translations), a section split by another on its page (its heading would show
-twice), an icon name the framework does not know (it shows a dot instead of the word).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Fixes to the fixes:&lt;/strong&gt; a request hung in the game action no longer blocks the next ones (taking over a window and
-reopening one work again); a list moving into its own file survives the open-time theme move and Reset all, and
-Reset all leaves lists in their own files; whole numbers stay exact past 2^53; the next save also writes a
-switch, dropdown or slider shown other than stored; a hidden number box without a number keeps its value; a list
-file unreadable at save keeps the window&amp;#39;s copy of its untouched lists; &lt;code&gt;UiSettings.Load&lt;/code&gt; survives a bad path; an
-older DLL gets &amp;quot;no answer&amp;quot; as before instead of the stub&amp;#39;s marker; the sample thousands separator follows the
-window&amp;#39;s language.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The host block needs no usings.&lt;/strong&gt; &lt;code&gt;stub/HostSchema.cs&lt;/code&gt; names every type in full (&lt;code&gt;Newtonsoft.Json.Linq.JObject&lt;/code&gt;,
-&lt;code&gt;System.IO.File&lt;/code&gt;, ...), so it compiles in any game action whatever its &lt;code&gt;using&lt;/code&gt; lines say, right below them, at the
-end or inside &lt;code&gt;CPHInline&lt;/code&gt;, and a game&amp;#39;s own usings can no longer clash with it (a &lt;code&gt;Path&lt;/code&gt; or &lt;code&gt;Formatting&lt;/code&gt; of
-another namespace). Before, the game&amp;#39;s action had to bring seven usings, and the file pasted alone into a new
-Execute Code failed with some 150 errors (&amp;quot;The type or namespace name &amp;#39;JObject&amp;#39; could not be found&amp;quot;).
-&lt;code&gt;tools/check-stub.ps1&lt;/code&gt; compiles the block alone now. A game&amp;#39;s present block keeps working;
-&lt;code&gt;tools/update-host-block.ps1&lt;/code&gt; brings the new one, and takes only what stands between the template&amp;#39;s markers.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Getting-Started is copy and paste.&lt;/strong&gt; Five steps to the running demo game, each with the ready file to paste
-(&lt;code&gt;examples/DemoGame/DemoGame.cs&lt;/code&gt;, &lt;code&gt;stub/Stub.cs&lt;/code&gt;) and nothing to change, what to do when a step fails, then how
-to make it your own game and how to add the block to a game you already have. The demo game carries its host
-block below the usings like every game, and names its command by its text (&lt;code&gt;C(&amp;quot;!roll&amp;quot;, ...)&lt;/code&gt;), so a &lt;code&gt;!roll&lt;/code&gt;
-made by hand gets the cooldowns too.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Twitch emotes show without a Twitch login.&lt;/strong&gt; A fresh Streamer.bot has no Twitch token, so the window could not
-ask the Twitch API and Kappa, LUL and the other global emotes stayed without a picture. Their ids now ship in
-&lt;code&gt;conventions/emotes/twitch.json&lt;/code&gt;; with a login the window still asks Twitch itself, for the channel&amp;#39;s emotes too.
-&lt;code&gt;tools/update-twitch-emotes.ps1&lt;/code&gt; refreshes the list.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The coins icon shows.&lt;/strong&gt; A page with the conventions&amp;#39; &lt;code&gt;coins&lt;/code&gt; icon (Points &amp;amp; Bets) showed an empty box: 🪙 is
-missing from the emoji font WPF draws with, so it is 💰 now.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs with pictures, and the conventions published.&lt;/strong&gt; Getting-Started, Customize, Schema and the README show
-the window; &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md&quot;&gt;docs/Conventions.md&lt;/a&gt; lists the standard pages, known keys, placeholders and
-language files, and explains how to add a language. &lt;code&gt;tools/conventions-doc.ps1&lt;/code&gt; keeps its tables current, and CI
-checks them.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;German windows show the cooldown senders again.&lt;/strong&gt; The Messages page&amp;#39;s &amp;quot;send as bot&amp;quot; and &amp;quot;send as action&amp;quot;
-switches for the cooldown messages were missing in German: the message groups are translated (&amp;quot;Abklingzeit&amp;quot;),
-the cooldown group was looked for in English. It is found in the window&amp;#39;s language now.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A game handler that hangs no longer freezes the window&lt;/strong&gt; (stub 0.2.0). A request that has started gets 30
-seconds, then the window carries on without its answer; before, it waited for good and could not be closed. A
-game that has not sent its schema for a minute no longer locks its settings until Streamer.bot restarts: the
-next run opens the window.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A declined save leaves nothing behind.&lt;/strong&gt; The window&amp;#39;s values go into a draft; only a save that is written
-takes them over. Before, a save declined at a warning kept them in the window&amp;#39;s copy, and after a theme or
-language switch they looked saved while the file still held the old ones.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A number pulled into its limits is written.&lt;/strong&gt; A value outside a field&amp;#39;s min/max (or no number at all) that the
-window shows as its limit or default is written with the next save, also when the user did not touch that field;
-so is what the game&amp;#39;s clamp changed. Before, the box said 25 and the game kept reading 50.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A save that cannot read the settings file stops&lt;/strong&gt; and says why, instead of writing every list file from the
-copy the window opened with. A list moving out of the settings file into its own lands there with the first
-save.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Import reads like the settings file:&lt;/strong&gt; old keys with their factors on any Windows language (an old 0.18 is 18 %
-on a German system too), old keys inside an object, the current key winning. It lays the import over the file as
-it is now and writes only the lists it brings.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Reset all&lt;/strong&gt; keeps read-only settings and those on pages the user hid, and the game hears of the lists in their
-own files as they are, not as defaults.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;First install checks &lt;code&gt;minHostStub&lt;/code&gt; too&lt;/strong&gt; (stub 0.2.0): a release that needs a newer settings action is not
-installed by an older game; &amp;quot;0.2.0.0&amp;quot; no longer counts as newer than &amp;quot;0.2.0&amp;quot;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Loader details&lt;/strong&gt; (stub 0.2.0): a DLL that no longer matches its hash is set aside as &lt;code&gt;.broken&lt;/code&gt; and its version
-offered again, and an installed file that is not the published one is fetched anew; the hash file is written
-before the DLL. Every game uses the UIFramework another game already loaded, so two versions never run side by
-side, and the log says which runs. One request to the game at a time, so two runs never read each other&amp;#39;s answer;
-the run serving a reopened window hands the one-window flag back. A &lt;code&gt;latest.json&lt;/code&gt; version that is no plain number
-is refused in the release check too. A cooldown above a day is set to a day with a line in the log.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Host block:&lt;/strong&gt; &lt;code&gt;UiSettings.Long&lt;/code&gt; reads a whole number exactly (no detour through a double), and &lt;code&gt;Load&lt;/code&gt; never
-throws, also on a path with invalid characters.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Conditions compare what is stored, shown or not.&lt;/strong&gt; A &lt;code&gt;percent&lt;/code&gt; compares as its fraction
-(&lt;code&gt;reshuffleThreshold&amp;gt;=0.5&lt;/code&gt; for 50 %), a &lt;code&gt;duration&lt;/code&gt; in seconds, an &amp;quot;unlimited&amp;quot; 0 as the number it is saved as; a
-field hidden by the user no longer compares differently. &lt;code&gt;!list&lt;/code&gt; holds for an empty list.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The check names a comparison that never holds:&lt;/strong&gt; &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;lt;=&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;gt;=&lt;/code&gt; against text, or on a field that holds
-no number. A slider on a scale (&lt;code&gt;min&lt;/code&gt;, &lt;code&gt;max&lt;/code&gt;, &lt;code&gt;step&lt;/code&gt;) is no longer reported as &amp;quot;without options&amp;quot;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A huge number in the settings file breaks nothing:&lt;/strong&gt; a whole number with more digits than a long reads as the
-largest value instead of failing the page.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Saving is not stopped by fields it never writes:&lt;/strong&gt; a Try field left empty, or a number hidden by a &lt;code&gt;showWhen&lt;/code&gt;
-or its section&amp;#39;s condition. Fields on another page are still checked.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A page pattern leaves the sender switches and the log switch where they are&lt;/strong&gt;, so no key gets two fields that
-overwrite each other on save. A page naming one by key is listed as a problem.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The placeholder chips&amp;#39; tooltips follow a language switch&lt;/strong&gt;; a host&amp;#39;s own help is kept.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Percent fields keep their decimals.&lt;/strong&gt; Leaving the box rewrites only a number outside its range, to that limit;
-12.345 stays 12.345. A value in the file that is no number shows the default instead of an empty box that blocks
-saving.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Customise keeps rows together.&lt;/strong&gt; A field dropped at the top or bottom of a field that shares a line goes above
-or below the whole line, not between its members. The log page&amp;#39;s &amp;quot;log file per day&amp;quot; switch is greyed in the
-customise mode, which has no Save.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A slider&amp;#39;s kept value goes on Reset page and &lt;code&gt;set&lt;/code&gt;&lt;/strong&gt; also when the slider already sits on the stop it is put
-on; its label follows.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;German windows have no English left&lt;/strong&gt; in the customise tag &amp;quot;hidden&amp;quot;, the empty-page note, the path and colour
-tooltips, an action&amp;#39;s &amp;quot;done&amp;quot;/&amp;quot;failed&amp;quot; and the table&amp;#39;s &amp;quot;Nothing here yet&amp;quot;/&amp;quot;Read again&amp;quot;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A layout file another program holds is not lost.&lt;/strong&gt; It is read again a few times; if it is still held, the
-window starts from the defaults for once and does not write over it. Only a file that is no JSON goes to &lt;code&gt;.broken&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Numbers the same on every Windows:&lt;/strong&gt; decimal boxes take a minus where the setting allows negatives and refuse a
-paste that is no number; a list cell refuses &amp;quot;1,000&amp;quot; like the table (also when saved while it has the focus) and
-shows &amp;quot;2.5&amp;quot;, not &amp;quot;2,5&amp;quot;; a value an action sets finds its option on a German system.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Smaller fixes:&lt;/strong&gt; emote pictures load over HTTPS only; &lt;code&gt;update-host-block&lt;/code&gt; sees a change in letter case; the
-release workflow refuses a pre-release tag before publishing and keeps the published DLL on a re-run; the demo&amp;#39;s
-dice are thread-safe.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Settings action (stub 0.2.0):&lt;/strong&gt; a game&amp;#39;s answer is unset from Streamer.bot&amp;#39;s globals as soon as it is read, so
-the Twitch token in the emote sources no longer stays visible in the variables. A DLL saved from a browser loads
-(it was refused as &amp;quot;downloaded from the internet&amp;quot;). When the newest installed DLL cannot be loaded, the next
-older one opens the window. The hash a download was checked with is kept beside the DLL and checked on every
-load. A release that names a higher &lt;code&gt;minHostStub&lt;/code&gt; is not offered. A game takes this with its next release, by
-pasting the new &lt;code&gt;stub/Stub.cs&lt;/code&gt; as its settings action.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Nothing unchecked from &lt;code&gt;latest.json&lt;/code&gt;.&lt;/strong&gt; The settings action installs no release without a &lt;code&gt;sha256&lt;/code&gt;, fetches the
-DLL over &lt;code&gt;https://&lt;/code&gt; only and refuses a &lt;code&gt;version&lt;/code&gt; that is not a version number before it becomes a folder name.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The release check no longer holds the window up to 10 s.&lt;/strong&gt; Offline (unreachable, timed out) it does not try the
-CDN after the API; a network sign-in page instead of &lt;code&gt;latest.json&lt;/code&gt; falls back to the CDN.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A second click brings the window to the front.&lt;/strong&gt; While a game&amp;#39;s window is open (or still opening), another run
-of its settings action neither asks the game nor checks for a release again, and leaves the first run&amp;#39;s queue alone.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The hint for a hand-fetched DLL shows offline too.&lt;/strong&gt; Its example path no longer fails on &lt;code&gt;&amp;lt;version&amp;gt;&lt;/code&gt; when
-&lt;code&gt;latest.json&lt;/code&gt; cannot be read.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A save keeps what it did not change.&lt;/strong&gt; The window writes the settings file as it is at that moment with the
-fields the user changed laid over it, instead of the copy it read when it opened: a viewer added from chat, a
-question suggested from chat or a status the game wrote while the window was open survive a save that did not
-touch them. A list kept in a file of its own is written only when its list changed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A damaged list file is kept.&lt;/strong&gt; One that cannot be read is copied to &lt;code&gt;.broken&lt;/code&gt; before the window writes over it,
-and a list file (a JSON array) now gets its &lt;code&gt;.bak&lt;/code&gt; on every save like the settings file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Numbers keep their decimals.&lt;/strong&gt; A number field shows up to ten decimals instead of two, so 0.005 no longer
-shows, and saves back, as 0.01, nor 0.001 as 0.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The language switch asks first.&lt;/strong&gt; In a locked window, picking another language with unsaved changes asks to
-save them, as the theme button does, instead of dropping them.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Numbers the same on every Windows.&lt;/strong&gt; Option values, dropdowns, sliders, text fields and the host block&amp;#39;s
-&lt;code&gt;UiSettings.String&lt;/code&gt;/&lt;code&gt;Double&lt;/code&gt;/&lt;code&gt;Long&lt;/code&gt; read and write numbers with a point, so a German system no longer turns 0.5
-into &amp;quot;0,5&amp;quot;; &lt;code&gt;Long&lt;/code&gt; no longer overflows on a huge stored value.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A bad stored value no longer breaks a page.&lt;/strong&gt; A number field whose value is no number shows its default, a
-number stored as text (&amp;quot;0,5&amp;quot; too) is read, and a fraction in a whole-number field is shown instead of cut.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;min&lt;/code&gt;/&lt;code&gt;max&lt;/code&gt; hold for &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;long&lt;/code&gt; and &lt;code&gt;duration&lt;/code&gt;.&lt;/strong&gt; A value outside is saved as the nearest limit, and the
-field shows what was saved; a &lt;code&gt;min&lt;/code&gt; below 0 lets the field take a minus.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A big default makes a &lt;code&gt;long&lt;/code&gt; field.&lt;/strong&gt; A whole-number default beyond an int (also where the conventions say
-&lt;code&gt;int&lt;/code&gt;) is no longer cut to 2147483647 on save.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Dropdowns and stop sliders keep an unknown value.&lt;/strong&gt; A stored value none of the options has stays as an extra
-entry, selected, and is saved back unchanged instead of the first option.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Number columns take numbers.&lt;/strong&gt; A table cell of an &lt;code&gt;int&lt;/code&gt;, &lt;code&gt;long&lt;/code&gt; or &lt;code&gt;double&lt;/code&gt; column takes digits (and a minus,
-a decimal mark) only, and a cell that is no number goes back to what it held instead of saving 0.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;readOnly&lt;/code&gt; in both spellings; more for the host block.&lt;/strong&gt; &lt;code&gt;readOnly&lt;/code&gt; and &lt;code&gt;readonly&lt;/code&gt; are read on a setting and a
-column. &lt;code&gt;S()&lt;/code&gt; takes &lt;code&gt;readOnly&lt;/code&gt;, &lt;code&gt;step&lt;/code&gt; and &lt;code&gt;group&lt;/code&gt;. A column flag right after the kind (&lt;code&gt;&amp;quot;wins|int|readonly&amp;quot;&lt;/code&gt;,
-&lt;code&gt;&amp;quot;face|emote|twitch&amp;quot;&lt;/code&gt;) is a flag, not the label.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;null&lt;/code&gt; hides any sender switch.&lt;/strong&gt; An explicit &lt;code&gt;null&lt;/code&gt; in &lt;code&gt;senders&lt;/code&gt; hides &lt;code&gt;useBot&lt;/code&gt;, &lt;code&gt;sendAction&lt;/code&gt;,
-&lt;code&gt;cooldownUseBot&lt;/code&gt;, &lt;code&gt;cooldownSendAction&lt;/code&gt; and &lt;code&gt;cooldownGroup&lt;/code&gt;, as documented; before only &lt;code&gt;numberSeparator&lt;/code&gt; obeyed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Conditions.&lt;/strong&gt; &lt;code&gt;!key&lt;/code&gt; holds while a switch is off or a field is empty. A gate the window does not show is read
-from its saved value instead of counting as met. A field the user&amp;#39;s layout moves to another section takes that
-section&amp;#39;s condition. An answer box that moves under its row hides with its button.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Typed decimals are not guessed.&lt;/strong&gt; &amp;quot;1,000&amp;quot; or &amp;quot;1.000,5&amp;quot; in a decimal field is refused as ambiguous instead of
-read as 1.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A damaged layout file is kept.&lt;/strong&gt; &lt;code&gt;uiframework.layout.json&lt;/code&gt; that is not JSON is copied to &lt;code&gt;.broken&lt;/code&gt; and logged;
-a value of the wrong type in it (&lt;code&gt;&amp;quot;order&amp;quot;: &amp;quot;2&amp;quot;&lt;/code&gt;) reads as not set instead of breaking the window.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A check that got no answer asks.&lt;/strong&gt; When the game did not answer &lt;code&gt;validate&lt;/code&gt; (a timeout, a disabled action),
-the window asks whether to save unchecked instead of taking it for &amp;quot;no problems&amp;quot; (stub 0.2.0).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A hung game action no longer locks the window.&lt;/strong&gt; The window can be opened again while a request still hangs;
-a request the window gave up on is skipped instead of run late (stub 0.2.0). An error in a click handler is
-logged and shown in the status line instead of closing the window.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Emote sources are asked once per window&lt;/strong&gt;, not once per emote cell.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Rebuilds no longer leak.&lt;/strong&gt; A section heading follows its fields through a binding; every rebuild (language,
-theme, customise mode) kept the old page alive before.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Two windows at once&lt;/strong&gt; keep their own theme, accent, rainbow and language.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cooldowns are set safely&lt;/strong&gt; (stub 0.2.0): a misnamed key leaves the cooldown as it is instead of setting 0, one
-command that fails leaves the others set, and the game always hears of the save.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The stub writes the layout file carefully&lt;/strong&gt; (stub 0.2.0): only on a change, atomically, never over a file it
-could not read. TLS 1.2 is added without pinning the process; the download mutex is honoured; the dialogs name
-the current version&amp;#39;s folder.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Customise-mode drops&lt;/strong&gt; check that the field or page came from this window; a message template can no longer be
-dropped on another page through the rail, a field dropped on its own page stays where it is, and a field moved
-to another page leaves its old row.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Release workflow&lt;/strong&gt; builds the tag&amp;#39;s own commit, carries &lt;code&gt;minHostStub&lt;/code&gt; over and never takes &lt;code&gt;latest.json&lt;/code&gt; back.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs:&lt;/strong&gt; the usings the host block needs; the nested &lt;code&gt;RunAction&lt;/code&gt; pitfall. &lt;code&gt;tools/update-host-block.ps1&lt;/code&gt; keeps a
-&lt;code&gt;.bak&lt;/code&gt; and refuses to drop lines of the game&amp;#39;s own unless &lt;code&gt;-Force&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Smaller: Ctrl+S does nothing in the customise mode; a name typed into a name list but not entered counts as a
-change when closing; an answer with only &lt;code&gt;set&lt;/code&gt;/&lt;code&gt;status&lt;/code&gt; keeps the result panel&amp;#39;s previous lines.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Text keeps its spaces.&lt;/strong&gt; A &lt;code&gt;string&lt;/code&gt; field saves what was typed, spaces at either end included (&lt;code&gt;&amp;quot; | &amp;quot;&lt;/code&gt;,
-&lt;code&gt;&amp;quot;🎲 &amp;quot;&lt;/code&gt;); names, paths, colours and tokens are still trimmed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Durations in minutes and hours.&lt;/strong&gt; A &lt;code&gt;duration&lt;/code&gt; with &lt;code&gt;unit&lt;/code&gt; &lt;code&gt;min&lt;/code&gt; or &lt;code&gt;h&lt;/code&gt; is typed and shown in that unit and
-stored in seconds (1.5 min is 90); &lt;code&gt;min&lt;/code&gt;/&lt;code&gt;max&lt;/code&gt; stay seconds.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A greyed-out field looks it&lt;/strong&gt; on every kind: a &lt;code&gt;requires&lt;/code&gt; that does not hold also dims the field.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;German follows the game&amp;#39;s own wording.&lt;/strong&gt; A conventions key the game gave a label (or help) of its own is
-translated by the game&amp;#39;s &lt;code&gt;Tx&lt;/code&gt; for that wording; without one the conventions&amp;#39; German for the key is shown, as
-before. &lt;code&gt;K(key, label)&lt;/code&gt; without a help keeps the conventions&amp;#39; help.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;stats&lt;/code&gt; and &lt;code&gt;channelPoints&lt;/code&gt; pages&lt;/strong&gt; have an icon and a place in the order (icon name &lt;code&gt;gift&lt;/code&gt; is new).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Reset all keeps what the window does not show:&lt;/strong&gt; hidden settings and keys it has no field for.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;A page pattern leaves a moved field alone.&lt;/strong&gt; A field the user moved to another page is not claimed back by
-&lt;code&gt;overlay*&lt;/code&gt;; a claimed field&amp;#39;s page is the claiming one, and a template a page claims by key leaves the Messages
-picker.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;More checks:&lt;/strong&gt; a section condition for a section no setting is in, an old key that is another setting&amp;#39;s key.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Aliases:&lt;/strong&gt; an old key that is a setting of its own keeps its value instead of being moved and reset; a dotted
-alias feeds shared keys too and its old value goes also when the canonical key is in the file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Host block:&lt;/strong&gt; &lt;code&gt;UiSettings.Load&lt;/code&gt; falls back to the &lt;code&gt;.bak&lt;/code&gt; of the last save on a damaged file and says so
-(&lt;code&gt;Problem&lt;/code&gt;, &lt;code&gt;FromBackup&lt;/code&gt;, an optional log); a relative path starts in the Streamer.bot folder.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Docs:&lt;/strong&gt; the game action&amp;#39;s code is its last sub-action.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;f61ded59d955c9b7cdf6ac1f7026d577504a555af6081c611f455de58f41f86b&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v0.9.13&quot;&gt;Download v0.9.13&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.0.0: Settings window in UIFramework, an OBS overlay &amp; your questions mixed into any source</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0</id>
-    <published>2026-11-07T00:10:30Z</published>
-    <updated>2026-11-07T00:10:30Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;p&gt;The settings window moves into &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games now share, and reads in English or German. Rounds can now show up in OBS, your own questions mix with any source, and your own actions can react to every round. &lt;code&gt;configs.json&lt;/code&gt; and &lt;code&gt;Trivia-Questions.json&lt;/code&gt; keep working: old keys are read and written back under their new names on the first save.&lt;/p&gt;
-&lt;h1&gt;📺 An OBS overlay for the running round&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A browser source&lt;/strong&gt; that shows the question with its numbered options, a countdown and how many have answered, then the right answer, the winners with their points and the top of the leaderboard. Blitz rounds are marked in red. It listens to Streamer.bot&amp;#39;s own WebSocket server, so there is nothing else to install.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;Set it up in OBS&lt;/code&gt;&lt;/strong&gt; adds the source the size of your canvas to a scene of your choice, through Streamer.bot&amp;#39;s OBS connection. &lt;strong&gt;&lt;code&gt;Show a sample round&lt;/code&gt;&lt;/strong&gt; plays one on every connected overlay, &lt;strong&gt;&lt;code&gt;Try the demo&lt;/code&gt;&lt;/strong&gt; in the browser.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Its look&lt;/strong&gt; from the Overlay page: position, size, animations, five colours and the panel&amp;#39;s opacity. A save reaches an overlay already open in OBS.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[TG] - Settings&lt;/code&gt; is now a small stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Newer releases are offered when you open the window, never forced; &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in &lt;code&gt;uiframework.layout.json&lt;/code&gt; turns the check off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page, option and message reads in German.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields by drag and drop, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; and survives every import of the game.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The question list is a table&lt;/strong&gt; edited in place: one line per question, a click into a cell edits it, a checkbox in every row switches it on or off, Delete removes the picked rows, a search box above. &lt;em&gt;Suggested by&lt;/em&gt; is filled by the game and only read here.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The difficulty dial&lt;/strong&gt; is a slider with the same stops, Relaxed to Brutal, filling in the same six numbers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🌍 Questions from anywhere, yours mixed in&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Mix in my questions&lt;/strong&gt; on the Sources page mixes your own list into whichever source is picked: opentdb, Wikidata, OdeNet, PokeAPI or IGDB. &lt;strong&gt;Share of mine&lt;/strong&gt; says how often. &lt;em&gt;Mine + opentdb&lt;/em&gt; is gone from the dropdown; a &lt;code&gt;configs.json&lt;/code&gt; with it is rewritten as opentdb with mixing on.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A tidier Sources page.&lt;/strong&gt; Source, language and &lt;code&gt;Check&lt;/code&gt; share one line, only the picked source is described, the IGDB keys only show while IGDB is picked, and the Client Secret and the overlay&amp;#39;s WebSocket password are masked.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Custom triggers carry the round.&lt;/strong&gt; &lt;code&gt;Trivia: Round Won&lt;/code&gt;, &lt;code&gt;Round Timeout&lt;/code&gt;, &lt;code&gt;Round Skipped&lt;/code&gt; and &lt;code&gt;Round ForceEnd&lt;/code&gt; fire with &lt;code&gt;roundOutcome&lt;/code&gt;, &lt;code&gt;roundPlatform&lt;/code&gt;, &lt;code&gt;roundId&lt;/code&gt;, &lt;code&gt;roundBlitz&lt;/code&gt;, &lt;code&gt;roundQuestion&lt;/code&gt;, &lt;code&gt;roundCorrectAnswer&lt;/code&gt;, &lt;code&gt;roundCategory&lt;/code&gt;, &lt;code&gt;roundDifficulty&lt;/code&gt;, &lt;code&gt;roundSource&lt;/code&gt;, &lt;code&gt;roundAnswers&lt;/code&gt;, &lt;code&gt;roundWinners&lt;/code&gt;, &lt;code&gt;roundWinnerCount&lt;/code&gt;, &lt;code&gt;roundPoints&lt;/code&gt; and &lt;code&gt;roundCurrency&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;GetLastRoundResult&lt;/code&gt;&lt;/strong&gt;, run with an Execute C# Method sub-action on the game action, hands the same arguments to any other action.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;⚙️ Settings file&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Keys are camelCase now; &lt;code&gt;CooldownGlobalSeconds&lt;/code&gt;, &lt;code&gt;CooldownUserSeconds&lt;/code&gt;, &lt;code&gt;VarName&lt;/code&gt;, &lt;code&gt;UseBotCD&lt;/code&gt; and &lt;code&gt;SendActionCD&lt;/code&gt; are &lt;code&gt;globalCooldown&lt;/code&gt;, &lt;code&gt;userCooldown&lt;/code&gt;, &lt;code&gt;pointsVariable&lt;/code&gt;, &lt;code&gt;cooldownUseBot&lt;/code&gt; and &lt;code&gt;cooldownSendAction&lt;/code&gt;. An existing file keeps working through aliases; the first save writes the new names.&lt;/li&gt;
-&lt;li&gt;The wrong answers are written to &lt;code&gt;Trivia-Questions.json&lt;/code&gt; as &lt;code&gt;a | b | c&lt;/code&gt; text; the game reads that and the old array alike.&lt;/li&gt;
-&lt;li&gt;Light/dark lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt;, shared with every other window built on UIFramework.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔧 Fixed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;A number box left empty, or holding half a number, stops the save instead of going in as 0.&lt;/li&gt;
-&lt;li&gt;The theme button asks before it switches when there are unsaved changes.&lt;/li&gt;
-&lt;li&gt;No label shows its unit twice any more (&amp;quot;(%) (%)&amp;quot;, &amp;quot;(s) (s)&amp;quot;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🗑️ Removed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;The window&amp;#39;s own WPF code (about 6,800 lines) left the import; the DLL carries it now. The rail&amp;#39;s keyboard shortcuts went with it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Updating&lt;/h1&gt;
-&lt;p&gt;Import &lt;code&gt;TriviaGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, over the existing actions. Your settings, your questions and the scoreboard stay where they are. The overlay stays off until you switch it on.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.0.0&quot;&gt;Download v9.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>High-Low Game v2.1.0: Higher, lower or the same, guess to find out</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0"/>
-    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0</id>
-    <published>2026-11-07T00:06:44Z</published>
-    <updated>2026-11-07T00:06:44Z</updated>
-    <category term="High-Low-Game" label="High-Low Game"/>
-    <content type="html">&lt;p&gt;The first release of High-Low Game on GitHub. There is always a number from 1 to 100 waiting; viewers guess whether the next one is higher, lower or the same, on Twitch, YouTube and Kick. The settings window is &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window all of these chat games share, in English or German.&lt;/p&gt;
-&lt;h1&gt;🎲 The game&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A number from the start.&lt;/strong&gt; The game draws one for each platform when Streamer.bot starts, so nobody has to run &lt;code&gt;!highlowsetup&lt;/code&gt; first. Moderators can still draw and announce a fresh one with it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;!high&lt;/code&gt;, &lt;code&gt;!low&lt;/code&gt; and &lt;code&gt;!equal&lt;/code&gt;.&lt;/strong&gt; A correct high or low pays the win amount, a wrong one costs nothing; &lt;code&gt;!equal&lt;/code&gt; pays double and costs the win amount when wrong. The answer names both numbers.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Scoreboards.&lt;/strong&gt; &lt;code&gt;!hlgsession&lt;/code&gt;, &lt;code&gt;!hlgalltime&lt;/code&gt; and &lt;code&gt;!hlgpersonal&lt;/code&gt;, with the broadcaster and the bot account left out if you want.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🎫 Channel points on Twitch&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Three rewards, one each for high, low and equal.&lt;/strong&gt; Paste their IDs on the Channel points page; the import already carries the reward trigger.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stakes:&lt;/strong&gt; Cost and Fixed spend the channel points and pay a correct guess in points, Input takes a bet in the viewer&amp;#39;s own points (&lt;code&gt;all&lt;/code&gt;, &lt;code&gt;half&lt;/code&gt;, &lt;code&gt;2k&lt;/code&gt;, …), Free plays like the chat commands. Minimum and maximum bet apply.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Refunds.&lt;/strong&gt; A redemption that does not end in a guess is refunded, a played one is marked as fulfilled.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🪟 One settings window for all the chat games&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Downloaded on first open.&lt;/strong&gt; &lt;code&gt;[HLG] - .Settings&lt;/code&gt; is UIFramework&amp;#39;s small settings stub. The first time you open it, it offers to download &lt;code&gt;UIFramework.dll&lt;/code&gt; from GitHub (checked against its published SHA-256) or to show the folder it belongs in. Nothing is fetched without that click; newer releases are offered when you open the window, never forced.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;English or German.&lt;/strong&gt; The pencil, then &lt;em&gt;Sprache&lt;/em&gt;: every setting, section, page and message reads in German.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Customise mode.&lt;/strong&gt; Rename, reorder, hide and move pages and fields, pick the accent colour. It lives in &lt;code&gt;uiframework.layout.json&lt;/code&gt; next to &lt;code&gt;HLG-Settings.json&lt;/code&gt; and survives every import.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cooldowns per command,&lt;/strong&gt; written onto the Streamer.bot commands when you save, and every chat line editable with a live preview.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Custom triggers&lt;/strong&gt; (Custom &amp;gt; Chat Game &amp;gt; High-Low Game): &lt;code&gt;HLG: Guess Won&lt;/code&gt;, &lt;code&gt;HLG: Guess Lost&lt;/code&gt; and &lt;code&gt;HLG: Guess Settled&lt;/code&gt; for every guess, &lt;code&gt;HLG: New Number&lt;/code&gt; when &lt;code&gt;!highlowsetup&lt;/code&gt; draws one.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The guess as arguments:&lt;/strong&gt; &lt;code&gt;guessOutcome&lt;/code&gt;, &lt;code&gt;guessUser&lt;/code&gt;, &lt;code&gt;guessPlatform&lt;/code&gt;, &lt;code&gt;guessGuess&lt;/code&gt;, &lt;code&gt;guessPreviousNumber&lt;/code&gt;, &lt;code&gt;guessNewNumber&lt;/code&gt;, &lt;code&gt;guessMode&lt;/code&gt;, &lt;code&gt;guessStake&lt;/code&gt;, &lt;code&gt;guessAmount&lt;/code&gt;, &lt;code&gt;guessPreviousPoints&lt;/code&gt;, &lt;code&gt;guessNewPoints&lt;/code&gt;, &lt;code&gt;guessCurrency&lt;/code&gt;, &lt;code&gt;guessFree&lt;/code&gt; and more. &lt;code&gt;GetLastGuessResult&lt;/code&gt;, run with an Execute C# Method sub-action on the game action, hands them to any other action.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🆓 Free mode&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A switch on the Game page,&lt;/strong&gt; or &lt;code&gt;!SetFreeHighLow&lt;/code&gt; / &lt;code&gt;!EndFreeHighLow&lt;/code&gt; from chat (moderators). Nobody wins or loses points, the guesses still count. The two commands come with the import, disabled: enable them in Streamer.bot&amp;#39;s Commands tab if you want them.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;HLG: Free Game Start&lt;/code&gt; and &lt;code&gt;HLG: Free Game End&lt;/code&gt;&lt;/strong&gt; fire when it is switched, from chat or by an Execute C# Method on &lt;code&gt;StartFreeGame&lt;/code&gt; or &lt;code&gt;EndFreeGame&lt;/code&gt;, and chat gets a Started and an Ended line.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;💰 Points&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Works with &lt;a href=&quot;https://streamup.tips/product/currency-core&quot;&gt;Currency Core by StreamUP&lt;/a&gt; and &lt;a href=&quot;https://tawmae.xyz/loyalty-points&quot;&gt;LOYALTY POINTS by tawmae&lt;/a&gt;: whichever is installed names the points variable and the points name. Anything else works too; name its variable on the Game page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Installing&lt;/h1&gt;
-&lt;p&gt;Import &lt;code&gt;HighLowGame.sb&lt;/code&gt; below, or the &lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;, then open the settings with the &lt;em&gt;Test&lt;/em&gt; trigger of &lt;code&gt;[HLG] - .Settings&lt;/code&gt;. The &lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; walks through every page.&lt;/p&gt;
-&lt;p&gt;Coming from an earlier copy of the game? Import over the existing actions: &lt;code&gt;HLG-Settings.json&lt;/code&gt; stays where it is, old setting names are read until the window saves them under the new ones, and old cooldown messages with &lt;code&gt;{0}&lt;/code&gt; and &lt;code&gt;{1}&lt;/code&gt; still work. Trovo support and the per-platform switches are gone; leave a platform out by unticking its source on the commands.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

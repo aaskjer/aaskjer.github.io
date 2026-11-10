@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.3.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle","!SetFreeBattleship","!EndFreeBattleship"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.4.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle","!SetFreeBattleship","!EndFreeBattleship"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.0">
+<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.4.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -375,6 +375,15 @@ into the settings file, so the window&#39;s pill shows it, chat gets the Started
 actions can listen to <code>BSG: Free Game Start</code> and <code>BSG: Free Game End</code>. An action of your own can do the same
 with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action. A battle already under way
 goes on as it started.</p>
+<h3>Can one of my own actions start the chat&#39;s battle?</h3>
+<p>Yes, from v2.4.0: add an <strong>Execute C# Method</strong> sub-action to any action, pick the <code>Battleship Game</code> action&#39;s
+code and the method <code>StartChatBattle</code>. A hotkey, a Stream Deck button, a raid or a channel point reward of your
+own then starts Chat vs the Admiral, the battle everybody takes part in, with no cooldown. Only this mode is
+started this way; solo battles and duels stay with their commands. The optional argument <code>battleshipPlatform</code>
+(<code>twitch</code>, <code>youtube</code> or <code>kick</code>) names the chat the battle is announced in; without it that is the chat the event
+came from, or Twitch. Afterwards <code>battleshipStarted</code> says whether a battle began. While another battle runs, or
+with the mode switched off on the Modes page, nothing starts, nothing is said in chat and the method returns
+false, which stops the rest of your action.</p>
 <h3>Why do I lose points during the battle rather than at the end?</h3>
 <p>So that leaving early cannot save you anything. If losses only landed at the end, the correct play
 would be to walk away the moment a battle turned — which is not much of a game. Settling as it happens
@@ -594,6 +603,18 @@ Code</strong> sub-action, press <strong>Find Refs</strong>, then <strong>OK</str
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>All notable changes to this project are documented here.</p>
+<h2>[2.4.0] - 2026-11-10</h2>
+<h3>Added</h3>
+<ul>
+<li><strong><code>StartChatBattle</code> for your own actions.</strong> An Execute C# Method sub-action on the game action starts Chat vs
+the Admiral, the battle everybody takes part in, from any action: a hotkey, a Stream Deck button, a raid. The
+optional argument <code>battleshipPlatform</code> names the chat it is announced in, and <code>battleshipStarted</code> says whether a
+battle began. No cooldown applies; while another battle runs, nothing starts and chat hears nothing.</li>
+<li><strong>Triggers and methods on the Help page.</strong> The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. <em>Fire with sample values</em> under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.</li>
+</ul>
 <h2>[2.3.0] - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>

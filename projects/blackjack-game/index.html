@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"17.3.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"17.5.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Blackjack-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v17.4.0">
+<body data-repo="Blackjack-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v17.5.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -543,6 +543,8 @@ and dies with the table.</p>
 <p>House Mode stays shut while it is on.</p>
 <p><strong>Q: Can a moderator switch Free Game from chat?</strong></p>
 <p>Yes: <code>!SetFreeBlackjack</code> turns it on and <code>!EndFreeBlackjack</code> turns it off. The two commands come with the import, disabled and for Moderators; enable them in Streamer.bot&#39;s Commands tab. The switch is written into the settings file, so the window&#39;s pill shows it, chat gets the <strong>Started</strong> or <strong>Ended</strong> line, and your own actions can listen to <code>BJG: Free Game Start</code> and <code>BJG: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or <code>EndFreeGame</code> of the game action.</p>
+<p><strong>Q: Can one of my own actions open a House Mode table?</strong></p>
+<p>Yes, from v17.5.0: add an <strong>Execute C# Method</strong> sub-action to any action, pick the <code>Blackjack Game</code> action&#39;s code and the method <code>StartHouseTable</code>. A hotkey, a Stream Deck button, a raid or a channel point reward of your own then opens a table everybody can sit down at, with no cooldown. Only House Mode is started this way; solo hands and duels stay with their commands. Two optional arguments, set before it: <code>blackjackPlatform</code> (<code>twitch</code>, <code>youtube</code> or <code>kick</code>; without it the chat the event came from, or Twitch) and <code>blackjackRules</code> (a rule set by name or number, or <code>random</code>; without it the first one on offer). The rule menu is never asked, since nobody may be there to answer it. The table is opened in the name of the viewer the event carries, or the broadcaster. Afterwards <code>blackjackTableOpened</code> says whether a table opened and <code>blackjackRulesName</code> which rules it plays. With a table already open, House Mode off, Free Game on or no rule set on offer, nothing opens, nothing is said in chat and the method returns false, which stops the rest of your action.</p>
 <hr>
 <p><strong>Q: What does the blackjack payout change?</strong></p>
 <p>The bonus on a natural blackjack — 21 on the first two cards — paid on top of the returned stake:</p>
@@ -755,6 +757,19 @@ deal in — the game never needs to know about it.</p>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Everything worth knowing about, newest first.</p>
+<h2>[17.5.0] - 2026-11-10</h2>
+<h3>Added</h3>
+<ul>
+<li><strong><code>StartHouseTable</code> for your own actions.</strong> An Execute C# Method sub-action on the game action opens a House
+Mode table from any action: a hotkey, a Stream Deck button, a raid. Optional arguments <code>blackjackPlatform</code> and
+<code>blackjackRules</code> (a rule set by name or number, or <code>random</code>); it sets <code>blackjackTableOpened</code> and
+<code>blackjackRulesName</code>. No cooldown applies and the rule menu is never asked; with a table already open, nothing
+opens and chat hears nothing.</li>
+<li><strong>Triggers and methods on the Help page.</strong> The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. <em>Fire with sample values</em> under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.</li>
+</ul>
 <h2>[17.4.0] - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>

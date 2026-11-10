@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v1.4.3">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v1.8.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -250,6 +250,75 @@ docs/                    Getting-Started, Schema, Conventions, Loader, Customize
 its section here before the tag is pushed. Everything before 1.0.0 was published as a pre-release; 1.0.0 and on are
 stable releases.</p>
 <h2>[Unreleased]</h2>
+<h2>[1.8.0] - 2026-11-10</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>Search with Ctrl+F.</strong> Ctrl+F, or the new magnifier at the top right, opens a search bar in every window. It
+finds settings (by label, help, section, page and key), messages and pages; every word typed has to occur, in any
+order, whatever the case and the accents. Up and Down move, Enter goes there: the page comes to the front and the
+field is scrolled into view, ringed for a moment and given the cursor. Games declare nothing for it and need no
+update; <code>Tip(&quot;search&quot;)</code> adds the magnifier to a window&#39;s tour. See <em>The search</em> in
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a>.</li>
+<li><strong><code>UIFramework.Preview -windowshots &lt;folder&gt; -search &lt;text&gt;</code></strong> photographs the search bar with that typed in, and
+where its first result leads.</li>
+</ul>
+<h2>[1.7.0] - 2026-11-10</h2>
+<h3>Added</h3>
+<ul>
+<li><strong><code>UiAdBreak</code>: Twitch&#39;s ad break as a window of time for a game.</strong> Chat stays usable while ads run, so that is
+when a round fits. <code>Begin</code> opens the window from Streamer.bot&#39;s <em>Ad Run</em> trigger for the ads&#39; length (there is no
+trigger for their end), <code>Active</code> and <code>SecondsLeft</code> say whether ads run, <code>Announce</code> answers the <em>Upcoming Ad</em>
+trigger once per break, <code>RoundsThatFit</code> and <code>WithBonus</code> do the sums. See <em>Twitch&#39;s ad breaks</em> in
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a>.</li>
+<li><strong>An Automation page in the conventions,</strong> with five keys for the ad break (<code>adBreakStart</code>, <code>adBreakAnnounce</code>,
+<code>adBreakAnnounceMinutes</code>, <code>adBreakBonusPercent</code>, <code>adBreakOnly</code>) in English, German and Spanish.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The timer&#39;s keys (<code>autoStart…</code>) are on the Automation page</strong> instead of Game. A game that names their page
+itself is not affected.</li>
+<li>Trivia and Hangman start rounds with ad breaks and have the Automation page.</li>
+</ul>
+<h2>[1.6.0] - 2026-11-10</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>Custom triggers and methods are declared once.</strong> <code>UiWindow.Trigger</code>, <code>Triggers</code> (several that share their
+arguments) and <code>Method</code> say what a game offers the streamer&#39;s own actions. <code>UiTriggers.Register</code> in <code>Init()</code>
+registers the triggers from that list, and the Help page ends with <em>Custom triggers</em> and <em>Methods for your own
+actions</em>, each with its arguments, in English, German and Spanish.</li>
+<li><strong>Fire with sample values.</strong> A button under each trigger on the Help page has the game fire it once with its
+sample values, so an action that listens to it can be tried without playing a round.</li>
+<li><strong><code>UiLive</code>: whether you are live.</strong> Twitch through its API with Streamer.bot&#39;s token, YouTube by the monitored
+broadcasts, Kick through its channel page; <code>Live</code>, <code>Offline</code> or <code>Unknown</code>, never an exception. Twitch and Kick
+are asked by the DLL, since the host block must compile in an action without <code>System.dll</code>. Trivia&#39;s own check
+moved here, and Hangman&#39;s automatic rounds use it.</li>
+<li><strong><code>tools\copy-host-block.ps1</code></strong>, and <code>-Into</code> / <code>-HostName</code> on <code>update-host-block.ps1</code>: the block a game carries
+goes into its other action and into <code>hosts\&lt;host&gt;\HostBlock.cs</code> in one step, with <code>-Check</code> to compare.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>A conventions key hands on its <code>requires</code>,</strong> so the timer&#39;s intervals are greyed out with their switch in a
+game that declares them with key and default alone (already in 1.5.0, not listed there).</li>
+<li>Trivia, Hangman, Blackjack and Battleship declare their triggers and methods this way.</li>
+</ul>
+<h2>[1.5.0] - 2026-11-10</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>A timed action on a random time and after chat lines.</strong> Streamer.bot&#39;s timer dialog offers a fixed interval, a
+random one and &quot;only after so many chat lines&quot;, but code can set only the interval. <code>UiTimer</code> in the host block
+keeps the other two: <code>Sync</code> brings the timed action in line with the settings (a running timer keeps its
+countdown unless the schedule was just saved), <code>Rearm</code> draws a random timer&#39;s next wait each time it fires, and
+<code>NoteLine</code> / <code>TakeLines</code> count chat lines per platform and hold a start back until there are enough. See <em>A timed
+action</em> in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a>.</li>
+<li><strong>Five convention keys for it:</strong> <code>autoStartEnabled</code>, <code>autoStartIntervalMinutes</code>, <code>autoStartRandom</code>,
+<code>autoStartIntervalMaxMinutes</code> and <code>autoStartMinChatLines</code>, with page, row, labels and help in English, German and
+Spanish. A game declares them with key and default alone.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Trivia and Hangman run their automatic rounds on it</strong> (Trivia v9.3.0, Hangman v13.3.0). The host copies of
+Trivia, Hangman, Blackjack and Battleship are the games&#39; current ones.</li>
+</ul>
 <h2>[1.4.3] - 2026-11-08</h2>
 <h3>Fixed</h3>
 <ul>
@@ -1760,6 +1829,21 @@ whatever order the game declares them in (a page of the game&#39;s own with <cod
 <td>a tour of the window that starts by itself on its first open; see <em>The tour</em> below</td>
 </tr>
 </tbody></table>
+<h3>The search</h3>
+<p>Every window can be searched: <strong>Ctrl+F</strong>, or the magnifier at the top right, opens a bar under the header. It finds</p>
+<ul>
+<li><strong>settings</strong>, by their label, their help, their section, their page and their key;</li>
+<li><strong>messages</strong>, by their label, their group and their help;</li>
+<li><strong>pages</strong>, by their title.</li>
+</ul>
+<p>Every word typed has to occur, in any order, whatever the case and the accents (<code>uber</code> finds <em>Über</em>, <code>grosse</code>
+finds <em>Größe</em>). A word that starts the label ranks before one inside it, before one in the section or the key,
+before one only the help has. Up and Down move through the results, Enter or a click goes there: the page comes to
+the front, the field scrolls into view, is ringed in the accent colour for a moment and gets the cursor; a message
+is selected on the Messages page. Esc or a click beside the bar closes it. A game declares nothing for this; a
+setting it hides, or one a condition hides right now, is not found. <code>Tip(&quot;search&quot;)</code> puts the magnifier into the
+window&#39;s tour.</p>
+<p>Other keys of the window: <strong>Ctrl+S</strong> saves, <strong>Ctrl+1</strong> to <strong>Ctrl+9</strong> and <strong>Ctrl+0</strong> go to the first ten pages.</p>
 <h3>The tour</h3>
 <p>A window can explain itself: on its first open the tour dims the window, rings one part at a time and says what it
 does beside it, with <em>Back</em>, <em>Next</em> and <em>End tour</em> (Esc ends it, the arrow keys and Enter step through it). Afterwards
@@ -1796,8 +1880,8 @@ and the ring follows the part as it grows (a Try button&#39;s answer). <code>Tip
 <td>the page&#39;s title; for <code>messages</code>, <code>log</code>, <code>help</code> and <code>about</code> a line about the page</td>
 </tr>
 <tr>
-<td><code>rail</code>, <code>save</code>, <code>saveExit</code>, <code>cancel</code>, <code>status</code>, <code>reset</code>, <code>resetPage</code>, <code>theme</code>, <code>customise</code>, <code>tour</code></td>
-<td>that part of the window (<code>tour</code> is the <strong>?</strong> itself)</td>
+<td><code>rail</code>, <code>save</code>, <code>saveExit</code>, <code>cancel</code>, <code>status</code>, <code>reset</code>, <code>resetPage</code>, <code>theme</code>, <code>customise</code>, <code>tour</code>, <code>search</code></td>
+<td>that part of the window (<code>tour</code> is the <strong>?</strong> itself, <code>search</code> the magnifier, from 1.8.0)</td>
 <td>the framework&#39;s, in the window&#39;s language</td>
 </tr>
 <tr>
@@ -2006,6 +2090,214 @@ its own; UIFramework goes with the game that delivers. In the schema: <code>wind
 </ul>
 <p>A game gets this with the host block of UIFramework 1.4.0 or newer (<code>tools/update-host-block.ps1</code>). The host block of
 1.3.0 asked on ordinary runs of the game instead; the DLL still answers it.</p>
+<h2>A timed action</h2>
+<p>Streamer.bot&#39;s own timer dialog offers three ways to run a timed action: a fixed interval, a random one between two
+bounds, and only after so many chat lines. Code can set only the interval and switch the timer on and off
+(<code>CPH.SetTimerInterval</code>, <code>EnableTimerById</code>, <code>DisableTimerById</code>), so the host block keeps the random time and the
+lines itself, in <code>UiTimer</code>. A game with rounds that start themselves declares five convention keys and makes four
+calls.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Kind</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>autoStartEnabled</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>the timed action is on</td>
+</tr>
+<tr>
+<td><code>autoStartIntervalMinutes</code></td>
+<td>int</td>
+<td><code>15</code></td>
+<td>the wait; with a random time, the shortest one</td>
+</tr>
+<tr>
+<td><code>autoStartRandom</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>draw every wait anew, up to the maximum</td>
+</tr>
+<tr>
+<td><code>autoStartIntervalMaxMinutes</code></td>
+<td>int</td>
+<td><code>30</code></td>
+<td>the longest wait of a random time</td>
+</tr>
+<tr>
+<td><code>autoStartMinChatLines</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>lines chat must have written since the last automatic start; 0 asks for none</td>
+</tr>
+</tbody></table>
+<p>Declared with nothing but key and default, they get their page (<code>game</code>), labels and help in English, German and
+Spanish from the conventions; the two intervals share a row and are greyed out with their switch.</p>
+<pre><code class="language-csharp">private const string AutoStartTimerId = &quot;…&quot;;   // the timed action&#39;s id in the export
+
+public void Init()
+{
+    _cfg = Settings.Load();
+    UiTimer.Sync(CPH, AutoStartTimerId, _cfg.AutoStartEnabled, _cfg.AutoStartIntervalMinutes, _cfg.AutoStartRandom,
+        _cfg.AutoStartIntervalMaxMinutes, log: m =&gt; CPH.LogWarn(m));
+}
+
+// saved: the window&#39;s hook after a save. restart: true, so a new schedule counts from the save.
+private void WindowSaved(UiSettings s) =&gt;
+    UiTimer.Sync(CPH, AutoStartTimerId, …, restart: true);
+
+public bool Execute()
+{
+    …
+    if (CPH.GetEventType() == EventType.TimedAction)
+    {
+        UiTimer.Rearm(CPH, AutoStartTimerId, _cfg.AutoStartIntervalMinutes, _cfg.AutoStartRandom, _cfg.AutoStartIntervalMaxMinutes);
+        foreach (string platform in connectedPlatforms)
+            if (UiTimer.TakeLines(platform, _cfg.AutoStartMinChatLines))
+                StartRound(platform);
+        return true;
+    }
+    if (isChatMessage) UiTimer.NoteLine(platform);   // every chat line the action sees
+    …
+}
+</code></pre>
+<ul>
+<li><strong><code>Sync</code></strong> brings the timed action in line with the settings. A timer that already runs keeps its countdown, so a
+recompile does not push the next round out; <code>restart: true</code> switches it off and on, which starts the wait over.
+A timed action the import does not have is one line through <code>log</code>, never an exception.</li>
+<li><strong><code>Rearm</code></strong>, once each time the timer fires: a random timer draws its next wait and starts over with it. A fixed
+one runs on untouched.</li>
+<li><strong><code>NoteLine(scope)</code></strong> counts a chat line; <strong><code>TakeLines(scope, min)</code></strong> is true once a scope has its lines and
+starts its count over. False leaves the count, so the round waits for the next turn of the timer and the lines
+keep adding up, as Streamer.bot&#39;s own lines do. A scope is a platform, or <code>&quot;&quot;</code> for a game with one chat.</li>
+<li><strong><code>NextSeconds(minutes, random, maxMinutes)</code></strong> is the wait itself: at least a minute, at most a day; a maximum
+below the interval is the interval.</li>
+</ul>
+<p>For the lines the game action needs the chat message triggers of the platforms it plays on (Twitch <em>Chat
+Message</em>, YouTube <em>Message</em>, Kick <em>Chat Message</em>) next to its commands, and the export a timed action whose
+trigger is on the game action. The counts live in memory: a recompile or a restart of Streamer.bot starts them over.
+Trivia and Hangman run their automatic rounds this way.</p>
+<h3>Only while live</h3>
+<p>Streamer.bot has no live status to ask, so <code>UiLive.Of(CPH, &quot;twitch&quot;)</code> (or <code>&quot;youtube&quot;</code>, <code>&quot;kick&quot;</code>) finds out:
+Twitch through its API with Streamer.bot&#39;s own token, YouTube by the broadcasts Streamer.bot monitors, Kick through
+its public channel page. It answers <code>UiLiveState.Live</code>, <code>Offline</code> or <code>Unknown</code>, keeps an answer for half a minute and
+never throws. <code>UiLive.SkipReason(live, recentChat)</code> is why something automatic should stay away, or null: offline
+always keeps it away, and a platform that could not say goes by whether its chat has been heard lately.</p>
+<pre><code class="language-csharp">string skip = UiLive.SkipReason(UiLive.Of(CPH, platform, m =&gt; CPH.LogWarn(m)), UiTimer.LinesSince(platform) &gt; 0);
+if (skip != null) continue;
+</code></pre>
+<p>Twitch and Kick are asked by UIFramework.dll 1.6.0 or newer, because the block itself must compile in an action
+that references nothing but mscorlib and System.Core. Without the DLL (the settings never opened) or with an older
+one they are <code>Unknown</code>, which <code>log</code> is told once.</p>
+<h3>Twitch&#39;s ad breaks</h3>
+<p>While ads run, viewers cannot see the stream, but chat works as ever: a good moment for a round. Streamer.bot has
+two triggers for it under Twitch, Ads: <em>Ad Run</em> when ads start, with their length in <code>adLength</code> (seconds), and
+<em>Upcoming Ad</em>, every minute from five minutes ahead, with <code>minutes</code> and <code>adLength</code>. It has none for the end, so
+<code>UiAdBreak</code> takes the break as over once its length has passed. The game action needs both triggers.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Kind</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>adBreakStart</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>start a round when ads start</td>
+</tr>
+<tr>
+<td><code>adBreakAnnounce</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>a line in chat ahead of the ads</td>
+</tr>
+<tr>
+<td><code>adBreakAnnounceMinutes</code></td>
+<td>int</td>
+<td><code>1</code></td>
+<td>how long ahead, 1 to 5</td>
+</tr>
+<tr>
+<td><code>adBreakBonusPercent</code></td>
+<td>percent</td>
+<td><code>0</code></td>
+<td>how much more a round started during ads pays</td>
+</tr>
+<tr>
+<td><code>adBreakOnly</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>viewers start rounds only during ads</td>
+</tr>
+</tbody></table>
+<p>They sit on the conventions&#39; page <code>automation</code> (<em>Automation</em>), where the timer&#39;s keys are too; a game lists it
+among its pages (<code>P(&quot;automation&quot;, &quot;Automation&quot;, &quot;⏱️&quot;)</code>).</p>
+<pre><code class="language-csharp">EventType evt = CPH.GetEventType();
+if (evt == EventType.TwitchAdRun)
+{
+    int seconds = UiAdBreak.Begin(args, () =&gt; CPH.TriggerCodeEvent(&quot;demo_onAdBreakEnd&quot;, false));
+    if (seconds &gt; 0 &amp;&amp; _cfg.AdBreakStart)
+        StartRounds(&quot;twitch&quot;, UiAdBreak.RoundsThatFit(seconds, roundSeconds, pauseSeconds, most));
+    return true;
+}
+if (evt == EventType.TwitchUpcomingAd)
+{
+    if (_cfg.AdBreakAnnounce &amp;&amp; UiAdBreak.Announce(args, _cfg.AdBreakAnnounceMinutes, out int minutes, out int seconds))
+        Say(&quot;Ads in &quot; + minutes + &quot; min: a round starts with them.&quot;);
+    return true;
+}
+</code></pre>
+<ul>
+<li><strong><code>Begin(args, ended)</code></strong> opens the window for the event&#39;s <code>adLength</code> and answers that length; 0, and no window,
+when the event carries none. <code>ended</code> runs once when the time has passed, unless another break or <code>End()</code> came first.</li>
+<li><strong><code>Active</code></strong>, <strong><code>SecondsLeft</code></strong>, <strong><code>Length</code></strong>: whether ads run now, for how long still, and how long the last
+break was. A game reads <code>Active</code> where a round starts, for the bonus and for <code>adBreakOnly</code>.</li>
+<li><strong><code>Announce(args, minutesBefore, out minutes, out seconds)</code></strong> is true once per ad break, when it is that near
+(1 to 5 minutes): Streamer.bot fires every minute, and one line in chat is enough.</li>
+<li><strong><code>RoundsThatFit(adSeconds, roundSeconds, gapSeconds, most)</code></strong>: at least one, however short the ads.</li>
+<li><strong><code>WithBonus(factor, bonusPercent)</code></strong>: the payout factor with the bonus on top.</li>
+</ul>
+<p>The window lives in memory: a recompile closes it. Trivia and Hangman use it.</p>
+<h2>Custom triggers and methods</h2>
+<p>What a game offers the streamer&#39;s own actions is declared once, in the window:</p>
+<pre><code class="language-csharp">.Trigger(&quot;Demo: Free Game Start&quot;, &quot;demo_onFreeStart&quot;, &quot;Free game was switched on.&quot;)
+.Triggers(new[] { &quot;roundOutcome=WIN&quot;, &quot;roundWinner=alice&quot;, &quot;roundPoints=500&quot;, &quot;roundBlitz=false&quot; },
+    Tr(&quot;Demo: Round Won&quot;,  &quot;demo_onWin&quot;,  &quot;Somebody won the round.&quot;),
+    Tr(&quot;Demo: Round Lost&quot;, &quot;demo_onLoss&quot;, &quot;Nobody did.&quot;, &quot;roundOutcome=LOSS&quot;, &quot;roundWinner=&quot;, &quot;roundPoints=0&quot;))
+.Method(&quot;StartRound&quot;, &quot;Starts a round. Returns false when none started.&quot;,
+    &quot;demoPlatform=in: twitch, youtube or kick&quot;, &quot;demoStarted=out: whether a round began&quot;)
+</code></pre>
+<ul>
+<li><strong><code>Trigger(name, code, what, args…)</code></strong>: the name Streamer.bot shows, the code <code>CPH.TriggerCodeEvent</code> takes, what
+it is for, and the arguments it carries, each <code>&quot;name&quot;</code> or <code>&quot;name=sample value&quot;</code>.</li>
+<li><strong><code>Triggers(shared, Tr(…), …)</code></strong> for triggers that carry the same arguments, every way a round can end: the
+shared ones once, then each trigger with what is its own. An argument a trigger names itself replaces the shared
+one of that name, or is added after them.</li>
+<li><strong><code>Method(name, what, args…)</code></strong>: a public <code>bool</code> method of the game action for an <em>Execute C# Method</em>
+sub-action, with the arguments it reads and sets, each <code>&quot;name=what it is&quot;</code>.</li>
+</ul>
+<p>From that one list:</p>
+<ul>
+<li><strong><code>UiTriggers.Register(CPH, &quot;Chat Game&quot;, &quot;Demo Game&quot;)</code></strong> in <code>Init()</code> registers every trigger under those
+categories. No <code>CPH.RegisterCustomTrigger</code> line of the game&#39;s own is left to forget.</li>
+<li><strong>The Help page</strong> ends with <em>Custom triggers</em> (each with its arguments and sample values) and <em>Methods for your
+own actions</em>, in the window&#39;s language; a game with no help of its own gets the page for them.</li>
+<li><strong>Fire with sample values</strong>, a button under each trigger, has the game fire it once with the samples as
+arguments, so a streamer can try an action of their own without playing a round. A sample that reads as a whole
+number or as <code>true</code>/<code>false</code> is passed as one. The host block answers this itself (<code>UiHost.Handle</code>); the game&#39;s
+<code>test</code> is not asked. A game with an older host block does not answer, and the window says so.</li>
+</ul>
+<p>The game still fires its triggers itself where its rounds end. In the schema: <code>window.triggers</code> and
+<code>window.methods</code>.</p>
 <h2>Export and import</h2>
 <p>The customise mode&#39;s bar (the pen, bottom left) has <em>Export</em> and <em>Import</em>: Export writes the saved settings
 (transient ones left out, values from files of their own included) as

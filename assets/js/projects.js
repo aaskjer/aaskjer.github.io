@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 75,
+      version: 'v1.0.0', stars: 0, downloads: 81,
     },
     {
       repo: 'SuTo',
@@ -280,7 +280,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.4.0', stars: 2, downloads: 150,
+      version: 'v17.4.0', stars: 2, downloads: 152,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.2.2', stars: 2, downloads: 97,
+      version: 'v9.2.2', stars: 2, downloads: 98,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -374,7 +374,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.3.0', stars: 1, downloads: 8,
+      version: 'v2.3.0', stars: 1, downloads: 10,
     },
     {
       repo: 'RhymeTime',
