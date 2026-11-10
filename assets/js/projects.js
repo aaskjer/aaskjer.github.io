@@ -280,7 +280,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.4.0', stars: 2, downloads: 148,
+      version: 'v17.4.0', stars: 2, downloads: 149,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -299,7 +299,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v25.2.0', stars: 1, downloads: 154,
+      version: 'v25.2.0', stars: 1, downloads: 155,
     },
     {
       repo: 'Trivia-Game',
@@ -336,7 +336,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.4.0', stars: 3, downloads: 64,
+      version: 'v16.4.0', stars: 3, downloads: 67,
     },
     {
       repo: 'Hangman-Game',
@@ -425,7 +425,7 @@ window.SITE = {
       ],
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.3.0', stars: 0, downloads: 5,
+      version: 'v2.3.0', stars: 0, downloads: 7,
     },
   ],
 };
