@@ -280,7 +280,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.4.0', stars: 2, downloads: 149,
+      version: 'v17.4.0', stars: 2, downloads: 150,
     },
     {
       repo: 'Classic-Chat-Gamble',
