@@ -5,9 +5,86 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-10T22:12:01Z</updated>
+  <updated>2026-11-10T22:36:37Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Trivia Game v9.3.0: An Addicted cut you set, rounds at random times, StartRound (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0</id>
+    <published>2026-11-10T22:36:37Z</published>
+    <updated>2026-11-10T22:36:37Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Addicted cut is a setting.&lt;/strong&gt; Viewers on the addicted list always lost half of every win. &lt;em&gt;Addicted cut&lt;/em&gt;
+under &lt;em&gt;Addicted&lt;/em&gt; on the Access page now says how much: 50 as before, 20 for a lighter touch, 0 for none. The
+message for a viewer added to the list names it as &lt;code&gt;{addictedCut}&lt;/code&gt;; one saved with &amp;quot;50%&amp;quot; written out follows the
+setting too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rounds while Twitch runs ads.&lt;/strong&gt; Under &lt;em&gt;Ad breaks&lt;/em&gt; on the new Automation page: &lt;em&gt;Start a round when ads start&lt;/em&gt;
+plays as many rounds as fit the ad break, &lt;em&gt;Announce it before the ads&lt;/em&gt; says so in chat 1 to 5 minutes ahead,
+&lt;em&gt;Bonus during ads&lt;/em&gt; makes rounds started during a break pay more, and &lt;em&gt;Rounds only during ads&lt;/em&gt; keeps viewers&amp;#39;
+starts to the breaks. Twitch only; the import brings the &lt;em&gt;Ad Run&lt;/em&gt; and &lt;em&gt;Upcoming Ad&lt;/em&gt; triggers for it, and
+&lt;code&gt;Trivia: Ad Break Started&lt;/code&gt; and &lt;code&gt;Trivia: Ad Break Ended&lt;/code&gt; are there for your own actions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An Automation page.&lt;/strong&gt; The rounds that start themselves moved there from the Game page, next to the ad breaks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rounds at random times, and only once chat has been talking.&lt;/strong&gt; Under &lt;em&gt;Rounds that start themselves&lt;/em&gt; on the
+Automation page, &lt;em&gt;Random time&lt;/em&gt; draws every wait anew between &lt;em&gt;Every&lt;/em&gt; and &lt;em&gt;At most&lt;/em&gt;, and &lt;em&gt;Only after chat lines&lt;/em&gt; holds a round
+back until a platform&amp;#39;s chat has written that many lines since its last automatic round. Together with the fixed
+interval these are the three ways a Streamer.bot timer can run.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartRound&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action starts a round from any
+action: a hotkey, a Stream Deck button, a raid. Optional arguments &lt;code&gt;triviaPlatform&lt;/code&gt;, &lt;code&gt;triviaRounds&lt;/code&gt; and
+&lt;code&gt;triviaCategory&lt;/code&gt;; it sets &lt;code&gt;triviaStarted&lt;/code&gt; and &lt;code&gt;triviaStartedOn&lt;/code&gt;. No cooldown and no moderator check apply.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The live check is UIFramework&amp;#39;s.&lt;/strong&gt; Asking Twitch and Kick whether you are live moved into UIFramework 1.6.0,
+where Hangman uses it too. Until the settings have been opened once with that version, recent chat decides in
+its place, and Streamer.bot&amp;#39;s log says so once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0&quot;&gt;Download v9.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v13.3.0: Rounds that start themselves, and StartRound (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0</id>
+    <published>2026-11-10T22:36:29Z</published>
+    <updated>2026-11-10T22:36:29Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A round while Twitch runs ads.&lt;/strong&gt; Under &lt;em&gt;Ad breaks&lt;/em&gt; on the new Automation page: &lt;em&gt;Start a round when ads start&lt;/em&gt;
+starts one with the ad break, as a blitz round if you like; &lt;em&gt;Announce it before the ads&lt;/em&gt; says so in chat 1 to 5
+minutes ahead; &lt;em&gt;Bonus during ads&lt;/em&gt; makes a round started during a break pay more; &lt;em&gt;Rounds only during ads&lt;/em&gt; keeps
+viewers&amp;#39; starts to the breaks. Twitch only; the import brings the &lt;em&gt;Ad Run&lt;/em&gt; and &lt;em&gt;Upcoming Ad&lt;/em&gt; triggers for it, and
+&lt;code&gt;Hangman: Ad Break Started&lt;/code&gt; and &lt;code&gt;Hangman: Ad Break Ended&lt;/code&gt; are there for your own actions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rounds that start themselves.&lt;/strong&gt; A new section on the Automation page switches on the timed action
+&lt;code&gt;[HM] - Auto Hangman Timer&lt;/code&gt;, which starts a round on every platform you are live on where none is running. It runs the
+three ways a Streamer.bot timer can: &lt;em&gt;Every&lt;/em&gt; so many minutes, at a &lt;em&gt;Random time&lt;/em&gt; drawn anew between &lt;em&gt;Every&lt;/em&gt; and
+&lt;em&gt;At most&lt;/em&gt;, and &lt;em&gt;Only after chat lines&lt;/em&gt;, which holds a round back until a platform&amp;#39;s chat has written that many
+lines since its last automatic round (10 by default). No moderator and no cooldown is needed for these rounds.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartRound&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action starts a round from any
+action: a hotkey, a Stream Deck button, a raid. Optional arguments &lt;code&gt;hangmanPlatform&lt;/code&gt; and &lt;code&gt;hangmanBlitz&lt;/code&gt;; it sets
+&lt;code&gt;hangmanStarted&lt;/code&gt; and &lt;code&gt;hangmanStartedOn&lt;/code&gt;. No cooldown and no moderator check apply.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic rounds only where you are live.&lt;/strong&gt; Twitch is asked through its API, YouTube by the broadcasts
+Streamer.bot monitors, Kick through its channel page (UIFramework 1.6.0). A platform that cannot say goes by
+whether its chat has written anything since the last automatic round.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The import carries a timed action, three chat triggers and two ad triggers.&lt;/strong&gt; Twitch, YouTube and Kick chat messages now reach
+the game action, which only counts them for &lt;em&gt;Only after chat lines&lt;/em&gt;. Import the new file once when updating, so
+the timed action and the triggers exist; pasting the code alone leaves automatic rounds without their timer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0&quot;&gt;Download v13.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v1.8.0: UIFramework v1.8.0 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0"/>
@@ -608,49 +685,5 @@ for. Customize: &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &
 &lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.3.0&quot;&gt;Download v2.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v13.1.0: A Log page that shows every column, and a tour of the window</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.1.0"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.1.0</id>
-    <published>2026-11-07T23:51:05Z</published>
-    <updated>2026-11-07T23:51:05Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;p&gt;The Log page now shows the guess, the word, the lives and the payout of every line, older lines included. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The Log page shows every column.&lt;/strong&gt; Each line carries the guess, the word, the lives and the payout under the keys the Log page reads (Guess, Word, Wrong, Reward), and Round is the round&amp;#39;s number. A win is logged once instead of twice, and the guess that ends a round and its payout carry the round too. Lines written before v13 read again as well (time, result, player, round) with UIFramework 1.0.0, and those from v13.0 fill the Guess, Word and Wrong columns.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Messages from an old &lt;code&gt;messages.json&lt;/code&gt; show in the settings window.&lt;/strong&gt; Before, only the game read that file: the window showed the default texts in their place, and a save wrote those over your messages. The messages now move into &lt;code&gt;configs.json&lt;/code&gt; on the first run of the game or of the window, and the file stays as &lt;code&gt;messages.json.migrated&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Import words shows only what the source uses.&lt;/strong&gt; &lt;em&gt;Topic&lt;/em&gt; appears for Wikidata and OdeNet, the Q-ID for Wikidata&amp;#39;s custom topic, the generations for PokéAPI and the IGDB fields for IGDB; before, the others stood there greyed out.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.1.0&quot;&gt;Download v13.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Slot Machine Game v16.3.0: A tour of the settings window</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.3.0"/>
-    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.3.0</id>
-    <published>2026-11-07T23:50:33Z</published>
-    <updated>2026-11-07T23:50:33Z</updated>
-    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
-    <content type="html">&lt;p&gt;Spins play as before. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Only the fields your setup uses.&lt;/strong&gt; &lt;em&gt;Fixed bet&lt;/em&gt; shows while the channel point bet mode is &lt;em&gt;Fixed&lt;/em&gt;, and the &lt;em&gt;3 alike&lt;/em&gt;, &lt;em&gt;4 alike&lt;/em&gt; and &lt;em&gt;5 alike&lt;/em&gt; payouts only with enough slots to pay them (4, 5, 6); before, they stood there greyed out.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.3.0&quot;&gt;Download v16.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

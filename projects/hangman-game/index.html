@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"13.2.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":0,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"13.3.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":1,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.2.0">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.3.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -457,7 +457,13 @@ paid   = (base + stake) × roleMultiplier
 <hr>
 <h2>🔔 Your own actions</h2>
 <p><strong>Q: Which custom triggers are there?</strong></p>
-<p>Custom &gt; Chat Game &gt; Hangman Game: <code>Hangman: Game Start</code>, <code>Game Win</code>, <code>Game Loss</code>, <code>Game Stopped</code>, <code>Timeout</code>, <code>Free Game Start</code> and <code>Free Game End</code>. A settled round carries <code>roundOutcome</code> (WIN, BLITZ-WIN, LOSS, TIMEOUT, STOPPED), <code>roundWord</code>, <code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundLetters</code>, <code>roundPlatform</code>, <code>roundWinner</code>, <code>roundWinnerId</code>, <code>roundPoints</code>, <code>roundWrongGuesses</code>, <code>roundMaxWrong</code>, <code>roundBlitz</code>, <code>roundFree</code>, <code>roundCurrency</code> and <code>roundParticipants</code>; the same values sit in the globals <code>hm_last…</code>, and <code>GetLastRoundResult</code>, run with an Execute C# Method sub-action on the game action, hands them to any other action.</p>
+<p>Custom &gt; Chat Game &gt; Hangman Game: <code>Hangman: Game Start</code>, <code>Game Win</code>, <code>Game Loss</code>, <code>Game Stopped</code>, <code>Timeout</code>, <code>Free Game Start</code> and <code>Free Game End</code>. A settled round carries <code>roundOutcome</code> (WIN, BLITZ-WIN, LOSS, TIMEOUT, STOPPED), <code>roundWord</code>, <code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundLetters</code>, <code>roundPlatform</code>, <code>roundWinner</code>, <code>roundWinnerId</code>, <code>roundPoints</code>, <code>roundWrongGuesses</code>, <code>roundMaxWrong</code>, <code>roundBlitz</code>, <code>roundFree</code>, <code>roundCurrency</code> and <code>roundParticipants</code>; the same values sit in the globals <code>hm_last…</code>, and <code>GetLastRoundResult</code>, run with an Execute C# Method sub-action on the game action, hands them to any other action. From v13.3.0 the Help page of the settings lists the triggers and their arguments too, and <strong>Fire with sample values</strong> under each fires it once with made-up values, so an action of yours runs without a round being played.</p>
+<p><strong>Q: Can one of my own actions start a round?</strong></p>
+<p>Yes, from v13.3.0: add an <strong>Execute C# Method</strong> sub-action to any action, pick the <code>Hangman Game</code> action&#39;s code and the method <code>StartRound</code>. A hotkey, a Stream Deck button, a raid or a channel point reward of your own then starts a round, with no cooldown and no moderator check. Two optional arguments, set before it: <code>hangmanPlatform</code> (<code>twitch</code>, <code>youtube</code>, <code>kick</code> or <code>all</code>) and <code>hangmanBlitz</code> (<code>true</code> forces a blitz round while blitz rounds are on). Without <code>hangmanPlatform</code> the round goes to the chat the event came from, or, when the event came from no chat, to every platform with an account in Streamer.bot. Afterwards <code>hangmanStarted</code> says whether a round began and <code>hangmanStartedOn</code> where. A round already running is left alone, and the method then returns false, which stops the rest of your action.</p>
+<p><strong>Q: Can a round start when Twitch runs ads?</strong></p>
+<p>Yes, from v13.3.0, under <strong>Ad breaks</strong> on the Automation page. Viewers cannot see the stream while ads run, but chat works as ever, so that is a good moment for a round. <strong>Start a round when ads start</strong> starts one with the ad break, as a blitz round with <strong>Make it a blitz round</strong> (blitz rounds have to be on). <strong>Announce it before the ads</strong> sends one line ahead of the break, 1 to 5 <strong>Minutes before</strong>. <strong>Bonus during ads</strong> makes the letters and the win of a Twitch round started during an ad break pay that much more. <strong>Rounds only during ads</strong> lets viewers start a round only while ads run; moderators and the broadcaster always can. It is Twitch only and needs the two triggers the import brings on the game action (Twitch, Ads: <em>Ad Run</em> and <em>Upcoming Ad</em>), so import the new file once when updating. Streamer.bot tells when ads start and how long they run but not when they end; the game takes the break as over once that time has passed. Your own actions can listen to <code>Hangman: Ad Break Started</code> and <code>Hangman: Ad Break Ended</code>.</p>
+<p><strong>Q: Can rounds start by themselves?</strong></p>
+<p>Yes, from v13.3.0, under <strong>Rounds that start themselves</strong> on the Automation page. The timed action <code>[HM] - Auto Hangman Timer</code> that comes with the import starts a round <strong>Every</strong> so many minutes; <strong>Random time</strong> draws every wait anew between <strong>Every</strong> and <strong>At most</strong>; <strong>Only after chat lines</strong> holds a round back until a platform&#39;s chat has written that many lines since its last automatic round. These are the three ways a Streamer.bot timer can run; leave the timed action itself to the settings window. For the lines, the import sends every chat message to the game action, which only counts it. A round only goes to a platform you are live on: Twitch is asked through its API, YouTube by the broadcasts Streamer.bot monitors, Kick through its channel page. Where that cannot be told, a chat that has written something since the last automatic round stands in. The live check needs UIFramework 1.6.0; open the settings once to get it. Updating from an older version, import the new file once so the timed action and the chat triggers exist.</p>
 <hr>
 <h2>🏆 Scoreboard</h2>
 <p><strong>Q: How is the leaderboard built?</strong></p>
@@ -534,7 +540,37 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><h1>v13.2.0 - 2026-11-08</h1>
+        <div class="doc-body"><h1>v13.3.0 - 2026-11-10</h1>
+<h3>Added</h3>
+<ul>
+<li><strong>A round while Twitch runs ads.</strong> Under <em>Ad breaks</em> on the new Automation page: <em>Start a round when ads start</em>
+starts one with the ad break, as a blitz round if you like; <em>Announce it before the ads</em> says so in chat 1 to 5
+minutes ahead; <em>Bonus during ads</em> makes a round started during a break pay more; <em>Rounds only during ads</em> keeps
+viewers&#39; starts to the breaks. Twitch only; the import brings the <em>Ad Run</em> and <em>Upcoming Ad</em> triggers for it, and
+<code>Hangman: Ad Break Started</code> and <code>Hangman: Ad Break Ended</code> are there for your own actions.</li>
+<li><strong>Rounds that start themselves.</strong> A new section on the Automation page switches on the timed action
+<code>[HM] - Auto Hangman Timer</code>, which starts a round on every platform you are live on where none is running. It runs the
+three ways a Streamer.bot timer can: <em>Every</em> so many minutes, at a <em>Random time</em> drawn anew between <em>Every</em> and
+<em>At most</em>, and <em>Only after chat lines</em>, which holds a round back until a platform&#39;s chat has written that many
+lines since its last automatic round (10 by default). No moderator and no cooldown is needed for these rounds.</li>
+<li><strong><code>StartRound</code> for your own actions.</strong> An Execute C# Method sub-action on the game action starts a round from any
+action: a hotkey, a Stream Deck button, a raid. Optional arguments <code>hangmanPlatform</code> and <code>hangmanBlitz</code>; it sets
+<code>hangmanStarted</code> and <code>hangmanStartedOn</code>. No cooldown and no moderator check apply.</li>
+<li><strong>Automatic rounds only where you are live.</strong> Twitch is asked through its API, YouTube by the broadcasts
+Streamer.bot monitors, Kick through its channel page (UIFramework 1.6.0). A platform that cannot say goes by
+whether its chat has written anything since the last automatic round.</li>
+<li><strong>Triggers and methods on the Help page.</strong> The page now ends with every custom trigger and its arguments, and
+the methods for your own actions. <em>Fire with sample values</em> under a trigger fires it once, so an action of
+yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
+themselves.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The import carries a timed action, three chat triggers and two ad triggers.</strong> Twitch, YouTube and Kick chat messages now reach
+the game action, which only counts them for <em>Only after chat lines</em>. Import the new file once when updating, so
+the timed action and the triggers exist; pasting the code alone leaves automatic rounds without their timer.</li>
+</ul>
+<h1>v13.2.0 - 2026-11-08</h1>
 <h3>Added</h3>
 <ul>
 <li><strong>Tells you about updates.</strong> Once per Streamer.bot start, about 20 seconds in, one notice names new releases of
