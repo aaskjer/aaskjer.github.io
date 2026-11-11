@@ -5,9 +5,61 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-10T22:36:37Z</updated>
+  <updated>2026-11-11T15:54:45Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v1.8.1: UIFramework v1.8.1 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.1"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.1</id>
+    <published>2026-11-11T15:54:45Z</published>
+    <updated>2026-11-11T15:54:45Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;The first part of a review of the whole framework: the mistakes a streamer can run into. Games need no update for
+the window&amp;#39;s fixes; the two in the host block reach a game with its next release.&lt;/p&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AltGr no longer counts as Ctrl.&lt;/strong&gt; AltGr is Ctrl+Alt to Windows, so on a German keyboard &lt;code&gt;{&lt;/code&gt; (AltGr+7) jumped to
+the seventh page of a window instead of being typed, &lt;code&gt;[&lt;/code&gt;, &lt;code&gt;]&lt;/code&gt; and &lt;code&gt;}&lt;/code&gt; likewise in windows with eight to ten pages;
+on a Spanish one &lt;code&gt;@&lt;/code&gt; and &lt;code&gt;#&lt;/code&gt; went to page two and three. The window&amp;#39;s shortcuts (Ctrl+S, Ctrl+F, Ctrl+1 to 0) now
+take Ctrl without Alt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Typing is left alone by an action that follows the fields.&lt;/strong&gt; A window with an &lt;code&gt;auto&lt;/code&gt; + &lt;code&gt;live&lt;/code&gt; action (Trivia&amp;#39;s
+difficulty line) looked at the fields 350 ms after every change, and that look ended the edit of a table cell and
+turned a half-typed name into a chip (&lt;code&gt;alice,bob&lt;/code&gt; became alice, bo, b). It now reads what is there and touches
+nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;turnTimeout&lt;/code&gt; has no minimum of its own.&lt;/strong&gt; The conventions&amp;#39; &lt;code&gt;min: 5&lt;/code&gt; went to every game that declared none, so
+Blackjack&amp;#39;s &amp;quot;0 = no limit&amp;quot; was shown as 0 and saved as 5. A game that wants a floor declares it (Battleship does).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One game&amp;#39;s failed release check no longer silences the update notice.&lt;/strong&gt; A repository without a published
+release, a renamed one or GitHub&amp;#39;s rate limit kept the notice waiting for good, for every game and for UIFramework
+itself. Such a game is now left out of that run&amp;#39;s notice; only UIFramework&amp;#39;s own check (no network) still holds it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A list whose file could not be read cannot be edited.&lt;/strong&gt; It was not written, as the red &lt;strong&gt;i&lt;/strong&gt; said, but rows
+could be typed into it and Save answered &amp;quot;Saved&amp;quot;. It is greyed out now, with the reason as its tooltip
+(&lt;code&gt;list.unreadable&lt;/code&gt;, in English, German and Spanish).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Tip(&amp;quot;search&amp;quot;)&lt;/code&gt; is no mistake.&lt;/strong&gt; The stop was shown, but the declaration check did not know the part and put a
+problem behind the red &lt;strong&gt;i&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page lets go of its folder when the window closes.&lt;/strong&gt; Its watcher was stopped only when the page was
+rebuilt; every window closed left one behind, holding the whole closed window, until Streamer.bot ended.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A game&amp;#39;s own page title comes first.&lt;/strong&gt; &lt;code&gt;Pg(&amp;quot;board&amp;quot;, &amp;quot;Rangliste&amp;quot;)&lt;/code&gt; lost to the conventions&amp;#39; translation of the
+wording &amp;quot;Board&amp;quot; (the grid, &amp;quot;Spielfeld&amp;quot;), so Hangman&amp;#39;s scoreboard page was titled &amp;quot;Spielfeld&amp;quot; in German.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The tour leaves Alt+F4 and Alt+Space to the window.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host block: &lt;code&gt;UiTimer.Rearm&lt;/code&gt; leaves a timer off that was switched off&lt;/strong&gt; between its tick and the game&amp;#39;s run;
+before, that run switched the automatic start back on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host block: the DLL is loaded the way the settings action loads it.&lt;/strong&gt; For the update notice and &lt;code&gt;UiLive&lt;/code&gt; the
+block used &lt;code&gt;LoadFrom&lt;/code&gt;, which refuses a DLL saved from a browser, did not know a folder named &lt;code&gt;v1.8.0&lt;/code&gt;, and did not
+look at the &lt;code&gt;.sha256&lt;/code&gt; beside the DLL. It now uses &lt;code&gt;UnsafeLoadFrom&lt;/code&gt;, takes the &lt;code&gt;v&lt;/code&gt;, and leaves a DLL alone that no
+longer matches its hash.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Demo game:&lt;/strong&gt; the Execute Code sub-actions of &lt;code&gt;DemoGame.sb&lt;/code&gt; carry their actions&amp;#39; names, so an &lt;em&gt;Execute C#
+Method&lt;/em&gt; sub-action elsewhere can pick them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md&quot;&gt;docs/Loader.md&lt;/a&gt; and &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md&quot;&gt;docs/Getting-Started.md&lt;/a&gt; no longer say that a game
+action never loads the DLL: it does, for the update notice and the live check, which is also why a framework
+update is usually used from the next start of Streamer.bot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;aaf431f215000081f8e6c62cb5cb187ff58d59237a699d05f7b3def93cdd5371&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.1&quot;&gt;Download v1.8.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Trivia Game v9.3.0: An Addicted cut you set, rounds at random times, StartRound (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0"/>
@@ -486,48 +538,6 @@ it with the host block of this version.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;1fabd5866c651af8b9b79230299242e5373060b7added18733d9d1b40aa4761d&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.3.0&quot;&gt;Download v1.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.2.0: UIFramework v1.2.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.2.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.2.0</id>
-    <published>2026-11-08T01:06:28Z</published>
-    <updated>2026-11-08T01:06:28Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;Fixes from an audit of the whole framework, and the logo on the About page.&lt;/p&gt;
-&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The UIFramework logo on the About page.&lt;/strong&gt; Faint in the bottom right corner, like a watermark, so the window shows
-it is the original framework: brighter under the mouse, its tooltip names the framework&amp;#39;s version, a click opens
-its page. It sits under the content, never over a link, in the dark or the light version for the theme.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Help under fields in named rows.&lt;/strong&gt; A button or switch beside other fields lines up with them again, a button&amp;#39;s
-help line goes under the row instead of stretching its column, and every help line keeps a gap to the next field.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;List files are never written over by mistake.&lt;/strong&gt; A list kept in a file of its own that the game holds open stops
-the save with the reason, instead of counting as damaged and being written from the window. A list that could not
-be read when the window opened shows its defaults, says so behind the red &lt;strong&gt;i&lt;/strong&gt;, and is not written from that
-window.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Reset page&lt;/strong&gt; leaves lists in files of their own, transient and read-only settings alone, as &lt;em&gt;Reset all&lt;/em&gt; does.
-Both dialogs say what they do: &lt;em&gt;Reset all&lt;/em&gt; saves at once and keeps the file as it was as &lt;code&gt;.bak&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;A game setting called &lt;code&gt;darkMode&lt;/code&gt;, &lt;code&gt;DarkMode&lt;/code&gt;, &lt;code&gt;egg&lt;/code&gt;, &lt;code&gt;Egg&lt;/code&gt; or &lt;code&gt;rainbow&lt;/code&gt; is no longer taken for the window&amp;#39;s theme
-and removed from the game&amp;#39;s file.&lt;/li&gt;
-&lt;li&gt;A condition such as &lt;code&gt;!mode=free&lt;/code&gt; always held. The red &lt;strong&gt;i&lt;/strong&gt; now names it, with the way to write it (&lt;code&gt;mode!=free&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;A cooldown that reads a key no setting has is named behind the red &lt;strong&gt;i&lt;/strong&gt;; before, only a line in the log said so
-on every save.&lt;/li&gt;
-&lt;li&gt;The version check no longer fails (&amp;quot;Value cannot be null&amp;quot;) for a game whose version is no number.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Add row&lt;/em&gt; in a list with a search typed clears the search, so the new row shows.&lt;/li&gt;
-&lt;li&gt;Host block: &lt;code&gt;UiHost.Handle&lt;/code&gt; clears the window&amp;#39;s arguments before it calls the game&amp;#39;s handler, so an action the
-handler runs is not taken for a window request. Games get this with their next host-block update.&lt;/li&gt;
-&lt;li&gt;The demo game no longer names the framework&amp;#39;s repository as its &lt;code&gt;releases&lt;/code&gt;, which showed an update pill in every
-demo window after each framework release.&lt;/li&gt;
-&lt;li&gt;Docs: Getting-Started&amp;#39;s snippet for an existing game declares its three constants and reads its settings; the
-table snippet has the &lt;code&gt;userCooldown&lt;/code&gt; its cooldown reads; the DLL goes into &lt;code&gt;lib\&amp;lt;version&amp;gt;\&lt;/code&gt;; what &lt;code&gt;ActionName&lt;/code&gt; is
-for. Customize: &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit at the foot of the page list; help and about lines translate.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;e5832d6667ac6e42d0d56b505215fb79058e92fc106d7e479e4c0d167948e736&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.2.0&quot;&gt;Download v1.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>Classic Chat Gamble v25.1.0: A tour of the window, and the window in German</title>
