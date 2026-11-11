@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 84,
+      version: 'v1.0.0', stars: 0, downloads: 85,
     },
     {
       repo: 'SuTo',
@@ -280,7 +280,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.4.0', stars: 2, downloads: 151,
+      version: 'v17.4.0', stars: 2, downloads: 152,
     },
     {
       repo: 'Classic-Chat-Gamble',
