@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/classic-chat-gamble/">
-  <meta property="og:title" content="Classic Chat Gamble  •  v25.2.0">
+  <meta property="og:title" content="Classic Chat Gamble  •  v25.2.1">
   <meta property="og:description" content="Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/classic-chat-gamble.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v25.2.0">
+  <meta name="twitter:data1" content="v25.2.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"25.2.0","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!gamble","!gambel","!SetFreeGamble","!EndFreeGamble","!gambleaddict"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"25.2.1","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!gamble","!gambel","!SetFreeGamble","!EndFreeGamble","!gambleaddict"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Classic-Chat-Gamble" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v25.2.0">
+<body data-repo="Classic-Chat-Gamble" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v25.2.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -446,6 +446,21 @@ The first open asks before fetching anything. <code>Yes</code> downloads the fil
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases">release notes</a>.</p>
+<h2>v25.2.1 - 2026-11-12</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The settings action passes over a UIFramework it is too old for.</strong> Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)</li>
+<li><strong>The update notice works with a UIFramework.dll you put in by hand.</strong> A file saved from the browser carries
+Windows&#39; &quot;downloaded from the internet&quot; mark, and the game did not load it: the notice at Streamer.bot&#39;s start
+never came. A file damaged since its download is no longer loaded for it.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>The host block is UIFramework 1.8.4&#39;s. Nothing in your settings changes.</li>
+</ul>
 <h2>v25.2.0 - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>

@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/high-low-game/">
-  <meta property="og:title" content="High-Low Game  •  v2.3.0">
+  <meta property="og:title" content="High-Low Game  •  v2.3.1">
   <meta property="og:description" content="Higher, lower or the same: a quick guessing game for chat, with channel points and scoreboards. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/high-low-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.3.0">
+  <meta name="twitter:data1" content="v2.3.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.3.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!hlgalltime","!hlgsession","!hlgpersonal","!highlowsetup","!high","!low","!equal","!SetFreeHighLow","!EndFreeHighLow"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.3.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!hlgalltime","!hlgsession","!hlgpersonal","!highlowsetup","!high","!low","!equal","!SetFreeHighLow","!EndFreeHighLow"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="High-Low-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.0">
+<body data-repo="High-Low-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -327,6 +327,21 @@ chat commands.</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/High-Low-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.3.1] - 2026-11-12</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The settings action passes over a UIFramework it is too old for.</strong> Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)</li>
+<li><strong>The update notice works with a UIFramework.dll you put in by hand.</strong> A file saved from the browser carries
+Windows&#39; &quot;downloaded from the internet&quot; mark, and the game did not load it: the notice at Streamer.bot&#39;s start
+never came. A file damaged since its download is no longer loaded for it.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>The host block is UIFramework 1.8.4&#39;s. Nothing in your settings changes.</li>
+</ul>
 <h2>[2.3.0] - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>

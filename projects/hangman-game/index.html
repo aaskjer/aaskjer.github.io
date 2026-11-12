@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/hangman-game/">
-  <meta property="og:title" content="Hangman Game  •  v13.2.0">
+  <meta property="og:title" content="Hangman Game  •  v13.3.1">
   <meta property="og:description" content="Hangman for the whole chat, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/hangman-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v13.2.0">
+  <meta name="twitter:data1" content="v13.3.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"13.3.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":1,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"13.3.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":1,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.3.0">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.3.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -540,7 +540,25 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><h1>v13.3.0 - 2026-11-10</h1>
+        <div class="doc-body"><h1>v13.3.1 - 2026-11-12</h1>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The settings action passes over a UIFramework it is too old for.</strong> Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)</li>
+<li><strong>The update notice works with a UIFramework.dll you put in by hand.</strong> A file saved from the browser carries
+Windows&#39; &quot;downloaded from the internet&quot; mark, and the game did not load it: the notice at Streamer.bot&#39;s start
+never came, and the window could not tell whether you are live. A file damaged since its download is no
+longer loaded for either.</li>
+<li><strong>The timer for automatic rounds stays off once you switch it off.</strong> A run that came in just after had
+switched it on again.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>The host block is UIFramework 1.8.4&#39;s. Nothing in your settings changes.</li>
+</ul>
+<h1>v13.3.0 - 2026-11-10</h1>
 <h3>Added</h3>
 <ul>
 <li><strong>A round while Twitch runs ads.</strong> Under <em>Ad breaks</em> on the new Automation page: <em>Start a round when ads start</em>

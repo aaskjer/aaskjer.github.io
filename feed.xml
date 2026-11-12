@@ -5,9 +5,367 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-12T08:08:23Z</updated>
+  <updated>2026-11-12T17:02:55Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v1.9.0: UIFramework v1.9.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0</id>
+    <published>2026-11-12T17:02:55Z</published>
+    <updated>2026-11-12T17:02:55Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;The Log page&amp;#39;s colours can be declared, and what the audit of 2026-11-08 had left open is done. The window&amp;#39;s
+part works with every game as it is. The settings action&amp;#39;s part (stub 0.3.0) and the builder&amp;#39;s new parts come to
+a game with its next release; nothing a game has stops working.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A game declares the colours of its results on the Log page:&lt;/strong&gt; &lt;code&gt;.Log(..., styles: new[] { &amp;quot;GAME-OVER|muted&amp;quot;, &amp;quot;WIN-*|success&amp;quot; }, outcome: new[] { &amp;quot;DUEL WIN|WIN&amp;quot; })&lt;/code&gt;, in the schema &lt;code&gt;log.styles&lt;/code&gt; and &lt;code&gt;log.outcome&lt;/code&gt;. The colours
+were guessed from words in the result, so Hangman&amp;#39;s &lt;code&gt;GAME-OVER&lt;/code&gt; and &lt;code&gt;MISS-LTTR&lt;/code&gt; showed in the accent colour. A
+style is &lt;code&gt;success&lt;/code&gt;, &lt;code&gt;warning&lt;/code&gt;, &lt;code&gt;muted&lt;/code&gt;, &lt;code&gt;accent&lt;/code&gt; or &lt;code&gt;none&lt;/code&gt;; &lt;code&gt;*&lt;/code&gt; stands for any run of characters; the first that
+fits wins, and a result none names is coloured by its words as before. &lt;code&gt;outcome&lt;/code&gt; names what a result is filtered
+by. See &lt;em&gt;The colours of the results&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;ask&lt;/code&gt;:&lt;/strong&gt; a field that asks the game whenever it changes (a preset slider whose answer fills other fields) has a
+name of its own. &lt;code&gt;live&lt;/code&gt; on a field that is no button meant the same and is still read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Builder:&lt;/strong&gt; &lt;code&gt;UiSchema.P(...).AtBottom()&lt;/code&gt; (a page at the foot of the rail) and &lt;code&gt;UiWindow.InLanguage(&amp;quot;de&amp;quot;)&lt;/code&gt; (the
+window&amp;#39;s language); both could only be said in the schema. &lt;code&gt;UiHost.Handle&lt;/code&gt; takes &lt;code&gt;null&lt;/code&gt; for the action&amp;#39;s name and
+uses the one Streamer.bot gives the run.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Without the mouse:&lt;/strong&gt; the rail takes the keyboard (Tab, Up and Down, Enter or Space). In the customise mode the
+Menu key (or Shift+F10) opens a field&amp;#39;s or a page&amp;#39;s menu, which has &lt;em&gt;Move up&lt;/em&gt; and &lt;em&gt;Move down&lt;/em&gt; now, also on
+Alt+Up and Alt+Down; the moved one keeps the keyboard.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A locked window can show the help under the fields:&lt;/strong&gt; a bulb in its footer, beside the language. The switch for
+it sits in the customise bar, which a locked window does not have.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tests for the settings action.&lt;/strong&gt; &lt;code&gt;stub/Stub.cs&lt;/code&gt; is compiled into the tests against a stand-in for Streamer.bot
+and tested there: versions, the download&amp;#39;s tries, the files it keeps, how it asks the game.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The window does not stand still while the game is asked.&lt;/strong&gt; A Try button, a table and the check before a save
+waited for the game on the window&amp;#39;s own thread, up to 35 seconds when the game&amp;#39;s handler hung, and Windows called
+the window &amp;quot;not responding&amp;quot;; &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md&quot;&gt;docs/Loader.md&lt;/a&gt; said it never froze. The game is asked from another
+thread now. A Try button&amp;#39;s answer and a table&amp;#39;s rows arrive when they arrive (the button is greyed, the table says
+that it is asking); the check before a save waits with the window alive, without input. With every settings
+action, also the ones games carry today.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer is not &amp;quot;done&amp;quot;.&lt;/strong&gt; A Try button whose game did not answer (a timeout, a disabled action) showed
+&amp;quot;done&amp;quot; in green; it says that the game did not answer, in the colour of a failure, and a table says so instead
+of showing as empty (stub 0.3.0).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An import is checked like a save.&lt;/strong&gt; It wrote values without their fields&amp;#39; limits, without a look at their
+type and without the game&amp;#39;s &lt;code&gt;validate&lt;/code&gt;, and it wrote &lt;code&gt;readOnly&lt;/code&gt; settings. Every value goes through its field now
+(a number beyond its limits is pulled into them; text for a number or an option the dropdown lacks is not taken),
+a &lt;code&gt;readOnly&lt;/code&gt; setting is left alone, the dialog names what is not taken and why, and the game checks as before a
+save. The dialog no longer says &amp;quot;replace&amp;quot;: what the file does not name stays.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A value the window shows other than the file has it is said:&lt;/strong&gt; a number beyond its limits or text where a
+number belongs showed corrected and was written with some later save, without a word, while the game went on
+reading the file&amp;#39;s value. The status line names how many, its tooltip which.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A &lt;code&gt;readOnly&lt;/code&gt; setting follows its conditions and has its help:&lt;/strong&gt; &lt;code&gt;showWhen&lt;/code&gt;, &lt;code&gt;requires&lt;/code&gt;, its section&amp;#39;s condition
+and its help (tooltip or line) were skipped for it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The help under the fields reaches the framework&amp;#39;s own fields:&lt;/strong&gt; the Messages page&amp;#39;s sender switches and number
+format and the Log page&amp;#39;s switch kept their help in the tooltip.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Long labels and the status line in a narrow window.&lt;/strong&gt; A switch&amp;#39;s label wraps instead of being cut at the
+window&amp;#39;s edge without &amp;quot;…&amp;quot; (German and Spanish labels at the smallest width); the status line takes a line of its
+own above the footer&amp;#39;s buttons when they leave it no room (it read &amp;quot;Ke…&amp;quot;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode:&lt;/strong&gt; a click on &lt;em&gt;Done&lt;/em&gt; or &lt;em&gt;Export&lt;/em&gt; right after typing an accent colour is no longer lost (taking
+the colour rebuilt the window under the pointer); the hint counts the help switch as a change, &lt;em&gt;Reset layout&lt;/em&gt;
+takes it back too and is greyed while there is nothing to take back; an empty accent box opens the picker on the
+accent in use, not on yellow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Icons:&lt;/strong&gt; &lt;em&gt;Reset page&lt;/em&gt; no longer looks like the mirror image of &lt;em&gt;Reset all&lt;/em&gt; and no longer shares its arrow with
+&amp;quot;read again&amp;quot; on the Log page and the tables; the Log page&amp;#39;s folder button has the folder a path field has.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;twitchOnly&lt;/code&gt; works on every field with a label.&lt;/strong&gt; It was read for switches alone and did nothing elsewhere
+(three reward ids in Trivia): such a field says &amp;quot;(Twitch only)&amp;quot; in its label.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;auto&lt;/code&gt; brings &lt;code&gt;live&lt;/code&gt; and &lt;code&gt;panel&lt;/code&gt;.&lt;/strong&gt; An action without a button followed the typed values only with &lt;code&gt;live&lt;/code&gt; and
+wanted &lt;code&gt;panel&lt;/code&gt; although it has a box of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Settings action (stub 0.3.0):&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Closing the update dialog no longer skips the version for good.&lt;/em&gt; &lt;strong&gt;No&lt;/strong&gt; skips it, &lt;strong&gt;Cancel&lt;/strong&gt;, the X and Esc
+mean &amp;quot;not now&amp;quot;. Before, No meant &amp;quot;later&amp;quot; and Cancel &amp;quot;skip&amp;quot;, so the X skipped.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;A download GitHub does not deliver is tried three times&lt;/em&gt; (a 5xx, a 429, a broken or timed-out connection),
+and what is left reads &amp;quot;GitHub did not deliver the file ... Try again in a moment&amp;quot; instead of the raw error.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Every request to the game has a variable of its own,&lt;/em&gt; so a request that hung and answers late cannot be read
+by the next one; it is unset also when the game&amp;#39;s run failed.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;What holds for the one DLL is kept once:&lt;/em&gt; a skipped version and &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; live in
+&lt;code&gt;&amp;lt;Streamer.bot&amp;gt;\UIFramework\loader.json&lt;/code&gt; and hold for every game. They were kept per game, so each game asked
+again about a version another had skipped. A game&amp;#39;s layout file is still read.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Today&amp;#39;s log lines show while a round runs:&lt;/em&gt; the log was opened as a file nobody writes to, which the game&amp;#39;s
+open file is not.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;One prefix in the log,&lt;/em&gt; &lt;code&gt;[&amp;lt;game action&amp;gt;/Settings]&lt;/code&gt; or the one the window declares, from the first line to the
+DLL&amp;#39;s lines; it changed to the window&amp;#39;s title half-way.&lt;/li&gt;
+&lt;li&gt;The release check counts &lt;code&gt;1.9&lt;/code&gt; as &lt;code&gt;1.9.0&lt;/code&gt;; the hint for a DLL fetched by hand no longer asks GitHub a second
+time (offline it stood still again) and does not name a release this settings action is too old for; the
+dialog no longer says the host block stands &amp;quot;at the end&amp;quot; of the action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The red i says more:&lt;/strong&gt; &lt;code&gt;panel&lt;/code&gt;, &lt;code&gt;auto&lt;/code&gt; or &lt;code&gt;confirm&lt;/code&gt; on a field that is no button; &lt;code&gt;placeholders&lt;/code&gt; on one that
+is no message; a &lt;code&gt;platform&lt;/code&gt; that is none; a &lt;code&gt;{placeholder}&lt;/code&gt; in a message&amp;#39;s default text that its list lacks; a
+page named by its id alone that no setting is on (&lt;code&gt;&amp;quot;mesages&amp;quot;&lt;/code&gt;); a &lt;code&gt;custom&lt;/code&gt; page behind the generic settings
+action, which was left out with its fields in silence; a &lt;code&gt;Cmd&lt;/code&gt;, &lt;code&gt;Link&lt;/code&gt; or &lt;code&gt;Note&lt;/code&gt; in the tour and a &lt;code&gt;Tip&lt;/code&gt; in a
+help section (one type in the host block, so the wrong one compiled and was dropped); an unknown style of the
+Log page&amp;#39;s colours. An unknown kind is told the kinds there are, and &amp;quot;The spec overrides&amp;quot; is said in the
+builder&amp;#39;s words.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A schema written by hand may use the builder&amp;#39;s short forms,&lt;/strong&gt; which the docs showed as if they were JSON: an
+option &lt;code&gt;&amp;quot;a|Label&amp;quot;&lt;/code&gt;, a list column &lt;code&gt;&amp;quot;key|kind|label&amp;quot;&lt;/code&gt;, &lt;code&gt;shows&lt;/code&gt; as &lt;code&gt;&amp;quot;option: key, key&amp;quot;&lt;/code&gt;, one &lt;code&gt;aliasFactor&lt;/code&gt;. A bar
+segment&amp;#39;s colour is read as &lt;code&gt;color&lt;/code&gt; too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Texts:&lt;/strong&gt; English dialog titles in one spelling; the tour names Ctrl+0; the icon hint lists &lt;code&gt;gift&lt;/code&gt; and says
+that an unknown name shows a dot; a page&amp;#39;s tooltip in the customise mode names &lt;em&gt;Change icon&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Docs:&lt;/strong&gt; &lt;code&gt;requires&lt;/code&gt; greys a field out, &lt;code&gt;showWhen&lt;/code&gt; hides it (&lt;code&gt;hide:&lt;/code&gt; in front of a &lt;code&gt;requires&lt;/code&gt; is still read and
+no longer recommended); what the game&amp;#39;s &lt;code&gt;UiSettings&lt;/code&gt; does not know of the conventions; a table of the names a
+game carries (&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md&quot;&gt;docs/Getting-Started.md&lt;/a&gt;); how a new major line is released
+(&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md&quot;&gt;docs/Loader.md&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Removed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Code nothing used: &lt;code&gt;Sidecars.Strip&lt;/code&gt;, &lt;code&gt;Requirement.Holds(key, op, wanted)&lt;/code&gt;, &lt;code&gt;Conventions.Aliases()&lt;/code&gt; and
+&lt;code&gt;FrameworkKeys&lt;/code&gt;, &lt;code&gt;LayoutFile.OverriddenPages&lt;/code&gt; and &lt;code&gt;OverriddenFields&lt;/code&gt;, &lt;code&gt;Schema.Defaults()&lt;/code&gt; and &lt;code&gt;Aliases()&lt;/code&gt;,
+&lt;code&gt;Text.Or&lt;/code&gt;. The tests that went through them go the way the window goes.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hosts/rhymetime/spec.json&lt;/code&gt; and &lt;code&gt;host-section.cs&lt;/code&gt;, left from before the game declared its window.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;For 2.0.0&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The settings action reads its major line from one word, &lt;code&gt;FrameworkLine&lt;/code&gt; in &lt;code&gt;stub/Stub.cs&lt;/code&gt;, and a test fails
+while that word and the DLL&amp;#39;s major version disagree. Nothing else is prepared in code: what a major version is
+to take away is listed in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/PLAN.md&quot;&gt;PLAN.md&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;dc2e4347b71a92c3d5b927e7d534262e4b4e701659a3d96c084c14d4bc6a48fd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0&quot;&gt;Download v1.9.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v17.5.2: A settings action that picks a UIFramework it fits</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.2"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.2</id>
+    <published>2026-11-12T13:01:06Z</published>
+    <updated>2026-11-12T13:01:06Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s: a setting that holds a number too large for 64 bits is read instead of
+failing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.2&quot;&gt;Download v17.5.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Battleship Game v2.4.1: A settings action that picks a UIFramework it fits (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1"/>
+    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1</id>
+    <published>2026-11-12T13:00:13Z</published>
+    <updated>2026-11-12T13:00:13Z</updated>
+    <category term="Battleship-Game" label="Battleship Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1&quot;&gt;Download v2.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v13.3.1: A settings action that picks a UIFramework it fits</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1</id>
+    <published>2026-11-12T12:59:34Z</published>
+    <updated>2026-11-12T12:59:34Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came, and the window could not tell whether you are live. A file damaged since its download is no
+longer loaded for either.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The timer for automatic rounds stays off once you switch it off.&lt;/strong&gt; A run that came in just after had
+switched it on again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1&quot;&gt;Download v13.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Slot Machine Game v16.4.1: A settings action that picks a UIFramework it fits</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1</id>
+    <published>2026-11-12T12:58:55Z</published>
+    <updated>2026-11-12T12:58:55Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1&quot;&gt;Download v16.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Classic Chat Gamble v25.2.1: A settings action that picks a UIFramework it fits</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1"/>
+    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1</id>
+    <published>2026-11-12T12:58:08Z</published>
+    <updated>2026-11-12T12:58:08Z</updated>
+    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1&quot;&gt;Download v25.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>RhymeTime v2.4.1: A settings action that picks a UIFramework it fits</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.1"/>
+    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.1</id>
+    <published>2026-11-12T12:57:51Z</published>
+    <updated>2026-11-12T12:57:51Z</updated>
+    <category term="RhymeTime" label="RhymeTime"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.1&quot;&gt;Download v2.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>High-Low Game v2.3.1: A settings action that picks a UIFramework it fits</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1"/>
+    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1</id>
+    <published>2026-11-12T12:57:34Z</published>
+    <updated>2026-11-12T12:57:34Z</updated>
+    <category term="High-Low-Game" label="High-Low Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1&quot;&gt;Download v2.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Trivia Game v9.3.1: A settings action that picks a UIFramework it fits (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.1"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.1</id>
+    <published>2026-11-12T12:51:23Z</published>
+    <updated>2026-11-12T12:51:23Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
+installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
+leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
+Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
+never came, and the window could not tell whether you are live. A file damaged since its download is no
+longer loaded for either.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The timer for automatic rounds stays off once you switch it off.&lt;/strong&gt; A run that came in just after had
+switched it on again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.1&quot;&gt;Download v9.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v1.8.4: UIFramework v1.8.4 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4</id>
+    <published>2026-11-12T12:08:47Z</published>
+    <updated>2026-11-12T12:08:47Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A DLL is not used by a settings action older than it asks for.&lt;/strong&gt; &lt;code&gt;minHostStub&lt;/code&gt; in &lt;code&gt;latest.json&lt;/code&gt; only kept such
+a release from being downloaded; a DLL another game had installed or loaded already was used all the same. The
+DLL now names the stub it needs (&lt;code&gt;MinHostStub&lt;/code&gt; in &lt;code&gt;UIFramework.csproj&lt;/code&gt;, in the file&amp;#39;s product version as
+&lt;code&gt;1.8.4+stub.0.1.0&lt;/code&gt;) and opens no window for an older one: the game&amp;#39;s dialog says which stub it needs. The
+release workflow writes the same value into &lt;code&gt;latest.json&lt;/code&gt;, so the two cannot disagree.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Settings action (stub 0.2.1): an installed DLL that needs a newer stub is passed over&lt;/strong&gt; for an older one that
+fits, before it is loaded, with a line in the log. When no installed DLL fits, the dialog says so and offers the
+download.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Log page: lines coming in leave the row being read where it is.&lt;/strong&gt; The grid kept its offset, which counts rows,
+and the newest line is the first row: every line a round in chat added pushed the rows down by one. The entry
+at the top of the grid is found again and put back there. At the very top nothing is held, so new lines show
+as they come.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Checked&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A table list&amp;#39;s search and the row being edited&lt;/strong&gt; (the row editor&amp;#39;s mistake of 1.8.2): the table does not have
+it. The row stays while a cell is typed in and on the way to the next cell, and the search takes it when the
+row is left. One difference stays: saving while the cell is still open ends the row&amp;#39;s edit, so a row that no
+longer matches the search is taken then.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;2069420975111791af1cecfb02194f7af85860cf6417f572df9b0eb396bac4a6&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4&quot;&gt;Download v1.8.4&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v17.5.1: Four messages offer the placeholders the game fills</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1</id>
+    <published>2026-11-12T11:27:38Z</published>
+    <updated>2026-11-12T11:27:38Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Four messages offer the placeholders the game fills.&lt;/strong&gt; &lt;em&gt;Everyone&lt;/em&gt; and &lt;em&gt;Per player&lt;/em&gt; (the cooldown replies),
+&lt;em&gt;Not enough points&lt;/em&gt; and &lt;em&gt;No stats yet&lt;/em&gt; showed chips the game does not know ({user}, {remaining}, {amount}, ...)
+or none at all, and the chat preview left their real ones as raw braces. A chip clicked into a cooldown reply
+kept that reply from being sent. They now offer {0} and {1}, {points}, {available} and {required}, and {user},
+and the preview fills them. Saved texts stay as they are.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1&quot;&gt;Download v17.5.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v1.8.3: UIFramework v1.8.3 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3"/>
@@ -428,24 +786,6 @@ are added or removed; what is left over goes to the widest column.&lt;/li&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3&quot;&gt;Download v1.4.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
-    <title>UIFramework v1.4.2: UIFramework v1.4.2 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.2"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.2</id>
-    <published>2026-11-08T10:01:49Z</published>
-    <updated>2026-11-08T10:01:49Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A field moved in the customise mode no longer splits a section.&lt;/strong&gt; Dropped among the fields of another section,
-it joins that section (kept in the layout file by the name the game declared, so it holds in every language);
-before, it kept its own and both headings showed twice.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The red i no longer blames the game for the user&amp;#39;s layout.&lt;/strong&gt; &amp;quot;The section ... is split by another section&amp;quot;
-looks at the order the game declared; where the user moved fields is not the game author&amp;#39;s to fix.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;9d4e1c1dc148b15d7fbd578b94729ed60b0835a1f3cccea226afc72b9426f516&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.2&quot;&gt;Download v1.4.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
     <title>Slot Machine Game v16.4.0: Tells you about updates</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0"/>
     <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0</id>
@@ -519,229 +859,5 @@ looks at the order the game declared; where the user moved fields is not the gam
 &lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.0&quot;&gt;Download v2.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v17.4.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.4.0"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.4.0</id>
-    <published>2026-11-08T09:28:17Z</published>
-    <updated>2026-11-08T09:28:17Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.4.0&quot;&gt;Download v17.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Battleship Game v2.3.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.3.0"/>
-    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.3.0</id>
-    <published>2026-11-08T09:28:10Z</published>
-    <updated>2026-11-08T09:28:10Z</updated>
-    <category term="Battleship-Game" label="Battleship Game"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.3.0&quot;&gt;Download v2.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v13.2.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.2.0"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.2.0</id>
-    <published>2026-11-08T09:27:15Z</published>
-    <updated>2026-11-08T09:27:15Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Fixed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A timeout and the streaks a round broke are logged on the round&amp;#39;s platform.&lt;/strong&gt; Those two lines took the platform of whoever ran the action last, so a Kick round that timed out could show up as Twitch on the Log page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.2.0&quot;&gt;Download v13.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.4.1: UIFramework v1.4.1 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.1"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.1</id>
-    <published>2026-11-08T09:05:08Z</published>
-    <updated>2026-11-08T09:05:08Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Only round versions are stable releases&lt;/strong&gt; (2.0.0, 3.0.0); every other version is published as a pre-release, this
-one included. The release workflow decides it from the tag.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Update checks count pre-releases.&lt;/strong&gt; The update notice and the window&amp;#39;s new-version check take a game&amp;#39;s newest
-published release, pre-release or not (drafts never), since nearly every version between two round ones is a
-pre-release now. The log&amp;#39;s link goes to that release.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;53294b33e51f80b2c85ee27a56c2027581f143f04a1e00aa2d9a4af5b92c63dc&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.1&quot;&gt;Download v1.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Classic Chat Gamble v25.1.0: A tour of the window, and the window in German</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.1.0"/>
-    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.1.0</id>
-    <published>2026-11-07T23:51:57Z</published>
-    <updated>2026-11-07T23:51:57Z</updated>
-    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
-    <content type="html">&lt;p&gt;Gambles play as before. The settings window reads in English or German and runs on &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0: the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The chat messages are in &lt;code&gt;configs.json&lt;/code&gt;.&lt;/strong&gt; Every setting now sits in one file, as in the other games. An old &lt;code&gt;messages.json&lt;/code&gt; moves in on the first run of the game or of the settings window: each message goes into &lt;code&gt;configs.json&lt;/code&gt; under its new name (one set to null becomes an empty message, which still sends nothing), and the file stays beside it as &lt;code&gt;messages.json.migrated&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;When the window opens on the numbers of another fairness stop, the slider moves there without a &lt;em&gt;filled in&lt;/em&gt; note in the footer; the note is for a stop you pick.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fixed bet only in Fixed mode.&lt;/strong&gt; &lt;em&gt;Fixed bet&lt;/em&gt; under Channel points shows while the bet mode is &lt;em&gt;Fixed&lt;/em&gt;; before, it stood there greyed out in the other modes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s generic stub.&lt;/strong&gt; &lt;code&gt;[CCG] - Settings&lt;/code&gt; carries no layout and no game code any more: the game action declares its window (pages, pills, the log, help and about, the &lt;code&gt;!gamble&lt;/code&gt; cooldowns) beside its settings table and answers the window itself (the fairness stops, the odds, a test roll, the check before saving). Needs UIFramework 0.9.2 or newer; the stub fetches it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;German.&lt;/strong&gt; With the window&amp;#39;s language set to &lt;code&gt;de&lt;/code&gt; (the pencil, then &lt;em&gt;Sprache&lt;/em&gt;), every setting, section, page and message of the window reads in German. The help and about pages stay English.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;li&gt;A chance, multiplier or percentage written as NaN or infinity into &lt;code&gt;configs.json&lt;/code&gt; still falls back the way it did; the new host block alone would read it as 0.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.1.0&quot;&gt;Download v25.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.1.0: A tour of the settings window</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.1.0"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.1.0</id>
-    <published>2026-11-07T23:51:55Z</published>
-    <updated>2026-11-07T23:51:55Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;p&gt;Questions play as before. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Messages from an old &lt;code&gt;messages.json&lt;/code&gt; show in the settings window.&lt;/strong&gt; Before, only the game read that file: the window showed the default texts in their place, and a save wrote those over your messages. The messages now move into &lt;code&gt;configs.json&lt;/code&gt; on the first run of the game or of the window, and the file stays as &lt;code&gt;messages.json.migrated&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The difficulty slider follows the numbers.&lt;/strong&gt; A panel under it, &lt;em&gt;How a round plays&lt;/em&gt;, shows the answer times, the blitz times and the spelling tolerance as they stand, and moves the slider to the stop the numbers match, or to &lt;em&gt;Custom&lt;/em&gt; once one of them is your own. Before, the slider opened on &lt;em&gt;Standard&lt;/em&gt; whatever the saved numbers were.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Only the fields the source uses.&lt;/strong&gt; &lt;em&gt;Fetch ahead&lt;/em&gt; shows for opentdb only, and &lt;em&gt;Mix in my questions&lt;/em&gt; is gone while your own questions are the source; before, they stood there greyed out.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.1.0&quot;&gt;Download v9.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Battleship Game v2.2.0: A tour of the window, an overlay demo and Free game from chat</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.2.0"/>
-    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.2.0</id>
-    <published>2026-11-07T23:51:40Z</published>
-    <updated>2026-11-07T23:51:40Z</updated>
-    <category term="Battleship-Game" label="Battleship Game"/>
-    <content type="html">&lt;p&gt;The overlay can play a made-up battle to place and style it, moderators switch Free game from chat, and every finished battle fires a trigger your own actions can use. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;📺 Overlay&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Try the demo.&lt;/strong&gt; A new button on the Overlay page opens the overlay in your browser, playing a short made-up battle in the saved look (a miss, a sunk destroyer, the Admiral finding your cruiser, the enemy fleet sunk), without Streamer.bot. With &lt;code&gt;?demo=1&lt;/code&gt; on the overlay&amp;#39;s address, OBS plays it the same way, to place and size the source.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Show a sample round.&lt;/strong&gt; The button beside it plays that battle once on every overlay that is open, the one in OBS included, so you can check where it sits and how it looks; then the overlay goes back to no battle. Not while a real battle runs. The overlay is version 17 and replaces an older copy on the next command, keeping that one as a &lt;code&gt;.bak&lt;/code&gt;; an overlay already open in OBS reloads itself within ten seconds.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🆓 Free game from chat&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Two moderator commands.&lt;/strong&gt; &lt;code&gt;!SetFreeBattleship&lt;/code&gt; turns Free game on and &lt;code&gt;!EndFreeBattleship&lt;/code&gt; turns it off (they come with the import, disabled and set to the Moderators group). The switch is written into the settings file, so the window&amp;#39;s pill shows it, and chat gets the new Started and Ended messages (Messages page, Free game). An action of your own can do the same with an Execute C# Method on &lt;code&gt;StartFreeGame&lt;/code&gt; or &lt;code&gt;EndFreeGame&lt;/code&gt; of the game action.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Two more custom triggers.&lt;/strong&gt; &lt;code&gt;BSG: Free Game Start&lt;/code&gt; and &lt;code&gt;BSG: Free Game End&lt;/code&gt; fire whenever Free game is switched that way.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🪟 Settings window&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;German.&lt;/strong&gt; With the window&amp;#39;s language set to &lt;code&gt;de&lt;/code&gt; (the pencil, then &lt;em&gt;Sprache&lt;/em&gt;), every setting, section, page and message of the window reads in German. The help and about pages, the summaries and the presets&amp;#39; status line stay English.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s generic stub.&lt;/strong&gt; &lt;code&gt;[BG] - .Settings&lt;/code&gt; carries no layout and no code of its own any more: the game action declares its window (pages, the log, help and about, the cooldowns of &lt;code&gt;!battleship&lt;/code&gt;) beside its settings table and answers the window itself. &lt;em&gt;Reset the leaderboard now&lt;/em&gt;, &lt;em&gt;Set the overlay up in OBS&lt;/em&gt; and &lt;em&gt;Add to OBS&lt;/em&gt; now answer with what happened instead of &amp;quot;queued&amp;quot;, and a save puts the Click to Fire settings on a live overlay as before. Needs UIFramework 0.9.2 or newer; the stub fetches it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;🔔 For your own actions&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Custom triggers.&lt;/strong&gt; Every finished battle fires a trigger (Custom &amp;gt; Chat Game &amp;gt; Battleship Game): &lt;code&gt;BSG: Battle Won&lt;/code&gt;, &lt;code&gt;BSG: Battle Lost&lt;/code&gt;, &lt;code&gt;BSG: Battle Timed Out&lt;/code&gt; or &lt;code&gt;BSG: Battle Stopped&lt;/code&gt; for a solo battle, &lt;code&gt;BSG: Chat Battle Settled&lt;/code&gt; for the chat&amp;#39;s battle, &lt;code&gt;BSG: Duel Settled&lt;/code&gt; for a team duel, and &lt;code&gt;BSG: Battle Settled&lt;/code&gt; for every one of them. The trigger carries the battle as arguments: &lt;code&gt;battleOutcome&lt;/code&gt; (the log&amp;#39;s result: WIN, LOSS, TIMEOUT, NO-SHOW, STOPPED), &lt;code&gt;battleMode&lt;/code&gt; (solo, chat or duel), &lt;code&gt;battleUser&lt;/code&gt;, &lt;code&gt;battleUserId&lt;/code&gt;, &lt;code&gt;battlePlatform&lt;/code&gt;, &lt;code&gt;battleTrigger&lt;/code&gt; (fire, timeout or stop), &lt;code&gt;battleBoard&lt;/code&gt;, &lt;code&gt;battleShots&lt;/code&gt;, &lt;code&gt;battleHits&lt;/code&gt;, &lt;code&gt;battleAccuracy&lt;/code&gt;, &lt;code&gt;battleShipsSunk&lt;/code&gt;, &lt;code&gt;battleShipsLost&lt;/code&gt;, &lt;code&gt;battleNet&lt;/code&gt; (the battle&amp;#39;s total, or a duel&amp;#39;s pot), &lt;code&gt;battleWinner&lt;/code&gt; (a duel&amp;#39;s winning side) and &lt;code&gt;battleCurrency&lt;/code&gt;. &lt;code&gt;GetLastBattleResult&lt;/code&gt;, run with an Execute C# Method sub-action on the game action, hands the same arguments to any other action.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.2.0&quot;&gt;Download v2.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v17.3.0: A tour of the window and an overlay demo</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.3.0"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.3.0</id>
-    <published>2026-11-07T23:51:30Z</published>
-    <updated>2026-11-07T23:51:30Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;p&gt;The overlay plays made-up hands by itself, to place and size it before anyone plays. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;📺 Try the overlay without playing&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Try the demo&lt;/strong&gt; on the Overlay page opens the overlay in your browser and plays made-up hands by itself, without Streamer.bot: a solo hand, a blackjack, a duel challenge with its countdown, a duel and a House table, in the look your saved settings give it. In OBS, &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; at the end of the source&amp;#39;s URL does the same, to place and size the source before anyone plays.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Show a sample round&lt;/strong&gt; plays one made-up hand on the overlay for about ten seconds, the one in OBS included, then clears it again. Nobody&amp;#39;s points move, and while a hand, duel or House table is running the overlay is left to it.&lt;/li&gt;
-&lt;li&gt;The overlay is version 15 and replaces an older copy on the next command, keeping that one as a &lt;code&gt;.bak&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.3.0&quot;&gt;Download v17.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>High-Low Game v2.2.0: A Log page and a tour of the window</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.2.0"/>
-    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.2.0</id>
-    <published>2026-11-07T23:51:21Z</published>
-    <updated>2026-11-07T23:51:21Z</updated>
-    <category term="High-Low-Game" label="High-Low Game"/>
-    <content type="html">&lt;p&gt;The game writes a log file per day and the settings window reads it on its new Log page. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A Log page.&lt;/strong&gt; The game writes a log file per day, &lt;code&gt;Chat Games\Logs\HLG-log-yyyy-MM-dd.txt&lt;/code&gt;: every settled guess with both numbers, the bet and the points that moved, every new number from &lt;code&gt;!highlowsetup&lt;/code&gt; and every refunded redemption. The settings window&amp;#39;s new Log page reads it, with filters by result, platform and day; &lt;em&gt;Write a log file per day&lt;/em&gt; on that page turns it off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.2.0&quot;&gt;Download v2.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>RhymeTime v2.3.0: A Log page and a tour of the window</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.3.0"/>
-    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.3.0</id>
-    <published>2026-11-07T23:51:14Z</published>
-    <updated>2026-11-07T23:51:14Z</updated>
-    <category term="RhymeTime" label="RhymeTime"/>
-    <content type="html">&lt;p&gt;The game and the battle write a log file per day and the settings window reads it on its new Log page. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.0.0, the settings window shows you around on its first open, and problems it finds sit behind one red &lt;strong&gt;i&lt;/strong&gt; in its header.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A Log page.&lt;/strong&gt; The game and the battle write a log file per day, &lt;code&gt;Chat Games\Logs\RT-log-yyyy-MM-dd.txt&lt;/code&gt;: every settled round and battle (win, loss, timeout) with the word, the guess, the bet and the points that moved. The settings window&amp;#39;s new Log page reads it, with filters by result, platform and day; &lt;em&gt;Write a log file per day&lt;/em&gt; on that page turns it off.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A tour of the settings window.&lt;/strong&gt; The first time the window opens, a short tour rings one part after the other (the pages, saving, the customise mode) and says what it does; the &lt;strong&gt;?&lt;/strong&gt; at the top right shows it again.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UIFramework 1.0.0.&lt;/strong&gt; Problems the window finds sit behind a red &lt;strong&gt;i&lt;/strong&gt; in its header instead of on the About or Log page, and &lt;em&gt;How to play&lt;/em&gt;, &lt;em&gt;Log&lt;/em&gt; and &lt;em&gt;About&lt;/em&gt; sit together at the foot of the page list. The settings action offers the new framework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Changed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action is UIFramework&amp;#39;s stub 0.2.0.&lt;/strong&gt; When the game action hangs, the settings window waits 30 seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the window.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework&amp;#39;s current one (1.0.0). It names every type in full, so it no longer depends on the action&amp;#39;s &lt;code&gt;using&lt;/code&gt; lines, and it can declare a tour of the window. Nothing changes in the window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.3.0&quot;&gt;Download v2.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
