@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/classic-chat-gamble/">
-  <meta property="og:title" content="Classic Chat Gamble  •  v25.2.1">
+  <meta property="og:title" content="Classic Chat Gamble  •  v25.2.2">
   <meta property="og:description" content="Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/classic-chat-gamble.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v25.2.1">
+  <meta name="twitter:data1" content="v25.2.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"25.2.1","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!gamble","!gambel","!SetFreeGamble","!EndFreeGamble","!gambleaddict"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"25.2.2","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!gamble","!gambel","!SetFreeGamble","!EndFreeGamble","!gambleaddict"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Classic-Chat-Gamble" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v25.2.1">
+<body data-repo="Classic-Chat-Gamble" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v25.2.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -170,11 +170,13 @@ message can be edited or translated, and a daily log records every gamble and re
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="Open the settings" src="https://github.com/user-attachments/assets/ad03421b-d887-4e36-91bd-d56edefdb9cd"></p><p>In the <code>Actions</code> tab, select <code>[CCG] - Settings</code>, right-click the <code>Test</code> trigger and click <code>Test Trigger</code>. The settings window opens.</p>
 <p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
-all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
-<code>Yes</code> fetches it (about 200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
-Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by
-hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
-released the same dialog comes back once; <code>Cancel</code> skips that version.</p>
+all of these chat games and kept at
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <code>Yes</code> fetches it (about
+200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot and opens the
+window. <code>No</code> opens that folder instead, for when you would rather drop the file in by hand from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released a dialog
+offers it: <code>No</code> skips that version, <code>Cancel</code> asks again at the next open. The dialog also says whether
+Streamer.bot has to be restarted for the new window.</p>
 <p>Hover over an option for a tooltip with the details. <code>Save</code> or <code>Ctrl+S</code> keeps your changes, <code>Save &amp; Exit</code> also closes the window, and <code>Ctrl+1</code> to <code>Ctrl+6</code> switch between the pages. Changes you haven&#39;t saved yet are counted at the bottom. The buttons at the bottom left switch between dark and light, reset everything or only the page in front, and open the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game. The strip at the top tells you whether Free Game Mode is on and how viewers play, and a pill appears there when a new version of the game is out.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Classic-Chat-Gamble/main/Assets/setup-guide/game.png"></p><ul>
@@ -293,7 +295,7 @@ released the same dialog comes back once; <code>Cancel</code> skips that version
 <p>In your Streamer.bot folder under <code>Chat Games\Classic Chat Gamble</code>: <code>configs.json</code> holds the settings and the chat messages, <code>uiframework.layout.json</code> your layout of the window (theme, renamed or hidden pages and fields). The window itself is <code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code> next to Streamer.bot, downloaded on first open.</p>
 <h3>What is UIFramework.dll, and why does the window want to download something?</h3>
 <p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[CCG] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.
-The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way; <code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the log says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
+The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered in a dialog of their own: <code>Yes</code> takes one, <code>No</code> skips it, <code>Cancel</code> asks again at the next open, and the dialog says whether Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding <code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game. If the log says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
 <h3>Can I rearrange the window?</h3>
 <p>Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto a page in the rail to move it there, right-click for <em>Rename</em>, <em>Hide</em> and <em>Move to page</em>; pages can be renamed, reordered, given another icon or hidden the same way. The bar on top picks the accent colour, and <em>Reset layout</em> puts everything back. It all lives in <code>uiframework.layout.json</code>, so an update of the game never undoes it. A hidden field keeps its value.</p>
 <h3>How do I reset all settings to default?</h3>
@@ -446,6 +448,46 @@ The first open asks before fetching anything. <code>Yes</code> downloads the fil
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/Classic-Chat-Gamble/releases">release notes</a>.</p>
+<h2>v25.2.2 - 2026-11-12</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</li>
+<li><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</li>
+<li><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read.</li>
+<li><strong>Free Game Mode leaves the Default bet alone.</strong> <code>!SetFreeGamble</code> no longer sets it to 0 and <code>!EndFreeGamble</code> has
+nothing to bring back, so the commands and the switch on the Game page do the same; a free game never used the
+Default bet anyway. A Default bet an older version set to 0 comes back with the next <code>!EndFreeGamble</code>.</li>
+<li>The settings action is 0.3.1, the host block UIFramework 1.9.0&#39;s. Nothing in your settings changes.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A damaged <code>configs.json</code> no longer costs your settings.</strong> The game played on the <code>.bak</code> beside it, but
+<code>!SetFreeGamble</code>, <code>!EndFreeGamble</code> and <code>!gambleaddict</code> then wrote a file with nothing but their own four values,
+and every other setting was back at its default. They now write the <code>.bak</code>&#39;s settings with their change, and the
+damaged file is kept as <code>configs.json.broken</code>.</li>
+<li><strong>Free Game Mode switched in the window and in chat keeps the Default bet.</strong> Switched on in the window and ended
+with <code>!EndFreeGamble</code>, it brought back a Default bet from long ago; started with <code>!SetFreeGamble</code> and switched off
+in the window, it stayed 0.</li>
+<li><strong><code>!gamble random</code> stays within the Minimum and Maximum bet.</strong> It picked anything up to the balance and was
+refused whenever that was outside them.</li>
+<li><strong>A refused bet does not hold up the next one.</strong> A <code>!gamble</code> whose bet doesn&#39;t work no longer starts the cooldown,
+so the viewer can try again at once.</li>
+<li><strong>The check before saving warns at exactly 100 %, too.</strong> A jackpot and a win chance that add up to 100 % never lose
+either.</li>
+<li><strong>A download GitHub does not deliver is tried three times</strong> before the settings action gives up.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+</ul>
 <h2>v25.2.1 - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>

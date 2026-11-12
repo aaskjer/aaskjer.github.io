@@ -5,9 +5,247 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-12T17:02:55Z</updated>
+  <updated>2026-11-12T20:18:55Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>High-Low Game v2.3.2: Outcome words, renamed commands, and when to restart Streamer.bot</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.2"/>
+    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.2</id>
+    <published>2026-11-12T20:18:55Z</published>
+    <updated>2026-11-12T20:18:55Z</updated>
+    <category term="High-Low-Game" label="High-Low Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The outcome message speaks your language, all of it.&lt;/strong&gt; What &lt;code&gt;{result}&lt;/code&gt;, &lt;code&gt;{emoji}&lt;/code&gt;, &lt;code&gt;{sign}&lt;/code&gt; and
+&lt;code&gt;{pointsSection}&lt;/code&gt; say (&lt;em&gt;correct&lt;/em&gt;, &lt;em&gt;incorrect&lt;/em&gt;, &lt;em&gt;won&lt;/em&gt;, &lt;em&gt;lost&lt;/em&gt;, ...) was fixed English; it is now on the Messages
+page under &lt;strong&gt;Outcome words&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Renamed commands still play.&lt;/strong&gt; The game and the scoreboard know their commands by their ID, so a command
+renamed in Streamer.bot or given an alias works as before.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A tie on the scoreboard goes to fewer guesses.&lt;/strong&gt; With as many wins, the player who needed fewer guesses is
+ahead, and the same wins in the same number of guesses share a place. It used to go by name.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The broadcaster or bot, left out of the scoreboard, gets their own stats&lt;/strong&gt; when they ask for it, instead of
+being told they are &amp;quot;sadly not in the Top 5&amp;quot;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Session stats are kept by user ID, like the all-time ones: two YouTube viewers with the same display name no
+longer share one.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The settings action is 0.3.1, the host block UIFramework 1.9.0&amp;#39;s. Nothing in your settings changes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver is tried three times&lt;/strong&gt; before the settings action gives up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Messages fit YouTube.&lt;/strong&gt; YouTube takes 200 characters per message; the scoreboards, &lt;code&gt;!hlgpersonal&lt;/code&gt; and a long
+outcome went out in one piece of up to 490 and were cut off. Every message is now sent in pieces that fit the
+platform (200 on YouTube, 500 on Twitch and Kick), cut between words.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A blocked viewer gets no reply at all.&lt;/strong&gt; A blocked viewer on cooldown got the cooldown message, and so did a
+Twitch chat command while guesses come from channel points.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A typed bet of &lt;code&gt;1.5&lt;/code&gt; is refused&lt;/strong&gt;, not read as 15 (or &lt;code&gt;2,50&lt;/code&gt; as 250). Thousands separators still work: &lt;code&gt;1.500&lt;/code&gt;
+is 1500.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A game reward redeemed while channel points are off is refunded.&lt;/strong&gt; It used to keep the channel points and play
+nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Two guesses at the same moment both count.&lt;/strong&gt; The draw, the counters and the points change now happen one guess
+at a time; two at once could read the same balance and lose one of the two changes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The log and &lt;code&gt;hlg_last*&lt;/code&gt; no longer show the last player&amp;#39;s points&lt;/strong&gt; for a guess whose balance could not be read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A bot account that cannot be read no longer puts the broadcaster on the scoreboard.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!hlgpersonal&lt;/code&gt; without a user (a test trigger) logs a warning instead of looking up the stats of nobody.&lt;/li&gt;
+&lt;li&gt;How to play names &lt;code&gt;guessSessionGuesses&lt;/code&gt; and &lt;code&gt;guessAlltimeGuesses&lt;/code&gt; among the trigger arguments, and says that the
+number is kept across restarts (it is not drawn anew at every start).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.2&quot;&gt;Download v2.3.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Slot Machine Game v16.4.2: The update question says when to restart Streamer.bot</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2</id>
+    <published>2026-11-12T20:15:18Z</published>
+    <updated>2026-11-12T20:15:18Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read.&lt;/li&gt;
+&lt;li&gt;The settings action is 0.3.1, the host block UIFramework 1.9.0&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver is tried three times&lt;/strong&gt; before the settings action gives up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2&quot;&gt;Download v16.4.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Trivia Game v9.3.2: The update question says when to restart Streamer.bot</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.2"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.2</id>
+    <published>2026-11-12T20:07:31Z</published>
+    <updated>2026-11-12T20:07:31Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read.&lt;/li&gt;
+&lt;li&gt;The settings action is 0.3.1, the host block UIFramework 1.9.0&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The monthly reset never takes wins from the new month.&lt;/strong&gt; It used to run only at the first scoreboard command,
+and wiped every win since the reset day along with last month&amp;#39;s. Now the game applies it too, just before it
+writes a win, so the reset lands at the first win or scoreboard command on or after the day. Switching a reset
+off and on again arms it afresh instead of wiping the board mid-month.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tied viewers share their place&lt;/strong&gt; on the leaderboard (1, 2, 2, 4) and their medal, instead of being ranked in
+no particular order.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Relaxed difficulty lets two characters differ, not three.&lt;/strong&gt; Three on words of three letters let any
+three-letter word through (&amp;#39;lol&amp;#39; counted as &amp;#39;Red&amp;#39;), which the window&amp;#39;s own check warned about.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;First reminder at 0 sends no reminders.&lt;/strong&gt; It used to fall back to half the round.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A topic of a generated source plays only that source.&lt;/strong&gt; With your questions mixed in, &lt;code&gt;!trivia pokemon&lt;/code&gt; was
+sometimes answered with one of yours from any category. The categories of your own questions, which chat is
+offered beside the topics, can now be picked too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Saving the settings restarts the automatic-round timer only when its schedule changed.&lt;/strong&gt; A save of a message
+pushed the next automatic round a whole interval further out.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Set it up in OBS leaves a source of another kind alone.&lt;/strong&gt; An image or text source with the overlay&amp;#39;s name
+used to be &amp;quot;pointed at the overlay&amp;quot;, which did nothing; the window now says so. A browser source of that name
+is checked after it is repointed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Addicted usage message names &lt;code&gt;!TA&lt;/code&gt;.&lt;/strong&gt; It said &lt;code&gt;!addicted&lt;/code&gt;, a command the import does not have. A message
+you saved yourself keeps its text.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver is tried three times&lt;/strong&gt; before the settings action gives up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!trivia&lt;/code&gt; starts rounds on YouTube and Kick again while channel points start them on Twitch.&lt;/strong&gt; With
+&lt;em&gt;Channel points start a round&lt;/em&gt; on, every start without a reward was ignored, whatever the platform, although
+redemptions only exist on Twitch. The round count and the category typed after it work there too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A skip, a force end or a winning blitz answer while the question goes out&lt;/strong&gt; no longer ends in &amp;quot;Failed to fetch
+a trivia question&amp;quot; and a cancelled series for a round that was running.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!trivia custom&lt;/code&gt; plays your questions that have no category.&lt;/strong&gt; They were offered to chat as &lt;em&gt;Custom&lt;/em&gt; but never
+matched it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chat noise is no answer.&lt;/strong&gt; A lone &amp;quot;?&amp;quot;, &amp;quot;:)&amp;quot; or an emoji counted as any option made of symbols and locked the
+viewer out of the round. Text that fits two options alike (&amp;#39;C#.&amp;#39; for C, C# and C++) counts as neither.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A number in an answer is right or wrong, never close.&lt;/strong&gt; &amp;#39;PlayStation 3&amp;#39; counted as &amp;#39;PlayStation 4&amp;#39; when the 3
+was not offered, and &amp;#39;Generation V&amp;#39; as &amp;#39;Generation IV&amp;#39;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generated questions no longer give their answer away.&lt;/strong&gt; PokeAPI asked which Pokémon evolves into Pidgeot
+(Pidgeotto), what type Steelix is (Steel), which is the Ninja Pokémon (Ninjask); IGDB which studio made Sonic
+Adventure (Sonic Team) and on which platform Mario Kart Wii came out (Wii). Nor does an evolution question offer
+the stage before last as a wrong answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IGDB&amp;#39;s &amp;quot;which came out first&amp;quot; question is rated by the difficulty it was drawn for&lt;/strong&gt;, not always medium, so it
+pays like the others. An answer from IGDB that is no game list keeps the stored list instead of costing the round
+its question.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A source that does not answer is left alone for a while.&lt;/strong&gt; After a failure, PokeAPI is not asked for ten
+minutes, IGDB for half an hour and the OdeNet download for a quarter of an hour; every round used to wait out the
+full timeout again. A stalled OdeNet download is now cut off at its limit instead of holding up every generated
+source.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PokeAPI keeps what it learnt.&lt;/strong&gt; Types fetched for a stored Pokémon and a refreshed species count are saved too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One payout that fails no longer stops the round.&lt;/strong&gt; The other winners are paid, and chat, the overlay and the
+triggers get the result.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A very large payout no longer wipes the winner&amp;#39;s points.&lt;/strong&gt; It is capped instead of overflowing to a negative
+number, which set the balance to 0.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Text is decoded once.&lt;/strong&gt; A question about &lt;code&gt;&amp;amp;amp;nbsp;&lt;/code&gt; showed as a blank; your own questions copied out of
+opentdb, with their &lt;code&gt;&amp;amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;amp;amp;&lt;/code&gt;, show as text on the overlay too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Two YouTube viewers with the same name answer separately.&lt;/strong&gt; Answers are told apart by the viewer&amp;#39;s id, not the
+display name. The Addicted list takes a viewer&amp;#39;s id as well as their name.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A long message is never cut inside an emoji.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A blocked viewer who redeems a trivia reward gets the points back&lt;/strong&gt;, as for any redemption that starts nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!trivia ３&lt;/code&gt; is no request for a few billion rounds&lt;/strong&gt;, and a 0 typed into the multi-round reward plays one
+round, not the most.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A round with an answer time of 0 ends by itself.&lt;/strong&gt; It stayed open until someone wrote in chat.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An automatic turn that finds a round under way keeps the chat lines counted&lt;/strong&gt; for the next one, and the
+announcement of a random-time round says when the next one really comes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Two &lt;code&gt;!TA&lt;/code&gt; at once both land, and one that cannot be saved changes nothing.&lt;/strong&gt; The list is changed in
+configs.json under its lock. A configs.json that does not parse is no longer replaced by a file holding the
+Addicted list alone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Saving configs.json is tried again&lt;/strong&gt; when a chat line happens to be reading it at that moment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rounds of an ad break are planned with the time the overlay&amp;#39;s result takes&lt;/strong&gt;, so they no longer run on well past
+the ads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An own question whose wrong answers only repeat the right one&lt;/strong&gt; is not played as a one-option round.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The opentdb check says when opentdb only asked to slow down&lt;/strong&gt;, instead of reporting it down.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The log&amp;#39;s file names and times are the same on every PC&lt;/strong&gt;, whatever calendar Windows uses.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scoreboard:&lt;/strong&gt; a bot or broadcaster that connects after the first command is left off the board; the command
+that triggers the monthly reset shows the new board, not last month&amp;#39;s; the blocked list and &lt;code&gt;!TSS&lt;/code&gt; find viewers
+by login as well as display name; the reset month is the same under every calendar.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Overlay:&lt;/strong&gt; another platform&amp;#39;s result no longer replaces a round that is still running; after a reload a running
+round wins over a finished one; after a lost connection the overlay picks up what happened meanwhile; a wrong
+password no longer makes it sign in again every second.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Help texts and guides&lt;/strong&gt; name the pages, labels and commands as they are now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.2&quot;&gt;Download v9.3.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Classic Chat Gamble v25.2.2: Couple bugfixes and gui related changes</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.2"/>
+    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.2</id>
+    <published>2026-11-12T19:36:38Z</published>
+    <updated>2026-11-12T19:36:38Z</updated>
+    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Free Game Mode leaves the Default bet alone.&lt;/strong&gt; &lt;code&gt;!SetFreeGamble&lt;/code&gt; no longer sets it to 0 and &lt;code&gt;!EndFreeGamble&lt;/code&gt; has
+nothing to bring back, so the commands and the switch on the Game page do the same; a free game never used the
+Default bet anyway. A Default bet an older version set to 0 comes back with the next &lt;code&gt;!EndFreeGamble&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The settings action is 0.3.1, the host block UIFramework 1.9.0&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A damaged &lt;code&gt;configs.json&lt;/code&gt; no longer costs your settings.&lt;/strong&gt; The game played on the &lt;code&gt;.bak&lt;/code&gt; beside it, but
+&lt;code&gt;!SetFreeGamble&lt;/code&gt;, &lt;code&gt;!EndFreeGamble&lt;/code&gt; and &lt;code&gt;!gambleaddict&lt;/code&gt; then wrote a file with nothing but their own four values,
+and every other setting was back at its default. They now write the &lt;code&gt;.bak&lt;/code&gt;&amp;#39;s settings with their change, and the
+damaged file is kept as &lt;code&gt;configs.json.broken&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Free Game Mode switched in the window and in chat keeps the Default bet.&lt;/strong&gt; Switched on in the window and ended
+with &lt;code&gt;!EndFreeGamble&lt;/code&gt;, it brought back a Default bet from long ago; started with &lt;code&gt;!SetFreeGamble&lt;/code&gt; and switched off
+in the window, it stayed 0.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!gamble random&lt;/code&gt; stays within the Minimum and Maximum bet.&lt;/strong&gt; It picked anything up to the balance and was
+refused whenever that was outside them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A refused bet does not hold up the next one.&lt;/strong&gt; A &lt;code&gt;!gamble&lt;/code&gt; whose bet doesn&amp;#39;t work no longer starts the cooldown,
+so the viewer can try again at once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The check before saving warns at exactly 100 %, too.&lt;/strong&gt; A jackpot and a win chance that add up to 100 % never lose
+either.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver is tried three times&lt;/strong&gt; before the settings action gives up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.2&quot;&gt;Download v25.2.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v1.9.0: UIFramework v1.9.0 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0"/>
@@ -799,65 +1037,5 @@ are added or removed; what is left over goes to the widest column.&lt;/li&gt;
 &lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0&quot;&gt;Download v16.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.2.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.0"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.0</id>
-    <published>2026-11-08T09:28:38Z</published>
-    <updated>2026-11-08T09:28:38Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.0&quot;&gt;Download v9.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Classic Chat Gamble v25.2.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.0"/>
-    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.0</id>
-    <published>2026-11-08T09:28:33Z</published>
-    <updated>2026-11-08T09:28:33Z</updated>
-    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.0&quot;&gt;Download v25.2.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>RhymeTime v2.4.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.0"/>
-    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.0</id>
-    <published>2026-11-08T09:28:28Z</published>
-    <updated>2026-11-08T09:28:28Z</updated>
-    <category term="RhymeTime" label="RhymeTime"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.0&quot;&gt;Download v2.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>High-Low Game v2.3.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.0"/>
-    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.0</id>
-    <published>2026-11-08T09:28:23Z</published>
-    <updated>2026-11-08T09:28:23Z</updated>
-    <category term="High-Low-Game" label="High-Low Game"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.0&quot;&gt;Download v2.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

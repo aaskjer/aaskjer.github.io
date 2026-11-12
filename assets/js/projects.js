@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 96,
+      version: 'v1.0.0', stars: 0, downloads: 98,
     },
     {
       repo: 'SuTo',
@@ -299,7 +299,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v25.2.1', stars: 1, downloads: 157,
+      version: 'v25.2.2', stars: 1, downloads: 161,
     },
     {
       repo: 'Trivia-Game',
@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.2.2', stars: 2, downloads: 107,
+      version: 'v9.3.2', stars: 2, downloads: 109,
     },
     {
       repo: 'Slot-Machine-Game',
@@ -336,7 +336,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.4.1', stars: 3, downloads: 68,
+      version: 'v16.4.2', stars: 3, downloads: 70,
     },
     {
       repo: 'Hangman-Game',
@@ -425,7 +425,7 @@ window.SITE = {
       ],
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.3.1', stars: 0, downloads: 8,
+      version: 'v2.3.2', stars: 0, downloads: 9,
     },
   ],
 };

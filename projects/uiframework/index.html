@@ -222,7 +222,7 @@ every page to PNG, <code>-windowshots &lt;folder&gt;</code> the whole window per
 <code>-search &lt;text&gt;</code> the search bar, and <code>-customize</code> opens the customise mode.
 A tag <code>vX.Y.Z</code> with its section in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/CHANGELOG.md">CHANGELOG.md</a> publishes the DLL and updates the <code>latest.json</code> of
 its major line (<code>lib/v1/</code> for 1.x.y, <code>lib/v2/</code> from 2.0.0 on), which the stubs of that line read; only a round version (<code>2.0.0</code>) is published as a stable release, every other one as a
-pre-release. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/PLAN.md">PLAN.md</a> (German) holds what is still open and the plan for the projects that are not games.</p>
+pre-release.</p>
 <pre><code>src/UIFramework          the DLL (.NET Framework 4.8, WPF)
 src/UIFramework.Tests    xUnit
 src/UIFramework.Preview  opens the window without Streamer.bot
@@ -262,6 +262,16 @@ only a round version (2.0.0, 3.0.0) is a stable release; every other one is publ
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
 <h2>[Unreleased]</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update dialog says when Streamer.bot needs a restart (settings action, stub 0.3.1).</strong> A newer UIFramework
+can only be used at once while none is running in this Streamer.bot; a game that loads it at the start (the
+update notice, <code>UiLive</code>) or a window opened before keeps the running one in use. The dialog now says which case
+it is: &quot;Streamer.bot needs no restart&quot;, or &quot;takes effect once Streamer.bot is restarted&quot;, with the version that
+runs until then. After a download that has to wait, a second note says it once more (restart Streamer.bot; no
+hurry, it can wait until after the stream): the window opened as before and only the log told. Nothing changes
+in the DLL; a game gets it with its next release.</li>
+</ul>
 <h2>[1.9.0] - 2026-11-12</h2>
 <p>The Log page&#39;s colours can be declared, and what the audit of 2026-11-08 had left open is done. The window&#39;s
 part works with every game as it is. The settings action&#39;s part (stub 0.3.0) and the builder&#39;s new parts come to
@@ -372,7 +382,7 @@ game carries (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/
 <ul>
 <li>The settings action reads its major line from one word, <code>FrameworkLine</code> in <code>stub/Stub.cs</code>, and a test fails
 while that word and the DLL&#39;s major version disagree. Nothing else is prepared in code: what a major version is
-to take away is listed in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/PLAN.md">PLAN.md</a>.</li>
+to take away is planned outside this repository.</li>
 </ul>
 <h2>[1.8.4] - 2026-11-12</h2>
 <p>The two points the review had left open. The DLL&#39;s part works with every game as it is; the settings action&#39;s
@@ -466,8 +476,7 @@ are two steps, so a failed build cannot hide behind passing tests.</li>
 <li><strong>Docs:</strong> every screenshot with the window around it is new (the search is in the header); README names the
 search, the automation helpers, triggers and methods, and no longer links a deleted file; Schema.md has the
 timer keys on the Automation page, the real shape of the <code>emotes</code> answer, and says that the game action&#39;s Execute
-Code sub-action needs a name for <em>Execute C# Method</em> (so do Getting-Started and the Help page&#39;s note);
-<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/PLAN.md">PLAN.md</a> is of today.</li>
+Code sub-action needs a name for <em>Execute C# Method</em> (so do Getting-Started and the Help page&#39;s note).</li>
 <li><code>hosts/chatgamble</code>, <code>hosts/slotmachine</code> and <code>hosts/rhymetime</code> are what the released games carry and answer.</li>
 <li>The tests build without analyzer warnings.</li>
 </ul>

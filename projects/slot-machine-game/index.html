@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/slot-machine-game/">
-  <meta property="og:title" content="Slot Machine Game  •  v16.4.1">
+  <meta property="og:title" content="Slot Machine Game  •  v16.4.2">
   <meta property="og:description" content="A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/slot-machine-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v16.4.1">
+  <meta name="twitter:data1" content="v16.4.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"16.4.1","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!spin","!slots","!SetFreeSlots","!EndFreeSlots"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"16.4.2","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!spin","!slots","!SetFreeSlots","!EndFreeSlots"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Slot-Machine-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v16.4.1">
+<body data-repo="Slot-Machine-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v16.4.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -144,21 +144,23 @@ that lets you rename, reorder and hide pages and fields.</li>
 <p align="center"><img loading="lazy" alt="Import window" src="https://github.com/user-attachments/assets/cd761fe1-bc20-4d0e-be24-1b00dc4bc529"></p><p>Click <code>Import</code>, then <code>Yes</code> in both popups that follow.</p>
 <h2>Enable the command</h2>
 <p align="center"><img loading="lazy" alt="Enable the command" src="https://github.com/user-attachments/assets/c4d780df-3f55-4215-a485-4b23ff8263be"></p><p>The command <code>[SMG] - Play Slots</code> arrives switched off. In the <code>Commands</code> tab, right-click the group <code>[SMG] Slot Machine Game</code> and click <code>Enable All</code>.</p>
-<p>Viewers play with <code>!slots</code> or <code>!spin</code>, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example <code>Kick Message</code>. <code>!SetFreeSlots</code> and <code>!EndFreeSlots</code> switch Free mode from chat; they come disabled and for Moderators, enable them if you want them.</p>
+<p>Viewers play with <code>!slots</code> or <code>!spin</code>, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example <code>Kick Message</code>. <code>!SetFreeSlots</code> and <code>!EndFreeSlots</code> switch Free mode from chat, for Moderators. They are in the same group, so <code>Enable All</code> switches them on too; disable them again if you don&#39;t want them.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="Open the settings" src="https://github.com/user-attachments/assets/71ddb888-73fb-47bd-81eb-ec314d5d69f0"></p><p>In the <code>Actions</code> tab, select <code>[SMG] - Settings</code>, right-click <code>Test</code> in its trigger list and click <code>Test Trigger</code>. The settings window opens.</p>
 <p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
-all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
-<code>Yes</code> fetches it (about 200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
-Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by
-hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
-released the same dialog comes back once; <code>Cancel</code> skips that version.</p>
+all of these chat games and kept at
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <code>Yes</code> fetches it (about
+200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot and opens the
+window. <code>No</code> opens that folder instead, for when you would rather drop the file in by hand from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released a dialog
+offers it: <code>No</code> skips that version, <code>Cancel</code> asks again at the next open. The dialog also says whether
+Streamer.bot has to be restarted for the new window.</p>
 <p>Hover over an option for a tooltip with the details. <code>Save</code> or <code>Ctrl+S</code> keeps your changes, <code>Save &amp; Exit</code> also closes the window, and <code>Ctrl+1</code> to <code>Ctrl+7</code> jump between the pages. The buttons at the bottom left switch between dark and light, reset everything or only the page in front, and open the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game. When a new version of the game is out, a pill shows up in the header.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/game.png"></p><ul>
-<li><strong>Slots and odds</strong>: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play.</li>
+<li><strong>Slots and odds</strong>: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play. <code>What really comes out</code> works out the odds these settings give.</li>
 <li><strong>Bets and points</strong>: default, minimum and maximum bet, Free mode, and the points variable. Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own.</li>
-<li><strong>Payouts</strong>: what 2, 3, 4 and 5 alike and the jackpot pay (tiers the chosen number of slots can&#39;t land are greyed out), the Subscriber and VIP boosts, and the Addicted cut.</li>
+<li><strong>Payouts</strong>: what 2, 3, 4 and 5 alike and the jackpot pay (tiers the chosen number of slots can&#39;t land are hidden), the Subscriber and VIP boosts, and the Addicted cut.</li>
 <li><strong>Jackpot pool</strong>: lost bets go into the Jackpool, and a jackpot with a big enough bet wins it on top.</li>
 <li><strong>Try a spin</strong>: pick the platform whose emotes spin (a Twitch emote only exists on Twitch), a bet and who spins, then click <code>Spin</code> to see the slots as pictures and exactly what chat would get, with the settings as they stand on the page. Nothing is saved, and nobody&#39;s points change.</li>
 </ul>
@@ -177,7 +179,7 @@ released the same dialog comes back once; <code>Cancel</code> skips that version
 <li>Paste the ID of your reward into <code>Reward ID</code>; the tooltip names a page that lists your rewards with their IDs. Without one, no redemption starts a spin.</li>
 <li>Pick what is bet: <code>Reward cost</code>, <code>Typed amount</code>, <code>Fixed</code> or <code>Free</code>.</li>
 </ol>
-<p>A redemption that doesn&#39;t end in a spin is refunded, as long as the reward doesn&#39;t skip the reward requests queue.</p>
+<p>With <code>Refund redemptions that don&#39;t end in a spin</code> on, as it is by default, a redemption that doesn&#39;t end in a spin is refunded, as long as the reward doesn&#39;t skip the reward requests queue.</p>
 <p>WIP - May not work as intended because it was taken from another game and i&#39;m still not an affiliate so i can&#39;t properly test it. Please report <a href="https://github.com/aaskjer/Slot-Machine-Game/issues">here</a> on issues.</p>
 <h2>Messages</h2>
 <p align="center"><img loading="lazy" alt="Messages page" src="https://raw.githubusercontent.com/aaskjer/Slot-Machine-Game/main/Assets/setup-guide/messages.png"></p><p>Edit any message or translate it into your language. Pick one from the list and click a placeholder to insert it; the chat preview shows the result the way chat will read it. Words about the Jackpool wrapped in <code>{jackpot}…{/jackpot}</code> stay out of chat while the jackpot pool is off. <code>Numbers</code> sets how chat writes numbers, like 12.345 or 12,345.</p>
@@ -210,9 +212,12 @@ one window shared by all of these chat games, so a fix or a new feature there re
 <code>[SMG] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
 <p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it
 against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot
-folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way;
-<code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the log
-says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the
+folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered in a dialog of their
+own: <code>Yes</code> takes one, <code>No</code> skips it, <code>Cancel</code> asks again at the next open, and the dialog says whether
+Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding
+<code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game on settings action 0.3.0 or newer (this one has 0.3.1);
+a game on an older one only reads its own <code>uiframework.layout.json</code>. If the log says <code>UIFramework.dll was not found</code>, open
+the window again and answer <code>Yes</code>, or put the DLL from the
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
 <p><strong>Q: The settings window won&#39;t open or closes right away. What do I do?</strong></p>
 <ul>
@@ -277,7 +282,7 @@ once saved, takes the command&#39;s cooldowns back to 0. Your theme and your lay
 <p><strong>Q: My bet got rejected. Why?</strong></p>
 <p>A bet is refused, with the matching error message, if it isn&#39;t a whole positive number, is more than the balance, or lies below the <strong>Minimum</strong> or above the <strong>Maximum</strong> bet. Set Minimum or Maximum to <code>0</code> to switch that limit off.</p>
 <p><strong>Q: How do I block specific users or groups from playing entirely?</strong></p>
-<p>Add their Streamer.bot user groups under <strong>Blocked groups</strong> on the Access page: type a group name and press Enter. Members can&#39;t play and get no message; a channel point redemption of theirs is refunded. That&#39;s different from the <strong>Addicted</strong> list (see below), whose members still play, with penalties.</p>
+<p>Add their Streamer.bot user groups under <strong>Blocked groups</strong> on the Access page: type a group name and press Enter. Members can&#39;t play and get no message for the chat command; a channel point redemption of theirs is refunded while refunds are on, and chat gets the Refunded message. That&#39;s different from the <strong>Addicted</strong> list (see below), whose members still play, with penalties.</p>
 <hr>
 <h2>💰 Points &amp; Payouts</h2>
 <p><strong>Q: Which points system does the game use?</strong></p>
@@ -302,7 +307,7 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 <hr>
 <h2>🎰 Slots &amp; Emotes</h2>
 <p><strong>Q: What does an emote&#39;s weight actually do?</strong></p>
-<p>Weight works in reverse for how often an emote comes up: low-weight emotes appear often and pay less per match, high-weight ones are rarer and pay more. Only emotes with a weight between <strong>Min weight</strong> and <strong>Max weight</strong> can appear at all, which lets you leave out the cheapest or the most valuable ones.</p>
+<p>Weight works in reverse for how often an emote comes up: low-weight emotes appear often and pay less per match, high-weight ones are rarer and pay more. Only emotes with a weight between <strong>Min weight</strong> and <strong>Max weight</strong> can appear at all, which lets you leave out the cheapest or the most valuable ones. If no emote is within them, all of them play.</p>
 <p><strong>Q: How do I edit the emotes?</strong></p>
 <p>On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, and its weight. <strong>Add row</strong> adds one, <strong>×</strong> takes one out, and <strong>Restore defaults</strong> puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.</p>
 <p><strong>Q: How do I enter a Kick emote?</strong></p>
@@ -395,13 +400,13 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 <hr>
 <h2>🌐 Multi-Platform</h2>
 <p><strong>Q: Which platforms are supported?</strong></p>
-<p>Twitch, YouTube and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example <strong>Kick Message</strong>). The platform is detected from the incoming event, and each platform keeps its own Jackpot Pool, points balances and command cooldowns.</p>
+<p>Twitch, YouTube and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example <strong>Kick Message</strong>). The platform is detected from the incoming event, and each platform keeps its own Jackpot Pool and points balances. The cooldowns are the command&#39;s own in Streamer.bot.</p>
 <p><strong>Q: Does &quot;Send as /me&quot; work on YouTube and Kick?</strong></p>
 <p>No, /me exists on Twitch only. On YouTube and Kick the messages always go out as plain chat, whatever the switch says, and the settings window marks both /me switches <strong>Twitch only</strong>.</p>
 <hr>
 <h2>🔔 Updates</h2>
 <p><strong>Q: How do I know if a new version is out?</strong></p>
-<p>Every time the settings window opens, it asks GitHub&#39;s releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">releases page</a>. A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered <code>No</code> to it.</p>
+<p>Every time the settings window opens, it asks GitHub&#39;s releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">releases page</a>. A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered <code>Cancel</code> to it.</p>
 <hr>
 <h1>Is Slot Machine Game an AI Slop?</h1>
 <p>Partially it is. This script has been developed with input from the streamer.bot community and is supported by AI.
@@ -417,7 +422,68 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
-<h2>[16.4.1] - 2026-11-12</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2">16.4.2</a> - 2026-11-12</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+<li><strong>What really comes out is back on the Game page.</strong> Its button works out the odds of the settings as they stand,
+from 30,000 test spins: jackpot, win and loss as a bar, and what a bet of 100 comes back as. It went missing
+with 16.1.0.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</li>
+<li><strong>No and Cancel swap places in the update question.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> now skips that
+version, and <em>Cancel</em>, the X and Esc ask again at the next open. Up to 16.4.1, <em>No</em> asked again, and <em>Cancel</em> or
+closing the dialog skipped the version for good.</li>
+<li><strong>A skipped version is skipped in every game</strong> on settings action 0.3.0 or newer. It is kept once, in
+<code>UIFramework\loader.json</code> beside Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s
+<code>uiframework.layout.json</code> holds is still read, and it is all a game on an older settings action reads.</li>
+<li><strong>The game action is precompiled on application start</strong>, as 16.4.0 meant it to be: the update notice and the
+custom triggers now come with Streamer.bot&#39;s start instead of with the first spin or the first open of the window.</li>
+<li>The settings action is 0.3.1, the host block UIFramework 1.9.0&#39;s with the fixes below. Nothing in your settings
+changes.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A download GitHub does not deliver is tried three times</strong> before the settings action gives up, also when the
+connection breaks off while the file comes in. Only after the last try does the dialog say the file doesn&#39;t match.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer, and a game action that ran without answering counted as an empty answer, so a save
+went on as checked.</li>
+<li><strong>A UIFramework that needs a newer settings action no longer locks the window.</strong> When another game had installed
+one, the update notice loaded it at Streamer.bot&#39;s start, and since only one UIFramework runs in a Streamer.bot,
+this window then failed on every open. The game now loads the newest one its settings action fits.</li>
+<li><strong>A list where a version belongs no longer breaks every open.</strong> <code>skipVersion</code> in <code>loader.json</code> or the layout
+file, or <code>minHostStub</code> in <code>latest.json</code>, made the window fail; such a value now counts as missing.</li>
+<li><strong>An unreadable <code>UIFramework\loader.json</code> is not written over.</strong> <em>No</em> replaced it with a file holding only the
+skip; now the log says it can&#39;t be read, and the skip goes into this game&#39;s layout file.</li>
+<li><strong>A run that a later one took over ends there.</strong> When the game had hung for a minute and answered after all, the
+first run went on to the update dialog and opened the window a second time.</li>
+<li><strong>Two runs that end together leave the window free.</strong> Neither handed it back, and the next open showed the old
+window without asking the game.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+<li><strong><code>!SetFreeSlots</code> and <code>!EndFreeSlots</code> leave a damaged settings file alone.</strong> They wrote a file with nothing but
+the Free mode switch in its place, and the damaged one over the <code>.bak</code>, so every setting was gone. Now Free mode
+stays as it is and the log says why.</li>
+<li><strong>The check before saving names the Default bet again</strong>: 0, or below the Minimum or above the Maximum, so that a
+spin without an amount is refused. It also names a Fixed bet outside Minimum and Maximum.</li>
+<li><strong>Nobody spins for 0.</strong> A viewer with no points could bet 0 with <code>all</code>, <code>random</code> or a typed 0 while the Minimum
+was 0, and with no bet needed for the Jackpool, win the whole pool. Now they hear that they don&#39;t have enough.</li>
+<li><strong>Free mode spins a &quot;Typed amount&quot; redemption for free.</strong> It was refused and refunded when the viewer had fewer
+points than they typed.</li>
+<li><strong>Points another action credits during a spin are kept.</strong> The spin now settles on the balance as it is when it
+writes, not as it was when it started; the Jackpool is taken and filled one spin at a time.</li>
+<li><strong><code>StartFreeGame</code> and <code>EndFreeGame</code> from an action of your own read the settings again.</strong> They used those of the
+last spin and could take Free mode for on when the window had turned it off since, or answer in the wrong chat.</li>
+<li><strong>The log keeps its time on every Windows.</strong> On a system whose time separator is not a colon (Finnish, Danish,
+Indonesian) the Log page found no time in the lines.</li>
+<li><strong>A message of exactly 500 characters goes out as one</strong> (200 on YouTube); it was cut in two.</li>
+</ul>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1">16.4.1</a> - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>
 <li><strong>The settings action passes over a UIFramework it is too old for.</strong> Every game in a Streamer.bot shares the
@@ -432,7 +498,7 @@ never came. A file damaged since its download is no longer loaded for it.</li>
 <ul>
 <li>The host block is UIFramework 1.8.4&#39;s. Nothing in your settings changes.</li>
 </ul>
-<h2>[16.4.0] - 2026-11-08</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0">16.4.0</a> - 2026-11-08</h2>
 <h3>Added</h3>
 <ul>
 <li><strong>Tells you about updates.</strong> Once per Streamer.bot start, about 20 seconds in, one notice names new releases of
@@ -442,7 +508,7 @@ log. <em>Tell me about updates</em> on the About page turns it off for this game
 application start, so the notice starts with Streamer.bot.</li>
 <li>The host block is UIFramework 1.4.0&#39;s; the settings window offers the newest UIFramework on its next open.</li>
 </ul>
-<h2>[16.3.0] - 2026-11-07</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.3.0">16.3.0</a> - 2026-11-07</h2>
 <h3>Added</h3>
 <ul>
 <li><strong>A tour of the settings window.</strong> The first time the window opens, a short tour rings one part after the other
@@ -463,7 +529,7 @@ window.</li>
 <li>The host block is UIFramework&#39;s current one (1.0.0). It names every type in full, so it no longer depends on the
 action&#39;s <code>using</code> lines, and it can declare a tour of the window. Nothing changes in the window.</li>
 </ul>
-<h2>[16.2.0] - 2026-11-06</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0">16.2.0</a> - 2026-11-06</h2>
 <h3>Added</h3>
 <ul>
 <li><strong>Free mode from chat.</strong> <code>!SetFreeSlots</code> turns Free mode on and <code>!EndFreeSlots</code> turns it off (moderators; two
@@ -487,7 +553,8 @@ older DLL shows the lists without those pictures.</li>
 <li>The host block is UIFramework&#39;s current one (0.9.10); nothing changes in the window. The window itself, with
 UIFramework 0.9.10, puts the weight column at half width and lets the customise mode place fields side by side.</li>
 </ul>
-<h2>[16.1.0] - 2026-11-06</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0">16.1.0</a> - 2026-11-06</h2>
+<p>Not released on its own: it went out with 16.2.0.</p>
 <h3>Added</h3>
 <ul>
 <li><strong>Custom triggers.</strong> Every settled spin fires <code>SMG: Spin Win</code>, <code>SMG: Spin Loss</code> or <code>SMG: Spin Jackpot</code> (Custom &gt;
@@ -511,7 +578,7 @@ cooldowns) beside its settings table and answers the window itself (the test spi
 in chat, the check before saving, the emote pictures&#39; sources). Needs UIFramework 0.9.2 or newer; the stub
 fetches it.</li>
 </ul>
-<h2>[16.0.0] - 2026-11-03</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0">16.0.0</a> - 2026-11-05</h2>
 <p>The settings window moved into <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
 one window shared by all of these chat games. The spin plays exactly as before; what changed is how the settings
 are shown and stored.</p>
@@ -558,7 +625,7 @@ window saves.</li>
 <ul>
 <li>The window&#39;s own WPF code and update check (about 4,500 lines) left the import; the DLL carries them now.</li>
 </ul>
-<h2>[15.0.1] - 2026-10-25</h2>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1">15.0.1</a> - 2026-10-25</h2>
 <p>See the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1">release notes</a>.</p>
 </div>
       </section>

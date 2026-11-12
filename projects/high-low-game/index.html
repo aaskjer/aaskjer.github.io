@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/high-low-game/">
-  <meta property="og:title" content="High-Low Game  •  v2.3.1">
+  <meta property="og:title" content="High-Low Game  •  v2.3.2">
   <meta property="og:description" content="Higher, lower or the same: a quick guessing game for chat, with channel points and scoreboards. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/high-low-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.3.1">
+  <meta name="twitter:data1" content="v2.3.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.3.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!hlgalltime","!hlgsession","!hlgpersonal","!highlowsetup","!high","!low","!equal","!SetFreeHighLow","!EndFreeHighLow"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.3.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!hlgalltime","!hlgsession","!hlgpersonal","!highlowsetup","!high","!low","!equal","!SetFreeHighLow","!EndFreeHighLow"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="High-Low-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.1">
+<body data-repo="High-Low-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -101,8 +101,8 @@
   <a href="https://github.com/aaskjer/High-Low-Game/blob/main/Import-String.md"><b>Import String</b></a>
 </p><hr>
 <h2>📖 Overview</h2>
-<p>High-Low Game is a chat game for Streamer.bot. There is always a number from 1 to 100 waiting, drawn when
-Streamer.bot starts. Viewers guess whether the next one will be higher, lower or the same, and the answer names
+<p>High-Low Game is a chat game for Streamer.bot. There is always a number from 1 to 100 waiting, drawn once and
+kept, also when Streamer.bot restarts. Viewers guess whether the next one will be higher, lower or the same, and the answer names
 both numbers. The new number is what the next guess is measured against.</p>
 <pre><code>!high
 → Hey Nova! Previous: 42, New: 77. Your guess &#39;!high&#39; was correct 🙂 won 1.234 Points. Session: 3 guesses, All-time: 57.
@@ -123,8 +123,8 @@ wins or loses points, with a message and a custom trigger each.</li>
 <li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every won, lost and settled guess with the guess as
 arguments, for a new number and for Free mode, plus <code>GetLastGuessResult</code> for an Execute C# Method.</li>
 <li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
-the window the other chat games share: eight pages, light and dark themes, and every chat message with a live
-preview.</li>
+the window the other chat games share: nine pages, light and dark themes, and every chat message with a live
+preview. Even the words of the outcome message (<em>correct</em>, <em>won</em>, ...) are yours to change.</li>
 </ul>
 <p align="center">
   <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/readme/settings-game.png" alt="The Game page of the settings window" width="49%">
@@ -133,7 +133,7 @@ preview.</li>
 <h2>Credits</h2>
 <ul>
 <li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
-<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a>, tested with 1.0.7</li>
 <li><strong>Works with:</strong> <a href="https://streamup.tips/product/currency-core">Currency Core by StreamUP</a> · <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS by tawmae</a></li>
 <li><strong>Thanks:</strong> YOU ♡</li>
 </ul>
@@ -158,7 +158,7 @@ preview.</li>
 </thead>
 <tbody><tr>
 <td><code>[HLG] - High-Low Game</code></td>
-<td>The game: <code>!high</code>, <code>!low</code>, <code>!equal</code>, <code>!highlowsetup</code> and the channel point rewards</td>
+<td>The game: <code>!high</code>, <code>!low</code>, <code>!equal</code>, <code>!highlowsetup</code>, <code>!SetFreeHighLow</code>, <code>!EndFreeHighLow</code> and the channel point rewards</td>
 </tr>
 <tr>
 <td><code>[HLG] - Scoreboard</code></td>
@@ -169,21 +169,25 @@ preview.</li>
 <td>Opens the settings window from its Test trigger</td>
 </tr>
 </tbody></table>
-<p>Coming from 1.x: import over the old actions. <code>HLG-Settings.json</code> stays where it is and is read as before.</p>
+<p>Coming from 1.x: import over the old actions. <code>HLG-Settings.json</code> stays where it is and is read as before.
+Tested with Streamer.bot 1.0.7.</p>
 <h2>Enable Commands</h2>
-<p>Commands arrive disabled. Open <strong>Commands</strong>, group <code>[HLG] High-Low Game</code>, and enable the seven you play with.
+<p>Commands arrive disabled. Open <strong>Commands</strong>, group <code>[HLG] High-Low Game</code>. There are nine: <code>!high</code>, <code>!low</code>,
+<code>!equal</code>, <code>!highlowsetup</code>, the three scoreboard commands and the two for Free mode. Enable the ones you play with.
 While you are there:</p>
 <ul>
 <li><code>!highlowsetup</code> is limited to the <strong>Moderators</strong> group. It is optional; the game runs without it.</li>
 <li><code>!SetFreeHighLow</code> and <code>!EndFreeHighLow</code> (Moderators too) switch Free mode from chat. Optional as well; enable
 them if you want them.</li>
 <li>Every command listens on Twitch, YouTube and Kick. To leave a platform out, untick its source on the commands.</li>
+<li>A command may be renamed or get aliases; the game knows its commands by their ID.</li>
 </ul>
 <h1>Setup</h1>
 <p>Open <code>[HLG] - .Settings</code>, right-click its <strong>Test</strong> trigger and choose <strong>Test Trigger</strong>.</p>
 <p>The first time, a dialog asks whether to download <code>UIFramework.dll</code> from GitHub (checked against its published
 SHA-256) or to show the folder it belongs in, <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot. Nothing is
-downloaded without your click. When a newer UIFramework comes out, opening the window offers it once.</p>
+downloaded without your click. When a newer UIFramework comes out, opening the window offers it and says whether
+Streamer.bot has to be restarted for it.</p>
 <p>Everything is saved to <code>Chat Games\High-Low Game\HLG-Settings.json</code> in the Streamer.bot folder.</p>
 <h2>Game</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/game.png" alt="Game page"></p>
@@ -196,7 +200,8 @@ win amount. A wrong <code>!high</code> or <code>!low</code> costs nothing.</li>
 <li><strong>Equal chance</strong>: how often an <code>!equal</code> guess draws the same number again. Every other draw is a free pick from
 1 to 100.</li>
 <li><strong>Points variable</strong> and <strong>Points name</strong>: where points are kept and what they are called in chat. With
-<a href="https://streamup.tips/product/currency-core">Currency Core</a> installed, its own settings are used instead.</li>
+<a href="https://streamup.tips/product/currency-core">Currency Core</a> or <a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS</a>
+installed, its own settings are used instead.</li>
 </ul>
 <h2>Channel points</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/channel-points.png" alt="Channel points page"></p>
@@ -243,26 +248,42 @@ or Twitch cannot refund a redemption that does not play.</li>
 </tr>
 </tbody></table>
 <p>For a typed bet the reward needs <strong>Require Viewer to Enter Text</strong>. Viewers can type a number, <code>all</code>, <code>half</code>,
-<code>third</code>, <code>quarter</code>, <code>random</code>, a percentage like <code>25%</code> or a short form like <code>2k</code>. A bet they cannot afford is
-refused. <strong>Minimum bet</strong> and <strong>Maximum bet</strong> apply to typed and fixed bets; 0 turns them off.</p>
+<code>third</code>, <code>quarter</code>, <code>random</code>, a percentage like <code>25%</code> or a short form like <code>2k</code>. A plain number is a whole number of
+points, with or without thousands separators (<code>1500</code>, <code>1.500</code>, <code>1,500</code>); <code>1.5</code> is refused. A bet they cannot afford
+is refused. <strong>Minimum bet</strong> and <strong>Maximum bet</strong> apply to typed and fixed bets; 0 turns them off.</p>
 <p><strong>Refund redemptions that don&#39;t play</strong> gives the channel points back whenever a redemption ends without a
-guess: blocked viewer, cooldown, refused bet or an error. Played redemptions are marked as fulfilled.</p>
+guess: blocked viewer, cooldown, refused bet, an error, or one of the three rewards redeemed while <strong>Guess with
+channel points</strong> is off. Played redemptions are marked as fulfilled.</p>
 <h2>Cooldowns</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/cooldowns.png" alt="Cooldowns page"></p>
-<p>One global and one per-viewer cooldown for every command, in seconds. Saving writes them onto the commands.
-The three guess cooldowns also cover the matching rewards; a redemption that comes in during one is refunded.</p>
+<p>One global and one per-viewer cooldown each for <code>!high</code>, <code>!low</code>, <code>!equal</code> and the three scoreboard commands, in
+seconds. Saving writes them onto the commands. The three guess cooldowns also cover the matching rewards; a
+redemption that comes in during one is refunded. <code>!highlowsetup</code> and the Free mode commands have no cooldown here;
+set one on the command itself if you want it.</p>
 <h2>Access</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/access.png" alt="Access page"></p>
-<p><strong>Blocked users</strong> and everyone in the <strong>Blocked groups</strong> (Streamer.bot&#39;s Settings &gt; Groups) are ignored, with no
-reply in chat. Their redemptions are refunded.</p>
+<p><strong>Blocked users</strong> and everyone in the <strong>Blocked groups</strong> (Streamer.bot&#39;s Settings &gt; Groups) are ignored when they
+guess or run <code>!highlowsetup</code>, with no reply in chat, not even a cooldown message. Their redemptions are refunded.
+The scoreboard commands stay open to them.</p>
 <h2>Scoreboard</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/scoreboard.png" alt="Scoreboard page"></p>
 <p>How many places <code>!hlgsession</code> and <code>!hlgalltime</code> list, and whether the broadcaster and the bot account are left
-out. They still play; they are just not ranked.</p>
+out. They still play; they are just not ranked, and asking for a board shows them their own stats. Most wins come
+first; with as many wins, fewer guesses. The same wins in the same number of guesses share a place.</p>
 <h2>Messages</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/messages.png" alt="Messages page"></p>
 <p>Every chat message with its placeholders and a live preview, plus the sender switches: bot account or
 broadcaster, and <code>/me</code> on Twitch. An empty message is not sent.</p>
+<p>Under <strong>Outcome words</strong> are the words the outcome message is built from: what <code>{result}</code> says after a right and
+a wrong guess, what <code>{emoji}</code> shows, <code>{sign}</code> for won and lost points, and the <strong>Points part</strong> that
+<code>{pointsSection}</code> reads. Translate them along with the message.</p>
+<p>A message longer than the platform takes goes out in pieces, cut between words: 200 characters on YouTube, 500 on
+Twitch and Kick.</p>
+<h2>Log</h2>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/log.png" alt="Log page"></p>
+<p>Every settled guess, every new number from <code>!highlowsetup</code> and every refunded redemption, one file per day in
+<code>Chat Games\Logs\HLG-log-yyyy-MM-dd.txt</code>. Filter by result, platform and day, or search; a row shows its whole line
+below the table. <strong>Write a log file per day</strong> turns the file off.</p>
 <h2>How to play</h2>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/High-Low-Game/main/Assets/setup-guide/how-to-play.png" alt="How to play page"></p>
 <h2>About</h2>
@@ -274,14 +295,18 @@ broadcaster, and <code>/me</code> on Twitch. An empty message is not sent.</p>
         <div class="doc-body"><h1>❓ High-Low Game — FAQ</h1>
 <h2>🛠️ Setup</h2>
 <h3>Do I have to run <code>!highlowsetup</code>?</h3>
-<p>No. A number is drawn for each platform when Streamer.bot starts. <code>!highlowsetup</code> draws a new one and announces
-it in chat, for when you want to show viewers where the game stands.</p>
+<p>No. Each platform has its number from the first start on, and it is kept, also when Streamer.bot restarts.
+<code>!highlowsetup</code> draws a new one and announces it in chat, for when you want to show viewers where the game stands.</p>
 <h3>The settings window does not open.</h3>
 <p>Run the <strong>Test</strong> trigger of <code>[HLG] - .Settings</code> and check the Streamer.bot log. On the first run it asks to
-download <code>UIFramework.dll</code>; if you chose <em>No</em>, put the DLL into the folder it opened (<code>UIFramework\lib\&lt;version&gt;\</code>)
-and run the trigger again. <em>Cancel</em> leaves a warning in the log and nothing else.</p>
+download <code>UIFramework.dll</code>; if you chose <em>No</em>, it opened <code>UIFramework\lib</code>. Put the DLL into a folder named after
+its version there (<code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code>) and run the trigger again. <em>Cancel</em> leaves a warning in the log and nothing else.</p>
 <h3>Nobody can play.</h3>
-<p>The commands are imported disabled. Enable all seven under <strong>Commands</strong>, group <code>[HLG] High-Low Game</code>.</p>
+<p>The commands are imported disabled. Enable them under <strong>Commands</strong>, group <code>[HLG] High-Low Game</code>: nine in all,
+the seven to play and to show the scoreboards, and <code>!SetFreeHighLow</code> / <code>!EndFreeHighLow</code> for moderators.</p>
+<h3>Can I rename a command or give it an alias?</h3>
+<p>Yes. The game knows its commands by their ID, so <code>!high</code> can become <code>!hoch</code>, or get <code>!h</code> beside it, in
+Streamer.bot&#39;s <strong>Commands</strong> and still plays.</p>
 <h3>I came from version 1. Are my settings gone?</h3>
 <p>No. The game reads <code>HLG-Settings.json</code> with the old setting names until the window saves it again. Two things
 are reset: the per-platform &quot;include bot/broadcaster&quot; switches became two switches that leave both out, and the
@@ -289,7 +314,8 @@ platform switches are gone (untick a command&#39;s source instead). Trovo is no 
 <h2>💰 Points</h2>
 <h3>Where do the points come from?</h3>
 <p>From the user variable named under <strong>Points variable</strong> (default <code>points</code>), the same one
-<a href="https://streamup.tips/product/currency-core">Currency Core</a> uses. With Currency Core installed, its settings win.</p>
+<a href="https://streamup.tips/product/currency-core">Currency Core</a> uses. With Currency Core or
+<a href="https://tawmae.xyz/loyalty-points">LOYALTY POINTS</a> installed, its settings win; the Game page shows which one.</p>
 <h3>Can a viewer lose points with <code>!high</code> or <code>!low</code>?</h3>
 <p>Not in chat. Only a wrong <code>!equal</code> costs points, the win amount. A balance never goes below zero.</p>
 <h3>Can I play without points?</h3>
@@ -320,13 +346,81 @@ chat commands.</p>
 <p>Version 1 never recorded wins. Guesses from before still count; wins are counted from version 2 on.</p>
 <h3>What is a session?</h3>
 <p>Everything since Streamer.bot last started. Session stats are not saved; all-time stats are.</p>
+<h3>Two players have the same number of wins. Who is first?</h3>
+<p>The one who needed fewer guesses. The same wins in the same number of guesses share a place.</p>
+<h2>💬 Messages</h2>
+<h3>Can the outcome message be in my language?</h3>
+<p>Yes, all of it. The message itself is on the Messages page, and so are its <strong>Outcome words</strong>: what <code>{result}</code>,
+<code>{emoji}</code>, <code>{sign}</code> and <code>{pointsSection}</code> say (<em>correct</em>, <em>incorrect</em>, <em>won</em>, <em>lost</em>, ...).</p>
+<h3>A long message is cut into two.</h3>
+<p>On purpose: YouTube takes 200 characters per message, Twitch and Kick 500. A longer message goes out in pieces,
+cut between words.</p>
 </div>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
-<p>Releases are in the <a href="https://github.com/aaskjer/High-Low-Game/releases">release notes</a>.
+<p>Releases from 2.1.0 on are in the <a href="https://github.com/aaskjer/High-Low-Game/releases">release notes</a>; 2.0.0 and
+1.x came out before this repository had releases.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.3.2] - 2026-11-12</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+<li><strong>The outcome message speaks your language, all of it.</strong> What <code>{result}</code>, <code>{emoji}</code>, <code>{sign}</code> and
+<code>{pointsSection}</code> say (<em>correct</em>, <em>incorrect</em>, <em>won</em>, <em>lost</em>, ...) was fixed English; it is now on the Messages
+page under <strong>Outcome words</strong>.</li>
+<li><strong>Renamed commands still play.</strong> The game and the scoreboard know their commands by their ID, so a command
+renamed in Streamer.bot or given an alias works as before.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><p><strong>A tie on the scoreboard goes to fewer guesses.</strong> With as many wins, the player who needed fewer guesses is
+ahead, and the same wins in the same number of guesses share a place. It used to go by name.</p>
+</li>
+<li><p><strong>The broadcaster or bot, left out of the scoreboard, gets their own stats</strong> when they ask for it, instead of
+being told they are &quot;sadly not in the Top 5&quot;.</p>
+</li>
+<li><p>Session stats are kept by user ID, like the all-time ones: two YouTube viewers with the same display name no
+longer share one.</p>
+</li>
+<li><p><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</p>
+</li>
+<li><p><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</p>
+</li>
+<li><p><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read.</p>
+</li>
+<li><p>The settings action is 0.3.1, the host block UIFramework 1.9.0&#39;s. Nothing in your settings changes.</p>
+</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A download GitHub does not deliver is tried three times</strong> before the settings action gives up.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+<li><strong>Messages fit YouTube.</strong> YouTube takes 200 characters per message; the scoreboards, <code>!hlgpersonal</code> and a long
+outcome went out in one piece of up to 490 and were cut off. Every message is now sent in pieces that fit the
+platform (200 on YouTube, 500 on Twitch and Kick), cut between words.</li>
+<li><strong>A blocked viewer gets no reply at all.</strong> A blocked viewer on cooldown got the cooldown message, and so did a
+Twitch chat command while guesses come from channel points.</li>
+<li><strong>A typed bet of <code>1.5</code> is refused</strong>, not read as 15 (or <code>2,50</code> as 250). Thousands separators still work: <code>1.500</code>
+is 1500.</li>
+<li><strong>A game reward redeemed while channel points are off is refunded.</strong> It used to keep the channel points and play
+nothing.</li>
+<li><strong>Two guesses at the same moment both count.</strong> The draw, the counters and the points change now happen one guess
+at a time; two at once could read the same balance and lose one of the two changes.</li>
+<li><strong>The log and <code>hlg_last*</code> no longer show the last player&#39;s points</strong> for a guess whose balance could not be read.</li>
+<li><strong>A bot account that cannot be read no longer puts the broadcaster on the scoreboard.</strong></li>
+<li><code>!hlgpersonal</code> without a user (a test trigger) logs a warning instead of looking up the stats of nobody.</li>
+<li>How to play names <code>guessSessionGuesses</code> and <code>guessAlltimeGuesses</code> among the trigger arguments, and says that the
+number is kept across restarts (it is not drawn anew at every start).</li>
+</ul>
 <h2>[2.3.1] - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>
@@ -392,7 +486,7 @@ and <code>HLG: Free Game End</code> fire. An action of your own can do the same 
 </ul>
 <h3>Changed</h3>
 <ul>
-<li>The host block in <code>High-Low Game</code> and <code>High-Low Scoreboard</code> is UIFramework&#39;s current one (0.9.11). Nothing changes in
+<li>The host block in <code>[HLG] - High-Low Game</code> and <code>[HLG] - Scoreboard</code> is UIFramework&#39;s current one (0.9.11). Nothing changes in
 the window; the block can now declare fields that follow a dropdown, a locked layout and masked fields.</li>
 </ul>
 <h2>[2.0.0] - 2026-11-07</h2>

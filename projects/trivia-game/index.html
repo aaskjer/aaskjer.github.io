@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/trivia-game/">
-  <meta property="og:title" content="Trivia Game  •  v9.2.2">
+  <meta property="og:title" content="Trivia Game  •  v9.3.2">
   <meta property="og:description" content="Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/trivia-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v9.2.2">
+  <meta name="twitter:data1" content="v9.3.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"9.3.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"9.3.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!TriviaScoreboard","!TTB","!TriviaScoreboardSearch","!TSS","!TStats","!Trivia","!SkipTrivia","!TA","!TriviaAddict","!ForceEndTrivia","!FCTrivia","!suggest"],"words":[],"timers":1,"sites":["github.com","igdb.com","opentdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.3.1">
+<body data-repo="Trivia-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v9.3.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -101,7 +101,7 @@ on a shorter timer and for a bigger payout. Twitch, YouTube and Kick each play t
 <h2>✨ Highlights</h2>
 <ul>
 <li>📚 <strong>Six question sources.</strong> The Open Trivia Database, Wikidata, German vocabulary from OdeNet, Pokémon from
-PokeAPI, video games from IGDB, or your own list, alone or mixed with opentdb. Viewers can submit
+PokeAPI, video games from IGDB, or your own list, alone or mixed into any of the others. Viewers can submit
 questions with <code>!Suggest</code>.</li>
 <li>🌟 <strong>Difficulty that means something.</strong> Wikidata, PokeAPI and IGDB rank what they know by how well known it
 is, so <em>easy</em> asks about Japan and Pikachu and <em>hard</em> about Nauru and Garbodor.</li>
@@ -153,16 +153,16 @@ affiliated with or endorses Trivia Game.</p>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/004c325b-8673-430d-91b9-72c9a8931663"></p><p>The commands ship disabled. Enable all of them, or the parts that depend on them stay silent.</p>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[TG] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>. That opens the settings window. The first time, it fetches <code>UIFramework.dll</code> from GitHub (the window is <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>&#39;s, shared by every chat game of this family) and keeps it up to date from then on.</p>
-<p>Ten pages sit on the rail down the left side. The pencil at the bottom switches the theme and the language (English or German) and lets you rename, move or hide pages and fields.</p>
+<p>Eleven pages sit on the rail down the left side. The pencil at the bottom switches the theme and the language (English or German) and lets you rename, move or hide pages and fields.</p>
 <p>Twitch, YouTube and Kick all play, always — there is nothing to switch on. Restrict the Streamer.bot commands if you want the game off a platform.</p>
 <h2>Game</h2>
-<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/game.png" alt="Game page"></p><p>The round and what it pays. Difficulty, question type, category, how long answers are accepted and when the countdown speaks up; then blitz rounds, how closely an answer has to match, rounds that start themselves on a timer, the points a win is worth, and the leaderboard with its monthly reset.</p>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/game.png" alt="Game page"></p><p>The round and what it pays. Difficulty, question type, category, how long answers are accepted and when the countdown speaks up; then blitz rounds, how closely an answer has to match, the points a win is worth, and the leaderboard with its monthly reset.</p>
+<h2>Automation</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/automation.png" alt="Automation page"></p><p>Rounds that start without a command. Under <em>Rounds that start themselves</em>: the switch for Streamer.bot&#39;s timed action, how often it fires — a fixed time, or a random one between <strong>Every</strong> and <strong>At most</strong> — how many rounds each turn plays, and whether chat has to have been active, or have written a number of lines, first. A round only goes to a platform you are live on; where that cannot be told, recent chat decides. Under <em>Ad breaks</em>, Twitch only: a round when ads start, a line in chat before them, a bonus for rounds during ads, and rounds only during ads.</p>
 <h2>Questions</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/questions.png" alt="Questions page"></p><p>Your own questions, one row each: the switch that puts it in play, the question, the correct answer, the wrong answers as <code>a | b | c</code>, a category, a difficulty (easy, medium, hard or very hard) and who suggested it from chat. <code>Add row</code> adds one, <code>×</code> takes one out, <code>Restore defaults</code> brings the example questions back. Below the list: which of your own questions may be drawn.</p>
 <h2>Sources</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/sources.png" alt="Sources page"></p><p>Where each round&#39;s question comes from — opentdb, Wikidata, OdeNet, PokeAPI, IGDB or only your own list — and in which language; <code>Check</code> beside them asks the chosen source whether it answers right now. <strong>Mix in my questions</strong> adds your own list to any source, with <strong>Share of mine</strong> setting how often. The IGDB keys only show while IGDB is picked; the Client Secret is shown as dots until you click the eye.</p>
-<h2>Suggestions</h2>
-<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/suggestions.png" alt="Suggestions page"></p><p>Whether viewers may suggest questions with <code>!Suggest</code>, who may, and how a suggestion arrives.</p>
 <p>Wikidata, OdeNet and PokeAPI need nothing from you. OdeNet is German only and downloads its word list (about 4 MB) the first time a round needs it. IGDB needs a key of your own:</p>
 <h3>IGDB</h3>
 <p>IGDB belongs to Twitch and only answers an application registered there.</p>
@@ -172,7 +172,9 @@ affiliated with or endorses Trivia Game.</p>
 <li>Click <code>Manage</code> on the new application. Copy the <strong>Client ID</strong>, then click <code>New Secret</code> and copy the <strong>Client Secret</strong>.</li>
 <li>In the settings window, pick <strong>IGDB</strong> on the <strong>Sources</strong> page, paste both into <strong>Client ID</strong> and <strong>Client Secret</strong>, and click <code>Check</code>. <em>Twitch accepted the Client ID and Client Secret</em> means you are done — save.</li>
 </ol>
-<p>The secret is stored in <code>configs.json</code> on your PC and only ever sent to Twitch, to fetch IGDB&#39;s access token. The field shows it as typed, so keep the window off stream while you paste it.</p>
+<p>The secret is stored in <code>configs.json</code> on your PC and only ever sent to Twitch, to fetch IGDB&#39;s access token. The field shows it as dots unless you click the eye, so keep the eye closed while you are live.</p>
+<h2>Suggestions</h2>
+<p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/suggestions.png" alt="Suggestions page"></p><p>Whether viewers may suggest questions with <code>!Suggest</code>, who may, and how a suggestion arrives.</p>
 <h2>Access</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/access.png" alt="Access page"></p><p>Who gets in and how. A switch picks whether rounds start from <code>!trivia</code> or from a Twitch channel point reward — Twitch only, since no other platform has rewards, and chat everywhere still answers as usual. Below it: who may start and skip, the two cooldowns, and the blocked and addicted lists as name chips.</p>
 <h2>Messages</h2>
@@ -221,8 +223,6 @@ affiliated with or endorses Trivia Game.</p>
 <p><code>--tg-accent</code>, <code>--tg-correct</code>, <code>--tg-blitz</code>, <code>--tg-text</code>, <code>--tg-muted</code>, <code>--tg-card</code>, <code>--tg-scale</code> and <code>--tg-edge</code> (the gap to the edge of the screen) can be set the same way.</p>
 <h2>Log</h2>
 <p align="center"><img loading="lazy" alt="grafik" src="https://raw.githubusercontent.com/aaskjer/Trivia-Game/main/Assets/setup-guide/log.png" alt="Log page"></p><p>Every round, answer and payout, searchable by user, platform or outcome. One file per day, and nothing is deleted automatically.</p>
-<h2>Checks</h2>
-<p><code>tools\check-all.ps1</code> runs everything that can be checked without Streamer.bot; <code>tools\run-window-tests.ps1</code> opens the real settings window through UIFramework&#39;s generic stub over an old-style <code>configs.json</code>.</p>
 </div>
       </section>
       <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
@@ -263,7 +263,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <hr>
 <p><strong>Q: How do I start with Channel Points instead of a chat command?</strong></p>
 <ol>
-<li>On the <strong>Access</strong> page, under <em>How viewers play</em>, pick <strong>Channel points</strong>.</li>
+<li>On the <strong>Access</strong> page, under <em>How viewers play</em>, switch on <strong>Channel points start a round</strong>.</li>
 <li>Paste your <strong>Reward ID (single round)</strong> into the field.</li>
 </ol>
 <p>The current import already carries the <strong>Twitch → Channel Point Reward Redemption</strong> trigger on the <code>Trivia Game</code> action. On an older install that updated only the code, check <strong>Actions → Trivia Game → Triggers</strong> and add it — without that trigger a redemption never reaches the script at all.</p>
@@ -338,7 +338,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 </tr>
 <tr>
 <td><code>!Suggest q | correct | wrong | wrong</code></td>
-<td>Reward, group or mod — see <strong>Questions → Suggestions</strong></td>
+<td>Reward, group or mod — see the <strong>Suggestions</strong> page</td>
 <td>Add a question of the viewer&#39;s own</td>
 </tr>
 </tbody></table>
@@ -375,7 +375,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <ol>
 <li><strong>StreamUP Currency Core</strong> — reads the <code>currency_ProductSettings</code> global.</li>
 <li><strong>tawmae Loyalty Points</strong> — reads the <code>tawmae_Settings_LOYALTY POINTS</code> global.</li>
-<li><strong>Config fallback</strong> — uses <code>VarName</code> / <code>PointsName</code> from <code>configs.json</code>.</li>
+<li><strong>Config fallback</strong> — uses <code>pointsVariable</code> / <code>pointsName</code> from <code>configs.json</code>.</li>
 </ol>
 <p>Running a custom currency under a different variable name? Set <strong>Points variable</strong> and <strong>Shown in chat as</strong> on the <strong>Game</strong> page, under <em>Points</em>.</p>
 <hr>
@@ -427,7 +427,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <hr>
 <h2>🧠 Questions &amp; Categories</h2>
 <p><strong>Q: Where do the trivia questions come from?</strong></p>
-<p>The <strong>Question source</strong> dropdown under <strong>Questions → Sources</strong> decides:</p>
+<p>The <strong>Question source</strong> dropdown on the <strong>Sources</strong> page decides:</p>
 <table>
 <thead>
 <tr>
@@ -447,7 +447,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <td>English or German</td>
 </tr>
 <tr>
-<td><strong>OdeNet (deutsches WordNet)</strong></td>
+<td><strong>OdeNet (German WordNet)</strong></td>
 <td>German vocabulary from <a href="https://github.com/hdaSprachtechnologie/odenet">OdeNet</a>: which word fits a definition, which word means the same</td>
 <td>German</td>
 </tr>
@@ -469,10 +469,10 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 </tbody></table>
 <p><strong>Mix in my questions</strong> beside it draws a share of the rounds from your own list instead, whichever source is picked; <strong>Share of mine</strong> says how many (50 is roughly every other round). A settings file from before 9.0.0 with <em>Mine + opentdb</em> reads as opentdb with your questions mixed in.</p>
 <p><strong>Question language</strong> beside it picks English or German for Wikidata, PokeAPI and IGDB. The <strong>Difficulty</strong> and <strong>Question type</strong> on the Game page apply to every online source; your own questions have filters of their own, kept apart so narrowing one cannot silently empty the other.</p>
-<p>Viewers can contribute questions themselves with <code>!Suggest</code> once you allow it on the <strong>Questions</strong> page, under <em>Suggestions</em>.</p>
+<p>Viewers can contribute questions themselves with <code>!Suggest</code> once you allow it on the <strong>Suggestions</strong> page.</p>
 <hr>
 <p><strong>Q: How do I set up IGDB?</strong></p>
-<p>IGDB belongs to Twitch and needs an application registered in the <a href="https://dev.twitch.tv/console/apps">Twitch developer console</a>: any name, <code>http://localhost</code> as the redirect URL, category <em>Application Integration</em>, client type <em>Confidential</em>. Copy its <strong>Client ID</strong>, create a <strong>Client Secret</strong> with <em>New Secret</em>, and paste both under <strong>Questions → Sources</strong> once IGDB is picked. <strong>Check</strong> asks Twitch whether it accepts them. The <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#igdb">Setup Guide</a> has the steps with more detail.</p>
+<p>IGDB belongs to Twitch and needs an application registered in the <a href="https://dev.twitch.tv/console/apps">Twitch developer console</a>: any name, <code>http://localhost</code> as the redirect URL, category <em>Application Integration</em>, client type <em>Confidential</em>. Copy its <strong>Client ID</strong>, create a <strong>Client Secret</strong> with <em>New Secret</em>, and paste both on the <strong>Sources</strong> page once IGDB is picked. <strong>Check</strong> asks Twitch whether it accepts them. The <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#igdb">Setup Guide</a> has the steps with more detail.</p>
 <hr>
 <p><strong>Q: How are questions built from Wikidata, OdeNet, PokeAPI and IGDB?</strong></p>
 <p>They send facts, not finished questions. The game turns a fact into a question — <em>Which planet does the moon Titan orbit?</em> — and takes the wrong answers from other facts of the same kind, so they are always plausible. As a True/False question the same fact becomes a statement that may or may not be true. Facts whose answer gives itself away (<em>Mexico City</em> for Mexico) or whose name two different things share (<em>San José</em>) are left out.</p>
@@ -488,18 +488,18 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p>Yes. The <strong>Game</strong> page, under <em>Rounds</em>, sets the <strong>Difficulty</strong>, <strong>Question type</strong> and <strong>Category ID</strong> used for every round. Turn on <strong>Let chat pick the category</strong> and viewers may name one themselves — <code>!Trivia history</code>.</p>
 <hr>
 <p><strong>Q: What happens if the API returns no results for my settings?</strong></p>
-<p>Code 1 usually means the batch was simply bigger than the pool your category, difficulty and type leave behind — some opentdb categories hold only a handful of hard questions. The game notices and asks again for a single question, so the round still runs. Only a combination with no questions at all fails, and <strong>Fall back to the other source</strong> can then hand that round to your own list instead — with <strong>Mine + opentdb</strong> as the source. Questions are cached in advance as well, which keeps the API calls down.</p>
+<p>Code 1 usually means the batch was simply bigger than the pool your category, difficulty and type leave behind — some opentdb categories hold only a handful of hard questions. The game notices and asks again for a single question, so the round still runs. Only a combination with no questions at all fails, and <strong>Fall back to the other source</strong> can then hand that round to your own list instead — while <strong>Mix in my questions</strong> is on. Questions are cached in advance as well, which keeps the API calls down.</p>
 <hr>
 <p><strong>Q: How does question caching work?</strong></p>
-<p>For opentdb, each round start tries the local cache first. On a miss the game fetches a batch from the API, serves one question and keeps the rest. <strong>Fetch ahead</strong> under <strong>Questions → Sources</strong> sets how big that batch is. The other online sources keep what they fetch on disk instead — see <em>Does every round call the API?</em> above.</p>
+<p>For opentdb, each round start tries the local cache first. On a miss the game fetches a batch from the API, serves one question and keeps the rest. <strong>Fetch ahead</strong> on the <strong>Sources</strong> page sets how big that batch is. The other online sources keep what they fetch on disk instead — see <em>Does every round call the API?</em> above.</p>
 <hr>
 <h2>🛡️ Cooldowns &amp; Moderation</h2>
 <p><strong>Q: What is the difference between Global Cooldown and User Cooldown?</strong></p>
 <ul>
-<li><strong>Global Cooldown</strong> — applies to <em>all</em> users at once after a round starts.</li>
-<li><strong>User Cooldown</strong> — applies only to the user who triggered the start command.</li>
+<li><strong>Everyone</strong> (the global cooldown) — applies to <em>all</em> users at once after a round starts.</li>
+<li><strong>Per viewer</strong> (the user cooldown) — applies only to the user who triggered the start command.</li>
 </ul>
-<p>Both live on the <strong>Access</strong> page under <em>Cooldown in seconds</em> and are applied to the Streamer.bot command directly. They gate the command that <em>starts</em> a run — the rounds of a back-to-back series run straight through them.</p>
+<p>Both live on the <strong>Access</strong> page under <em>Cooldowns</em> and are applied to the Streamer.bot command directly. They gate the command that <em>starts</em> a run — the rounds of a back-to-back series run straight through them.</p>
 <hr>
 <p><strong>Q: How do I block specific users or groups from playing?</strong></p>
 <p>On the <strong>Access</strong> page, add names under <em>Blocked viewers</em> and Streamer.bot groups under <em>Blocked groups</em>. Both are ignored silently when they send answers.</p>
@@ -515,7 +515,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p>Under <strong>Game → Scoreboard</strong>, switch off <strong>Include the broadcaster</strong> and <strong>Include the bot</strong>. For specific accounts such as other bots, add them under <strong>Blocked from the board</strong> — that list applies whatever those two checkboxes say.</p>
 <hr>
 <p><strong>Q: How does the monthly auto-reset work?</strong></p>
-<p>Switch on <strong>Reset every platform monthly</strong> or the per-platform toggles under <strong>Game → Monthly reset</strong>. Switching one on only arms it: the first wipe lands at the next month boundary, never in the middle of the month you enabled it in. After that, the first leaderboard or stats command on or after the configured <strong>Reset Day</strong> zeroes every user stat for that platform, sends a chat announcement, and records the month in a persisted global so it runs only once. A <strong>Reset Day</strong> the month does not have — 31 in February, say — falls on that month&#39;s last day instead.</p>
+<p>Switch on <strong>Reset every platform monthly</strong> or the per-platform toggles under <strong>Game → Monthly reset</strong>. Switching one on only arms it: the first wipe lands at the next month boundary, never in the middle of the month you enabled it in, and switching it off and on again starts it fresh from the next month. After that, the reset happens at the first win, leaderboard or stats command on or after the <strong>Day</strong> you set, so nothing won from that day on is lost. It zeroes every user stat for that platform, sends a chat announcement, and records the month in a persisted global so it runs only once. A <strong>Day</strong> the month does not have — 31 in February, say — falls on that month&#39;s last day instead.</p>
 <hr>
 <p><strong>Q: Can I view stats for another user?</strong></p>
 <p>Yes. <code>!TSS @Username</code> looks up anyone&#39;s wins, points, blitz wins and blitz points.</p>
@@ -547,7 +547,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p><strong>Q: Can a round start when Twitch runs ads?</strong></p>
 <p>Yes, from v9.3.0, under <strong>Ad breaks</strong> on the Automation page. Viewers cannot see the stream while ads run, but chat works as ever, so that is a good moment for a round.</p>
 <ul>
-<li><strong>Start a round when ads start</strong> plays as many rounds in a row as fit the ad break, within <em>Rounds per command</em>.</li>
+<li><strong>Start a round when ads start</strong> plays as many rounds in a row as fit the ad break, within <strong>Max per command</strong> on the Game page.</li>
 <li><strong>Announce it before the ads</strong> sends one line ahead of the break, 1 to 5 <strong>Minutes before</strong>; the line is on the Messages page.</li>
 <li><strong>Bonus during ads</strong> makes every Twitch round started during an ad break pay that much more.</li>
 <li><strong>Rounds only during ads</strong> lets viewers start a round only while ads run; moderators and the broadcaster always can.</li>
@@ -558,7 +558,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p>Yes, from v9.3.0: add an <strong>Execute C# Method</strong> sub-action to any action, pick the <code>Trivia Game</code> action&#39;s code and the method <code>StartRound</code>. A hotkey, a Stream Deck button, a raid or a channel point reward of your own then starts a round, with no cooldown and no moderator check. Set these arguments before it if you want them: <code>triviaPlatform</code> (<code>twitch</code>, <code>youtube</code>, <code>kick</code> or <code>all</code>), <code>triviaRounds</code> and <code>triviaCategory</code>. Without <code>triviaPlatform</code> the round goes to the chat the event came from, or, when the event came from no chat, to every platform with an account in Streamer.bot. Afterwards <code>triviaStarted</code> says whether a round began and <code>triviaStartedOn</code> where. A round already under way is left alone, and the method then returns false, which stops the rest of your action.</p>
 <hr>
 <p><strong>Q: Which custom triggers are there, and how do I try an action that listens to one?</strong></p>
-<p>From v9.3.0 the Help page of the settings lists them at its end, each with the arguments it carries, followed by the methods for your own actions. <strong>Fire with sample values</strong> under a trigger fires it once with made-up values (a winner called alice, 300 points), so your action runs without a round being played. The game itself does nothing when you press it.</p>
+<p>From v9.3.0 the <strong>How to play</strong> page of the settings lists them at its end, each with the arguments it carries, followed by the methods for your own actions. <strong>Fire with sample values</strong> under a trigger fires it once with made-up values (a winner called alice, 300 points), so your action runs without a round being played. The game itself does nothing when you press it.</p>
 <hr>
 <p><strong>Q: Rounds that start themselves don&#39;t come.</strong></p>
 <p>From v9.2.1 an automatic round only goes to a platform you are live on. Each time the timed action fires, the game asks Twitch (through its API, with the account Streamer.bot is logged in with), YouTube (the broadcasts Streamer.bot monitors) and Kick (its public channel page). While you are offline nothing starts, which is on purpose. If a platform cannot be asked, for example because Twitch turned the login down or kick.com did not answer, chat from the last <strong>Chat within</strong> minutes decides for that platform instead. With <strong>Only when chat has been active</strong> on, a live platform also needs recent chat. Streamer.bot&#39;s debug log says why a platform was skipped.</p>
@@ -573,7 +573,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <p>No. The game keeps its last overlay message in a temporary global per platform (<code>Trivia.Overlay.twitch</code> and so on), and the overlay asks for it whenever it connects, so it picks the running round — or the result still on screen — back up. The look comes back the same way, from the persisted global <code>Trivia.Overlay.look</code> that every save writes.</p>
 <hr>
 <p><strong>Q: The overlay&#39;s leaderboard still shows last month after a reset day. Why?</strong></p>
-<p>The monthly reset runs on the first leaderboard or stats command on or after the reset day, not on the day itself. Until somebody uses one, the stats it would wipe are still there, and the overlay shows them.</p>
+<p>The monthly reset runs at the first win, leaderboard or stats command on or after the reset day, not at midnight. Until one of those comes, last month&#39;s stats are still there, and the overlay shows them.</p>
 <hr>
 <p><strong>Q: Can I change how it looks?</strong></p>
 <p>Yes. The <strong>Look</strong> section of the Overlay page sets where the question sits, its size, the animations and the colours, and <strong>What it shows</strong> turns the platform, the answer count, category and difficulty, countdown, winners and leaderboard on and off. Saving there changes an overlay that is already open in OBS. For anything else, such as the font or the width, use the <code>Custom CSS</code> field of the browser source; it wins over the Overlay page, and the <a href="https://github.com/aaskjer/Trivia-Game/blob/main/Setup-Guide.md#overlay">Setup Guide</a> lists the variables.</p>
@@ -588,7 +588,7 @@ Chat Games/Logs/Trivia-log-YYYY-MM-DD.txt       ← action log, a fresh file per
 <hr>
 <h2>🔔 Update Notifications</h2>
 <p><strong>Q: How do I know when a new version is available?</strong></p>
-<p>Opening the settings window checks GitHub for the latest release tag. If that tag is genuinely newer than the version you are running, an <strong>Update</strong> pill appears in the window header — click it to open the releases page. Nothing blocks the window, so the check never costs you the trip. The window itself (UIFramework.dll) updates on its own; <code>autoUpdate: false</code> in <code>uiframework.layout.json</code> switches that off.</p>
+<p>Opening the settings window checks GitHub for the latest release tag. If that tag is genuinely newer than the version you are running, an <strong>Update</strong> pill appears in the window header — click it to open the releases page. Nothing blocks the window, so the check never costs you the trip. The window itself (UIFramework.dll) updates on its own; <code>&quot;autoUpdate&quot;: false</code> in <code>UIFramework\loader.json</code> under your Streamer.bot folder switches that off for every game.</p>
 <hr>
 <p><strong>Q: Can I check for updates without opening the Settings window?</strong></p>
 <p>No — the check runs as part of the <code>Test</code> trigger that opens the settings window.</p>
@@ -607,6 +607,103 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Earlier releases are in the <a href="https://github.com/aaskjer/Trivia-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[9.3.2] - 2026-11-12</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</li>
+<li><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</li>
+<li><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read.</li>
+<li>The settings action is 0.3.1, the host block UIFramework 1.9.0&#39;s. Nothing in your settings changes.</li>
+<li><strong>The monthly reset never takes wins from the new month.</strong> It used to run only at the first scoreboard command,
+and wiped every win since the reset day along with last month&#39;s. Now the game applies it too, just before it
+writes a win, so the reset lands at the first win or scoreboard command on or after the day. Switching a reset
+off and on again arms it afresh instead of wiping the board mid-month.</li>
+<li><strong>Tied viewers share their place</strong> on the leaderboard (1, 2, 2, 4) and their medal, instead of being ranked in
+no particular order.</li>
+<li><strong>The Relaxed difficulty lets two characters differ, not three.</strong> Three on words of three letters let any
+three-letter word through (&#39;lol&#39; counted as &#39;Red&#39;), which the window&#39;s own check warned about.</li>
+<li><strong>First reminder at 0 sends no reminders.</strong> It used to fall back to half the round.</li>
+<li><strong>A topic of a generated source plays only that source.</strong> With your questions mixed in, <code>!trivia pokemon</code> was
+sometimes answered with one of yours from any category. The categories of your own questions, which chat is
+offered beside the topics, can now be picked too.</li>
+<li><strong>Saving the settings restarts the automatic-round timer only when its schedule changed.</strong> A save of a message
+pushed the next automatic round a whole interval further out.</li>
+<li><strong>Set it up in OBS leaves a source of another kind alone.</strong> An image or text source with the overlay&#39;s name
+used to be &quot;pointed at the overlay&quot;, which did nothing; the window now says so. A browser source of that name
+is checked after it is repointed.</li>
+<li><strong>The Addicted usage message names <code>!TA</code>.</strong> It said <code>!addicted</code>, a command the import does not have. A message
+you saved yourself keeps its text.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A download GitHub does not deliver is tried three times</strong> before the settings action gives up.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+<li><strong><code>!trivia</code> starts rounds on YouTube and Kick again while channel points start them on Twitch.</strong> With
+<em>Channel points start a round</em> on, every start without a reward was ignored, whatever the platform, although
+redemptions only exist on Twitch. The round count and the category typed after it work there too.</li>
+<li><strong>A skip, a force end or a winning blitz answer while the question goes out</strong> no longer ends in &quot;Failed to fetch
+a trivia question&quot; and a cancelled series for a round that was running.</li>
+<li><strong><code>!trivia custom</code> plays your questions that have no category.</strong> They were offered to chat as <em>Custom</em> but never
+matched it.</li>
+<li><strong>Chat noise is no answer.</strong> A lone &quot;?&quot;, &quot;:)&quot; or an emoji counted as any option made of symbols and locked the
+viewer out of the round. Text that fits two options alike (&#39;C#.&#39; for C, C# and C++) counts as neither.</li>
+<li><strong>A number in an answer is right or wrong, never close.</strong> &#39;PlayStation 3&#39; counted as &#39;PlayStation 4&#39; when the 3
+was not offered, and &#39;Generation V&#39; as &#39;Generation IV&#39;.</li>
+<li><strong>Generated questions no longer give their answer away.</strong> PokeAPI asked which Pokémon evolves into Pidgeot
+(Pidgeotto), what type Steelix is (Steel), which is the Ninja Pokémon (Ninjask); IGDB which studio made Sonic
+Adventure (Sonic Team) and on which platform Mario Kart Wii came out (Wii). Nor does an evolution question offer
+the stage before last as a wrong answer.</li>
+<li><strong>IGDB&#39;s &quot;which came out first&quot; question is rated by the difficulty it was drawn for</strong>, not always medium, so it
+pays like the others. An answer from IGDB that is no game list keeps the stored list instead of costing the round
+its question.</li>
+<li><strong>A source that does not answer is left alone for a while.</strong> After a failure, PokeAPI is not asked for ten
+minutes, IGDB for half an hour and the OdeNet download for a quarter of an hour; every round used to wait out the
+full timeout again. A stalled OdeNet download is now cut off at its limit instead of holding up every generated
+source.</li>
+<li><strong>PokeAPI keeps what it learnt.</strong> Types fetched for a stored Pokémon and a refreshed species count are saved too.</li>
+<li><strong>One payout that fails no longer stops the round.</strong> The other winners are paid, and chat, the overlay and the
+triggers get the result.</li>
+<li><strong>A very large payout no longer wipes the winner&#39;s points.</strong> It is capped instead of overflowing to a negative
+number, which set the balance to 0.</li>
+<li><strong>Text is decoded once.</strong> A question about <code>&amp;amp;nbsp;</code> showed as a blank; your own questions copied out of
+opentdb, with their <code>&amp;quot;</code> and <code>&amp;amp;</code>, show as text on the overlay too.</li>
+<li><strong>Two YouTube viewers with the same name answer separately.</strong> Answers are told apart by the viewer&#39;s id, not the
+display name. The Addicted list takes a viewer&#39;s id as well as their name.</li>
+<li><strong>A long message is never cut inside an emoji.</strong></li>
+<li><strong>A blocked viewer who redeems a trivia reward gets the points back</strong>, as for any redemption that starts nothing.</li>
+<li><strong><code>!trivia ３</code> is no request for a few billion rounds</strong>, and a 0 typed into the multi-round reward plays one
+round, not the most.</li>
+<li><strong>A round with an answer time of 0 ends by itself.</strong> It stayed open until someone wrote in chat.</li>
+<li><strong>An automatic turn that finds a round under way keeps the chat lines counted</strong> for the next one, and the
+announcement of a random-time round says when the next one really comes.</li>
+<li><strong>Two <code>!TA</code> at once both land, and one that cannot be saved changes nothing.</strong> The list is changed in
+configs.json under its lock. A configs.json that does not parse is no longer replaced by a file holding the
+Addicted list alone.</li>
+<li><strong>Saving configs.json is tried again</strong> when a chat line happens to be reading it at that moment.</li>
+<li><strong>Rounds of an ad break are planned with the time the overlay&#39;s result takes</strong>, so they no longer run on well past
+the ads.</li>
+<li><strong>An own question whose wrong answers only repeat the right one</strong> is not played as a one-option round.</li>
+<li><strong>The opentdb check says when opentdb only asked to slow down</strong>, instead of reporting it down.</li>
+<li><strong>The log&#39;s file names and times are the same on every PC</strong>, whatever calendar Windows uses.</li>
+<li><strong>Scoreboard:</strong> a bot or broadcaster that connects after the first command is left off the board; the command
+that triggers the monthly reset shows the new board, not last month&#39;s; the blocked list and <code>!TSS</code> find viewers
+by login as well as display name; the reset month is the same under every calendar.</li>
+<li><strong>Overlay:</strong> another platform&#39;s result no longer replaces a round that is still running; after a reload a running
+round wins over a finished one; after a lost connection the overlay picks up what happened meanwhile; a wrong
+password no longer makes it sign in again every second.</li>
+<li><strong>Help texts and guides</strong> name the pages, labels and commands as they are now.</li>
+</ul>
 <h2>[9.3.1] - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>
