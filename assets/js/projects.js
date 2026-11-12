@@ -92,7 +92,7 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
-      version: 'v4.0.1', stars: 6, downloads: 101,
+      version: 'v4.0.1', stars: 6, downloads: 102,
     },
     {
       repo: 'Better-Stream-Announcements',
@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 91,
+      version: 'v1.0.0', stars: 0, downloads: 94,
     },
     {
       repo: 'SuTo',
@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.2.2', stars: 2, downloads: 104,
+      version: 'v9.2.2', stars: 2, downloads: 105,
     },
     {
       repo: 'Slot-Machine-Game',

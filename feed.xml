@@ -5,9 +5,32 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-11T20:15:48Z</updated>
+  <updated>2026-11-12T08:08:23Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v1.8.3: UIFramework v1.8.3 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3</id>
+    <published>2026-11-12T08:08:23Z</published>
+    <updated>2026-11-12T08:08:23Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;Games need no update.&lt;/p&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The accent colour takes a colour&amp;#39;s name:&lt;/strong&gt; &lt;code&gt;red&lt;/code&gt;, &lt;code&gt;blue&lt;/code&gt;, &lt;code&gt;yellow&lt;/code&gt;, any of the colour names WPF knows, in any
+case (&lt;code&gt;grey&lt;/code&gt; spelt either way). The swatch showed such a name already, but the window kept its old accent.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The accent colour takes no alpha.&lt;/strong&gt; &lt;code&gt;#80FF0000&lt;/code&gt; was applied as plain red since 1.8.2; it is not taken any more,
+and the swatch beside the box stays on the accent in use instead of showing a colour the window does not get.
+A game&amp;#39;s own colour settings keep their alpha.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The colour picker opens on a name.&lt;/strong&gt; With &lt;code&gt;red&lt;/code&gt; in the box it started on its default yellow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;latest.json&lt;/code&gt; lives under its major line.&lt;/strong&gt; The release workflow wrote every version to &lt;code&gt;lib/v1/latest.json&lt;/code&gt;,
+so a 2.0.0 would have been offered to every v1 game. It now writes &lt;code&gt;lib/v&amp;lt;major&amp;gt;/latest.json&lt;/code&gt;: 2.0.0 goes to
+&lt;code&gt;lib/v2/&lt;/code&gt;, which only a stub made for that line reads. The DLL&amp;#39;s update check reads the file of its own line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;20d65cb729644e77fd30102c6a5e15fd1ee87bf911d2b0910c926a71eea0ffbc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3&quot;&gt;Download v1.8.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v1.8.2: UIFramework v1.8.2 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.2"/>
@@ -563,28 +586,6 @@ pre-release now. The log&amp;#39;s link goes to that release.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;53294b33e51f80b2c85ee27a56c2027581f143f04a1e00aa2d9a4af5b92c63dc&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.1&quot;&gt;Download v1.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.4.0: UIFramework v1.4.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.0</id>
-    <published>2026-11-08T08:51:08Z</published>
-    <updated>2026-11-08T08:51:08Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The update notice comes as Streamer.bot starts, in every chat, or as a Windows notification.&lt;/strong&gt; A game calls
-&lt;code&gt;UiUpdateNotice.Startup(...)&lt;/code&gt; from its &lt;code&gt;Init()&lt;/code&gt; with &lt;em&gt;Precompile on Application Start&lt;/em&gt; ticked, so the notice no
-longer waits for the first use of a game. About 20 seconds after the first game starts it goes to every chat whose
-broadcaster account is connected (Twitch, YouTube, Kick); while none is, it is a Windows notification. Still once
-per Streamer.bot start, one notice for all games.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Games choose how they tell it:&lt;/strong&gt; &lt;code&gt;UiWindow.Updates(chat, chatText, toast, toastAlways, toastTitle, toastText)&lt;/code&gt;,
-with &lt;code&gt;{updates}&lt;/code&gt; and &lt;code&gt;{count}&lt;/code&gt; in the texts; in the schema &lt;code&gt;window.updates&lt;/code&gt;. Games with the same texts share one
-line. The About page&amp;#39;s switch reads &lt;em&gt;Tell me about updates&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;The host block of 1.3.0, which asked on ordinary runs of the game, is still answered.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;6dff9044d35614a6422883afe439346592721e77221697f9b4859afaf8f78916&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.0&quot;&gt;Download v1.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
   <entry>
     <title>Classic Chat Gamble v25.1.0: A tour of the window, and the window in German</title>
