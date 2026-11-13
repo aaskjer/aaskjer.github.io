@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.3.2', stars: 2, downloads: 111,
+      version: 'v9.3.2', stars: 2, downloads: 112,
     },
     {
       repo: 'Slot-Machine-Game',
