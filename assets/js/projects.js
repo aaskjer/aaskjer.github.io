@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v1.0.0', stars: 0, downloads: 98,
+      version: 'v1.0.0', stars: 0, downloads: 99,
     },
     {
       repo: 'SuTo',
@@ -280,7 +280,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.5.2', stars: 2, downloads: 155,
+      version: 'v17.5.2', stars: 2, downloads: 156,
     },
     {
       repo: 'Classic-Chat-Gamble',
@@ -317,7 +317,7 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v9.3.2', stars: 2, downloads: 109,
+      version: 'v9.3.2', stars: 2, downloads: 110,
     },
     {
       repo: 'Slot-Machine-Game',
