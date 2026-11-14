@@ -111,7 +111,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.1.1', stars: 1, downloads: 71,
+      version: 'v2.1.1', stars: 1, downloads: 73,
     },
     {
       repo: 'SBRefFix',
