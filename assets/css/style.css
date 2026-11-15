@@ -1004,13 +1004,57 @@ main > .section::before {
   line-height: 1.55;
 }
 
-/* in the lists: two lines, the whole text on hover and on the project's page */
+/* in the lists: two lines, the whole text behind "More" and on the project's page */
 .card__text:not(.card__text--full) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
+}
+
+.card__desc {
+  position: relative;
+}
+
+/* over the end of the second line, fading the text out, and above the card-wide link */
+.card__more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 0 0 0 2.5rem;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(to right, transparent, var(--surface) 2.25rem);
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.55;
+  cursor: pointer;
+}
+
+.card__more:hover {
+  text-decoration: underline;
+}
+
+.card__more:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.card__desc.is-open .card__text {
+  display: block;
+  overflow: visible;
+}
+
+/* open: "Less" on a line of its own under the whole text */
+.card__desc.is-open .card__more {
+  position: relative;
+  margin-top: 0.2rem;
+  padding: 0;
+  background: none;
 }
 
 .grid .card {
@@ -1342,8 +1386,16 @@ main > .section::before {
     display: none;
   }
 
-  .grid > .card .card__text {
+  .grid > .card .card__desc {
     grid-area: text;
+  }
+
+  /* the row opens the project's page, which has the whole text */
+  .grid > .card .card__more {
+    display: none;
+  }
+
+  .grid > .card .card__text {
     font-size: 0.88rem;
     line-height: 1.45;
   }
