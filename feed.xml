@@ -5,9 +5,919 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-12T20:18:55Z</updated>
+  <updated>2026-11-15T01:03:44Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Classic Chat Gamble v25.2.3: The window in French and Brazilian Portuguese</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.3"/>
+    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.3</id>
+    <published>2026-11-15T01:03:44Z</published>
+    <updated>2026-11-15T01:03:44Z</updated>
+    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;French and Brazilian Portuguese.&lt;/strong&gt; The settings window comes in English, German, Spanish, French and Brazilian
+Portuguese (the pencil, then &lt;em&gt;Language&lt;/em&gt;). In Spanish, French and Portuguese the buttons, the pages and the
+settings all UIFramework games share are translated; the odds, the game&amp;#39;s own messages and &lt;em&gt;How to play&lt;/em&gt; stay
+English. German still covers every setting and message.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked groups and Addicted groups suggest your Streamer.bot groups.&lt;/strong&gt; Click into the field and the groups not
+added yet show below it; typing narrows the list, Enter or a click adds one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s; the window offers UIFramework 2.0.0 at its
+next open. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A gamble during a save plays on your settings.&lt;/strong&gt; For a moment while the window saves, &lt;code&gt;configs.json&lt;/code&gt; is being
+swapped, and a &lt;code&gt;!gamble&lt;/code&gt; that came then played on the defaults. It now waits for the saved file, or reads the
+&lt;code&gt;.bak&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A Fairness stop picked just before saving is saved.&lt;/strong&gt; Its numbers could arrive while the game checked the
+settings; the window said &lt;em&gt;Saved&lt;/em&gt; and the file kept the old ones. Slid across several stops, the slider now keeps
+the numbers of the stop it ends on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&lt;/strong&gt; shows gambles of the same second newest first, and its folder button opens &lt;code&gt;Chat Games\Logs&lt;/code&gt;
+beside Streamer.bot, also after an export to another folder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A UIFramework too new for this game no longer locks the window.&lt;/strong&gt; The update notice at Streamer.bot&amp;#39;s start
+loaded the newest one installed, also one another game had brought for a newer settings action, and the window
+then failed at every start. It now loads one that fits. The notice no longer names a version you skipped with
+&lt;em&gt;No&lt;/em&gt;, and a damaged &lt;code&gt;UIFramework.dll&lt;/code&gt; is set aside and offered again even while an older one runs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.3&quot;&gt;Download v25.2.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Battleship Game v2.4.2: The update question says when to restart Streamer.bot</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.2"/>
+    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.2</id>
+    <published>2026-11-15T01:03:05Z</published>
+    <updated>2026-11-15T01:03:05Z</updated>
+    <category term="Battleship-Game" label="Battleship Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;aaskjer on Twitch&lt;/strong&gt; is back among the links of the About page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The settings window in French and Brazilian Portuguese&lt;/strong&gt;, beside English, German and Spanish. Battleship&amp;#39;s own
+settings are labelled in English and German; the other three show them in English.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Removed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The About page&amp;#39;s Discord link.&lt;/strong&gt; It led to Blackjack&amp;#39;s post on the Streamer.bot Discord; Battleship has none.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read.&lt;/li&gt;
+&lt;li&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s. Nothing in your settings changes; the window
+offers UIFramework 2.0.0 on its next open.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The &lt;code&gt;!bstats&lt;/code&gt; and &lt;code&gt;!ballstats&lt;/code&gt; replies are on the Messages page&lt;/strong&gt;, under Stats: &lt;em&gt;Stats reply&lt;/em&gt;, &lt;em&gt;Stats reply in
+Free game&lt;/em&gt; and &lt;em&gt;Leaderboard&lt;/em&gt;. The default reply is the old one without the flawless wins, best win and current
+streak, which &lt;code&gt;{flawless}&lt;/code&gt;, &lt;code&gt;{bestWin}&lt;/code&gt; and &lt;code&gt;{streak}&lt;/code&gt; add back.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;In Free game &lt;code&gt;!ballstats&lt;/code&gt; ranks by ships sunk&lt;/strong&gt;, as no points are won or lost, and &lt;code&gt;!bstats&lt;/code&gt; leaves out the net.&lt;/li&gt;
+&lt;li&gt;The overlay is version 18; an older copy is replaced on the next command and kept as a &lt;code&gt;.bak&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver, or one that breaks off, is tried three times&lt;/strong&gt; before the settings action
+gives up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The game hears of every save.&lt;/strong&gt; When the game action was busy at that moment, the save passed it by, and the
+overlay and Click to Fire were not brought up to date. The save is now sent again, three tries in all, and a note
+beside the window says if it still did not arrive. A command in the moment a save is written reads the saved
+settings, not the defaults.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A save keeps what changed while the game checked it.&lt;/strong&gt; A preset pressed meanwhile was lost although the window
+said &amp;quot;Saved&amp;quot;; it now counts as unsaved.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice&lt;/strong&gt; takes an older UIFramework when the newest one is damaged, and no longer names a UIFramework
+release you skipped with &lt;em&gt;No&lt;/em&gt; or while the release check is off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fire with sample values&lt;/strong&gt; on the Help page no longer freezes the window while the game is busy, and says why no
+answer came.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&amp;#39;s folder button&lt;/strong&gt; opens the log folder beside Streamer.bot, also after an export elsewhere, and
+battles logged in the same second show newest first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The settings window opens with a too-new UIFramework installed.&lt;/strong&gt; As Streamer.bot started, the game loaded the
+newest UIFramework, also one that needs a newer settings action, and the window then stayed shut until a
+restart. It now loads the newest one its settings action fits. When another game has such a UIFramework running
+already, opening the settings says so in one message, asking to update this game, instead of advising to delete that UIFramework&amp;#39;s folder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Points go to the right variable with Currency Core or LOYALTY POINTS.&lt;/strong&gt; &lt;em&gt;Try the demo&lt;/em&gt;, &lt;em&gt;Show a sample round&lt;/em&gt;
+and &lt;em&gt;Add to OBS&lt;/em&gt; in the settings window, and a chat command arriving just as a battle paid out, could send later
+refunds and payouts to the box&amp;#39;s variable (&lt;code&gt;points&lt;/code&gt;). LOYALTY POINTS is now found the way the window finds it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switching Free game over a damaged settings file keeps your settings.&lt;/strong&gt; It wrote a file holding nothing but
+Free game, over the good backup; now the switch goes into the backup and the damaged file is kept as &lt;code&gt;.broken&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!fire link&lt;/code&gt; cannot take over somebody else&amp;#39;s clicks.&lt;/strong&gt; In the chat&amp;#39;s battle and in a duel, the one clicker it
+linked could be another viewer, even one of the other side, whose clicks then counted for the wrong person in
+every later battle. A click from a logged-out viewer, whose id changes with every page load, is linked for that
+battle only, and an old one no longer keeps the first click from taking control.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Click to Fire works after a restart before anyone types a command.&lt;/strong&gt; A channel-point reward or a save that came
+first handed the overlay an empty action, and every click failed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The overlay no longer sticks on a finished battle.&lt;/strong&gt; Two writes at once could fail, or an older state land
+after a newer one and leave the next battle&amp;#39;s clicks unanswered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A click uses up a viewer&amp;#39;s vote only when it was sent&lt;/strong&gt;, on a square still open. &lt;strong&gt;The countdown ring keeps
+time&lt;/strong&gt; after a reload or a scene switch. &lt;strong&gt;The Heat file read mid-write&lt;/strong&gt; no longer drops both connections.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A vote cast while the round is being counted is refused&lt;/strong&gt;, instead of drawn on the overlay and then wiped. A
+viewer who voted by click and by &lt;code&gt;!fire&lt;/code&gt; and then linked keeps one ballot.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Two duel commands of one viewer at the same moment&lt;/strong&gt; no longer create points.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;After a moderator&amp;#39;s stop nothing more is charged&lt;/strong&gt;, also when a shot was still being resolved.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A command in the moment before the boards are dealt&lt;/strong&gt; no longer throws an error.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The automatic leaderboard reset runs before a battle is recorded&lt;/strong&gt;, not only when somebody types &lt;code&gt;!bstats&lt;/code&gt;,
+which cleared the new period&amp;#39;s first battles with the old ones. Switching it on, or between weekly and monthly,
+clears nothing. Weeks follow ISO 8601, so New Year&amp;#39;s Day no longer starts a second week. A reset of everything
+no longer restarts the daily winnings cap.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!ballstats&lt;/code&gt; lists a player who broke even&lt;/strong&gt;, and answers in Free game. &lt;strong&gt;&lt;code&gt;!bstats&lt;/code&gt; names the points&lt;/strong&gt; as the
+game does with Currency Core or LOYALTY POINTS. A Stats message left empty sends nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Admiral keeps track of a damaged ship&lt;/strong&gt; when ships touch.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add to OBS&lt;/strong&gt; finds a scene whose name differs only in case, and says so when OBS created nothing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&amp;#39;s Result filter&lt;/strong&gt; offers what the log holds: NO-SHOW and STARTED, not four values never written.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;battleCurrency&lt;/code&gt; in the custom triggers&lt;/strong&gt; is empty for the chat&amp;#39;s battle and for a battle begun in Free game.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The log file&amp;#39;s name&lt;/strong&gt; uses the Gregorian calendar on every system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The import precompiles the game action&lt;/strong&gt; again, so the update notice, the custom triggers and the overlay&amp;#39;s
+cleanup run as Streamer.bot starts. Each action&amp;#39;s comment names the version again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.2&quot;&gt;Download v2.4.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hangman Game v13.3.2: Fixes for stakes, the word list, the board and the overlay</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.2"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.2</id>
+    <published>2026-11-15T01:02:21Z</published>
+    <updated>2026-11-15T01:02:21Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;aaskjer on Twitch&lt;/strong&gt; is back among the links of the About page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The window in French and Brazilian Portuguese,&lt;/strong&gt; beside English, German and Spanish: the pencil at the bottom
+left, then the language. In Spanish, French and Portuguese the window&amp;#39;s own texts and the settings all chat games
+share are translated; Hangman&amp;#39;s own settings and messages stay English there. German has them all.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A reward that starts the round leaves &lt;code&gt;!hm&lt;/code&gt; to moderators on Twitch.&lt;/strong&gt; Viewers start a round there with the
+reward only; moderators and the broadcaster can still use the command, &lt;code&gt;!hm blitz&lt;/code&gt; included.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The reset day of the board is a day of the month.&lt;/strong&gt; &lt;em&gt;Twitch: reset on day&lt;/em&gt; (and YouTube&amp;#39;s, Kick&amp;#39;s) clears that
+board every month on that day, the last day in a shorter month, with or without the monthly switch. It used to
+work only together with the monthly switch, and a 29, 30 or 31 skipped the months that are shorter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The board is checked for its reset every day the game runs,&lt;/strong&gt; with the first round, guess or board command, not
+only with the first board command of a month. The days played before somebody asked for the board are no longer
+cleared with the old month.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A board of more than 10 places comes as a few longer messages,&lt;/strong&gt; so a top 25 no longer sends 26 chat lines in a
+row. Ties are ranked by letters found, then by name.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spaces, hyphens and apostrophes don&amp;#39;t matter in a word guess,&lt;/strong&gt; and the letters are all a word hides: digits and
+signs show from the start, so &lt;em&gt;R2-D2&lt;/em&gt; and &lt;em&gt;Pac-Man&lt;/em&gt; can be solved.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The OBS overlay shows one round at a time.&lt;/strong&gt; With rounds on two platforms at once, the one that started first
+keeps the overlay until it ends. The overlay is version 11 and replaces an older copy on the next round.&lt;/li&gt;
+&lt;li&gt;Imported words get the topic&amp;#39;s name in the import&amp;#39;s language as their category (&lt;em&gt;Länder&lt;/em&gt;, &lt;em&gt;Videospiele&lt;/em&gt;, …).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read. The
+chat notice at Streamer.bot&amp;#39;s start no longer names a version you skipped, nor any while the check is off.&lt;/li&gt;
+&lt;li&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s, and the settings offer UIFramework 2.0.0 the
+next time they open. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A typed stake can no longer be higher than the reward&amp;#39;s cost.&lt;/strong&gt; A viewer could type any number into a reward
+with text input and win it back many times over in your currency; such a redemption is now refused and refunded.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A broken word list is kept before the defaults replace it,&lt;/strong&gt; as &lt;code&gt;Hangman-Wordlist.json.&amp;lt;date-time&amp;gt;.broken&lt;/code&gt;. A
+word list another program held open for a moment was replaced by the 15 default words.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The monthly reset clears every player,&lt;/strong&gt; not only the ones with a win. Played rounds, letters, losses and points
+of everyone else stayed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The board and &lt;code&gt;!hml&lt;/code&gt; know every player,&lt;/strong&gt; not only the ones with a win: a board without winners said &amp;quot;no
+scoreboard data yet&amp;quot;, and a search for someone who never won found nobody. &lt;code&gt;!hml&lt;/code&gt; takes the whole name now, with
+or without the &lt;code&gt;@&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hidden from the board&lt;/strong&gt; hides those names even while &lt;strong&gt;Include the bot&lt;/strong&gt; is on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked users cannot start a round,&lt;/strong&gt; by command or by reward (the reward is refunded).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rounds only during ads&lt;/strong&gt; holds for rewards too; a redemption outside an ad break is refunded.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The IGDB client ID and secret are kept&lt;/strong&gt; after the first import, as the Words page says.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An import that takes longer than the window waits writes nothing.&lt;/strong&gt; It used to write the words after the window
+had given up on it, where the next save could take them away again. The first OdeNet download goes on in the
+background instead of holding the import.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Words the list holds with umlauts&lt;/strong&gt; (&lt;em&gt;Österreich&lt;/em&gt;) are found again by an import that writes them out
+(&lt;em&gt;oesterreich&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A fixed import difficulty above your highest difficulty&lt;/strong&gt; is pointed out in the answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Points are not paid when the balance cannot be read,&lt;/strong&gt; instead of overwriting it with the reward alone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Free mode from chat no longer empties &lt;code&gt;configs.json&lt;/code&gt;&lt;/strong&gt; when the file is being saved by the window at that moment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Several chat lines at once no longer mix up who guessed.&lt;/strong&gt; Runs of the game action take turns.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A time-up counts as a loss&lt;/strong&gt; in the player&amp;#39;s stats, as it already broke their streak.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The hint is not sent with the guess that loses the round,&lt;/strong&gt; and the check before saving warns when blitz rounds
+end before their hint.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A repeated letter, a wrong word tried again or a guess that is no guess&lt;/strong&gt; no longer counts toward the rate limit,
+and the last one no longer makes you a player of the round.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The full figure shows only with the last life gone,&lt;/strong&gt; also with many lives.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The time reminder is sent after an Evil Hangman glitch&lt;/strong&gt; that covered its second, instead of not at all.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The overlay&lt;/strong&gt; stops the glitch when the round ends, does not show a finished round again after a reload of OBS
+or a save of the settings, drops a round left over from before a restart of Streamer.bot, picks up a new fade time
+and figure on save, and keeps long hints and lists inside the source at a scale above 100 %.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An automatic round that could not start&lt;/strong&gt; no longer uses up the chat lines the next one waits for, and a time-up
+found by the timer goes to the platform of its round.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Free mode switched from your own action&lt;/strong&gt; answers on that action&amp;#39;s platform, not the last one the game saw.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The window&amp;#39;s note on the stats&lt;/strong&gt; names the variables the game writes (&lt;code&gt;hm_gamesPlayed&lt;/code&gt;, &lt;code&gt;hm_lettersFound&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver, or one that breaks off, is tried three times&lt;/strong&gt; before the settings action
+gives up.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer, or ran without answering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Another game&amp;#39;s newer UIFramework no longer locks this window.&lt;/strong&gt; The update notice and the live check for
+automatic rounds loaded the newest UIFramework installed, also one that needs a newer settings action than
+Hangman&amp;#39;s, and the settings window then would not open. They take the newest that fits now, and when that one is
+damaged, the next older one instead of none until Streamer.bot restarts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A save reaches the game&lt;/strong&gt; also while the game is still answering another request of the window. It never heard
+of such a save, and the overlay and the timer for automatic rounds went on with the old settings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A chat line that comes in while the window saves plays by your settings,&lt;/strong&gt; not by the defaults. A
+&lt;code&gt;configs.json.bak&lt;/code&gt; left without its &lt;code&gt;configs.json&lt;/code&gt; is read by the window too, as the game reads it, and no longer
+saved over with the defaults.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic rounds switched off stay off&lt;/strong&gt; also when &lt;em&gt;Random time&lt;/em&gt; draws the next wait at the moment you save.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An overlay opacity from before v13,&lt;/strong&gt; such as 0.29, comes over as 29 %, not as 28.999999999999996.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Help page&amp;#39;s &lt;em&gt;Fire with sample values&lt;/em&gt;&lt;/strong&gt; no longer freezes the window while the game is busy, and says why
+the game did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&amp;#39;s folder button opens &lt;code&gt;Chat Games\Logs&lt;/code&gt; beside Streamer.bot,&lt;/strong&gt; also after a file dialog such as
+the window&amp;#39;s Export was used, and lines written in the same second show newest first.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.2&quot;&gt;Download v13.3.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Trivia Game v9.3.3: The window in French and Brazilian Portuguese</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.3"/>
+    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.3</id>
+    <published>2026-11-15T01:00:25Z</published>
+    <updated>2026-11-15T01:00:25Z</updated>
+    <category term="Trivia-Game" label="Trivia Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The window in French and Brazilian Portuguese.&lt;/strong&gt; The pencil now offers English, German, Spanish, French and
+Brazilian Portuguese. The window&amp;#39;s own texts and the settings every chat game shares come in all five; Trivia&amp;#39;s
+own settings, help and messages are English, or German in the German window.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The group fields suggest your Streamer.bot groups.&lt;/strong&gt; &lt;em&gt;Blocked groups&lt;/em&gt; and &lt;em&gt;Addicted groups&lt;/em&gt; on the Access page
+and &lt;em&gt;Allowed groups&lt;/em&gt; on the Suggestions page list the groups you have not added yet, narrowed by what you type.
+Up and Down pick one, Enter adds it; a name typed in full still works.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s, which the settings fetch by themselves. Nothing
+in your settings changes. The rest of what 2.0.0 brings to the window is in
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/CHANGELOG.md&quot;&gt;its changelog&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Every save reaches the game.&lt;/strong&gt; When the game was still busy with another request from the window, it never
+heard of the save, and the overlay and the automatic rounds went on with the old settings. The save is now passed
+on up to three times, and if it still does not arrive, a note beside the window says so.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What the Difficulty slider fills in during a save is kept.&lt;/strong&gt; Numbers that came in while the settings were being
+checked were shown as saved but never written. They now count as unsaved, and &lt;em&gt;Save &amp;amp; Exit&lt;/em&gt; asks before it closes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fire with sample values on the How to play page no longer freezes the window&lt;/strong&gt; while the game is busy, and
+says why when the game did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Log page:&lt;/strong&gt; the folder button opens the log folder beside Streamer.bot, also after an export to another folder,
+and lines written in the same second show newest first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Another game&amp;#39;s newer UIFramework no longer locks this window.&lt;/strong&gt; The update notice and the live check loaded
+the newest UIFramework.dll installed, also one a later game had fetched for a newer settings action, and after
+every start of Streamer.bot the window then failed to open. They now load the newest one this game fits. The
+update notice also leaves out a version you skipped, or any while the update check is off.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.3&quot;&gt;Download v9.3.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Slot Machine Game v16.4.3: The settings window in French and Brazilian Portuguese</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.3"/>
+    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.3</id>
+    <published>2026-11-15T00:59:38Z</published>
+    <updated>2026-11-15T00:59:38Z</updated>
+    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings window speaks French and Brazilian Portuguese too,&lt;/strong&gt; beside English, German and Spanish: its
+pages, buttons and dialogs and the settings this game shares with the other chat games. The settings only the
+slot machine has stay in English, or German.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocked groups and Addicted groups suggest your Streamer.bot groups.&lt;/strong&gt; Click into the field and a list shows
+the groups not added yet, narrowed as you type.&lt;/li&gt;
+&lt;li&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s. The window is offered UIFramework 2.0.0 from
+now on; a game on an older settings action stays on 1.9.0. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The emote pictures no longer hold the window still.&lt;/strong&gt; The window asked the game for them on its own thread and
+froze for up to five seconds when the game was busy. Each picture now shows once it has come.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The question after the check before saving belongs to the window.&lt;/strong&gt; Switched to another window meanwhile, the
+settings window could be clicked and closed with the question still open, and didn&amp;#39;t open again until it was
+answered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&amp;#39;s folder button opens &lt;code&gt;Chat Games\Logs&lt;/code&gt; beside Streamer.bot,&lt;/strong&gt; also after an export or import
+in the window. Spins logged in the same second show newest first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice at Streamer.bot&amp;#39;s start&lt;/strong&gt; takes the next older UIFramework when the newest is damaged, and
+no longer names a UIFramework release you skipped.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A UIFramework another game loaded for a newer settings action no longer stops this window,&lt;/strong&gt; and a damaged
+download is set aside and offered again also while an older UIFramework runs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.3&quot;&gt;Download v16.4.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>RhymeTime v2.4.2: The update question says when to restart Streamer.bot</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.2"/>
+    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.2</id>
+    <published>2026-11-15T00:57:56Z</published>
+    <updated>2026-11-15T00:57:56Z</updated>
+    <category term="RhymeTime" label="RhymeTime"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;aaskjer on Twitch&lt;/strong&gt; is back among the links of the About page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The window in French and Brazilian Portuguese.&lt;/strong&gt; Beside English, German and Spanish, the window&amp;#39;s language
+(the pencil, then &lt;em&gt;Language&lt;/em&gt;) now offers French and Brazilian Portuguese. Buttons, dialogs, pages and the
+settings these chat games share follow the language you pick; RhymeTime&amp;#39;s own settings and messages read in
+English, or in German.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A line to finish no longer loses a round to ordinary chat.&lt;/strong&gt; Every message from the player used to count as a
+failed attempt, so three lines of talk ended the round. A message counts now when its last word ends like the
+last word of one of your answers, the same two letters a word needs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;One listed rhyme gives a longer ending.&lt;/strong&gt; Half of the word, but never less than three letters: &lt;code&gt;DOVE&lt;/code&gt; on its
+own accepts anything ending in &lt;code&gt;OVE&lt;/code&gt; instead of in &lt;code&gt;VE&lt;/code&gt;, which used to let &lt;code&gt;HAVE&lt;/code&gt;, &lt;code&gt;GIVE&lt;/code&gt; and &lt;code&gt;MOVE&lt;/code&gt; win.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The attempt limit of a running round is the one it started with.&lt;/strong&gt; Changing it in the settings mid-round takes
+effect with the next round, so the dots on the overlay and the limit always agree.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The update question says when Streamer.bot needs a restart.&lt;/strong&gt; A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Closing the update question means &amp;quot;not now&amp;quot;.&lt;/strong&gt; &lt;em&gt;Yes&lt;/em&gt; takes the new UIFramework, &lt;em&gt;No&lt;/em&gt; skips that version, and
+&lt;em&gt;Cancel&lt;/em&gt;, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A skipped version is skipped in every game.&lt;/strong&gt; It is kept once, in &lt;code&gt;UIFramework\loader.json&lt;/code&gt; beside
+Streamer.bot, and so is &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;. What a game&amp;#39;s &lt;code&gt;uiframework.layout.json&lt;/code&gt; holds is still read.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s, and the next open of the window offers
+UIFramework 2.0.0. Nothing in your settings changes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A rhyme with a &lt;code&gt;!&lt;/code&gt; behind it counts.&lt;/strong&gt; Punctuation and symbols are dropped from a guess, on both sides of
+every comparison: &lt;code&gt;dream!&lt;/code&gt;, &lt;code&gt;(Dream.)&lt;/code&gt; and &lt;code&gt;dream :)&lt;/code&gt; all answer &lt;code&gt;DREAM&lt;/code&gt;. They used to miss the word and not
+even count as an attempt, so the chatter saw nothing happen at all.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A line to finish is compared word by word.&lt;/strong&gt; Double spaces in what was typed, and an apostrophe or a comma in
+the answer you wrote into the word bank, used to make the right answer unreachable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A free round needs no points.&lt;/strong&gt; A chatter whose points variable does not exist yet was turned away with
+nothing in chat to say why, even when nothing was at stake. A free round no longer asks for a balance at all,
+and a chatter who has never earned any counts as 0 in a game with stakes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A balance that cannot be read is left alone.&lt;/strong&gt; Winning, losing, a battle&amp;#39;s stake and its refund worked from 0
+when Streamer.bot could not hand over the current balance, which wrote that 0 back and wiped what the chatter
+had. Nothing is written now, and the log says what was not paid.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A round pays out to the chatter it belongs to.&lt;/strong&gt; Every chat line is handled on a thread of its own in one
+shared instance, so a round that was settling could take its name, its id or its settings from whatever line
+arrived meanwhile. A round and a battle now carry their player, platform and settings with them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The block list holds in a battle.&lt;/strong&gt; Somebody who may not play could still type the winning rhyme and be paid
+the prize.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A battle that times out reports the stake going back.&lt;/strong&gt; &lt;code&gt;battlePreviousPoints&lt;/code&gt;, &lt;code&gt;battleNewPoints&lt;/code&gt; and the log
+line showed zeroes for the moderator who got their stake returned.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The dictionary check is no longer switched off by TLS.&lt;/strong&gt; Where something pinned Streamer.bot to an older TLS,
+the lookup at wordotron.com failed and every guess with the right ending passed unchecked.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The word bank is written beside the file and swapped in&lt;/strong&gt;, the replaced file kept as &lt;code&gt;.bak&lt;/code&gt;, so a write cut
+short cannot leave half a word bank behind.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Seconds to answer and how long the result shows keep the window&amp;#39;s limits&lt;/strong&gt; when the file was edited by hand;
+a hand-written number used to be able to stop a round from starting at all.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The overlay stops waiting for an answer that never comes&lt;/strong&gt; (five seconds), so a dropped reply no longer
+leaves it without the round it should pick up after a reload.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A message whose platform cannot be told is not played.&lt;/strong&gt; It used to leave a round nothing could answer and a
+state under a name no overlay asks for.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A download GitHub does not deliver is tried three times&lt;/strong&gt; before the settings action gives up, also one that
+breaks off halfway.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No answer from the game shows as no answer.&lt;/strong&gt; A Try button said &amp;quot;done&amp;quot; and a table showed as empty when the
+game action did not answer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Saving leaves no moment without settings.&lt;/strong&gt; A round that started while the window swapped the new
+&lt;code&gt;RT-settings.json&lt;/code&gt; in was played on the defaults; the game now waits for the file. With only
+&lt;code&gt;RT-settings.json.bak&lt;/code&gt; left, the window reads it as the game does, where it showed the defaults and its first
+save wrote them over your settings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reset all keeps the word bank rows you have not saved yet.&lt;/strong&gt; The word banks are not reset, as the question
+says, but rows typed and not saved were thrown away without a word.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The questions after the check before saving stay with the window.&lt;/strong&gt; When you went to another window while
+the game checked, &lt;em&gt;Check your settings&lt;/em&gt; belonged to none: the settings window could be closed under it and not
+opened again until it was answered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&amp;#39;s folder button opens &lt;code&gt;Chat Games\Logs&lt;/code&gt; beside Streamer.bot&lt;/strong&gt;, also after the window&amp;#39;s Export or
+Import, which used to make it create an empty folder elsewhere. Rounds settled in the same second show newest
+first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice names only a UIFramework the window would offer.&lt;/strong&gt; A version skipped with &lt;em&gt;No&lt;/em&gt;, or any
+while &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt;, was named in chat at every start.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A UIFramework another game installed for a newer settings action is left alone.&lt;/strong&gt; This game&amp;#39;s update notice
+loaded it as Streamer.bot started, and the settings window then would not open; the notice now loads the newest
+one that fits. A damaged &lt;code&gt;UIFramework.dll&lt;/code&gt; is passed over and set aside, so its version is offered again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.2&quot;&gt;Download v2.4.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>High-Low Game v2.3.3: The settings window in French and Brazilian Portuguese</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.3"/>
+    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.3</id>
+    <published>2026-11-15T00:57:53Z</published>
+    <updated>2026-11-15T00:57:53Z</updated>
+    <category term="High-Low-Game" label="High-Low Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings window in French and Brazilian Portuguese,&lt;/strong&gt; beside English, German and Spanish: pick it in the
+window&amp;#39;s language list. No native speaker has read the two yet; a wording that reads wrong can be reported with
+&lt;em&gt;Fix a translation&lt;/em&gt; on &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/issues/new/choose&quot;&gt;UIFramework&amp;#39;s issues&lt;/a&gt;.
+Your chat messages stay as you wrote them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;UIFramework 2.0.0.&lt;/strong&gt; The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s, and opening the window
+offers UIFramework 2.0.0. Nothing in your settings changes.&lt;/li&gt;
+&lt;li&gt;The window&amp;#39;s English, German and Spanish texts read plainer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The game reads your settings also while the window saves them.&lt;/strong&gt; For a moment during a save there is no
+settings file, and a guess at that moment went by the defaults. When only &lt;code&gt;HLG-Settings.json.bak&lt;/code&gt; is left, the
+game and the window both read that.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A UIFramework another game installed for a newer settings action no longer locks this game&amp;#39;s window.&lt;/strong&gt; The
+update notice at Streamer.bot&amp;#39;s start takes the newest UIFramework that fits, and passes over a damaged one to the
+next older.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice no longer names a UIFramework release you skipped,&lt;/strong&gt; or any while the release check is off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A download that breaks off is tried again,&lt;/strong&gt; and a damaged &lt;code&gt;UIFramework\loader.json&lt;/code&gt; is no longer written over
+when you skip a version.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Log page&amp;#39;s folder button opens the log folder beside Streamer.bot.&lt;/strong&gt; After an export to the Desktop it
+opened an empty folder there. Lines written in the same second show newest first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode moves the fields of the Cooldowns page.&lt;/strong&gt; &lt;em&gt;Move up&lt;/em&gt; and &lt;em&gt;Move down&lt;/em&gt; went past the sender
+switches there, and nothing moved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.3&quot;&gt;Download v2.3.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Blackjack Game v17.5.4: Points that stay where they belong</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.4"/>
+    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.4</id>
+    <published>2026-11-15T00:57:51Z</published>
+    <updated>2026-11-15T00:57:51Z</updated>
+    <category term="Blackjack-Game" label="Blackjack Game"/>
+    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings window in French and Brazilian Portuguese.&lt;/strong&gt; Its language picker offers English, German, Spanish,
+French and Brazilian Portuguese. The window&amp;#39;s own texts and the settings every chat game shares come in all five,
+the game&amp;#39;s own settings in English and German.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The settings action is 0.3.2, the host block UIFramework 2.0.0&amp;#39;s. The window offers UIFramework 2.0.0 on its next
+open. Nothing in your settings changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;p&gt;Points that were lost or made up:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;quit&lt;/code&gt; and the timeout after a split hand back only what is still open.&lt;/strong&gt; Both used to return every hand&amp;#39;s
+stake, the ones already settled included: a busted first hand came back in full, a won one was paid twice.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The payout cut takes from the winnings only.&lt;/strong&gt; It took its share of the whole return, stake included, so at
+50% a win only gave the stake back and above that a win was a loss. The House table did the same; duels were
+right.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switching Free Game mid-hand no longer moves points.&lt;/strong&gt; A hand, a duel and a challenge keep the mode they started
+in: a duel played for points pays out after &lt;code&gt;!SetFreeBlackjack&lt;/code&gt;, a challenge&amp;#39;s stake comes back after it, and a
+free hand quit after &lt;code&gt;!EndFreeBlackjack&lt;/code&gt; returns nothing it never took. Closing Streamer.bot hands back what was
+taken the same way.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Closing Streamer.bot while a House table takes seats returns the seats&amp;#39; bets.&lt;/strong&gt; They used to be lost.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;!SetFreeBlackjack&lt;/code&gt; leaves a settings file it cannot read alone.&lt;/strong&gt; It used to write the switch alone over it,
+resetting every other setting and pushing the last good save out of the &lt;code&gt;.bak&lt;/code&gt;. It now says so in the log, and
+saving once in the window repairs the file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A payout landing while &lt;code&gt;!blackjack&lt;/code&gt; deals is kept.&lt;/strong&gt; The balance is read again just before the stake is taken.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;quit&lt;/code&gt; is for everyone.&lt;/strong&gt; The import gave the command to moderators only.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Duel raises check the raiser too.&lt;/strong&gt; Points spent elsewhere after asking to double or split could be staked
+without being there; the same goes for sudden death.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A hand that cannot be dealt returns its stake.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The rules:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Without a peek the dealer&amp;#39;s blackjack counts.&lt;/strong&gt; A natural against an Ace or a ten waits for the dealer&amp;#39;s second
+card and pushes on a dealer blackjack; a 21 from more cards loses to one instead of going to a tie-break. In House
+Mode the European table does the same.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Insurance is always settled.&lt;/strong&gt; Without a peek a hand that ended in a bust or a 5-card Charlie kept the insurance
+stake without a word; it is now paid or lost on the dealer&amp;#39;s second card. Once the dealer has peeked it is no longer
+offered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Split hands that tie are settled last.&lt;/strong&gt; A tie-break&amp;#39;s extra dealer cards changed what the other hands were
+compared with.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A split A+10 in a duel is 21, not blackjack.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Surrender keeps the odd point for the house&lt;/strong&gt;: a bet of 1 no longer surrenders for free.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;1,5k&lt;/code&gt; is 1,500 and &lt;code&gt;0,5k&lt;/code&gt; is 500 (the comma read as a thousands separator: 15,000). &lt;code&gt;1,500&lt;/code&gt; stays 1,500.&lt;/li&gt;
+&lt;li&gt;Free Game lets a viewer without points play, &lt;code&gt;!blackjack all&lt;/code&gt; included.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accepting a duel checks the House table and your own challenge&lt;/strong&gt;, and a challenged player cannot take a seat
+meanwhile. A second duel used to overwrite the first, which then could not be played. Accepting your own challenge
+is refused too.&lt;/li&gt;
+&lt;li&gt;The games-per-hour limit follows &lt;em&gt;Duels count toward Games per hour&lt;/em&gt; for both players.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Stats and triggers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A push counts its stake as returned.&lt;/strong&gt; &lt;code&gt;netProfit&lt;/code&gt; dropped by the stake on every push.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A split round counts once&lt;/strong&gt; in &lt;code&gt;gamesPlayed&lt;/code&gt;, and &lt;code&gt;!stats&lt;/code&gt; gives the win rate over hands: it could pass 100%.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Free Game records no amounts&lt;/strong&gt;, losses included; a free duel moves no duel points.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A House surrender counts as a lost hand&lt;/strong&gt;, and House insurance and quit fire &lt;em&gt;BJG: Hand Settled&lt;/em&gt; and &lt;em&gt;BJG: House
+Hand Settled&lt;/em&gt; like everything else.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bjg_userName&lt;/code&gt; is no longer overwritten with the name of whoever settled the table.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The weekly reset follows ISO weeks&lt;/strong&gt;: around New Year it fired up to three times in eight days.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The rest:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The cooldown replies cannot break&lt;/strong&gt;: a &lt;code&gt;{user}&lt;/code&gt; or a brace in them made them fail silently. &lt;code&gt;{user}&lt;/code&gt; now works
+there too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The overlay clears a finished hand.&lt;/strong&gt; The next hand&amp;#39;s cards deal in again, a refreshed source no longer replays
+an old result, and a House table picking its rules waits behind a running hand instead of an empty table.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The demo explains how to place it in OBS&lt;/strong&gt;: untick Local file and use the overlay&amp;#39;s &lt;code&gt;file:///&lt;/code&gt; address with
+&lt;code&gt;?demo=1&lt;/code&gt;; &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; did nothing.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Create the browser source in OBS&lt;/em&gt; and &lt;em&gt;Reset the leaderboard now&lt;/em&gt; use the values in the window, saved or not, and
+the OBS setup writes the overlay into the folder it points the source at.&lt;/li&gt;
+&lt;li&gt;The shoe keeps its size after a rare emergency reshuffle; settings that could not be read are logged; the shared
+tables are read under the lock.&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;Resplit&lt;/em&gt; help no longer says split Aces can be split again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The settings window:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The cooldown replies&amp;#39; &lt;em&gt;Bot account&lt;/em&gt; and &lt;em&gt;Send as /me&lt;/em&gt; have their switches&lt;/strong&gt;, on the Messages page. The window
+showed none for them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A hand dealt while you save reads the saved settings.&lt;/strong&gt; For the moment the window swapped the new file in, the
+game read the defaults.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Fire with sample values&lt;/em&gt; on the Help page no longer freezes the window while the game answers something else.&lt;/li&gt;
+&lt;li&gt;The Log page&amp;#39;s folder button opens &lt;code&gt;Chat Games\Logs&lt;/code&gt; beside Streamer.bot, and lines written in the same second
+show newest first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A UIFramework installed for a newer game no longer locks this window.&lt;/strong&gt; The update notice at Streamer.bot&amp;#39;s
+start loads only a UIFramework this settings action fits and passes over a damaged one, and the settings action
+leaves a running one alone that needs a newer settings action. A download that breaks off midway is tried again
+too.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.4&quot;&gt;Download v17.5.4&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v2.0.0: UIFramework v2.0.0</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.0.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.0.0</id>
+    <published>2026-11-15T00:50:14Z</published>
+    <updated>2026-11-15T00:50:14Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;The window comes in French and Brazilian Portuguese, a path field opens Windows&amp;#39; file dialog, and a group field
+suggests Streamer.bot&amp;#39;s groups. 2.0.0 starts the v2 line: its &lt;code&gt;latest.json&lt;/code&gt; is &lt;code&gt;lib/v2/latest.json&lt;/code&gt;, which settings
+action 0.3.2 reads. A project gets 2.0.0 offered once it ships stub 0.3.2 and its host block; one on an older stub
+reads &lt;code&gt;lib/v1/latest.json&lt;/code&gt;, stays on 1.9.0 and uses 2.0.0 only when another project has installed it. Nothing was
+removed: the window still works with every settings action from stub 0.1.0 on (&lt;code&gt;MinHostStub&lt;/code&gt; stays 0.1.0).&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;French and Brazilian Portuguese.&lt;/strong&gt; &lt;code&gt;fr.json&lt;/code&gt; and &lt;code&gt;pt-BR.json&lt;/code&gt; carry every page, key, placeholder, text and
+window text, translated from the revised English and read a second time; no native speaker has read them yet. The
+language picker takes the width of its longest name now, at least the 110 px it had and at most 220, so &amp;quot;Português
+(Brasil)&amp;quot; is no longer cut off. A test holds every language file the DLL carries to English&amp;#39;s entries and
+placeholders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;quot;Fix a translation&amp;quot;, an issue form for the window&amp;#39;s texts in any language.&lt;/strong&gt; It asks for the language, what the
+window says now and what it should say. It links the new section &lt;em&gt;Proofreading a language&lt;/em&gt; in
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md#proofreading-a-language&quot;&gt;docs/Conventions.md&lt;/a&gt;, which shows how to try a wording first in a
+&lt;code&gt;UIFramework\lang\&amp;lt;code&amp;gt;.json&lt;/code&gt; beside Streamer.bot.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A &lt;code&gt;path&lt;/code&gt; field has a button for Windows&amp;#39; file or folder dialog.&lt;/strong&gt; &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt; promised &amp;quot;a
+folder/file dialog&amp;quot;, but the field was a text box with a button that only opened the folder in Explorer. The new
+button opens a file dialog when the value or the default names a file (it has an extension, or a file of that name
+exists), otherwise a folder dialog. The dialog starts where the value points, or where the default points while
+the value is empty; a relative value counts from the Streamer.bot folder. A file the action has not written yet
+can be chosen. A choice is written as a full path, also under the Streamer.bot folder: a project may read a
+relative value from a folder of its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A &lt;code&gt;grouplist&lt;/code&gt; field suggests Streamer.bot&amp;#39;s groups (stub 0.3.2).&lt;/strong&gt; docs/Schema.md promised &amp;quot;chips with
+Streamer.bot&amp;#39;s groups suggested&amp;quot;; the field had the hint &amp;quot;Add a Streamer.bot group&amp;quot; and took what was typed. The
+first time a group field gets the cursor, the window asks the settings action for the groups, once. The action
+reads them with &lt;code&gt;CPH.GetGroups()&lt;/code&gt; on Streamer.bot&amp;#39;s thread, and the window stays usable meanwhile. A list under
+the box then shows the groups not added yet, narrowed by what is typed: Up and Down pick one, Enter or a click
+adds it, Esc closes the list. Enter without a picked group adds what was typed, as before. The list comes with the
+DLL, the groups with stub 0.3.2; with an older settings action, and in the preview, the field works as it did.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A request that takes long on purpose says it is still at work: &lt;code&gt;UiHost.StillWorking()&lt;/code&gt; (host block, stub
+0.3.2).&lt;/strong&gt; The project calls it while such a request runs (a Try button that imports a word list), and the settings
+action waits 30 seconds from then for the answer. It gave every request 30 seconds from its start and then dropped
+the answer while the work went on; Hangman stopped its import at 28 seconds for that. Without the call, a request
+still gets 30 seconds. A request from a window opened again meanwhile waits for one that says it still works
+instead of starting beside it after 35 seconds, and a request that hung before it no longer takes its
+&lt;code&gt;StillWorking()&lt;/code&gt; away when it ends. See &lt;em&gt;The game&amp;#39;s side&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The update dialog says when Streamer.bot needs a restart (stub 0.3.1).&lt;/strong&gt; A newer UIFramework can be used at once
+only while none runs in this Streamer.bot; a project that loads it at the start (the update notice, &lt;code&gt;UiLive&lt;/code&gt;) or a
+window opened before keeps the running one in use. The dialog now says which case it is: &amp;quot;Streamer.bot needs no
+restart&amp;quot;, or &amp;quot;takes effect once Streamer.bot is restarted&amp;quot; with the version that runs until then. After a download
+that has to wait, a second note says it once more (restart Streamer.bot; no hurry, it can wait until after the
+stream). Before, the window opened as usual and only the log told. Nothing changes in the DLL; a project gets it
+when it ships stub 0.3.1 or later.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A language code means its language in any case, and across a region.&lt;/strong&gt; The layout file&amp;#39;s &lt;code&gt;language&lt;/code&gt;, a project&amp;#39;s
+fixed language (&lt;code&gt;InLanguage&lt;/code&gt;), the codes of its &lt;code&gt;Lang&lt;/code&gt; and the names of the files in &lt;code&gt;UIFramework\lang&lt;/code&gt; were
+matched letter for letter. &lt;code&gt;&amp;quot;language&amp;quot;: &amp;quot;DE&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;de-AT&amp;quot;&lt;/code&gt; opened the window in English, and a project&amp;#39;s
+&lt;code&gt;Lang(&amp;quot;pt-br&amp;quot;, …)&lt;/code&gt; beside the DLL&amp;#39;s &lt;code&gt;pt-BR&lt;/code&gt;, or a &lt;code&gt;pt-br.json&lt;/code&gt; beside Streamer.bot, added a second Portuguese to
+the picker whose words never reached the framework&amp;#39;s. Now a code matches a language in any case. A regional code
+falls back to its language (&lt;code&gt;de-AT&lt;/code&gt; is German), a language to its only regional file (&lt;code&gt;pt&lt;/code&gt; is &lt;code&gt;pt-BR&lt;/code&gt;), and
+anything else to English. The picker, the layout file and the update notice keep the language file&amp;#39;s spelling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An &lt;code&gt;en.json&lt;/code&gt; in &lt;code&gt;UIFramework\lang&lt;/code&gt; corrects English.&lt;/strong&gt; A file there was laid over every language the DLL carries
+except English, which always came from the DLL, so a proofreader&amp;#39;s corrections to English never showed. It is now
+read when the window opens, as &lt;code&gt;de.json&lt;/code&gt; there is. Without such a file, English is the DLL&amp;#39;s own, loaded once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The window&amp;#39;s texts in English, German and Spanish are read again.&lt;/strong&gt; Stiff wording is plainer now, and a text
+that meant whatever the window belongs to, rather than a game, says &amp;quot;extension&amp;quot;. Three said what the window does
+not do and are corrected: the accent colour holds for this extension&amp;#39;s window only, &lt;em&gt;Reset layout&lt;/em&gt; also takes the
+help under the fields back into the tooltips, and a newer version shows as a red label at the top of the window,
+not on the About page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Help page comes by itself&lt;/strong&gt; when the window declares help sections, custom triggers or methods and does not
+name &lt;code&gt;help&lt;/code&gt; among its pages, as Messages and About already did. The triggers with their Fire buttons and the
+method list had no page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The red &amp;quot;i&amp;quot; names a log declared without its page, and a range slider whose whole default meets a fraction.&lt;/strong&gt; A
+window with &lt;code&gt;Log(folder, files)&lt;/code&gt; that does not name &lt;code&gt;log&lt;/code&gt; had no Log page and no switch for the log, without a
+word. A range slider&amp;#39;s default decides what it holds (&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;), so &lt;code&gt;S(&amp;quot;x&amp;quot;, 1, kind: &amp;quot;slider&amp;quot;, min: 0, max: 2, step: 0.5)&lt;/code&gt; is a slider of whole numbers on a 0.5 grid: it saves 0.5 as 0 and 1.5 as 2,
+the same as the place next to each, and nothing said so. The rule stays; the check names a slider whose default is
+a whole number while its step, minimum or maximum has a fraction, and says to write the default as &lt;code&gt;1.0&lt;/code&gt; for a
+slider of decimals.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An action&amp;#39;s &lt;code&gt;status&lt;/code&gt; reaches the footer also when the action has a &lt;code&gt;panel&lt;/code&gt;.&lt;/strong&gt; With a panel, and so with every
+&lt;code&gt;auto&lt;/code&gt; action, the status went nowhere, or into the panel only while the panel was empty, and the documented
+answer with &lt;code&gt;lines&lt;/code&gt;, &lt;code&gt;bar&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt; and &lt;code&gt;status&lt;/code&gt; could not be shown whole. The footer now shows the status beside
+the panel.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An &lt;code&gt;emote&lt;/code&gt; field with &lt;code&gt;platform: youtube&lt;/code&gt; shows its picture,&lt;/strong&gt; as a list&amp;#39;s emote column does: YouTube&amp;#39;s own
+emojis (&lt;code&gt;:name:&lt;/code&gt;) from the table inside the DLL. The single field had no picture at all.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The docs are read again,&lt;/strong&gt; README and docs/ alike, as the code now is and for any project: plainer wording,
+&amp;quot;project&amp;quot; or &amp;quot;extension&amp;quot; where any user of the framework is meant, &amp;quot;game&amp;quot; only where a game is. Corrected where
+text and code disagreed: field help as a tooltip, units in the label, &lt;code&gt;step&lt;/code&gt; only for sliders, a percent compared
+as stored, &lt;code&gt;path&lt;/code&gt; and &lt;code&gt;grouplist&lt;/code&gt; as they now work, the accent colour per extension, &lt;code&gt;Lock()&lt;/code&gt;, the Log page&amp;#39;s
+order, what keeps a 2.x DLL from a 1.x settings action, the troubleshooting rows. README&amp;#39;s tree and tool list
+follow the repository. The demo&amp;#39;s README counts the settings it declares as they are and names the tick on
+&lt;em&gt;Precompile on Application Start&lt;/em&gt; that the update notice needs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The demo and the mirrors in &lt;code&gt;hosts/&lt;/code&gt; carry the host block of stub 0.3.2,&lt;/strong&gt; and the demo&amp;#39;s import is built again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CI runs once per commit and checks what is made from the sources.&lt;/strong&gt; It ran on every push to every branch, and a
+branch with a pull request had each check run twice; it now runs on pushes to &lt;code&gt;main&lt;/code&gt; and on pull requests. Beside
+the build, the tests and &lt;code&gt;docs/Conventions.md&lt;/code&gt;, it checks that the demo and the eight games&amp;#39; copies in &lt;code&gt;hosts/&lt;/code&gt;
+carry the template&amp;#39;s host block and that the demo&amp;#39;s import carries the demo and the stub.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The release workflow runs CI&amp;#39;s checks as well.&lt;/strong&gt; It does not wait for CI, and 1.6.0 was published while CI
+failed on its &lt;code&gt;docs/Conventions.md&lt;/code&gt;. A tag is released only when the conventions doc, the demo&amp;#39;s host block and
+the demo&amp;#39;s import pass there too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Leftovers are gone.&lt;/strong&gt; The seven facades in &lt;code&gt;hosts/&lt;/code&gt; (six games&amp;#39; &lt;code&gt;SettingsFacade.cs&lt;/code&gt; and Blackjack&amp;#39;s
+&lt;code&gt;StatsFacade.cs&lt;/code&gt;) were copies of the games&amp;#39; settings classes from the port to the generic stub; nothing read them,
+and they had drifted from the games. Three empty &lt;code&gt;.gitkeep&lt;/code&gt; files are gone with them, and
+&lt;code&gt;tools/spec-to-window.ps1&lt;/code&gt; leaves too: no project has had a &lt;code&gt;spec.json&lt;/code&gt; of its own since 1.9.0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;p&gt;In the DLL, for every project with the next UIFramework release:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A save keeps what changed while the project checked it.&lt;/strong&gt; A save waits for the project&amp;#39;s &lt;code&gt;validate&lt;/code&gt;. An answer
+that came in meanwhile (a preset button&amp;#39;s or an &lt;code&gt;ask&lt;/code&gt; field&amp;#39;s &lt;code&gt;set&lt;/code&gt;) or a timer put its values into the fields
+after the save had taken its copy, and the window said &amp;quot;Saved&amp;quot; with no unsaved change while the file held the old
+values: closing asked nothing, and the values were gone. They now count as unsaved, the status line says how many,
+&lt;em&gt;Save &amp;amp; Exit&lt;/em&gt; asks before it closes, and the next save writes them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The questions after the project&amp;#39;s check belong to the window.&lt;/strong&gt; When the project took its time and the user went
+to another window meanwhile, &lt;em&gt;Not checked&lt;/em&gt; and &lt;em&gt;Check your settings&lt;/em&gt; (and the notes after a save or an import that
+failed) had no owner. The settings window took clicks again with the save still open, its X closed it while the
+question stayed up, and the settings could not be opened again until that question was answered. The questions are
+now modal to the settings window.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reset all keeps the unsaved rows of a list in a file of its own.&lt;/strong&gt; Such a list is not reset, as the question
+says, but rows typed into it and not yet saved were replaced by the file&amp;#39;s without a word, and the status said &amp;quot;No
+unsaved changes&amp;quot;. They stay in the list now, still unsaved, as &lt;em&gt;Reset page&lt;/em&gt; leaves them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The red &amp;quot;i&amp;quot; speaks of an unreadable list file in the window&amp;#39;s language.&lt;/strong&gt; The line was English in every window.
+It now names the list and its file, followed by the list&amp;#39;s own tooltip (&lt;code&gt;list.unreadable&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A settings file gone beside its &lt;code&gt;.bak&lt;/code&gt; is shown from the &lt;code&gt;.bak&lt;/code&gt;, as the project reads it.&lt;/strong&gt; When the settings
+file was missing and its &lt;code&gt;.bak&lt;/code&gt; lay beside it (a swap that was cut off, or a file deleted by hand), the project&amp;#39;s
+&lt;code&gt;UiSettings.Load&lt;/code&gt; ran on the &lt;code&gt;.bak&lt;/code&gt;, but the window showed the defaults, and its first save, an import or &lt;em&gt;Reset
+all&lt;/em&gt; wrote them over what the project was using. The window now reads the &lt;code&gt;.bak&lt;/code&gt; too and says so in the log and in
+a line under the red &amp;quot;i&amp;quot;; its next save writes the settings file from the values it shows. A file that was never
+saved still gives the defaults on both sides.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A &lt;code&gt;null&lt;/code&gt; in the settings file stands for the setting&amp;#39;s default, in the window as in the project.&lt;/strong&gt; The host
+block&amp;#39;s &lt;code&gt;UiSettings&lt;/code&gt; reads past a &lt;code&gt;null&lt;/code&gt; to an old key, then to the default. The window took the &lt;code&gt;null&lt;/code&gt; as the
+value and showed 0, an empty box or a switch that is off, none of which the project went by, and dropped an old
+key&amp;#39;s value beside it. It now reads the default (or the old key&amp;#39;s value) as the host block does, and the next save
+writes that in place of the &lt;code&gt;null&lt;/code&gt;. An import that names a setting with &lt;code&gt;null&lt;/code&gt; brings nothing for it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An old key&amp;#39;s factor leaves no float noise in the settings file.&lt;/strong&gt; An old fraction moved to a percent with its
+factor of 100, such as 0.29, was written as &lt;code&gt;28.999999999999996&lt;/code&gt; while the box showed 29 (Hangman&amp;#39;s overlay
+opacity, whose default is a decimal). The moved value is now rounded to ten decimals, as a number box saves it.
+The host block rounds it the same way (below).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An import takes a slider&amp;#39;s value through the slider.&lt;/strong&gt; It wrote whatever the file named for a slider: a number
+beyond its range, text where its number belongs, a stop it does not have. The window then showed the slider at its
+end and called the value corrected, while the project read the file&amp;#39;s value until the next save. A number is now
+pulled into the range (to a whole number on a whole-number slider); text or a stop the slider lacks is not taken,
+and the dialog says why, as for a dropdown. If the import names the value the slider already holds, one none of
+its stops offers, that value stays.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An import trims a token, a path, a colour and an emote as a save does.&lt;/strong&gt; A token with a line break after it in
+the imported file was written with it and stayed so until the field was changed. A plain text field still keeps
+the spaces at either end, as typed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A click on the stop a slider sits on chooses it.&lt;/strong&gt; A slider over stops that holds a value none of them offers
+names that value beside its label and sits on its first stop. A click on that stop&amp;#39;s caption or on the thumb chose
+the stop without the window noticing: the count of unsaved changes stayed the same, a condition on the slider did
+not follow, and a field with &lt;code&gt;ask&lt;/code&gt; did not ask the project. It now counts as one change.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A slider over decimal stops finds the stop of its number.&lt;/strong&gt; A default or a &lt;code&gt;set&lt;/code&gt; of 2.0 arrives as 2, and with
+the stops &lt;code&gt;&amp;quot;0.5&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;2.0&amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;quot;5.0&amp;quot;&lt;/code&gt; it was taken for the index of the third stop: the slider showed &lt;em&gt;Fast&lt;/em&gt; and
+the next save wrote &lt;code&gt;&amp;quot;5.0&amp;quot;&lt;/code&gt;. A number now finds the stop of the same value however either is written (&lt;code&gt;&amp;quot;0.50&amp;quot;&lt;/code&gt; is
+the stop &lt;code&gt;&amp;quot;0.5&amp;quot;&lt;/code&gt;); an index finds a stop only among stops that are no numbers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A slider over a range starts on its default when the file holds no number.&lt;/strong&gt; With &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;abc&amp;quot;&lt;/code&gt; stored, it sat
+on its minimum, and the next save wrote that minimum. It now does what a number box does: it shows the default,
+and the save writes it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A field with &lt;code&gt;ask&lt;/code&gt; asks with the values the window shows.&lt;/strong&gt; It sent the saved ones. A preset slider that moved
+from &lt;code&gt;live&lt;/code&gt; to &lt;code&gt;ask&lt;/code&gt; (the name 1.9.0 gave it) was answered for the stop it was saved on, and &lt;code&gt;set&lt;/code&gt; put that stop&amp;#39;s
+numbers back. On such a field &lt;code&gt;ask&lt;/code&gt; now means what &lt;code&gt;live&lt;/code&gt; meant, as docs/Schema.md says. A window of 1.9.0 does it
+with &lt;code&gt;live&lt;/code&gt; beside &lt;code&gt;ask&lt;/code&gt;, which the host block of stub 0.3.2 writes by itself (below).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An &lt;code&gt;ask&lt;/code&gt; field&amp;#39;s answers land in the order it asked.&lt;/strong&gt; An answer that waited behind another request of the
+settings action and came after a later one put its values over the later one&amp;#39;s: the slider stood on one stop and
+the fields held another stop&amp;#39;s numbers. The field numbers its questions as a button does, and a late answer to an
+earlier one is dropped.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An action&amp;#39;s box no longer says it failed after an answer came.&lt;/strong&gt; When a Try button&amp;#39;s ask failed (the project did
+not answer in time) and the next answer only set fields or brought a &lt;code&gt;status&lt;/code&gt;, the box went on showing the
+failure. That answer takes the failure&amp;#39;s place now: its status shows, or the box hides when there is none. The
+lines of an earlier answer still stay under one that only sets fields.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An answer under a row hides with its action also with the help under the fields.&lt;/strong&gt; With help lines on, a button
+in a named row whose condition hid it left its answer box showing under the row.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Help page&amp;#39;s Fire button no longer freezes the window, and it says why the action did not answer.&lt;/strong&gt; It asked
+the project&amp;#39;s action on the window&amp;#39;s own thread: with another request still running, the window froze for five
+seconds, and the settings action&amp;#39;s reason for no answer was replaced by the hint that the action may run an older
+version. It now asks the way a Try button has since 1.9.0. The button stays greyed until the answer comes, and no
+answer shows the settings action&amp;#39;s reason. An answer that is none at all (a host block that does not know the
+request) keeps the older-version hint.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The project&amp;#39;s emote sources are asked without holding the window still.&lt;/strong&gt; The window asked for them (the
+broadcaster&amp;#39;s Twitch id and token, the project&amp;#39;s own YouTube pictures) on its own thread. As the first emote field
+was built, that froze the window for up to five seconds while the action was busy; a Try box with YouTube emotes
+(&lt;code&gt;:name:&lt;/code&gt;), asking before any emote field had, waited up to 35 seconds when the project&amp;#39;s handler hung. They are
+now asked once per window on another thread, and each picture shows once the answer has come. A shortcode holds
+its picture&amp;#39;s place until then and is drawn as text when it has none. A Unicode emoji still shows at once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The tooltip of a 7TV, BTTV or FFZ emote picture is in the window&amp;#39;s language.&lt;/strong&gt; It was built in English in code;
+it is now the window text &lt;code&gt;field.emote.extension&lt;/code&gt;, in every language the DLL carries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A sender switch the Messages page does not draw is a field on its page.&lt;/strong&gt; The window kept &lt;code&gt;useBot&lt;/code&gt;,
+&lt;code&gt;sendAction&lt;/code&gt;, &lt;code&gt;numberSeparator&lt;/code&gt; and the two cooldown switches for the Messages page, which draws them only while
+it has messages, and the cooldown pair only while a message is in the cooldown group. A project without messages,
+or one whose cooldown messages have no group (Blackjack&amp;#39;s), had settings its action reads and no field for them.
+Such a switch is now a field on its own page (&lt;code&gt;general&lt;/code&gt;, &lt;code&gt;cooldowns&lt;/code&gt;, or the page it declares), and a page that
+names one shows it. A standard page with nothing of its own (Messages without messages, Help without help) now
+shows the fields declared for it; before, it was left out together with them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;hidden&lt;/code&gt; hides the sender switches, the number format and the log switch.&lt;/strong&gt; The Messages and Log pages drew them
+hidden or not; only &lt;code&gt;Senders(useBot: null)&lt;/code&gt; left one out. A setting the project hides (&lt;code&gt;hidden&lt;/code&gt;, &lt;code&gt;Override(key, hidden: true)&lt;/code&gt;) has no field there now, and its value stays in the file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A page&amp;#39;s own title stays in a language that does not title its id.&lt;/strong&gt; In a language with only the project&amp;#39;s own
+texts (&lt;code&gt;Lang(&amp;quot;nl&amp;quot;, …)&lt;/code&gt;) or a language file without page titles, the conventions&amp;#39; English title replaced the
+declared one: &amp;quot;How to play&amp;quot; read &amp;quot;Help&amp;quot;, &amp;quot;Scoreboard&amp;quot; read &amp;quot;Leaderboard&amp;quot;. As with a key&amp;#39;s label, the conventions&amp;#39;
+title for the id is taken only where it is a translation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The red &amp;quot;i&amp;quot; looks for split sections on the page a field ends up on.&lt;/strong&gt; It read the page each setting declared,
+before the window&amp;#39;s pages claimed their fields. So it called a section split that a page&amp;#39;s claim had put back
+together, and missed one that a page collecting the fields of two pages split.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The timer&amp;#39;s random switch sits on the row of its two intervals, and the longest wait greys out with the timer&amp;#39;s
+switch too,&lt;/strong&gt; as docs/Schema.md says. The random switch stood on a line of its own, and with it on, the longest
+wait stayed open while the timer was off.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The About page translates the credits and the project&amp;#39;s own links.&lt;/strong&gt; The &lt;code&gt;Tx&lt;/code&gt; translations of the credits under
+the name and of the texts in &lt;code&gt;About(links:)&lt;/code&gt; were not used, although the page&amp;#39;s sections and the links inside them
+were translated and docs/Schema.md said &lt;code&gt;Tx&lt;/code&gt; translates the credits. They now go through the same lookup as every
+other declared text.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode: &lt;em&gt;Move up&lt;/em&gt; and &lt;em&gt;Move down&lt;/em&gt; move a field on the page it is shown on.&lt;/strong&gt; The sender switches, the
+number format and the log switch, which the Messages and Log pages draw wherever they are declared, counted among
+a page&amp;#39;s fields. On High-Low&amp;#39;s Cooldowns page and Blackjack&amp;#39;s Messages page a press went past one of them and
+nothing moved, the first field shown could still be moved up, and a field moved next to one took a section the
+page does not show. They are left out now.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode: &lt;em&gt;Move up&lt;/em&gt; and &lt;em&gt;Move down&lt;/em&gt; cross a heading one place at a time.&lt;/strong&gt; The first field under a
+heading, moved up, landed between the last two fields of the section above; the last field of a section, moved
+down, went past the first field of the next. The places next to a heading could only be reached with the mouse. A
+step over a heading now takes the field into that section and leaves it where it stands.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode: a field moved to another page no longer splits a section there.&lt;/strong&gt; &lt;em&gt;Move to page&lt;/em&gt; and a drop on a
+page in the rail left the field at its declared place among all settings, which on a page the user had sorted fell
+anywhere, often between two fields of one section, whose heading then showed twice. The field now goes to the end
+of its own section when that page has it, else to the end of the page, on a line of its own. The menu takes it out
+of its row too, as the drop did.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customise mode: on a page the user sorted, a field the user never placed goes where the project declares it.&lt;/strong&gt;
+Sorting a page gives each of its fields an order in the layout file. A field without one, which the project added
+in an update or &lt;em&gt;Reset this field&lt;/em&gt; gave back, kept its place among all the project&amp;#39;s settings; on a sorted page
+that place could be anywhere, often inside another section, whose heading then showed twice. It now goes behind
+the field the project declares before it on that page when the two share a section, else to the end of its own
+section there, else to the end of the page.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An order typed into the layout file with too many digits no longer keeps the window from opening.&lt;/strong&gt; A whole
+number longer than 19 digits made every open fail. It now reads as the largest order, as a value of the wrong kind
+reads as not set.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The folder button of a &lt;code&gt;path&lt;/code&gt; field opens the folder a file is in.&lt;/strong&gt; For a value that names a file
+(&lt;code&gt;overlay\state.json&lt;/code&gt;), the button made a folder with the file&amp;#39;s name, after which the action could not write its
+file there; for a file that already existed it failed, and only the log said so. It now opens the file&amp;#39;s folder,
+and creates that folder when it is missing, as it does for a folder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Log page: the folder button opens the log folder beside Streamer.bot.&lt;/strong&gt; It opened the declared folder (&lt;code&gt;Chat Games/Logs&lt;/code&gt;) relative to the process&amp;#39;s current directory, which a file dialog moves (the window&amp;#39;s own Export and
+Import, any dialog of Streamer.bot). After an export to the Desktop it created and opened an empty &lt;code&gt;Desktop\Chat Games\Logs&lt;/code&gt;. It now opens the folder the page follows and the settings action reads, under the Streamer.bot
+folder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Log page: lines written in the same second show newest first.&lt;/strong&gt; The page sorts by time, which has whole seconds,
+and kept lines of equal time in the order it got them. The settings action hands them over as they were written,
+so lines written together, several in one second, showed oldest first inside a list that is newest first. The last
+line written is now the first row, on open and on every reload.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Log page: a line without a readable time leaves the Time column empty.&lt;/strong&gt; It showed &lt;code&gt;0001-01-01 00:00:00&lt;/code&gt;. A
+click on the column header still sorts by time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice leaves out a UIFramework release the settings would not offer.&lt;/strong&gt; A release skipped with &lt;em&gt;No&lt;/em&gt;
+in the update dialog, or any release while the release check is off (&lt;code&gt;skipVersion&lt;/code&gt;, &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; in
+&lt;code&gt;UIFramework\loader.json&lt;/code&gt;), was named in chat at every Streamer.bot start, and the log line sent the streamer to
+settings that did not offer it. The notice now follows the settings action&amp;#39;s rules. A project whose own
+&lt;code&gt;uiframework.layout.json&lt;/code&gt; skips the release or switches the check off counts as not offering it, and UIFramework
+is named while at least one project of the run would offer it. An unreadable &lt;code&gt;loader.json&lt;/code&gt; counts as empty, as in
+the settings action. The projects&amp;#39; own releases are named as before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A language file with broken braces no longer costs the update notice.&lt;/strong&gt; A file in &lt;code&gt;UIFramework\lang&lt;/code&gt; beside
+Streamer.bot whose &lt;em&gt;import it again&lt;/em&gt; text had lost a brace made the notice throw while it was put together, and
+that Streamer.bot run had no notice. The text is now filled the way the window fills its own, and a text with
+broken braces is used as it stands.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice uses the language a project fixes for its window.&lt;/strong&gt; It followed the language in the layout
+file, which a window with &lt;code&gt;InLanguage(&amp;quot;de&amp;quot;)&lt;/code&gt; never writes, so that project&amp;#39;s notice came in English or in a
+language picked before. The window now tells the notice its fixed language when it opens, and the notice keeps it
+for the Streamer.bot starts that follow.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The chat preview groups amounts as the window&amp;#39;s language does,&lt;/strong&gt; for a project without a thousands-separator
+setting. It wrote 1,500 in English and 1.500 in every other language. Now it takes the separator Windows gives the
+language: 1.500 in German, Spanish and Brazilian Portuguese, 1 500 in French. French officially uses a narrow
+no-break space; the preview writes a plain space, which chat and the text box both show. A language Windows does
+not know keeps the point.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the settings action, for a project that ships stub 0.3.2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A running UIFramework that needs a newer settings action is not taken (stub 0.3.2).&lt;/strong&gt; A host block of 1.9.0 or
+before, in another project, still loads the newest DLL as Streamer.bot starts. The stub passed such a DLL over
+when it was installed but used it when it was running, and the DLL then refused the window with the advice to
+remove its folder. The stub now leaves it alone in both cases; its dialog names the running version and the stub
+it needs, and says that updating the project opens the window.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A damaged DLL is set aside also while an older UIFramework runs (stub 0.3.2).&lt;/strong&gt; As Streamer.bot starts, the host
+block passes over a newest &lt;code&gt;UIFramework.dll&lt;/code&gt; that fails its hash and loads the next older one. The settings action
+then used the running one without checking the newest, so the damaged file stayed where it was: its version was
+never offered again, and at every start the log said it would be used from the next one. The settings action now
+checks the hash of the DLL it chose also beside a running UIFramework and sets a damaged file aside as &lt;code&gt;.broken&lt;/code&gt;;
+the next open offers that version again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The release check&amp;#39;s log line calls the installed version installed (stub 0.3.2).&lt;/strong&gt; With a project that loads
+UIFramework as Streamer.bot starts, the line called the newest installed version &amp;quot;in use&amp;quot; while an older one ran,
+and when the chosen DLL had failed and been set aside, the log still said it would be used from the next start.
+The line now says &amp;quot;installed&amp;quot;. The next-start line comes only when the chosen DLL is still there beside a
+UIFramework that ran before the window opened.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The project hears of every save (stub 0.3.2).&lt;/strong&gt; The &amp;quot;saved&amp;quot; request runs from the settings action&amp;#39;s queue. When
+it found another request still running, the log said &amp;quot;A queued step failed&amp;quot; and the project never heard of the
+save, so its overlay and timed action went on with the old settings. It is now sent again, three tries in all, and
+what still fails is said in the log and in a note beside the window. A run of the project&amp;#39;s action that ended
+without answering counts as not heard too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A download that breaks off is tried again (stub 0.3.2).&lt;/strong&gt; A connection reset while the file came in was not
+counted as a broken connection, and a connection closed early left a short file that failed the hash check with a
+message that read like tampering. Both get the three tries now, as does a connection that cannot be made; only
+after the last one does the dialog say that the file does not match.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A project&amp;#39;s action that runs without answering is &amp;quot;no answer&amp;quot; (stub 0.3.2).&lt;/strong&gt; One whose &lt;code&gt;Execute()&lt;/code&gt; never
+reached &lt;code&gt;UiHost.Handle&lt;/code&gt; counted as an empty answer: a Try button said &amp;quot;done&amp;quot;, and a save went on as checked.
+Streamer.bot reads a global set to empty text back as null, so the stub now marks the answer&amp;#39;s variable before the
+run and sees whether the project wrote it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A DLL in a folder named &lt;code&gt;1.9&lt;/code&gt; gets the no-answer marker (stub 0.3.2).&lt;/strong&gt; It was compared as older than 1.9.0 and
+got null instead.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A list or an object where a version belongs no longer breaks every open (stub 0.3.2).&lt;/strong&gt; &lt;code&gt;skipVersion&lt;/code&gt; in
+&lt;code&gt;loader.json&lt;/code&gt; or the layout file, or &lt;code&gt;minHostStub&lt;/code&gt; in &lt;code&gt;latest.json&lt;/code&gt;, made the window fail. Such a value counts as
+missing now, and the log says so.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An unreadable &lt;code&gt;loader.json&lt;/code&gt; is not written over (stub 0.3.2).&lt;/strong&gt; A damaged or locked &lt;code&gt;UIFramework\loader.json&lt;/code&gt;
+counted as empty, and &lt;em&gt;No&lt;/em&gt; in the update dialog replaced it with a file holding only &lt;code&gt;skipVersion&lt;/code&gt;. It now counts
+as empty without being written over, as the layout file already did; &lt;em&gt;No&lt;/em&gt; keeps the skip in the project&amp;#39;s layout
+file then, and the log says where it went (or that it could not be kept) and that &lt;code&gt;loader.json&lt;/code&gt; cannot be read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A run that a later one took over ends there (stub 0.3.2).&lt;/strong&gt; When a project&amp;#39;s action that had hung for a minute
+answered after all, its first run went on to the update dialog and the window, beside the run that had opened it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Two runs that end together leave the window free (stub 0.3.2).&lt;/strong&gt; If the run that opened the window ended just as
+another run&amp;#39;s window closed, neither handed the window back, and the next open reused the old schema without
+asking the project or GitHub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the host block, for a project that ships the host block of stub 0.3.2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A DLL that needs a newer settings action no longer locks a project&amp;#39;s window (host block).&lt;/strong&gt; The update notice
+and &lt;code&gt;UiLive&lt;/code&gt; loaded the newest &lt;code&gt;UIFramework.dll&lt;/code&gt; under &lt;code&gt;lib\&lt;/code&gt;, also one another project had installed for a newer
+stub. Only one UIFramework runs in a Streamer.bot, so the project&amp;#39;s settings window then failed on every start,
+although the stub passes such a DLL over. The host block now loads the newest DLL that fits the settings action
+released with it (&lt;code&gt;StubVersion&lt;/code&gt; in the host block, 0.3.2, kept equal to the stub&amp;#39;s); a DLL that names no stub
+fits. The block reads the DLL&amp;#39;s version without &lt;code&gt;System.dll&lt;/code&gt;, so it still compiles in an action that lists only
+mscorlib, System.Core, Newtonsoft.Json and Streamer.bot&amp;#39;s interface.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The update notice takes the next older DLL when the newest cannot be used (host block).&lt;/strong&gt; When the newest
+&lt;code&gt;UIFramework.dll&lt;/code&gt; under &lt;code&gt;lib\&lt;/code&gt; failed its hash or threw once while loading, the block gave up on every DLL for the
+rest of the run: no update notice, and &lt;code&gt;UiLive&lt;/code&gt; said Unknown for Twitch and Kick until Streamer.bot restarted. It
+now tries the installed ones newest first and passes over one that is damaged, will not load, or needs a newer
+settings action (the entry above); a file downloaded again is tried again. Once a UIFramework is loaded, the block
+takes that one: .NET answers every later load of a &lt;code&gt;UIFramework.dll&lt;/code&gt;, whichever version, with the one already
+loaded.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiSettings.Load&lt;/code&gt; during a save reads the saved settings (host block).&lt;/strong&gt; The window swaps the new settings file
+in, the old one becoming the &lt;code&gt;.bak&lt;/code&gt;, and for that moment there is no file. &lt;code&gt;UiSettings.Load&lt;/code&gt; took the missing file
+for one never saved and gave the defaults without a word. It now waits a moment for a file that is being swapped
+in, and reads the &lt;code&gt;.bak&lt;/code&gt; (saying so in &lt;code&gt;Problem&lt;/code&gt;) when only that is left. A file missing beside its &lt;code&gt;.bak&lt;/code&gt; with no
+save under way is read from the &lt;code&gt;.bak&lt;/code&gt; at once, without the wait; a project whose settings were never saved still
+gets the defaults at once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A save that switches the timer off keeps it off (host block).&lt;/strong&gt; &lt;code&gt;UiTimer.Rearm&lt;/code&gt; looked at the timed action, then
+switched it off and on; a save whose &lt;code&gt;UiTimer.Sync&lt;/code&gt; switched it off in between found it on again. The two now take
+turns.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiSettings&lt;/code&gt; reads an old key that is a setting of its own for that setting only (host block).&lt;/strong&gt; A setting whose
+&lt;code&gt;aliases&lt;/code&gt; named another setting&amp;#39;s key read that setting&amp;#39;s value while its own key was not in the file yet. The
+window leaves such an old key alone (the red &amp;quot;i&amp;quot; names it) and showed the default, so the project ran on another
+setting&amp;#39;s value until the first save. It now gets the default, as the window shows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An old value moved with &lt;code&gt;aliasFactor&lt;/code&gt; is read as the window stores it (host block).&lt;/strong&gt; &lt;code&gt;UiSettings&lt;/code&gt; multiplied it
+as it was, so an old fraction of 0.07 became 7.000000000000001 percent in the project, also in a message that
+prints it. It is now rounded to ten decimals, as the window&amp;#39;s store does.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A field with &lt;code&gt;ask&lt;/code&gt; is asked with what the window shows, also in a window of 1.9.0 (host block).&lt;/strong&gt; The released
+DLL hands a request the window&amp;#39;s current values only for a setting marked &lt;code&gt;live&lt;/code&gt;, so a field declared with &lt;code&gt;ask&lt;/code&gt;
+alone (a preset slider) was answered from the values saved last, not from where the slider stood. The host block
+now writes &lt;code&gt;live&lt;/code&gt; beside &lt;code&gt;ask&lt;/code&gt; for every field that is no button.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this repository&amp;#39;s tools and workflows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The release workflow refuses an empty changelog section also when the next heading follows at once.&lt;/strong&gt; PowerShell
+counts a range down as well: with no line between the version&amp;#39;s heading and the next one, both headings were taken
+as the notes, and an empty section was released.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tools/check-stub.ps1&lt;/code&gt; compiles into a folder of its own per checkout.&lt;/strong&gt; Two checkouts (worktrees) checked at
+once compiled into the same &lt;code&gt;Stub.dll&lt;/code&gt; and &lt;code&gt;Demo.dll&lt;/code&gt;, so one failed on a file the other had open, or read the
+other&amp;#39;s demo for its &lt;code&gt;schema.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tools/update-host-block.ps1&lt;/code&gt; knows the earlier templates of every branch.&lt;/strong&gt; It read the lines of earlier host
+blocks from the checked-out history only. A project can carry the block of a branch not merged yet, and a plain
+&lt;code&gt;git log&lt;/code&gt; also leaves out a merged branch whose merge kept the other side&amp;#39;s file; such lines counted as the
+project&amp;#39;s own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;tools/docs-shots.ps1&lt;/code&gt; takes Newtonsoft.Json from the preview&amp;#39;s build.&lt;/strong&gt; It loaded it from a Streamer.bot folder
+that was its default on one machine only, and elsewhere the run stopped after seven of its eight windows.
+&lt;code&gt;-StreamerBotPath&lt;/code&gt; is gone; no Streamer.bot folder is needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;28a632af6efaf1a92fedf1473efe557e75b42702cd375fd97d979b94de713a1c&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>High-Low Game v2.3.2: Outcome words, renamed commands, and when to restart Streamer.bot</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.2"/>
@@ -843,199 +1753,5 @@ where its first result leads.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;7f71db353963f027f4528fcdf209f299779f2ae4201af3a45721a6a597cc1bf8&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0&quot;&gt;Download v1.8.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.7.0: UIFramework v1.7.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.7.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.7.0</id>
-    <published>2026-11-10T21:56:03Z</published>
-    <updated>2026-11-10T21:56:03Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiAdBreak&lt;/code&gt;: Twitch&amp;#39;s ad break as a window of time for a game.&lt;/strong&gt; Chat stays usable while ads run, so that is
-when a round fits. &lt;code&gt;Begin&lt;/code&gt; opens the window from Streamer.bot&amp;#39;s &lt;em&gt;Ad Run&lt;/em&gt; trigger for the ads&amp;#39; length (there is no
-trigger for their end), &lt;code&gt;Active&lt;/code&gt; and &lt;code&gt;SecondsLeft&lt;/code&gt; say whether ads run, &lt;code&gt;Announce&lt;/code&gt; answers the &lt;em&gt;Upcoming Ad&lt;/em&gt;
-trigger once per break, &lt;code&gt;RoundsThatFit&lt;/code&gt; and &lt;code&gt;WithBonus&lt;/code&gt; do the sums. See &lt;em&gt;Twitch&amp;#39;s ad breaks&lt;/em&gt; in
-&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;An Automation page in the conventions,&lt;/strong&gt; with five keys for the ad break (&lt;code&gt;adBreakStart&lt;/code&gt;, &lt;code&gt;adBreakAnnounce&lt;/code&gt;,
-&lt;code&gt;adBreakAnnounceMinutes&lt;/code&gt;, &lt;code&gt;adBreakBonusPercent&lt;/code&gt;, &lt;code&gt;adBreakOnly&lt;/code&gt;) in English, German and Spanish.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The timer&amp;#39;s keys (&lt;code&gt;autoStart…&lt;/code&gt;) are on the Automation page&lt;/strong&gt; instead of Game. A game that names their page
-itself is not affected.&lt;/li&gt;
-&lt;li&gt;Trivia and Hangman start rounds with ad breaks and have the Automation page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;69478b3cbdd79d8067e79a99c72c3b9dbdbd3d2c9a742c440c47706151b409f2&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.7.0&quot;&gt;Download v1.7.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Battleship Game v2.4.0: StartChatBattle for your own actions (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.0"/>
-    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.0</id>
-    <published>2026-11-10T21:15:49Z</published>
-    <updated>2026-11-10T21:15:49Z</updated>
-    <category term="Battleship-Game" label="Battleship Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartChatBattle&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action starts Chat vs
-the Admiral, the battle everybody takes part in, from any action: a hotkey, a Stream Deck button, a raid. The
-optional argument &lt;code&gt;battleshipPlatform&lt;/code&gt; names the chat it is announced in, and &lt;code&gt;battleshipStarted&lt;/code&gt; says whether a
-battle began. No cooldown applies; while another battle runs, nothing starts and chat hears nothing.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
-the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
-yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
-themselves.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.0&quot;&gt;Download v2.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v17.5.0: StartHouseTable for your own actions (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.0"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.0</id>
-    <published>2026-11-10T21:15:41Z</published>
-    <updated>2026-11-10T21:15:41Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartHouseTable&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action opens a House
-Mode table from any action: a hotkey, a Stream Deck button, a raid. Optional arguments &lt;code&gt;blackjackPlatform&lt;/code&gt; and
-&lt;code&gt;blackjackRules&lt;/code&gt; (a rule set by name or number, or &lt;code&gt;random&lt;/code&gt;); it sets &lt;code&gt;blackjackTableOpened&lt;/code&gt; and
-&lt;code&gt;blackjackRulesName&lt;/code&gt;. No cooldown applies and the rule menu is never asked; with a table already open, nothing
-opens and chat hears nothing.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
-the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
-yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
-themselves.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.0&quot;&gt;Download v17.5.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.6.0: UIFramework v1.6.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.6.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.6.0</id>
-    <published>2026-11-10T20:26:04Z</published>
-    <updated>2026-11-10T20:26:04Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Custom triggers and methods are declared once.&lt;/strong&gt; &lt;code&gt;UiWindow.Trigger&lt;/code&gt;, &lt;code&gt;Triggers&lt;/code&gt; (several that share their
-arguments) and &lt;code&gt;Method&lt;/code&gt; say what a game offers the streamer&amp;#39;s own actions. &lt;code&gt;UiTriggers.Register&lt;/code&gt; in &lt;code&gt;Init()&lt;/code&gt;
-registers the triggers from that list, and the Help page ends with &lt;em&gt;Custom triggers&lt;/em&gt; and &lt;em&gt;Methods for your own
-actions&lt;/em&gt;, each with its arguments, in English, German and Spanish.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fire with sample values.&lt;/strong&gt; A button under each trigger on the Help page has the game fire it once with its
-sample values, so an action that listens to it can be tried without playing a round.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiLive&lt;/code&gt;: whether you are live.&lt;/strong&gt; Twitch through its API with Streamer.bot&amp;#39;s token, YouTube by the monitored
-broadcasts, Kick through its channel page; &lt;code&gt;Live&lt;/code&gt;, &lt;code&gt;Offline&lt;/code&gt; or &lt;code&gt;Unknown&lt;/code&gt;, never an exception. Twitch and Kick
-are asked by the DLL, since the host block must compile in an action without &lt;code&gt;System.dll&lt;/code&gt;. Trivia&amp;#39;s own check
-moved here, and Hangman&amp;#39;s automatic rounds use it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;tools\copy-host-block.ps1&lt;/code&gt;&lt;/strong&gt;, and &lt;code&gt;-Into&lt;/code&gt; / &lt;code&gt;-HostName&lt;/code&gt; on &lt;code&gt;update-host-block.ps1&lt;/code&gt;: the block a game carries
-goes into its other action and into &lt;code&gt;hosts\&amp;lt;host&amp;gt;\HostBlock.cs&lt;/code&gt; in one step, with &lt;code&gt;-Check&lt;/code&gt; to compare.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A conventions key hands on its &lt;code&gt;requires&lt;/code&gt;,&lt;/strong&gt; so the timer&amp;#39;s intervals are greyed out with their switch in a
-game that declares them with key and default alone (already in 1.5.0, not listed there).&lt;/li&gt;
-&lt;li&gt;Trivia, Hangman, Blackjack and Battleship declare their triggers and methods this way.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;e65a5cea249886e4e828572a4c9f8c0b471ad4670c2b0a6a27eb7be5313d3188&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.6.0&quot;&gt;Download v1.6.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.5.0: UIFramework v1.5.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.5.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.5.0</id>
-    <published>2026-11-10T19:29:12Z</published>
-    <updated>2026-11-10T19:29:12Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A timed action on a random time and after chat lines.&lt;/strong&gt; Streamer.bot&amp;#39;s timer dialog offers a fixed interval, a
-random one and &amp;quot;only after so many chat lines&amp;quot;, but code can set only the interval. &lt;code&gt;UiTimer&lt;/code&gt; in the host block
-keeps the other two: &lt;code&gt;Sync&lt;/code&gt; brings the timed action in line with the settings (a running timer keeps its
-countdown unless the schedule was just saved), &lt;code&gt;Rearm&lt;/code&gt; draws a random timer&amp;#39;s next wait each time it fires, and
-&lt;code&gt;NoteLine&lt;/code&gt; / &lt;code&gt;TakeLines&lt;/code&gt; count chat lines per platform and hold a start back until there are enough. See &lt;em&gt;A timed
-action&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Five convention keys for it:&lt;/strong&gt; &lt;code&gt;autoStartEnabled&lt;/code&gt;, &lt;code&gt;autoStartIntervalMinutes&lt;/code&gt;, &lt;code&gt;autoStartRandom&lt;/code&gt;,
-&lt;code&gt;autoStartIntervalMaxMinutes&lt;/code&gt; and &lt;code&gt;autoStartMinChatLines&lt;/code&gt;, with page, row, labels and help in English, German and
-Spanish. A game declares them with key and default alone.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Trivia and Hangman run their automatic rounds on it&lt;/strong&gt; (Trivia v9.3.0, Hangman v13.3.0). The host copies of
-Trivia, Hangman, Blackjack and Battleship are the games&amp;#39; current ones.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;70676b41e5f1f31e2e051684f97d102a2e0f4aa8002975b9adf0fa09b20ef976&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.5.0&quot;&gt;Download v1.5.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.2.2: Every time field says its unit</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2</id>
-    <published>2026-11-08T18:26:14Z</published>
-    <updated>2026-11-08T18:26:14Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;p&gt;The settings window now names the unit of every time field, so it is clear that the delay between rounds is in seconds.&lt;/p&gt;
-&lt;h1&gt;Fixed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Every time field says its unit.&lt;/strong&gt; Answer time, first reminder, delay between rounds, the blitz times, both cooldowns and the overlay&amp;#39;s result time carried no unit in the settings window, while the automatic-round fields said &amp;quot;(minutes)&amp;quot;. They now read &amp;quot;(s)&amp;quot;, and those two &amp;quot;(min)&amp;quot;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Your settings stay as they are: the values were always seconds and minutes, only the labels changed.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.2&quot;&gt;Download v9.2.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.2.1: The overlay follows chat</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1</id>
-    <published>2026-11-08T17:54:52Z</published>
-    <updated>2026-11-08T17:54:52Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;p&gt;The OBS overlay mirrors what chat is asked again: automatic rounds only go to the platforms you are live on, a chip names the platform a question went to, a &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; left in the source&amp;#39;s URL no longer stands in for the game, and the result of a round is shown for its full time before the next question of a run.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The overlay names the platform.&lt;/strong&gt; A chip in front of the question says whether it went to Twitch, YouTube or Kick, for streaming to more than one at once, where every platform plays a question of its own. &lt;em&gt;Which platform it came from&lt;/em&gt; under &lt;em&gt;What it shows&lt;/em&gt; on the Overlay page turns it off.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Fixed&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The overlay follows chat even with &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; in its URL.&lt;/strong&gt; The &lt;em&gt;Try the demo&lt;/em&gt; answer told you to add &lt;code&gt;&amp;amp;demo=1&lt;/code&gt; to the OBS source to place it, and an overlay with it never listened to Streamer.bot: it played its three sample questions on their own 10 to 12 second clocks for every stream after, whatever chat was asked. A demo now listens too, and the first real round ends the samples for good. The answer now points to &lt;em&gt;Show a sample round&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The overlay&amp;#39;s result is shown for its full time in a run.&lt;/strong&gt; The next question waited for &lt;em&gt;Delay between rounds&lt;/em&gt; alone, 5 seconds by default, and cut a 10 second result short. While the overlay is on, it now waits until the result, and the leaderboard after it when that is on, has been up for &lt;em&gt;Result shown for&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Automatic rounds only go where you are live.&lt;/strong&gt; A round was offered to every platform with a connected account, or with &lt;em&gt;Only when chat has been active&lt;/em&gt; off to Twitch, YouTube and Kick alike: chats you were not streaming to got questions, and the overlay showed whichever platform&amp;#39;s question started last over the one your chat was asked. The timed action now asks each platform first: Twitch through its API with Streamer.bot&amp;#39;s own login, YouTube through the broadcasts Streamer.bot monitors, Kick through its public channel page. Where it cannot be told, recent chat decides, as before.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The check before saving only asks about what you changed.&lt;/strong&gt; It named every problem the settings had on every save, so &lt;em&gt;Save &amp;amp; Exit&lt;/em&gt; right after a save asked again about something you had already kept on purpose, such as &lt;em&gt;Only when chat has been active&lt;/em&gt; switched off. It now asks only about the problems the save brings in.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;After importing, save the settings once with the overlay on, so the new overlay page is written to &lt;code&gt;Chat Games\Trivia Game\Overlay&lt;/code&gt;. If your OBS source&amp;#39;s URL still carries &lt;code&gt;&amp;amp;demo=1&lt;/code&gt;, click &lt;code&gt;Set it up in OBS&lt;/code&gt; to point it at the plain URL again. Rounds that start themselves now wait until you are live: nothing starts while you are offline.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.2.1&quot;&gt;Download v9.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.4.3: UIFramework v1.4.3 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3</id>
-    <published>2026-11-08T17:35:30Z</published>
-    <updated>2026-11-08T17:35:30Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A table&amp;#39;s columns end at its edge.&lt;/strong&gt; A list shown as a table (Trivia&amp;#39;s own questions) left an empty column after
-its last one: the columns were sized as if the vertical scrollbar always showed, and the whole pixels lost a few
-more. They now share the width the rows really have, with the scrollbar only while it shows, and follow it as rows
-are added or removed; what is left over goes to the widest column.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;470970bc4f801b59ae20ea96e785d633744c0da4f4066abc8031d3aff1f0d43e&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.4.3&quot;&gt;Download v1.4.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Slot Machine Game v16.4.0: Tells you about updates</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0"/>
-    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0</id>
-    <published>2026-11-08T09:28:43Z</published>
-    <updated>2026-11-08T09:28:43Z</updated>
-    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
-    <content type="html">&lt;p&gt;Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off. On &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt; 1.4.0.&lt;/p&gt;
-&lt;h1&gt;Added&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Tells you about updates.&lt;/strong&gt; Once per Streamer.bot start, about 20 seconds in, one notice names new releases of this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot&amp;#39;s log. &lt;em&gt;Tell me about updates&lt;/em&gt; on the About page turns it off for this game. The game action is precompiled on application start, so the notice starts with Streamer.bot.&lt;/li&gt;
-&lt;li&gt;The host block is UIFramework 1.4.0&amp;#39;s; the settings window offers the newest UIFramework on its next open.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0&quot;&gt;Download v16.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

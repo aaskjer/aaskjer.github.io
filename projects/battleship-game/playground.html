@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Written by _tools/update-pages.js from HtmlTemplate in the import string of aaskjer/Battleship-Game, for the playground on this page. -->
-<!-- bsg-overlay-version: 17 -->
+<!-- bsg-overlay-version: 18 -->
 <html lang='en'>
 <head>
 <meta charset='UTF-8' />
@@ -944,7 +944,8 @@
     if (chat) {
       // Logged out (A...) is a new id every page load. The chat's battle counts it anyway; a duel never does.
       if ((duel && who.charAt(0) === 'A') || votedRound[who] === lastState.round) return;
-      votedRound[who] = lastState.round;
+      // A square already fired at is no vote - the game refuses it - so it must not use up the round's.
+      if (cell.classList.contains('miss') || cell.classList.contains('hit') || cell.classList.contains('sunk')) return;
     }
     if (lastForward[who] && now - lastForward[who] < FORWARD_GAP_MS) return;
     if (now - forwardSecond >= 1000) { forwardSecond = now; forwardCount = 0; }
@@ -974,6 +975,8 @@
         bsgHeatClick: who + '|' + msg.x + '|' + msg.y
       }
     }));
+    // Only now: a click dropped above (the gap, the budget, no connection) leaves the viewer their vote.
+    if (chat) votedRound[who] = lastState.round;
   }
 
   function markClick(point, who, mine, cell) {
@@ -1069,11 +1072,14 @@
   function pollHeatConfig() {
     fetch(HEAT_CONFIG_URL + '?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : ''; })
-      .catch(function () { return ''; })
+      .catch(function () { return null; })
       .then(function (text) {
-        if (text === heatCfgText) return;
+        // Unreadable for a moment (the game was writing it): the next poll reads it whole.
+        if (text === null || text === heatCfgText) return;
+        var next;
+        try { next = (text && JSON.parse(text)) || {}; } catch (e) { return; }
         heatCfgText = text;
-        try { heatCfg = (text && JSON.parse(text)) || {}; } catch (e) { heatCfg = {}; }
+        heatCfg = next;
         applyHeatConfig();
       })
       .catch(function () { })
@@ -1083,6 +1089,17 @@
   var lastStateText = null;
   var lastState = null;
 
+  // The game writes when the turn runs out (deadlineUnixMs); counting down to that keeps the ring right however late
+  // the file was read. A clock that is far off from the game's, or an older game without it, keeps the time the file
+  // gave, counted down by the poll as before.
+  function syncClock(state) {
+    if (!state || !(state.deadlineUnixMs > 0)) return false;
+    var left = state.deadlineUnixMs - Date.now();
+    if (left > (state.timeoutMs || 0) + 5000) return false;
+    state.expiresInMs = Math.max(0, left);
+    return true;
+  }
+
   function poll() {
     fetch(STATE_URL + '?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : null; })
@@ -1091,6 +1108,7 @@
         if (text !== lastStateText) {
           lastStateText = text;
           lastState = JSON.parse(text);
+          syncClock(lastState);
           // "Show a sample round" in the settings window: the game writes a state that only asks for the demo.
           if (lastState && lastState.demo) {
             if (lastState.demoId !== lastDemoId) { lastDemoId = lastState.demoId; playDemo(lastState, false); }
@@ -1104,7 +1122,7 @@
         } else if (lastState && lastState.active && !lastState.gameOver) {
           // The file only changes when a shot lands, so the clock is run locally in between -
           // otherwise the countdown ring would sit still for the whole turn.
-          lastState.expiresInMs = Math.max(0, lastState.expiresInMs - POLL_MS);
+          if (!syncClock(lastState)) lastState.expiresInMs = Math.max(0, lastState.expiresInMs - POLL_MS);
           renderTimer(lastState);
         }
       })

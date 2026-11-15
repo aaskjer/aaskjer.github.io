@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Written by _tools/update-pages.js from HtmlTemplate in the import string of aaskjer/Blackjack-Game, for the playground on this page. -->
-<!-- bjg-overlay-version: 15 -->
+<!-- bjg-overlay-version: 16 -->
 <html lang='en'>
 <head>
 <meta charset='UTF-8' />
@@ -580,6 +580,12 @@
     // Before the deal a house table has seats but no cards, so the players row would render
     // empty. Show the lobby instead: who is in, which seats are still open, and the count.
     var house = state.house;
+    // While the opener picks the rules there are no seats and no cards yet: say so instead of an empty table.
+    if (isHouse && house && house.phase === 'rules') {
+      houseStatus.textContent = 'Choosing the rules';
+      for (var rk in prevCounts) { if (rk.indexOf('hand') === 0) delete prevCounts[rk]; }
+      return;
+    }
     if (isHouse && house && house.phase === 'open') {
       var seated = house.seats || [];
       for (var s = 0; s < house.maxSeats; s++) {
@@ -852,6 +858,10 @@
 
   /* ---------- dispatch ---------- */
 
+  var seenState = false;     // whether any state has been drawn since the page loaded
+  var wasOver = false;       // whether the last state drawn was a finished hand
+  var lastTableKey = null;   // mode and player of the last state drawn
+
   function render(state) {
     separator = (state && typeof state.separator === 'string') ? state.separator : '.';
     document.body.style.zoom = (state && state.scale > 0) ? state.scale : 1;
@@ -863,8 +873,28 @@
 
     if (!effectiveActive) {
       hideAll();
+      seenState = true;
+      wasOver = false;
       return;
     }
+
+    var over = !!(isDuel ? (state.duel && state.duel.phase === 'over') : state.gameOver);
+
+    // A finished hand stays in the state file until the next one. Loaded fresh (a refreshed source, OBS
+    // starting), the page does not replay that old result; it waits for a hand that is still going.
+    if (!seenState && over) {
+      seenState = true;
+      wasOver = true;
+      hideAll();
+      return;
+    }
+    seenState = true;
+
+    // A new hand after a finished one, or another player's: its cards are new and deal in again.
+    var tableKey = (state.mode || 'solo') + '|' + (state.user || '');
+    if ((wasOver && !over) || tableKey !== lastTableKey) prevCounts = { dealer: 0 };
+    lastTableKey = tableKey;
+    wasOver = over;
 
     if (isDuel) {
       renderDuel(state);
@@ -872,7 +902,6 @@
       renderSolo(state);
     }
 
-    var over = isDuel ? (state.duel && state.duel.phase === 'over') : state.gameOver;
     if (over) {
       if (!fadeTimer) {
         var fadeMs = (state.gameOverFadeMs > 0) ? state.gameOverFadeMs : GAMEOVER_FADE_MS;

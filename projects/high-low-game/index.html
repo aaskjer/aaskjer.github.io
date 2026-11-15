@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/high-low-game/">
-  <meta property="og:title" content="High-Low Game  •  v2.3.2">
+  <meta property="og:title" content="High-Low Game  •  v2.3.3">
   <meta property="og:description" content="Higher, lower or the same: a quick guessing game for chat, with channel points and scoreboards. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/high-low-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.3.2">
+  <meta name="twitter:data1" content="v2.3.3">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.3.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!hlgalltime","!hlgsession","!hlgpersonal","!highlowsetup","!high","!low","!equal","!SetFreeHighLow","!EndFreeHighLow"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.3.3","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!hlgalltime","!hlgsession","!hlgpersonal","!highlowsetup","!high","!low","!equal","!SetFreeHighLow","!EndFreeHighLow"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="High-Low-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.2">
+<body data-repo="High-Low-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.3.3">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -363,6 +363,36 @@ cut between words.</p>
 <p>Releases from 2.1.0 on are in the <a href="https://github.com/aaskjer/High-Low-Game/releases">release notes</a>; 2.0.0 and
 1.x came out before this repository had releases.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.3.3] - 2026-11-15</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>The settings window in French and Brazilian Portuguese,</strong> beside English, German and Spanish: pick it in the
+window&#39;s language list. No native speaker has read the two yet; a wording that reads wrong can be reported with
+<em>Fix a translation</em> on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/issues/new/choose">UIFramework&#39;s issues</a>.
+Your chat messages stay as you wrote them.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>UIFramework 2.0.0.</strong> The settings action is 0.3.2, the host block UIFramework 2.0.0&#39;s, and opening the window
+offers UIFramework 2.0.0. Nothing in your settings changes.</li>
+<li>The window&#39;s English, German and Spanish texts read plainer.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The game reads your settings also while the window saves them.</strong> For a moment during a save there is no
+settings file, and a guess at that moment went by the defaults. When only <code>HLG-Settings.json.bak</code> is left, the
+game and the window both read that.</li>
+<li><strong>A UIFramework another game installed for a newer settings action no longer locks this game&#39;s window.</strong> The
+update notice at Streamer.bot&#39;s start takes the newest UIFramework that fits, and passes over a damaged one to the
+next older.</li>
+<li><strong>The update notice no longer names a UIFramework release you skipped,</strong> or any while the release check is off.</li>
+<li><strong>A download that breaks off is tried again,</strong> and a damaged <code>UIFramework\loader.json</code> is no longer written over
+when you skip a version.</li>
+<li><strong>The Log page&#39;s folder button opens the log folder beside Streamer.bot.</strong> After an export to the Desktop it
+opened an empty folder there. Lines written in the same second show newest first.</li>
+<li><strong>Customise mode moves the fields of the Cooldowns page.</strong> <em>Move up</em> and <em>Move down</em> went past the sender
+switches there, and nothing moved.</li>
+</ul>
 <h2>[2.3.2] - 2026-11-12</h2>
 <h3>Added</h3>
 <ul>

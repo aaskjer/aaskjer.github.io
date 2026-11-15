@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/uiframework/">
-  <meta property="og:title" content="UIFramework  •  v1.0.0">
+  <meta property="og:title" content="UIFramework  •  v2.0.0">
   <meta property="og:description" content="One settings window for every Streamer.bot chat game: declared in one table, with a tour, a log reader and self-updates.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/uiframework.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.0.0">
+  <meta name="twitter:data1" content="v2.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v1.9.0">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.0.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -83,7 +83,7 @@
   </picture>
 </p><h1 align="center">UIFramework for streamer.bot</h1><p align="center">
   <b>One settings window for every Streamer.bot extension.</b><br>
-  Declare your settings once, get pages, validation, three languages and a customise mode for free.
+  Declare your settings once, get pages, validation, five languages and a customise mode for free.
 </p><p align="center">
   
   
@@ -119,29 +119,36 @@ first use, checked against its published SHA-256, and offers new releases when t
 <li>🧱 <strong>Pages from a table.</strong> Numbers, percents, durations, dropdowns and sliders, switches, name and group chips,
 colours, paths, emotes with their pictures, chat messages with a live preview, and lists edited in place like a
 spreadsheet. Fields can follow a dropdown, grey out or hide on a condition.</li>
-<li>🔘 <strong>Buttons your game answers.</strong> A test round, a preset, an OBS setup or a source check runs in your own code
+<li>🔘 <strong>Buttons your action answers.</strong> A test round, a preset, an OBS setup or a source check runs in your own code
 and answers with lines, a panel, emote pictures or values for other fields.</li>
-<li>🌍 <strong>English, German, Spanish, and more.</strong> Common settings, pages and the window&#39;s own texts come translated in
-every language the framework has a file for; the game adds its own words with <code>Lang</code>. A new language is one JSON
-file, in the DLL or in <code>UIFramework\lang\</code> beside Streamer.bot.</li>
-<li>🎨 <strong>A customise mode.</strong> Users rename, reorder, hide and move pages and fields by drag and drop, and pick the
-theme and accent colour, and choose help as a line under each field instead of a tooltip. All of it lives in <code>uiframework.layout.json</code> and survives every import of the game;
-<code>Lock()</code> turns the mode off for a game that wants its window exactly as declared.</li>
+<li>🌍 <strong>English, German, Spanish, French and Brazilian Portuguese.</strong> Common settings, pages and the window&#39;s own
+texts come translated in every language the framework has a file for; your action adds its own words with
+<code>Lang</code>. A new language is one JSON file, in the DLL or in <code>UIFramework\lang\</code> beside Streamer.bot.
+Anyone can correct a translation with the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/issues/new?template=translation.yml">Fix a translation</a>
+form, and French and Brazilian Portuguese need it most: both are new, and no native speaker has read them yet.</li>
+<li>🎨 <strong>A customise mode.</strong> Users drag fields into a new order or onto another page, sort the pages, and rename or
+hide either with a right-click. They also pick the theme and the accent colour, and can have each field&#39;s help
+as a line under it instead of a tooltip. All of it lives in the project&#39;s <code>uiframework.layout.json</code> and
+survives every import of the project; <code>Lock()</code> turns the mode off for a project that wants its window exactly
+as declared.</li>
 <li>🔎 <strong>Search with Ctrl+F.</strong> One bar finds every setting, message and page of a window by label, help or key
-and takes you to the field. A tour on the first open shows a new user around.</li>
+and takes you to the field. A project can add a tour that shows new users around on the first open.</li>
 <li>⏱️ <strong>Rounds that start by themselves.</strong> A timed action on a fixed or random interval, only after enough chat
-lines, only while the stream is live, or inside Twitch&#39;s ad breaks: the helpers are in the host block
-(<code>UiTimer</code>, <code>UiLive</code>, <code>UiAdBreak</code>), the settings and their Automation page come from the conventions.</li>
-<li>🧩 <strong>Triggers and methods for a streamer&#39;s own actions.</strong> A game declares its custom triggers and its methods
-for <em>Execute C# Method</em> once; the Help page lists them with their arguments, and a button fires a trigger with
-sample values.</li>
-<li>📜 <strong>Log, help and about pages.</strong> A filterable log reader for the game&#39;s log files, a help page from your
+lines, only while the stream is live, or inside Twitch&#39;s ad breaks. The helpers are in the host block
+(<code>UiTimer</code>, <code>UiLive</code>, <code>UiAdBreak</code>); the settings and their Automation page come from the conventions.</li>
+<li>🧩 <strong>Triggers and methods for a streamer&#39;s own actions.</strong> A project declares its custom triggers and its
+methods for <em>Execute C# Method</em> once; the Help page lists them with their arguments, and a button fires a
+trigger with sample values.</li>
+<li>📜 <strong>Log, help and about pages.</strong> A filterable log reader for the project&#39;s log files, a help page from your
 notes and commands, an about page with your links. Mistakes in the schema sit behind a red <strong>i</strong> in the header.</li>
-<li>🔔 <strong>Tells you about updates.</strong> Once per Streamer.bot start, one notice names new releases of the games and of
-UIFramework: in every connected chat, or as a Windows notification while no broadcaster account is connected.
-Games choose the texts and ways; a switch on the About page turns it off.</li>
-<li>🔄 <strong>Updates itself.</strong> The stub fetches the DLL, verifies it and asks before using a newer release;
-<code>&quot;autoUpdate&quot;: false</code> in <code>UIFramework\loader.json</code> turns the check off.</li>
+<li>🔔 <strong>Tells you about updates.</strong> Once per Streamer.bot start, one notice names new releases of the extensions
+built on it and of UIFramework, in every connected chat or, while no broadcaster account is connected, as a
+Windows notification. Each project picks the texts and where they go; the switch on its About page leaves
+that project out.</li>
+<li>🔄 <strong>Updates itself.</strong> The stub fetches the DLL, verifies it and asks before using a newer release.
+<code>&quot;autoUpdate&quot;: false</code> in <code>UIFramework\loader.json</code> turns the check off, and the update notice then leaves
+UIFramework out.</li>
 </ul>
 <p align="center">
   <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/customize-dark.png" width="40%" alt="The customise mode">
@@ -188,14 +195,14 @@ Games choose the texts and ways; a switch on the About page turns it off.</li>
 </tr>
 </tbody></table>
 <h2>🚀 Use it in your own project</h2>
-<p>Two files, nothing to install: <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md">docs/Getting-Started.md</a> sets up the demo game step by
-step, each step with the ready file to paste, then shows how to make it your own;
+<p>Two files and nothing to install. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md">docs/Getting-Started.md</a> sets up the demo game step
+by step, each step with the ready file to paste, then shows how to make it your own;
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame">examples/DemoGame</a> is the result.</p>
 <ol>
-<li>Paste the host block from <code>stub/HostSchema.cs</code> into your game&#39;s action, right below its usings (it needs none
-of its own), fill in its table (one line per setting) and its window (title, pages, help).</li>
+<li>Paste the host block from <code>stub/HostSchema.cs</code> into your extension&#39;s action, right below its usings (it needs
+none of its own), and fill in its table (one line per setting) and its window (title, pages, help).</li>
 <li>Call <code>UiHost.Handle(args, CPH, ...)</code> first thing in <code>Execute()</code>; it answers the settings window.</li>
-<li>Make a second action from <code>stub/Stub.cs</code>, put your game action&#39;s name into <code>GameActionName</code>, give it a
+<li>Make a second action from <code>stub/Stub.cs</code>, put the first action&#39;s name into <code>GameActionName</code> and give it a
 trigger. The window opens with pages, validation, a customise mode, export/import and self-updates.</li>
 </ol>
 <p><a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md#what-your-users-get-on-their-machine">docs/Getting-Started.md</a> also says what your users
@@ -205,42 +212,54 @@ get on their machine: the first download, the update question and how to turn it
 what users can change, <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md">docs/Conventions.md</a> the keys and texts every window knows.</p>
 <h2>🧩 How it fits together</h2>
 <ol>
-<li><strong>Conventions</strong> (<code>conventions/keys.json</code>, <code>conventions/lang/*.json</code>, inside the DLL): known keys, standard
-pages, translations, theme defaults. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md">docs/Conventions.md</a> lists them and explains how to
-add a language.</li>
-<li><strong>The game&#39;s schema:</strong> its settings and its window, answered on request through its host block.</li>
+<li><strong>Conventions</strong> (<code>conventions/keys.json</code>, <code>conventions/lang/*.json</code>, <code>conventions/emotes/</code>, inside the DLL):
+known keys, standard pages, the links every About page ends with, translations, YouTube&#39;s emojis and Twitch&#39;s
+global emotes. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md">docs/Conventions.md</a> lists them and explains how to add a language.</li>
+<li><strong>The project&#39;s schema:</strong> its settings and its window, answered on request through its host block.</li>
 <li><strong>The settings action:</strong> the generic stub, the same file in every project.</li>
 <li><strong><code>uiframework.layout.json</code></strong> next to the settings file: the user&#39;s changes. Survives every import.</li>
 </ol>
 <h2>🛠️ Development</h2>
-<p><code>dotnet build UIFramework.slnx</code> builds the DLL, the tests and the preview; <code>dotnet test</code> runs the tests.
+<p><code>dotnet build UIFramework.slnx</code> builds the DLL, the tests and the preview; <code>dotnet test</code> runs the tests. CI builds
+with the .NET SDK 10.0.x.
 <code>src/UIFramework.Preview/bin/Debug/net48/UIFramework.Preview.exe</code> opens a Blackjack-shaped sample window, or with
-<code>-schema hosts/&lt;game&gt;/schema.json</code> the window a game declares. <code>-theme dark</code> or <code>light</code>, <code>-shots &lt;folder&gt;</code> renders
-every page to PNG, <code>-windowshots &lt;folder&gt;</code> the whole window per page at the page&#39;s full height (<code>-pages</code>, <code>-names</code>),
-<code>-settle 3000</code> waits that long for emote pictures, <code>-pick 1</code> picks the first row of every grid; with
-<code>-windowshots</code>, <code>-tour</code> photographs every stop of the tour, <code>-problems</code> the panel behind the red <strong>i</strong>,
-<code>-search &lt;text&gt;</code> the search bar, and <code>-customize</code> opens the customise mode.
-A tag <code>vX.Y.Z</code> with its section in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/CHANGELOG.md">CHANGELOG.md</a> publishes the DLL and updates the <code>latest.json</code> of
-its major line (<code>lib/v1/</code> for 1.x.y, <code>lib/v2/</code> from 2.0.0 on), which the stubs of that line read; only a round version (<code>2.0.0</code>) is published as a stable release, every other one as a
-pre-release.</p>
-<pre><code>src/UIFramework          the DLL (.NET Framework 4.8, WPF)
-src/UIFramework.Tests    xUnit
-src/UIFramework.Preview  opens the window without Streamer.bot
-stub/                    Stub.cs, the generic settings action (loader + bridge); HostSchema.cs, the host block a
-                         game pastes in
-examples/DemoGame/       the smallest game with a window: DemoGame.cs, DemoGame.sb (the import), schema.json, a README
-hosts/&lt;name&gt;/            schema.json of each game (what it answers, with the window) and HostBlock.cs, its host
-                         block as the game carries it
-conventions/             keys.json, lang/&lt;code&gt;.json and emotes/, embedded into the DLL
-tools/                   update-host-block.ps1 (refresh the block in a game, keeping its table), copy-host-block.ps1
-                         (a game&#39;s block into its other action and into hosts/&lt;name&gt;/), check-stub.ps1
-                         (compile the stub and the demo the Streamer.bot way), build-import.ps1 (keep an export&#39;s
-                         code on the files), spec-to-window.ps1 (an old spec.json as a window declaration),
-                         conventions-doc.ps1 (the tables in docs/Conventions.md),
-                         update-twitch-emotes.ps1 (Twitch&#39;s global emotes for conventions/emotes),
-                         docs-shots.ps1 (the screenshots in docs/images, rendered again)
-lib/v1/latest.json       what the loader reads: version, download url, sha256 (one folder per major line)
-docs/                    Getting-Started, Schema, Conventions, Loader, Customize; images/ the screenshots
+<code>-schema hosts/&lt;game&gt;/schema.json</code> the window a game declares. <code>-theme dark</code> or <code>light</code> sets the theme, and
+<code>-customize</code> opens the window in the customise mode. <code>-shots &lt;folder&gt;</code> renders every page to PNG,
+<code>-windowshots &lt;folder&gt;</code> the whole window per page at the page&#39;s full height (<code>-pages</code>, <code>-names</code>); <code>-settle 3000</code>
+waits that long for emote pictures, and <code>-pick 1</code> picks the first row of every grid. With <code>-windowshots</code>, <code>-tour</code>
+photographs every stop of the tour, <code>-problems</code> the panel behind the red <strong>i</strong> and <code>-search &lt;text&gt;</code> the search bar.</p>
+<p>A tag <code>vX.Y.Z</code> with its section in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/CHANGELOG.md">CHANGELOG.md</a> publishes the DLL and updates the <code>latest.json</code> of
+its major line, which the stubs of that line read: <code>lib/v1/</code> for 1.x.y, <code>lib/v2/</code> from 2.0.0 on. Only a round
+version (<code>2.0.0</code>) is published as a stable release, every other one as a pre-release.</p>
+<pre><code>src/UIFramework           the DLL (.NET Framework 4.8, WPF)
+src/UIFramework.Tests     xUnit; HostBlock/ stands in for Streamer.bot, so stub/HostSchema.cs and stub/Stub.cs
+                          compile into the tests
+src/UIFramework.Preview   opens the window without Streamer.bot
+stub/                     Stub.cs, the generic settings action (loader + bridge); HostSchema.cs, the host block a
+                          project pastes in
+examples/DemoGame/        the smallest game with a window: DemoGame.cs, DemoGame.sb (the import), schema.json,
+                          a README
+hosts/&lt;name&gt;/             for each of the eight games: schema.json, what it answers, with the window (read by the
+                          tests and the screenshots), and HostBlock.cs, the game&#39;s table and window in the current host
+                          block (a game takes it over with its next release)
+conventions/              keys.json, lang/&lt;code&gt;.json and emotes/, embedded into the DLL
+assets/logo/              the logo, the wordmark and the mark in several sizes (its README says which file is for
+                          what); the two logo PNGs are embedded into the DLL for the About page
+tools/                    update-host-block.ps1     refresh the block in a project&#39;s action, keeping its table
+                          copy-host-block.ps1       a game&#39;s block into its other action and into hosts/&lt;name&gt;/
+                          check-stub.ps1            compile the stub and the demo the Streamer.bot way; needs a
+                                                    Streamer.bot install (-StreamerBotPath) and the RoslynHost a
+                                                    game project builds (-RoslynHostTools)
+                          build-import.ps1          keep an export&#39;s code on the files
+                          conventions-doc.ps1       the tables in docs/Conventions.md
+                          update-twitch-emotes.ps1  Twitch&#39;s global emotes for conventions/emotes
+                          docs-shots.ps1            the screenshots in docs/images, rendered again
+lib/v&lt;major&gt;/latest.json  what the loader reads: version, download url, sha256 and minHostStub, the oldest
+                          settings action the release works with (one folder per major line)
+docs/                     Getting-Started, Schema, Conventions, Loader, Customize; images/ the screenshots
+.github/workflows/        ci.yml (build, tests and docs/Conventions.md checked on every push and pull request),
+                          release.yml (a tag vX.Y.Z publishes the release and writes latest.json)
+.github/ISSUE_TEMPLATE/   translation.yml, the &quot;Fix a translation&quot; form
 </code></pre>
 <hr>
 <h2>Credits</h2>
@@ -261,52 +280,363 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
-<h2>[Unreleased]</h2>
-<h3>Changed</h3>
-<ul>
-<li><strong>The update dialog says when Streamer.bot needs a restart (settings action, stub 0.3.1).</strong> A newer UIFramework
-can only be used at once while none is running in this Streamer.bot; a game that loads it at the start (the
-update notice, <code>UiLive</code>) or a window opened before keeps the running one in use. The dialog now says which case
-it is: &quot;Streamer.bot needs no restart&quot;, or &quot;takes effect once Streamer.bot is restarted&quot;, with the version that
-runs until then. After a download that has to wait, a second note says it once more (restart Streamer.bot; no
-hurry, it can wait until after the stream): the window opened as before and only the log told. Nothing changes
-in the DLL; a game gets it with its next release.</li>
-</ul>
+<h2>[2.0.0] - 2026-11-15</h2>
+<p>The window comes in French and Brazilian Portuguese, a path field opens Windows&#39; file dialog, and a group field
+suggests Streamer.bot&#39;s groups. 2.0.0 starts the v2 line: its <code>latest.json</code> is <code>lib/v2/latest.json</code>, which settings
+action 0.3.2 reads. A project gets 2.0.0 offered once it ships stub 0.3.2 and its host block; one on an older stub
+reads <code>lib/v1/latest.json</code>, stays on 1.9.0 and uses 2.0.0 only when another project has installed it. Nothing was
+removed: the window still works with every settings action from stub 0.1.0 on (<code>MinHostStub</code> stays 0.1.0).</p>
 <h3>Added</h3>
 <ul>
-<li><strong><code>UiHost.StillWorking()</code> (host block, stub 0.3.1):</strong> a request that takes long on purpose (a Try button that
-imports a word list) says that it is still at work, and the settings action waits 30 seconds from then for its
-answer. It gave every request 30 seconds after it started and then dropped the answer while the work went on;
-Hangman stopped its import at 28 seconds for that. 30 seconds stays what a request gets without the call. See
-<em>The game&#39;s side</em> in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a>.</li>
+<li><strong>French and Brazilian Portuguese.</strong> <code>fr.json</code> and <code>pt-BR.json</code> carry every page, key, placeholder, text and
+window text, translated from the revised English and read a second time; no native speaker has read them yet. The
+language picker takes the width of its longest name now, at least the 110 px it had and at most 220, so &quot;Português
+(Brasil)&quot; is no longer cut off. A test holds every language file the DLL carries to English&#39;s entries and
+placeholders.</li>
+<li><strong>&quot;Fix a translation&quot;, an issue form for the window&#39;s texts in any language.</strong> It asks for the language, what the
+window says now and what it should say. It links the new section <em>Proofreading a language</em> in
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Conventions.md#proofreading-a-language">docs/Conventions.md</a>, which shows how to try a wording first in a
+<code>UIFramework\lang\&lt;code&gt;.json</code> beside Streamer.bot.</li>
+<li><strong>A <code>path</code> field has a button for Windows&#39; file or folder dialog.</strong> <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a> promised &quot;a
+folder/file dialog&quot;, but the field was a text box with a button that only opened the folder in Explorer. The new
+button opens a file dialog when the value or the default names a file (it has an extension, or a file of that name
+exists), otherwise a folder dialog. The dialog starts where the value points, or where the default points while
+the value is empty; a relative value counts from the Streamer.bot folder. A file the action has not written yet
+can be chosen. A choice is written as a full path, also under the Streamer.bot folder: a project may read a
+relative value from a folder of its own.</li>
+<li><strong>A <code>grouplist</code> field suggests Streamer.bot&#39;s groups (stub 0.3.2).</strong> docs/Schema.md promised &quot;chips with
+Streamer.bot&#39;s groups suggested&quot;; the field had the hint &quot;Add a Streamer.bot group&quot; and took what was typed. The
+first time a group field gets the cursor, the window asks the settings action for the groups, once. The action
+reads them with <code>CPH.GetGroups()</code> on Streamer.bot&#39;s thread, and the window stays usable meanwhile. A list under
+the box then shows the groups not added yet, narrowed by what is typed: Up and Down pick one, Enter or a click
+adds it, Esc closes the list. Enter without a picked group adds what was typed, as before. The list comes with the
+DLL, the groups with stub 0.3.2; with an older settings action, and in the preview, the field works as it did.</li>
+<li><strong>A request that takes long on purpose says it is still at work: <code>UiHost.StillWorking()</code> (host block, stub
+0.3.2).</strong> The project calls it while such a request runs (a Try button that imports a word list), and the settings
+action waits 30 seconds from then for the answer. It gave every request 30 seconds from its start and then dropped
+the answer while the work went on; Hangman stopped its import at 28 seconds for that. Without the call, a request
+still gets 30 seconds. A request from a window opened again meanwhile waits for one that says it still works
+instead of starting beside it after 35 seconds, and a request that hung before it no longer takes its
+<code>StillWorking()</code> away when it ends. See <em>The game&#39;s side</em> in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a>.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update dialog says when Streamer.bot needs a restart (stub 0.3.1).</strong> A newer UIFramework can be used at once
+only while none runs in this Streamer.bot; a project that loads it at the start (the update notice, <code>UiLive</code>) or a
+window opened before keeps the running one in use. The dialog now says which case it is: &quot;Streamer.bot needs no
+restart&quot;, or &quot;takes effect once Streamer.bot is restarted&quot; with the version that runs until then. After a download
+that has to wait, a second note says it once more (restart Streamer.bot; no hurry, it can wait until after the
+stream). Before, the window opened as usual and only the log told. Nothing changes in the DLL; a project gets it
+when it ships stub 0.3.1 or later.</li>
+<li><strong>A language code means its language in any case, and across a region.</strong> The layout file&#39;s <code>language</code>, a project&#39;s
+fixed language (<code>InLanguage</code>), the codes of its <code>Lang</code> and the names of the files in <code>UIFramework\lang</code> were
+matched letter for letter. <code>&quot;language&quot;: &quot;DE&quot;</code> or <code>&quot;de-AT&quot;</code> opened the window in English, and a project&#39;s
+<code>Lang(&quot;pt-br&quot;, …)</code> beside the DLL&#39;s <code>pt-BR</code>, or a <code>pt-br.json</code> beside Streamer.bot, added a second Portuguese to
+the picker whose words never reached the framework&#39;s. Now a code matches a language in any case. A regional code
+falls back to its language (<code>de-AT</code> is German), a language to its only regional file (<code>pt</code> is <code>pt-BR</code>), and
+anything else to English. The picker, the layout file and the update notice keep the language file&#39;s spelling.</li>
+<li><strong>An <code>en.json</code> in <code>UIFramework\lang</code> corrects English.</strong> A file there was laid over every language the DLL carries
+except English, which always came from the DLL, so a proofreader&#39;s corrections to English never showed. It is now
+read when the window opens, as <code>de.json</code> there is. Without such a file, English is the DLL&#39;s own, loaded once.</li>
+<li><strong>The window&#39;s texts in English, German and Spanish are read again.</strong> Stiff wording is plainer now, and a text
+that meant whatever the window belongs to, rather than a game, says &quot;extension&quot;. Three said what the window does
+not do and are corrected: the accent colour holds for this extension&#39;s window only, <em>Reset layout</em> also takes the
+help under the fields back into the tooltips, and a newer version shows as a red label at the top of the window,
+not on the About page.</li>
+<li><strong>The Help page comes by itself</strong> when the window declares help sections, custom triggers or methods and does not
+name <code>help</code> among its pages, as Messages and About already did. The triggers with their Fire buttons and the
+method list had no page.</li>
+<li><strong>The red &quot;i&quot; names a log declared without its page, and a range slider whose whole default meets a fraction.</strong> A
+window with <code>Log(folder, files)</code> that does not name <code>log</code> had no Log page and no switch for the log, without a
+word. A range slider&#39;s default decides what it holds (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">docs/Schema.md</a>), so <code>S(&quot;x&quot;, 1, kind: &quot;slider&quot;, min: 0, max: 2, step: 0.5)</code> is a slider of whole numbers on a 0.5 grid: it saves 0.5 as 0 and 1.5 as 2,
+the same as the place next to each, and nothing said so. The rule stays; the check names a slider whose default is
+a whole number while its step, minimum or maximum has a fraction, and says to write the default as <code>1.0</code> for a
+slider of decimals.</li>
+<li><strong>An action&#39;s <code>status</code> reaches the footer also when the action has a <code>panel</code>.</strong> With a panel, and so with every
+<code>auto</code> action, the status went nowhere, or into the panel only while the panel was empty, and the documented
+answer with <code>lines</code>, <code>bar</code>, <code>set</code> and <code>status</code> could not be shown whole. The footer now shows the status beside
+the panel.</li>
+<li><strong>An <code>emote</code> field with <code>platform: youtube</code> shows its picture,</strong> as a list&#39;s emote column does: YouTube&#39;s own
+emojis (<code>:name:</code>) from the table inside the DLL. The single field had no picture at all.</li>
+<li><strong>The docs are read again,</strong> README and docs/ alike, as the code now is and for any project: plainer wording,
+&quot;project&quot; or &quot;extension&quot; where any user of the framework is meant, &quot;game&quot; only where a game is. Corrected where
+text and code disagreed: field help as a tooltip, units in the label, <code>step</code> only for sliders, a percent compared
+as stored, <code>path</code> and <code>grouplist</code> as they now work, the accent colour per extension, <code>Lock()</code>, the Log page&#39;s
+order, what keeps a 2.x DLL from a 1.x settings action, the troubleshooting rows. README&#39;s tree and tool list
+follow the repository. The demo&#39;s README counts the settings it declares as they are and names the tick on
+<em>Precompile on Application Start</em> that the update notice needs.</li>
+<li><strong>The demo and the mirrors in <code>hosts/</code> carry the host block of stub 0.3.2,</strong> and the demo&#39;s import is built again.</li>
+<li><strong>CI runs once per commit and checks what is made from the sources.</strong> It ran on every push to every branch, and a
+branch with a pull request had each check run twice; it now runs on pushes to <code>main</code> and on pull requests. Beside
+the build, the tests and <code>docs/Conventions.md</code>, it checks that the demo and the eight games&#39; copies in <code>hosts/</code>
+carry the template&#39;s host block and that the demo&#39;s import carries the demo and the stub.</li>
+<li><strong>The release workflow runs CI&#39;s checks as well.</strong> It does not wait for CI, and 1.6.0 was published while CI
+failed on its <code>docs/Conventions.md</code>. A tag is released only when the conventions doc, the demo&#39;s host block and
+the demo&#39;s import pass there too.</li>
+<li><strong>Leftovers are gone.</strong> The seven facades in <code>hosts/</code> (six games&#39; <code>SettingsFacade.cs</code> and Blackjack&#39;s
+<code>StatsFacade.cs</code>) were copies of the games&#39; settings classes from the port to the generic stub; nothing read them,
+and they had drifted from the games. Three empty <code>.gitkeep</code> files are gone with them, and
+<code>tools/spec-to-window.ps1</code> leaves too: no project has had a <code>spec.json</code> of its own since 1.9.0.</li>
 </ul>
 <h3>Fixed</h3>
+<p>In the DLL, for every project with the next UIFramework release:</p>
 <ul>
+<li><strong>A save keeps what changed while the project checked it.</strong> A save waits for the project&#39;s <code>validate</code>. An answer
+that came in meanwhile (a preset button&#39;s or an <code>ask</code> field&#39;s <code>set</code>) or a timer put its values into the fields
+after the save had taken its copy, and the window said &quot;Saved&quot; with no unsaved change while the file held the old
+values: closing asked nothing, and the values were gone. They now count as unsaved, the status line says how many,
+<em>Save &amp; Exit</em> asks before it closes, and the next save writes them.</li>
+<li><strong>The questions after the project&#39;s check belong to the window.</strong> When the project took its time and the user went
+to another window meanwhile, <em>Not checked</em> and <em>Check your settings</em> (and the notes after a save or an import that
+failed) had no owner. The settings window took clicks again with the save still open, its X closed it while the
+question stayed up, and the settings could not be opened again until that question was answered. The questions are
+now modal to the settings window.</li>
+<li><strong>Reset all keeps the unsaved rows of a list in a file of its own.</strong> Such a list is not reset, as the question
+says, but rows typed into it and not yet saved were replaced by the file&#39;s without a word, and the status said &quot;No
+unsaved changes&quot;. They stay in the list now, still unsaved, as <em>Reset page</em> leaves them.</li>
+<li><strong>The red &quot;i&quot; speaks of an unreadable list file in the window&#39;s language.</strong> The line was English in every window.
+It now names the list and its file, followed by the list&#39;s own tooltip (<code>list.unreadable</code>).</li>
+<li><strong>A settings file gone beside its <code>.bak</code> is shown from the <code>.bak</code>, as the project reads it.</strong> When the settings
+file was missing and its <code>.bak</code> lay beside it (a swap that was cut off, or a file deleted by hand), the project&#39;s
+<code>UiSettings.Load</code> ran on the <code>.bak</code>, but the window showed the defaults, and its first save, an import or <em>Reset
+all</em> wrote them over what the project was using. The window now reads the <code>.bak</code> too and says so in the log and in
+a line under the red &quot;i&quot;; its next save writes the settings file from the values it shows. A file that was never
+saved still gives the defaults on both sides.</li>
+<li><strong>A <code>null</code> in the settings file stands for the setting&#39;s default, in the window as in the project.</strong> The host
+block&#39;s <code>UiSettings</code> reads past a <code>null</code> to an old key, then to the default. The window took the <code>null</code> as the
+value and showed 0, an empty box or a switch that is off, none of which the project went by, and dropped an old
+key&#39;s value beside it. It now reads the default (or the old key&#39;s value) as the host block does, and the next save
+writes that in place of the <code>null</code>. An import that names a setting with <code>null</code> brings nothing for it.</li>
+<li><strong>An old key&#39;s factor leaves no float noise in the settings file.</strong> An old fraction moved to a percent with its
+factor of 100, such as 0.29, was written as <code>28.999999999999996</code> while the box showed 29 (Hangman&#39;s overlay
+opacity, whose default is a decimal). The moved value is now rounded to ten decimals, as a number box saves it.
+The host block rounds it the same way (below).</li>
+<li><strong>An import takes a slider&#39;s value through the slider.</strong> It wrote whatever the file named for a slider: a number
+beyond its range, text where its number belongs, a stop it does not have. The window then showed the slider at its
+end and called the value corrected, while the project read the file&#39;s value until the next save. A number is now
+pulled into the range (to a whole number on a whole-number slider); text or a stop the slider lacks is not taken,
+and the dialog says why, as for a dropdown. If the import names the value the slider already holds, one none of
+its stops offers, that value stays.</li>
+<li><strong>An import trims a token, a path, a colour and an emote as a save does.</strong> A token with a line break after it in
+the imported file was written with it and stayed so until the field was changed. A plain text field still keeps
+the spaces at either end, as typed.</li>
+<li><strong>A click on the stop a slider sits on chooses it.</strong> A slider over stops that holds a value none of them offers
+names that value beside its label and sits on its first stop. A click on that stop&#39;s caption or on the thumb chose
+the stop without the window noticing: the count of unsaved changes stayed the same, a condition on the slider did
+not follow, and a field with <code>ask</code> did not ask the project. It now counts as one change.</li>
+<li><strong>A slider over decimal stops finds the stop of its number.</strong> A default or a <code>set</code> of 2.0 arrives as 2, and with
+the stops <code>&quot;0.5&quot;</code>, <code>&quot;2.0&quot;</code> and <code>&quot;5.0&quot;</code> it was taken for the index of the third stop: the slider showed <em>Fast</em> and
+the next save wrote <code>&quot;5.0&quot;</code>. A number now finds the stop of the same value however either is written (<code>&quot;0.50&quot;</code> is
+the stop <code>&quot;0.5&quot;</code>); an index finds a stop only among stops that are no numbers.</li>
+<li><strong>A slider over a range starts on its default when the file holds no number.</strong> With <code>&quot;&quot;</code> or <code>&quot;abc&quot;</code> stored, it sat
+on its minimum, and the next save wrote that minimum. It now does what a number box does: it shows the default,
+and the save writes it.</li>
+<li><strong>A field with <code>ask</code> asks with the values the window shows.</strong> It sent the saved ones. A preset slider that moved
+from <code>live</code> to <code>ask</code> (the name 1.9.0 gave it) was answered for the stop it was saved on, and <code>set</code> put that stop&#39;s
+numbers back. On such a field <code>ask</code> now means what <code>live</code> meant, as docs/Schema.md says. A window of 1.9.0 does it
+with <code>live</code> beside <code>ask</code>, which the host block of stub 0.3.2 writes by itself (below).</li>
+<li><strong>An <code>ask</code> field&#39;s answers land in the order it asked.</strong> An answer that waited behind another request of the
+settings action and came after a later one put its values over the later one&#39;s: the slider stood on one stop and
+the fields held another stop&#39;s numbers. The field numbers its questions as a button does, and a late answer to an
+earlier one is dropped.</li>
+<li><strong>An action&#39;s box no longer says it failed after an answer came.</strong> When a Try button&#39;s ask failed (the project did
+not answer in time) and the next answer only set fields or brought a <code>status</code>, the box went on showing the
+failure. That answer takes the failure&#39;s place now: its status shows, or the box hides when there is none. The
+lines of an earlier answer still stay under one that only sets fields.</li>
+<li><strong>An answer under a row hides with its action also with the help under the fields.</strong> With help lines on, a button
+in a named row whose condition hid it left its answer box showing under the row.</li>
+<li><strong>The Help page&#39;s Fire button no longer freezes the window, and it says why the action did not answer.</strong> It asked
+the project&#39;s action on the window&#39;s own thread: with another request still running, the window froze for five
+seconds, and the settings action&#39;s reason for no answer was replaced by the hint that the action may run an older
+version. It now asks the way a Try button has since 1.9.0. The button stays greyed until the answer comes, and no
+answer shows the settings action&#39;s reason. An answer that is none at all (a host block that does not know the
+request) keeps the older-version hint.</li>
+<li><strong>The project&#39;s emote sources are asked without holding the window still.</strong> The window asked for them (the
+broadcaster&#39;s Twitch id and token, the project&#39;s own YouTube pictures) on its own thread. As the first emote field
+was built, that froze the window for up to five seconds while the action was busy; a Try box with YouTube emotes
+(<code>:name:</code>), asking before any emote field had, waited up to 35 seconds when the project&#39;s handler hung. They are
+now asked once per window on another thread, and each picture shows once the answer has come. A shortcode holds
+its picture&#39;s place until then and is drawn as text when it has none. A Unicode emoji still shows at once.</li>
+<li><strong>The tooltip of a 7TV, BTTV or FFZ emote picture is in the window&#39;s language.</strong> It was built in English in code;
+it is now the window text <code>field.emote.extension</code>, in every language the DLL carries.</li>
+<li><strong>A sender switch the Messages page does not draw is a field on its page.</strong> The window kept <code>useBot</code>,
+<code>sendAction</code>, <code>numberSeparator</code> and the two cooldown switches for the Messages page, which draws them only while
+it has messages, and the cooldown pair only while a message is in the cooldown group. A project without messages,
+or one whose cooldown messages have no group (Blackjack&#39;s), had settings its action reads and no field for them.
+Such a switch is now a field on its own page (<code>general</code>, <code>cooldowns</code>, or the page it declares), and a page that
+names one shows it. A standard page with nothing of its own (Messages without messages, Help without help) now
+shows the fields declared for it; before, it was left out together with them.</li>
+<li><strong><code>hidden</code> hides the sender switches, the number format and the log switch.</strong> The Messages and Log pages drew them
+hidden or not; only <code>Senders(useBot: null)</code> left one out. A setting the project hides (<code>hidden</code>, <code>Override(key, hidden: true)</code>) has no field there now, and its value stays in the file.</li>
+<li><strong>A page&#39;s own title stays in a language that does not title its id.</strong> In a language with only the project&#39;s own
+texts (<code>Lang(&quot;nl&quot;, …)</code>) or a language file without page titles, the conventions&#39; English title replaced the
+declared one: &quot;How to play&quot; read &quot;Help&quot;, &quot;Scoreboard&quot; read &quot;Leaderboard&quot;. As with a key&#39;s label, the conventions&#39;
+title for the id is taken only where it is a translation.</li>
+<li><strong>The red &quot;i&quot; looks for split sections on the page a field ends up on.</strong> It read the page each setting declared,
+before the window&#39;s pages claimed their fields. So it called a section split that a page&#39;s claim had put back
+together, and missed one that a page collecting the fields of two pages split.</li>
+<li><strong>The timer&#39;s random switch sits on the row of its two intervals, and the longest wait greys out with the timer&#39;s
+switch too,</strong> as docs/Schema.md says. The random switch stood on a line of its own, and with it on, the longest
+wait stayed open while the timer was off.</li>
+<li><strong>The About page translates the credits and the project&#39;s own links.</strong> The <code>Tx</code> translations of the credits under
+the name and of the texts in <code>About(links:)</code> were not used, although the page&#39;s sections and the links inside them
+were translated and docs/Schema.md said <code>Tx</code> translates the credits. They now go through the same lookup as every
+other declared text.</li>
+<li><strong>Customise mode: <em>Move up</em> and <em>Move down</em> move a field on the page it is shown on.</strong> The sender switches, the
+number format and the log switch, which the Messages and Log pages draw wherever they are declared, counted among
+a page&#39;s fields. On High-Low&#39;s Cooldowns page and Blackjack&#39;s Messages page a press went past one of them and
+nothing moved, the first field shown could still be moved up, and a field moved next to one took a section the
+page does not show. They are left out now.</li>
+<li><strong>Customise mode: <em>Move up</em> and <em>Move down</em> cross a heading one place at a time.</strong> The first field under a
+heading, moved up, landed between the last two fields of the section above; the last field of a section, moved
+down, went past the first field of the next. The places next to a heading could only be reached with the mouse. A
+step over a heading now takes the field into that section and leaves it where it stands.</li>
+<li><strong>Customise mode: a field moved to another page no longer splits a section there.</strong> <em>Move to page</em> and a drop on a
+page in the rail left the field at its declared place among all settings, which on a page the user had sorted fell
+anywhere, often between two fields of one section, whose heading then showed twice. The field now goes to the end
+of its own section when that page has it, else to the end of the page, on a line of its own. The menu takes it out
+of its row too, as the drop did.</li>
+<li><strong>Customise mode: on a page the user sorted, a field the user never placed goes where the project declares it.</strong>
+Sorting a page gives each of its fields an order in the layout file. A field without one, which the project added
+in an update or <em>Reset this field</em> gave back, kept its place among all the project&#39;s settings; on a sorted page
+that place could be anywhere, often inside another section, whose heading then showed twice. It now goes behind
+the field the project declares before it on that page when the two share a section, else to the end of its own
+section there, else to the end of the page.</li>
+<li><strong>An order typed into the layout file with too many digits no longer keeps the window from opening.</strong> A whole
+number longer than 19 digits made every open fail. It now reads as the largest order, as a value of the wrong kind
+reads as not set.</li>
+<li><strong>The folder button of a <code>path</code> field opens the folder a file is in.</strong> For a value that names a file
+(<code>overlay\state.json</code>), the button made a folder with the file&#39;s name, after which the action could not write its
+file there; for a file that already existed it failed, and only the log said so. It now opens the file&#39;s folder,
+and creates that folder when it is missing, as it does for a folder.</li>
+<li><strong>Log page: the folder button opens the log folder beside Streamer.bot.</strong> It opened the declared folder (<code>Chat Games/Logs</code>) relative to the process&#39;s current directory, which a file dialog moves (the window&#39;s own Export and
+Import, any dialog of Streamer.bot). After an export to the Desktop it created and opened an empty <code>Desktop\Chat Games\Logs</code>. It now opens the folder the page follows and the settings action reads, under the Streamer.bot
+folder.</li>
+<li><strong>Log page: lines written in the same second show newest first.</strong> The page sorts by time, which has whole seconds,
+and kept lines of equal time in the order it got them. The settings action hands them over as they were written,
+so lines written together, several in one second, showed oldest first inside a list that is newest first. The last
+line written is now the first row, on open and on every reload.</li>
+<li><strong>Log page: a line without a readable time leaves the Time column empty.</strong> It showed <code>0001-01-01 00:00:00</code>. A
+click on the column header still sorts by time.</li>
+<li><strong>The update notice leaves out a UIFramework release the settings would not offer.</strong> A release skipped with <em>No</em>
+in the update dialog, or any release while the release check is off (<code>skipVersion</code>, <code>&quot;autoUpdate&quot;: false</code> in
+<code>UIFramework\loader.json</code>), was named in chat at every Streamer.bot start, and the log line sent the streamer to
+settings that did not offer it. The notice now follows the settings action&#39;s rules. A project whose own
+<code>uiframework.layout.json</code> skips the release or switches the check off counts as not offering it, and UIFramework
+is named while at least one project of the run would offer it. An unreadable <code>loader.json</code> counts as empty, as in
+the settings action. The projects&#39; own releases are named as before.</li>
+<li><strong>A language file with broken braces no longer costs the update notice.</strong> A file in <code>UIFramework\lang</code> beside
+Streamer.bot whose <em>import it again</em> text had lost a brace made the notice throw while it was put together, and
+that Streamer.bot run had no notice. The text is now filled the way the window fills its own, and a text with
+broken braces is used as it stands.</li>
+<li><strong>The update notice uses the language a project fixes for its window.</strong> It followed the language in the layout
+file, which a window with <code>InLanguage(&quot;de&quot;)</code> never writes, so that project&#39;s notice came in English or in a
+language picked before. The window now tells the notice its fixed language when it opens, and the notice keeps it
+for the Streamer.bot starts that follow.</li>
+<li><strong>The chat preview groups amounts as the window&#39;s language does,</strong> for a project without a thousands-separator
+setting. It wrote 1,500 in English and 1.500 in every other language. Now it takes the separator Windows gives the
+language: 1.500 in German, Spanish and Brazilian Portuguese, 1 500 in French. French officially uses a narrow
+no-break space; the preview writes a plain space, which chat and the text box both show. A language Windows does
+not know keeps the point.</li>
+</ul>
+<p>In the settings action, for a project that ships stub 0.3.2:</p>
+<ul>
+<li><strong>A running UIFramework that needs a newer settings action is not taken (stub 0.3.2).</strong> A host block of 1.9.0 or
+before, in another project, still loads the newest DLL as Streamer.bot starts. The stub passed such a DLL over
+when it was installed but used it when it was running, and the DLL then refused the window with the advice to
+remove its folder. The stub now leaves it alone in both cases; its dialog names the running version and the stub
+it needs, and says that updating the project opens the window.</li>
+<li><strong>A damaged DLL is set aside also while an older UIFramework runs (stub 0.3.2).</strong> As Streamer.bot starts, the host
+block passes over a newest <code>UIFramework.dll</code> that fails its hash and loads the next older one. The settings action
+then used the running one without checking the newest, so the damaged file stayed where it was: its version was
+never offered again, and at every start the log said it would be used from the next one. The settings action now
+checks the hash of the DLL it chose also beside a running UIFramework and sets a damaged file aside as <code>.broken</code>;
+the next open offers that version again.</li>
+<li><strong>The release check&#39;s log line calls the installed version installed (stub 0.3.2).</strong> With a project that loads
+UIFramework as Streamer.bot starts, the line called the newest installed version &quot;in use&quot; while an older one ran,
+and when the chosen DLL had failed and been set aside, the log still said it would be used from the next start.
+The line now says &quot;installed&quot;. The next-start line comes only when the chosen DLL is still there beside a
+UIFramework that ran before the window opened.</li>
+<li><strong>The project hears of every save (stub 0.3.2).</strong> The &quot;saved&quot; request runs from the settings action&#39;s queue. When
+it found another request still running, the log said &quot;A queued step failed&quot; and the project never heard of the
+save, so its overlay and timed action went on with the old settings. It is now sent again, three tries in all, and
+what still fails is said in the log and in a note beside the window. A run of the project&#39;s action that ended
+without answering counts as not heard too.</li>
+<li><strong>A download that breaks off is tried again (stub 0.3.2).</strong> A connection reset while the file came in was not
+counted as a broken connection, and a connection closed early left a short file that failed the hash check with a
+message that read like tampering. Both get the three tries now, as does a connection that cannot be made; only
+after the last one does the dialog say that the file does not match.</li>
+<li><strong>A project&#39;s action that runs without answering is &quot;no answer&quot; (stub 0.3.2).</strong> One whose <code>Execute()</code> never
+reached <code>UiHost.Handle</code> counted as an empty answer: a Try button said &quot;done&quot;, and a save went on as checked.
+Streamer.bot reads a global set to empty text back as null, so the stub now marks the answer&#39;s variable before the
+run and sees whether the project wrote it.</li>
+<li><strong>A DLL in a folder named <code>1.9</code> gets the no-answer marker (stub 0.3.2).</strong> It was compared as older than 1.9.0 and
+got null instead.</li>
+<li><strong>A list or an object where a version belongs no longer breaks every open (stub 0.3.2).</strong> <code>skipVersion</code> in
+<code>loader.json</code> or the layout file, or <code>minHostStub</code> in <code>latest.json</code>, made the window fail. Such a value counts as
+missing now, and the log says so.</li>
+<li><strong>An unreadable <code>loader.json</code> is not written over (stub 0.3.2).</strong> A damaged or locked <code>UIFramework\loader.json</code>
+counted as empty, and <em>No</em> in the update dialog replaced it with a file holding only <code>skipVersion</code>. It now counts
+as empty without being written over, as the layout file already did; <em>No</em> keeps the skip in the project&#39;s layout
+file then, and the log says where it went (or that it could not be kept) and that <code>loader.json</code> cannot be read.</li>
+<li><strong>A run that a later one took over ends there (stub 0.3.2).</strong> When a project&#39;s action that had hung for a minute
+answered after all, its first run went on to the update dialog and the window, beside the run that had opened it.</li>
+<li><strong>Two runs that end together leave the window free (stub 0.3.2).</strong> If the run that opened the window ended just as
+another run&#39;s window closed, neither handed the window back, and the next open reused the old schema without
+asking the project or GitHub.</li>
+</ul>
+<p>In the host block, for a project that ships the host block of stub 0.3.2:</p>
+<ul>
+<li><strong>A DLL that needs a newer settings action no longer locks a project&#39;s window (host block).</strong> The update notice
+and <code>UiLive</code> loaded the newest <code>UIFramework.dll</code> under <code>lib\</code>, also one another project had installed for a newer
+stub. Only one UIFramework runs in a Streamer.bot, so the project&#39;s settings window then failed on every start,
+although the stub passes such a DLL over. The host block now loads the newest DLL that fits the settings action
+released with it (<code>StubVersion</code> in the host block, 0.3.2, kept equal to the stub&#39;s); a DLL that names no stub
+fits. The block reads the DLL&#39;s version without <code>System.dll</code>, so it still compiles in an action that lists only
+mscorlib, System.Core, Newtonsoft.Json and Streamer.bot&#39;s interface.</li>
 <li><strong>The update notice takes the next older DLL when the newest cannot be used (host block).</strong> When the newest
 <code>UIFramework.dll</code> under <code>lib\</code> failed its hash or threw once while loading, the block gave up on every DLL for the
 rest of the run: no update notice, and <code>UiLive</code> said Unknown for Twitch and Kick until Streamer.bot restarted. It
 now tries the installed ones newest first and passes over one that is damaged, will not load, or needs a newer
-settings action than the one released with the block (<code>StubVersion</code> in the block, kept equal to the stub&#39;s); a
-file downloaded again is tried again. Once a UIFramework is loaded, the block takes that one: .NET answers every
-later load of a <code>UIFramework.dll</code>, whichever version, with the one already loaded.</li>
-<li><strong>A round that starts while the window saves reads the saved settings (host block).</strong> The window swaps the new
-settings file in, the old one becoming the <code>.bak</code>, and for that moment there is no file; <code>UiSettings.Load</code> took
-the missing file for one never saved and gave the defaults without a word. It now waits a moment for a file that
-is being swapped in, and reads the <code>.bak</code> (saying so in <code>Problem</code>) when only that is left; a game whose settings
-were never saved still gets the defaults at once.</li>
-<li><strong>A save that switches automatic rounds off keeps the timer off (host block).</strong> <code>UiTimer.Rearm</code> looked at the
-timed action, then switched it off and on; a save whose <code>UiTimer.Sync</code> switched it off in between found it on
-again. The two now take turns.</li>
-<li><strong>The game hears of every save (stub 0.3.1).</strong> The &quot;saved&quot; request runs from the settings action&#39;s queue; when it
-found another request still running, the log said &quot;A queued step failed&quot; and the game never heard of the save,
-so its overlay and timed action went on with the old settings. It is now sent again (three tries in all), and what
-still fails is said in the log and in a note beside the window.</li>
-<li><strong>An unreadable <code>loader.json</code> is not written over (stub 0.3.1).</strong> A damaged or locked <code>UIFramework\loader.json</code>
-counted as empty, and <em>No</em> in the update dialog replaced it with a file holding only <code>skipVersion</code>. It now counts
-as empty without being written over, as the layout file already did; <em>No</em> keeps the skip in the game&#39;s layout
-file then, and the log says where it went and that <code>loader.json</code> cannot be read.</li>
-<li><strong>A DLL in a folder named <code>1.9</code> gets the no-answer marker (stub 0.3.1).</strong> It was compared as older than 1.9.0 and
-got null instead.</li>
+settings action (the entry above); a file downloaded again is tried again. Once a UIFramework is loaded, the block
+takes that one: .NET answers every later load of a <code>UIFramework.dll</code>, whichever version, with the one already
+loaded.</li>
+<li><strong><code>UiSettings.Load</code> during a save reads the saved settings (host block).</strong> The window swaps the new settings file
+in, the old one becoming the <code>.bak</code>, and for that moment there is no file. <code>UiSettings.Load</code> took the missing file
+for one never saved and gave the defaults without a word. It now waits a moment for a file that is being swapped
+in, and reads the <code>.bak</code> (saying so in <code>Problem</code>) when only that is left. A file missing beside its <code>.bak</code> with no
+save under way is read from the <code>.bak</code> at once, without the wait; a project whose settings were never saved still
+gets the defaults at once.</li>
+<li><strong>A save that switches the timer off keeps it off (host block).</strong> <code>UiTimer.Rearm</code> looked at the timed action, then
+switched it off and on; a save whose <code>UiTimer.Sync</code> switched it off in between found it on again. The two now take
+turns.</li>
+<li><strong><code>UiSettings</code> reads an old key that is a setting of its own for that setting only (host block).</strong> A setting whose
+<code>aliases</code> named another setting&#39;s key read that setting&#39;s value while its own key was not in the file yet. The
+window leaves such an old key alone (the red &quot;i&quot; names it) and showed the default, so the project ran on another
+setting&#39;s value until the first save. It now gets the default, as the window shows.</li>
+<li><strong>An old value moved with <code>aliasFactor</code> is read as the window stores it (host block).</strong> <code>UiSettings</code> multiplied it
+as it was, so an old fraction of 0.07 became 7.000000000000001 percent in the project, also in a message that
+prints it. It is now rounded to ten decimals, as the window&#39;s store does.</li>
+<li><strong>A field with <code>ask</code> is asked with what the window shows, also in a window of 1.9.0 (host block).</strong> The released
+DLL hands a request the window&#39;s current values only for a setting marked <code>live</code>, so a field declared with <code>ask</code>
+alone (a preset slider) was answered from the values saved last, not from where the slider stood. The host block
+now writes <code>live</code> beside <code>ask</code> for every field that is no button.</li>
+</ul>
+<p>In this repository&#39;s tools and workflows:</p>
+<ul>
+<li><strong>The release workflow refuses an empty changelog section also when the next heading follows at once.</strong> PowerShell
+counts a range down as well: with no line between the version&#39;s heading and the next one, both headings were taken
+as the notes, and an empty section was released.</li>
+<li><strong><code>tools/check-stub.ps1</code> compiles into a folder of its own per checkout.</strong> Two checkouts (worktrees) checked at
+once compiled into the same <code>Stub.dll</code> and <code>Demo.dll</code>, so one failed on a file the other had open, or read the
+other&#39;s demo for its <code>schema.json</code>.</li>
+<li><strong><code>tools/update-host-block.ps1</code> knows the earlier templates of every branch.</strong> It read the lines of earlier host
+blocks from the checked-out history only. A project can carry the block of a branch not merged yet, and a plain
+<code>git log</code> also leaves out a merged branch whose merge kept the other side&#39;s file; such lines counted as the
+project&#39;s own.</li>
+<li><strong><code>tools/docs-shots.ps1</code> takes Newtonsoft.Json from the preview&#39;s build.</strong> It loaded it from a Streamer.bot folder
+that was its default on one machine only, and elsewhere the run stopped after seven of its eight windows.
+<code>-StreamerBotPath</code> is gone; no Streamer.bot folder is needed.</li>
 </ul>
 <h2>[1.9.0] - 2026-11-12</h2>
 <p>The Log page&#39;s colours can be declared, and what the audit of 2026-11-08 had left open is done. The window&#39;s
@@ -1398,9 +1728,9 @@ the file its game already reads.</li>
       <section class="md" data-doc="get-started" data-label="Get started" data-file="docs/Getting-Started.md">
         <h2 class="doc-label">Get started</h2>
         <div class="doc-body"><h1>Getting started</h1>
-<p>At the end of this page the <strong>Demo Game</strong> runs in your Streamer.bot: <code>!roll</code> in chat rolls a die, and a
-settings window with pages, a Try button, a chat preview and a customise mode sets it up. Every step is copy and
-paste of a ready file; nothing needs changing. Making it your own game comes after that, in
+<p>By the end of this page the <strong>Demo Game</strong> runs in your Streamer.bot: <code>!roll</code> in chat rolls a die, and a settings
+window with pages, a Try button, a chat preview and a customise mode sets it up. The code comes in ready files to
+paste, and nothing in them needs changing. Turning the demo into your own project comes after that, in
 <a href="#make-it-your-own">Make it your own</a>.</p>
 <table>
 <thead>
@@ -1437,35 +1767,35 @@ paste of a ready file; nothing needs changing. Making it your own game comes aft
 </tr>
 </tbody></table>
 <blockquote>
-<p><strong>In a hurry?</strong> <em>Import</em> in Streamer.bot, drop in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame/DemoGame.sb"><code>examples/DemoGame/DemoGame.sb</code></a>:
-that is steps 1 to 3 in one go (the settings action is called <strong>.Demo GUI</strong> there, the command <strong>Run DemoGame</strong>).
-The import brings the command switched off: tick <em>Enabled</em> on it in <em>Commands</em>, then go on with
-<a href="#step-4-open-the-window">step 4</a>.</p>
+<p><strong>In a hurry?</strong> Use <em>Import</em> in Streamer.bot and drop in
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame/DemoGame.sb"><code>examples/DemoGame/DemoGame.sb</code></a>: that is steps 1 to 3 in one go. The
+settings action is called <strong>.Demo GUI</strong> there, the command <strong>Run DemoGame</strong>. The command arrives switched off,
+so tick <em>Enabled</em> on it in <em>Commands</em>, then go on with <a href="#step-4-open-the-window">step 4</a>.</p>
 </blockquote>
-<p><strong>How to copy a file:</strong> open its <em>raw</em> link (in each step below), press <kbd>Ctrl</kbd>+<kbd>A</kbd>,
-<kbd>Ctrl</kbd>+<kbd>C</kbd>. On a file&#39;s GitHub page the <em>Copy raw file</em> button at the top right does the same.
-Always the <strong>whole</strong> file: a part of it gives compile errors.</p>
+<p><strong>How to copy a file:</strong> open its <em>raw</em> link (in each step below) and press <kbd>Ctrl</kbd>+<kbd>A</kbd>,
+<kbd>Ctrl</kbd>+<kbd>C</kbd>. On a file&#39;s GitHub page, the <em>Copy raw file</em> button at the top right does the same.
+Always copy the <strong>whole</strong> file; part of it gives compile errors.</p>
 <h2>Step 1: the game action <code>Demo Game</code></h2>
 <p>File: <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/examples/DemoGame/DemoGame.cs"><code>examples/DemoGame/DemoGame.cs</code></a> ·
 <a href="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/examples/DemoGame/DemoGame.cs">raw</a></p>
 <ol>
-<li><em>Actions</em> tab, right-click into the list of actions, <em>Add</em>. Name: <code>Demo Game</code>, exactly so: the settings
+<li><em>Actions</em> tab, right-click into the list of actions, <em>Add</em>. Name: <code>Demo Game</code>, exactly so, since the settings
 action finds the game by this name.</li>
 <li>Select the new action. Under <em>Sub-Actions</em>: right-click, <em>Add</em> → <em>Core</em> → <em>C#</em> → <em>Execute C# Code</em>.</li>
-<li>In the code window, select all and delete it (Streamer.bot&#39;s template). Paste <code>DemoGame.cs</code>. Type <code>Demo Game</code>
-into the window&#39;s <em>Name</em> field too: the sub-action is then listed as &quot;Execute Code (Demo Game)&quot;, which is how
-another action finds this code for an <em>Execute C# Method</em>.</li>
+<li>In the code window, select all and delete it (Streamer.bot&#39;s template), then paste <code>DemoGame.cs</code>. Type
+<code>Demo Game</code> into the window&#39;s <em>Name</em> field too: the sub-action is then listed as &quot;Execute Code (Demo Game)&quot;,
+which is how another action finds this code for an <em>Execute C# Method</em>.</li>
 <li><em>Compile</em>: the log under the code reports no errors. Then <em>Save and Compile</em>.</li>
 </ol>
 <p>Nothing to add under <em>References</em>. The file is the whole game: the UIFramework host block (the settings and the
-window, declared once) right below the <code>using</code> lines, the game in the <code>CPHInline</code> class at the end.</p>
+window, declared once) right below the <code>using</code> lines, and the game itself in the <code>CPHInline</code> class at the end.</p>
 <h2>Step 2: the command <code>!roll</code></h2>
 <ol>
 <li><em>Commands</em> tab, right-click, <em>Add</em>. Name: <code>Demo roll</code>, command: <code>!roll</code>, <em>Enabled</em> ticked. <em>OK</em>.</li>
 <li>Back on <em>Actions</em>, select <strong>Demo Game</strong>. Under <em>Triggers</em>: right-click, <em>Add</em> → <em>Core</em> → <em>Commands</em> →
 <em>Command Triggered</em>, and pick <code>Demo roll</code>.</li>
 </ol>
-<p>Leave the command&#39;s cooldowns as they are: the settings window sets them from its own settings after every save
+<p>Leave the command&#39;s cooldowns as they are. The settings window sets them from its own settings after every save
 (10 seconds for everyone, 30 per viewer to begin with).</p>
 <h2>Step 3: the settings action <code>Demo Game Settings</code></h2>
 <p>File: <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/Stub.cs"><code>stub/Stub.cs</code></a> ·
@@ -1480,16 +1810,16 @@ step 1.</li>
 command (as in step 2) that only the broadcaster may run.</li>
 </ol>
 <h2>Step 4: open the window</h2>
-<p>Fire the trigger from step 3. Without a hotkey or a deck at hand: right-click the trigger under <em>Triggers</em>,
-<em>Test Trigger</em>.</p>
+<p>Fire the trigger from step 3. Without a hotkey or a deck at hand, right-click the trigger under <em>Triggers</em> and
+pick <em>Test Trigger</em>.</p>
 <ul>
-<li><strong>The first time</strong> a question comes up: download <code>UIFramework.dll</code> into <code>&lt;Streamer.bot&gt;\UIFramework\lib\&lt;version&gt;\</code>?
+<li><strong>The first time,</strong> a question comes up: download <code>UIFramework.dll</code> into <code>&lt;Streamer.bot&gt;\UIFramework\lib\&lt;version&gt;\</code>?
 <em>Yes</em>. The file is checked against its published SHA-256 before it is used.</li>
 <li><strong>The window opens with a tour</strong> that rings one part after the other and says what it does: the pages, a
 setting, the <em>Roll</em> button that tries a roll without sending anything to chat, the <em>Messages</em> page with its
 placeholder chips and chat preview, saving, resetting, the theme and the customise mode. <em>Next</em> goes on, Esc
-ends it; it starts by itself only this once, the <strong>?</strong> at the top right shows it again. Your own game gets one
-with <code>.Tour(...)</code> in its window (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-tour">Schema.md</a>).</li>
+ends it. It starts by itself only this once; the <strong>?</strong> at the top right shows it again. Your own project gets
+one with <code>.Tour(...)</code> in its window (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-tour">Schema.md</a>).</li>
 <li>Change a value and save. The window writes <code>&lt;Streamer.bot&gt;\Demo Game\DemoGame-Settings.json</code> and sets the
 cooldowns of <code>!roll</code>.</li>
 </ul>
@@ -1501,9 +1831,9 @@ cooldowns of <code>!roll</code>.</li>
   <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/demo-messages-dark.png" width="32%" alt="The Messages page with placeholder chips and a chat preview">
 </p>
 <p align="center"><sub>The demo game's window: its own page in both themes, and the Messages page the framework adds.</sub></p><h2>Step 5: play</h2>
-<p>Type <code>!roll</code> in your chat. The answer reads like <code>@you rolls a 4 on a d6: no luck.</code>; the highest side wins the
-points per win, paid into the viewer&#39;s points (Currency Core&#39;s or LOYALTY POINTS&#39; when one is installed, else the
-user variable <code>points</code>).</p>
+<p>Type <code>!roll</code> in your chat. The answer reads like <code>@you rolls a 4 on a d6: no luck.</code> The highest side wins the
+points per win, paid into the viewer&#39;s points: Currency Core&#39;s or LOYALTY POINTS&#39; when one is installed, else the
+user variable <code>points</code>.</p>
 <h3>When something does not work</h3>
 <table>
 <thead>
@@ -1513,15 +1843,23 @@ user variable <code>points</code>).</p>
 </tr>
 </thead>
 <tbody><tr>
-<td>Compile errors such as <code>The type or namespace name &#39;JObject&#39; could not be found</code></td>
-<td>Only part of the file was pasted, or <code>HostSchema.cs</code> alone in a new action. Paste the whole <code>DemoGame.cs</code> (step 1).</td>
+<td>Compile errors such as <code>The name &#39;UiHost&#39; does not exist in the current context</code></td>
+<td>Only part of the file was pasted. Paste the whole <code>DemoGame.cs</code> (step 1).</td>
 </tr>
 <tr>
-<td>The window says the action <em>ran but did not answer</em></td>
-<td>The game action is not named exactly <code>Demo Game</code>, its sub-action did not compile, or it is disabled. Streamer.bot&#39;s <em>Log</em> tab shows which.</td>
+<td>A dialog <em>The settings window cannot open</em>, saying there is no action named &#39;Demo Game&#39;</td>
+<td>The game action is not named exactly <code>Demo Game</code> (step 1).</td>
 </tr>
 <tr>
-<td>The window never opens, no question either</td>
+<td>The same dialog: <em>The action &#39;Demo Game&#39; did not run. Is it enabled?</em></td>
+<td>The game action is disabled.</td>
+</tr>
+<tr>
+<td>The same dialog: <em>The action &#39;Demo Game&#39; ran but did not answer with its settings</em></td>
+<td>Its sub-action did not compile, or is switched off. The dialog says what to look for in Streamer.bot&#39;s <em>Log</em> tab.</td>
+</tr>
+<tr>
+<td>Neither the window nor any dialog comes up</td>
 <td>The settings action did not run: check its trigger, and the log.</td>
 </tr>
 <tr>
@@ -1530,11 +1868,11 @@ user variable <code>points</code>).</p>
 </tr>
 </tbody></table>
 <h2>Make it your own</h2>
-<p>The demo becomes your game in <code>DemoGame.cs</code> (save it under your game&#39;s name) and one line of <code>Stub.cs</code>:</p>
+<p>The demo becomes your own project in <code>DemoGame.cs</code> (save it under your project&#39;s name) and one line of <code>Stub.cs</code>:</p>
 <ol>
-<li><p><strong>Names.</strong> In <code>CPHInline</code>: <code>ActionName</code> (your game action&#39;s name: the log lines carry it), <code>SettingsFile</code> (where the settings
-go, relative to the Streamer.bot folder), <code>CurrentVersion</code>, and the short host id <code>&quot;demo&quot;</code> in the
-<code>UiHost.Handle</code> call. In the settings action: <code>GameActionName</code>, the same name as <code>ActionName</code>.</p>
+<li><p><strong>Names.</strong> In <code>CPHInline</code>: <code>ActionName</code> (your action&#39;s name; the log lines carry it), <code>SettingsFile</code>,
+<code>CurrentVersion</code>, and the short host id <code>&quot;demo&quot;</code> in the <code>UiHost.Handle</code> and <code>UiUpdateNotice.Startup</code> calls. In
+the settings action: <code>GameActionName</code>, the same name as <code>ActionName</code>.</p>
 <table>
 <thead>
 <tr>
@@ -1546,12 +1884,12 @@ go, relative to the Streamer.bot folder), <code>CurrentVersion</code>, and the s
 <tbody><tr>
 <td><code>GameActionName</code></td>
 <td>the settings action (<code>Stub.cs</code>), its one line to fill in</td>
-<td>the action the settings action runs to ask the game; it must be the game action&#39;s exact name in Streamer.bot. Also the prefix of the settings&#39; log lines, <code>[&lt;name&gt;/Settings]</code></td>
+<td>the action the settings action runs to ask your project; it must be that action&#39;s exact name in Streamer.bot. Also the prefix of the settings&#39; log lines, <code>[&lt;name&gt;/Settings]</code></td>
 </tr>
 <tr>
 <td><code>ActionName</code></td>
-<td>the game action, passed to <code>UiHost.Handle</code> and <code>UiUpdateNotice.Startup</code></td>
-<td>the prefix of the game&#39;s own log lines, <code>[&lt;name&gt;]</code>. <code>null</code> in <code>UiHost.Handle</code> takes the name Streamer.bot gives the run</td>
+<td>your action, passed to <code>UiHost.Handle</code> and <code>UiUpdateNotice.Startup</code></td>
+<td>the prefix of your action&#39;s own log lines, <code>[&lt;name&gt;]</code>. <code>null</code> in <code>UiHost.Handle</code> takes the name Streamer.bot gives the run</td>
 </tr>
 <tr>
 <td>the host id (<code>&quot;demo&quot;</code>)</td>
@@ -1560,13 +1898,13 @@ go, relative to the Streamer.bot folder), <code>CurrentVersion</code>, and the s
 </tr>
 <tr>
 <td><code>SettingsFile</code></td>
-<td>the game action</td>
+<td>your action</td>
 <td>where the settings live, relative to the Streamer.bot folder; the layout file sits beside it</td>
 </tr>
 <tr>
 <td><code>CurrentVersion</code></td>
-<td>the game action</td>
-<td>the game&#39;s version: the About page shows it, the update check compares it</td>
+<td>your action</td>
+<td>your project&#39;s version: the About page shows it, the update check compares it</td>
 </tr>
 <tr>
 <td>the window&#39;s title</td>
@@ -1580,7 +1918,8 @@ go, relative to the Streamer.bot folder), <code>CurrentVersion</code>, and the s
 </tr>
 </tbody></table>
 </li>
-<li><p><strong>Settings,</strong> in the <code>Table</code> near the top of the host block: one line per setting your game reads.</p>
+<li><p><strong>Settings,</strong> in the <code>Table</code> near the top of the host block: one line per setting your action reads. The
+demo&#39;s, shortened:</p>
 <pre><code class="language-csharp">public static readonly Setting[] Table =
 {
     S(&quot;useBot&quot;, true),
@@ -1592,27 +1931,28 @@ go, relative to the Streamer.bot folder), <code>CurrentVersion</code>, and the s
 };
 </code></pre>
 <p>Keys the framework knows (<code>useBot</code>, <code>globalCooldown</code>, <code>userCooldown</code>, <code>blockedUsers</code>, ... see
-<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/conventions/keys.json"><code>conventions/keys.json</code></a>) need only their default: label, help, page and limits
-come with them. <code>S(key, default, ...)</code> takes everything else as named arguments; <code>Msg(...)</code> is a chat message
-with placeholders. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">Schema.md</a> lists every argument and kind (numbers, switches, dropdowns,
-sliders, colours, paths, emotes, lists with a row editor, buttons that ask your game something).</p>
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/conventions/keys.json"><code>conventions/keys.json</code></a>) need only their default; label, help, page and limits
+come with them. <code>S(key, default, ...)</code> takes everything else as named arguments, and <code>Msg(...)</code> is a chat
+message with placeholders. <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md">Schema.md</a> lists every argument and kind (numbers, switches, dropdowns,
+sliders, colours, paths, emotes, lists with a row editor, buttons that ask your action something).</p>
 </li>
-<li><p><strong>The window,</strong> in <code>Window</code> just above the table, as much or as little as you like:</p>
+<li><p><strong>The window,</strong> in <code>Window</code> just above the table, as much or as little as you like. The demo&#39;s, shortened,
+with a repository and credits of your own:</p>
 <pre><code class="language-csharp">public static readonly UiWindow Window = new UiWindow(&quot;Demo Game&quot;, releases: &quot;you/your-repo&quot;)
     .Pages(P(&quot;game&quot;, &quot;Game&quot;, &quot;dice&quot;), &quot;messages&quot;, &quot;help&quot;, &quot;about&quot;)
     .Cooldowns(C(&quot;!roll&quot;, &quot;globalCooldown&quot;, &quot;userCooldown&quot;))
     .Help(H(&quot;Playing&quot;, Cmd(&quot;!roll&quot;, &quot;Rolls the die once.&quot;)))
     .About(credits: &quot;By you.&quot;);
 </code></pre>
-<p><code>releases</code> is your GitHub repository: it gives the About page its links, the window its &quot;new version of
-the game&quot; check, and your game a place in the update notice once per Streamer.bot start (<code>Init()</code>, see
-<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#update-notice">Schema.md</a>). <code>Cooldowns</code> is how the cooldown settings reach the command: after every save the settings
-action sets its global and per-user cooldown from those two keys; without it they are just numbers in the
-file. Name the command by its text (<code>&quot;!roll&quot;</code>), its name, or its id (right-click the command in Streamer.bot
-to copy it). For a game you ship, the id is the safer one: an export and import keep it, and it still holds
-when a streamer renames the command.</p>
+<p><code>releases</code> is your GitHub repository. It gives the About page its links, the window its check for a new
+version of your project, and your project a place in the update notice once per Streamer.bot start (<code>Init()</code>,
+see <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#update-notice">Schema.md</a>). <code>Cooldowns</code> is how the cooldown settings reach the command: after
+every save, the settings action sets its global and per-user cooldown from those two keys. Without it they are
+just numbers in the file. Name the command by its text (<code>&quot;!roll&quot;</code>), its name, or its id (right-click the
+command in Streamer.bot to copy it). For a project you ship, the id is the safer choice: an export and import
+keep it, and it still holds when a streamer renames the command.</p>
 </li>
-<li><p><strong>The game,</strong> in <code>CPHInline</code>: read the settings with <code>UiSettings.Load(SettingsFile, CPH.LogWarn)</code> and
+<li><p><strong>Your code,</strong> in <code>CPHInline</code>: read the settings with <code>UiSettings.Load(SettingsFile, CPH.LogWarn)</code>, then
 <code>s.Int(&quot;sides&quot;)</code>, <code>s.Bool(&quot;useBot&quot;)</code>, <code>s.String(&quot;msgRoll&quot;)</code>. A damaged file gives the backup of the last save,
 and the log says so.</p>
 </li>
@@ -1621,15 +1961,15 @@ and the log says so.</p>
 <ol>
 <li><p>Paste the host block from <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/HostSchema.cs"><code>stub/HostSchema.cs</code></a>
 (<a href="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/stub/HostSchema.cs">raw</a>), from
-<code>// --- UIFramework host block</code> to <code>// --- end UIFramework host block ---</code>, into your game action <strong>right below
+<code>// --- UIFramework host block</code> to <code>// --- end UIFramework host block ---</code>, into your action <strong>right below
 its <code>using</code> lines</strong>, as in <code>DemoGame.cs</code> and every game on UIFramework. It needs no usings of its own and no
 reference beyond Newtonsoft.Json, which every action has, so anywhere after the usings works as well (at the
-end, or inside the <code>CPHInline</code> class). It is not an action of its own: pasted alone into an Execute Code it
+end, or inside the <code>CPHInline</code> class). It is not an action of its own: pasted alone into an Execute Code, it
 does nothing.</p>
 </li>
 <li><p>Fill in its <code>Window</code> (<code>// __WINDOW__</code>) and <code>Table</code> (<code>// __TABLE__</code>) as above.</p>
 </li>
-<li><p>Three constants in <code>CPHInline</code>, then first thing in <code>Execute()</code> the call that answers the window:</p>
+<li><p>Three constants in <code>CPHInline</code>, then, first thing in <code>Execute()</code>, the call that answers the window:</p>
 <pre><code class="language-csharp">private const string ActionName = &quot;My Game&quot;;                          // your game action&#39;s name
 private const string SettingsFile = &quot;Chat Games/My Game/settings.json&quot;; // relative to the Streamer.bot folder
 private const string CurrentVersion = &quot;v1.0.0&quot;;
@@ -1649,46 +1989,45 @@ public bool Execute()
     UiUpdateNotice.Startup(CPH, ActionName, &quot;mygame&quot;, CurrentVersion, SettingsFile);
 }
 </code></pre>
-<p>and tick <em>Precompile on Application Start</em> on the game action&#39;s Execute Code sub-action (right-click it).</p>
+<p>and tick <em>Precompile on Application Start</em> on your action&#39;s Execute Code sub-action (right-click it).</p>
 </li>
-<li><p>The settings action as in <a href="#step-3-the-settings-action-demo-game-settings">step 3</a>, with your game action&#39;s
-name in <code>GameActionName</code>.</p>
+<li><p>The settings action as in <a href="#step-3-the-settings-action-demo-game-settings">step 3</a>, with your action&#39;s name in
+<code>GameActionName</code>.</p>
 </li>
 </ol>
 <h2>Good to know</h2>
 <h3>The game action and the window</h3>
-<p><strong>Keep the code the game action&#39;s last sub-action</strong>, with nothing before it that acts. The window runs the whole
+<p><strong>Keep the code your action&#39;s last sub-action</strong>, with nothing before it that acts. The window runs the whole
 action for each of its requests, and a sub-action after the code still runs once <code>Handle</code> has answered and the
-code returned <code>true</code>: a chat message or a sound there would go out every time the window asks something.</p>
-<p><code>UiHost.Handle</code> takes optional delegates, the ways the window talks to your game: <code>test</code> answers a Try button or
-a field that asks on every change (<code>ask</code>), <code>validate</code> checks before a save, <code>saved</code> runs after one, <code>table</code> and <code>emotes</code> fill special fields. A
-game with plain settings passes none. The demo&#39;s Try button:</p>
+code returned <code>true</code>. A chat message or a sound there would go out every time the window asks something.</p>
+<p><code>UiHost.Handle</code> takes optional delegates, the ways the window talks to your action: <code>test</code> answers a Try button
+or a field that asks on every change (<code>ask</code>), <code>validate</code> checks before a save, <code>saved</code> runs after one, and <code>table</code>
+and <code>emotes</code> fill special fields. A project with plain settings passes none. The demo&#39;s Try button:</p>
 <pre><code class="language-csharp">if (UiHost.Handle(args, CPH, ActionName, &quot;demo&quot;, CurrentVersion, SettingsFile,
         test: (name, s) =&gt; name == &quot;tryRoll&quot; ? Roll(s, UiCurrency.Detect(CPH, s), &quot;alice&quot;, null) : null))
     return true;
 </code></pre>
-<p><strong>The window waits five seconds for an answer.</strong> The settings action runs your game action with
+<p><strong>The window waits five seconds for an answer.</strong> The settings action runs your action with
 <code>CPH.RunAction(..., true)</code> and waits; a request it has given up on is skipped, not run late. One that has started
-gets 30 seconds more, then the window stops waiting and goes on without its answer; a handler that takes long on
-purpose (an import) calls <code>UiHost.StillWorking()</code> every few seconds, and each call gives it 30 seconds from then
-(stub 0.3.1 and on). The window itself stays
-usable meanwhile (a Try button is greyed until its answer is there; the check before a save keeps the input away),
-and an answer that never came reads &quot;the game did not answer&quot;, not &quot;done&quot;. So inside <code>test</code>,
-<code>validate</code>, <code>saved</code>, <code>table</code> and <code>emotes</code>:</p>
+gets 30 seconds more, after which the window stops waiting and goes on without its answer. A handler that takes
+long on purpose (an import) calls <code>UiHost.StillWorking()</code> every few seconds, and each call gives it 30 seconds
+from then (stub 0.3.2 and on). The window stays usable meanwhile: a Try button is greyed until its answer is
+there, and the check before a save keeps the input away. An answer that never came reads &quot;the extension did not
+answer&quot;, not &quot;done&quot;. So inside <code>test</code>, <code>validate</code>, <code>saved</code>, <code>table</code> and <code>emotes</code>:</p>
 <ul>
 <li>Do not call <code>CPH.RunAction(other, true)</code> on an action that sits in the same <strong>blocking</strong> action queue as the
-settings action or your game action: it cannot start until they end, which is after the five seconds, and the
-window shows &quot;no answer&quot; (for a save: asks whether to save unchecked). Run such work with
-<code>CPH.RunAction(other, false)</code>, or keep the game action and the settings action out of blocking queues.</li>
+settings action or your action. It cannot start until they end, which is after the 30 seconds a started request
+gets, and the window is left without an answer (a save asks whether to save unchecked). Run such work with
+<code>CPH.RunAction(other, false)</code>, or keep your action and the settings action out of blocking queues.</li>
 <li>Keep it short: no <code>CPH.Wait</code>, no web requests. Work that takes long goes into <code>saved</code> with <code>RunAction(..., false)</code>
-or into the game&#39;s own run.</li>
+or into your action&#39;s own run.</li>
 <li>An action you run from there runs as usual: the host block clears the window&#39;s arguments (<code>uiframework.request</code>
-and the others) before your handler runs. A host block older than UIFramework 1.2.0 does not; see
-<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md">Loader.md</a> for the line to add then.</li>
+and the others) before your handler runs. A host block older than UIFramework 1.2.0 does not;
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md">Loader.md</a> has the line to add then.</li>
 </ul>
 <h3>Points</h3>
 <p>A game that pays out declares <code>S(&quot;pointsVariable&quot;, &quot;points&quot;)</code> and <code>S(&quot;pointsName&quot;, &quot;Points&quot;)</code> and asks
-<code>UiCurrency.Detect(CPH, settings)</code> on every run: when the streamer runs StreamUP&#39;s Currency Core or Tawmae&#39;s
+<code>UiCurrency.Detect(CPH, settings)</code> on every run. When the streamer runs StreamUP&#39;s Currency Core or Tawmae&#39;s
 LOYALTY POINTS, <code>Variable</code> and <code>Name</code> come from there and the window shows a pill saying so; otherwise the two
 settings apply. The demo pays a win into that variable with <code>CPH.GetTwitchUserVarById</code>/<code>SetTwitchUserVarById</code>
 (YouTube and Kick likewise).</p>
@@ -1697,53 +2036,55 @@ settings apply. The demo pays a win into that variable with <code>CPH.GetTwitchU
 <li>Pages from the table, sections where <code>section</code> changes, numbers three to a line, switches two.</li>
 <li>Validation: limits, a <code>requires</code> that greys a field out, your <code>validate</code> answer before a save.</li>
 <li>A Messages page with placeholder chips and a live preview, sender switches, a cooldown group.</li>
-<li>A Log page that follows your log folder as the game writes it (<code>.Log(folder, files)</code> in the window).</li>
+<li>A Log page that follows your log folder as your project writes it (<code>.Log(folder, files)</code> in the window).</li>
 <li>Reset to defaults, per page or all; unsaved-change tracking; dark and light theme; an accent colour.</li>
-<li>The customise mode: users rename, move and hide fields and pages, in <code>uiframework.layout.json</code> next to the
-settings file, surviving every import of your game (<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Customize.md">Customize.md</a>).</li>
+<li>The customise mode: users rename, move and hide fields and pages. Their changes go into
+<code>uiframework.layout.json</code> next to the settings file and survive every import of your extension
+(<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Customize.md">Customize.md</a>).</li>
 <li>Export and import of the settings.</li>
 <li>A red <strong>i</strong> in the header when the table or the window declares something the framework cannot use (an unknown
-kind, a requirement on a key that is not there) or something fails while the window is open: a click lists it
+kind, a requirement on a key that is not there) or something fails while the window is open. A click lists it
 all, with a <em>Copy</em> button for a bug report, so you see it without reading Streamer.bot&#39;s log. The pages stay clean.</li>
 </ul>
 <h3>What your users get on their machine</h3>
-<p>This is what to tell a streamer who imports your game, or link them here:</p>
+<p>This is what to tell a streamer who imports your extension, or link them here:</p>
 <ul>
 <li><strong>First open:</strong> the settings action asks whether to download <code>UIFramework.dll</code> from this repository&#39;s
 release into <code>&lt;Streamer.bot&gt;\UIFramework\lib\&lt;version&gt;\</code> (for example <code>lib\1.2.0\UIFramework.dll</code>). The file is
-checked against its published SHA-256 before it is used. *No* opens the <code>lib</code> folder so they can put the DLL there
-themselves, in a folder named after its version; <em>Cancel</em> leaves everything as it is.</li>
+checked against its published SHA-256 before it is used. *No* opens the <code>lib</code> folder so they can put the DLL
+there themselves, in a folder named after its version; <em>Cancel</em> leaves everything as it is.</li>
 <li><strong>Updates:</strong> when a newer framework release is out, the window asks before it downloads anything. <em>No</em> skips
-that version, for every game; <em>Cancel</em> (or closing the dialog) means &quot;not now&quot; and shows it as a pill in the
-window&#39;s header until it is taken.</li>
+that version for every extension, and the update notice at the start no longer names it. <em>Cancel</em> (or closing
+the dialog) means &quot;not now&quot; and shows the version as a pill in the window&#39;s header until it is taken.</li>
 <li><strong>Turning the update check off:</strong> <code>{ &quot;autoUpdate&quot;: false }</code> in <code>&lt;Streamer.bot&gt;\UIFramework\loader.json</code> turns it
-off for every game. For one game alone, <code>&quot;autoUpdate&quot;: false</code> goes into its <code>uiframework.layout.json</code>, the file
-next to its settings file (<code>settingsFile</code>, relative to the Streamer.bot folder). The window then opens with the
-DLL it has and asks nothing.</li>
-<li><strong>Without the window:</strong> your game action needs the DLL for two things only, the update notice at the start and
-the live check (<code>UiLive</code>), and does without both when it is not there. With the settings action disabled the
-game plays on with its settings file, which can still be edited by hand.</li>
+off for every extension, and the update notice at the start then leaves UIFramework&#39;s releases out. For one
+extension alone, <code>&quot;autoUpdate&quot;: false</code> goes into its <code>uiframework.layout.json</code>, the file next to its settings
+file (<code>settingsFile</code>, relative to the Streamer.bot folder). The window then opens with the DLL it has and asks
+nothing.</li>
+<li><strong>Without the window:</strong> your action needs the DLL for two things only, the update notice at the start and the
+live check (<code>UiLive</code>), and does without both when it is not there. With the settings action disabled, your
+project keeps working with its settings file, which can still be edited by hand.</li>
 </ul>
 <p><a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md">Loader.md</a> has the details: where <code>latest.json</code> comes from, the hash on every load, what happens
 offline.</p>
 <h3>Keeping up</h3>
-<p>The host block is the same in every game. When a new framework release changes it, run</p>
+<p>The host block is the same in every project. When a new framework release changes it, run</p>
 <pre><code class="language-powershell">tools\update-host-block.ps1 -File &quot;C:\...\YourGame.cs&quot;
 </code></pre>
-<p>which swaps the block and keeps your Window and Table. It keeps a copy of the file as <code>.bak</code> before it writes,
-and it refuses (and writes nothing) when the old block holds lines of yours outside the Window and the Table,
-which the swap would drop, or when the Table&#39;s end cannot be told for sure; <code>-Force</code> writes anyway, <code>-Check</code>
-only tells whether the block is current. The settings action never changes per project; replace it with the new
+<p>which swaps the block and keeps your Window and Table. Before it writes, it saves a copy of the file as <code>.bak</code>.
+It refuses, and writes nothing, when the old block holds lines of yours outside the Window and the Table, which
+the swap would drop, or when the Table&#39;s end cannot be told for sure. <code>-Force</code> writes anyway; <code>-Check</code> only tells
+whether the block is current. The settings action never changes per project; replace it with the new
 <code>stub/Stub.cs</code> when a release says so.</p>
 </div>
       </section>
       <section class="md" data-doc="schema" data-label="Schema" data-file="docs/Schema.md">
         <h2 class="doc-label">Schema</h2>
         <div class="doc-body"><h1>Schema: what a game declares</h1>
-<p>The schema is everything the settings window needs to know about a game: the settings it reads, and the window
-they are shown in. The game holds both in its host block (<code>stub/HostSchema.cs</code>, pasted into the game&#39;s action),
-reads its values through the same table, and answers the window&#39;s <code>describe</code> request with the whole thing as
-JSON. Values never sit in the schema, only in the settings file.</p>
+<p>The schema is everything the settings window needs to know about a project: the settings it reads, and the window
+they are shown in. Your action holds both in its host block (<code>stub/HostSchema.cs</code>, pasted into the action), reads
+its values through the same table, and answers the window&#39;s <code>describe</code> request with the whole thing as JSON.
+Values never sit in the schema, only in the settings file.</p>
 <pre><code class="language-json">{
   &quot;host&quot;: &quot;blackjack&quot;,
   &quot;version&quot;: &quot;v17.0.0&quot;,
@@ -1806,7 +2147,7 @@ conventions cannot know.</p>
 <tr>
 <td><code>help</code></td>
 <td>no</td>
-<td>one sentence under the field</td>
+<td>one sentence, the field&#39;s tooltip; a line under the field once the user turns on <em>Help under fields</em> (customise bar, or the bulb of a locked window)</td>
 </tr>
 <tr>
 <td><code>min</code>, <code>max</code></td>
@@ -1816,12 +2157,12 @@ conventions cannot know.</p>
 <tr>
 <td><code>step</code></td>
 <td>no</td>
-<td>the step of a <code>double</code> or a <code>slider</code></td>
+<td>the step of a <code>slider</code> over a range</td>
 </tr>
 <tr>
 <td><code>unit</code></td>
 <td>no</td>
-<td>shown after the field (<code>s</code>, <code>%</code>, <code>px</code>)</td>
+<td>in brackets behind the label (<code>s</code>, <code>%</code>, <code>px</code>); a slider shows it after its value, and a <code>percent</code> always says <code>%</code></td>
 </tr>
 <tr>
 <td><code>options</code></td>
@@ -1851,7 +2192,7 @@ conventions cannot know.</p>
 <tr>
 <td><code>unlimitedAtZero</code></td>
 <td>no</td>
-<td>for <code>int</code>/<code>long</code>: 0 in the field means &quot;no limit&quot; and is stored as MaxValue</td>
+<td>for <code>int</code>, <code>long</code> and <code>duration</code>: 0 in the field means &quot;no limit&quot; and is stored as MaxValue</td>
 </tr>
 <tr>
 <td><code>aliases</code></td>
@@ -1866,12 +2207,12 @@ conventions cannot know.</p>
 <tr>
 <td><code>hidden</code></td>
 <td>no</td>
-<td>true: no field, but the value stays in the file</td>
+<td>true: no field, but the value stays in the file; the user can show it in the customise mode unless the window is locked</td>
 </tr>
 <tr>
 <td><code>confirm</code></td>
 <td>no</td>
-<td>for <code>action</code>: a yes/no question before the game is asked</td>
+<td>for <code>action</code>: a yes/no question before the project is asked</td>
 </tr>
 <tr>
 <td><code>row</code></td>
@@ -1881,7 +2222,7 @@ conventions cannot know.</p>
 <tr>
 <td><code>requires</code></td>
 <td>no</td>
-<td>a <code>bool</code>&#39;s key, or a condition on any field (<code>numberOfSlots&gt;=5</code>, <code>cpBetMode=fixed</code>, <code>mode!=free</code>; <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>): the field is greyed out while it does not hold. To hide it instead, use <code>showWhen</code> (<code>hide:</code> in front of a <code>requires</code> did the same before there was a <code>showWhen</code> and is still read; a section heading whose fields are all hidden hides with them). <code>!key</code> holds while a switch is off or a field (or a list) is empty. A key the window does not show (hidden by the user) is read from its saved value. A condition compares the value as it is stored, shown or not: a <code>percent</code> as its fraction (<code>reshuffleThreshold&gt;=0.5</code> for 50 %), a <code>duration</code> in seconds, an &quot;unlimited&quot; 0 as the large number it is saved as. <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> need a number on both sides; the check names one that compares text</td>
+<td>a <code>bool</code>&#39;s key, or a condition on any field (<code>numberOfSlots&gt;=5</code>, <code>cpBetMode=fixed</code>, <code>mode!=free</code>; <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>): the field is greyed out while it does not hold. To hide it instead, use <code>showWhen</code> (<code>hide:</code> in front of a <code>requires</code> did the same before there was a <code>showWhen</code> and is still read; a section heading whose fields are all hidden hides with them). <code>!key</code> holds while a switch is off or a field (or a list) is empty. A key the window does not show (hidden by the user) is read from its saved value. A condition compares the value as it is stored, shown or not: a <code>percent</code> as the number, or as the fraction where <code>factor</code> is 0.01 (<code>reshuffleThreshold&gt;=0.5</code> for 50 %), a <code>duration</code> in seconds, an &quot;unlimited&quot; 0 as the large number it is saved as. <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> need a number on both sides; the check names one that compares text</td>
 </tr>
 <tr>
 <td><code>showWhen</code></td>
@@ -1901,7 +2242,7 @@ conventions cannot know.</p>
 <tr>
 <td><code>readOnly</code></td>
 <td>no</td>
-<td>true: shown, not editable (a status the game writes); <code>readonly</code> is read too (host block: <code>readOnly:</code> on <code>S()</code>)</td>
+<td>true: shown, not editable (a status the project writes); <code>readonly</code> is read too (host block: <code>readOnly:</code> on <code>S()</code>)</td>
 </tr>
 <tr>
 <td><code>twitchOnly</code></td>
@@ -1911,27 +2252,27 @@ conventions cannot know.</p>
 <tr>
 <td><code>transient</code></td>
 <td>no</td>
-<td>true: shown, never saved, never counted as a change; only a live snapshot for the game carries it (the inputs of a Try button)</td>
+<td>true: shown, never saved, never counted as a change; only a live snapshot for the project carries it (the inputs of a Try button)</td>
 </tr>
 <tr>
 <td><code>live</code></td>
 <td>no</td>
-<td>for <code>action</code>: the game gets the values as they stand in the window, unsaved and transient ones included</td>
+<td>for <code>action</code>: the project gets the values as they stand in the window, unsaved and transient ones included</td>
 </tr>
 <tr>
 <td><code>ask</code></td>
 <td>no</td>
-<td>on a field that is no button: the game is asked whenever the field changes (<code>test</code> with the field&#39;s key and the live values), and <code>set</code> in its answer fills other fields (a preset slider that sets five numbers). <code>live</code> on such a field meant the same before <code>ask</code> had a name and is still read</td>
+<td>on a field that is no button: the project is asked whenever the field changes (<code>test</code> with the field&#39;s key and the live values), and <code>set</code> in its answer fills other fields (a preset slider that sets five numbers). <code>live</code> on such a field meant the same before <code>ask</code> had a name and is still read. UIFramework 1.9.0 hands <code>ask</code> alone the saved values and the live ones only with <code>live</code> beside it; the host block writes <code>live</code> beside <code>ask</code>, so a 1.9.0 window asks with the live values too</td>
 </tr>
 <tr>
 <td><code>panel</code></td>
 <td>no</td>
-<td>for <code>action</code>: the answer is shown in a box under the button instead of the footer</td>
+<td>for <code>action</code>: the answer is shown in a box under the button instead of the footer; its <code>status</code> still goes to the footer</td>
 </tr>
 <tr>
 <td><code>auto</code></td>
 <td>no</td>
-<td>for <code>action</code>: no button; the game is asked when the page is shown and shortly after every change in the window (odds that follow the settings). It always gets the values as they stand in the window and has its own box: <code>live</code> and <code>panel</code> come with it</td>
+<td>for <code>action</code>: no button; the project is asked when the page is shown and shortly after every change in the window (odds that follow the settings). It always gets the values as they stand in the window and has its own box: <code>live</code> and <code>panel</code> come with it</td>
 </tr>
 <tr>
 <td><code>columns</code></td>
@@ -1956,21 +2297,28 @@ conventions cannot know.</p>
 </tbody></table>
 <p>Without <code>kind</code>: bool → <code>bool</code>, whole number → <code>int</code> (<code>long</code> when it does not fit an int, also where the conventions
 say <code>int</code>), decimal → <code>double</code>, string → <code>string</code>, array → <code>list</code> (which then needs <code>columns</code>).</p>
-<p>A value in the settings file that does not fit its field never stops the window from opening: a number field whose
-value is no number (<code>&quot;&quot;</code>, <code>&quot;abc&quot;</code>) shows its default, a number stored as text is read (<code>&quot;0,5&quot;</code> is 0.5, from a German
-Windows), and a whole-number field holding a fraction shows it as it is, so the check before saving names it instead of
-cutting it. A dropdown or a slider over stops whose stored value none of its options has keeps it as an extra entry
-(the slider names it beside its label) and saves it back unchanged until the user picks another. Numbers are written
-and compared with a point whatever the system&#39;s language.</p>
+<p>A value in the settings file that does not fit its field never stops the window from opening: a number field or a
+slider over a range whose value is no number (<code>&quot;&quot;</code>, <code>&quot;abc&quot;</code>) shows its default, a number stored as text is read
+(<code>&quot;0,5&quot;</code> is 0.5, from a German Windows), and a whole-number field holding a fraction shows it as it is, so the check
+before saving names it instead of cutting it. A <code>null</code> stands for the setting&#39;s default (or an old key&#39;s value), as
+it does for <code>UiSettings</code> in the host block, and the next save writes that in its place. A dropdown or a slider over
+stops whose stored value none of its options has keeps it as an extra entry (the slider names it beside its label)
+and saves it back unchanged until the user picks another. The slider finds a number&#39;s stop by its value: a stored 2
+is the stop <code>&quot;2.0&quot;</code>. Numbers are written and compared with a point whatever the system&#39;s language.</p>
 <p>A list&#39;s <code>columns</code> are objects in the schema, <code>{ &quot;key&quot;: &quot;word&quot;, &quot;kind&quot;: &quot;text&quot;, &quot;label&quot;: &quot;Word&quot;, &quot;readOnly&quot;: true, &quot;platform&quot;: &quot;kick&quot; }</code>; the host block&#39;s <code>&quot;word|text|Word|readonly&quot;</code> is read from a schema written by hand too. So is
 <code>shows</code> as the host block takes it, <code>[&quot;igdb: igdbClientId, igdbClientSecret&quot;]</code>.</p>
 <p>What the red <strong>i</strong> names in a declaration, beyond a key or an option that does not exist: <code>panel</code>, <code>auto</code> or
 <code>confirm</code> on a field that is no button; <code>placeholders</code> on one that is no message; a <code>platform</code> other than twitch,
 youtube or kick; a <code>{placeholder}</code> in a message&#39;s default text that its <code>placeholders</code> do not list; <code>twitchOnly</code> on
-a note; a page the window names by its id alone that no setting is on (<code>&quot;mesages&quot;</code>); a <code>custom</code> page behind the
-generic settings action, which builds none; a <code>Cmd</code>, <code>Link</code> or <code>Note</code> where the tour wants a <code>Tip</code>, and a <code>Tip</code> among
-a help section&#39;s lines (the host block hands all four as one type, so the wrong one compiles); a style of the Log
-page&#39;s colours that is none. An unknown kind is told the kinds there are.</p>
+a note; an <code>options</code> field without options, a slider with neither options nor both <code>min</code> and <code>max</code>, a slider over a
+range whose default is a whole number while its <code>step</code>, <code>min</code> or <code>max</code> has a fraction (such a slider holds whole
+numbers; a default written <code>1.0</code> makes one of decimals), a <code>list</code> without columns; a page the window names by its id
+alone that no setting is on (<code>&quot;mesages&quot;</code>); a page that names a switch the Messages or the Log page draws (the switch
+stays there); a <code>custom</code> page behind the generic settings action, which builds none; a <code>Cmd</code>, <code>Link</code> or <code>Note</code> where
+the tour wants a <code>Tip</code>, and a <code>Tip</code> among a help section&#39;s lines (the host block hands all four as one type, so the
+wrong one compiles); a style of the Log page&#39;s colours that is none; a log declared with its folder and files whose
+page the window does not name (there is then no Log page, and no switch for the log). An unknown kind is told the
+kinds there are.</p>
 <h2>Kinds</h2>
 <table>
 <thead>
@@ -2003,7 +2351,7 @@ page&#39;s colours that is none. An unknown kind is told the kinds there are.</p
 <td><code>double</code></td>
 <td>double</td>
 <td>number field; with <code>options</code> a dropdown</td>
-<td><code>min</code>, <code>max</code>, <code>step</code>; dot or comma; <code>1,000</code> and <code>1.000,5</code> are refused as ambiguous</td>
+<td><code>min</code>, <code>max</code>; dot or comma; <code>1,000</code> and <code>1.000,5</code> are refused as ambiguous</td>
 </tr>
 <tr>
 <td><code>percent</code></td>
@@ -2051,19 +2399,19 @@ page&#39;s colours that is none. An unknown kind is told the kinds there are.</p
 <td><code>grouplist</code></td>
 <td>string</td>
 <td>chips with Streamer.bot&#39;s groups suggested</td>
-<td>stored comma-separated</td>
+<td>stored comma-separated; the groups come from the settings action (stub 0.3.2 and on), asked once when a group field first gets the cursor; Up/Down and Enter or a click add one, and a typed name goes in as typed. With an older settings action the field takes typed names only</td>
 </tr>
 <tr>
 <td><code>path</code></td>
 <td>string</td>
-<td>text field with a folder/file dialog</td>
-<td>relative to the Streamer.bot folder is fine</td>
+<td>text field with a button for Windows&#39; file or folder dialog and one that opens the folder in Explorer</td>
+<td>relative to the Streamer.bot folder is fine; a value or default that names a file (<code>overlay\state.json</code>) gets a file dialog, and the folder button opens the folder the file is in; a choice is written as a full path</td>
 </tr>
 <tr>
 <td><code>colour</code></td>
 <td>string</td>
 <td>colour field with a picker</td>
-<td><code>#rrggbb</code> or <code>#aarrggbb</code></td>
+<td><code>#rrggbb</code> or <code>#aarrggbb</code>; the kind <code>color</code> is read too</td>
 </tr>
 <tr>
 <td><code>emote</code></td>
@@ -2087,24 +2435,24 @@ page&#39;s colours that is none. An unknown kind is told the kinds there are.</p
 <td><code>table</code></td>
 <td>array</td>
 <td>a table, read-only</td>
-<td>for statistics the game writes; rows from the game&#39;s <code>table</code> answer</td>
+<td>for statistics the project writes; rows from its <code>table</code> answer</td>
 </tr>
 <tr>
 <td><code>note</code></td>
 <td>–</td>
-<td>a paragraph on the page (<code>help</code>)</td>
+<td>a paragraph on the page (<code>help</code>, else a text <code>default</code>)</td>
 <td>no value; explains what follows; http(s) addresses are links</td>
 </tr>
 <tr>
 <td><code>action</code></td>
 <td>–</td>
 <td>a button</td>
-<td>no value; asks the game (<code>test</code> with the key); the answer is the footer line, with <code>panel</code> a box under the button, with <code>live</code> from the current values, with <code>auto</code> without a button and by itself. See <em>Answers</em> below</td>
+<td>no value; asks the project (<code>test</code> with the key); the answer is the footer line, with <code>panel</code> a box under the button, with <code>live</code> from the current values, with <code>auto</code> without a button and by itself. See <em>Answers</em> below</td>
 </tr>
 </tbody></table>
 <p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/emotes-youtube-dark.png" width="460" alt="A list of YouTube emotes with their pictures and weights"></p>
 <p align="center"><sub>A <code>list</code> with an <code>emote</code> column and a number column (Slot Machine's YouTube reels).</sub></p><h3>Answers of an action</h3>
-<p>The game answers <code>test</code> with a line of text, or with a JSON object:</p>
+<p>The project answers <code>test</code> with a line of text, or with a JSON object:</p>
 <pre><code class="language-json">{
   &quot;lines&quot;: [ &quot;Jackpot every 2,400 spins.&quot;, { &quot;text&quot;: &quot;27 %&quot;, &quot;big&quot;: true },
              { &quot;emotes&quot;: [&quot;Kappa&quot;, &quot;LUL&quot;], &quot;platform&quot;: &quot;twitch&quot;, &quot;text&quot;: &quot;The slots&quot; } ],
@@ -2114,21 +2462,24 @@ page&#39;s colours that is none. An unknown kind is told the kinds there are.</p
 }
 </code></pre>
 <ul>
-<li><code>lines</code> are drawn one under the other; a line with <code>emotes</code> shows them as pictures with their names beneath
-(YouTube as the emoji), after its <code>text</code> when there is one.</li>
-<li><code>bar</code> is a stacked bar with a legend.</li>
-<li><code>set</code> puts values into other fields of the window as if typed (nothing is saved until Save: a preset button); a
-field whose value changes glows in the accent colour for a moment. A <code>list</code> takes its rows as an array (or
-the JSON text of one), so an import can fill the list it merged into.</li>
-<li><code>status</code> is the line for the footer.</li>
-<li><code>clipboard</code> is text the window puts on the clipboard (an overlay URL): the game runs on Streamer.bot&#39;s thread,
-which has no clipboard, the window&#39;s has.</li>
+<li><code>lines</code> are drawn one under the other in the action&#39;s box, so they need <code>panel</code> or <code>auto</code>; a line with <code>emotes</code>
+shows them as pictures with their names beneath (on YouTube a Unicode emoji shows itself, and a shortcode without
+a picture its text), after its <code>text</code> when there is one.</li>
+<li><code>bar</code> is a stacked bar with a legend, in the same box.</li>
+<li><code>set</code> puts values into other fields of the window as if typed (nothing is saved until Save: a preset button). A
+field whose value changes glows in the accent colour for a moment. An answer that arrives while a save waits for
+<code>validate</code> is not part of that save and stays unsaved. A <code>list</code> takes its rows as an array (or the JSON text of
+one), so an import can fill the list it merged into.</li>
+<li><code>status</code> is the line for the footer, with a box or without.</li>
+<li><code>clipboard</code> is text the window puts on the clipboard (an overlay URL). Your action runs on Streamer.bot&#39;s thread,
+which has no clipboard; the window&#39;s thread has one.</li>
 </ul>
 <h2>The window</h2>
-<p>The window declaration says how the window is called and laid out: what used to be a spec JSON in the settings
-action. Everything is optional; a page a setting names but the window does not is made up on the way, <code>messages</code>
-appears once there are templates. <code>help</code>, <code>log</code> and <code>about</code> sit together at the foot of the rail, in that order
-whatever order the game declares them in (a page of the game&#39;s own with <code>bottom</code> goes above them).</p>
+<p>The window declaration says what the window is called and how it is laid out; it used to be a spec JSON in the
+settings action. Everything is optional. A page a setting names but the window does not is made up on the way;
+<code>messages</code> appears once there are templates, <code>help</code> once there are help sections, custom triggers or methods, and
+<code>log</code> only where the window names it. <code>help</code>, <code>log</code> and <code>about</code> sit together at the foot of the rail, in that order,
+whatever order the window declares them in (a page of the project&#39;s own with <code>bottom</code> goes above them).</p>
 <pre><code class="language-csharp">public static readonly UiWindow Window = new UiWindow(&quot;Blackjack Game&quot;, releases: &quot;aaskjer/Blackjack-Game&quot;, logo: &quot;https://…/logo.png&quot;)
     .Pages(P(&quot;table&quot;, &quot;Table&quot;, &quot;cards&quot;), P(&quot;stats&quot;, &quot;Stats&quot;, &quot;trophy&quot;, &quot;leaderboard*&quot;, &quot;statsTable&quot;, &quot;resetLeaderboard&quot;), &quot;messages&quot;, &quot;log&quot;, P(&quot;help&quot;, &quot;How to play&quot;), &quot;about&quot;)
     .Log(&quot;Chat Games/Logs&quot;, &quot;BJG-log*.txt&quot;, writeLogKey: &quot;logToFile&quot;, columns: new[] { &quot;Player|User&quot;, &quot;Bet&quot; }, results: new[] { &quot;Win&quot;, &quot;Loss&quot;, &quot;Push&quot; })
@@ -2154,7 +2505,7 @@ whatever order the game declares them in (a page of the game&#39;s own with <cod
 </tr>
 <tr>
 <td><code>Pages(…)</code></td>
-<td>the pages in order: <code>P(id, title, icon, fields…)</code> or the id of a standard page (<code>messages</code>, <code>log</code>, <code>help</code>, <code>about</code>). <code>icon</code> is an emoji or a conventions name (<code>gear</code>, <code>dice</code>, <code>coins</code>, <code>clock</code>, <code>shield</code>, <code>chat</code>, <code>trophy</code>, <code>monitor</code>, <code>list</code>, <code>book</code>, <code>info</code>, <code>cards</code>, <code>chart</code>, <code>gift</code>). <code>fields</code> are keys or patterns like <code>overlay*</code> the page claims ahead of their own page; a pattern never takes a template off the Messages page, a full key does (it is then that page&#39;s field, not an entry of the Messages picker); a field the user moved to another page in the customise mode stays there. <code>P(...).AtBottom()</code> puts a page of the game&#39;s own at the foot of the rail, above How to play, Log and About (in the schema <code>&quot;bottom&quot;: true</code>)</td>
+<td>the pages in order: <code>P(id, title, icon, fields…)</code> or the id of a standard page (<code>messages</code>, <code>log</code>, <code>help</code>, <code>about</code>). <code>icon</code> is an emoji or a conventions name (<code>gear</code>, <code>dice</code>, <code>coins</code>, <code>clock</code>, <code>shield</code>, <code>chat</code>, <code>trophy</code>, <code>monitor</code>, <code>list</code>, <code>book</code>, <code>info</code>, <code>cards</code>, <code>chart</code>, <code>gift</code>). <code>fields</code> are keys or patterns like <code>overlay*</code> the page claims ahead of their own page; a pattern never takes a template off the Messages page, a full key does (it is then that page&#39;s field, not an entry of the Messages picker); a field the user moved to another page in the customise mode stays there. <code>P(...).AtBottom()</code> puts a page of the project&#39;s own at the foot of the rail, above How to play, Log and About (in the schema <code>&quot;bottom&quot;: true</code>)</td>
 </tr>
 <tr>
 <td><code>InLanguage(code)</code></td>
@@ -2174,7 +2525,7 @@ whatever order the game declares them in (a page of the game&#39;s own with <cod
 </tr>
 <tr>
 <td><code>Senders(…)</code></td>
-<td>the keys of the sender switches on the Messages page where they differ from the conventions&#39; (<code>useBot</code>, <code>sendAction</code>, <code>cooldownUseBot</code>, <code>cooldownSendAction</code>, <code>numberSeparator</code>); null hides one; <code>cooldownGroup</code> names the group the cooldown senders sit in</td>
+<td>the keys of the sender switches on the Messages page where they differ from the conventions&#39; (<code>useBot</code>, <code>sendAction</code>, <code>cooldownUseBot</code>, <code>cooldownSendAction</code>, <code>numberSeparator</code>); null takes one off the Messages page; <code>cooldownGroup</code> names the group the cooldown senders sit in. A switch the Messages page does not draw (the window has no messages, or none in the cooldown group, or null took it off) is a field on its own page, and <code>hidden</code> hides one like any setting</td>
 </tr>
 <tr>
 <td><code>Samples(&quot;k&quot;, &quot;v&quot;, …)</code></td>
@@ -2194,15 +2545,15 @@ whatever order the game declares them in (a page of the game&#39;s own with <cod
 </tr>
 <tr>
 <td><code>Lang(code, texts…)</code></td>
-<td>the game&#39;s own texts in another language (see <em>Languages</em> below): <code>K(key, label, help)</code>, <code>Pg(id, title)</code>, <code>Tx(declared, translation)</code>, <code>Ui(key, text)</code> for the window&#39;s own texts, <code>Ph(placeholder, help)</code>. A language with a conventions file is offered anyway; <code>Lang</code> adds the game&#39;s words to it, or offers a language the framework does not have</td>
+<td>the project&#39;s own texts in another language (see <em>Languages</em> below): <code>K(key, label, help)</code>, <code>Pg(id, title)</code>, <code>Tx(declared, translation)</code>, <code>Ui(key, text)</code> for the window&#39;s own texts, <code>Ph(placeholder, help)</code>. A language with a conventions file is offered anyway; <code>Lang</code> adds the project&#39;s words to it, or offers a language the framework does not have</td>
 </tr>
 <tr>
 <td><code>Lock()</code></td>
-<td>locks the layout: no customise mode (the pen button is gone, and with it export and import), and a user&#39;s renames, moves, hidden fields and accent colour in <code>uiframework.layout.json</code> are not applied. The theme stays the user&#39;s, and so do the language, picked in the footer when the game offers more than one, and the help under the fields (the bulb beside it). In the schema <code>&quot;locked&quot;: true</code></td>
+<td>locks the layout: no customise mode (the pen button is gone, and with it export and import), and a user&#39;s renames, moves, hidden fields and accent colour in <code>uiframework.layout.json</code> are not applied. The theme stays the user&#39;s, and so do the language, picked in the footer when the window offers more than one, and the help under the fields (the bulb beside it). In the schema <code>&quot;locked&quot;: true</code></td>
 </tr>
 <tr>
 <td><code>About(credits, sections, links, streamerBotLink, authorLink, defaultLinks)</code></td>
-<td>the About page: the game&#39;s credits under its name (none unless given; <code>Tx</code> translates them), sections like help, the game&#39;s own links. It ends with the framework&#39;s links from <code>conventions/keys.json</code> (<code>about.links</code>: the UIFramework page, Streamer.bot, <em>Report something that looks wrong</em>, which goes to the game&#39;s issues when it names its repository, else the framework&#39;s); <code>defaultLinks: false</code> leaves them out, <code>streamerBotLink: false</code> only that one. <code>authorLink</code> does nothing any more. The framework&#39;s logo sits faint in the page&#39;s bottom right corner (its tooltip names the version, a click opens the framework&#39;s page); a game cannot remove it. In the schema <code>about: { credits, sections, links: [ { text, url } ], defaultLinks, streamerBotLink }</code></td>
+<td>the About page: the project&#39;s credits under its name (none unless given), sections like help, the project&#39;s own links; <code>Tx</code> translates credits and link texts. It ends with the framework&#39;s links from <code>conventions/keys.json</code> (<code>about.links</code>: the UIFramework page, Streamer.bot, <em>Report something that looks wrong</em>, which goes to the project&#39;s issues when it names its repository, else the framework&#39;s); <code>defaultLinks: false</code> leaves them out, <code>streamerBotLink: false</code> only that one. <code>authorLink</code> does nothing any more. The framework&#39;s logo sits faint in the page&#39;s bottom right corner (its tooltip names the version, a click opens the framework&#39;s page); a project cannot remove it. In the schema <code>about: { credits, sections, links: [ { text, url } ], defaultLinks, streamerBotLink }</code></td>
 </tr>
 <tr>
 <td><code>Tour(Tip(target, title, text), …)</code></td>
@@ -2210,9 +2561,9 @@ whatever order the game declares them in (a page of the game&#39;s own with <cod
 </tr>
 </tbody></table>
 <h3>The colours of the results</h3>
-<p>The Log page shows each line&#39;s result as a pill. Without a word from the game it colours a result by the words
+<p>The Log page shows each line&#39;s result as a pill. Unless the project says otherwise, it colours a result by the words
 in it: green for <em>win</em>, <em>jackpot</em>, <em>correct</em>, <em>solved</em>, <em>blackjack</em>; grey for <em>loss</em>, <em>lose</em>, <em>bust</em>, <em>wrong</em>,
-<em>fail</em>; amber for <em>push</em>, <em>tie</em>, <em>draw</em>; the accent for everything else. A game whose results read otherwise
+<em>fail</em>; amber for <em>push</em>, <em>tie</em>, <em>draw</em>; the accent for everything else. A project whose results read differently
 (Hangman&#39;s <code>GAME-OVER</code>, <code>MISS-LTTR</code>) declares them:</p>
 <pre><code class="language-csharp">    .Log(&quot;Chat Games/Logs&quot;, &quot;HM-log*.txt&quot;,
         styles: new[] { &quot;GAME-OVER|muted&quot;, &quot;WIN-*|success&quot;, &quot;MISS-*|warning&quot; },
@@ -2239,9 +2590,9 @@ colours by the words.</p>
 finds <em>Größe</em>). A word that starts the label ranks before one inside it, before one in the section or the key,
 before one only the help has. Up and Down move through the results, Enter or a click goes there: the page comes to
 the front, the field scrolls into view, is ringed in the accent colour for a moment and gets the cursor; a message
-is selected on the Messages page. Esc or a click beside the bar closes it. A game declares nothing for this; a
-setting it hides, or one a condition hides right now, is not found. <code>Tip(&quot;search&quot;)</code> puts the magnifier into the
-window&#39;s tour.</p>
+is selected on the Messages page. Esc or a click beside the bar closes it. Nothing needs declaring for this. A
+setting the project hides, or one a condition hides right now, is not found. <code>Tip(&quot;search&quot;)</code> puts the magnifier into
+the window&#39;s tour.</p>
 <p>Other keys of the window: <strong>Ctrl+S</strong> saves, <strong>Ctrl+1</strong> to <strong>Ctrl+9</strong> and <strong>Ctrl+0</strong> go to the first ten pages.</p>
 <h3>The tour</h3>
 <p>A window can explain itself: on its first open the tour dims the window, rings one part at a time and says what it
@@ -2296,7 +2647,7 @@ and the ring follows the part as it grows (a Try button&#39;s answer). <code>Tip
 </tbody></table>
 <p>A stop the window cannot show is left out: a page the user hid, a field hidden by the layout, <code>customise</code> in a locked
 window. A target that is neither a setting, a page nor a part is listed under the red &quot;i&quot; like any other mistake in the
-declaration. The game&#39;s own titles and texts translate through <code>Lang(code, Tx(declared, translation))</code> like every
+declaration. The project&#39;s own titles and texts translate through <code>Lang(code, Tx(declared, translation))</code> like every
 declared text. In the schema: <code>window.tour: [ &quot;start&quot;, { &quot;target&quot;: &quot;sides&quot;, &quot;title&quot;: &quot;…&quot;, &quot;text&quot;: &quot;…&quot;, &quot;act&quot;: true } ]</code>;
 a stop as a plain string is the target alone.</p>
 <h3>Sections shown on a condition</h3>
@@ -2309,62 +2660,67 @@ section its settings declare and give the condition, the same as a field&#39;s <
 section&#39;s condition, not the one it was declared in. When the window opens, every condition is checked: a key that is
 not a setting, or a value a dropdown has no option for (<code>questionSource=IGBD</code>), is listed under the red &quot;i&quot; in the header.</p>
 <h3>Languages</h3>
-<p>What the game declares is English. When the layout file names another language (<code>de</code>, <code>es</code>), the window
-translates what the conventions know: the texts of the conventions&#39; keys (<code>conventions/lang/de.json</code>, <code>keys</code>)
-replace a known key&#39;s label and help where the game left them out or declared the conventions&#39; own English
-wording; a label or help the game worded itself is looked up by that wording (<code>texts</code>, below), else the
+<p>What a project declares is English. When the layout file names another language (<code>de</code>, <code>pt-BR</code>), the window
+translates what the conventions know. The texts of the conventions&#39; keys (<code>conventions/lang/de.json</code>, <code>keys</code>)
+replace a known key&#39;s label and help where the project left them out or declared the conventions&#39; own English
+wording. A label or help the project worded itself is looked up by that wording (<code>texts</code>, below); failing that, the
 conventions&#39; translation of the key stands, and in a language the conventions do not translate it stays as the
-game wrote it. Pages are titled by id (<code>pages</code>), and short declared texts are looked up
-by their English wording (<code>texts</code>): section headings, pill texts, page titles, option labels, message groups,
-list column headers, the log page&#39;s switch, and the help and about pages line by line (headings, notes, what a
-command does, link texts). What nothing knows stays as declared. The user&#39;s own layout (a renamed field or page) still has the last word.</p>
-<p>Every language there are texts for is offered, in the language picker by its own name (Deutsch, Español):
+project wrote it. Pages are titled by id (<code>pages</code>) where the language has a title of its own for the id; in a
+language with only the English titles a page keeps the title it declares. Short declared texts are looked up by
+their English wording (<code>texts</code>): section headings, pill texts, page titles, option labels, message groups, list
+column headers, the log page&#39;s switch, and the help and about pages line by line (headings, notes, what a command
+does, link texts, the about page&#39;s credits). What nothing knows stays as declared, and the user&#39;s own layout (a
+renamed field or page) still has the last word.</p>
+<p>Every language there are texts for is offered, in the language picker by its own name (Deutsch, Français):
 English, the languages the DLL carries (<code>conventions/lang/*.json</code>), a language file a user put into
-<code>UIFramework\lang\</code> beside Streamer.bot (<code>es.json</code> there corrects or extends the DLL&#39;s, <code>nl.json</code> adds Dutch
-without a release), and every language the game brings texts for with <code>Lang</code>. A game without texts of its own
-gets what the conventions translate; its own wording stays English until it adds them. A game whose window names
-its <code>language</code> has no picker.</p>
-<p>A game adds what the conventions cannot know, its own keys and sections, with <code>Lang</code> on the window; several
-calls add up, and these texts are laid over the conventions&#39; for that language:</p>
+<code>UIFramework\lang\</code> beside Streamer.bot (<code>es.json</code> or <code>en.json</code> there corrects or extends the DLL&#39;s, <code>nl.json</code> adds
+Dutch without a release), and every language the project brings texts for with <code>Lang</code>. A code is matched in any
+case: a regional code falls back to its language (<code>de-AT</code> is <code>de</code>), a language to its only regional file (<code>pt</code> is
+<code>pt-BR</code>), and a code that fits none to English. So a project&#39;s <code>Lang(&quot;pt&quot;, …)</code> adds to the conventions&#39; <code>pt-BR</code>
+instead of offering a language of its own. A project without texts of its own gets what the conventions translate;
+its own wording stays English until it adds them. A project whose window names its <code>language</code> has no picker.</p>
+<p>A project adds what the conventions cannot know, its own keys and sections, with <code>Lang</code> on the window. Several
+calls add up, and their texts are laid over the conventions&#39; for that language:</p>
 <pre><code class="language-csharp">    .Lang(&quot;de&quot;, K(&quot;numDecks&quot;, &quot;Decks im Schuh&quot;, &quot;Wie viele Decks der Dealer mischt.&quot;), K(&quot;egg&quot;, &quot;Ei&quot;),
                 Pg(&quot;fleet&quot;, &quot;Flotte&quot;), Tx(&quot;Shoe&quot;, &quot;Schuh&quot;), Tx(&quot;Free game on&quot;, &quot;Freispiel an&quot;))
 </code></pre>
-<p>A <code>K</code> is the game&#39;s own translation of a key and replaces its label (and help) whatever the game declared;
-<code>K(key, label)</code> without a help keeps the help the conventions have for the key. A conventions key the game gave
+<p>A <code>K</code> is the project&#39;s own translation of a key and replaces its label (and help) whatever the project declared;
+<code>K(key, label)</code> without a help keeps the help the conventions have for the key. A conventions key the project gave
 a label of its own is translated by a <code>Tx</code> for that label; without one it shows the conventions&#39; text for the key,
 and only a key the conventions do not translate either keeps the declared wording.</p>
 <p>In the schema this is <code>lang: { &quot;de&quot;: { &quot;keys&quot;: …, &quot;pages&quot;: …, &quot;texts&quot;: … } }</code>, the shape of a conventions
-language file. A game that wants its help and about pages in another language adds a <code>Tx</code> per heading and
+language file. A project that wants its help and about pages in another language adds a <code>Tx</code> per heading and
 line; a line without one stays English. For a language the framework has no file for, <code>Ui(key, text)</code> translates
 one of the window&#39;s own texts by its key in <code>conventions/lang/en.json</code>&#39;s <code>ui</code> section (<code>Ui(&quot;btn.save&quot;, &quot;Opslaan&quot;)</code>)
-and <code>Ph(placeholder, help)</code> a placeholder chip&#39;s help; what the game leaves out stays English.</p>
+and <code>Ph(placeholder, help)</code> a placeholder chip&#39;s help; what the project leaves out stays English.</p>
 <p>Settings the window puts on a standard page (a switch on <code>log</code>) sit above that page&#39;s own content. Within a
 page the table&#39;s order holds (<code>Override(order:)</code> moves one); a heading where <code>section</code> changes.</p>
-<p>What the game declares is checked when the window opens: an unknown kind, a requirement on a key that is not a
+<p>What the project declares is checked when the window opens: an unknown kind, a requirement on a key that is not a
 setting, a page naming a pattern no setting matches, a minimum above a maximum, a section condition for a section
 no setting is in, an old key (<code>aliases</code>) that is another setting&#39;s key, a known key of the conventions declared as
 another kind of value (<code>maxBet</code> as <code>options</code>: it would still take their limits, old keys and translations), a
-section split by another on its page (its heading would show twice), an icon name the framework does not know. A red <strong>i</strong> appears in the
-window&#39;s header; a click opens a panel with every finding (and whatever failed while the window was open: a page
-that could not be built, a failed save, an unreadable layout file), with <em>Copy</em> for a bug report. The pages show
-none of it, and every line is in Streamer.bot&#39;s log as well.</p>
+section split by another on its page (its heading would show twice), an icon name the framework does not know. A
+red <strong>i</strong> appears in the window&#39;s header; a click opens a panel with every finding (and whatever failed while the
+window was open: a page that could not be built, a failed save, an unreadable layout file), with <em>Copy</em> for a bug
+report. The pages show none of it, and every line is in Streamer.bot&#39;s log as well.</p>
 <p align="center">
   <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/UIFramework-Streamer.bot/main/docs/images/problems-dark.png" width="48%" alt="The red i in the header, its panel open: four mistakes in the declaration, one failure while the window was open">
-</p><p>A settings action that carries a spec of its own (the JSON with the same parts as the builder, see the git
-history of <code>docs/Spec.md</code> and <code>stub/Stub.spec.cs</code>) wins over the window in the schema.</p>
+</p><p>Until UIFramework 0.9.3 the stub could carry a spec of its own (the JSON with the same parts as the builder; see the
+git history of <code>docs/Spec.md</code> and <code>stub/Stub.spec.cs</code>). The stub passes none now, but a settings action made by hand
+still can, and the DLL lets that spec win over the window in the schema.</p>
 <h2>The game&#39;s side</h2>
-<p><code>UiHost.Handle(args, CPH, actionName, host, version, settingsFile, …)</code> is the first thing the game&#39;s action calls.
-It answers the settings action&#39;s requests and returns true, so the action returns at once; otherwise it returns
-false and the game plays. Every request must leave the game as it was: no chat output, no state written. The
-request comes in the arguments <code>uiframework.request</code>, <code>uiframework.name</code>, <code>uiframework.values</code> and
-<code>uiframework.var</code> (the global the answer goes into, so the name the game knows itself by never matters); the
+<p><code>UiHost.Handle(args, CPH, actionName, host, version, settingsFile, …)</code> is the first thing your action calls. It
+answers the settings action&#39;s requests and returns true, so the action returns at once; otherwise it returns false
+and your action does its usual work. Every request must leave the project as it was: no chat output, no state
+written. The request comes in the arguments <code>uiframework.request</code>, <code>uiframework.name</code>, <code>uiframework.values</code> and
+<code>uiframework.var</code> (the global the answer goes into, so the name the project knows itself by never matters); the
 describe answer leaves a line in Streamer.bot&#39;s log.</p>
 <table>
 <thead>
 <tr>
 <th>Request</th>
 <th>When</th>
-<th>The game&#39;s part</th>
+<th>The project&#39;s part</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -2375,7 +2731,7 @@ describe answer leaves a line in Streamer.bot&#39;s log.</p>
 <tr>
 <td><code>test</code></td>
 <td>a Try button, a field with <code>ask</code>, an auto action</td>
-<td><code>test: (name, s) =&gt; …</code> answers by the setting&#39;s key with the window&#39;s current values; null for &quot;no answer&quot;</td>
+<td><code>test: (name, s) =&gt; …</code> answers by the setting&#39;s key, with the saved values, or with the values as they stand in the window for <code>live</code>, <code>ask</code> and <code>auto</code>; null for &quot;no answer&quot;</td>
 </tr>
 <tr>
 <td><code>validate</code></td>
@@ -2400,7 +2756,7 @@ describe answer leaves a line in Streamer.bot&#39;s log.</p>
 </tbody></table>
 <p><strong>A request that takes long on purpose</strong> (a Try button that imports a word list) calls <code>UiHost.StillWorking()</code>
 every few seconds while it works. The settings action gives a request 30 seconds once it has started and then
-stops waiting for its answer; each <code>StillWorking()</code> gives it 30 seconds from then (stub 0.3.1 and on; an older
+stops waiting for its answer; each <code>StillWorking()</code> gives it 30 seconds from then (stub 0.3.2 and on; an older
 stub ignores it). Outside a request it does nothing.</p>
 <p><strong>The points system.</strong> <code>UiCurrency.Detect(CPH, settings)</code> gives the user variable the points live in
 (<code>Variable</code>), what they are called (<code>Name</code>) and where that came from (<code>Source</code>): StreamUP&#39;s Currency Core
@@ -2410,54 +2766,60 @@ own). Detect on every run. The describe answer carries a detected system as <cod
 as a pill (<code>Currency Core: points</code>) and says on the two settings that they are the fallback. Reading and
 writing a viewer&#39;s points stays the game&#39;s: <code>CPH.GetTwitchUserVarById&lt;long&gt;(userId, currency.Variable, true)</code> and
 <code>SetTwitchUserVarById</code> (the YouTube and Kick ones likewise); both systems keep the balance right there.</p>
-<p>The values arrive as <code>UiSettings</code> with <code>Bool</code>, <code>Int</code>, <code>Long</code>, <code>Double</code>, <code>String</code>, <code>Ceiling</code> (0 as &quot;no limit&quot;),
-<code>Clamp</code> and <code>Raw</code> (the JSON object). <code>UiSettings.Load(path)</code> reads the settings file the same way, old keys
-through the aliases; a relative path starts in the Streamer.bot folder. A file that cannot be read gives the
-<code>.bak</code> of the window&#39;s last save, else the defaults, and <code>Problem</code> says so (<code>FromBackup</code> which);
-<code>UiSettings.Load(path, CPH.LogWarn)</code> also logs it. A file that is missing while the window saves (it swaps the new
-file in, the old one becoming the <code>.bak</code>) is waited for a moment, and one still missing beside its <code>.bak</code> is read
-from that; only a file never saved gives the defaults without a word.</p>
-<p><strong>What the game&#39;s side does not know: the conventions.</strong> <code>UiSettings</code> reads what the game&#39;s <code>Table</code> declares, and
-nothing else. For a key the conventions know (<code>S(&quot;globalCooldown&quot;, 30)</code>) the label, the page, the limits and the
-old keys come from <code>conventions/keys.json</code>, which only the window reads: it moves an old key to the new one with
-the first save, and pulls a number into the conventions&#39; limits. Until that save the game does not find a value
-under an old key the conventions list but its <code>Table</code> does not; a game that takes over a settings file from before
-lists its old keys itself (<code>aliases:</code>), and a limit the game relies on belongs in its <code>Table</code> (<code>min:</code>, <code>max:</code>), as
-does a default other than the one it passes.</p>
-<p><code>actionName</code> in <code>UiHost.Handle</code> is the prefix of the game action&#39;s log lines; <code>null</code> takes the name Streamer.bot
-gives the run.</p>
+<p>The values arrive as <code>UiSettings</code> with <code>Bool</code>, <code>Int</code>, <code>Long</code>, <code>Double</code>, <code>String</code>, <code>Ceiling</code> and <code>CeilingInt</code> (0 as
+&quot;no limit&quot;), <code>Clamp</code>, <code>Token</code> (one value as JSON) and <code>Raw</code> (the JSON object). <code>UiSettings.Load(path)</code> reads the
+settings file as the window does, old keys through the aliases; unlike the window, it also takes an old key that is
+another setting&#39;s key (the red <strong>i</strong> names such a declaration). A relative path starts in the Streamer.bot folder.
+A file that cannot be read gives the <code>.bak</code> of the window&#39;s last save, else the defaults, and <code>Problem</code> says so
+(<code>FromBackup</code> which); <code>UiSettings.Load(path, CPH.LogWarn)</code> also logs it. A file that is missing while the window
+saves (it swaps the new file in, the old one becoming the <code>.bak</code>) is waited for a moment; one missing beside its
+<code>.bak</code> is read from that, at once when no save is under way. Only a file never saved gives the defaults without a
+word. The window shows that <code>.bak</code> as well and says so under the red <strong>i</strong>; its next save writes the file again.</p>
+<p><strong>What the host block does not know: the conventions.</strong> <code>UiSettings</code> reads what the <code>Table</code> declares, and nothing
+else. For a key the conventions know (<code>S(&quot;globalCooldown&quot;, 30)</code>) the label, the page, the limits and the old keys
+come from <code>conventions/keys.json</code>, which only the window reads: it moves an old key to the new one with the first
+save, and pulls a number into the conventions&#39; limits. Until that save your action does not find a value under an
+old key the conventions list but its <code>Table</code> does not. A project that takes over a settings file from before lists
+its old keys itself (<code>aliases:</code>), and a limit it relies on belongs in its <code>Table</code> (<code>min:</code>, <code>max:</code>), as does a
+default other than the one it passes.</p>
+<p><code>actionName</code> in <code>UiHost.Handle</code> is the prefix of your action&#39;s log lines; <code>null</code> takes the name Streamer.bot gives
+the run.</p>
 <p><strong>A file of its own (<code>file</code>, <code>field</code>):</strong> the value is read on open from <code>&lt;folder of the settings file&gt;\&lt;file&gt;</code>
 (the property <code>field</code>, or the file itself) and written back there on save, atomically with a <code>.bak</code>; the rest of
-the file stays. The key never enters the settings file; <em>Reset all</em> resets only the settings file (the settings the window
-shows: hidden and read-only ones, those on a page the user hid and keys it has no field for keep their values) and leaves
-this one (its editor has <em>Restore defaults</em>). A missing file shows the <code>default</code>, so the file the game reads
-anyway (<code>RT-wordbank.json</code>) stays the only copy. A save writes the file only when its value changed, so a list the
-game added to while the window was open keeps those entries; a value an older version kept in the settings file
-moves into the file with the first save.</p>
+the file stays. The key never enters the settings file. <em>Reset all</em> resets only the settings file (the settings the
+window shows: hidden and read-only ones, those on a page the user hid and keys it has no field for keep their
+values) and leaves this one alone: its editor keeps the rows it shows, unsaved ones still unsaved, and has <em>Restore
+defaults</em>. A missing file shows the <code>default</code>, so the file the project reads anyway (<code>RT-wordbank.json</code>) stays the
+only copy. A save writes the file only when its value changed, so a list the project added to while the window was
+open keeps those entries; a value an older version kept in the settings file moves into the file with the first
+save.</p>
 <h2>Update notice</h2>
 <p>Streamers who do not open the settings every day still hear of updates: once per Streamer.bot start, one notice
 names what is new, for example <em>🔔 Updates are out: Hangman Game v13.2.0, UIFramework v1.4.0. Details are in
 Streamer.bot&#39;s log.</em> The log has one line per update with its link.</p>
 <ul>
 <li><p><strong>Start it from <code>Init()</code>.</strong> Call <code>UiUpdateNotice.Startup(CPH, ActionName, &quot;mygame&quot;, CurrentVersion, SettingsFile)</code>
-in the game action&#39;s <code>Init()</code> and tick <em>Precompile on Application Start</em> on its Execute Code sub-action:
+in your action&#39;s <code>Init()</code> and tick <em>Precompile on Application Start</em> on its Execute Code sub-action:
 Streamer.bot then runs <code>Init()</code> as it starts. The notice runs in the background and never holds the action up.</p>
 </li>
-<li><p><strong>What is in it:</strong> each game that started this way (or whose settings were opened) whose newest GitHub release
+<li><p><strong>What is in it:</strong> each project that started this way (or whose settings were opened) whose newest GitHub release
 (<code>releases</code> of its window) is newer than the version it runs; UIFramework when its newest release is newer than
-the newest <code>UIFramework.dll</code> under <code>lib\</code>; and *import it again* for a game whose settings action is older than
-that release needs (<code>minHostStub</code>; the window notes the settings action&#39;s version when it opens).</p>
+the newest <code>UIFramework.dll</code> under <code>lib\</code> and the settings would offer it, so not after *No* in the update dialog
+skipped that version or with the release check off (<code>skipVersion</code> or <code>&quot;autoUpdate&quot;: false</code> in
+<code>UIFramework\loader.json</code>, or in the <code>uiframework.layout.json</code> of every project of the run; see
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md">Loader.md</a>); and *import it again* for a project whose settings action is older than that release
+needs (<code>minHostStub</code>; the window notes the settings action&#39;s version when it opens).</p>
 </li>
-<li><p><strong>When:</strong> about 20 seconds after the first game starts, so every game that starts with Streamer.bot is in it,
-and once GitHub&#39;s answers are there (asked in the background at most twice a day, kept in
-<code>&lt;Streamer.bot&gt;\UIFramework\updates.json</code> for every game). Then nothing more until Streamer.bot starts again.
+<li><p><strong>When:</strong> about 20 seconds after the first project starts, so every project that starts with Streamer.bot is in
+it, and once GitHub&#39;s answers are there (asked in the background at most twice a day, kept in
+<code>&lt;Streamer.bot&gt;\UIFramework\updates.json</code> for every project). Then nothing more until Streamer.bot starts again.
 Nothing new: no notice. Without the DLL (the settings never opened) there is none.</p>
 </li>
 <li><p><strong>Where:</strong> a line in every chat whose broadcaster account is connected (Twitch, YouTube, Kick; it waits up to a
-minute for the first one), as the bot when the game&#39;s <code>useBot</code> is on. While no broadcaster account is connected,
-a Windows notification instead.</p>
+minute for the first one), as the bot unless the project&#39;s <code>useBot</code> is off. While no broadcaster account is
+connected, a Windows notification instead.</p>
 </li>
-<li><p><strong>How a game wants it,</strong> in its window:</p>
+<li><p><strong>How a project wants it,</strong> in its window:</p>
 <pre><code class="language-csharp">.Updates(chat: true, chatText: &quot;🎲 {updates} - grab them on GitHub!&quot;, toast: true, toastAlways: false,
          toastTitle: &quot;My Game&quot;, toastText: &quot;New: {updates}&quot;)
 </code></pre>
@@ -2495,15 +2857,15 @@ a Windows notification instead.</p>
 <td>the notification&#39;s title and text, with the same placeholders</td>
 </tr>
 </tbody></table>
-<p>One game delivers the whole notice: games with the same texts share one line, a game with texts of its own gets
-its own; UIFramework goes with the game that delivers. In the schema: <code>window.updates</code>.</p>
+<p>One project delivers the whole notice: projects with the same texts share one line, a project with texts of its
+own gets its own line; UIFramework goes with the project that delivers. In the schema: <code>window.updates</code>.</p>
 </li>
-<li><p><strong>Turning it off as a streamer:</strong> the switch <em>Tell me about updates</em> on a game&#39;s About page
-(<code>&quot;updateNotices&quot;: false</code> in its <code>uiframework.layout.json</code>) leaves that game out.</p>
+<li><p><strong>Turning it off as a streamer:</strong> the switch <em>Tell me about updates</em> on a project&#39;s About page
+(<code>&quot;updateNotices&quot;: false</code> in its <code>uiframework.layout.json</code>) leaves that project out.</p>
 </li>
 </ul>
-<p>A game gets this with the host block of UIFramework 1.4.0 or newer (<code>tools/update-host-block.ps1</code>). The host block of
-1.3.0 asked on ordinary runs of the game instead; the DLL still answers it.</p>
+<p>A project gets this with the host block of UIFramework 1.4.0 or newer (<code>tools/update-host-block.ps1</code>). The host block
+of 1.3.0 asked on ordinary runs of the action instead; the DLL still answers it.</p>
 <h2>A timed action</h2>
 <p>Streamer.bot&#39;s own timer dialog offers three ways to run a timed action: a fixed interval, a random one between two
 bounds, and only after so many chat lines. Code can set only the interval and switch the timer on and off
@@ -2550,8 +2912,10 @@ calls.</p>
 <td>lines chat must have written since the last automatic start; 0 asks for none</td>
 </tr>
 </tbody></table>
-<p>Declared with nothing but key and default, they get their page (<code>automation</code>), labels and help in English, German and
-Spanish from the conventions; the two intervals share a row and are greyed out with their switch.</p>
+<p>Declared with nothing but key and default, they get their page (<code>automation</code>) from the conventions, with labels and
+help in every language the conventions carry. Declared in the table&#39;s order, the interval, the random switch and the
+longest wait share a row. All three grey out with the timer&#39;s switch, the longest wait also while the time is not
+random.</p>
 <pre><code class="language-csharp">private const string AutoStartTimerId = &quot;…&quot;;   // the timed action&#39;s id in the export
 
 public void Init()
@@ -2588,13 +2952,13 @@ A timed action the import does not have is one line through <code>log</code>, ne
 one runs on untouched.</li>
 <li><strong><code>NoteLine(scope)</code></strong> counts a chat line; <strong><code>TakeLines(scope, min)</code></strong> is true once a scope has its lines and
 starts its count over. False leaves the count, so the round waits for the next turn of the timer and the lines
-keep adding up, as Streamer.bot&#39;s own lines do. A scope is a platform, or <code>&quot;&quot;</code> for a game with one chat.</li>
+keep adding up, as Streamer.bot&#39;s own lines do. A scope is a platform, or <code>&quot;&quot;</code> for a project with one chat.</li>
 <li><strong><code>NextSeconds(minutes, random, maxMinutes)</code></strong> is the wait itself: at least a minute, at most a day; a maximum
 below the interval is the interval.</li>
 </ul>
-<p>For the lines the game action needs the chat message triggers of the platforms it plays on (Twitch <em>Chat
-Message</em>, YouTube <em>Message</em>, Kick <em>Chat Message</em>) next to its commands, and the export a timed action whose
-trigger is on the game action. The counts live in memory: a recompile or a restart of Streamer.bot starts them over.
+<p>For the lines your action needs the chat message triggers of the platforms it runs on (Twitch <em>Chat Message</em>,
+YouTube <em>Message</em>, Kick <em>Chat Message</em>) next to its commands, and the export a timed action whose trigger is on
+that action. The counts live in memory: a recompile or a restart of Streamer.bot starts them over.
 Trivia and Hangman run their automatic rounds this way.</p>
 <h3>Only while live</h3>
 <p>Streamer.bot has no live status to ask, so <code>UiLive.Of(CPH, &quot;twitch&quot;)</code> (or <code>&quot;youtube&quot;</code>, <code>&quot;kick&quot;</code>) finds out:
@@ -2612,7 +2976,7 @@ one they are <code>Unknown</code>, which <code>log</code> is told once.</p>
 <p>While ads run, viewers cannot see the stream, but chat works as ever: a good moment for a round. Streamer.bot has
 two triggers for it under Twitch, Ads: <em>Ad Run</em> when ads start, with their length in <code>adLength</code> (seconds), and
 <em>Upcoming Ad</em>, every minute from five minutes ahead, with <code>minutes</code> and <code>adLength</code>. It has none for the end, so
-<code>UiAdBreak</code> takes the break as over once its length has passed. The game action needs both triggers.</p>
+<code>UiAdBreak</code> takes the break as over once its length has passed. Your action needs both triggers.</p>
 <table>
 <thead>
 <tr>
@@ -2653,7 +3017,7 @@ two triggers for it under Twitch, Ads: <em>Ad Run</em> when ads start, with thei
 <td>viewers start rounds only during ads</td>
 </tr>
 </tbody></table>
-<p>They sit on the conventions&#39; page <code>automation</code> (<em>Automation</em>), where the timer&#39;s keys are too; a game lists it
+<p>They sit on the conventions&#39; page <code>automation</code> (<em>Automation</em>), where the timer&#39;s keys are too; a window lists it
 among its pages (<code>P(&quot;automation&quot;, &quot;Automation&quot;, &quot;⏱️&quot;)</code>).</p>
 <pre><code class="language-csharp">EventType evt = CPH.GetEventType();
 if (evt == EventType.TwitchAdRun)
@@ -2682,7 +3046,7 @@ break was. A game reads <code>Active</code> where a round starts, for the bonus 
 </ul>
 <p>The window lives in memory: a recompile closes it. Trivia and Hangman use it.</p>
 <h2>Custom triggers and methods</h2>
-<p>What a game offers the streamer&#39;s own actions is declared once, in the window:</p>
+<p>What a project offers the streamer&#39;s own actions is declared once, in the window:</p>
 <pre><code class="language-csharp">.Trigger(&quot;Demo: Free Game Start&quot;, &quot;demo_onFreeStart&quot;, &quot;Free game was switched on.&quot;)
 .Triggers(new[] { &quot;roundOutcome=WIN&quot;, &quot;roundWinner=alice&quot;, &quot;roundPoints=500&quot;, &quot;roundBlitz=false&quot; },
     Tr(&quot;Demo: Round Won&quot;,  &quot;demo_onWin&quot;,  &quot;Somebody won the round.&quot;),
@@ -2696,24 +3060,25 @@ it is for, and the arguments it carries, each <code>&quot;name&quot;</code> or <
 <li><strong><code>Triggers(shared, Tr(…), …)</code></strong> for triggers that carry the same arguments, every way a round can end: the
 shared ones once, then each trigger with what is its own. An argument a trigger names itself replaces the shared
 one of that name, or is added after them.</li>
-<li><strong><code>Method(name, what, args…)</code></strong>: a public <code>bool</code> method of the game action for an <em>Execute C# Method</em>
-sub-action, with the arguments it reads and sets, each <code>&quot;name=what it is&quot;</code>. Give the game action&#39;s Execute Code
-sub-action a name (the <em>Name</em> field of its code window, best the action&#39;s own name): Streamer.bot then lists it
-as &quot;Execute Code (Demo Game)&quot;, and that is what a streamer picks in their Execute C# Method. Without a name every
-game&#39;s code is plain &quot;Execute Code&quot; there, and the right one cannot be told. The name is part of the export.</li>
+<li><strong><code>Method(name, what, args…)</code></strong>: a public <code>bool</code> method of your action for an <em>Execute C# Method</em> sub-action,
+with the arguments it reads and sets, each <code>&quot;name=what it is&quot;</code>. Give your action&#39;s Execute Code sub-action a name
+(the <em>Name</em> field of its code window, best the action&#39;s own name): Streamer.bot then lists it as &quot;Execute Code
+(Demo Game)&quot;, and that is what a streamer picks in their Execute C# Method. Without a name every project&#39;s code is
+plain &quot;Execute Code&quot; there, and the right one cannot be told. The name is part of the export.</li>
 </ul>
 <p>From that one list:</p>
 <ul>
 <li><strong><code>UiTriggers.Register(CPH, &quot;Chat Game&quot;, &quot;Demo Game&quot;)</code></strong> in <code>Init()</code> registers every trigger under those
-categories. No <code>CPH.RegisterCustomTrigger</code> line of the game&#39;s own is left to forget.</li>
+categories. No <code>CPH.RegisterCustomTrigger</code> line of your own is left to forget.</li>
 <li><strong>The Help page</strong> ends with <em>Custom triggers</em> (each with its arguments and sample values) and <em>Methods for your
-own actions</em>, in the window&#39;s language; a game with no help of its own gets the page for them.</li>
-<li><strong>Fire with sample values</strong>, a button under each trigger, has the game fire it once with the samples as
-arguments, so a streamer can try an action of their own without playing a round. A sample that reads as a whole
-number or as <code>true</code>/<code>false</code> is passed as one. The host block answers this itself (<code>UiHost.Handle</code>); the game&#39;s
-<code>test</code> is not asked. A game with an older host block does not answer, and the window says so.</li>
+own actions</em>, in the window&#39;s language. A window with no help of its own gets the page for them, whether its
+pages list <code>help</code> or not.</li>
+<li><strong>Fire with sample values</strong>, a button under each trigger, has the project fire it once with the samples as
+arguments, so a streamer can try an action of their own without waiting for the event. A sample that reads as a
+whole number or as <code>true</code>/<code>false</code> is passed as one. The host block answers this itself (<code>UiHost.Handle</code>); the
+project&#39;s <code>test</code> is not asked. A project with an older host block does not answer, and the window says so.</li>
 </ul>
-<p>The game still fires its triggers itself where its rounds end. In the schema: <code>window.triggers</code> and
+<p>The project still fires its triggers itself, where the events happen. In the schema: <code>window.triggers</code> and
 <code>window.methods</code>.</p>
 <h2>Export and import</h2>
 <p>The customise mode&#39;s bar (the pen, bottom left) has <em>Export</em> and <em>Import</em>: Export writes the saved settings
@@ -2721,13 +3086,14 @@ number or as <code>true</code>/<code>false</code> is passed as one. The host blo
 <code>{ &quot;uiframework&quot;: &quot;settings&quot;, &quot;host&quot;, &quot;version&quot;, &quot;exported&quot;, &quot;settings&quot;: { … } }</code> to a file of the user&#39;s
 choosing; Import takes the settings of such a file, or of a settings file itself, into the saved ones after asking
 (old keys through the aliases, read as the settings file is read), keeps the file as it was as <code>.bak</code> and rebuilds
-the window on them. What the imported file does not name keeps its value, also what the game wrote while the window
-was open. A file of another host asks; what the window does not know is skipped.</p>
+the window on them. What the imported file does not name keeps its value, also what the project wrote while the
+window was open. A file of another host asks; what the window does not know is skipped.</p>
 <p>An import is checked like a save. Every value goes through the field that shows its key: a number beyond the
-field&#39;s limits is pulled into them, and a value the field could not hold (text for a number, an option the
-dropdown does not have, anything but a list for a list) is not taken. Neither is a <code>readOnly</code> setting, which the
-game writes and the user only reads. The dialog names what is not taken and why. Then the game&#39;s <code>validate</code> is
-asked, as before a save, and the user may decline what it warns of.</p>
+field&#39;s or the slider&#39;s limits is pulled into them, a token, path, colour or emote loses the spaces at either end as
+a save drops them, and a value the field could not hold (text for a number, an option the dropdown or a stop the
+slider does not have, anything but a list for a list) is not taken. Neither is a <code>readOnly</code> setting, which the
+project writes and the user only reads. The dialog names what is not taken and why. Then the project&#39;s <code>validate</code>
+is asked, as before a save, and the user may decline what it warns of.</p>
 <p>Tooltips have a fixed width and wrap instead of running across the screen.</p>
 </div>
       </section>

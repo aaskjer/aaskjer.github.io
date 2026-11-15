@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/blackjack-game/">
-  <meta property="og:title" content="Blackjack Game  •  v17.5.2">
+  <meta property="og:title" content="Blackjack Game  •  v17.5.4">
   <meta property="og:description" content="Blackjack against the dealer or another chatter, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/blackjack-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v17.5.2">
+  <meta name="twitter:data1" content="v17.5.4">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"17.5.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"17.5.4","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!blackjack","!bjduel","!accept","!decline","!house","!stats","!AllStats","!SetFreeBlackjack","!EndFreeBlackjack"],"words":["hit","double","split","stand","repeat","resettut","ResetTutorial","quit","insurance","surrender","deal","join"],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Blackjack-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v17.5.2">
+<body data-repo="Blackjack-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v17.5.4">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -118,7 +118,7 @@ included. <em>Try the demo</em> plays sample hands in your browser, <em>Show a s
 line to chat and a custom trigger each.</li>
 <li>🔔 <strong>Hooks for your own actions.</strong> Custom triggers for every settled hand, duel and House seat, with the hand as
 arguments.</li>
-<li>💬 <strong>169 chat lines, 50 stat variables.</strong> Every message is editable with a live preview. Stats live in
+<li>💬 <strong>171 chat lines, 50 stat variables.</strong> Every message is editable with a live preview. Stats live in
 persisted <code>bjg_*</code> user variables, and the leaderboard ranks combined lifetime net from table and duels.</li>
 </ul>
 <p align="center">
@@ -144,18 +144,20 @@ persisted <code>bjg_*</code> user variables, and the leaderboard ranks combined 
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8b7c43b3-d9de-4518-94a5-e9d38c8e219d"> </p><p>Right-click <code>Test</code> in the trigger section and choose <code>Test Trigger</code> to open the settings window.</p>
 <p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
-all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
-<code>Yes</code> fetches it (about 190 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
-Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by hand
-from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released
-the same dialog comes back once; <code>Cancel</code> skips that version.</p>
+all of these chat games and kept at
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <code>Yes</code> fetches it (about
+500 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot and opens the
+window. <code>No</code> opens that folder instead, for when you would rather drop the file in by hand from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released a dialog
+offers it: <code>No</code> skips that version, <code>Cancel</code> asks again at the next open. The dialog also says whether
+Streamer.bot has to be restarted for the new window.</p>
 <p align="center"><img loading="lazy" alt="The Table page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-table.png" width="460"></p><p>Work through the pages in the rail, save, and you are playing. The game reads its settings fresh on every command, so nothing needs restarting.</p>
 <p>Three pages are worth a look before the first hand: <strong>Table</strong> for the stakes and the dealer, <strong>Access</strong> for the points variable and who may play, and <strong>Messages</strong> if you want the game to sound like your channel. Every chat line there comes with a live preview, filled in the way chat will see it.</p>
 <p>The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game.</p>
 <p align="center"><img loading="lazy" alt="The Messages page with its chat preview" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-messages.png" width="460"></p><h1>OBS Overlay</h1>
 <p align="center"><img loading="lazy" alt="The Overlay page of the settings window" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/settings-overlay.png" width="460"></p><p>Connect streamer.bot to OBS, set the connection number, scene and source name on the <strong>Overlay</strong> page, and press <code>Set up in OBS</code>. The game creates the scene and a 1300 × 1080 browser source pointing at the overlay file — move and resize it from there as you like.</p>
 <p>Adding the source by hand works too: a Browser Source with <strong>Local file</strong> ticked, pointing at <code>blackjack_overlay.html</code> in the overlay folder. A source that points at a <code>file:///</code> address works as well, OBS 33 included.</p>
-<p>To see it before anyone plays: <code>Try the demo</code> opens the overlay in your browser and plays sample hands, from a solo hand to a duel and a House table, in the look you saved. Add <code>&amp;demo=1</code> to the source&#39;s URL in OBS to place and size it the same way, and take it off again afterwards. <code>Show a sample round</code> plays one made-up hand on the overlay that is live in OBS for about ten seconds; nobody&#39;s points move, and while a game is running the overlay is left to it.</p>
+<p>To see it before anyone plays: <code>Try the demo</code> opens the overlay in your browser and plays sample hands, from a solo hand to a duel and a House table, in the look you saved. To place and size it the same way in OBS, untick <strong>Local file</strong> in the browser source and set its URL to the overlay&#39;s <code>file:///</code> address with <code>?demo=1</code> at the end (the demo&#39;s message in the window names the full address); take <code>?demo=1</code> off again afterwards. <code>Show a sample round</code> plays one made-up hand on the overlay that is live in OBS for about ten seconds; nobody&#39;s points move, and while a game is running the overlay is left to it.</p>
 <h2>Examples</h2>
 <h3>Duel challenge</h3>
 <p align="center"><img loading="lazy" alt="A duel challenge waiting for its answer" src="https://raw.githubusercontent.com/aaskjer/Blackjack-Game/main/Assets/screenshots/overlay-duel-challenge.png" width="320"></p>
@@ -211,7 +213,7 @@ UIFramework/lib/&lt;version&gt;/UIFramework.dll                ← the settings 
 <hr>
 <p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
 <p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[BJG] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
-<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way; <code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. The running DLL is never overwritten — a new one goes into its own version folder and is used from the next start.</p>
+<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered in a dialog of their own: <code>Yes</code> takes one, <code>No</code> skips it, <code>Cancel</code> asks again at the next open, and the dialog says whether Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding <code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game. The running DLL is never overwritten — a new one goes into its own version folder and is used from the next start.</p>
 <hr>
 <p><strong>Q: The settings window will not open.</strong></p>
 <p>Look in the Streamer.bot log for the error, and <a href="https://github.com/aaskjer/Blackjack-Game/issues">report it</a> if it looks like a defect.</p>
@@ -526,7 +528,7 @@ and dies with the table.</p>
 <p>Yes, twice over. They count towards the hands, wins and net at the front of the line, and they get their own breakdown — <code>house 3W/1L at 4 tables</code> — so a regular at the table can see how much of the record came from there.</p>
 <hr>
 <p><strong>Q: Who can open a table?</strong></p>
-<p>Whoever the Streamer.bot trigger lets. The script does not check for itself, so set the permission on the <code>!house</code> and <code>deal</code> commands if you want them kept to moderators.</p>
+<p>Whoever the Streamer.bot command lets. <code>!house</code> comes with the import for moderators only, <code>deal</code> for everyone; the script does not check for itself, so change the permission on either command in Streamer.bot&#39;s <code>Commands</code> tab if you want it otherwise.</p>
 <hr>
 <h2>💰 Points and currency</h2>
 <p><strong>Q: Which points system does it use?</strong></p>
@@ -619,7 +621,7 @@ and dies with the table.</p>
 <hr>
 <h2>💬 Messages</h2>
 <p><strong>Q: Can I change what the game says?</strong></p>
-<p>All 169 lines, on the Messages page. Pick one from the list, edit it, and the preview underneath shows how it will read in chat — filled in with sample values, sent from the account and in the style your switches are set to.</p>
+<p>All 171 lines, on the Messages page. Pick one from the list, edit it, and the preview underneath shows how it will read in chat — filled in with sample values, sent from the account and in the style your switches are set to.</p>
 <p>The chips under the editor are that message&#39;s placeholders; clicking one drops it in at the cursor. A placeholder the game does not fill for that particular line is not offered, so the preview cannot promise something chat will never see.</p>
 <hr>
 <p><strong>Q: What happens if I empty a message?</strong></p>
@@ -757,6 +759,121 @@ deal in — the game never needs to know about it.</p>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Everything worth knowing about, newest first.</p>
+<h2>[17.5.4] - 2026-11-15</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>The settings window in French and Brazilian Portuguese.</strong> Its language picker offers English, German, Spanish,
+French and Brazilian Portuguese. The window&#39;s own texts and the settings every chat game shares come in all five,
+the game&#39;s own settings in English and German.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>The settings action is 0.3.2, the host block UIFramework 2.0.0&#39;s. The window offers UIFramework 2.0.0 on its next
+open. Nothing in your settings changes.</li>
+</ul>
+<h3>Fixed</h3>
+<p>Points that were lost or made up:</p>
+<ul>
+<li><strong><code>quit</code> and the timeout after a split hand back only what is still open.</strong> Both used to return every hand&#39;s
+stake, the ones already settled included: a busted first hand came back in full, a won one was paid twice.</li>
+<li><strong>The payout cut takes from the winnings only.</strong> It took its share of the whole return, stake included, so at
+50% a win only gave the stake back and above that a win was a loss. The House table did the same; duels were
+right.</li>
+<li><strong>Switching Free Game mid-hand no longer moves points.</strong> A hand, a duel and a challenge keep the mode they started
+in: a duel played for points pays out after <code>!SetFreeBlackjack</code>, a challenge&#39;s stake comes back after it, and a
+free hand quit after <code>!EndFreeBlackjack</code> returns nothing it never took. Closing Streamer.bot hands back what was
+taken the same way.</li>
+<li><strong>Closing Streamer.bot while a House table takes seats returns the seats&#39; bets.</strong> They used to be lost.</li>
+<li><strong><code>!SetFreeBlackjack</code> leaves a settings file it cannot read alone.</strong> It used to write the switch alone over it,
+resetting every other setting and pushing the last good save out of the <code>.bak</code>. It now says so in the log, and
+saving once in the window repairs the file.</li>
+<li><strong>A payout landing while <code>!blackjack</code> deals is kept.</strong> The balance is read again just before the stake is taken.</li>
+<li><strong><code>quit</code> is for everyone.</strong> The import gave the command to moderators only.</li>
+<li><strong>Duel raises check the raiser too.</strong> Points spent elsewhere after asking to double or split could be staked
+without being there; the same goes for sudden death.</li>
+<li><strong>A hand that cannot be dealt returns its stake.</strong></li>
+</ul>
+<p>The rules:</p>
+<ul>
+<li><strong>Without a peek the dealer&#39;s blackjack counts.</strong> A natural against an Ace or a ten waits for the dealer&#39;s second
+card and pushes on a dealer blackjack; a 21 from more cards loses to one instead of going to a tie-break. In House
+Mode the European table does the same.</li>
+<li><strong>Insurance is always settled.</strong> Without a peek a hand that ended in a bust or a 5-card Charlie kept the insurance
+stake without a word; it is now paid or lost on the dealer&#39;s second card. Once the dealer has peeked it is no longer
+offered.</li>
+<li><strong>Split hands that tie are settled last.</strong> A tie-break&#39;s extra dealer cards changed what the other hands were
+compared with.</li>
+<li><strong>A split A+10 in a duel is 21, not blackjack.</strong></li>
+<li><strong>Surrender keeps the odd point for the house</strong>: a bet of 1 no longer surrenders for free.</li>
+<li><code>1,5k</code> is 1,500 and <code>0,5k</code> is 500 (the comma read as a thousands separator: 15,000). <code>1,500</code> stays 1,500.</li>
+<li>Free Game lets a viewer without points play, <code>!blackjack all</code> included.</li>
+<li><strong>Accepting a duel checks the House table and your own challenge</strong>, and a challenged player cannot take a seat
+meanwhile. A second duel used to overwrite the first, which then could not be played. Accepting your own challenge
+is refused too.</li>
+<li>The games-per-hour limit follows <em>Duels count toward Games per hour</em> for both players.</li>
+</ul>
+<p>Stats and triggers:</p>
+<ul>
+<li><strong>A push counts its stake as returned.</strong> <code>netProfit</code> dropped by the stake on every push.</li>
+<li><strong>A split round counts once</strong> in <code>gamesPlayed</code>, and <code>!stats</code> gives the win rate over hands: it could pass 100%.</li>
+<li><strong>Free Game records no amounts</strong>, losses included; a free duel moves no duel points.</li>
+<li><strong>A House surrender counts as a lost hand</strong>, and House insurance and quit fire <em>BJG: Hand Settled</em> and <em>BJG: House
+Hand Settled</em> like everything else.</li>
+<li><code>bjg_userName</code> is no longer overwritten with the name of whoever settled the table.</li>
+<li><strong>The weekly reset follows ISO weeks</strong>: around New Year it fired up to three times in eight days.</li>
+</ul>
+<p>The rest:</p>
+<ul>
+<li><strong>The cooldown replies cannot break</strong>: a <code>{user}</code> or a brace in them made them fail silently. <code>{user}</code> now works
+there too.</li>
+<li><strong>The overlay clears a finished hand.</strong> The next hand&#39;s cards deal in again, a refreshed source no longer replays
+an old result, and a House table picking its rules waits behind a running hand instead of an empty table.</li>
+<li><strong>The demo explains how to place it in OBS</strong>: untick Local file and use the overlay&#39;s <code>file:///</code> address with
+<code>?demo=1</code>; <code>&amp;demo=1</code> did nothing.</li>
+<li><em>Create the browser source in OBS</em> and <em>Reset the leaderboard now</em> use the values in the window, saved or not, and
+the OBS setup writes the overlay into the folder it points the source at.</li>
+<li>The shoe keeps its size after a rare emergency reshuffle; settings that could not be read are logged; the shared
+tables are read under the lock.</li>
+<li>The <em>Resplit</em> help no longer says split Aces can be split again.</li>
+</ul>
+<p>The settings window:</p>
+<ul>
+<li><strong>The cooldown replies&#39; <em>Bot account</em> and <em>Send as /me</em> have their switches</strong>, on the Messages page. The window
+showed none for them.</li>
+<li><strong>A hand dealt while you save reads the saved settings.</strong> For the moment the window swapped the new file in, the
+game read the defaults.</li>
+<li><em>Fire with sample values</em> on the Help page no longer freezes the window while the game answers something else.</li>
+<li>The Log page&#39;s folder button opens <code>Chat Games\Logs</code> beside Streamer.bot, and lines written in the same second
+show newest first.</li>
+<li><strong>A UIFramework installed for a newer game no longer locks this window.</strong> The update notice at Streamer.bot&#39;s
+start loads only a UIFramework this settings action fits and passes over a damaged one, and the settings action
+leaves a running one alone that needs a newer settings action. A download that breaks off midway is tried again
+too.</li>
+</ul>
+<h2>[17.5.3] - 2026-11-12</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</li>
+<li><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</li>
+<li><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read.</li>
+<li>The settings action is 0.3.1, the host block UIFramework 1.9.0&#39;s. Nothing in your settings changes.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A download GitHub does not deliver is tried three times</strong> before the settings action gives up.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+</ul>
 <h2>[17.5.2] - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>

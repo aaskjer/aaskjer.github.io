@@ -241,6 +241,8 @@ body.debug #connection { display: block; }
   var MAX_EXAMPLES = 5;
   // A round whose end never arrives - Streamer.bot restarted, the script recompiled - clears itself.
   var STALE_MS = 20000;
+  // How long a request to Streamer.bot waits for its answer before it counts as unanswered.
+  var REQUEST_MS = 5000;
 
   var stage = document.getElementById('stage');
   var card = document.getElementById('card');
@@ -563,8 +565,12 @@ body.debug #connection { display: block; }
     var id = 'rhymetime-' + (nextId++);
     body.id = id;
     return new Promise(function (resolve) {
-      pending[id] = resolve;
-      try { socket.send(JSON.stringify(body)); } catch (e) { delete pending[id]; resolve({ status: 'error' }); }
+      // An answer that never comes must not leave this hanging: the subscription would never be
+      // reported and the state kept for a reload never asked for. A closing socket drops the
+      // pending answers, so the timer resolves whether or not this one is still listed.
+      var timer = setTimeout(function () { delete pending[id]; resolve({ status: 'timeout' }); }, REQUEST_MS);
+      pending[id] = function (msg) { clearTimeout(timer); resolve(msg); };
+      try { socket.send(JSON.stringify(body)); } catch (e) { clearTimeout(timer); delete pending[id]; resolve({ status: 'error' }); }
     });
   }
 

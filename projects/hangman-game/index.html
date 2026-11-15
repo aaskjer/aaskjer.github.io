@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/hangman-game/">
-  <meta property="og:title" content="Hangman Game  •  v13.3.1">
+  <meta property="og:title" content="Hangman Game  •  v13.3.2">
   <meta property="og:description" content="Hangman for the whole chat, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/hangman-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v13.3.1">
+  <meta name="twitter:data1" content="v13.3.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"13.3.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":1,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"13.3.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!HMP","!HangmanPersonal","!HMS","!HangmanScoreboard","!HMLookUp","!HML","!Hangman","!HM","!KillHangman","!KillHM","!Guess","!G","!HangmanRepeat","!HMR","!HangmanAddict","!HMA","!SetFreeHangman","!EndFreeHangman"],"words":[],"timers":1,"sites":["github.com","igdb.com","pokeapi.co","raw.githubusercontent.com","twitch.tv","wikidata.org"],"updateCheck":false}</script>
 </head>
-<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.3.1">
+<body data-repo="Hangman-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v13.3.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -121,7 +121,7 @@ with a message to chat and a custom trigger each.</li>
 out, with the round as arguments, and <code>GetLastRoundResult</code> for an Execute C# Method.</li>
 <li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
 shared with the other chat games: it downloads itself on the first open and keeps itself current, reads English or
-German, and lets you rename, move or hide pages and fields.</li>
+German, and in part Spanish, French or Brazilian Portuguese, and lets you rename, move or hide pages and fields.</li>
 </ul>
 <p align="center">
   <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/overlay/round.png" alt="A round on the overlay" width="620">
@@ -153,7 +153,7 @@ German, and lets you rename, move or hide pages and fields.</li>
 <h1>Setup</h1>
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8e6e6677-f7e8-45db-b9f8-6bfc88e06628"> </p> 
 Right-Click on `Test` and click `Test Trigger` in the trigger section of `[HM] - Settings` to open the GUI of the game.<p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> - the settings window itself, shared by all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <code>Yes</code> fetches it (checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot; <code>No</code> opens that folder so you can place the file from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> yourself. When a newer window is released, the next open offers it the same way.</p>
-<p>The window has one page per subject, picked from the rail on the left. Every field carries a tooltip, so hovering usually answers the question faster than this page does. The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and fields, pick an accent colour and the language (English or German); the window keeps that layout in <code>uiframework.layout.json</code> next to <code>configs.json</code>, through every update of the game.</p>
+<p>The window has one page per subject, picked from the rail on the left. Every field carries a tooltip, so hovering usually answers the question faster than this page does. The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and fields, pick an accent colour and the language (English or German, in part also Spanish, French or Brazilian Portuguese); the window keeps that layout in <code>uiframework.layout.json</code> next to <code>configs.json</code>, through every update of the game.</p>
 <h2>Game</h2>
 <p align="center"><img loading="lazy" alt="Game page" src="https://raw.githubusercontent.com/aaskjer/Hangman-Game/main/Assets/screenshots/game.png"></p><p>Lives, round duration and the time reminder, then when hints appear and what a win pays. Word scaling sits here too: harder and longer words earn a percentage on top, capped so a very long word cannot run away with your currency.</p>
 <p>Between the hints and the payout sit the two optional twists. <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-blitz-rounds">Blitz</a> sets how often a round turns into a short, multiplied one and whether mods may call one with <code>!hm blitz</code>. <a href="https://github.com/aaskjer/Hangman-Game/blob/main/FAQ.md#-evil-hangman">Evil Hangman</a> sets when the word is swapped, whether lives refill, and how long the overlay glitches.</p>
@@ -198,13 +198,13 @@ UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, d
 <hr>
 <p><strong>Q: What is UIFramework.dll, and why does the window want to download something?</strong></p>
 <p>The settings window is no longer part of the import. It lives in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>, one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The <code>[HM] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
-<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way; <code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether.</p>
+<p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered in a dialog of their own: <code>Yes</code> takes one, <code>No</code> skips it, <code>Cancel</code> asks again at the next open, and the dialog says whether Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding <code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game.</p>
 <p><strong>Q: The Settings GUI won&#39;t open. What do I do?</strong></p>
 <p>If the log says <code>UIFramework.dll was not found</code>, the download was declined or did not finish: open the window again and answer <code>Yes</code>, or put the DLL from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">UIFramework releases</a> into <code>UIFramework\lib\&lt;version&gt;\</code> by hand.</p>
 <p>If <code>configs.json</code> is damaged, the window opens on the defaults and says so in its banner; Save writes a healthy file again (the replaced file is kept as <code>configs.json.bak</code>). The game logs the same and plays on the defaults until then.</p>
 <p>Anything else is worth a look in the Streamer.bot log, and worth <a href="https://github.com/aaskjer/Hangman-Game/issues">reporting</a>.</p>
 <p><strong>Q: Can the window be in German?</strong></p>
-<p>Yes: the pencil at the bottom left, then the language. Every setting, section, page and message reads in German; the help and about pages stay English for now.</p>
+<p>Yes: the pencil at the bottom left, then the language. Every setting, section, page and message reads in German; the help and about pages stay English for now. Spanish, French and Brazilian Portuguese are there too, in part: the window&#39;s own texts and the settings all chat games share are translated, Hangman&#39;s own settings and messages stay English.</p>
 <hr>
 <p><strong>Q: How do I reset all settings to defaults?</strong></p>
 <p>The ↺ button at the bottom left of the settings window. It asks first, then rewrites <code>configs.json</code> with factory values and reopens.</p>
@@ -220,7 +220,7 @@ UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, d
 <li>Turn on <strong>Use Channel Points To Start</strong> on the <strong>Access</strong> page.</li>
 <li>Paste your <strong>Reward ID</strong> into the field — the button beside it opens a reward lookup.</li>
 </ol>
-<p>The chat command then no longer starts a round, but everyone still guesses with <code>!g</code> as before.</p>
+<p>On Twitch the chat command then starts a round for moderators and the broadcaster only; everyone still guesses with <code>!g</code> as before. Viewers on the <strong>Blocked users</strong> list cannot start a round either way, and with <strong>Rounds only during ads</strong> on, a redemption outside an ad break is refunded like any other that cannot start a round.</p>
 <p><strong>Q: How much does a redemption stake?</strong></p>
 <p>The stake is read from the redemption, in this order:</p>
 <table>
@@ -232,7 +232,7 @@ UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, d
 </thead>
 <tbody><tr>
 <td>What the viewer typed</td>
-<td>The reward asks for text and the viewer entered a number</td>
+<td>The reward asks for text and the viewer entered a number no higher than the reward&#39;s cost (a higher one is refused and refunded)</td>
 </tr>
 <tr>
 <td>The reward&#39;s cost</td>
@@ -246,7 +246,7 @@ UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, d
 <p><strong>Fixed Stake Override</strong> overrules all three. Left at <code>0</code> the detection above applies; set to anything higher, every redemption stakes exactly that. Which route was taken is written to the action log on every redemption.</p>
 <p>Older setups that used the removed Bet Mode dropdown are migrated on first load: <em>Fixed</em> keeps its amount, <em>Cost</em>, <em>Input</em> and <em>Free</em> switch to automatic detection.</p>
 <p><strong>Q: A round is stuck as active after Streamer.bot restarted. How do I clear it?</strong></p>
-<p>It already is clear — the round lives in memory only, so a restart ends it. Just start a new one. During a session, <code>!killhm</code> ends a round.</p>
+<p>It already is clear — the round lives in memory only, so a restart ends it, and the overlay drops the old round as Streamer.bot starts. Just start a new one. During a session, <code>!killhm</code> ends a round.</p>
 <hr>
 <h2>💬 Commands &amp; Guessing</h2>
 <p><strong>Q: What are the in-chat commands?</strong></p>
@@ -315,10 +315,13 @@ UIFramework/lib/&lt;version&gt;/UIFramework.dll       ← the settings window, d
 <li><strong>Correct word</strong> → round is won immediately.</li>
 <li><strong>Wrong word, same length as the hidden word</strong> → costs <strong>2 lives</strong>.</li>
 <li><strong>Wrong word, shorter than the hidden word</strong> (partial guess) → costs <strong>1 life</strong>.</li>
-<li>Guessing the same wrong word twice sends a duplicate-spam message but does not cost lives again.</li>
+<li>Guessing the same wrong word twice sends a duplicate-spam message but does not cost lives again, and does not count toward the rate limit.</li>
+<li>Spaces, hyphens and apostrophes don&#39;t matter: <code>pac man</code>, <code>pac-man</code> and <code>pacman</code> all solve <em>Pac-Man</em>.</li>
 </ul>
 <p><strong>Q: Can the same letter be guessed twice?</strong></p>
 <p>No. A duplicate letter guess sends <code>MsgAlreadyGuessed</code> and is ignored — it does not cost lives or count toward the rate limit.</p>
+<p><strong>Q: What about words with a hyphen or a digit in them?</strong></p>
+<p>Only letters are hidden. Hyphens, digits and other signs in a word show from the start, so <em>R2-D2</em> is played as <code>R 2 - D 2</code> with the two letters to find. A guess that is not a letter or a word is answered with <code>MsgInvalidGuess</code> and does not make you a player of the round.</p>
 <hr>
 <h2>💰 Points &amp; Currency</h2>
 <p><strong>Q: What points system does the game use?</strong></p>
@@ -386,7 +389,7 @@ paid   = (base + stake) × roleMultiplier
 <hr>
 <h2>🛡️ Anti-Cheat &amp; Cooldowns</h2>
 <p><strong>Q: What does the rate limit do?</strong></p>
-<p>It caps how many guesses one user may make inside a rolling window. Past <code>AntiCheatMaxGuesses</code> within <code>AntiCheatWindowSeconds</code> the guess is blocked and <code>MsgAntiCheat</code> goes out. Duplicate letter guesses do not count toward it, and broadcasters are exempt. Setting the maximum to <code>0</code> switches the limit off.</p>
+<p>It caps how many guesses one user may make inside a rolling window. Past <code>AntiCheatMaxGuesses</code> within <code>AntiCheatWindowSeconds</code> the guess is blocked and <code>MsgAntiCheat</code> goes out. Duplicate letters, a wrong word the same user already tried and guesses that are no letter or word do not count toward it, and broadcasters are exempt. Setting the maximum to <code>0</code> switches the limit off.</p>
 <p><strong>Q: What is the difference between Global Cooldown and User Cooldown?</strong></p>
 <ul>
 <li><strong>Global Cooldown</strong> — everyone waits before the game can be started again.</li>
@@ -402,7 +405,7 @@ paid   = (base + stake) × roleMultiplier
 <p><strong>Q: What happens when all words in the difficulty range have been used?</strong></p>
 <p>The used-word pool for that range is cleared and every word becomes eligible again. The log records it as <code>&quot;All N word(s) in current difficulty range exhausted — resetting used-word pool.&quot;</code>, and the next pick happens right away.</p>
 <p><strong>Q: The wordlist file is missing or corrupt. Will the game break?</strong></p>
-<p>No. Every round start checks <code>Hangman-Wordlist.json</code>. Missing or empty, and the built-in default list of 15 words is written to disk — the same list <em>Restore defaults</em> on the Words page hands out.</p>
+<p>No. Every round start checks <code>Hangman-Wordlist.json</code>. Missing or empty, and the built-in default list of 15 words is written to disk — the same list <em>Restore defaults</em> on the Words page hands out. A file that is not valid JSON (a typo after editing it by hand) is first kept as <code>Hangman-Wordlist.json.&lt;date-time&gt;.broken</code>, so nothing you typed is lost; a file another program holds open is left alone.</p>
 <hr>
 <h2>📥 Importing Words</h2>
 <p><strong>Q: Where can the importer get words from?</strong></p>
@@ -441,15 +444,15 @@ paid   = (base + stake) × roleMultiplier
 <td>IGDB terms</td>
 </tr>
 </tbody></table>
-<p>Pick the source, the topic and the limits, then <em>Import now</em>: words the list already holds are skipped, the rest lands in <code>Hangman-Wordlist.json</code> in the category you named, and the answer under the button says what came in. Reopen the window to see them in the list and fix a hint there if you like; a Save before reopening writes the list as the window shows it.</p>
+<p>Pick the source, the topic and the limits, then <em>Import now</em>: words the list already holds are skipped (<em>Österreich</em> and <em>oesterreich</em> count as the same word), the rest lands in <code>Hangman-Wordlist.json</code> in the category you named, or the topic&#39;s name in the import&#39;s language, and the answer under the button says what came in. An import that would take longer than the window waits for its answer (about half a minute) adds nothing and says so; ask for fewer words then. Reopen the window to see them in the list and fix a hint there if you like; a Save before reopening writes the list as the window shows it.</p>
 <p><strong>Q: What does the importer leave out?</strong></p>
 <p>Answers with digits or symbols, more letters than <strong>Max. Letters</strong> or more words than <strong>Max. Words Per Answer</strong>, and words already in your list. Accents are folded (é → e). Umlauts stay letters to guess, unless <strong>Write umlauts out</strong> turns them into ae, oe, ue and ss. A hint that names its own answer is swapped for another one or masked with <code>___</code>.</p>
 <p><strong>Q: How is the difficulty picked?</strong></p>
-<p><em>Auto</em> rates every word from its length, rare letters (j, q, x, y, z) and how well known it is — the rank in the result for Wikidata and IGDB, the generation for Pokémon. Or pick one fixed difficulty for the whole import.</p>
+<p><em>Auto</em> rates every word from its length, rare letters (j, q, x, y, z) and how well known it is — the rank in the result for Wikidata and IGDB, the generation for Pokémon. Or pick one fixed difficulty for the whole import; above your <strong>Highest difficulty</strong> the answer says those words are not drawn until you raise it.</p>
 <p><strong>Q: What does IGDB need?</strong></p>
 <p>The Client ID and Client Secret of a free Twitch developer app. Create one at <a href="https://dev.twitch.tv/console/apps">dev.twitch.tv/console/apps</a> with any name, <code>http://localhost</code> as the redirect URL and <em>Confidential</em> as the client type. Type both into the import fields once; after the first import they are kept in Streamer.bot&#39;s global variables (<code>hm_IgdbClientId</code>, <code>hm_IgdbClientSecret</code>), never in <code>configs.json</code>, and the fields may stay empty.</p>
 <p><strong>Q: Some OdeNet hints don&#39;t match the word.</strong></p>
-<p>OdeNet groups synonyms, and a few groups mix two meanings. The importer picks the word whose meanings fit the topic best, but read the list before you add it. The OdeNet file (about 29 MB) is downloaded once and kept in <code>Chat Games/Hangman Game/Import Cache</code> for a month.</p>
+<p>OdeNet groups synonyms, and a few groups mix two meanings. The importer picks the word whose meanings fit the topic best, but read the list before you add it. The OdeNet file (about 29 MB) is downloaded once and kept in <code>Chat Games/Hangman Game/Import Cache</code> for a month. On a slow line the first download goes on in the background; press <em>Import now</em> again a minute later.</p>
 <hr>
 <h2>🆓 Free mode</h2>
 <p><strong>Q: How do I let people play without points changing hands?</strong></p>
@@ -467,15 +470,15 @@ paid   = (base + stake) × roleMultiplier
 <hr>
 <h2>🏆 Scoreboard</h2>
 <p><strong>Q: How is the leaderboard built?</strong></p>
-<p>From the players&#39; stats, read fresh every time someone asks with <code>!hms</code>. Everyone who has won at least one round on that platform is on it, ranked by wins and then by points.</p>
+<p>From the players&#39; stats, read fresh every time someone asks with <code>!hms</code>. Everyone who has played on that platform is on it, ranked by wins, then by points, then by letters found, and by name when all of that is even. A board of more than 10 places comes as a few longer messages instead of one per place, so the chat&#39;s rate limit is not hit.</p>
 <p><strong>Q: How do I exclude the broadcaster or bot from the scoreboard?</strong></p>
-<p>On the <strong>Board</strong> page, turn off <strong>Include Broadcaster</strong> or <strong>Include Bot</strong>. <strong>Blocked From Board</strong> takes a comma-separated list for anything else you want hidden, other bots for instance. Hiding someone there does not stop them playing — that list is on the <strong>Access</strong> page.</p>
+<p>On the <strong>Board</strong> page, turn off <strong>Include Broadcaster</strong> or <strong>Include Bot</strong>. <strong>Blocked From Board</strong> takes a comma-separated list for anything else you want hidden, other bots for instance; it hides them whatever <strong>Include Bot</strong> is set to. Hiding someone there does not stop them playing — that list is on the <strong>Access</strong> page.</p>
 <p><strong>Q: How does the monthly auto-reset work?</strong></p>
-<p>Turn on <strong>Reset All (Monthly)</strong> or the per-platform toggles. On the first scoreboard command of a new month, or on and after the configured reset day, that platform&#39;s stats are zeroed and the board cleared. A chat message goes out and the date is stored, so it runs once.</p>
+<p>Turn on <strong>Reset All (Monthly)</strong>, or per platform <strong>reset monthly</strong> or a <strong>reset on day</strong>. Monthly clears the board as a new month begins; a reset day (1 to 31, the last day in a shorter month) clears it every month on that day, with or without the monthly switch. The check runs with the first round, guess or scoreboard command of each day, so the reset happens before anyone plays into the new month. Every player&#39;s stats on that platform are zeroed, not just the winners&#39;. A chat message goes out and the month is stored, so it runs once a month.</p>
 <hr>
 <h2>🔥 Streaks</h2>
 <p><strong>Q: How do streaks work?</strong></p>
-<p>Turn on <strong>Track Streaks</strong> on the <strong>Board</strong> page. Every word a player solves adds one to their streak. It only breaks when a round they guessed in is lost — game over or time up. A round a moderator stops breaks nothing.</p>
+<p>Turn on <strong>Track Streaks</strong> on the <strong>Board</strong> page. Every word a player solves adds one to their streak. It only breaks when a round they guessed in is lost — game over or time up, both of which also count as a loss in their stats. A round a moderator stops breaks nothing.</p>
 <p><strong>Q: Do streaks pay?</strong></p>
 <p><strong>Streak Bonus</strong> adds a percentage to the win for every win in a row after the first — 10 means the third win in a row pays +20 % — up to <strong>Max. Streak Bonus</strong>. Streaks from <strong>Announce From</strong> on are cheered after a win and called out when they end.</p>
 <p><strong>Q: Where do players see their streak?</strong></p>
@@ -485,11 +488,11 @@ paid   = (base + stake) × roleMultiplier
 <p><strong>Q: Which platforms are supported?</strong></p>
 <p>Twitch, YouTube and Kick, all three at once and without a setting to switch them on. The platform comes from the incoming event. To keep the game off one of them, disable the trigger for it in Streamer.bot.</p>
 <p><strong>Q: Can the game run on multiple platforms at the same time?</strong></p>
-<p>Yes. Each platform has its own <code>GameState</code> in memory, so a Twitch round and a YouTube round run side by side without touching each other. Points, stats and leaderboards are kept per platform as well.</p>
+<p>Yes. Each platform has its own <code>GameState</code> in memory, so a Twitch round and a YouTube round run side by side without touching each other. Points, stats and leaderboards are kept per platform as well. The OBS overlay shows one round at a time: the one that started first keeps it until it ends, then the other round takes over with its next guess.</p>
 <hr>
 <h2>📺 OBS Overlay</h2>
 <p><strong>Q: What does the overlay show?</strong></p>
-<p>A local HTML file that OBS loads as a browser source and that repaints itself while the round runs: the gallows filling in with every wrong guess, the masked word, and whichever of category, lives, guessed letters, wrong letters, wrong words and hint you switch on. When the round ends it shows the answer and fades out after the delay you set — <code>0</code> makes it disappear at once.</p>
+<p>A local HTML file that OBS loads as a browser source and that repaints itself while the round runs: the gallows filling in with every wrong guess, the masked word, and whichever of category, lives, guessed letters, wrong letters, wrong words and hint you switch on. When the round ends it shows the answer and fades out after the delay you set — <code>0</code> makes it disappear at once. A round that has faded out stays gone when OBS reloads the page or you save the settings.</p>
 <p><strong>Q: How do I get it into OBS?</strong></p>
 <p><em>Setup Overlay in OBS</em> on the <strong>Overlay</strong> page creates the scene and the browser source over the Streamer.bot OBS connection you already have. By hand works too: the folder button opens the directory, and <code>hangman_overlay.html</code> is a plain local file.</p>
 <p><strong>Q: How do I see the overlay without starting a round?</strong></p>
@@ -540,7 +543,103 @@ If you still find bugs or have something to say, please let me hear it :)</p>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><h1>v13.3.1 - 2026-11-12</h1>
+        <div class="doc-body"><h1>v13.3.2 - 2026-11-15</h1>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+<li><strong>The window in French and Brazilian Portuguese,</strong> beside English, German and Spanish: the pencil at the bottom
+left, then the language. In Spanish, French and Portuguese the window&#39;s own texts and the settings all chat games
+share are translated; Hangman&#39;s own settings and messages stay English there. German has them all.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>A reward that starts the round leaves <code>!hm</code> to moderators on Twitch.</strong> Viewers start a round there with the
+reward only; moderators and the broadcaster can still use the command, <code>!hm blitz</code> included.</li>
+<li><strong>The reset day of the board is a day of the month.</strong> <em>Twitch: reset on day</em> (and YouTube&#39;s, Kick&#39;s) clears that
+board every month on that day, the last day in a shorter month, with or without the monthly switch. It used to
+work only together with the monthly switch, and a 29, 30 or 31 skipped the months that are shorter.</li>
+<li><strong>The board is checked for its reset every day the game runs,</strong> with the first round, guess or board command, not
+only with the first board command of a month. The days played before somebody asked for the board are no longer
+cleared with the old month.</li>
+<li><strong>A board of more than 10 places comes as a few longer messages,</strong> so a top 25 no longer sends 26 chat lines in a
+row. Ties are ranked by letters found, then by name.</li>
+<li><strong>Spaces, hyphens and apostrophes don&#39;t matter in a word guess,</strong> and the letters are all a word hides: digits and
+signs show from the start, so <em>R2-D2</em> and <em>Pac-Man</em> can be solved.</li>
+<li><strong>The OBS overlay shows one round at a time.</strong> With rounds on two platforms at once, the one that started first
+keeps the overlay until it ends. The overlay is version 11 and replaces an older copy on the next round.</li>
+<li>Imported words get the topic&#39;s name in the import&#39;s language as their category (<em>Länder</em>, <em>Videospiele</em>, …).</li>
+<li><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</li>
+<li><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</li>
+<li><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read. The
+chat notice at Streamer.bot&#39;s start no longer names a version you skipped, nor any while the check is off.</li>
+<li>The settings action is 0.3.2, the host block UIFramework 2.0.0&#39;s, and the settings offer UIFramework 2.0.0 the
+next time they open. Nothing in your settings changes.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A typed stake can no longer be higher than the reward&#39;s cost.</strong> A viewer could type any number into a reward
+with text input and win it back many times over in your currency; such a redemption is now refused and refunded.</li>
+<li><strong>A broken word list is kept before the defaults replace it,</strong> as <code>Hangman-Wordlist.json.&lt;date-time&gt;.broken</code>. A
+word list another program held open for a moment was replaced by the 15 default words.</li>
+<li><strong>The monthly reset clears every player,</strong> not only the ones with a win. Played rounds, letters, losses and points
+of everyone else stayed.</li>
+<li><strong>The board and <code>!hml</code> know every player,</strong> not only the ones with a win: a board without winners said &quot;no
+scoreboard data yet&quot;, and a search for someone who never won found nobody. <code>!hml</code> takes the whole name now, with
+or without the <code>@</code>.</li>
+<li><strong>Hidden from the board</strong> hides those names even while <strong>Include the bot</strong> is on.</li>
+<li><strong>Blocked users cannot start a round,</strong> by command or by reward (the reward is refunded).</li>
+<li><strong>Rounds only during ads</strong> holds for rewards too; a redemption outside an ad break is refunded.</li>
+<li><strong>The IGDB client ID and secret are kept</strong> after the first import, as the Words page says.</li>
+<li><strong>An import that takes longer than the window waits writes nothing.</strong> It used to write the words after the window
+had given up on it, where the next save could take them away again. The first OdeNet download goes on in the
+background instead of holding the import.</li>
+<li><strong>Words the list holds with umlauts</strong> (<em>Österreich</em>) are found again by an import that writes them out
+(<em>oesterreich</em>).</li>
+<li><strong>A fixed import difficulty above your highest difficulty</strong> is pointed out in the answer.</li>
+<li><strong>Points are not paid when the balance cannot be read,</strong> instead of overwriting it with the reward alone.</li>
+<li><strong>Free mode from chat no longer empties <code>configs.json</code></strong> when the file is being saved by the window at that moment.</li>
+<li><strong>Several chat lines at once no longer mix up who guessed.</strong> Runs of the game action take turns.</li>
+<li><strong>A time-up counts as a loss</strong> in the player&#39;s stats, as it already broke their streak.</li>
+<li><strong>The hint is not sent with the guess that loses the round,</strong> and the check before saving warns when blitz rounds
+end before their hint.</li>
+<li><strong>A repeated letter, a wrong word tried again or a guess that is no guess</strong> no longer counts toward the rate limit,
+and the last one no longer makes you a player of the round.</li>
+<li><strong>The full figure shows only with the last life gone,</strong> also with many lives.</li>
+<li><strong>The time reminder is sent after an Evil Hangman glitch</strong> that covered its second, instead of not at all.</li>
+<li><strong>The overlay</strong> stops the glitch when the round ends, does not show a finished round again after a reload of OBS
+or a save of the settings, drops a round left over from before a restart of Streamer.bot, picks up a new fade time
+and figure on save, and keeps long hints and lists inside the source at a scale above 100 %.</li>
+<li><strong>An automatic round that could not start</strong> no longer uses up the chat lines the next one waits for, and a time-up
+found by the timer goes to the platform of its round.</li>
+<li><strong>Free mode switched from your own action</strong> answers on that action&#39;s platform, not the last one the game saw.</li>
+<li><strong>The window&#39;s note on the stats</strong> names the variables the game writes (<code>hm_gamesPlayed</code>, <code>hm_lettersFound</code>).</li>
+<li><strong>A download GitHub does not deliver, or one that breaks off, is tried three times</strong> before the settings action
+gives up.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer, or ran without answering.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+<li><strong>Another game&#39;s newer UIFramework no longer locks this window.</strong> The update notice and the live check for
+automatic rounds loaded the newest UIFramework installed, also one that needs a newer settings action than
+Hangman&#39;s, and the settings window then would not open. They take the newest that fits now, and when that one is
+damaged, the next older one instead of none until Streamer.bot restarts.</li>
+<li><strong>A save reaches the game</strong> also while the game is still answering another request of the window. It never heard
+of such a save, and the overlay and the timer for automatic rounds went on with the old settings.</li>
+<li><strong>A chat line that comes in while the window saves plays by your settings,</strong> not by the defaults. A
+<code>configs.json.bak</code> left without its <code>configs.json</code> is read by the window too, as the game reads it, and no longer
+saved over with the defaults.</li>
+<li><strong>Automatic rounds switched off stay off</strong> also when <em>Random time</em> draws the next wait at the moment you save.</li>
+<li><strong>An overlay opacity from before v13,</strong> such as 0.29, comes over as 29 %, not as 28.999999999999996.</li>
+<li><strong>The Help page&#39;s <em>Fire with sample values</em></strong> no longer freezes the window while the game is busy, and says why
+the game did not answer.</li>
+<li><strong>The Log page&#39;s folder button opens <code>Chat Games\Logs</code> beside Streamer.bot,</strong> also after a file dialog such as
+the window&#39;s Export was used, and lines written in the same second show newest first.</li>
+</ul>
+<h1>v13.3.1 - 2026-11-12</h1>
 <h3>Fixed</h3>
 <ul>
 <li><strong>The settings action passes over a UIFramework it is too old for.</strong> Every game in a Streamer.bot shares the
@@ -641,6 +740,16 @@ the overlay in your browser, playing made-up rounds without Streamer.bot in the 
 made-up round on the live overlay, the one in OBS included, letters, wrong guesses, an Evil Hangman swap and a win,
 then puts the overlay back as it was; it refuses while a real round runs. The overlay is version 10 and replaces an
 older copy on the next round, keeping that one as a <code>.bak</code>.</li>
+<li><strong>Free mode.</strong> A switch on the Game page (and a pill in the header): letters and wins pay nothing while it is on.
+<code>!SetFreeHangman</code> and <code>!EndFreeHangman</code> switch it from chat (moderators; two new commands in the import, disabled
+until you enable them), with a Started and an Ended message and the custom triggers <code>Hangman: Free Game Start</code> and
+<code>Hangman: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or
+<code>EndFreeGame</code>.</li>
+<li><strong>The round as arguments.</strong> <code>Hangman: Game Win</code>, <code>Game Loss</code>, <code>Game Stopped</code> and <code>Timeout</code> now carry the round:
+<code>roundOutcome</code>, <code>roundWord</code>, <code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundLetters</code>, <code>roundPlatform</code>, <code>roundWinner</code>,
+<code>roundWinnerId</code>, <code>roundPoints</code>, <code>roundWrongGuesses</code>, <code>roundMaxWrong</code>, <code>roundBlitz</code>, <code>roundFree</code>, <code>roundCurrency</code>,
+<code>roundParticipants</code>; the same in the globals <code>hm_last…</code>, and <code>GetLastRoundResult</code> (an Execute C# Method on the
+game action) hands them to any other action.</li>
 </ul>
 <h3>Changed</h3>
 <ul>
@@ -678,19 +787,6 @@ cannot push it out of range either.</li>
 window&#39;s footer instead of a message box. <em>Open the word list folder</em> and <em>Open the overlay folder</em> buttons.</li>
 <li>The game and the scoreboard carry UIFramework&#39;s current host block (0.9.11). Needs UIFramework 0.9.8 or newer for
 the word table; the settings action fetches it.</li>
-</ul>
-<h3>Added</h3>
-<ul>
-<li><strong>Free mode.</strong> A switch on the Game page (and a pill in the header): letters and wins pay nothing while it is on.
-<code>!SetFreeHangman</code> and <code>!EndFreeHangman</code> switch it from chat (moderators; two new commands in the import, disabled
-until you enable them), with a Started and an Ended message and the custom triggers <code>Hangman: Free Game Start</code> and
-<code>Hangman: Free Game End</code>. An action of your own can do the same with an Execute C# Method on <code>StartFreeGame</code> or
-<code>EndFreeGame</code>.</li>
-<li><strong>The round as arguments.</strong> <code>Hangman: Game Win</code>, <code>Game Loss</code>, <code>Game Stopped</code> and <code>Timeout</code> now carry the round:
-<code>roundOutcome</code>, <code>roundWord</code>, <code>roundCategory</code>, <code>roundDifficulty</code>, <code>roundLetters</code>, <code>roundPlatform</code>, <code>roundWinner</code>,
-<code>roundWinnerId</code>, <code>roundPoints</code>, <code>roundWrongGuesses</code>, <code>roundMaxWrong</code>, <code>roundBlitz</code>, <code>roundFree</code>, <code>roundCurrency</code>,
-<code>roundParticipants</code>; the same in the globals <code>hm_last…</code>, and <code>GetLastRoundResult</code> (an Execute C# Method on the
-game action) hands them to any other action.</li>
 </ul>
 <hr>
 <h1>v12.1.0</h1>

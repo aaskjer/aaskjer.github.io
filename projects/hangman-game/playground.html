@@ -5,7 +5,7 @@
 <meta charset='utf-8'>
 <meta name="robots" content="noindex">
 <script src="../../assets/js/playground-frame.js"></script>
-<!-- hm-overlay-version: 10 -->
+<!-- hm-overlay-version: 11 -->
 <title>Hangman Overlay</title>
 <style>
   html, body { margin: 0; padding: 0; background: transparent; overflow: hidden; }
@@ -167,7 +167,8 @@
 (function () {
   var STATE_URL = 'hangman_state.json';
   var POLL_MS = 400;
-  var PAGE_VERSION = 10;
+  var PAGE_VERSION = 11;
+  var firstPoll = true;
   var reloadedFor = (/[?&]v=(\d+)/.exec(location.search) || [])[1] || '';
 
   var ORDER_EXTENDED = ['base','post','beam','rope','head','torso','armL','armR','legL','legR'];
@@ -270,6 +271,17 @@
     elCat.textContent = done < 0.7 ? scramble(glitchCat) : glitchCat;
   }
 
+  function stopGlitch() {
+    clearInterval(scrambleTimer);
+    scrambleTimer = null;
+    elRow.classList.remove('glitch');
+    elRow.classList.remove('glitch-hit');
+    stage.classList.remove('glitching');
+    elTag.className = 'gtag';
+    elTag.textContent = '';
+    elCat.textContent = glitchCat;
+  }
+
   function startGlitch(ms) {
     glitchMs = ms;
     glitchEnds = Date.now() + ms;
@@ -315,6 +327,7 @@
   }
 
   function fitWord() {
+    stage.style.maxWidth = window.innerWidth > 0 ? Math.floor(window.innerWidth / (curScale > 0 ? curScale : 1)) + 'px' : '';
     elWord.style.fontSize = '';
     elWord.style.maxWidth = '';
     elWord.style.whiteSpace = '';
@@ -414,7 +427,10 @@
       else highlightKept();
     }
     lastGlitch = token;
-    if (scrambleTimer) glitchTick();
+    if (scrambleTimer) {
+      if (s.active) glitchTick();
+      else stopGlitch();
+    }
 
     fitWord();
 
@@ -432,6 +448,17 @@
   // A state the game writes back after a sample round: kept, never drawn.
   function quiet(s) {
     if (!s || !s.restore) return false;
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    stage.classList.add('gone');
+    return true;
+  }
+
+  function ended(s, first) {
+    if (!s || s.active) return false;
+    var fade = ((s.overlay && typeof s.overlay.endFadeSec === 'number') ? s.overlay.endFadeSec : 8) * 1000;
+    var at = s.endTime ? Date.parse(s.endTime) : NaN;
+    var recent = !isNaN(at) && Date.now() - at < fade;
+    if (first ? recent : (isNaN(at) || recent)) return false;
     if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
     stage.classList.add('gone');
     return true;
@@ -508,7 +535,9 @@
           location.replace(location.pathname + '?v=' + s.overlayVersion);
           return;
         }
-        if (quiet(s)) return;
+        var first = firstPoll;
+        firstPoll = false;
+        if (quiet(s) || ended(s, first)) return;
         try { render(s); } catch (e) { if (window.console) console.error('hangman overlay: ' + e); }
       })
       .catch(function () { })

@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/rhymetime/">
-  <meta property="og:title" content="RhymeTime  •  v2.4.1">
+  <meta property="og:title" content="RhymeTime  •  v2.4.2">
   <meta property="og:description" content="Chat races the clock to rhyme for points, solo or in a battle, with an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/rhymetime.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.4.1">
+  <meta name="twitter:data1" content="v2.4.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.4.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle","!SetFreeRhyme","!EndFreeRhyme"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com","wordotron.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.4.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!Rhyme","!RhymeBattle","!SetFreeRhyme","!EndFreeRhyme"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com","wordotron.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.4.1">
+<body data-repo="RhymeTime" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.4.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -166,11 +166,13 @@ change that there if you want someone else to be able to open a battle. <code>!S
 <p align="center"><img loading="lazy" alt="grafik" src="https://github.com/user-attachments/assets/8452f85a-daf0-4574-a28c-e9fd0c2eeecf"></p><p>Go to <code>Actions</code>, select <code>[RT] - Settings</code>, right-click the <code>Test</code> trigger and choose <code>Test Trigger</code>.
 That opens the settings window.</p>
 <p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
-all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
-<code>Yes</code> fetches it (about 190 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
-Streamer.bot and opens the window. <code>No</code> opens that folder instead, for when you would rather drop the file in by
-hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
-released the same dialog comes back once; <code>Cancel</code> skips that version.</p>
+all of these chat games and kept at
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <code>Yes</code> fetches it (about
+190 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot and opens the
+window. <code>No</code> opens that folder instead, for when you would rather drop the file in by hand from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released a dialog
+offers it: <code>No</code> skips that version, <code>Cancel</code> asks again at the next open. The dialog also says whether
+Streamer.bot has to be restarted for the new window.</p>
 <p>Eight pages sit on the rail down the left side. <code>Ctrl+1</code> to <code>Ctrl+8</code> jump between them, <code>Ctrl+S</code>
 saves. Every field carries a tooltip, so hovering usually answers the question faster than this page
 does. The pencil at the bottom left opens the customise mode: rename, reorder, hide or move pages and
@@ -207,10 +209,11 @@ Delete takes the picked rows out, the search box above finds a word, and <em>Res
 words back. Rows left empty are dropped when you save. All three are saved together into <code>RT-wordbank.json</code>.</p>
 <p>The rhymes you list are examples, not the whole answer: what they have in common at the end is what
 the round accepts. Three rhymes ending in <code>AT</code> accept any dictionary word ending in <code>AT</code>. One lonely
-rhyme has nothing to agree with, so half of it is used — list two or three and the round behaves
-predictably.</p>
+rhyme has nothing to agree with, so half of it is used, never less than three letters — list two or
+three and the round behaves predictably.</p>
 <p>A target <strong>with spaces in it</strong> is a line to finish instead of a word to rhyme. Then the whole reply
-has to match one of the answers you listed, so write them out in full.</p>
+has to match one of the answers you listed, so write them out in full. It is compared word by word
+without punctuation, so an apostrophe or a comma in your answer does not keep a chatter from it.</p>
 <p>A row only reaches the game once it has a target and at least one rhyme; the count under the table
 says how many rows are filled in. <em>Restore defaults</em> puts the shipped words back into that bank and
 leaves the other two alone. Nothing is written until you save.</p>
@@ -267,6 +270,13 @@ these settings and wins:</p>
 <p>The URL takes <code>&amp;platform=twitch</code> to show one platform&#39;s rounds only, <code>&amp;lang=de</code> for the German
 wording, <code>&amp;position=center</code> to overrule <em>Place</em>, and <code>&amp;debug=1</code> to see whether it reached
 Streamer.bot.</p>
+<h2>Log</h2>
+<p>Every settled round and battle, newest first: when it was, how it ended, who played, on which
+platform, the word, the guess, the difficulty, the stake and what it left them with. Filter by
+result, by platform or by day, search the lines, reload them, or open the folder they live in.</p>
+<p>The lines come from <code>Chat Games/Logs/RT-log-yyyy-MM-dd.txt</code>, one file per day, written by the game
+and the battle together. <em>Write a log file per day</em> at the foot of the page switches the writing off;
+the page then shows the days already written and nothing new is added.</p>
 <h2>How to play</h2>
 <p align="center"><img loading="lazy" alt="How to play page" src="https://raw.githubusercontent.com/aaskjer/RhymeTime/main/Assets/setup-guide/how-to-play.png"></p><p>The rules in short, and where the two files live:</p>
 <pre><code>Chat Games/RhymeTime/RT-settings.json        ← everything on these pages, every chat line
@@ -314,9 +324,11 @@ one window shared by all of these chat games, so a fix or a new feature there re
 <code>[RT] - Settings</code> action only loads that DLL and hands it the game&#39;s settings table.</p>
 <p>The first open asks before fetching anything. <code>Yes</code> downloads the file from the UIFramework releases, checks it
 against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot
-folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered the same way;
-<code>Cancel</code> skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the log
-says <code>UIFramework.dll was not found</code>, open the window again and answer <code>Yes</code>, or put the DLL from the
+folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered in a dialog of their
+own: <code>Yes</code> takes one, <code>No</code> skips it, <code>Cancel</code> asks again at the next open, and the dialog says whether
+Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding
+<code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game. If the log says <code>UIFramework.dll was not found</code>, open
+the window again and answer <code>Yes</code>, or put the DLL from the
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
 <hr>
 <p><strong>Q: Can I rearrange the window?</strong></p>
@@ -413,13 +425,16 @@ like. The scripts follow the command, not its name.</p>
 <hr>
 <p><strong>Q: How do chatters answer?</strong></p>
 <p>In ordinary chat, no command. Only the <strong>last word</strong> of the message is read, so &quot;hmm maybe DREAM&quot;
-answers <code>DREAM</code>. A line to finish reads the <strong>whole</strong> message instead, with punctuation and double
-spaces ignored.</p>
+answers <code>DREAM</code>. A line to finish reads the <strong>whole</strong> message instead.</p>
+<p>Punctuation and symbols never get in the way: <code>dream!</code>, <code>(Dream.)</code> and <code>dream :)</code> all answer <code>DREAM</code>,
+and a line to finish is compared word by word, so double spaces and an apostrophe in the answer you
+typed into the word bank make no difference either.</p>
 <hr>
 <p><strong>Q: Does every wrong guess cost an attempt?</strong></p>
 <p>No — only guesses that look like an attempt. A guess counts as an attempt when it at least ends with
-the same two letters as one of the accepted endings; anything else in chat is ignored, so normal
-conversation does not burn through a round. The attempt limit is on the Game page.</p>
+the same two letters as one of the accepted endings; in a line to finish it is the last word of the
+message that has to end like the last word of one of your answers. Anything else in chat is ignored,
+so normal conversation does not burn through a round. The attempt limit is on the Game page.</p>
 <hr>
 <p><strong>Q: Does the target word itself count as a rhyme?</strong></p>
 <p>No. <code>DREAM</code> for <code>DREAM</code> is rejected, and it costs an attempt like any other miss.</p>
@@ -436,7 +451,8 @@ conversation does not burn through a round. The attempt limit is on the Game pag
 <p><strong>Q: Where do the accepted endings come from?</strong></p>
 <p>From the rhymes you listed. The game takes the longest ending enough of them share — at least two
 letters — so <code>BAT, HAT, MAT, FLAT</code> accepts anything ending in <code>AT</code>. A single listed rhyme has
-nothing to agree with, so half of it is used: <code>DOVE</code> alone accepts anything ending in <code>VE</code>.</p>
+nothing to agree with, so half of it is used, never less than three letters: <code>DOVE</code> alone accepts
+anything ending in <code>OVE</code>.</p>
 <p>List two or three rhymes per word and the round behaves predictably. List one and it gets generous.</p>
 <hr>
 <p><strong>Q: What is the dictionary check?</strong></p>
@@ -568,7 +584,8 @@ written until you save. Resetting the settings does not touch the word banks.</p
 <p><strong>Q: How do I keep someone out of the game?</strong></p>
 <p>The <strong>Access</strong> page. A name on the blocked list is ignored when they run the command, with no reply
 in chat, and so is everyone in a blocked Streamer.bot group (<code>Settings</code> → <code>Groups</code>). A group that
-does not exist is skipped and logged rather than failing the round.</p>
+does not exist is skipped and logged rather than failing the round. It holds for a battle as well:
+a blocked chatter who types the winning rhyme does not win it.</p>
 <hr>
 <p><strong>Q: Why are permissions not in the settings window?</strong></p>
 <p>Because Streamer.bot already has them, per command, with groups and users. Everything the game does
@@ -675,6 +692,95 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/RhymeTime/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.4.2] - 2026-11-15</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+<li><strong>The window in French and Brazilian Portuguese.</strong> Beside English, German and Spanish, the window&#39;s language
+(the pencil, then <em>Language</em>) now offers French and Brazilian Portuguese. Buttons, dialogs, pages and the
+settings these chat games share follow the language you pick; RhymeTime&#39;s own settings and messages read in
+English, or in German.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><p><strong>A line to finish no longer loses a round to ordinary chat.</strong> Every message from the player used to count as a
+failed attempt, so three lines of talk ended the round. A message counts now when its last word ends like the
+last word of one of your answers, the same two letters a word needs.</p>
+</li>
+<li><p><strong>One listed rhyme gives a longer ending.</strong> Half of the word, but never less than three letters: <code>DOVE</code> on its
+own accepts anything ending in <code>OVE</code> instead of in <code>VE</code>, which used to let <code>HAVE</code>, <code>GIVE</code> and <code>MOVE</code> win.</p>
+</li>
+<li><p><strong>The attempt limit of a running round is the one it started with.</strong> Changing it in the settings mid-round takes
+effect with the next round, so the dots on the overlay and the limit always agree.</p>
+</li>
+<li><p><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</p>
+</li>
+<li><p><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</p>
+</li>
+<li><p><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read.</p>
+</li>
+<li><p>The settings action is 0.3.2, the host block UIFramework 2.0.0&#39;s, and the next open of the window offers
+UIFramework 2.0.0. Nothing in your settings changes.</p>
+</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A rhyme with a <code>!</code> behind it counts.</strong> Punctuation and symbols are dropped from a guess, on both sides of
+every comparison: <code>dream!</code>, <code>(Dream.)</code> and <code>dream :)</code> all answer <code>DREAM</code>. They used to miss the word and not
+even count as an attempt, so the chatter saw nothing happen at all.</li>
+<li><strong>A line to finish is compared word by word.</strong> Double spaces in what was typed, and an apostrophe or a comma in
+the answer you wrote into the word bank, used to make the right answer unreachable.</li>
+<li><strong>A free round needs no points.</strong> A chatter whose points variable does not exist yet was turned away with
+nothing in chat to say why, even when nothing was at stake. A free round no longer asks for a balance at all,
+and a chatter who has never earned any counts as 0 in a game with stakes.</li>
+<li><strong>A balance that cannot be read is left alone.</strong> Winning, losing, a battle&#39;s stake and its refund worked from 0
+when Streamer.bot could not hand over the current balance, which wrote that 0 back and wiped what the chatter
+had. Nothing is written now, and the log says what was not paid.</li>
+<li><strong>A round pays out to the chatter it belongs to.</strong> Every chat line is handled on a thread of its own in one
+shared instance, so a round that was settling could take its name, its id or its settings from whatever line
+arrived meanwhile. A round and a battle now carry their player, platform and settings with them.</li>
+<li><strong>The block list holds in a battle.</strong> Somebody who may not play could still type the winning rhyme and be paid
+the prize.</li>
+<li><strong>A battle that times out reports the stake going back.</strong> <code>battlePreviousPoints</code>, <code>battleNewPoints</code> and the log
+line showed zeroes for the moderator who got their stake returned.</li>
+<li><strong>The dictionary check is no longer switched off by TLS.</strong> Where something pinned Streamer.bot to an older TLS,
+the lookup at wordotron.com failed and every guess with the right ending passed unchecked.</li>
+<li><strong>The word bank is written beside the file and swapped in</strong>, the replaced file kept as <code>.bak</code>, so a write cut
+short cannot leave half a word bank behind.</li>
+<li><strong>Seconds to answer and how long the result shows keep the window&#39;s limits</strong> when the file was edited by hand;
+a hand-written number used to be able to stop a round from starting at all.</li>
+<li><strong>The overlay stops waiting for an answer that never comes</strong> (five seconds), so a dropped reply no longer
+leaves it without the round it should pick up after a reload.</li>
+<li><strong>A message whose platform cannot be told is not played.</strong> It used to leave a round nothing could answer and a
+state under a name no overlay asks for.</li>
+<li><strong>A download GitHub does not deliver is tried three times</strong> before the settings action gives up, also one that
+breaks off halfway.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+<li><strong>Saving leaves no moment without settings.</strong> A round that started while the window swapped the new
+<code>RT-settings.json</code> in was played on the defaults; the game now waits for the file. With only
+<code>RT-settings.json.bak</code> left, the window reads it as the game does, where it showed the defaults and its first
+save wrote them over your settings.</li>
+<li><strong>Reset all keeps the word bank rows you have not saved yet.</strong> The word banks are not reset, as the question
+says, but rows typed and not saved were thrown away without a word.</li>
+<li><strong>The questions after the check before saving stay with the window.</strong> When you went to another window while
+the game checked, <em>Check your settings</em> belonged to none: the settings window could be closed under it and not
+opened again until it was answered.</li>
+<li><strong>The Log page&#39;s folder button opens <code>Chat Games\Logs</code> beside Streamer.bot</strong>, also after the window&#39;s Export or
+Import, which used to make it create an empty folder elsewhere. Rounds settled in the same second show newest
+first.</li>
+<li><strong>The update notice names only a UIFramework the window would offer.</strong> A version skipped with <em>No</em>, or any
+while <code>&quot;autoUpdate&quot;: false</code>, was named in chat at every start.</li>
+<li><strong>A UIFramework another game installed for a newer settings action is left alone.</strong> This game&#39;s update notice
+loaded it as Streamer.bot started, and the settings window then would not open; the notice now loads the newest
+one that fits. A damaged <code>UIFramework.dll</code> is passed over and set aside, so its version is offered again.</li>
+</ul>
 <h2>[2.4.1] - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>

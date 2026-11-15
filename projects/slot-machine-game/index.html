@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/slot-machine-game/">
-  <meta property="og:title" content="Slot Machine Game  •  v16.4.2">
+  <meta property="og:title" content="Slot Machine Game  •  v16.4.3">
   <meta property="og:description" content="A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/slot-machine-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v16.4.2">
+  <meta name="twitter:data1" content="v16.4.3">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"16.4.2","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!spin","!slots","!SetFreeSlots","!EndFreeSlots"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"16.4.3","made":"1.0.7","min":"1.0.4","actions":2,"code":2,"commands":["!spin","!slots","!SetFreeSlots","!EndFreeSlots"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Slot-Machine-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v16.4.2">
+<body data-repo="Slot-Machine-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v16.4.3">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -215,7 +215,7 @@ against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&l
 folder. <code>No</code> opens that folder so you can place the file yourself. Later releases are offered in a dialog of their
 own: <code>Yes</code> takes one, <code>No</code> skips it, <code>Cancel</code> asks again at the next open, and the dialog says whether
 Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding
-<code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game on settings action 0.3.0 or newer (this one has 0.3.1);
+<code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game on settings action 0.3.0 or newer (this one has 0.3.2);
 a game on an older one only reads its own <code>uiframework.layout.json</code>. If the log says <code>UIFramework.dll was not found</code>, open
 the window again and answer <code>Yes</code>, or put the DLL from the
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
@@ -422,6 +422,31 @@ If you still find bugs or have something to say, please let me hear it :)</p>
         <div class="doc-body"><h1>Changelog</h1>
 <p>Releases are in the <a href="https://github.com/aaskjer/Slot-Machine-Game/releases">release notes</a>.
 The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.3">16.4.3</a> - 2026-11-15</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>The settings window speaks French and Brazilian Portuguese too,</strong> beside English, German and Spanish: its
+pages, buttons and dialogs and the settings this game shares with the other chat games. The settings only the
+slot machine has stay in English, or German.</li>
+<li><strong>Blocked groups and Addicted groups suggest your Streamer.bot groups.</strong> Click into the field and a list shows
+the groups not added yet, narrowed as you type.</li>
+<li>The settings action is 0.3.2, the host block UIFramework 2.0.0&#39;s. The window is offered UIFramework 2.0.0 from
+now on; a game on an older settings action stays on 1.9.0. Nothing in your settings changes.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The emote pictures no longer hold the window still.</strong> The window asked the game for them on its own thread and
+froze for up to five seconds when the game was busy. Each picture now shows once it has come.</li>
+<li><strong>The question after the check before saving belongs to the window.</strong> Switched to another window meanwhile, the
+settings window could be clicked and closed with the question still open, and didn&#39;t open again until it was
+answered.</li>
+<li><strong>The Log page&#39;s folder button opens <code>Chat Games\Logs</code> beside Streamer.bot,</strong> also after an export or import
+in the window. Spins logged in the same second show newest first.</li>
+<li><strong>The update notice at Streamer.bot&#39;s start</strong> takes the next older UIFramework when the newest is damaged, and
+no longer names a UIFramework release you skipped.</li>
+<li><strong>A UIFramework another game loaded for a newer settings action no longer stops this window,</strong> and a damaged
+download is set aside and offered again also while an older UIFramework runs.</li>
+</ul>
 <h2><a href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2">16.4.2</a> - 2026-11-12</h2>
 <h3>Added</h3>
 <ul>

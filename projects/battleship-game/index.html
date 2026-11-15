@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/battleship-game/">
-  <meta property="og:title" content="Battleship Game  •  v2.3.0">
+  <meta property="og:title" content="Battleship Game  •  v2.4.2">
   <meta property="og:description" content="Chat plays Battleship against a CPU Admiral on an OBS overlay. A free Streamer.bot extension for Twitch, YouTube and Kick.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/battleship-game.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.3.0">
+  <meta name="twitter:data1" content="v2.4.2">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.4.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle","!SetFreeBattleship","!EndFreeBattleship"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.4.2","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":["!fire","!fleet","!battleship","!bstats","!BAllStats","!board","!seeschlacht","!duel","!accept","!team","!stopbattle","!SetFreeBattleship","!EndFreeBattleship"],"words":[],"timers":0,"sites":["github.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.4.1">
+<body data-repo="Battleship-Game" data-files="CHANGELOG.md|FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.4.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -122,7 +122,8 @@ message to chat and a custom trigger each.</li>
 <li>🏆 <strong>Records other actions can read.</strong> Stats live in persisted <code>bsg_*</code> user variables. The leaderboard ranks
 net result, points won, ships sunk or accuracy, and resets weekly or monthly if you want seasons.</li>
 <li>⚙️ <strong>One settings window.</strong> Built on <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>
-and downloaded on first open: light and dark themes, English or German, live rule summaries, one-click OBS
+and downloaded on first open: light and dark themes, English, German, Spanish, French or Brazilian Portuguese
+(Battleship&#39;s own settings in English or German), live rule summaries, one-click OBS
 setup, a filterable log and a customise mode that lets you rename, reorder and hide pages and fields. Every chat message is
 editable, and Free Game mode has its own set, so no line mentions points that were never at stake.</li>
 </ul>
@@ -253,11 +254,13 @@ editable, and Free Game mode has its own set, so no line mentions points that we
 <h2>3. Open the settings window</h2>
 <p>Open the <strong>[BG] - .Settings</strong> action, right-click <strong>Test</strong> under <strong>Triggers</strong> and choose <strong>Test Trigger</strong>. Everything is configured there; the pages sit in the rail on the left — Game, Fleet, Modes, Overlay, Clicks, Access, Messages, Stats, Log, How to play and About (Ctrl+1 to Ctrl+9 for the first nine).</p>
 <p>The first time, a small dialog asks whether to download <code>UIFramework.dll</code> — the settings window itself, shared by
-all of these chat games and kept at <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>.
-<strong>Yes</strong> fetches it (about 200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to
-Streamer.bot and opens the window. <strong>No</strong> opens that folder instead, for when you would rather drop the file in by
-hand from the <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is
-released the same dialog comes back once; <strong>Cancel</strong> skips that version.</p>
+all of these chat games and kept at
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">aaskjer/UIFramework-Streamer.bot</a>. <strong>Yes</strong> fetches it (about
+200 KB, checked against its published hash) into <code>UIFramework\lib\&lt;version&gt;\</code> next to Streamer.bot and opens the
+window. <strong>No</strong> opens that folder instead, for when you would rather drop the file in by hand from the
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a>. When a newer window is released a dialog
+offers it: <strong>No</strong> skips that version, <strong>Cancel</strong> asks again at the next open. The dialog also says whether
+Streamer.bot has to be restarted for the new window.</p>
 <p>Hover over an option for a tooltip with the details. <strong>Save</strong> or Ctrl+S keeps your changes, <strong>Save &amp; Exit</strong> also closes the window. The buttons at the bottom left switch between dark and light, reset everything or only the page in front, and open the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in <code>uiframework.layout.json</code> next to the settings — through every update of the game.</p>
 <p>At minimum, check:</p>
 <ul>
@@ -284,7 +287,7 @@ released the same dialog comes back once; <strong>Cancel</strong> skips that ver
 <li>If you added the browser source by hand or resized it, make it cover the whole canvas: set its width and height to your canvas size, then right-click it ▸ <strong>Transform ▸ Fit to screen</strong>. Or enter where it sits on the Clicks page.</li>
 <li>Check it: switch on <strong>Show every click on the overlay</strong>, save, then while live open your channel in a browser and click around the video. Each marker should land under the pointer, and the box in the corner says whether Heat and Streamer.bot are connected. Switch it off afterwards — viewers see it too.</li>
 </ol>
-<p>Players just click: the first click on enemy waters in a player&#39;s battle is taken as theirs for that battle. Heat sends nearly every click anonymously, so this is how the game tells whose clicks are whose. If someone else&#39;s click got in first, the player clicks once and types <code>!fire link</code> in chat — that link is remembered for later battles. <em>The first click in a player&#39;s battle takes control</em> on the Clicks page switches the automatic part off.</p>
+<p>Players just click: the first click on enemy waters in a player&#39;s battle is taken as theirs for that battle. Heat sends nearly every click anonymously, so this is how the game tells whose clicks are whose. If someone else&#39;s click got in first, the player clicks once and types <code>!fire link</code> in chat — that link is remembered for later battles. <strong>First click takes control</strong> on the Clicks page switches the automatic part off.</p>
 <p>Optional: <strong>Add to OBS</strong> under <em>Heat&#39;s click markers</em> on the same page puts Heat&#39;s own Markers overlay — a marker where each viewer last clicked — into your Battleship scene, so everyone watching sees the clicks land. Click to Fire works without it.</p>
 <hr>
 <h2>Where things live</h2>
@@ -560,9 +563,11 @@ these chat games, so a fix or a new feature there reaches every game at once. Th
 loads that DLL and hands it the game&#39;s settings table.</p>
 <p>The first open asks before fetching anything. <strong>Yes</strong> downloads the file from the UIFramework releases, checks it
 against the SHA-256 published next to it and puts it in <code>UIFramework\lib\&lt;version&gt;\</code> under your Streamer.bot
-folder. **No** opens that folder so you can place the file yourself. Later releases are offered the same way;
-**Cancel** skips one, and <code>&quot;autoUpdate&quot;: false</code> in <code>uiframework.layout.json</code> stops the check altogether. If the
-log says <code>UIFramework.dll was not found</code>, open the window again and answer <strong>Yes</strong>, or put the DLL from the
+folder. **No** opens that folder so you can place the file yourself. Later releases are offered in a dialog of
+their own: **Yes** takes one, **No** skips it, **Cancel** asks again at the next open, and the dialog says whether
+Streamer.bot has to be restarted for it. A <code>UIFramework\loader.json</code> under your Streamer.bot folder holding
+<code>{ &quot;autoUpdate&quot;: false }</code> stops the check for every game. If the log says <code>UIFramework.dll was not found</code>, open
+the window again and answer <strong>Yes</strong>, or put the DLL from the
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases">releases</a> into that folder by hand.</p>
 <h3>Can I rearrange the window?</h3>
 <p>Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto
@@ -603,6 +608,92 @@ Code</strong> sub-action, press <strong>Find Refs</strong>, then <strong>OK</str
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>All notable changes to this project are documented here.</p>
+<h2>[2.4.2] - 2026-11-15</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>aaskjer on Twitch</strong> is back among the links of the About page.</li>
+<li><strong>The settings window in French and Brazilian Portuguese</strong>, beside English, German and Spanish. Battleship&#39;s own
+settings are labelled in English and German; the other three show them in English.</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li><strong>The About page&#39;s Discord link.</strong> It led to Blackjack&#39;s post on the Streamer.bot Discord; Battleship has none.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The update question says when Streamer.bot needs a restart.</strong> A newer UIFramework can be used at once only
+while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+as before until then.</li>
+<li><strong>Closing the update question means &quot;not now&quot;.</strong> <em>Yes</em> takes the new UIFramework, <em>No</em> skips that version, and
+<em>Cancel</em>, the X and Esc ask again at the next open. Closing the dialog used to skip the version for good.</li>
+<li><strong>A skipped version is skipped in every game.</strong> It is kept once, in <code>UIFramework\loader.json</code> beside
+Streamer.bot, and so is <code>&quot;autoUpdate&quot;: false</code>. What a game&#39;s <code>uiframework.layout.json</code> holds is still read.</li>
+<li>The settings action is 0.3.2, the host block UIFramework 2.0.0&#39;s. Nothing in your settings changes; the window
+offers UIFramework 2.0.0 on its next open.</li>
+<li><strong>The <code>!bstats</code> and <code>!ballstats</code> replies are on the Messages page</strong>, under Stats: <em>Stats reply</em>, <em>Stats reply in
+Free game</em> and <em>Leaderboard</em>. The default reply is the old one without the flawless wins, best win and current
+streak, which <code>{flawless}</code>, <code>{bestWin}</code> and <code>{streak}</code> add back.</li>
+<li><strong>In Free game <code>!ballstats</code> ranks by ships sunk</strong>, as no points are won or lost, and <code>!bstats</code> leaves out the net.</li>
+<li>The overlay is version 18; an older copy is replaced on the next command and kept as a <code>.bak</code>.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A download GitHub does not deliver, or one that breaks off, is tried three times</strong> before the settings action
+gives up.</li>
+<li><strong>The game hears of every save.</strong> When the game action was busy at that moment, the save passed it by, and the
+overlay and Click to Fire were not brought up to date. The save is now sent again, three tries in all, and a note
+beside the window says if it still did not arrive. A command in the moment a save is written reads the saved
+settings, not the defaults.</li>
+<li><strong>A save keeps what changed while the game checked it.</strong> A preset pressed meanwhile was lost although the window
+said &quot;Saved&quot;; it now counts as unsaved.</li>
+<li><strong>The update notice</strong> takes an older UIFramework when the newest one is damaged, and no longer names a UIFramework
+release you skipped with <em>No</em> or while the release check is off.</li>
+<li><strong>Fire with sample values</strong> on the Help page no longer freezes the window while the game is busy, and says why no
+answer came.</li>
+<li><strong>The Log page&#39;s folder button</strong> opens the log folder beside Streamer.bot, also after an export elsewhere, and
+battles logged in the same second show newest first.</li>
+<li><strong>No answer from the game shows as no answer.</strong> A Try button said &quot;done&quot; and a table showed as empty when the
+game action did not answer.</li>
+<li><strong>A late answer is not taken for the next one.</strong> Every request to the game has a variable of its own.</li>
+<li><strong>The settings window opens with a too-new UIFramework installed.</strong> As Streamer.bot started, the game loaded the
+newest UIFramework, also one that needs a newer settings action, and the window then stayed shut until a
+restart. It now loads the newest one its settings action fits. When another game has such a UIFramework running
+already, opening the settings says so in one message, asking to update this game, instead of advising to delete that UIFramework&#39;s folder.</li>
+<li><strong>Points go to the right variable with Currency Core or LOYALTY POINTS.</strong> <em>Try the demo</em>, <em>Show a sample round</em>
+and <em>Add to OBS</em> in the settings window, and a chat command arriving just as a battle paid out, could send later
+refunds and payouts to the box&#39;s variable (<code>points</code>). LOYALTY POINTS is now found the way the window finds it.</li>
+<li><strong>Switching Free game over a damaged settings file keeps your settings.</strong> It wrote a file holding nothing but
+Free game, over the good backup; now the switch goes into the backup and the damaged file is kept as <code>.broken</code>.</li>
+<li><strong><code>!fire link</code> cannot take over somebody else&#39;s clicks.</strong> In the chat&#39;s battle and in a duel, the one clicker it
+linked could be another viewer, even one of the other side, whose clicks then counted for the wrong person in
+every later battle. A click from a logged-out viewer, whose id changes with every page load, is linked for that
+battle only, and an old one no longer keeps the first click from taking control.</li>
+<li><strong>Click to Fire works after a restart before anyone types a command.</strong> A channel-point reward or a save that came
+first handed the overlay an empty action, and every click failed.</li>
+<li><strong>The overlay no longer sticks on a finished battle.</strong> Two writes at once could fail, or an older state land
+after a newer one and leave the next battle&#39;s clicks unanswered.</li>
+<li><strong>A click uses up a viewer&#39;s vote only when it was sent</strong>, on a square still open. <strong>The countdown ring keeps
+time</strong> after a reload or a scene switch. <strong>The Heat file read mid-write</strong> no longer drops both connections.</li>
+<li><strong>A vote cast while the round is being counted is refused</strong>, instead of drawn on the overlay and then wiped. A
+viewer who voted by click and by <code>!fire</code> and then linked keeps one ballot.</li>
+<li><strong>Two duel commands of one viewer at the same moment</strong> no longer create points.</li>
+<li><strong>After a moderator&#39;s stop nothing more is charged</strong>, also when a shot was still being resolved.</li>
+<li><strong>A command in the moment before the boards are dealt</strong> no longer throws an error.</li>
+<li><strong>The automatic leaderboard reset runs before a battle is recorded</strong>, not only when somebody types <code>!bstats</code>,
+which cleared the new period&#39;s first battles with the old ones. Switching it on, or between weekly and monthly,
+clears nothing. Weeks follow ISO 8601, so New Year&#39;s Day no longer starts a second week. A reset of everything
+no longer restarts the daily winnings cap.</li>
+<li><strong><code>!ballstats</code> lists a player who broke even</strong>, and answers in Free game. <strong><code>!bstats</code> names the points</strong> as the
+game does with Currency Core or LOYALTY POINTS. A Stats message left empty sends nothing.</li>
+<li><strong>The Admiral keeps track of a damaged ship</strong> when ships touch.</li>
+<li><strong>Add to OBS</strong> finds a scene whose name differs only in case, and says so when OBS created nothing.</li>
+<li><strong>The Log page&#39;s Result filter</strong> offers what the log holds: NO-SHOW and STARTED, not four values never written.</li>
+<li><strong><code>battleCurrency</code> in the custom triggers</strong> is empty for the chat&#39;s battle and for a battle begun in Free game.</li>
+<li><strong>The log file&#39;s name</strong> uses the Gregorian calendar on every system.</li>
+<li><strong>The import precompiles the game action</strong> again, so the update notice, the custom triggers and the overlay&#39;s
+cleanup run as Streamer.bot starts. Each action&#39;s comment names the version again.</li>
+</ul>
 <h2>[2.4.1] - 2026-11-12</h2>
 <h3>Fixed</h3>
 <ul>
@@ -640,7 +731,7 @@ log. <em>Tell me about updates</em> on the About page turns it off for this game
 application start, so the notice starts with Streamer.bot.</li>
 <li>The host block is UIFramework 1.4.0&#39;s; the settings window offers the newest UIFramework on its next open.</li>
 </ul>
-<h2>[2.2.0] — Unreleased</h2>
+<h2>[2.2.0] - 2026-11-07</h2>
 <h3>Added</h3>
 <ul>
 <li><strong>A tour of the settings window.</strong> The first time the window opens, a short tour rings one part after the other
@@ -678,7 +769,8 @@ window.</li>
 <li>The host block is UIFramework&#39;s current one (1.0.0). It names every type in full, so it no longer depends on the
 action&#39;s <code>using</code> lines, and it can declare a tour of the window. Nothing changes in the window.</li>
 </ul>
-<h2>[2.1.0] — Unreleased</h2>
+<h2>[2.1.0] - 2026-11-05</h2>
+<p>No release of its own: 2.1.0 reached GitHub together with 2.2.0.</p>
 <h3>🔔 For your own actions</h3>
 <ul>
 <li><strong>Custom triggers.</strong> Every finished battle fires a trigger (Custom &gt; Chat Game &gt; Battleship Game): <code>BSG: Battle Won</code>, <code>BSG: Battle Lost</code>, <code>BSG: Battle Timed Out</code> or <code>BSG: Battle Stopped</code> for a solo battle, <code>BSG: Chat Battle Settled</code> for the chat&#39;s battle, <code>BSG: Duel Settled</code> for a team duel, and <code>BSG: Battle Settled</code> for every one of
