@@ -5,9 +5,55 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-15T01:03:44Z</updated>
+  <updated>2026-11-15T18:41:31Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>TwitchSentry v4.1.0-beta.1: (TESTERS NEEDED) Bot waves, text waves, viewbot alarm and Silent Bot Protection (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.1"/>
+    <id>https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.1</id>
+    <published>2026-11-15T18:41:31Z</published>
+    <updated>2026-11-15T18:41:31Z</updated>
+    <category term="TwitchSentry" label="TwitchSentry"/>
+    <content type="html">&lt;h1&gt;This is a &lt;strong&gt;BETA&lt;/strong&gt;! &lt;strong&gt;PLEASE&lt;/strong&gt; test it out as much as you can, but do not use it as daily driver! Some translations may be missing, some features can be broken, intentionally not working, have misleading description or crash unexpectedly. Happy to hear about feedback &lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/issues&quot;&gt;here&lt;/a&gt;!&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h3&gt;✨ Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Bot wave check&lt;/strong&gt;: the Spam Filter counts the brand-new chatters whose first message names the same address within a window (60 s and 5 senders by default, more during a raid, scaled with its size). Once enough share one, that address is decisive for everyone still in the window: the messages already posted get the Default Action in one go, with one undo entry for all of them, every further message naming it goes, and the Spam Learner adds the address to the spam domains. Regulars are never touched, Twitch links and the Link Filter&amp;#39;s allowed domains never count. On by default (Spam Scoring → Bot Wave: &amp;#39;Detect Bot Waves&amp;#39;); the shared bot list gets the wave&amp;#39;s accounts with the reason &lt;code&gt;bot_wave&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Text wave check&lt;/strong&gt;: catches chat bot tools that post the lines of a list from several bought accounts in turn, without a link. Once three accounts that are not regulars here have posted the same words within 10 minutes, those words are decisive for everyone still in the window, the earlier messages get the Default Action with one undo entry, and the accounts reach the shared bot list as &lt;code&gt;text_wave&lt;/code&gt;. Words a regular posted never count, nor do commands, short lines or emote spam, and it rests for ten minutes after a raid. On by default (Spam Scoring → Text Wave: &amp;#39;Detect Text Waves&amp;#39;). It also catches a single account rotating a list: two different lines, each posted twice or more within the window, from an account that is not a regular here; channel bots like Nightbot never count (Spam Scoring → Text Wave: &amp;#39;Detect Rotating Accounts&amp;#39;, on).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Viewbot alarm&lt;/strong&gt;: &lt;code&gt;Silent Bot Protection&lt;/code&gt; compares Twitch&amp;#39;s viewer count with the people in chat on every Present Viewers round. When the count jumps (25 viewers and 50 percent within 10 minutes by default), no raid brought them and chat did not grow along, it alerts you, sets a stream marker and writes every count until the spike is over to &lt;code&gt;Logs/viewbot-evidence.txt&lt;/code&gt;, for a report to Twitch. It never acts on its own. On by default, with its own switch and a notification switch on every platform (Silent Bot Protection → Viewbot Alarm: &amp;#39;Viewbot Alarm&amp;#39;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Code injection check&lt;/strong&gt;: the Message Filter can act on messages built to run as code in an overlay, a TTS voice or an action that hands chat on: HTML and script tags, TTS tags, shell and PowerShell commands, Log4Shell lookups, SQL and paths out of a folder or to another computer. Scored like caps and emotes, off by default (Message Filter → Code Injection: &amp;#39;Code Injection Check Enabled&amp;#39;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;tsRaid&lt;/code&gt; toggles&lt;/strong&gt;: the deck button takes on, off and toggle like &lt;code&gt;tsHateRaid&lt;/code&gt; and &lt;code&gt;tsFollowWave&lt;/code&gt;; arm and disarm still work.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;!permitme&lt;/code&gt;&lt;/strong&gt;: viewers can ask for a link permit in chat. The request waits on the OBS dock&amp;#39;s Permit list and for a &lt;code&gt;tsPermit&lt;/code&gt; key like a Channel Points request, and a moderator&amp;#39;s &lt;code&gt;!permit&lt;/code&gt; answers it too. Off by default (Permit → Chat Requests: &amp;#39;Accept !permitme&amp;#39;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧 Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;LurkBot Filter is now Silent Bot Protection&lt;/strong&gt;: it now covers two kinds of bots that never write, the silent accounts in the viewer list and the viewbots behind a viewer spike. Everything carries the new name: the page, alerts and their switches, the Twitch ban reason, &lt;code&gt;Logs/silentbot-finds.txt&lt;/code&gt; (the old file and its monthly copies are renamed), the settings (&lt;code&gt;sb*&lt;/code&gt;, &lt;code&gt;useSilentBotProtection&lt;/code&gt;, taken over from &lt;code&gt;lb*&lt;/code&gt; once), the deck (&lt;code&gt;tsSilentBot&lt;/code&gt;, &lt;code&gt;tsModule &amp;quot;Silent Bot Protection&amp;quot;&lt;/code&gt;; the old names no longer work). The Shared Bot List keeps its public file &lt;code&gt;lurkbots.json&lt;/code&gt;, so older versions keep their bans.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;ASCII art and Zalgo text hang off the Flood check&lt;/strong&gt;: both moved into the Flood card and only work while &amp;#39;Flood Check Enabled&amp;#39; is on (Message Filter → Flood).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;A moderator&amp;#39;s &lt;code&gt;!permit&lt;/code&gt; answers a waiting request&lt;/strong&gt;: a viewer&amp;#39;s Channel Points request leaves the Permit list with it, and its points are spent instead of given back later.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Test mode, Raid and Follow Wave keys say On&lt;/strong&gt;: &lt;code&gt;tsTitle = auto&lt;/code&gt; no longer shows the time the window ends, which read like a countdown; &lt;code&gt;{until}&lt;/code&gt; still gives it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spam feed v7&lt;/strong&gt;: the pirate-streaming wave of 2026-10-31 (&lt;code&gt;dovie .tv&lt;/code&gt;, eight sentences in rotation from brand-new accounts): the domain and its wordings join the shared lists, so the hidden address and the pitch make two categories and the message goes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Bot wave bar after a raid&lt;/strong&gt;: the Spam Filter kept scaling its bot wave bar with the last raid Raid Protection had seen, long after the raid window had closed, so after a big raid a wave needed far more senders until the next raid. It now counts a raid only while Raid Protection&amp;#39;s window is open or for five minutes after any raid, and Raid Protection clears the size when it disarms.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Streamer.bot Deck buttons&lt;/strong&gt;: &lt;code&gt;[TS] - Deck&lt;/code&gt; recognises the deck a button sits on, so a press that went wrong shows a notification on that deck. A button that names its item with &lt;code&gt;tsDeckItemId&lt;/code&gt; carries its title and colour, and the import redraws such buttons every 10 seconds. A Deck switch whose sides pass the argument as a Boolean carries its title and colour on both sides and turns itself when the state changes elsewhere.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.1&quot;&gt;Download v4.1.0-beta.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/twitchsentry/&quot;&gt;TwitchSentry on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Classic Chat Gamble v25.2.3: The window in French and Brazilian Portuguese</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.3"/>
@@ -1730,26 +1776,5 @@ the game action, which only counts them for &lt;em&gt;Only after chat lines&lt;/
 the timed action and the triggers exist; pasting the code alone leaves automatic rounds without their timer.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0&quot;&gt;Download v13.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.8.0: UIFramework v1.8.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0</id>
-    <published>2026-11-10T22:12:01Z</published>
-    <updated>2026-11-10T22:12:01Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Search with Ctrl+F.&lt;/strong&gt; Ctrl+F, or the new magnifier at the top right, opens a search bar in every window. It
-finds settings (by label, help, section, page and key), messages and pages; every word typed has to occur, in any
-order, whatever the case and the accents. Up and Down move, Enter goes there: the page comes to the front and the
-field is scrolled into view, ringed for a moment and given the cursor. Games declare nothing for it and need no
-update; &lt;code&gt;Tip(&amp;quot;search&amp;quot;)&lt;/code&gt; adds the magnifier to a window&amp;#39;s tour. See &lt;em&gt;The search&lt;/em&gt; in
-&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;UIFramework.Preview -windowshots &amp;lt;folder&amp;gt; -search &amp;lt;text&amp;gt;&lt;/code&gt;&lt;/strong&gt; photographs the search bar with that typed in, and
-where its first result leads.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;7f71db353963f027f4528fcdf209f299779f2ae4201af3a45721a6a597cc1bf8&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.0&quot;&gt;Download v1.8.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

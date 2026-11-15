@@ -92,7 +92,7 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
-      version: 'v4.0.1', stars: 6, downloads: 102,
+      version: 'v4.0.1', stars: 6, downloads: 130,
     },
     {
       repo: 'Better-Stream-Announcements',
@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v2.0.0', stars: 0, downloads: 106,
+      version: 'v2.0.0', stars: 0, downloads: 107,
     },
     {
       repo: 'SuTo',
@@ -282,7 +282,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v17.5.4', stars: 2, downloads: 160,
+      version: 'v17.5.4', stars: 2, downloads: 161,
     },
     {
       repo: 'Classic-Chat-Gamble',
