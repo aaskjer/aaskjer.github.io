@@ -55,7 +55,6 @@ then failed at every start. It now loads one that fits. The notice no longer nam
     <category term="Battleship-Game" label="Battleship Game"/>
     <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;aaskjer on Twitch&lt;/strong&gt; is back among the links of the About page.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;The settings window in French and Brazilian Portuguese&lt;/strong&gt;, beside English, German and Spanish. Battleship&amp;#39;s own
 settings are labelled in English and German; the other three show them in English.&lt;/li&gt;
 &lt;/ul&gt;
@@ -149,7 +148,6 @@ cleanup run as Streamer.bot starts. Each action&amp;#39;s comment names the vers
     <category term="Hangman-Game" label="Hangman Game"/>
     <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;aaskjer on Twitch&lt;/strong&gt; is back among the links of the About page.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;The window in French and Brazilian Portuguese,&lt;/strong&gt; beside English, German and Spanish: the pencil at the bottom
 left, then the language. In Spanish, French and Portuguese the window&amp;#39;s own texts and the settings all chat games
 share are translated; Hangman&amp;#39;s own settings and messages stay English there. German has them all.&lt;/li&gt;
