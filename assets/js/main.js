@@ -189,8 +189,9 @@
         </button>`;
   }
 
-  // A card in the lists: picture, name, the description in two lines, one row of chips, numbers
-  // and buttons. On a phone it turns into a row of a list (see .grid > .card in style.css).
+  // A card in the lists: picture, name, the description in two lines (with "More" when it is
+  // longer, see watchDescriptions), one row of chips, numbers and buttons. On a phone it turns
+  // into a row of a list (see .grid > .card in style.css).
   function card(p) {
     const text = p.tagline || 'No description yet.';
     return `
@@ -203,7 +204,10 @@
             ${badges(p)}
           </div>
         </div>
-        <p class="card__text" title="${esc(text)}">${esc(text)}</p>
+        <div class="card__desc">
+          <p class="card__text">${esc(text)}</p>
+          <button class="card__more" type="button" aria-expanded="false" data-track="more" hidden>More</button>
+        </div>
         ${chips(p, 4)}
         <div class="card__foot">
           <div class="meta-row">${metaRow(p)}</div>
@@ -483,8 +487,39 @@
     renderFeatured();
     $('#tools-grid').innerHTML = projects.filter(p => p.section === 'tools').map(card).join('');
     $('#games-grid').innerHTML = projects.filter(p => p.section === 'games').map(card).join('');
+    watchDescriptions($('#tools-grid'));
+    watchDescriptions($('#games-grid'));
     renderExtras();
     renderStats();
+  }
+
+  // "More" shows only under a description cut off at two lines, and opens the whole text; an
+  // open one stays open. The observer checks again whenever a text changes size: a wider
+  // window, or a card that a filter shows again.
+  function fitDescription(text) {
+    const desc = text.closest('.card__desc');
+    if (!desc || desc.classList.contains('is-open')) return;
+    desc.querySelector('.card__more').hidden = text.scrollHeight <= text.clientHeight + 1;
+  }
+
+  const descriptionSizes = new ResizeObserver(entries => {
+    for (const entry of entries) fitDescription(entry.target);
+  });
+
+  function watchDescriptions(grid) {
+    for (const text of grid.querySelectorAll('.card__desc .card__text')) descriptionSizes.observe(text);
+  }
+
+  function setupDescriptions() {
+    document.addEventListener('click', event => {
+      const button = event.target.closest('.card__more');
+      if (!button) return;
+      const open = button.parentElement.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(open));
+      button.textContent = open ? 'Less' : 'More';
+    });
+    // the web font can make a text longer or shorter without changing its two-line height
+    document.fonts?.ready.then(() => document.querySelectorAll('.card__desc .card__text').forEach(fitDescription));
   }
 
   function renderStats() {
@@ -504,6 +539,7 @@
     const all = projects.filter(p => p.section === 'more').concat(extras);
     $('#more').hidden = all.length === 0;
     $('#more-grid').innerHTML = all.map(card).join('');
+    watchDescriptions($('#more-grid'));
     applyFilters();
   }
 
@@ -518,7 +554,7 @@
       const text = node.querySelector('.card__text, .spotlight__text');
       if (text) {
         text.textContent = p.tagline || 'No description yet.';
-        if (text.title) text.title = text.textContent;
+        fitDescription(text);
       }
       const buttons = node.querySelector('.actions');
       if (buttons) buttons.innerHTML = actions(p, { github: node.classList.contains('spotlight'), compact: buttons.classList.contains('actions--compact') });
@@ -780,6 +816,7 @@
   }
 
   setupFilters();
+  setupDescriptions();
   render();
   setupTheme();
   setupNav();
