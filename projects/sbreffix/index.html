@@ -68,7 +68,7 @@
     <section class="project-hero">
       <div class="wrap">
         <h1>SBRefFix</h1>
-        <p class="project-hero__lead">Fixes the broken .NET references in a Streamer.bot v1.0.7 export.</p>
+        <p class="project-hero__lead">Repairs the C# assembly references in Streamer.bot 1.0.7 exports that break when the importer’s Streamer.bot sits in a different folder. Handles .sb files, import strings and the clipboard.</p>
       </div>
     </section>
     <!-- the documents as HTML, see _tools/update-pages.js; project.js reads them from here -->
@@ -77,7 +77,7 @@
       <section class="md" data-doc="overview" data-label="Overview" data-file="README.md">
         <h2 class="doc-label">Overview</h2>
         <div class="doc-body"><h1 align="center">SBRefFix</h1><p align="center">
-  <b>Makes the .NET references in a Streamer.bot export work on everyone else's PC.</b>
+  <b>Rewrites the C# assembly references in a Streamer.bot export so they resolve on any PC.</b>
 </p><p align="center">
   
   
@@ -88,25 +88,101 @@
   <a href="https://github.com/aaskjer/SBRefFix/releases/latest"><b>Download</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/SBRefFix/blob/main/Setup-Guide.md"><b>Setup Guide</b></a>
 </p><hr>
-<h2>📖 Overview</h2>
-<p>A Streamer.bot 1.0.7 export stores framework references relative to the exporting Streamer.bot folder:</p>
+<h2>Problem</h2>
+<p>Streamer.bot 1.0.7 stores the references of C# sub-actions relative to its own folder. Exported from
+<code>C:\Users\you\Desktop\Streamer.bot</code>, a framework reference reads:</p>
 <pre><code>..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.dll
 </code></pre>
-<p>The importer counts those <code>..\</code> from their own folder. A Streamer.bot in <code>E:\Streaming\Streamer.bot</code> reads
-the line above as <code>E:\Streaming\Windows\...</code>, finds nothing and drops the reference. Streamer.bot&#39;s
-**Find Refs** button adds absolute <code>C:\Windows\...</code> entries but leaves the broken relative ones in place,
-so the errors keep coming. SBRefFix rewrites the references that would not survive the trip.</p>
-<h2>✨ Highlights</h2>
+<p>The importing Streamer.bot resolves the <code>..\</code> against its own folder. A <code>..</code> above the drive root is dropped:</p>
+<table>
+<thead>
+<tr>
+<th>Importer&#39;s folder</th>
+<th>Resolves to</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>C:\Streamer.bot</code></td>
+<td><code>C:\Windows\...\System.dll</code></td>
+<td>found, by accident</td>
+</tr>
+<tr>
+<td><code>D:\Streamer.bot</code></td>
+<td><code>D:\Windows\...\System.dll</code></td>
+<td>missing</td>
+</tr>
+<tr>
+<td><code>C:\Users\you\Documents\Tools\Streamer.bot</code></td>
+<td><code>C:\Users\Windows\...\System.dll</code></td>
+<td>missing</td>
+</tr>
+</tbody></table>
+<p>A missing reference is dropped. <strong>Find Refs</strong> adds absolute <code>C:\Windows\...</code> entries but keeps the broken
+relative ones, which go on producing errors.</p>
+<h2>Rules</h2>
+<p>SBRefFix judges every string in a <code>references</code> list and rewrites only paths that depend on the exporting
+PC&#39;s folder layout:</p>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Foo.dll</code>, <code>.\Foo.dll</code>, <code>lib\Foo.dll</code></td>
+<td>kept: relative inside the Streamer.bot folder, portable as is</td>
+</tr>
+<tr>
+<td><code>C:\Windows\...</code> on the local Windows drive</td>
+<td>kept</td>
+</tr>
+<tr>
+<td><code>..\..\Windows\...</code>, <code>\Windows\...</code>, <code>X:\Windows\...</code> on another drive</td>
+<td><code>%SystemRoot%\...</code></td>
+</tr>
+<tr>
+<td><code>..\...\Foo.dll</code> or <code>X:\...\Foo.dll</code>, where <code>Foo.dll</code> is a local DLL</td>
+<td><code>.\Foo.dll</code></td>
+</tr>
+<tr>
+<td>any other path that is rooted or climbs out of the folder</td>
+<td><code>FAIL</code>, unchanged</td>
+</tr>
+<tr>
+<td><code>\\server\...</code>, a <code>..</code> midway, an empty string</td>
+<td><code>FAIL</code>, unchanged</td>
+</tr>
+</tbody></table>
+<p><code>%SystemRoot%</code> is taken from the PC running SBRefFix, normally <code>C:\Windows</code>. A local DLL is one of
+<code>Streamer.bot.Plugin.Interface.dll</code>, <code>Streamer.bot.Common.dll</code>, <code>Newtonsoft.Json.dll</code>, <code>Twitch.Common.dll</code>,
+any DLL the same export references by bare file name, and with <code>-SbFolder</code> every <code>*.dll</code> in that folder.</p>
+<h2>Processing</h2>
+<ol>
+<li><strong>Decode.</strong> An export is Base64 over the 4-byte magic <code>SBAE</code> (Base64 <code>U0JBR...</code>), followed by a gzip
+stream of UTF-8 JSON, optionally with BOM. The gzip trailer&#39;s length field must match the unpacked size;
+a truncated string or trailing text fails here.</li>
+<li><strong>Collect.</strong> The JSON is parsed; each string in a <code>references</code> array is recorded with the name of the
+action it belongs to.</li>
+<li><strong>Rewrite.</strong> Each affected reference is replaced as a JSON string literal in the original JSON text. The
+JSON is not re-serialized, so key order, formatting and all other values stay byte-identical.</li>
+<li><strong>Encode.</strong> Magic, gzip and BOM as in the input.</li>
+</ol>
+<p>Nothing is written if one of these checks fails:</p>
 <ul>
-<li>🎯 <strong>Only what would break.</strong> References inside the Streamer.bot folder stay relative, because that is what
-makes them portable. Making them absolute would break them for everybody else.</li>
-<li>📦 <strong>Every export format.</strong> <code>.sb</code> files, <code>.txt</code> or <code>.md</code> files that hold an import string, and the clipboard.</li>
-<li>📄 <strong>The text around it stays.</strong> In an <code>Import-String.md</code> only the string block is replaced. A wrapped string
-is wrapped again at the same width.</li>
-<li>🖱️ <strong>Four batch files.</strong> Repair the clipboard, repair dropped files, check without writing, or watch an
-<code>Inbox\</code> folder.</li>
-<li>✅ <strong>Made for publishing.</strong> A report-only mode, an all-or-nothing mode, and an exit code that says whether
-every reference now holds wherever Streamer.bot is installed.</li>
+<li>an affected string occurs in the JSON more often than in <code>references</code> lists, e.g. inside C# code</li>
+<li>the rewritten JSON yields a different number of references, or one differs from its expected value</li>
+<li>a rewritten reference does not pass the rules as kept</li>
+<li>the re-encoded export does not decode back to the rewritten JSON</li>
+<li>the written text file or clipboard does not read back as the repaired string</li>
+</ul>
+<h2>Not handled</h2>
+<ul>
+<li>Rooted paths outside Windows (<code>D:\Libs\Foo.dll</code>) to DLLs that are not local: no path on another PC can be
+derived from them. They are reported and left as they are.</li>
+<li>Absolute paths in other fields, such as file paths in sub-actions, are listed as <code>note:</code> and not changed.</li>
+<li>A rewritten Windows path missing on the PC running SBRefFix is listed as <code>note: not on this PC</code>.</li>
 </ul>
 <hr>
 <h2>Credits</h2>
