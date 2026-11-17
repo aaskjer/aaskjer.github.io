@@ -5,9 +5,24 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-15T18:41:31Z</updated>
+  <updated>2026-11-17T21:19:11Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Hangman Game v13.3.3: The Log page colours a lost round and a wrong guess</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.3"/>
+    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.3</id>
+    <published>2026-11-17T21:19:11Z</published>
+    <updated>2026-11-17T21:19:11Z</updated>
+    <category term="Hangman-Game" label="Hangman Game"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The Log page colours a lost round and a wrong guess.&lt;/strong&gt; &lt;code&gt;GAME-OVER&lt;/code&gt; shows grey, and a wrong letter or word
+(&lt;code&gt;MISS-LTTR&lt;/code&gt;, &lt;code&gt;MISS-WORD&lt;/code&gt;, &lt;code&gt;MISS-PART&lt;/code&gt;) amber. Both had the accent colour of every other line, so only the wins
+stood out. Nothing in your settings or log files changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.3&quot;&gt;Download v13.3.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>TwitchSentry v4.1.0-beta.1: (TESTERS NEEDED) Bot waves, text waves, viewbot alarm and Silent Bot Protection (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.1"/>
@@ -1738,43 +1753,5 @@ where Hangman uses it too. Until the settings have been opened once with that ve
 its place, and Streamer.bot&amp;#39;s log says so once.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0&quot;&gt;Download v9.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v13.3.0: Rounds that start themselves, and StartRound (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0</id>
-    <published>2026-11-10T22:36:29Z</published>
-    <updated>2026-11-10T22:36:29Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A round while Twitch runs ads.&lt;/strong&gt; Under &lt;em&gt;Ad breaks&lt;/em&gt; on the new Automation page: &lt;em&gt;Start a round when ads start&lt;/em&gt;
-starts one with the ad break, as a blitz round if you like; &lt;em&gt;Announce it before the ads&lt;/em&gt; says so in chat 1 to 5
-minutes ahead; &lt;em&gt;Bonus during ads&lt;/em&gt; makes a round started during a break pay more; &lt;em&gt;Rounds only during ads&lt;/em&gt; keeps
-viewers&amp;#39; starts to the breaks. Twitch only; the import brings the &lt;em&gt;Ad Run&lt;/em&gt; and &lt;em&gt;Upcoming Ad&lt;/em&gt; triggers for it, and
-&lt;code&gt;Hangman: Ad Break Started&lt;/code&gt; and &lt;code&gt;Hangman: Ad Break Ended&lt;/code&gt; are there for your own actions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Rounds that start themselves.&lt;/strong&gt; A new section on the Automation page switches on the timed action
-&lt;code&gt;[HM] - Auto Hangman Timer&lt;/code&gt;, which starts a round on every platform you are live on where none is running. It runs the
-three ways a Streamer.bot timer can: &lt;em&gt;Every&lt;/em&gt; so many minutes, at a &lt;em&gt;Random time&lt;/em&gt; drawn anew between &lt;em&gt;Every&lt;/em&gt; and
-&lt;em&gt;At most&lt;/em&gt;, and &lt;em&gt;Only after chat lines&lt;/em&gt;, which holds a round back until a platform&amp;#39;s chat has written that many
-lines since its last automatic round (10 by default). No moderator and no cooldown is needed for these rounds.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartRound&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action starts a round from any
-action: a hotkey, a Stream Deck button, a raid. Optional arguments &lt;code&gt;hangmanPlatform&lt;/code&gt; and &lt;code&gt;hangmanBlitz&lt;/code&gt;; it sets
-&lt;code&gt;hangmanStarted&lt;/code&gt; and &lt;code&gt;hangmanStartedOn&lt;/code&gt;. No cooldown and no moderator check apply.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Automatic rounds only where you are live.&lt;/strong&gt; Twitch is asked through its API, YouTube by the broadcasts
-Streamer.bot monitors, Kick through its channel page (UIFramework 1.6.0). A platform that cannot say goes by
-whether its chat has written anything since the last automatic round.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
-the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
-yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
-themselves.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The import carries a timed action, three chat triggers and two ad triggers.&lt;/strong&gt; Twitch, YouTube and Kick chat messages now reach
-the game action, which only counts them for &lt;em&gt;Only after chat lines&lt;/em&gt;. Import the new file once when updating, so
-the timed action and the triggers exist; pasting the code alone leaves automatic rounds without their timer.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.0&quot;&gt;Download v13.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

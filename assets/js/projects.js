@@ -92,7 +92,7 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
-      version: 'v4.0.1', stars: 6, downloads: 130,
+      version: 'v4.0.1', stars: 6, downloads: 131,
     },
     {
       repo: 'Better-Stream-Announcements',
@@ -359,7 +359,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v13.3.2', stars: 2, downloads: 39,
+      version: 'v13.3.3', stars: 2, downloads: 40,
     },
     {
       repo: 'Battleship-Game',
