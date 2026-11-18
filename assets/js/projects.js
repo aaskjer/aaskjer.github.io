@@ -238,7 +238,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v1.0.1', stars: 0, downloads: 12,
+      version: 'v1.0.1', stars: 0, downloads: 13,
     },
     {
       repo: 'AutoBotCheck',
