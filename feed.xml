@@ -5,9 +5,139 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-17T21:19:11Z</updated>
+  <updated>2026-11-18T21:16:33Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v2.1.0: UIFramework v2.1.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.1.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.1.0</id>
+    <published>2026-11-18T21:16:33Z</published>
+    <updated>2026-11-18T21:16:33Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;For projects that are no chat game: settings that were Set Arguments or live in several actions, secrets kept in
+Streamer.bot&amp;#39;s globals, a status that follows what the project reports, lists and dropdowns the project fills, and
+pages in groups. The settings action finds the project&amp;#39;s action by its id. What concerns the settings action and
+the host block reaches a project once it ships stub 0.3.3 and its host block; the rest comes with the DLL. 2.1.0
+stays in the v2 line (&lt;code&gt;lib/v2/latest.json&lt;/code&gt;). What 2.0.0 still read for older host blocks is gone; no published
+project used any of it.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;p&gt;In the host block and the DLL, for a project that ships the host block of stub 0.3.3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A Set Argument wins over the settings file: &lt;code&gt;UiSettings.Load(file).With(args)&lt;/code&gt;.&lt;/strong&gt; A Set Argument sub-action
+named like a key of the table, or like one of its old keys, sets that setting for the run while it holds
+something; an empty one does not. The value is read as the setting holds it: &lt;code&gt;yes&lt;/code&gt;, &lt;code&gt;on&lt;/code&gt;, &lt;code&gt;1&lt;/code&gt; and &lt;code&gt;ja&lt;/code&gt; switch
+on, &lt;code&gt;2,5&lt;/code&gt; is 2.5, and an argument that does not fit stays out. A project that was set up with Set Arguments so
+keeps working after its values moved into the settings file, and a value can differ per action. See &lt;em&gt;Set
+Arguments&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-games-side&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The window shows such a setting as what it is: &lt;code&gt;arguments: true&lt;/code&gt; in &lt;code&gt;UiHost.Handle&lt;/code&gt;.&lt;/strong&gt; The setting has a &lt;em&gt;Set
+Argument&lt;/em&gt; pill and a line naming the argument, and no field: what the file holds does not count while the
+argument is there. It is not saved, reset or imported. Only the action&amp;#39;s own Set Arguments count. The arguments
+the settings action itself was run with reach the project&amp;#39;s action too; settings action 0.3.3 names them
+(&lt;code&gt;uiframework.callerArgs&lt;/code&gt;), and they are left out. With an older settings action every argument that fits a
+setting counts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A project locks fields itself: &lt;code&gt;locked: s =&amp;gt; &amp;quot;key|why&amp;quot;&lt;/code&gt; in &lt;code&gt;UiHost.Handle&lt;/code&gt;.&lt;/strong&gt; One field per line, asked when
+the window opens. A locked field shows its value (a &lt;code&gt;masked&lt;/code&gt; one as dots), a &lt;em&gt;Locked&lt;/em&gt; pill and the reason. A
+locked message shows its text on the Messages page with the reason where its chips would be.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The values of the version before come along once: &lt;code&gt;.Adopt(Old(actionId, …))&lt;/code&gt; on the window.&lt;/strong&gt; An import
+replaces an action with its sub-actions, so a project that moves its Set Arguments into the settings file would
+lose what the user had set. While nothing has been saved yet, the window reads the old action&amp;#39;s active Set
+Arguments from &lt;code&gt;&amp;lt;Streamer.bot&amp;gt;\data\actions.json&lt;/code&gt;, or from the ten newest backups where the import has already
+replaced it, and shows them as unsaved changes; the status line says how many and from where. &lt;code&gt;&amp;quot;old&amp;gt;new&amp;quot;&lt;/code&gt; leads
+an argument of another name to its setting, &lt;code&gt;&amp;quot;#subActionId&amp;gt;key&amp;quot;&lt;/code&gt; takes a Send Message sub-action&amp;#39;s text. A value
+that does not fit its setting is left out, and none reaches the log. See &lt;em&gt;Values from the version before&lt;/em&gt; in
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#values-from-the-version-before&quot;&gt;docs/Schema.md&lt;/a&gt;. For the zips the DLL references
+&lt;code&gt;System.IO.Compression&lt;/code&gt;, which is part of .NET Framework: nothing more ships.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A secret lives in a global of Streamer.bot, not in the settings file: &lt;code&gt;global:&lt;/code&gt; on a setting (stub 0.3.3).&lt;/strong&gt;
+&lt;code&gt;S(&amp;quot;botToken&amp;quot;, &amp;quot;&amp;quot;, masked: true, global: &amp;quot;MyProject_botToken&amp;quot;)&lt;/code&gt;: the settings action reads the persisted global
+when the window opens and writes it after a save, only when the field changed; an emptied field unsets it. The
+value is never in the file, an export or the log, an import does not take it, a reset leaves it, and the
+project&amp;#39;s &lt;code&gt;test&lt;/code&gt;, &lt;code&gt;validate&lt;/code&gt; and &lt;code&gt;saved&lt;/code&gt; get &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;*&amp;quot;&lt;/code&gt; in its place. With an older settings action the field
+is locked and shows nothing. See &lt;em&gt;A secret in a global&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-games-side&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A window names the oldest UIFramework it works with: &lt;code&gt;requires:&lt;/code&gt; on &lt;code&gt;UiWindow&lt;/code&gt; (stub 0.3.3).&lt;/strong&gt; A UIFramework
+that knows no &lt;code&gt;global&lt;/code&gt; would write a secret into the file. With &lt;code&gt;requires: &amp;quot;…&amp;quot;&lt;/code&gt; the settings action looks at the
+UIFramework it would open the window with; where that one is older it asks whether to download the newer one,
+opens the window with it, and otherwise keeps the window closed and says why: the download failed, the newest
+release is still too old, or an older UIFramework is running and only a restart of Streamer.bot replaces it.
+It asks also where &lt;code&gt;autoUpdate&lt;/code&gt; is off or that version was skipped, since the window cannot open without it.
+The DLL names a &lt;code&gt;requires&lt;/code&gt; above its own version behind the red &lt;strong&gt;i&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A status that follows what the project reports: &lt;code&gt;every:&lt;/code&gt; on an &lt;code&gt;auto&lt;/code&gt; action, and rows with a label, a pill
+and a copy button.&lt;/strong&gt; With &lt;code&gt;every: 10&lt;/code&gt; the project is asked again every ten seconds while the box is on the page
+in front; five seconds is the least. A line of an answer can be &lt;code&gt;{ &amp;quot;label&amp;quot;, &amp;quot;pill&amp;quot;, &amp;quot;tone&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;copy&amp;quot; }&lt;/code&gt;:
+the labels of a box share a column, &lt;code&gt;tone&lt;/code&gt; is &lt;code&gt;ok&lt;/code&gt;, &lt;code&gt;warn&lt;/code&gt; or &lt;code&gt;muted&lt;/code&gt;, and &lt;code&gt;copy: true&lt;/code&gt; adds a button that puts
+the text on the clipboard. See &lt;em&gt;Answers of an action&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#answers-of-an-action&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A button that saves first: &lt;code&gt;saveFirst: true&lt;/code&gt;.&lt;/strong&gt; The window&amp;#39;s unsaved changes are saved as &lt;em&gt;Save&lt;/em&gt; would, the
+check before saving included, and the project is asked only when that save happened: &amp;quot;Check now&amp;quot; runs with what
+is on the screen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A dropdown whose options the project names: &lt;code&gt;optionsFrom:&lt;/code&gt; and &lt;code&gt;options:&lt;/code&gt; in &lt;code&gt;UiHost.Handle&lt;/code&gt; (stub 0.3.3).&lt;/strong&gt;
+&lt;code&gt;S(&amp;quot;region&amp;quot;, &amp;quot;&amp;quot;, kind: &amp;quot;options&amp;quot;, optionsFrom: &amp;quot;countryCode&amp;quot;)&lt;/code&gt; asks the project for the options when the pages
+are built and again shortly after &lt;code&gt;countryCode&lt;/code&gt; changes, with the values as they stand in the window.
+&lt;code&gt;optionsFrom: &amp;quot;groups&amp;quot;&lt;/code&gt; offers Streamer.bot&amp;#39;s groups, for a setting that holds one group. The stored value and
+the default stay entries of their own where no option has them, and the window stays usable while it asks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Groups of pages in the rail: &lt;code&gt;.Group(id, title, pages…)&lt;/code&gt; on the window.&lt;/strong&gt; A window with many pages puts them
+under headings. A click folds a group&amp;#39;s pages away, kept per user, and going to a page (the search, Ctrl and a
+number, the tour) opens its group. In the customise mode a page moves into another group by its menu, by a drop
+or with &lt;em&gt;Move up&lt;/em&gt; and &lt;em&gt;Move down&lt;/em&gt;, and a heading can be renamed. A window that declares no group looks as it
+did. See &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-window&quot;&gt;docs/Schema.md&lt;/a&gt; and &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Customize.md&quot;&gt;docs/Customize.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A list the project writes to as well: &lt;code&gt;rowKey&lt;/code&gt;, &lt;code&gt;fixedRows&lt;/code&gt;, &lt;code&gt;filter&lt;/code&gt;.&lt;/strong&gt; With &lt;code&gt;rowKey: &amp;quot;Date,Name&amp;quot;&lt;/code&gt; a save
+merges the user&amp;#39;s changes into the list as the file holds it at that moment, cell by cell, so a row the project
+added while the window was open is no longer written over. &lt;code&gt;fixedRows&lt;/code&gt; leaves adding and removing to the
+project. &lt;code&gt;filter: &amp;quot;region= || Global=true || Counties~{region}&amp;quot;&lt;/code&gt; shows the rows that fit what the window holds
+and saves the others back as they were. A JSON array in a read-only column shows as &lt;code&gt;DE-BY, DE-BW&lt;/code&gt;. See &lt;em&gt;A list
+the project fills&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#the-games-side&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The kind &lt;code&gt;multi&lt;/code&gt;: several of a fixed set of choices.&lt;/strong&gt; Check boxes over &lt;code&gt;options&lt;/code&gt;, stored comma-separated in
+the options&amp;#39; order and spelling. A stored value none of the options has stays as a chip until the user removes
+it. &lt;code&gt;requires&lt;/code&gt; and &lt;code&gt;showWhen&lt;/code&gt; read it (&lt;code&gt;key=steam&lt;/code&gt;, &lt;code&gt;!key&lt;/code&gt;), and &lt;code&gt;UiSettings.Values(key)&lt;/code&gt; hands the project a
+&lt;code&gt;string[]&lt;/code&gt;, for a &lt;code&gt;namelist&lt;/code&gt; and a &lt;code&gt;grouplist&lt;/code&gt; too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The kind &lt;code&gt;time&lt;/code&gt;: a time of day as &lt;code&gt;HH:mm&lt;/code&gt;.&lt;/strong&gt; The field takes &lt;code&gt;9&lt;/code&gt;, &lt;code&gt;9:5&lt;/code&gt;, &lt;code&gt;0905&lt;/code&gt; or &lt;code&gt;21h&lt;/code&gt; and writes &lt;code&gt;09:05&lt;/code&gt;;
+what is no time stops the save and is named, as a number that is none.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Messages with &lt;code&gt;%name%&lt;/code&gt; placeholders: &lt;code&gt;placeholderStyle: &amp;quot;percent&amp;quot;&lt;/code&gt;.&lt;/strong&gt; On &lt;code&gt;UiWindow&lt;/code&gt; for every message, or on
+one &lt;code&gt;Msg()&lt;/code&gt;. The chips insert &lt;code&gt;%user%&lt;/code&gt;, the chat preview fills it, and the red &lt;strong&gt;i&lt;/strong&gt; looks for &lt;code&gt;%name%&lt;/code&gt; in a
+default text that its &lt;code&gt;placeholders&lt;/code&gt; do not list. A message that says &lt;code&gt;braces&lt;/code&gt; keeps &lt;code&gt;{user}&lt;/code&gt; in a window of
+the percent style.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The host reader, &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/HostReader.cs&quot;&gt;&lt;code&gt;stub/HostReader.cs&lt;/code&gt;&lt;/a&gt;, for a project with several actions.&lt;/strong&gt; One action
+carries the host block and answers the window; the others carry the reader and read the same file, the &lt;code&gt;.bak&lt;/code&gt;
+and a save under way included. It knows no table, so &lt;code&gt;s.Int(&amp;quot;postsPerHour&amp;quot;, 6)&lt;/code&gt; names what holds while the file
+has no value, and &lt;code&gt;With(args, &amp;quot;dryRun&amp;quot;)&lt;/code&gt; lets a Set Argument of a named key win.
+&lt;code&gt;tools\update-host-block.ps1 -File … -Reader&lt;/code&gt; refreshes it, and &lt;code&gt;tools\check-stub.ps1&lt;/code&gt; compiles it the way
+Streamer.bot does. See &lt;em&gt;A project with several actions&lt;/em&gt; in
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md#a-project-with-several-actions&quot;&gt;docs/Getting-Started.md&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the settings action, for a project that ships stub 0.3.3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings action finds the project&amp;#39;s action by its id: &lt;code&gt;GameActionId&lt;/code&gt;.&lt;/strong&gt; Until now it knew the action by
+its name alone, and a streamer who renamed the action got &amp;quot;There is no action named …&amp;quot; instead of the settings.
+With the action&amp;#39;s id beside &lt;code&gt;GameActionName&lt;/code&gt; the settings action looks the action up by that id and runs it by
+that id, whatever it is called, and its messages name it as Streamer.bot has it now. An import keeps an
+action&amp;#39;s id, so a project that ships as an import fills it in once. Without an id, and where no action has it
+(an action made by hand), the name is used as before; the log says once when an id found nothing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The host block and the host reader need no reference to System.Core.&lt;/strong&gt; The block used LINQ in four places and
+a &lt;code&gt;HashSet&lt;/code&gt; in three, so an action that leaves that reference out could not carry it. They are loops and
+dictionaries now, and a test reads both files for what would need it again. &lt;code&gt;tools\check-stub.ps1&lt;/code&gt; cannot show
+this: its compiler always has System.Core at hand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Removed&lt;/h3&gt;
+&lt;p&gt;None of the eight games used any of these. Where a project still declares one of the first four, the window opens
+and the red &lt;strong&gt;i&lt;/strong&gt; names it; the last two did nothing before and are gone without a word. So this stays in the v2
+line, and &lt;code&gt;MinHostStub&lt;/code&gt; stays 0.1.0.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;UiWindow.Override&lt;/code&gt; and &lt;code&gt;overrides&lt;/code&gt; in the schema.&lt;/strong&gt; What they said about a setting (page, label, help,
+section, &lt;code&gt;hidden&lt;/code&gt;) goes where the setting is declared, &lt;code&gt;S(…)&lt;/code&gt;. A window that still carries &lt;code&gt;overrides&lt;/code&gt; shows its
+settings as the table declares them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A window the settings action passes itself (a spec).&lt;/strong&gt; The generic settings action has passed none since
+0.9.3; one made by hand that still does gets the window the project declares. &lt;code&gt;Entry.Show&lt;/code&gt; keeps its five
+parameters, so every settings action from stub 0.1.0 on still finds it. The preview&amp;#39;s &lt;code&gt;-spec&lt;/code&gt; is gone with it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Custom&lt;/code&gt; on a page of the host block.&lt;/strong&gt; The generic settings action never built such a page. A schema that
+still says &lt;code&gt;&amp;quot;custom&amp;quot;: true&lt;/code&gt; is told so, as before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;requires: &amp;quot;hide:…&amp;quot;&lt;/code&gt;.&lt;/strong&gt; &lt;code&gt;showWhen&lt;/code&gt; does the same. A field that still says it always shows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;About(authorLink:)&lt;/code&gt;&lt;/strong&gt; has done nothing since 0.9.13, and the key &lt;strong&gt;&lt;code&gt;advanced&lt;/code&gt;&lt;/strong&gt; was read and never used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;b9ad265c8ea4cddacbc52333e49dbaa4f03aee3fc5174ef0b3bc627836794ef2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Hangman Game v13.3.3: The Log page colours a lost round and a wrong guess</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.3"/>
@@ -1714,44 +1844,5 @@ update is usually used from the next start of Streamer.bot.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;aaf431f215000081f8e6c62cb5cb187ff58d59237a699d05f7b3def93cdd5371&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.1&quot;&gt;Download v1.8.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.3.0: An Addicted cut you set, rounds at random times, StartRound (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0</id>
-    <published>2026-11-10T22:36:37Z</published>
-    <updated>2026-11-10T22:36:37Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The Addicted cut is a setting.&lt;/strong&gt; Viewers on the addicted list always lost half of every win. &lt;em&gt;Addicted cut&lt;/em&gt;
-under &lt;em&gt;Addicted&lt;/em&gt; on the Access page now says how much: 50 as before, 20 for a lighter touch, 0 for none. The
-message for a viewer added to the list names it as &lt;code&gt;{addictedCut}&lt;/code&gt;; one saved with &amp;quot;50%&amp;quot; written out follows the
-setting too.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Rounds while Twitch runs ads.&lt;/strong&gt; Under &lt;em&gt;Ad breaks&lt;/em&gt; on the new Automation page: &lt;em&gt;Start a round when ads start&lt;/em&gt;
-plays as many rounds as fit the ad break, &lt;em&gt;Announce it before the ads&lt;/em&gt; says so in chat 1 to 5 minutes ahead,
-&lt;em&gt;Bonus during ads&lt;/em&gt; makes rounds started during a break pay more, and &lt;em&gt;Rounds only during ads&lt;/em&gt; keeps viewers&amp;#39;
-starts to the breaks. Twitch only; the import brings the &lt;em&gt;Ad Run&lt;/em&gt; and &lt;em&gt;Upcoming Ad&lt;/em&gt; triggers for it, and
-&lt;code&gt;Trivia: Ad Break Started&lt;/code&gt; and &lt;code&gt;Trivia: Ad Break Ended&lt;/code&gt; are there for your own actions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;An Automation page.&lt;/strong&gt; The rounds that start themselves moved there from the Game page, next to the ad breaks.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Rounds at random times, and only once chat has been talking.&lt;/strong&gt; Under &lt;em&gt;Rounds that start themselves&lt;/em&gt; on the
-Automation page, &lt;em&gt;Random time&lt;/em&gt; draws every wait anew between &lt;em&gt;Every&lt;/em&gt; and &lt;em&gt;At most&lt;/em&gt;, and &lt;em&gt;Only after chat lines&lt;/em&gt; holds a round
-back until a platform&amp;#39;s chat has written that many lines since its last automatic round. Together with the fixed
-interval these are the three ways a Streamer.bot timer can run.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;StartRound&lt;/code&gt; for your own actions.&lt;/strong&gt; An Execute C# Method sub-action on the game action starts a round from any
-action: a hotkey, a Stream Deck button, a raid. Optional arguments &lt;code&gt;triviaPlatform&lt;/code&gt;, &lt;code&gt;triviaRounds&lt;/code&gt; and
-&lt;code&gt;triviaCategory&lt;/code&gt;; it sets &lt;code&gt;triviaStarted&lt;/code&gt; and &lt;code&gt;triviaStartedOn&lt;/code&gt;. No cooldown and no moderator check apply.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Triggers and methods on the Help page.&lt;/strong&gt; The page now ends with every custom trigger and its arguments, and
-the methods for your own actions. &lt;em&gt;Fire with sample values&lt;/em&gt; under a trigger fires it once, so an action of
-yours that listens to it can be tried without playing. Needs UIFramework 1.6.0, which the settings fetch by
-themselves.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The live check is UIFramework&amp;#39;s.&lt;/strong&gt; Asking Twitch and Kick whether you are live moved into UIFramework 1.6.0,
-where Hangman uses it too. Until the settings have been opened once with that version, recent chat decides in
-its place, and Streamer.bot&amp;#39;s log says so once.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.0&quot;&gt;Download v9.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
