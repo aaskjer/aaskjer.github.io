@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v2.0.0', stars: 0, downloads: 110,
+      version: 'v2.0.0', stars: 0, downloads: 115,
     },
     {
       repo: 'SuTo',
@@ -359,7 +359,7 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v13.3.3', stars: 2, downloads: 40,
+      version: 'v13.3.3', stars: 2, downloads: 41,
     },
     {
       repo: 'Battleship-Game',

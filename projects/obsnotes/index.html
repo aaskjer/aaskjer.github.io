@@ -87,29 +87,37 @@
   
   
 </p><p align="center">
-  <a href="https://github.com/aaskjer/OBSNotes/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/aaskjer/OBSNotes/releases/latest"><b>Download</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/OBSNotes/blob/main/Import-String.md"><b>Import String</b></a> &nbsp;·&nbsp;
-  <a href="https://github.com/aaskjer/OBSNotes/blob/main/CHANGELOG.md"><b>Changelog</b></a>
+  <a href="https://github.com/aaskjer/OBSNotes/releases"><b>Changelog</b></a>
 </p><p align="center">
-  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/postits.png" alt="Colourful post-its with the game name" width="300">
-  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/postits-plain.png" alt="Black on white post-its" width="300">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/postits.png" alt="Six colourful post-its from a Fran Bow stream in three rows of two, the game name on the first" width="240">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/postits-horizontal.png" alt="Six black on white post-its from a Mass Effect stream in two rows of three" width="514">
 </p><hr>
 <h2>📖 Overview</h2>
-<p>OBS Notes is a chat tool for Streamer.bot. Viewers write something down with <code>!note</code>, and it sticks on
-stream until somebody wipes it off. Every game keeps its own list, so yesterday&#39;s notes come back when you
-play that game again.</p>
+<p>OBS Notes is a chat tool for Streamer.bot. Viewers write something down with <code>!note</code>, and it sticks on stream
+as a post-it until a moderator or VIP wipes it off. Every game keeps its own list, so yesterday&#39;s notes come back
+when you play that game again. After ten minutes without a command the post-its fade out, and the next one brings
+them back.</p>
+<pre><code>NoScopeNick: !note 1 1 2 3 . . . 21
+YourBot: Note written down as number &#39;#3&#39;. SeemsGood
+LunaLurks: !shownotes 3
+YourBot: [3] &quot;1 1 2 3 . . . 21&quot; - written down by @NoScopeNick on [2026-10-27 / 20:18:11]
+</code></pre>
 <h2>✨ Highlights</h2>
 <ul>
 <li>🎮 <strong>One list per game.</strong> The list follows the Twitch category, or the Kick category when Twitch is not
 connected. Without either, all notes share one list.</li>
 <li>🔍 <strong>Readable at any size.</strong> Each note&#39;s text grows as large as its post-it allows, so <code>4711</code> stays legible
 even when the source is scaled down to a corner of the screen.</li>
+<li>📐 <strong>Upright or wide.</strong> Six post-its in three rows of two (600 x 800) or in two rows of three (900 x 560),
+colourful with the game name or black on white.</li>
 <li>📝 <strong>Post-its that hang like real ones.</strong> Each sits at one of six angles or straight, never quite like the
 one before it, and keeps its angle when OBS reloads the page.</li>
-<li>🗂️ <strong>Create Piles.</strong> Six post-its fit side by side. The seventh sticks over the first, so older
-notes peek out underneath instead of disappearing.</li>
+<li>🗂️ <strong>Create Piles.</strong> Six post-its fit on the board. The seventh sticks over the first, so older notes peek out
+underneath instead of disappearing.</li>
 <li>💬 <strong>Twitch, Kick and YouTube.</strong> Replies go to the chat the command came from, with an emote of that
 platform, in German or English.</li>
 <li>💾 <strong>Nothing lost by mistake.</strong> A backup file per game keeps every note ever added, one per line.</li>
@@ -121,8 +129,12 @@ show an older page to the current one.</li>
 <ul>
 <li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
 <li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Works with:</strong> <a href="https://obsproject.com">OBS Studio</a> 28 or newer, as a browser source</li>
+<li><strong>Data &amp; services:</strong> <a href="https://kick.com">Kick</a>: your channel&#39;s category, read from its public channel page when
+Twitch is not connected</li>
 <li><strong>Thanks:</strong> YOU ♡</li>
 </ul>
+<p>None of the projects and services above is affiliated with or endorses OBS Notes.</p>
 </div>
       </section>
       <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">

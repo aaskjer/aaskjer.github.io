@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.1.0">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.2.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -283,6 +283,56 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
+<h2>[2.2.1] - 2026-11-19</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A closed dropdown no longer changes when the mouse wheel turns over it.</strong> A dropdown that had just been used
+stepped through its entries while the page was scrolled with the pointer over it, so a setting changed unseen: a
+country, among 250 of them, most easily. The wheel now scrolls the page there, and the list while the dropdown is
+open. This holds for every dropdown of the window, the message picker included; the arrow keys still step through
+a closed one.</li>
+</ul>
+<h2>[2.2.0] - 2026-11-19</h2>
+<p>For a window that should look the way a project&#39;s own window did: a dropdown of the countries, a header that says
+how things stand, a hint inside an empty field, a heading that follows a switch. And a masked field no longer
+shrinks when it is revealed. The fix and the new look of check boxes come with the DLL; what a project declares
+anew needs the host block of this release. The settings action stays 0.3.3.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>The kind <code>country</code>: a dropdown of the countries.</strong> It stores the two-letter code of ISO 3166 (<code>DE</code>), or <code>&quot;&quot;</code>
+for no country; Kosovo is in as <code>XK</code>. An entry reads &quot;Germany (DE)&quot;, the list is sorted by name, and a typed
+letter jumps to the first country that starts with it. The names are in the window&#39;s language: the English ones
+are built in, another language&#39;s come from Windows (10 from 1703 on), and where it has none the English ones
+stand. <code>options</code> narrow the list to the codes they name, and an option with an empty value names the entry for
+no country (<code>&quot;|Everywhere&quot;</code>). A code the file holds in lower case is read, and written back in upper case; one
+that is no country stays as an entry of its own. A DLL before 2.2.0 shows a text field.</li>
+<li><strong>A header pill that says one of several things: <code>.Pill(State(when, text, tone, tooltip), …)</code>.</strong> The first state
+whose condition holds is shown (&quot;Free: bot&quot;, &quot;Free: webhook&quot;, &quot;Free: not set up&quot;), none where none holds. A
+condition is written as <code>showWhen</code> writes one, the tone is <code>ok</code>, <code>warn</code>, <code>accent</code> or <code>muted</code>. The pill follows
+the window as it is typed in, and a field a Set Argument sets counts as filled in.</li>
+<li><strong>A hint inside an empty text field: <code>hint:</code> on <code>S()</code>.</strong> Grey text in a one-line text field while it is empty
+(<code>not set</code>, <code>optional</code>), in a masked field too.</li>
+<li><strong>A section&#39;s heading that reads otherwise on a condition: <code>.Section(name, title:, titleWhen:, page:)</code>.</strong> One set
+of fields that stands for two actions while a switch joins them says so in its heading. <code>page</code> keeps it to the
+section of that name on one page.</li>
+<li><strong>An answer copies one field into another: <code>copy</code>.</strong> <code>&quot;copy&quot;: { &quot;salesKey&quot;: &quot;freeKey&quot; }</code> in the answer of a
+button puts the value the window holds for <code>freeKey</code> into <code>salesKey</code>, as if typed. The project never sees the
+value, so a secret can be taken over this way.</li>
+<li><strong>A link that reads as words: <code>[words](https://…)</code></strong> in a note, a help line and the reason of a locked field. A
+bare address is still a link as it stands.</li>
+<li><strong>The preview keeps globals of its own</strong> (<code>-globals name=value,…</code> fills some), so a setting kept in a global is
+a field there as it is behind Streamer.bot, not a locked line.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The check boxes of a <code>multi</code> field stand in columns</strong>, each as wide as the widest, where they wrapped ragged
+before. A <code>multi</code> field named like the heading it stands under shows no caption of its own.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A masked field keeps its width when the eye button reveals it.</strong> The revealed box was only as wide as its
+text.</li>
+</ul>
 <h2>[2.1.0] - 2026-11-18</h2>
 <p>For projects that are no chat game: settings that were Set Arguments or live in several actions, secrets kept in
 Streamer.bot&#39;s globals, a status that follows what the project reports, lists and dropdowns the project fills, and
@@ -2431,6 +2481,11 @@ conventions cannot know.</p>
 <td>true: a text field shown as dots, with an eye button that reveals it (a token, a client secret); the value is saved like any other</td>
 </tr>
 <tr>
+<td><code>hint</code></td>
+<td>no</td>
+<td>for a one-line text field, masked or not: grey text inside the field while it is empty (<code>not set</code>, <code>optional</code>). <code>Tx</code> translates it</td>
+</tr>
+<tr>
 <td><code>global</code></td>
 <td>no</td>
 <td>the name of a persisted global of Streamer.bot that holds this value instead of the settings file (a token another action reads from there). The settings action reads it when the window opens and writes it after a save; the value is never in the file, an export or the log, and a reset leaves it. Needs stub 0.3.3; see <em>A secret in a global</em> under <em>The game&#39;s side</em></td>
@@ -2533,7 +2588,9 @@ is the stop <code>&quot;2.0&quot;</code>. Numbers are written and compared with 
 youtube or kick; a <code>{placeholder}</code> in a message&#39;s default text that its <code>placeholders</code> do not list (a
 <code>%placeholder%</code> in the percent style); a <code>placeholderStyle</code> that is neither <code>braces</code> nor <code>percent</code>, or one on a field
 that is no message; a field the project locks that is no setting; <code>every</code> on anything but an <code>auto</code> action,
-<code>saveFirst</code> on anything but a button; <code>rowKey</code>, <code>fixedRows</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
+<code>saveFirst</code> on anything but a button; a <code>hint</code> on anything but a one-line text field; a <code>country</code> whose default is
+neither a code nor empty, or which offers a code that is none; a state of a header pill whose condition names no
+setting, or whose tone is none; another title for a section no setting is in; <code>rowKey</code>, <code>fixedRows</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
 column the list does not have, a <code>filter</code> condition without an operator or one that names what is neither a column
 nor a setting (such a condition counts as holding, so every row shows); <code>optionsFrom</code> on a field that is no dropdown, one that names itself or a key
 that is no setting; a <code>multi</code> without options, or whose default names a value none of them has; a
@@ -2639,13 +2696,19 @@ settings action passes itself.</p>
 <td><code>multi</code></td>
 <td>string</td>
 <td>check boxes over <code>options</code></td>
-<td>several of a fixed set of choices. Stored comma-separated, the ticked values in the options&#39; order and spelling: <code>&quot;steam,gog&quot;</code>, nothing ticked <code>&quot;&quot;</code>. A stored value none of the options has stays, shown as a chip with a cross, until the user removes it. <code>UiSettings.Values(key)</code> reads it as a <code>string[]</code>. Conditions: <code>!key</code> holds while nothing is stored, <code>key=steam</code> while steam is ticked, <code>key=steam|gog</code> while one of them is, <code>key!=steam|gog</code> while neither is. A DLL before this kind shows a text field and names the kind behind the red <strong>i</strong>; the value stays</td>
+<td>several of a fixed set of choices. Stored comma-separated, the ticked values in the options&#39; order and spelling: <code>&quot;steam,gog&quot;</code>, nothing ticked <code>&quot;&quot;</code>. A stored value none of the options has stays, shown as a chip with a cross, until the user removes it. The boxes stand in columns, each as wide as the widest; a field named like the heading it stands under shows no caption of its own. <code>UiSettings.Values(key)</code> reads it as a <code>string[]</code>. Conditions: <code>!key</code> holds while nothing is stored, <code>key=steam</code> while steam is ticked, <code>key=steam|gog</code> while one of them is, <code>key!=steam|gog</code> while neither is. A DLL before this kind shows a text field and names the kind behind the red <strong>i</strong>; the value stays</td>
 </tr>
 <tr>
 <td><code>time</code></td>
 <td>string</td>
 <td>a time of day, <code>HH:mm</code></td>
 <td>the 24-hour clock. The field takes <code>9</code>, <code>9:5</code>, <code>0905</code>, <code>9.05</code> or <code>21h</code> and writes <code>09:05</code>; text that is no time stays in the box and stops the save, as for a number. Empty is allowed only where the default is empty. <code>min</code> and <code>max</code> do nothing here. Sits three to a line with the numbers</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td>string</td>
+<td>dropdown over the countries</td>
+<td>stores the two-letter code of ISO 3166 (<code>DE</code>), or <code>&quot;&quot;</code> for no country; Kosovo is in as <code>XK</code>. An entry reads &quot;Germany (DE)&quot;, the list is sorted by name, and a typed letter jumps to the first country that starts with it. The names are in the window&#39;s language: the English ones are built in, another language&#39;s come from Windows (10 from 1703 on), and where it has none the English ones stand. An entry for no country comes first where the default is <code>&quot;&quot;</code>. <code>options</code> narrow the list to the codes they name; an option with an empty value names the entry for no country (<code>&quot;|Everywhere&quot;</code>), and one with a label of its own shows that in place of the country&#39;s name. A code the file holds in lower case is read, and written back in upper case; one that is no country stays as an entry of its own. A DLL before this kind shows a text field and names the kind behind the red <strong>i</strong>; the value stays</td>
 </tr>
 <tr>
 <td><code>path</code></td>
@@ -2687,7 +2750,7 @@ settings action passes itself.</p>
 <td><code>note</code></td>
 <td>–</td>
 <td>a paragraph on the page (<code>help</code>, else a text <code>default</code>)</td>
-<td>no value; explains what follows; http(s) addresses are links</td>
+<td>no value; explains what follows; http(s) addresses are links, and <code>[words](https://…)</code> is a link that reads as the words</td>
 </tr>
 <tr>
 <td><code>action</code></td>
@@ -2727,6 +2790,10 @@ also for anything else). With <code>every</code> on an <code>auto</code> action 
 field whose value changes glows in the accent colour for a moment. An answer that arrives while a save waits for
 <code>validate</code> is not part of that save and stays unsaved. A <code>list</code> takes its rows as an array (or the JSON text of
 one), so an import can fill the list it merged into.</p>
+</li>
+<li><p><code>copy</code> puts one field&#39;s value into another inside the window, as if typed: <code>&quot;copy&quot;: { &quot;salesKey&quot;: &quot;freeKey&quot; }</code>,
+the field it goes to first. The project names the two fields and never sees the value, so this is the way to copy
+a secret, which reaches the project only as <code>&quot;&quot;</code> or <code>&quot;*&quot;</code>. The value is the one the window holds, saved or not.</p>
 </li>
 <li><p><code>status</code> is the line for the footer, with a box or without.</p>
 </li>
@@ -2780,6 +2847,10 @@ whatever order the window declares them in (a page of the project&#39;s own with
 <tr>
 <td><code>Pill(key, on, off, tooltip)</code></td>
 <td>a pill in the header that follows a bool setting</td>
+</tr>
+<tr>
+<td><code>Pill(State(when, text, tone, tooltip), …)</code></td>
+<td>a pill in the header that says one of several things: the first state whose condition holds is shown, none where none holds. <code>when</code> is a condition as <code>showWhen</code> writes one (<code>&quot;botToken &amp;&amp; channelId&quot;</code>; null: always), <code>tone</code> is <code>ok</code> (green), <code>warn</code> (amber), <code>accent</code> or <code>muted</code> (grey, also without one). The pill follows the window as it is typed in, and a field a Set Argument sets counts as filled in. <code>Tx</code> translates text and tooltip. In the schema <code>&quot;headerPills&quot;: [ { &quot;states&quot;: [ { &quot;when&quot;, &quot;text&quot;, &quot;tone&quot;, &quot;tooltip&quot; } ] } ]</code>. A UIFramework before 2.2.0 shows no such pill</td>
 </tr>
 <tr>
 <td><code>Senders(…)</code></td>
@@ -2921,6 +2992,12 @@ section its settings declare and give the condition, the same as a field&#39;s <
 <code>showWhen</code> and its section&#39;s both have to hold. A field the user&#39;s layout moves to another section takes that
 section&#39;s condition, not the one it was declared in. When the window opens, every condition is checked: a key that is
 not a setting, or a value a dropdown has no option for (<code>questionSource=IGBD</code>), is listed under the red &quot;i&quot; in the header.</p>
+<p>A heading can also read otherwise while a condition holds: one set of fields that stands for two actions while a
+switch joins them.</p>
+<pre><code class="language-csharp">    .Section(&quot;Free Game Check&quot;, title: &quot;Free Game Check and Game Sale Check&quot;, titleWhen: &quot;sameDiscord&quot;, page: &quot;discord&quot;)
+</code></pre>
+<p><code>page</code> keeps it to the section of that name on that page; without it, every section of the name changes. In the
+schema <code>{ &quot;name&quot;, &quot;title&quot;, &quot;titleWhen&quot;, &quot;page&quot; }</code>, with a <code>showWhen</code> beside it or without.</p>
 <h3>Languages</h3>
 <p>What a project declares is English. When the layout file names another language (<code>de</code>, <code>pt-BR</code>), the window
 translates what the conventions know. The texts of the conventions&#39; keys (<code>conventions/lang/de.json</code>, <code>keys</code>)
