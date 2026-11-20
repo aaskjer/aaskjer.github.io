@@ -283,6 +283,15 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
+<h2>[2.2.2] - 2026-11-20</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>The colour picker takes typing.</strong> The hex code under the colours is a box now: a code typed or pasted there
+(<code>#F5A623</code>, <code>f5a623</code>, with an alpha in front <code>#80F5A623</code>) moves the picker and goes into the field, and it can be
+copied from there. The numbers beside the red, green and blue sliders are boxes too: 0 to 255, a higher number
+is taken as 255, and the Up and Down keys step by one. Text that is no colour yet changes nothing, and a box
+says the picker&#39;s colour again once the cursor leaves it.</li>
+</ul>
 <h2>[2.2.1] - 2026-11-19</h2>
 <h3>Fixed</h3>
 <ul>
