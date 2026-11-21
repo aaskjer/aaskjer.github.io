@@ -92,7 +92,7 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
-      version: 'v4.0.1', stars: 6, downloads: 132,
+      version: 'v4.0.1', stars: 6, downloads: 133,
     },
     {
       repo: 'Better-Stream-Announcements',
@@ -159,7 +159,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v2.0.0', stars: 0, downloads: 115,
+      version: 'v2.0.0', stars: 0, downloads: 116,
     },
     {
       repo: 'SuTo',

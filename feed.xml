@@ -5,9 +5,27 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-19T18:36:58Z</updated>
+  <updated>2026-11-20T23:10:25Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v2.2.2: UIFramework v2.2.2 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.2.2"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.2.2</id>
+    <published>2026-11-20T23:10:25Z</published>
+    <updated>2026-11-20T23:10:25Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The colour picker takes typing.&lt;/strong&gt; The hex code under the colours is a box now: a code typed or pasted there
+(&lt;code&gt;#F5A623&lt;/code&gt;, &lt;code&gt;f5a623&lt;/code&gt;, with an alpha in front &lt;code&gt;#80F5A623&lt;/code&gt;) moves the picker and goes into the field, and it can be
+copied from there. The numbers beside the red, green and blue sliders are boxes too: 0 to 255, a higher number
+is taken as 255, and the Up and Down keys step by one. Text that is no colour yet changes nothing, and a box
+says the picker&amp;#39;s colour again once the cursor leaves it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;8428e1dda27765dbd0059cb6eb6e1a0a88e434caf6499ccb90b1c51d0cfe83c8&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.2.2&quot;&gt;Download v2.2.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v2.2.1: UIFramework v2.2.1 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.2.1"/>
@@ -1770,28 +1788,5 @@ kept that reply from being sent. They now offer {0} and {1}, {points}, {availabl
 and the preview fills them. Saved texts stay as they are.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1&quot;&gt;Download v17.5.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.8.3: UIFramework v1.8.3 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3</id>
-    <published>2026-11-12T08:08:23Z</published>
-    <updated>2026-11-12T08:08:23Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;Games need no update.&lt;/p&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The accent colour takes a colour&amp;#39;s name:&lt;/strong&gt; &lt;code&gt;red&lt;/code&gt;, &lt;code&gt;blue&lt;/code&gt;, &lt;code&gt;yellow&lt;/code&gt;, any of the colour names WPF knows, in any
-case (&lt;code&gt;grey&lt;/code&gt; spelt either way). The swatch showed such a name already, but the window kept its old accent.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The accent colour takes no alpha.&lt;/strong&gt; &lt;code&gt;#80FF0000&lt;/code&gt; was applied as plain red since 1.8.2; it is not taken any more,
-and the swatch beside the box stays on the accent in use instead of showing a colour the window does not get.
-A game&amp;#39;s own colour settings keep their alpha.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The colour picker opens on a name.&lt;/strong&gt; With &lt;code&gt;red&lt;/code&gt; in the box it started on its default yellow.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;latest.json&lt;/code&gt; lives under its major line.&lt;/strong&gt; The release workflow wrote every version to &lt;code&gt;lib/v1/latest.json&lt;/code&gt;,
-so a 2.0.0 would have been offered to every v1 game. It now writes &lt;code&gt;lib/v&amp;lt;major&amp;gt;/latest.json&lt;/code&gt;: 2.0.0 goes to
-&lt;code&gt;lib/v2/&lt;/code&gt;, which only a stub made for that line reads. The DLL&amp;#39;s update check reads the file of its own line.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;20d65cb729644e77fd30102c6a5e15fd1ee87bf911d2b0910c926a71eea0ffbc&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.3&quot;&gt;Download v1.8.3&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
