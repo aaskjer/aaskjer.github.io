@@ -74,8 +74,6 @@ window.SITE = {
       logo: 'assets/img/projects/twitchsentry.png',
       scene: 'assets/img/scenes/twitchsentry.jpg',
       sceneAlt: 'TwitchSentry removes a viewer-selling spam message and an unauthorized link from chat, then a moderator gives a link permit.',
-      screenshot: 'assets/img/twitchsentry-app.jpg',
-      screenshotFull: 'assets/img/twitchsentry-app-full.jpg',
       tagline: 'TwitchSentry is a fully automated moderation suite designed for quiet and crowded chats. It can replace a human moderator in small communities and works great as a backup in big ones.',
       description: 'A moderation suite for Streamer.bot: deletes fake gift links, sketchy URLs and copy-paste scams in Twitch chat, guards against raids and follow waves, and tells you what was removed and why.',
       preview: 'Your smart chat bodyguard for Twitch: scam links, spam and hate raids handled. A free Streamer.bot extension.',

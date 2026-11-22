@@ -718,7 +718,7 @@
     const apply = (theme, save) => {
       document.documentElement.dataset.theme = theme;
       toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-      themeColor.content = theme === 'dark' ? '#0b0a12' : '#f5f6f8';
+      themeColor.content = theme === 'dark' ? '#0f0f10' : '#ececea';
       if (save) {
         try { localStorage.setItem('theme', theme); } catch (e) { /* ignore */ }
       }

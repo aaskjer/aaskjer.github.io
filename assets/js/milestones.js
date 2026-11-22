@@ -16,7 +16,7 @@
   const NOUN = { stars: ['stars', 'GitHub stars'], downloads: ['downloads', 'downloads'] };
   // the steps this visitor has seen the confetti for
   const SEEN_KEY = 'milestones-seen';
-  const COLORS = ['#a78bfa', '#818cf8', '#38bdf8', '#34d399', '#fbbf24', '#f472b6'];
+  const COLORS = ['#ffe100', '#ffb800', '#f4f4f2', '#a1a1a6', '#34d399', '#ffe100'];
   const numberFormat = new Intl.NumberFormat('en');
   const relativeFormat = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
   const calm = matchMedia('(prefers-reduced-motion: reduce)');

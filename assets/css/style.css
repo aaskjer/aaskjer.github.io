@@ -2,75 +2,101 @@
    aaskjer.github.io
    ========================================================================== */
 
+/* Barlow Condensed for headings and numbers, JetBrains Mono for labels, badges and buttons (both
+   SIL Open Font License, see assets/fonts/OFL-*.txt). */
 @font-face {
-  font-family: 'Sora';
+  font-family: 'Barlow Condensed';
   font-style: normal;
-  font-weight: 100 800;
+  font-weight: 600;
   font-display: swap;
-  src: url('../fonts/sora-latin-wght-normal.woff2') format('woff2');
+  src: url('../fonts/barlow-condensed-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
 }
 
 /* ---------- tokens ---------- */
 
+/* Industrial: near-black and anthracite with signal yellow, square corners, condensed capitals,
+   monospaced labels. Warning stripes only on the Featured box. */
 :root {
-  --font-display: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', ui-sans-serif, system-ui, sans-serif;
+  --font-label: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
   --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
   --wrap: 1120px;
-  --radius: 18px;
+  --radius: 6px;
   --header-h: 64px;
-  --grad-btn: linear-gradient(135deg, #7c3aed 0%, #4f46e5 55%, #2563eb 100%);
+  /* the yellow that fills buttons, labels and stripes, and the text on it, the same in both themes */
+  --yellow: #ffe100;
+  --on-yellow: #111112;
+  --grad-btn: linear-gradient(var(--yellow), var(--yellow));
+  --hazard: repeating-linear-gradient(-45deg, var(--yellow) 0 8px, #111112 8px 16px);
   --green: #34d399;
 
   /* dark is the default */
   color-scheme: dark;
-  --bg: #0b0a12;
-  --glow-1: rgb(124 58 237 / 0.24);
-  --glow-2: rgb(37 99 235 / 0.14);
-  --surface: #13111c;
-  --surface-2: #1b1828;
+  --bg: #0f0f10;
+  --glow-1: transparent;
+  --glow-2: transparent;
+  --surface: #18181a;
+  --surface-2: #202023;
   --border: rgb(255 255 255 / 0.08);
   --border-strong: rgb(255 255 255 / 0.15);
-  --text: #eeedf7;
-  --muted: #a6a2bb;
-  --faint: #827d99;
-  --accent: #b69cff;
-  --grad-text: linear-gradient(120deg, #c4b5fd 0%, #818cf8 50%, #38bdf8 100%);
-  --tile: #0e0c17;
-  --tile-hi: #262043;
+  --text: #f4f4f2;
+  --muted: #a1a1a6;
+  --faint: #77777c;
+  /* yellow as text and lines: links, kickers, focus rings */
+  --accent: #ffe100;
+  --grad-text: linear-gradient(120deg, #fff27a 0%, #ffe100 100%);
+  --tile: #0c0c0d;
+  --tile-hi: #2a2a2d;
   --card-shadow: 0 24px 48px -32px rgb(0 0 0 / 0.9);
-  --hover-shadow: 0 28px 60px -30px rgb(124 58 237 / 0.55);
-  /* the lights behind the sections */
-  --glow-blue: rgb(37 99 235 / 0.17);
-  --glow-violet: rgb(124 58 237 / 0.17);
-  --glow-green: rgb(16 185 129 / 0.13);
-  --glow-teal: rgb(20 184 166 / 0.1);
+  --hover-shadow: 0 28px 60px -30px rgb(255 225 0 / 0.28);
+  /* the lights behind the sections: off, the industrial look has none */
+  --glow-blue: transparent;
+  --glow-violet: transparent;
+  --glow-green: transparent;
+  --glow-teal: transparent;
 }
 
-/* Light is its own palette, not dark turned around: neutral paper greys instead of violet tints,
-   white logo tiles, soft grey shadows, and violet only for links, badges and buttons. */
+/* Light: pale concrete greys, black text, the same signal yellow for fills; yellow text would not
+   be readable on white, so links and kickers are a dark ochre. */
 :root[data-theme='light'] {
   color-scheme: light;
-  --bg: #f5f6f8;
-  --glow-1: rgb(99 102 241 / 0.07);
-  --glow-2: rgb(14 165 233 / 0.06);
-  --surface: #ffffff;
-  --surface-2: #f0f2f5;
-  --border: rgb(15 23 42 / 0.08);
-  --border-strong: rgb(15 23 42 / 0.15);
-  --text: #0f172a;
-  --muted: #475569;
-  --faint: #64748b;
-  --accent: #5b34d6;
-  --grad-text: linear-gradient(120deg, #6d28d9 0%, #4f46e5 50%, #0284c7 100%);
+  --bg: #ececea;
+  --glow-1: transparent;
+  --glow-2: transparent;
+  --surface: #f8f8f6;
+  --surface-2: #e3e3e0;
+  --border: rgb(17 17 18 / 0.12);
+  --border-strong: rgb(17 17 18 / 0.22);
+  --text: #111112;
+  --muted: #45454a;
+  --faint: #66666b;
+  --accent: #7a5c00;
+  --grad-text: linear-gradient(120deg, #111112 0%, #3a3a3e 100%);
   --tile: #ffffff;
   --tile-hi: #ffffff;
-  --card-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 12px 28px -20px rgb(15 23 42 / 0.22);
-  --hover-shadow: 0 2px 4px rgb(15 23 42 / 0.04), 0 24px 44px -24px rgb(15 23 42 / 0.3);
-  --glow-blue: rgb(59 130 246 / 0.13);
-  --glow-violet: rgb(124 58 237 / 0.1);
-  --glow-green: rgb(16 185 129 / 0.12);
-  --glow-teal: rgb(20 184 166 / 0.1);
+  --card-shadow: 0 1px 2px rgb(17 17 18 / 0.05), 0 12px 28px -20px rgb(17 17 18 / 0.25);
+  --hover-shadow: 0 2px 4px rgb(17 17 18 / 0.05), 0 24px 44px -24px rgb(17 17 18 / 0.32);
+  --glow-blue: transparent;
+  --glow-violet: transparent;
+  --glow-green: transparent;
+  --glow-teal: transparent;
 }
 
 /* ---------- base ---------- */
@@ -122,24 +148,30 @@ h3 {
   margin: 0;
   font-family: var(--font-display);
   line-height: 1.12;
-  letter-spacing: -0.025em;
+  letter-spacing: 0.01em;
   text-wrap: balance;
 }
 
+/* page and section titles in capitals; the headings inside the documents (.md) keep their case */
+h1,
+h2 {
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
 h1 {
-  font-size: clamp(2.3rem, 1.5rem + 3.2vw, 3.75rem);
+  font-size: clamp(2.8rem, 1.8rem + 4vw, 4.6rem);
   font-weight: 700;
 }
 
 h2 {
-  font-size: clamp(1.7rem, 1.3rem + 1.5vw, 2.35rem);
-  font-weight: 650;
+  font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.7rem);
+  font-weight: 700;
 }
 
 h3 {
-  font-size: 1.15rem;
-  font-weight: 650;
-  letter-spacing: -0.015em;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 p {
@@ -189,7 +221,7 @@ code {
   top: -4rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--surface);
   color: var(--text);
 }
@@ -209,17 +241,23 @@ code {
   stroke-linejoin: round;
 }
 
+/* the highlighted words of a title: signal yellow; on light paper black on a yellow marker stroke */
 .grad {
-  background: var(--grad-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent);
+}
+
+:root[data-theme='light'] .grad {
+  color: var(--text);
+  background: linear-gradient(transparent 58%, var(--yellow) 58%, var(--yellow) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .kicker {
+  font-family: var(--font-label);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -233,11 +271,14 @@ code {
   gap: 0.5rem;
   padding: 0.75rem 1.2rem;
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: 4px;
   font: inherit;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
   line-height: 1.2;
+  text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -246,12 +287,13 @@ code {
 
 .btn--primary {
   background: var(--grad-btn);
-  color: #fff;
-  box-shadow: 0 12px 30px -14px rgb(124 58 237 / 0.8);
+  color: var(--on-yellow);
+  box-shadow: 0 12px 30px -14px rgb(255 225 0 / 0.5);
 }
 
 :root[data-theme='light'] .btn--primary {
-  box-shadow: 0 10px 22px -14px rgb(79 70 229 / 0.6);
+  border-color: rgb(17 17 18 / 0.25);
+  box-shadow: 0 10px 22px -14px rgb(17 17 18 / 0.35);
 }
 
 .btn--primary:hover {
@@ -280,8 +322,8 @@ code {
 
 .btn--sm {
   padding: 0.5rem 0.8rem;
-  border-radius: 10px;
-  font-size: 0.85rem;
+  border-radius: 4px;
+  font-size: 0.76rem;
 }
 
 .icon-btn {
@@ -291,7 +333,7 @@ code {
   height: 38px;
   padding: 0;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
@@ -319,9 +361,9 @@ code {
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 75%, transparent);
-  -webkit-backdrop-filter: saturate(150%) blur(14px);
-  backdrop-filter: saturate(150%) blur(14px);
+  /* solid rather than a blurred glass: a backdrop-filter has to blur the page behind it again in
+     every frame while scrolling, which made scrolling stutter */
+  background: var(--bg);
 }
 
 .topbar__inner {
@@ -338,16 +380,16 @@ code {
   color: var(--text);
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 
 .brand img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px #7c3aed;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--yellow);
 }
 
 .nav {
@@ -358,7 +400,7 @@ code {
 
 .nav a {
   padding: 0.45rem 0.8rem;
-  border-radius: 999px;
+  border-radius: 3px;
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 500;
@@ -447,7 +489,8 @@ code {
 
 .stats dt {
   color: var(--faint);
-  font-size: 0.75rem;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -456,10 +499,10 @@ code {
 .stats dd {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.85rem;
+  font-size: 2.3rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
 .hero__art {
@@ -473,11 +516,11 @@ code {
   border-radius: 50%;
   background: var(--grad-btn);
   filter: blur(70px);
-  opacity: 0.4;
+  opacity: 0.12;
 }
 
 :root[data-theme='light'] .hero__art::before {
-  opacity: 0.14;
+  opacity: 0.1;
 }
 
 .collage {
@@ -499,7 +542,7 @@ code {
   aspect-ratio: 1;
   padding: 16%;
   border: 1px solid rgb(255 255 255 / 0.08);
-  border-radius: 22%;
+  border-radius: 6px;
   background: radial-gradient(circle at 30% 20%, var(--tile-hi), var(--tile) 72%);
   box-shadow: 0 18px 36px -20px rgb(0 0 0 / 0.8);
   transition: transform 0.2s ease;
@@ -667,13 +710,23 @@ main > .section::before {
   z-index: 200;
   background-image: url('../img/noise.svg');
   background-size: 180px 180px;
-  opacity: 0.06;
+  opacity: 0.07;
   pointer-events: none;
 }
 
 .section__head {
   max-width: 42rem;
   margin-bottom: 2rem;
+}
+
+/* a short yellow bar under every section title */
+.section__head h2::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: var(--yellow);
 }
 
 .section__head p {
@@ -703,8 +756,8 @@ main > .section::before {
 .filter {
   min-height: 36px;
   padding-inline: 0.85rem;
-  font-family: inherit;
-  font-size: 0.85rem;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
@@ -776,7 +829,7 @@ main > .section::before {
   height: 64px;
   padding: 8px;
   border: 1px solid rgb(255 255 255 / 0.07);
-  border-radius: 16px;
+  border-radius: 6px;
   background: radial-gradient(circle at 30% 20%, var(--tile-hi), var(--tile) 72%);
 }
 
@@ -788,22 +841,19 @@ main > .section::before {
 
 .tile--mono {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
 }
 
-.tile--mono .grad {
-  background-image: linear-gradient(120deg, #c4b5fd 0%, #818cf8 50%, #38bdf8 100%);
+/* a text logo: yellow on dark, plain black on light (no marker stroke inside the tile) */
+:root[data-theme='light'] .tile--mono .grad {
+  background: none;
 }
 
 :root[data-theme='light'] .tile {
   border-color: var(--border);
-  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 6px 14px -10px rgb(15 23 42 / 0.25);
-}
-
-:root[data-theme='light'] .tile--mono .grad {
-  background-image: var(--grad-text);
+  box-shadow: 0 1px 2px rgb(17 17 18 / 0.05), 0 6px 14px -10px rgb(17 17 18 / 0.25);
 }
 
 .chips {
@@ -821,10 +871,11 @@ main > .section::before {
   gap: 0.4rem;
   padding: 0.22rem 0.6rem;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 3px;
   background: var(--surface-2);
   color: var(--muted);
-  font-size: 0.78rem;
+  font-family: var(--font-label);
+  font-size: 0.74rem;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -881,12 +932,12 @@ main > .section::before {
 
 .card:hover {
   transform: translateY(-3px);
-  border-color: color-mix(in srgb, #7c3aed 50%, var(--border));
+  border-color: color-mix(in srgb, var(--yellow) 45%, var(--border));
   box-shadow: var(--hover-shadow);
 }
 
 :root[data-theme='light'] :is(.card, .spotlight):hover {
-  border-color: color-mix(in srgb, #6d28d9 26%, var(--border));
+  border-color: color-mix(in srgb, var(--text) 40%, var(--border));
 }
 
 .card:has(.card__title a:focus-visible) {
@@ -944,7 +995,7 @@ main > .section::before {
   place-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 4px;
   background: rgb(0 0 0 / 0.62);
   color: #fff;
   opacity: 0;
@@ -1070,7 +1121,7 @@ main > .section::before {
   width: 46px;
   height: 46px;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 
 /* the logo stays level with the first line of the name, also when a long name takes two lines */
@@ -1106,20 +1157,22 @@ main > .section::before {
   border-top: 1px solid var(--border);
 }
 
+/* the version: neutral, so the status badges next to it stand out */
 .badge {
   display: inline-block;
   padding: 0.12rem 0.5rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, #7c3aed 18%, transparent);
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 600;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.08);
+  color: var(--text);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
 :root[data-theme='light'] .badge {
-  background: #ede9fe;
-  color: #5b21b6;
+  background: rgb(17 17 18 / 0.07);
+  color: var(--text);
 }
 
 .badges {
@@ -1129,8 +1182,8 @@ main > .section::before {
 }
 
 .badge--dev {
-  background: color-mix(in srgb, #facc15 20%, transparent);
-  color: #facc15;
+  background: color-mix(in srgb, var(--yellow) 20%, transparent);
+  color: var(--yellow);
 }
 
 .badge--done {
@@ -1152,12 +1205,8 @@ main > .section::before {
 .badge--pre {
   background: transparent;
   box-shadow: inset 0 0 0 1px currentColor;
-  color: #c084fc;
+  color: var(--accent);
   cursor: help;
-}
-
-:root[data-theme='light'] .badge--pre {
-  color: #7e22ce;
 }
 
 .badge--dev,
@@ -1178,8 +1227,8 @@ main > .section::before {
 }
 
 :root[data-theme='light'] .badge--dev {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--yellow);
+  color: var(--on-yellow);
 }
 
 :root[data-theme='light'] .badge--done {
@@ -1213,7 +1262,7 @@ main > .section::before {
 .milestone {
   padding: 0.12rem 0.6rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 3px;
   background: linear-gradient(var(--surface-2), var(--surface-2)) padding-box, var(--grad-text) border-box;
   color: var(--text);
   font: inherit;
@@ -1349,7 +1398,7 @@ main > .section::before {
     width: 104px;
     margin: 0.15rem 0 0;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 4px;
     pointer-events: none;
   }
 
@@ -1422,25 +1471,36 @@ main > .section::before {
   margin-bottom: 1.25rem;
   padding: clamp(1.35rem, 3vw, 2.5rem);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  background:
-    radial-gradient(40rem 24rem at 100% 0%, color-mix(in srgb, #7c3aed 16%, transparent), transparent 70%),
-    var(--surface);
+  border-radius: 8px;
+  background: var(--surface);
   box-shadow: var(--card-shadow);
   overflow: hidden;
   position: relative;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* the only warning stripes on the site: down the left edge of the Featured box */
+.spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 7px;
+  background: var(--hazard);
+}
+
 .spotlight:hover {
-  border-color: color-mix(in srgb, #7c3aed 50%, var(--border));
+  border-color: color-mix(in srgb, var(--yellow) 45%, var(--border));
   box-shadow: var(--hover-shadow);
 }
 
-:root[data-theme='light'] .spotlight {
-  background:
-    radial-gradient(40rem 24rem at 100% 0%, color-mix(in srgb, #6366f1 7%, transparent), transparent 70%),
-    var(--surface);
+/* why a project is featured, on a yellow label */
+:is(.spotlight, .card--update) .kicker {
+  display: inline-block;
+  padding: 0.12rem 0.45rem;
+  background: var(--yellow);
+  color: var(--on-yellow);
 }
 
 .spotlight:has(.spotlight__title a:focus-visible) {
@@ -1527,21 +1587,16 @@ main > .section::before {
   z-index: 1;
   margin: 0;
   border: 1px solid var(--border-strong);
-  border-radius: 14px;
+  border-radius: 4px;
   background: #1e1e1e;
   overflow: hidden;
-  box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.85), 0 0 0 6px color-mix(in srgb, #7c3aed 10%, transparent);
-  transform: perspective(1400px) rotateY(-7deg) rotateX(2deg);
-  transition: transform 0.4s ease;
-}
-
-.spotlight__shot:hover {
-  transform: none;
+  box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.9);
+  /* flat on purpose: a 3D tilt (perspective, rotateY) made every frame slower while scrolling */
 }
 
 :root[data-theme='light'] .spotlight__shot {
   border-color: var(--border);
-  box-shadow: 0 30px 60px -36px rgb(15 23 42 / 0.5), 0 0 0 6px rgb(99 102 241 / 0.07);
+  box-shadow: 0 30px 60px -36px rgb(17 17 18 / 0.5);
 }
 
 .spotlight__shot img {
@@ -1572,10 +1627,6 @@ main > .section::before {
   .spotlight {
     grid-template-columns: 1fr;
   }
-
-  .spotlight__shot {
-    transform: none;
-  }
 }
 
 /* ---------- the Featured box: one big spotlight, the others as cards below it ---------- */
@@ -1596,7 +1647,7 @@ main > .section::before {
   margin: 0;
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 4px;
   background: var(--tile);
   color: var(--muted);
   font-size: 0.9rem;
@@ -1604,7 +1655,9 @@ main > .section::before {
 
 .whats-new strong {
   color: var(--text);
-  font-weight: 600;
+  font-family: var(--font-label);
+  font-size: 0.85em;
+  font-weight: 700;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1638,9 +1691,9 @@ main > .section::before {
   width: 38px;
   height: 38px;
   margin-bottom: 1rem;
-  border-radius: 11px;
+  border-radius: 4px;
   background: var(--grad-btn);
-  color: #fff;
+  color: var(--on-yellow);
   font-family: var(--font-display);
   font-weight: 700;
 }
@@ -1669,7 +1722,7 @@ main > .section::before {
   gap: 0.4rem;
   padding: 0.15rem 0.6rem;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: 3px;
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 600;
@@ -1693,7 +1746,7 @@ main > .section::before {
   width: min(400px, calc(100vw - 32px));
   padding: 10px;
   border: 1px solid var(--border-strong);
-  border-radius: 16px;
+  border-radius: 6px;
   background: var(--surface);
   box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.65);
   opacity: 0;
@@ -2795,7 +2848,7 @@ main > .section::before {
   max-height: 94vh;
   padding: 0;
   border: 1px solid var(--border-strong);
-  border-radius: 16px;
+  border-radius: 8px;
   background: var(--surface);
   color: var(--text);
   box-shadow: 0 40px 120px -20px rgb(0 0 0 / 0.8);
@@ -2885,7 +2938,7 @@ main > .section::before {
   width: 84px;
   height: 84px;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 8px;
 }
 
 .project-hero__lead {
@@ -2925,7 +2978,7 @@ main > .section::before {
 .project-shot.card__shot {
   margin: 0;
   border: 1px solid var(--border-strong);
-  border-radius: 16px;
+  border-radius: 6px;
   box-shadow: var(--card-shadow);
 }
 
@@ -3177,9 +3230,8 @@ main > .section::before {
   top: var(--header-h);
   z-index: 20;
   border-block: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  /* solid, like the header: no backdrop-filter to redo in every scrolled frame */
+  background: var(--bg);
 }
 
 .tabs {
@@ -3196,7 +3248,7 @@ main > .section::before {
 .tab {
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 3px;
   background: none;
   color: var(--muted);
   font: inherit;
@@ -3316,21 +3368,23 @@ main > .section::before {
 .md h4 {
   margin: 2.4rem 0 0.9rem;
   color: var(--text);
+  line-height: 1.15;
+  text-transform: none;
   scroll-margin-top: calc(var(--header-h) + 80px);
 }
 
 .md h1 {
   padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--border);
-  font-size: 1.85rem;
+  font-size: 2.1rem;
 }
 
 .md h2 {
-  font-size: 1.4rem;
+  font-size: 1.65rem;
 }
 
 .md h3 {
-  font-size: 1.12rem;
+  font-size: 1.3rem;
 }
 
 .md h4 {
@@ -3367,7 +3421,7 @@ main > .section::before {
 .md pre {
   padding: 1rem 1.2rem;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 4px;
   background: var(--surface-2);
   overflow-x: auto;
   line-height: 1.55;
@@ -3399,7 +3453,7 @@ main > .section::before {
 
 .md img {
   height: auto;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .md [align='center'] {
@@ -3441,7 +3495,7 @@ main > .section::before {
   margin: 0 0 0.8rem;
   padding: 0 1.2rem;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 6px;
   background: var(--surface);
 }
 
@@ -3455,7 +3509,7 @@ main > .section::before {
   gap: 0.75rem;
   margin: 0 -1.2rem;
   padding: 0.9rem 1.2rem;
-  border-radius: 14px;
+  border-radius: 6px;
   cursor: pointer;
   list-style: none;
 }
@@ -3487,7 +3541,7 @@ main > .section::before {
 .md .release[open] > summary {
   margin-bottom: 1.1rem;
   border-bottom: 1px solid var(--border);
-  border-radius: 14px 14px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 .md .release > summary h2 {
@@ -3518,7 +3572,7 @@ main > .section::before {
   max-width: min(92vw, 30rem);
   padding: 0.8rem 1.1rem;
   border: 1px solid var(--border-strong);
-  border-radius: 12px;
+  border-radius: 4px;
   background: var(--surface);
   box-shadow: var(--card-shadow);
   color: var(--text);
@@ -3641,7 +3695,7 @@ main > .section::before {
   align-items: center;
   gap: 0.8rem;
   padding: 0.55rem 0.7rem;
-  border-radius: 10px;
+  border-radius: 4px;
   color: var(--text);
   text-decoration: none;
 }
@@ -3658,7 +3712,7 @@ main > .section::before {
   width: 36px;
   height: 36px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--tile);
   color: var(--accent);
 }
@@ -3694,12 +3748,12 @@ main > .section::before {
 
 .search__title mark {
   border-radius: 3px;
-  background: color-mix(in srgb, #7c3aed 30%, transparent);
+  background: color-mix(in srgb, var(--yellow) 30%, transparent);
   color: inherit;
 }
 
 :root[data-theme='light'] .search__title mark {
-  background: #ede9fe;
+  background: color-mix(in srgb, var(--yellow) 60%, transparent);
 }
 
 .search__sub {
@@ -3774,7 +3828,7 @@ main > .section::before {
   width: 100%;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--border-strong);
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--bg);
   color: var(--text);
   font: inherit;
@@ -3801,7 +3855,7 @@ main > .section::before {
   width: 18px;
   height: 18px;
   margin: 0;
-  accent-color: #7c3aed;
+  accent-color: var(--yellow);
   cursor: pointer;
 }
 
@@ -3833,7 +3887,7 @@ main > .section::before {
   gap: 0.6rem;
   padding: 0 0.9rem;
   border: 1px solid var(--border-strong);
-  border-radius: 12px;
+  border-radius: 4px;
   background: var(--surface);
 }
 
@@ -3887,7 +3941,7 @@ main > .section::before {
   width: 40px;
   height: 40px;
   padding: 5px;
-  border-radius: 11px;
+  border-radius: 5px;
 }
 
 .cmd-group__tile.tile--mono {
@@ -3994,7 +4048,7 @@ main > .section::before {
   flex: none;
   margin-left: auto;
   padding: 0.05rem 0.55rem;
-  border-radius: 999px;
+  border-radius: 3px;
   background: var(--surface-2);
   color: var(--muted);
   font-size: 0.75rem;
@@ -4226,7 +4280,7 @@ main > .section::before {
 
 .problem {
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 6px;
   background: var(--surface);
   scroll-margin-top: calc(var(--header-h) + 16px);
 }
@@ -4288,7 +4342,7 @@ main > .section::before {
 .table-scroll {
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 6px;
   background: var(--surface);
 }
 
@@ -4361,7 +4415,7 @@ main > .section::before {
   display: inline-block;
   padding: 0.4rem 0.8rem;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: 3px;
   background: var(--surface);
   color: var(--text);
   font-size: 0.88rem;
@@ -4408,7 +4462,8 @@ main > .section::before {
   align-items: center;
   gap: 0.4rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-family: var(--font-label);
+  font-size: 0.82rem;
   text-decoration: none;
 }
 
@@ -4472,7 +4527,7 @@ main > .section::before {
   position: relative;
   aspect-ratio: 16 / 9;
   border: 1px solid var(--border-strong);
-  border-radius: 14px;
+  border-radius: 6px;
   background:
     radial-gradient(120% 90% at 50% 38%, #1f5a3d 0%, #123623 52%, #0a1d14 100%);
   box-shadow: var(--card-shadow);
@@ -4551,7 +4606,7 @@ main > .section::before {
   min-height: 22rem;
   max-height: 32rem;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 6px;
   background: var(--surface);
   box-shadow: var(--card-shadow);
   overflow: hidden;
@@ -4656,7 +4711,7 @@ main > .section::before {
 .playground__cmd {
   padding: 0.3rem 0.55rem;
   border: 1px solid var(--border-strong);
-  border-radius: 8px;
+  border-radius: 4px;
   background: var(--surface-2);
   color: var(--accent);
   font-family: var(--font-mono);
