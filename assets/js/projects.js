@@ -339,7 +339,7 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v16.4.3', stars: 3, downloads: 74,
+      version: 'v16.4.3', stars: 3, downloads: 75,
     },
     {
       repo: 'Hangman-Game',
