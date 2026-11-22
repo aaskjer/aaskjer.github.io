@@ -5,9 +5,40 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-20T23:10:25Z</updated>
+  <updated>2026-11-22T17:22:57Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>GameCheck v2.0.0: GameCheck 2.0.0: the settings window is built with UIFramework</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v2.0.0"/>
+    <id>https://github.com/aaskjer/GameCheck/releases/tag/v2.0.0</id>
+    <published>2026-11-22T17:22:57Z</published>
+    <updated>2026-11-22T17:22:57Z</updated>
+    <category term="GameCheck" label="GameCheck"/>
+    <content type="html">&lt;p&gt;The settings window is now built with &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;, the window the Chat Games use. It looks and works like the window before. What the two checks post has not changed.&lt;/p&gt;
+&lt;h3&gt;🪟 The window&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The country is picked from a list&lt;/strong&gt; of all countries instead of typed as a two-letter code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The header says &lt;code&gt;off&lt;/code&gt;&lt;/strong&gt; for an action whose every topic is switched off, next to &lt;code&gt;bot&lt;/code&gt;, &lt;code&gt;webhook&lt;/code&gt; and &lt;code&gt;not set up&lt;/code&gt; as before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Status page follows the actions by itself.&lt;/strong&gt; It asks again every ten seconds while it is open; the &lt;em&gt;Refresh&lt;/em&gt; button is gone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Your own layout.&lt;/strong&gt; The pen in the footer lets you rename, move and hide fields and pages. It survives every import.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Updates of the window.&lt;/strong&gt; UIFramework checks for a newer version of itself when the window opens and asks before it downloads one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;✏️ Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;[CG] - Settings&lt;/code&gt; is UIFramework&amp;#39;s settings action.&lt;/strong&gt; It needs four references instead of eight. The window itself is &lt;code&gt;UIFramework.dll&lt;/code&gt; in the folder &lt;code&gt;UIFramework&lt;/code&gt; next to Streamer.bot, downloaded once on the first open.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The settings file has one key per setting&lt;/strong&gt; instead of a section per action. The window moves the old values with its first save, and both actions read either form: nothing is lost and nothing has to be done.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;quot;Both actions use the same bot and channel&amp;quot; is a setting now.&lt;/strong&gt; While it is on, Game Sale Check posts with the bot, channel or webhook of Free Game Check.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A setting held by a Set Argument is shown locked, without its value.&lt;/strong&gt; The window before filled its fields with the Set Argument values on its first open; this one does not.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Min. discount is 1 to 99 %&lt;/strong&gt;, the range the action has always kept to.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧 Updating from 1.0.x&lt;/h3&gt;
+&lt;p&gt;Import the new version over the old one. The three actions are replaced; the settings file, the bot token, the webhook URL, the IsThereAnyDeal key and the messages in Discord stay. The first time the window opens, a dialog asks whether to download &lt;code&gt;UIFramework.dll&lt;/code&gt;: click &lt;code&gt;Yes&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Set the two checks up by hand, before there was an import? Do not import over them. Paste the attached scripts into your actions instead, as the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; describes.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;GameCheck.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. To set the actions up by hand, the three scripts are attached as well. See the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; and the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/CHANGELOG.md&quot;&gt;changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/GameCheck/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/gamecheck/&quot;&gt;GameCheck on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v2.2.2: UIFramework v2.2.2 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.2.2"/>
@@ -1771,22 +1802,5 @@ longer matches the search is taken then.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;2069420975111791af1cecfb02194f7af85860cf6417f572df9b0eb396bac4a6&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4&quot;&gt;Download v1.8.4&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v17.5.1: Four messages offer the placeholders the game fills</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1</id>
-    <published>2026-11-12T11:27:38Z</published>
-    <updated>2026-11-12T11:27:38Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Four messages offer the placeholders the game fills.&lt;/strong&gt; &lt;em&gt;Everyone&lt;/em&gt; and &lt;em&gt;Per player&lt;/em&gt; (the cooldown replies),
-&lt;em&gt;Not enough points&lt;/em&gt; and &lt;em&gt;No stats yet&lt;/em&gt; showed chips the game does not know ({user}, {remaining}, {amount}, ...)
-or none at all, and the chat preview left their real ones as raw braces. A chip clicked into a cooldown reply
-kept that reply from being sent. They now offer {0} and {1}, {points}, {available} and {required}, and {user},
-and the preview fills them. Saved texts stay as they are.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.1&quot;&gt;Download v17.5.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

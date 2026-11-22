@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/gamecheck/">
-  <meta property="og:title" content="GameCheck  •  v1.0.1">
+  <meta property="og:title" content="GameCheck  •  v2.0.0">
   <meta property="og:description" content="Free games and the best game deals in your Discord, kept up to date on their own. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/gamecheck.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.0.1">
+  <meta name="twitter:data1" content="v2.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"1.0.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","gog.com","isthereanydeal.com","nintendo.com","steampowered.com"],"updateCheck":true}</script>
+  <script type="application/json" id="import-facts">{"version":"2.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","github.com","gog.com","isthereanydeal.com","nintendo.com","raw.githubusercontent.com","steampowered.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md" data-release="v1.0.1">
+<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.0.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -117,14 +117,17 @@ your country 🚫 (struck through). Optionally the messages are posted anew ever
 <li>🔒 <strong>Exports without secrets.</strong> Bot token, webhook URL and IsThereAnyDeal key can live in persisted global variables.</li>
 <li>🎮 <strong>Straight into the launcher.</strong> Optionally, Steam and Epic games open in Steam or the Epic Games Launcher instead
 of the browser.</li>
-<li>🪟 <strong>A settings window.</strong> Everything is set in one window in the style of the Chat Games; the older Set Argument
+<li>🪟 <strong>A settings window.</strong> Everything is set in one window, built with
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework</a> like the windows of the Chat Games: a search
+over every setting, a header that says how each action posts, a layout you can rearrange. The older Set Argument
 setup keeps working.</li>
 </ul>
 <hr>
-<h2>Credits</h2>
+<p align="center"><img loading="lazy" alt="The Free games page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/free-games-dark.png" width="460"></p><h2>Credits</h2>
 <ul>
 <li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
 <li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Settings window:</strong> <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a></li>
 <li><strong>Data &amp; services:</strong><ul>
 <li><a href="https://www.gamerpower.com">GamerPower</a>: giveaways the stores don&#39;t list themselves</li>
 <li><a href="https://isthereanydeal.com">IsThereAnyDeal</a>: giveaways, deals of other shops and lowest prices (with your own key)</li>
@@ -165,6 +168,10 @@ is affiliated with or endorses GameCheck.</p>
 <td><code>gamecheck-settings.cs</code></td>
 </tr>
 </tbody></table>
+<p>The settings window is built with <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+the window the Chat Games use. Its file, <code>UIFramework.dll</code>, is not part of the import: the first time the window
+opens, a dialog asks whether to download it. Click <code>Yes</code>; it is saved in the folder <code>UIFramework</code> next to
+Streamer.bot and shared by every project that uses it.</p>
 <h2>Import</h2>
 <p>Click <code>Import</code> in <a href="https://streamer.bot/">Streamer.bot</a> and drag the <code>GameCheck.sb</code> file from the
 <a href="https://github.com/aaskjer/GameCheck/releases">releases</a> into the window, or paste the
@@ -173,9 +180,13 @@ is affiliated with or endorses GameCheck.</p>
 Streamer.bot (<code>Streamer.bot Started</code>), the settings window opens from its <code>Test</code> trigger. Nothing is posted until
 Discord is set up in the window, so go on with <a href="#1-discord">1. Discord</a> and <a href="#4-first-start">4. First start</a>.
 Steps 2 and 3 are only for setting the actions up by hand.</p>
-<p><strong>Already running Free Game Check or Game Sale Check?</strong> Do not import over them: the import would add a second copy
-of both, and two copies post twice. Paste the new scripts into your existing actions as in step 2 and add only the
-settings action as in step 3 (see also <a href="#coming-from-set-arguments">Coming from Set Arguments</a>).</p>
+<p><strong>Updating from 1.0.x?</strong> Import the new version over the old one. The three actions are replaced; the settings
+file, the bot token, the webhook URL and the IsThereAnyDeal key stay where they are, and so do the messages in
+Discord. <code>Set Argument</code> sub-actions you added to the imported actions go with the old actions: set those values in
+the window afterwards.</p>
+<p><strong>Set the two checks up by hand, before there was an import?</strong> Do not import over them: the import would add a
+second copy of both, and two copies post twice. Paste the new scripts into your existing actions as in step 2 and
+replace only the settings action as in step 3 (see also <a href="#coming-from-set-arguments">Coming from Set Arguments</a>).</p>
 <h2>1. Discord</h2>
 <p>Each action posts either with a <strong>bot</strong> or through a <strong>webhook</strong>. A bot can pin its messages and clean up older
 copies; a webhook needs no bot at all. One bot and one channel for both actions is the usual setup.</p>
@@ -208,11 +219,13 @@ then on every run plans the next one itself. Add <code>Core</code> → <code>Tes
 <h2>3. The settings window (by hand)</h2>
 <ol>
 <li>Add an action <code>[CG] - Settings</code> and give it an <code>Execute C# Code</code> sub-action with <code>gamecheck-settings.cs</code>.</li>
-<li>It needs these eight references: <code>mscorlib.dll</code>, <code>System.dll</code>, <code>System.Core.dll</code>, <code>System.Net.Http.dll</code>,
-<code>Newtonsoft.Json.dll</code>, <code>PresentationFramework.dll</code>, <code>PresentationCore.dll</code> and <code>WindowsBase.dll</code>. <code>Find Refs</code>
-adds most of them; add a missing one in the editor&#39;s <code>References</code> tab (right-click → <code>Add reference from file...</code>). Then <code>Save and Compile</code>.</li>
-<li>Add the trigger <code>Core</code> → <code>Test</code>. Right-click it and choose <code>Test Trigger</code>: the settings window opens.</li>
+<li>It needs these four references: <code>mscorlib.dll</code>, <code>System.dll</code>, <code>System.Core.dll</code> and <code>Newtonsoft.Json.dll</code>.
+<code>Find Refs</code> adds them; add a missing one in the editor&#39;s <code>References</code> tab (right-click → <code>Add reference from file...</code>). Then <code>Save and Compile</code>.</li>
+<li>Add the trigger <code>Core</code> → <code>Test</code>. Right-click it and choose <code>Test Trigger</code>: the settings window opens, after the
+question about <code>UIFramework.dll</code> the first time.</li>
 </ol>
+<p>The settings action asks the action <code>Free Game Check</code> what the window holds. In an install made by hand it finds
+that action by its name, so the name has to be exactly <code>Free Game Check</code>.</p>
 <p align="center"><img loading="lazy" alt="The Discord page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/discord-dark.png" width="460"></p><h2>4. First start</h2>
 <ol>
 <li><strong>Discord:</strong> bot token and channel ID, or a webhook URL. With <em>Both actions use the same bot and channel</em>
@@ -224,14 +237,19 @@ are posted anew every few days.</li>
 <li><code>Save</code>, then open <strong>Status</strong> and click <code>Check now</code> for each action, or restart Streamer.bot. The messages appear in
 the channel within a minute.</li>
 </ol>
-<p><code>Ctrl+1</code> … <code>Ctrl+6</code> switch pages, <code>Ctrl+F</code> searches all settings, by their label or their argument name.</p>
+<p>The header says how each action posts with what the window holds: <code>Free: bot</code>, <code>Sales: webhook</code>, <code>not set up</code>, or
+<code>off</code> while every topic of an action is switched off.</p>
+<p><code>Ctrl+1</code> … <code>Ctrl+6</code> switch pages, <code>Ctrl+S</code> saves, and <code>Ctrl+F</code> searches all settings, by their label or their key
+(<code>minDiscount</code> finds <em>Min. discount</em>). The pen in the footer lets you rename, move and hide fields and pages.</p>
 <p align="center"><img loading="lazy" alt="The Status page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/status-dark.png" width="460"></p><h2>Coming from Set Arguments</h2>
 <p>Older installs set the actions up with <code>Set Argument</code> sub-actions. They keep working, and a <code>Set Argument</code> value always
-wins over the window: the window shows such a setting greyed out, with the name of the action that holds it.</p>
-<p>Paste the new scripts into both actions first and let each run once (<code>Check now</code>, or a restart): that is how the window
-learns their values. The first time it opens it takes them all over, so a first <code>Save</code> changes nothing. After that,
-delete or disable the <code>Set Argument</code> sub-actions in both actions and manage everything in the window. A timer trigger left
-over from older versions can go too; the actions plan their own runs once <code>Streamer.bot Started</code> is their trigger.</p>
+wins over the window: the window shows such a setting locked, with the name of the action that holds it, and does
+not save it.</p>
+<p>Paste the new scripts into both actions first and let each run once (<code>Check now</code>, or a restart): that is how the
+window learns which settings are held. To manage a setting in the window, delete or disable its <code>Set Argument</code>
+sub-action, run the action once more, open the window again and set the value there. The window does not take the
+old values over by itself, so note them before you remove the sub-actions. A timer trigger left over from older
+versions can go too; the actions plan their own runs once <code>Streamer.bot Started</code> is their trigger.</p>
 <h2>Open in the launcher</h2>
 <p><em>Open Steam and Epic games in their launcher</em> (on <strong>Free games</strong>) and <em>Open Steam and Epic deals in their launcher</em>
 (on <strong>Sales</strong>) make the game links open in Steam or the Epic Games Launcher instead of the browser. Discord only
@@ -240,19 +258,29 @@ hands it on. The first time, your browser asks whether it may open Steam or Epic
 question from then on. If no launcher is installed, the page offers the store&#39;s web page instead.</p>
 <h2>Where things are kept</h2>
 <ul>
-<li>The settings: <code>GameCheck\GameCheck-Settings.json</code> in the Streamer.bot folder, written only by the window. The
-previous version is kept beside it as <code>.bak</code>.</li>
+<li>The settings: <code>GameCheck\GameCheck-Settings.json</code> in the Streamer.bot folder, written only by the window, with
+one key per setting (<code>freeCountry</code>, <code>salesDealLimit</code>). The previous version is kept beside it as <code>.bak</code>. A file
+from 1.0.x, with a section per action, is read as it is and rewritten with the window&#39;s first save.</li>
 <li>Bot token, webhook URL and IsThereAnyDeal key: only in persisted global variables (<code>FreeGameCheck_botToken</code>,
 <code>GameSaleCheck_botToken</code>, …), never in the file. An export of the actions carries no secrets.</li>
 <li>What the actions remember (message ids, what was new when): the global variables <code>checkFreeGames</code> and
 <code>checkGameSales</code>.</li>
+<li>What you changed about the window itself (theme, renamed or moved fields): <code>GameCheck\uiframework.layout.json</code>.
+It survives every import.</li>
+<li>The window: <code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code> in the Streamer.bot folder. It checks for a newer
+version when the window opens and asks before it downloads one.</li>
 </ul>
 <h2>When something does not work</h2>
 <ul>
 <li><strong>Nothing is posted:</strong> open Streamer.bot&#39;s log and look for lines starting with <code>[FreeGames]</code> or <code>[GameSales]</code>.
 They say which store failed, or that the bot token or channel is missing.</li>
 <li><strong>The script does not compile:</strong> compare its references with the lists above.</li>
-<li><strong>The window does not open:</strong> only one window can be open at a time; look in the log for <code>[GameCheck/Settings]</code>.</li>
+<li><strong>The window does not open:</strong> only one window can be open at a time; look in the log for <code>[GameCheck/Settings]</code>.
+GameCheck needs UIFramework 2.2.0 or newer: with an older one installed, the settings action offers the update
+instead of opening the window.</li>
+<li><strong>&quot;There is no action named &#39;Free Game Check&#39;&quot;:</strong> the settings action did not find the check it asks. Import
+again, or give the action made by hand exactly that name.</li>
+<li><strong>A red <code>i</code> in the window&#39;s header:</strong> click it. It lists what the window could not read or apply.</li>
 </ul>
 </div>
       </section>
@@ -260,6 +288,47 @@ They say which store failed, or that the bot token or channel is missing.</li>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.0.0] - 2026-11-22</h2>
+<p>The settings window is now built with <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
+the window the Chat Games use. It looks and works like the window before and brings what that framework has. What
+the two checks post has not changed.</p>
+<p>To update, import the new version over the old one: the three actions are replaced, the settings file and the
+secrets stay. The first time the window opens, a dialog asks whether to download <code>UIFramework.dll</code>; click <code>Yes</code>.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>The header says <code>off</code></strong> for an action whose every topic is switched off, next to <code>bot</code>, <code>webhook</code> and
+<code>not set up</code> as before.</li>
+<li><strong>The country is picked from a list</strong> of all countries instead of typed as a two-letter code.</li>
+<li><strong>The Status page follows the actions by itself.</strong> It asks again every ten seconds while it is open; the
+<em>Refresh</em> button is gone.</li>
+<li><strong>Your own layout.</strong> The pen in the footer lets you rename, move and hide fields and pages. It is kept in
+<code>uiframework.layout.json</code> beside the settings and survives every import.</li>
+<li><strong>Updates of the window.</strong> UIFramework checks for a newer version of itself when the window opens and asks
+before it downloads one.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong><code>[CG] - Settings</code> is UIFramework&#39;s settings action.</strong> It needs four references instead of eight and carries
+no window of its own: the window is <code>UIFramework.dll</code> in the folder <code>UIFramework</code> next to Streamer.bot,
+downloaded once on the first open. The action finds Free Game Check by its ID; by its name only in an install
+made by hand.</li>
+<li><strong>The settings file has one key per setting</strong> (<code>freeCountry</code>, <code>salesDealLimit</code>) instead of a section per action.
+The window moves the old values with its first save, and both actions read either form: nothing is lost and
+nothing has to be done.</li>
+<li><strong>&quot;Both actions use the same bot and channel&quot; is a setting now.</strong> While it is on, Game Sale Check posts with the
+bot, channel or webhook of Free Game Check; before, the window kept two copies alike. It starts on while both
+connections are the same, as it did.</li>
+<li><strong>A setting held by a Set Argument is shown locked, without its value.</strong> The window before filled its fields
+with the Set Argument values on its first open; this one does not. To manage such a setting in the window,
+remove its Set Argument, run the action once and set the value in the window.</li>
+<li><strong>Min. discount is 1 to 99 %</strong>, the range the action has always kept to; the window allowed 0 to 100.</li>
+<li>A pasted channel link is turned into the channel ID when the action reads it, not while it is typed.</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li><strong>The check of a webhook URL&#39;s shape before saving.</strong> The window hands a secret to the action only as set or
+not set, never as its value.</li>
+</ul>
 <h2>[1.0.1] - 2026-11-02</h2>
 <h3>Changed</h3>
 <ul>
