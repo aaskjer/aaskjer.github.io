@@ -319,9 +319,9 @@ code {
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 75%, transparent);
-  -webkit-backdrop-filter: saturate(150%) blur(14px);
-  backdrop-filter: saturate(150%) blur(14px);
+  /* solid rather than a blurred glass: a backdrop-filter has to blur the page behind it again in
+     every frame while scrolling, which made scrolling stutter */
+  background: var(--bg);
 }
 
 .topbar__inner {
@@ -1531,12 +1531,7 @@ main > .section::before {
   background: #1e1e1e;
   overflow: hidden;
   box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.85), 0 0 0 6px color-mix(in srgb, #7c3aed 10%, transparent);
-  transform: perspective(1400px) rotateY(-7deg) rotateX(2deg);
-  transition: transform 0.4s ease;
-}
-
-.spotlight__shot:hover {
-  transform: none;
+  /* flat on purpose: a 3D tilt (perspective, rotateY) made every frame slower while scrolling */
 }
 
 :root[data-theme='light'] .spotlight__shot {
@@ -1571,10 +1566,6 @@ main > .section::before {
 @media (max-width: 900px) {
   .spotlight {
     grid-template-columns: 1fr;
-  }
-
-  .spotlight__shot {
-    transform: none;
   }
 }
 
@@ -3177,9 +3168,8 @@ main > .section::before {
   top: var(--header-h);
   z-index: 20;
   border-block: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  /* solid, like the header: no backdrop-filter to redo in every scrolled frame */
+  background: var(--bg);
 }
 
 .tabs {
