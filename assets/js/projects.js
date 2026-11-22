@@ -157,7 +157,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v2.0.0', stars: 0, downloads: 119,
+      version: 'v2.0.0', stars: 0, downloads: 120,
     },
     {
       repo: 'SuTo',
@@ -299,7 +299,7 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v25.2.3', stars: 1, downloads: 167,
+      version: 'v25.2.3', stars: 1, downloads: 168,
     },
     {
       repo: 'Trivia-Game',
