@@ -173,7 +173,7 @@
   const PAD = 16;
   const HEAD = 50;
   const FONTS = {
-    title: '700 18px Sora, system-ui, sans-serif',
+    title: '700 21px "Barlow Condensed", system-ui, sans-serif',
     name: '600 14px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
     command: '500 12px ui-monospace, "Cascadia Code", Consolas, monospace',
     small: '400 11px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
@@ -218,16 +218,12 @@
     target.height = height * scale;
     const g = target.getContext('2d');
     g.setTransform(scale, 0, 0, scale, 0, 0);
-    g.fillStyle = '#15131f';
+    g.fillStyle = '#18181a';
     g.fillRect(0, 0, W, height);
-    const grad = g.createLinearGradient(0, 0, W, HEAD);
-    grad.addColorStop(0, '#7c3aed');
-    grad.addColorStop(0.55, '#4f46e5');
-    grad.addColorStop(1, '#2563eb');
-    g.fillStyle = grad;
+    g.fillStyle = '#ffe100';
     g.fillRect(0, 0, W, HEAD);
     g.textBaseline = 'middle';
-    g.fillStyle = '#ffffff';
+    g.fillStyle = '#111112';
     const heading = fit(state.title.trim() || 'Chat games', FONTS.title, W - PAD * 2);
     g.font = FONTS.title;
     g.fillText(heading, PAD, HEAD / 2 + 1);
@@ -236,17 +232,17 @@
     g.textBaseline = 'top';
     if (!blocks.length) {
       g.font = FONTS.small;
-      g.fillStyle = '#a6a2bb';
+      g.fillStyle = '#a1a1a6';
       g.fillText('Tick “On my panel” next to a project.', PAD, y + 2);
     }
     for (const b of blocks) {
       const name = fit(b.name, FONTS.name, W - PAD * 2);
       g.font = FONTS.name;
-      g.fillStyle = '#eeedf7';
+      g.fillStyle = '#f4f4f2';
       g.fillText(name, PAD, y);
       y += 18;
       g.font = FONTS.command;
-      g.fillStyle = '#c4b5fd';
+      g.fillStyle = '#ffe100';
       for (const line of b.lines) {
         g.fillText(line, PAD, y);
         y += 17;
@@ -258,7 +254,7 @@
       g.fillStyle = 'rgba(255, 255, 255, 0.1)';
       g.fillRect(PAD, y, W - PAD * 2, 1);
       g.font = FONTS.small;
-      g.fillStyle = '#a6a2bb';
+      g.fillStyle = '#a1a1a6';
       g.fillText('Free Streamer.bot extensions by aaskjer.github.io', PAD, y + 10);
     }
     return height;
@@ -304,6 +300,6 @@
   });
 
   update(false);
-  // the title in Sora once the font is there
+  // the title in Barlow Condensed once the font is there
   if (document.fonts) document.fonts.load(FONTS.title).then(() => preview(chosen()), () => {});
 })();
