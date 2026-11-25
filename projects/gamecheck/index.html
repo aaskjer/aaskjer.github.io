@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/gamecheck/">
-  <meta property="og:title" content="GameCheck  •  v2.0.0">
+  <meta property="og:title" content="GameCheck  •  v2.1.0">
   <meta property="og:description" content="Free games and the best game deals in your Discord, kept up to date on their own. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/gamecheck.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.0.0">
+  <meta name="twitter:data1" content="v2.1.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.0.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","github.com","gog.com","isthereanydeal.com","nintendo.com","raw.githubusercontent.com","steampowered.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","github.com","gog.com","isthereanydeal.com","nintendo.com","raw.githubusercontent.com","steampowered.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.0.0">
+<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.1.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -239,9 +239,11 @@ the channel within a minute.</li>
 </ol>
 <p>The header says how each action posts with what the window holds: <code>Free: bot</code>, <code>Sales: webhook</code>, <code>not set up</code>, or
 <code>off</code> while every topic of an action is switched off.</p>
-<p><code>Ctrl+1</code> … <code>Ctrl+6</code> switch pages, <code>Ctrl+S</code> saves, and <code>Ctrl+F</code> searches all settings, by their label or their key
+<p><code>Ctrl+1</code> … <code>Ctrl+7</code> switch pages, <code>Ctrl+S</code> saves, and <code>Ctrl+F</code> searches all settings, by their label or their key
 (<code>minDiscount</code> finds <em>Min. discount</em>). The pen in the footer lets you rename, move and hide fields and pages.</p>
-<p align="center"><img loading="lazy" alt="The Status page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/status-dark.png" width="460"></p><h2>Coming from Set Arguments</h2>
+<p align="center"><img loading="lazy" alt="The Status page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/status-dark.png" width="460"></p><p>The <strong>Log</strong> page shows what both checks wrote into Streamer.bot&#39;s log, so a store that failed or a message that
+could not be posted is found without leaving the window.</p>
+<p align="center"><img loading="lazy" alt="The Log page of the settings window" src="https://raw.githubusercontent.com/aaskjer/GameCheck/main/Assets/screenshots/log-dark.png" width="460"></p><h2>Coming from Set Arguments</h2>
 <p>Older installs set the actions up with <code>Set Argument</code> sub-actions. They keep working, and a <code>Set Argument</code> value always
 wins over the window: the window shows such a setting locked, with the name of the action that holds it, and does
 not save it.</p>
@@ -272,11 +274,12 @@ version when the window opens and asks before it downloads one.</li>
 </ul>
 <h2>When something does not work</h2>
 <ul>
-<li><strong>Nothing is posted:</strong> open Streamer.bot&#39;s log and look for lines starting with <code>[FreeGames]</code> or <code>[GameSales]</code>.
-They say which store failed, or that the bot token or channel is missing.</li>
+<li><strong>Nothing is posted:</strong> open the <strong>Log</strong> page of the settings window. It shows the lines both checks wrote into
+Streamer.bot&#39;s log, <code>FreeGames</code> and <code>GameSales</code>: which store failed, or that the bot token or channel is
+missing. In Streamer.bot&#39;s own log the same lines start with <code>[FreeGames]</code> or <code>[GameSales]</code>.</li>
 <li><strong>The script does not compile:</strong> compare its references with the lists above.</li>
 <li><strong>The window does not open:</strong> only one window can be open at a time; look in the log for <code>[GameCheck/Settings]</code>.
-GameCheck needs UIFramework 2.2.0 or newer: with an older one installed, the settings action offers the update
+GameCheck needs UIFramework 2.3.0 or newer: with an older one installed, the settings action offers the update
 instead of opening the window.</li>
 <li><strong>&quot;There is no action named &#39;Free Game Check&#39;&quot;:</strong> the settings action did not find the check it asks. Import
 again, or give the action made by hand exactly that name.</li>
@@ -288,6 +291,19 @@ again, or give the action made by hand exactly that name.</li>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.1.0] - 2026-11-25</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>A Log page in the settings window.</strong> It shows what the two checks and the window wrote into Streamer.bot&#39;s
+log, newest first: which store answered, what was posted, what failed and why. With a search, a filter by level
+(<code>ERR</code>, <code>WRN</code>, <code>INF</code>) and by source (<code>FreeGames</code>, <code>GameSales</code>, the settings window), and the day to pick. It
+follows the log while the checks run. Before, those lines had to be looked up in Streamer.bot&#39;s own log window.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>The window needs UIFramework 2.3.0.</strong> With an older one installed, the settings action offers the update when
+the window is opened.</li>
+</ul>
 <h2>[2.0.0] - 2026-11-22</h2>
 <p>The settings window is now built with <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>,
 the window the Chat Games use. It looks and works like the window before and brings what that framework has. What

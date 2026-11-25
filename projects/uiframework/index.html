@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.2.2">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.3.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -285,6 +285,32 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
+<h2>[2.3.0] - 2026-11-25</h2>
+<p>Streamer.bot&#39;s own log as a page of the window, a list whose rows the project keeps itself, and a list that is
+stored as one line of text. All three come with the DLL; declaring them needs the host block of this release. The
+settings action stays 0.3.3.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>Streamer.bot&#39;s log as a page: <code>.StreamerBotLog(&quot;[My Project&quot;, …)</code>.</strong> For a project that logs with
+<code>CPH.LogInfo</code> and writes no log file of its own. The page shows the lines of one day that hold one of the texts
+it is given, newest first, with a search, a filter by level and by source, and the day to pick. A stack trace
+goes with the entry it follows, and the box under the list shows the whole entry. The page follows the file
+while Streamer.bot writes it. It comes by itself, at the foot of the rail; without a text, it shows every line.</li>
+<li><strong>A list the project keeps itself: <code>rowsFrom</code> on a <code>list</code>, with <code>rows:</code> and <code>saveRows:</code> in <code>UiHost.Handle</code>.</strong>
+For rows the window must not write behind the project&#39;s back: notes in a file per category that chat commands
+write under a lock of their own. The window asks the project for the rows, again when the field named in
+<code>rowsFrom</code> changes (a dropdown that picks the category), shows them to edit and counts an edit as an unsaved
+change. Save hands the project the rows as they are with the rows the window was given, so the project can tell
+what the user changed from what changed on its own side meanwhile, and the project answers the rows as it keeps
+them. Nothing of such a list is in the settings file, an export or a reset. While it has unsaved changes, the
+field it depends on does not move on.</li>
+<li><strong>A list stored as pairs of text: <code>format: &quot;pairs&quot;</code> on a <code>list</code> of two columns.</strong> The file holds <code>a:b,c:d</code> where a
+list is otherwise an array of rows, for a project that has always read its pairs so. The window shows rows to
+edit as for any list. It reads commas, semicolons or lines between the entries and <code>:</code> or <code>=</code> between a key and
+its value, and writes <code>key:value</code> between commas. The cells do not take what would part the pairs anew. The
+project gets the text in every request, and <code>UiSettings.Pairs(key)</code> reads it (<code>Pairs(key, fallback)</code> in the
+host reader).</li>
+</ul>
 <h2>[2.2.2] - 2026-11-20</h2>
 <h3>Changed</h3>
 <ul>
@@ -2567,6 +2593,16 @@ conventions cannot know.</p>
 <td>for a <code>list</code>: the rows shown, conditions joined by <code>||</code>: <code>region= || Global=true || Counties~{region}</code>. The left side is a column of the list (in its exact spelling), else a setting of the window; <code>{key}</code> is a setting&#39;s current value. <code>=</code> and <code>!=</code> compare as text ignoring case, <code>~</code> is &quot;contains&quot; (for an array in the cell: one element equals it). A row that does not fit is hidden, not removed: it is saved back as it was</td>
 </tr>
 <tr>
+<td><code>format</code></td>
+<td>no</td>
+<td>for a <code>list</code> of two columns: <code>pairs</code> stores it as one line of text, <code>a:b,c:d</code>, where a list is otherwise an array of rows. For a project that has always read its pairs so (a name and its points, a word and its answer). The window still shows rows to edit. Reading is generous: entries stand between commas, semicolons or lines, and the first <code>:</code> or <code>=</code> parts a key from its value; a key alone has an empty value. Writing is strict: <code>key:value</code> between commas. The text has no escaping, so a key&#39;s cell does not take <code>: = , ;</code> and a value&#39;s cell does not take <code>, ;</code>. The columns are <code>string</code>, <code>int</code>, <code>long</code> or <code>double</code>; the default is that text, or rows. The project gets the text in every request, and <code>UiSettings.Pairs(key)</code> reads it. A <code>rowKey</code> does nothing here: the line is written whole</td>
+</tr>
+<tr>
+<td><code>rowsFrom</code></td>
+<td>no</td>
+<td>for a <code>list</code> the project keeps itself (notes in a file per category that its chat commands write, rows in a database): the key of the field its rows depend on, <code>&quot;&quot;</code> for none. The window neither reads nor writes such a list. It asks the project for the rows (<code>rows:</code> in <code>UiHost.Handle</code>) when the pages are built and again shortly after that field changes, shows them to edit, counts an edit as an unsaved change, and on Save hands the project the rows as they are, with the rows it was given (<code>saveRows:</code>); the project answers the rows as it keeps them. While the list has unsaved changes, the field it depends on does not move on: it goes back, and the footer says to save or undo first. Nothing of the list is in the settings file, an export or a reset, and a default it declares is not shown. Rows the project does not take stay unsaved, with the reason behind the red <strong>i</strong>. See <em>A list the project keeps</em> under <em>The game&#39;s side</em></td>
+</tr>
+<tr>
 <td><code>file</code></td>
 <td>no</td>
 <td>a file next to the settings file that holds this value instead (a word bank, a question list); relative or absolute</td>
@@ -2601,7 +2637,10 @@ youtube or kick; a <code>{placeholder}</code> in a message&#39;s default text th
 that is no message; a field the project locks that is no setting; <code>every</code> on anything but an <code>auto</code> action,
 <code>saveFirst</code> on anything but a button; a <code>hint</code> on anything but a one-line text field; a <code>country</code> whose default is
 neither a code nor empty, or which offers a code that is none; a state of a header pill whose condition names no
-setting, or whose tone is none; another title for a section no setting is in; <code>rowKey</code>, <code>fixedRows</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
+setting, or whose tone is none; another title for a section no setting is in; a <code>format</code> on
+anything but a list, one that is not <code>pairs</code>, or <code>pairs</code> on a list that has not two columns of plain values; the
+page <code>sblog</code> named without a Streamer.bot log declared; <code>rowsFrom</code> on anything but a list, one that names itself or
+a key that is no setting, or beside <code>file</code> or <code>transient</code>; <code>rowKey</code>, <code>fixedRows</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
 column the list does not have, a <code>filter</code> condition without an operator or one that names what is neither a column
 nor a setting (such a condition counts as holding, so every row shows); <code>optionsFrom</code> on a field that is no dropdown, one that names itself or a key
 that is no setting; a <code>multi</code> without options, or whose default names a value none of them has; a
@@ -2841,7 +2880,7 @@ whatever order the window declares them in (a page of the project&#39;s own with
 </tr>
 <tr>
 <td><code>Pages(…)</code></td>
-<td>the pages in order: <code>P(id, title, icon, fields…)</code> or the id of a standard page (<code>messages</code>, <code>log</code>, <code>help</code>, <code>about</code>). <code>icon</code> is an emoji or a conventions name (<code>gear</code>, <code>dice</code>, <code>coins</code>, <code>clock</code>, <code>shield</code>, <code>chat</code>, <code>trophy</code>, <code>monitor</code>, <code>list</code>, <code>book</code>, <code>info</code>, <code>cards</code>, <code>chart</code>, <code>gift</code>). <code>fields</code> are keys or patterns like <code>overlay*</code> the page claims ahead of their own page; a pattern never takes a template off the Messages page, a full key does (it is then that page&#39;s field, not an entry of the Messages picker); a field the user moved to another page in the customise mode stays there. <code>P(...).AtBottom()</code> puts a page of the project&#39;s own at the foot of the rail, above How to play, Log and About (in the schema <code>&quot;bottom&quot;: true</code>)</td>
+<td>the pages in order: <code>P(id, title, icon, fields…)</code> or the id of a standard page (<code>messages</code>, <code>log</code>, <code>sblog</code>, <code>help</code>, <code>about</code>). <code>icon</code> is an emoji or a conventions name (<code>gear</code>, <code>dice</code>, <code>coins</code>, <code>clock</code>, <code>shield</code>, <code>chat</code>, <code>trophy</code>, <code>monitor</code>, <code>list</code>, <code>book</code>, <code>info</code>, <code>cards</code>, <code>chart</code>, <code>gift</code>). <code>fields</code> are keys or patterns like <code>overlay*</code> the page claims ahead of their own page; a pattern never takes a template off the Messages page, a full key does (it is then that page&#39;s field, not an entry of the Messages picker); a field the user moved to another page in the customise mode stays there. <code>P(...).AtBottom()</code> puts a page of the project&#39;s own at the foot of the rail, above How to play, Log and About (in the schema <code>&quot;bottom&quot;: true</code>)</td>
 </tr>
 <tr>
 <td><code>InLanguage(code)</code></td>
@@ -2850,6 +2889,10 @@ whatever order the window declares them in (a page of the project&#39;s own with
 <tr>
 <td><code>Log(folder, files, …)</code></td>
 <td>the Log page: the folder (relative to the Streamer.bot folder) and the files in it (<code>BJG-log*.txt</code>), which the settings action reads and the page follows as they change; <code>writeLogKey</code> the bool behind &quot;Write a log file per day&quot;, <code>writeLogLabel</code> (another wording for that switch) and <code>writeLogHelp</code>, <code>columns</code> after Time and Result as `&quot;Header</td>
+</tr>
+<tr>
+<td><code>StreamerBotLog(match…)</code></td>
+<td>Streamer.bot&#39;s own log as a page, for a project that logs with <code>CPH.LogInfo</code> and writes no file of its own: the lines of one day that hold one of the texts (<code>&quot;[My Project&quot;</code>, <code>&quot;&#39;My Action&#39;&quot;</code>), whatever the case; without a text, every line. Newest first, with a search, a filter by level (<code>ERR</code>, <code>WRN</code>, <code>INF</code>, <code>DBG</code>) and by source, and the day to pick from the log files there are. The source is what stands before <code>::</code> in a line, or what the project puts in brackets in front of its own (<code>[My Project/Settings]</code>). Lines without a head of their own (a stack trace) go with the entry before them; the box under the list shows the whole entry. The page follows the file while Streamer.bot writes it, and holds the newest 5,000 lines of a day. It comes by itself, at the foot of the rail above About; naming <code>&quot;sblog&quot;</code> among the pages gives it a title or an icon of its own. The window reads the file itself, so no settings action is too old for it. In the schema <code>&quot;streamerBotLog&quot;: { &quot;match&quot;: [ … ] }</code>. A UIFramework before 2.3.0 shows no such page</td>
 </tr>
 <tr>
 <td><code>Cooldowns(C(command, global, user), …)</code></td>
@@ -3170,6 +3213,26 @@ before stub 0.3.3, and in the preview, the field is locked and shows nothing. A 
 knows no <code>global</code> and would write the value into the file, so declare <code>requires:</code> on the window with it.</p>
 <p><strong>The values of a <code>multi</code>, a <code>namelist</code> or a <code>grouplist</code></strong> come as a <code>string[]</code> from <code>UiSettings.Values(key)</code>:
 trimmed, without empty and repeated ones. The host reader has <code>Values(key, fallback)</code>.</p>
+<p><strong>A list stored as pairs</strong> (<code>format: &quot;pairs&quot;</code>) comes as its keys and values from <code>UiSettings.Pairs(key)</code>, a
+<code>List&lt;KeyValuePair&lt;string, string&gt;&gt;</code> in the order of the text. The host reader has <code>Pairs(key, fallback)</code>.</p>
+<p><strong>A list the project keeps</strong> (<code>rowsFrom</code>) never touches a file from the window&#39;s side. The project hands the rows
+over and takes them back, under whatever lock its other code uses:</p>
+<pre><code class="language-csharp">S(&quot;notesOf&quot;, &quot;&quot;, kind: &quot;options&quot;, optionsFrom: &quot;&quot;, transient: true, label: &quot;Notes of&quot;),
+S(&quot;notes&quot;, new string[0], kind: &quot;list&quot;, rowsFrom: &quot;notesOf&quot;, columns: new[] { &quot;text|string|Note&quot;, &quot;author|string|By|readonly&quot; }),
+…
+UiHost.Handle(args, CPH, &quot;My Project&quot;, &quot;myproject&quot;, Version, SettingsFile,
+    options: (key, s) =&gt; key == &quot;notesOf&quot; ? NoteFiles() : null,
+    rows: (key, s) =&gt; ReadNotes(s.String(&quot;notesOf&quot;)),                                      // a JSON array of objects
+    saveRows: (key, s, loaded) =&gt; KeepNotes(s.String(&quot;notesOf&quot;), s.Rows(key), loaded));    // answers the rows as kept
+</code></pre>
+<p><code>rows</code> gets the values as they stand in the window, the ones that are never saved included (the dropdown that picks
+whose rows are meant). <code>saveRows</code> gets the same values with the list&#39;s rows under its key (<code>s.Rows(key)</code>), and the
+rows the window was handed, as JSON. With the two the project tells the user&#39;s changes from its own since: a row in
+neither the handed ones nor its file is new from the window, one that was handed and is gone was removed there, and
+one its file has that was never handed came from its own side and stays. A property of a row that no column shows
+(an id, a number) comes back as it was handed. <code>saveRows</code> answers the rows as it keeps them, and the window shows
+those. What it throws is the reason the window names, and the list stays unsaved. Both questions travel as a <code>test</code>
+request, so every settings action carries them; only the host block has to be this release&#39;s.</p>
 <p><strong>A project with several actions</strong> gives one action the host block and the others the host reader
 (<code>stub/HostReader.cs</code>); see <em>A project with several actions</em> in <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md">Getting-Started.md</a>.</p>
 <p><strong>The points system.</strong> <code>UiCurrency.Detect(CPH, settings)</code> gives the user variable the points live in

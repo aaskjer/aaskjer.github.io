@@ -5,9 +5,66 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-22T17:22:57Z</updated>
+  <updated>2026-11-25T18:33:35Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>GameCheck v2.1.0: GameCheck 2.1.0: a Log page in the settings window</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v2.1.0"/>
+    <id>https://github.com/aaskjer/GameCheck/releases/tag/v2.1.0</id>
+    <published>2026-11-25T18:33:35Z</published>
+    <updated>2026-11-25T18:33:35Z</updated>
+    <category term="GameCheck" label="GameCheck"/>
+    <content type="html">&lt;p&gt;The settings window has a &lt;strong&gt;Log&lt;/strong&gt; page now. What the two checks post has not changed.&lt;/p&gt;
+&lt;h3&gt;🪟 The window&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A Log page.&lt;/strong&gt; It shows what the two checks and the window wrote into Streamer.bot&amp;#39;s log, newest first: which store answered, what was posted, what failed and why. With a search, a filter by level (&lt;code&gt;ERR&lt;/code&gt;, &lt;code&gt;WRN&lt;/code&gt;, &lt;code&gt;INF&lt;/code&gt;) and by source (&lt;code&gt;FreeGames&lt;/code&gt;, &lt;code&gt;GameSales&lt;/code&gt;, the settings window), and the day to pick. It follows the log while the checks run. Before, those lines had to be looked up in Streamer.bot&amp;#39;s own log window.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;✏️ Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The window needs UIFramework 2.3.0.&lt;/strong&gt; With an older one installed, the settings action offers the update when the window is opened: click &lt;code&gt;Yes&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧 Updating from 2.0.0&lt;/h3&gt;
+&lt;p&gt;Import the new version over the old one. The three actions are replaced; the settings file, the bot token, the webhook URL, the IsThereAnyDeal key and the messages in Discord stay.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;GameCheck.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. To set the actions up by hand, the three scripts are attached as well. See the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; and the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/CHANGELOG.md&quot;&gt;changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/GameCheck/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/gamecheck/&quot;&gt;GameCheck on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v2.3.0: UIFramework v2.3.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.3.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.3.0</id>
+    <published>2026-11-25T18:24:29Z</published>
+    <updated>2026-11-25T18:24:29Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;Streamer.bot&amp;#39;s own log as a page of the window, a list whose rows the project keeps itself, and a list that is
+stored as one line of text. All three come with the DLL; declaring them needs the host block of this release. The
+settings action stays 0.3.3.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Streamer.bot&amp;#39;s log as a page: &lt;code&gt;.StreamerBotLog(&amp;quot;[My Project&amp;quot;, …)&lt;/code&gt;.&lt;/strong&gt; For a project that logs with
+&lt;code&gt;CPH.LogInfo&lt;/code&gt; and writes no log file of its own. The page shows the lines of one day that hold one of the texts
+it is given, newest first, with a search, a filter by level and by source, and the day to pick. A stack trace
+goes with the entry it follows, and the box under the list shows the whole entry. The page follows the file
+while Streamer.bot writes it. It comes by itself, at the foot of the rail; without a text, it shows every line.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A list the project keeps itself: &lt;code&gt;rowsFrom&lt;/code&gt; on a &lt;code&gt;list&lt;/code&gt;, with &lt;code&gt;rows:&lt;/code&gt; and &lt;code&gt;saveRows:&lt;/code&gt; in &lt;code&gt;UiHost.Handle&lt;/code&gt;.&lt;/strong&gt;
+For rows the window must not write behind the project&amp;#39;s back: notes in a file per category that chat commands
+write under a lock of their own. The window asks the project for the rows, again when the field named in
+&lt;code&gt;rowsFrom&lt;/code&gt; changes (a dropdown that picks the category), shows them to edit and counts an edit as an unsaved
+change. Save hands the project the rows as they are with the rows the window was given, so the project can tell
+what the user changed from what changed on its own side meanwhile, and the project answers the rows as it keeps
+them. Nothing of such a list is in the settings file, an export or a reset. While it has unsaved changes, the
+field it depends on does not move on.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A list stored as pairs of text: &lt;code&gt;format: &amp;quot;pairs&amp;quot;&lt;/code&gt; on a &lt;code&gt;list&lt;/code&gt; of two columns.&lt;/strong&gt; The file holds &lt;code&gt;a:b,c:d&lt;/code&gt; where a
+list is otherwise an array of rows, for a project that has always read its pairs so. The window shows rows to
+edit as for any list. It reads commas, semicolons or lines between the entries and &lt;code&gt;:&lt;/code&gt; or &lt;code&gt;=&lt;/code&gt; between a key and
+its value, and writes &lt;code&gt;key:value&lt;/code&gt; between commas. The cells do not take what would part the pairs anew. The
+project gets the text in every request, and &lt;code&gt;UiSettings.Pairs(key)&lt;/code&gt; reads it (&lt;code&gt;Pairs(key, fallback)&lt;/code&gt; in the
+host reader).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;f173eb8240e88ed119889230d053706d74de85c79962e050bbd9190006c64dfe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.3.0&quot;&gt;Download v2.3.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>GameCheck v2.0.0: GameCheck 2.0.0: the settings window is built with UIFramework</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v2.0.0"/>
@@ -1744,63 +1801,5 @@ never came. A file damaged since its download is no longer loaded for it.&lt;/li
 &lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1&quot;&gt;Download v2.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Trivia Game v9.3.1: A settings action that picks a UIFramework it fits (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.1"/>
-    <id>https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.1</id>
-    <published>2026-11-12T12:51:23Z</published>
-    <updated>2026-11-12T12:51:23Z</updated>
-    <category term="Trivia-Game" label="Trivia Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came, and the window could not tell whether you are live. A file damaged since its download is no
-longer loaded for either.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The timer for automatic rounds stays off once you switch it off.&lt;/strong&gt; A run that came in just after had
-switched it on again.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Trivia-Game/releases/tag/v9.3.1&quot;&gt;Download v9.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/trivia-game/&quot;&gt;Trivia Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.8.4: UIFramework v1.8.4 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4</id>
-    <published>2026-11-12T12:08:47Z</published>
-    <updated>2026-11-12T12:08:47Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A DLL is not used by a settings action older than it asks for.&lt;/strong&gt; &lt;code&gt;minHostStub&lt;/code&gt; in &lt;code&gt;latest.json&lt;/code&gt; only kept such
-a release from being downloaded; a DLL another game had installed or loaded already was used all the same. The
-DLL now names the stub it needs (&lt;code&gt;MinHostStub&lt;/code&gt; in &lt;code&gt;UIFramework.csproj&lt;/code&gt;, in the file&amp;#39;s product version as
-&lt;code&gt;1.8.4+stub.0.1.0&lt;/code&gt;) and opens no window for an older one: the game&amp;#39;s dialog says which stub it needs. The
-release workflow writes the same value into &lt;code&gt;latest.json&lt;/code&gt;, so the two cannot disagree.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Settings action (stub 0.2.1): an installed DLL that needs a newer stub is passed over&lt;/strong&gt; for an older one that
-fits, before it is loaded, with a line in the log. When no installed DLL fits, the dialog says so and offers the
-download.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Log page: lines coming in leave the row being read where it is.&lt;/strong&gt; The grid kept its offset, which counts rows,
-and the newest line is the first row: every line a round in chat added pushed the rows down by one. The entry
-at the top of the grid is found again and put back there. At the very top nothing is held, so new lines show
-as they come.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Checked&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A table list&amp;#39;s search and the row being edited&lt;/strong&gt; (the row editor&amp;#39;s mistake of 1.8.2): the table does not have
-it. The row stays while a cell is typed in and on the way to the next cell, and the search takes it when the
-row is left. One difference stays: saving while the cell is still open ends the row&amp;#39;s edit, so a row that no
-longer matches the search is taken then.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;2069420975111791af1cecfb02194f7af85860cf6417f572df9b0eb396bac4a6&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.8.4&quot;&gt;Download v1.8.4&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
