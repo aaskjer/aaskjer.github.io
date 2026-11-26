@@ -1563,7 +1563,7 @@ main > .section::before {
 
 .features .i {
   margin-top: 0.22em;
-  color: var(--green);
+  color: var(--spot-ink, var(--green));
   stroke-width: 2.6;
 }
 
@@ -1623,13 +1623,338 @@ main > .section::before {
 .window-bar span:nth-child(2) { background: #febc2e; }
 .window-bar span:nth-child(3) { background: #28c840; }
 
+/* the picture, and under it whatever the project puts there (spotlight.aside) and what is new */
+.spotlight__media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-width: 0;
+}
+
+/* a soft light in the project's colour behind its picture */
+.spotlight__media::before {
+  content: '';
+  position: absolute;
+  inset: -12% -8%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--spot, transparent) 26%, transparent), transparent);
+  pointer-events: none;
+}
+
+:root[data-theme='light'] .spotlight__media::before {
+  opacity: 0.6;
+}
+
+.spotlight__media > * {
+  position: relative;
+}
+
+@media (min-width: 901px) {
+  .spotlight--flip {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .spotlight--flip .spotlight__media {
+    order: -1;
+  }
+}
+
 @media (max-width: 900px) {
   .spotlight {
     grid-template-columns: 1fr;
   }
 }
 
-/* ---------- the Featured box: one big spotlight, the others as cards below it ---------- */
+/* ---------- the pieces of a project's own Featured card (BLOCKS in main.js) ---------- */
+
+/* the project's colour (spotlight.accent) as lines and icons; darker on light paper */
+:is(.spotlight, .card--update) {
+  --spot-ink: var(--spot, var(--accent));
+}
+
+:root[data-theme='light'] :is(.spotlight, .card--update)[style] {
+  --spot-ink: color-mix(in srgb, var(--spot) 55%, #111112);
+}
+
+.block__label {
+  margin-bottom: 0.5rem;
+  color: var(--faint);
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* big numbers */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.8rem;
+  margin: 0;
+}
+
+.facts > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.15rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--spot-ink);
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.facts dt {
+  color: var(--muted);
+  font-family: var(--font-label);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+/* chat commands as keys */
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.keys kbd {
+  display: inline-block;
+  padding: 0.28rem 0.62rem;
+  border: 1px solid var(--border-strong);
+  border-bottom: 3px solid var(--spot-ink);
+  border-radius: 4px;
+  background: var(--tile);
+  color: var(--text);
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* steps with arrows between them */
+.flow {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow li {
+  position: relative;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-top: 3px solid var(--spot-ink);
+  border-radius: 4px;
+  background: var(--tile);
+}
+
+.flow li + li::before {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  left: -1.5rem;
+  width: 1.5rem;
+  color: var(--spot-ink);
+  font-family: var(--font-label);
+  font-weight: 700;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.flow strong {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+}
+
+.flow span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 560px) {
+  .flow {
+    grid-auto-flow: row;
+    gap: 1.3rem;
+  }
+
+  .flow li + li::before {
+    content: '↓';
+    top: -1.3rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* a row of names */
+.names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.names li {
+  padding: 0.18rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--spot-ink);
+  border-radius: 3px;
+  background: var(--surface-2);
+  font-size: 0.84rem;
+}
+
+.names--mono li {
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* letter tiles */
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.letters li {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.6rem;
+  border-bottom: 3px solid var(--spot-ink);
+  background: var(--tile);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.letters .is-marked {
+  border-bottom-width: 5px;
+  color: var(--spot-ink);
+}
+
+/* the logos of other projects */
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spotlight .logos .tile {
+  width: 44px;
+  height: 44px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.logos .tile--mono {
+  font-size: 0.95rem;
+}
+
+/* post-its, slightly askew */
+.postits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1rem;
+  margin: 0;
+  padding: 0.25rem 0.35rem 0.4rem;
+  list-style: none;
+}
+
+.postits li {
+  padding: 0.7rem 0.8rem 0.85rem;
+  background: var(--note, #fde68a);
+  color: #1d1a10;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.35;
+  box-shadow: 0 10px 16px -10px rgb(0 0 0 / 0.7);
+  transform: rotate(var(--tilt, -1.4deg));
+}
+
+.postits li:nth-child(4n + 2) { --note: #fbcfe8; --tilt: 1.2deg; }
+.postits li:nth-child(4n + 3) { --note: #bae6fd; --tilt: 0.8deg; }
+.postits li:nth-child(4n + 4) { --note: #bbf7d0; --tilt: -0.9deg; }
+
+/* one line before and after */
+.fix {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.fix code {
+  display: block;
+  padding: 0.5rem 0.7rem 0.5rem 1.7rem;
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--tile);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.fix code::before {
+  position: absolute;
+  left: 0.6rem;
+  font-weight: 700;
+}
+
+.fix .fix__before {
+  border-left: 3px solid #f87171;
+  color: var(--muted);
+}
+
+.fix__before::before {
+  content: '−';
+  color: #f87171;
+}
+
+.fix .fix__after {
+  border-left: 3px solid var(--green);
+}
+
+.fix__after::before {
+  content: '+';
+  color: var(--green);
+}
+
+:root[data-theme='light'] .fix .fix__after {
+  border-left-color: #15803d;
+}
+
+:root[data-theme='light'] .fix__after::before {
+  color: #15803d;
+}
+
+/* ---------- the Featured box: cards in pairs, with an odd number one big card on top ---------- */
 
 /* hidden until main.js knows which projects to show */
 .featured.is-pending .featured__inner {
@@ -1638,8 +1963,19 @@ main > .section::before {
 
 .featured__more {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
+}
+
+@media (max-width: 760px) {
+  .featured__more {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* the project's colour as a line under its picture */
+.card--update[style] .card__shot {
+  border-bottom: 2px solid var(--spot-ink);
 }
 
 /* the first sentence of the latest release notes */

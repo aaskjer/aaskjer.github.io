@@ -135,7 +135,10 @@
     if (p.guide) {
       links.push(`<a class="btn btn--ghost btn--sm" href="${esc(guideUrl(p))}" data-track="guide">${icon('book')}${esc(p.guide.label)}</a>`);
     }
-    if (github || !links.length) {
+    // beside three other buttons only the icon, so all four fit on one line
+    if (github && links.length >= 3) {
+      links.push(`<a class="btn btn--ghost btn--sm btn--icon" href="${url}" data-track="github" title="GitHub" aria-label="${esc(name)} on GitHub">${icon('github')}</a>`);
+    } else if (github || !links.length) {
       links.push(`<a class="btn btn--ghost btn--sm" href="${url}" data-track="github">${icon('github')}GitHub</a>`);
     }
     return links.join('');
@@ -247,9 +250,55 @@
     return `<p class="whats-new"><strong>What's new:</strong> ${esc(p.notes)}</p>`;
   }
 
+  /* The pieces a project's own Featured card is built from, see `spotlight` in projects.js. Each
+     project picks and orders its own, so no two cards look alike. */
+  const BLOCKS = {
+    // ticks; `true` takes the project's `features`
+    features: (items, p) => `<ul class="features">${(items === true ? p.features || [] : items)
+      .map(f => `<li>${icon('check')}<span>${esc(f)}</span></li>`).join('')}</ul>`,
+    // the same as post-its, slightly askew
+    notes: items => `<ul class="postits">${items.map(n => `<li>${esc(n)}</li>`).join('')}</ul>`,
+    // big numbers: [value, what it counts]
+    facts: items => `<dl class="facts">${items.map(([value, label]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`,
+    // chat commands as keys
+    commands: items => `<ul class="keys">${items.map(c => `<li><kbd>${esc(c)}</kbd></li>`).join('')}</ul>`,
+    // the way something takes: [step, detail], with arrows between them
+    flow: items => `<ol class="flow">${items.map(([step, detail]) =>
+      `<li><strong>${esc(step)}</strong>${detail ? `<span>${esc(detail)}</span>` : ''}</li>`).join('')}</ol>`,
+    // a row of names: sources, stores, bets
+    list: (items, p, b) => `<ul class="names${b.mono ? ' names--mono' : ''}">${items.map(n => `<li>${esc(n)}</li>`).join('')}</ul>`,
+    // letter tiles, '_' is a blank and the last `mark` letters stand out; `text` is what screen readers hear
+    letters: (items, p, b) => `<span class="sr-only">${esc(b.text || items.join(''))}</span><ol class="letters" aria-hidden="true">${items
+      .map((l, i) => l === '_' ? '<li class="is-blank"></li>'
+        : `<li${i >= items.length - (b.mark || 0) ? ' class="is-marked"' : ''}>${esc(l)}</li>`).join('')}</ol>`,
+    // the logos of other projects on this site, by repository name
+    logos: items => `<ul class="logos">${items.map(repo => projects.find(q => q.repo === repo)).filter(Boolean)
+      .map(q => `<li title="${esc(q.name || q.repo)}">${logoTile(q)}<span class="sr-only">${esc(q.name || q.repo)}</span></li>`).join('')}</ul>`,
+    // one line before and after; a long path breaks after a backslash
+    code: ({ before, after }) => {
+      const path = text => esc(text).replace(/\\/g, '\\<wbr>');
+      return `<div class="fix"><code class="fix__before"><span class="sr-only">Before: </span>${path(before)}</code>`
+        + `<code class="fix__after"><span class="sr-only">After: </span>${path(after)}</code></div>`;
+    },
+  };
+
+  function block(b, p) {
+    const type = Object.keys(BLOCKS).find(key => key in b);
+    if (!type) return '';
+    const label = b.label ? `<p class="block__label">${esc(b.label)}</p>` : '';
+    return `<div class="block block--${type}">${label}${BLOCKS[type](b[type], p, b)}</div>`;
+  }
+
+  // The project's colour for the details of its Featured card.
+  const spotStyle = p => p.spotlight && p.spotlight.accent ? ` style="--spot: ${esc(p.spotlight.accent)}"` : '';
+
+  // The big Featured card. Without a `spotlight` entry: the description, the `features` and the picture.
   function spotlight(p, reason) {
+    const own = p.spotlight || {};
+    const blocks = own.blocks || (p.features ? [{ features: true }] : []);
+    const aside = (own.aside || []).map(b => block(b, p)).join('');
     return `
-      <article class="spotlight" data-repo="${esc(p.repo)}">
+      <article class="spotlight${own.flip ? ' spotlight--flip' : ''}" data-repo="${esc(p.repo)}"${spotStyle(p)}>
         <div class="spotlight__body">
           <div class="card__head">
             ${logoTile(p)}
@@ -259,23 +308,36 @@
             </div>
           </div>
           <p class="spotlight__text">${esc(p.tagline || 'No description yet.')}</p>
-          ${p.features ? `<ul class="features">
-            ${p.features.map(f => `<li>${icon('check')}<span>${esc(f)}</span></li>`).join('')}
-          </ul>` : whatsNew(p, reason)}
+          ${blocks.map(b => block(b, p)).join('')}
           ${chips(p)}
           <div class="spotlight__foot">
             <div class="meta-row">${badges(p)}${metaRow(p)}</div>
             <div class="actions">${actions(p, { github: true })}</div>
           </div>
         </div>
-        ${spotlightShot(p)}
+        <div class="spotlight__media">
+          ${spotlightShot(p)}
+          ${aside}
+          ${whatsNew(p, reason)}
+        </div>
       </article>`;
   }
 
-  // A featured project below the big one: a card with its scene, why it is featured and what is new.
+  // The one piece of a project's Featured card that a small card shows too: its numbers, else its
+  // commands, else a list, the way it works, a before and after, letters or logos.
+  function cardBlock(p) {
+    const all = p.spotlight ? (p.spotlight.blocks || []).concat(p.spotlight.aside || []) : [];
+    for (const type of ['facts', 'commands', 'list', 'flow', 'code', 'letters', 'logos']) {
+      const found = all.find(b => type in b);
+      if (found) return block(found, p);
+    }
+    return '';
+  }
+
+  // A featured project as a card: its scene, why it is featured, a piece of its own card and what is new.
   function update(p, reason) {
     return `
-      <article class="card card--update" data-repo="${esc(p.repo)}">
+      <article class="card card--update" data-repo="${esc(p.repo)}"${spotStyle(p)}>
         ${shot(p)}
         <div class="card__head">
           ${logoTile(p)}
@@ -286,6 +348,7 @@
           </div>
         </div>
         <p class="card__text card__text--full">${esc(p.tagline || 'No description yet.')}</p>
+        ${cardBlock(p)}
         ${whatsNew(p, reason)}
         <div class="card__foot">
           <div class="meta-row">${metaRow(p)}</div>
@@ -356,8 +419,8 @@
     return fallback ? [{ p: fallback, reason: null }] : [];
   }
 
-  // The newest featured project gets the big box with its highlights and picture; the others sit
-  // below it side by side, as cards.
+  // The cards sit in pairs, so none is ever stretched across the whole width: with an odd number
+  // the newest project gets the big card on top, with an even number they are all cards.
   function renderFeatured() {
     const box = $('#spotlight');
     const list = featuredList();
@@ -365,11 +428,12 @@
     const key = list.map(f => `${f.p.repo}:${f.reason ? f.reason.text : ''}:${f.p.notes ? 1 : 0}`).join('|');
     if (box.dataset.key === key) return;
     box.dataset.key = key;
-    const [first, ...rest] = list;
-    $('#featured').hidden = !first;
-    box.innerHTML = first ? `
+    $('#featured').hidden = !list.length;
+    const big = list.length % 2 ? list[0] : null;
+    const rest = big ? list.slice(1) : list;
+    box.innerHTML = list.length ? `
       <div class="featured__inner">
-        ${spotlight(first.p, first.reason)}
+        ${big ? spotlight(big.p, big.reason) : ''}
         ${rest.length ? `<div class="featured__more">${rest.map(f => update(f.p, f.reason)).join('')}</div>` : ''}
       </div>` : '';
   }
