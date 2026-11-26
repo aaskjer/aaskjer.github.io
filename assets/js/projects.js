@@ -19,7 +19,17 @@
  *   tagline    only a fallback: the site shows the short description from the repository's
  *              About box on GitHub (projects under "More on GitHub" too)
  *   section    'tools', 'games' or 'more' (under "More on GitHub", before the repositories GitHub adds)
- *   features   list of highlights, shown when the project is in the Featured box (see `featured` below)
+ *   features   list of highlights, shown on the project's page and, without a `spotlight`, in the Featured box
+ *   spotlight  the project's own card in the Featured box (see `featured` below), so no two look alike:
+ *              { accent, flip, blocks, aside }. `accent` colours its details, `flip: true` puts the
+ *              picture on the left, `blocks` follow the description and `aside` sits under the picture.
+ *              A block is one of { features } (ticks, `true` for the project's `features`), { notes }
+ *              (the same as post-its), { facts: [[value, label]] }, { commands }, { flow: [[step, detail]] },
+ *              { list } (`mono: true` for code), { letters } ('_' a blank, `mark` the last letters that
+ *              stand out, `text` for screen readers), { logos } (repositories of this list) or
+ *              { code: { before, after } }, each with an optional `label`. A small card in the Featured
+ *              box shows one of them too: the first `facts`, else `commands`, `list`, `flow`, `code`,
+ *              `letters` or `logos` (cardBlock in main.js)
  *   screenshot picture the Featured box shows instead of the scene (`screenshotFull` is what a
  *              click on it opens)
  *   scene      picture on top of the card, `sceneAlt` describes it; the card shows the
@@ -90,6 +100,11 @@ window.SITE = {
       guide: { label: 'Manual', href: 'Manual.md' },
       importString: 'Utilities/Import-String.md',
       moreDocs: [{ id: 'comparison', label: 'Comparison', file: 'Utilities/Comparison.md' }],
+      spotlight: {
+        accent: '#9146ff',
+        blocks: [{ features: true }],
+        aside: [{ label: 'A few of its chat commands', commands: ['!Permit', '!CheckLink', '!Vote', '!AntiRaid', '!nuke'] }],
+      },
       version: 'v4.0.1', stars: 7, downloads: 133,
     },
     {
@@ -109,6 +124,20 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick', 'Owncast', 'Rumble', 'Picarto', 'TikTok'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#5865f2',
+        flip: true,
+        blocks: [
+          { facts: [['7', 'streaming platforms'], ['3', 'places to post'], ['3', 'slash commands']] },
+          { features: [
+            'Go-live and stream-ended posts for you and your streamer friends',
+            'Game, viewers, box art, a preview and a Watch button in the embed',
+            '@everyone, @here or role pings, crossposting and cooldowns',
+            'Members sign themselves up for announcements and roles',
+          ] },
+        ],
+        aside: [{ label: 'Slash commands in Discord', commands: ['/bsa setup', '/streamerfriends', '/crosspost'] }],
+      },
       version: 'v2.1.1', stars: 1, downloads: 73,
     },
     {
@@ -131,6 +160,21 @@ window.SITE = {
       download: 'https://github.com/aaskjer/SBRefFix/releases/latest/download/SBRefFix.zip',
       downloadLabel: 'Download ZIP',
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#5391fe',
+        blocks: [
+          { label: 'One reference, exported from a Streamer.bot on the desktop', code: {
+            before: '..\\..\\..\\..\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.dll',
+            after: '%SystemRoot%\\Microsoft.NET\\Framework64\\v4.0.30319\\System.dll',
+          } },
+          { features: [
+            'Takes .sb files, import strings and the clipboard',
+            'Rewrites only the paths tied to the exporting PC',
+            'Everything else in the export stays byte for byte',
+            'Writes nothing unless every check passes',
+          ] },
+        ],
+      },
       version: 'v1.0.0', stars: 1, downloads: 1,
     },
     {
@@ -157,6 +201,20 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
+      spotlight: {
+        accent: '#c084fc',
+        flip: true,
+        blocks: [
+          { facts: [['9', 'projects built on it'], ['5', 'languages']] },
+          { features: [
+            'A whole settings window from one table in your C# code',
+            'Search with Ctrl+F, a tour and a customise mode',
+            'A log reader, a help page and an about page',
+            'Tells about new releases and updates itself',
+          ] },
+        ],
+        aside: [{ label: 'Built on it', logos: ['Blackjack-Game', 'Battleship-Game', 'Slot-Machine-Game', 'Classic-Chat-Gamble', 'Trivia-Game', 'Hangman-Game', 'RhymeTime', 'High-Low-Game', 'GameCheck'] }],
+      },
       version: 'v2.0.0', stars: 0, downloads: 130,
     },
     {
@@ -176,6 +234,18 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#22c55e',
+        blocks: [
+          { flow: [['!suggestion', 'in Twitch, YouTube or Kick chat'], ['Streamer.bot', 'works out the platform'], ['Your server', 'Discord, Stoat or GameVox']] },
+          { features: [
+            'An embed with the viewer\'s avatar, name, platform and time',
+            'A forum post per suggestion, or all of them in one thread',
+            'Several channels at once',
+            'Chat hears back only once the post arrived',
+          ] },
+        ],
+      },
       version: 'v1.0.0', stars: 0, downloads: 1,
     },
     {
@@ -195,6 +265,19 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#facc15',
+        flip: true,
+        blocks: [
+          { notes: [
+            'One list per game, from the Twitch or Kick category',
+            'Each note grows as big as its post-it allows',
+            'The seventh note sticks over the first',
+            'A backup file per game keeps every note',
+          ] },
+          { label: 'In chat', commands: ['!note', '!delnote', '!clearnotes', '!shownotes'] },
+        ],
+      },
       version: 'v1.0.2', stars: 0, downloads: 16,
     },
     {
@@ -217,6 +300,18 @@ window.SITE = {
         { name: 'IsThereAnyDeal API key', what: 'optional, adds the giveaways and deals of more shops' },
       ],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#66c0f4',
+        blocks: [
+          { label: 'Free games and deals from', list: ['Steam', 'Epic Games', 'GOG', 'Nintendo eShop (EU)', 'Prime Gaming', 'IsThereAnyDeal'] },
+          { features: [
+            'One message per topic, edited in place instead of spammed',
+            'A store that fails keeps its last good answer for 24 hours',
+            'Works with a Discord bot or just a webhook',
+          ] },
+        ],
+        aside: [{ label: 'Marked in the message', list: ['🆕 New', '🔥 Ends soon', '📉 Lowest price ever', '🚫 Not in your country'] }],
+      },
       version: 'v2.1.1', stars: 0, downloads: 10,
     },
     {
@@ -236,6 +331,20 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['Discord', 'Stoat', 'GameVox'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#f87171',
+        flip: true,
+        blocks: [
+          { facts: [['100+', 'countries with their holidays']] },
+          { features: [
+            'Regions too, such as Texas, Ontario, Bavaria or Queensland',
+            'Viewers save their own birthday',
+            'Your own days, once or every year',
+            'A daily post to Discord, Stoat and GameVox',
+          ] },
+        ],
+        aside: [{ label: 'In chat', commands: ['!birthday 24.12.', '!holidays', '!nextbirthdays'] }],
+      },
       version: 'v1.0.1', stars: 0, downloads: 13,
     },
     {
@@ -261,6 +370,19 @@ window.SITE = {
       ],
       platforms: ['Twitch'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#ef4444',
+        flip: true,
+        blocks: [
+          { label: 'Bans the bots on', list: ['TwitchInsights', 'TwitchBots.info', 'the ISDS ban lists'] },
+          { features: [
+            'Never bans the broadcaster, your bot account, mods, VIPs or the whitelist',
+            'Leaves Nightbot, StreamElements and other service bots alone',
+            'Only bans what is new, looking accounts up 100 at a time',
+            'A dry run that only logs what would be banned',
+          ] },
+        ],
+      },
       version: 'v1.1.0', stars: 0, downloads: 2,
     },
     {
@@ -280,6 +402,18 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#22c55e',
+        blocks: [
+          { facts: [['3', 'casino rule sets'], ['1–8', 'decks per shoe'], ['171', 'chat lines']] },
+          { features: [
+            'Hit, stand, double, split, surrender and insurance',
+            'Duels: points go straight from one chatter to the other',
+            'An OBS overlay with real cards and deal animations',
+          ] },
+        ],
+        aside: [{ label: 'In chat', commands: ['!blackjack', '!bjduel', '!house', '!stats'] }],
+      },
       version: 'v17.5.4', stars: 2, downloads: 162,
     },
     {
@@ -299,6 +433,19 @@ window.SITE = {
       preview: 'Gamble points in chat with numbers, keywords or percentages and chase jackpots. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#f59e0b',
+        flip: true,
+        blocks: [
+          { label: 'Bets in any form', commands: ['!gamble 500', '!gamble all', '!gamble half', '!gamble 50%', '!gamble 10k', '!gamble random'] },
+          { features: [
+            'Jackpots with their own chance and multiplier',
+            'One Fairness slider sets all the odds',
+            'Twitch channel points with four bet modes',
+            'Free play, cooldowns and an addicted list',
+          ] },
+        ],
+      },
       version: 'v25.2.3', stars: 1, downloads: 169,
     },
     {
@@ -318,6 +465,19 @@ window.SITE = {
       preview: 'Quiz rounds in chat, with blitz rounds and viewer suggestions. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#38bdf8',
+        blocks: [
+          { label: 'Questions from', list: ['Open Trivia DB', 'Wikidata', 'OdeNet', 'PokéAPI', 'IGDB', 'your own list'] },
+          { features: [
+            'Easy asks about Japan and Pikachu, hard about Nauru and Garbodor',
+            'An overlay that never shows what chat picked',
+            'Rounds that start themselves',
+            'Blitz rounds and harder questions pay more',
+          ] },
+        ],
+        aside: [{ label: 'In chat', commands: ['!Trivia', '!suggest', '!TStats'] }],
+      },
       version: 'v9.3.3', stars: 2, downloads: 119,
     },
     {
@@ -337,6 +497,20 @@ window.SITE = {
       preview: 'A slot machine in chat, with emote reels and a jackpot pool. A free Streamer.bot extension for Twitch, YouTube and Kick.',
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#e879f9',
+        flip: true,
+        blocks: [
+          { facts: [['3–6', 'reels'], ['4', 'channel point bet modes']] },
+          { features: [
+            'Rare emotes pay more',
+            'The settings window shows the odds you really set',
+            'A jackpot pool that lost bets feed',
+            'Subscriber and VIP boosts that add up',
+          ] },
+        ],
+        aside: [{ label: 'In chat', commands: ['!spin', '!slots'] }],
+      },
       version: 'v16.4.3', stars: 3, downloads: 75,
     },
     {
@@ -357,6 +531,19 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#a3e635',
+        blocks: [
+          { letters: ['H', '_', 'N', 'G', 'M', '_', 'N'], text: 'HANGMAN with two letters missing' },
+          { features: [
+            'Blitz rounds: less time, fewer lives, more points',
+            'Evil Hangman swaps the word mid-round',
+            'Words from Wikidata, OdeNet, PokéAPI and IGDB',
+            'An overlay that draws the gallows as chat guesses',
+          ] },
+        ],
+        aside: [{ label: 'In chat', commands: ['!hangman', '!guess', '!g'] }],
+      },
       version: 'v13.3.3', stars: 2, downloads: 45,
     },
     {
@@ -376,6 +563,20 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#60a5fa',
+        flip: true,
+        blocks: [
+          { facts: [['6×6', 'Blitz'], ['8×8', 'Quick'], ['10×10', 'Classic']] },
+          { features: [
+            'The Admiral never sees your board',
+            'Paid on the spot for every ship you sink',
+            'A turn clock with warnings at 30 and 15 seconds',
+            'Click to Fire on the overlay, on Twitch',
+          ] },
+        ],
+        aside: [{ label: 'In chat', commands: ['!battleship', '!fire', '!fleet', '!duel'] }],
+      },
       version: 'v2.4.2', stars: 1, downloads: 13,
     },
     {
@@ -402,6 +603,15 @@ window.SITE = {
       platforms: ['Twitch', 'YouTube', 'Kick'],
       tags: ['OBS overlay'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#f472b6',
+        flip: true,
+        blocks: [
+          { letters: ['S', 'T', 'R', 'E', 'A', 'M'], mark: 3, text: 'STREAM, rhyming on EAM' },
+          { features: true },
+        ],
+        aside: [{ label: 'In chat', commands: ['!Rhyme', '!RhymeBattle'] }],
+      },
       version: 'v2.4.2', stars: 1, downloads: 15,
     },
     {
@@ -428,6 +638,19 @@ window.SITE = {
       ],
       platforms: ['Twitch', 'YouTube', 'Kick'],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
+      spotlight: {
+        accent: '#34d399',
+        blocks: [
+          { facts: [['1–100', 'the next number'], ['2×', 'for a right !equal']] },
+          { features: [
+            'Twitch channel points with four kinds of stake, and refunds',
+            'Session, all-time and personal scoreboards',
+            'Free mode, and custom triggers for your own actions',
+            'One settings window, in English or German',
+          ] },
+        ],
+        aside: [{ label: 'Higher, lower or the same?', commands: ['!high', '!low', '!equal'] }],
+      },
       version: 'v2.3.3', stars: 0, downloads: 12,
     },
   ],
