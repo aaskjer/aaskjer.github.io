@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.4.0">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.5.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -285,6 +285,25 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
+<h2>[2.5.0] - 2026-11-26</h2>
+<p>A table says how it meets its width: kept within it, or free to run past it under a horizontal scrollbar. Declaring
+<code>fitWidth</code> needs the host block of this release; the settings action stays 0.3.3.</p>
+<h3>Added</h3>
+<ul>
+<li><strong><code>fitWidth</code> for a table: on a <code>list</code>, a <code>table</code>, <code>Log(…)</code> and <code>StreamerBotLog(…)</code>.</strong> <code>true</code> keeps the columns
+within the table&#39;s width: no horizontal scrollbar, and a text too long for its column ends in an ellipsis.
+<code>false</code> lets them run past it, each column as wide as its contents, under a horizontal scrollbar. Left out, every
+table does what it did: a list and Streamer.bot&#39;s log are kept within, the Log page and a <code>table</code> run past.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>A column the user drags wider no longer pushes the others out of a table that is kept within its width.</strong> The
+columns to its right share what is left, and the table keeps what the user set when the window&#39;s width changes.
+Before, they slid past the table&#39;s edge, with no scrollbar to reach them. The column that counts the rows is not
+dragged at all.</li>
+<li><strong>A line of Streamer.bot&#39;s log too long for the table ends in an ellipsis.</strong> It was cut off at the table&#39;s edge.
+The box under the list shows the whole entry, as before.</li>
+</ul>
 <h2>[2.4.0] - 2026-11-25</h2>
 <p>A table can do without the column that counts its rows, and rows a project hands over late no longer replace what
 the footer says. Declaring <code>rowNumbers</code> needs the host block of this release; the settings action stays 0.3.3.</p>
@@ -2611,6 +2630,11 @@ conventions cannot know.</p>
 <td>for a <code>list</code> shown as a table: <code>false</code> leaves out the first column, which counts the rows as they are shown (1, 2, 3 …). For rows that carry a number of their own in a column (a note&#39;s number, a rank), which would otherwise show two columns of numbers. Nothing else changes; a list in the row editor has no such column</td>
 </tr>
 <tr>
+<td><code>fitWidth</code></td>
+<td>no</td>
+<td>for a <code>list</code> shown as a table and for a <code>table</code>: how the table meets its width. <code>true</code> keeps the columns within it: no horizontal scrollbar, a text too long for its column ends in an ellipsis, and a column the user drags wider takes its room from the others instead of pushing them past the table&#39;s edge. <code>false</code> lets the columns run past it: each as wide as its contents, under a horizontal scrollbar. Left out, a <code>list</code> is kept within and a <code>table</code> runs past, as both did before there was the choice. The two log pages take the same word from the window (<code>Log</code>, <code>StreamerBotLog</code>)</td>
+</tr>
+<tr>
 <td><code>filter</code></td>
 <td>no</td>
 <td>for a <code>list</code>: the rows shown, conditions joined by <code>||</code>: <code>region= || Global=true || Counties~{region}</code>. The left side is a column of the list (in its exact spelling), else a setting of the window; <code>{key}</code> is a setting&#39;s current value. <code>=</code> and <code>!=</code> compare as text ignoring case, <code>~</code> is &quot;contains&quot; (for an array in the cell: one element equals it). A row that does not fit is hidden, not removed: it is saved back as it was</td>
@@ -2663,7 +2687,7 @@ neither a code nor empty, or which offers a code that is none; a state of a head
 setting, or whose tone is none; another title for a section no setting is in; a <code>format</code> on
 anything but a list, one that is not <code>pairs</code>, or <code>pairs</code> on a list that has not two columns of plain values; the
 page <code>sblog</code> named without a Streamer.bot log declared; <code>rowsFrom</code> on anything but a list, one that names itself or
-a key that is no setting, or beside <code>file</code> or <code>transient</code>; <code>rowKey</code>, <code>fixedRows</code>, <code>rowNumbers</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
+a key that is no setting, or beside <code>file</code> or <code>transient</code>; <code>rowKey</code>, <code>fixedRows</code>, <code>rowNumbers</code> or <code>filter</code> on a field that is no list, <code>fitWidth</code> on one that is neither a list nor a table, a <code>rowKey</code>
 column the list does not have, a <code>filter</code> condition without an operator or one that names what is neither a column
 nor a setting (such a condition counts as holding, so every row shows); <code>optionsFrom</code> on a field that is no dropdown, one that names itself or a key
 that is no setting; a <code>multi</code> without options, or whose default names a value none of them has; a
@@ -2915,7 +2939,7 @@ whatever order the window declares them in (a page of the project&#39;s own with
 </tr>
 <tr>
 <td><code>StreamerBotLog(match…)</code></td>
-<td>Streamer.bot&#39;s own log as a page, for a project that logs with <code>CPH.LogInfo</code> and writes no file of its own: the lines of one day that hold one of the texts (<code>&quot;[My Project&quot;</code>, <code>&quot;&#39;My Action&#39;&quot;</code>), whatever the case; without a text, every line. Newest first, with a search, a filter by level (<code>ERR</code>, <code>WRN</code>, <code>INF</code>, <code>DBG</code>) and by source, and the day to pick from the log files there are. The source is what stands before <code>::</code> in a line, or what the project puts in brackets in front of its own (<code>[My Project/Settings]</code>). Lines without a head of their own (a stack trace) go with the entry before them; the box under the list shows the whole entry. The page follows the file while Streamer.bot writes it, and holds the newest 5,000 lines of a day. It comes by itself, at the foot of the rail above About; naming <code>&quot;sblog&quot;</code> among the pages gives it a title or an icon of its own. The window reads the file itself, so no settings action is too old for it. In the schema <code>&quot;streamerBotLog&quot;: { &quot;match&quot;: [ … ] }</code>. A UIFramework before 2.3.0 shows no such page</td>
+<td>Streamer.bot&#39;s own log as a page, for a project that logs with <code>CPH.LogInfo</code> and writes no file of its own: the lines of one day that hold one of the texts (<code>&quot;[My Project&quot;</code>, <code>&quot;&#39;My Action&#39;&quot;</code>), whatever the case; without a text, every line. Newest first, with a search, a filter by level (<code>ERR</code>, <code>WRN</code>, <code>INF</code>, <code>DBG</code>) and by source, and the day to pick from the log files there are. The source is what stands before <code>::</code> in a line, or what the project puts in brackets in front of its own (<code>[My Project/Settings]</code>). Lines without a head of their own (a stack trace) go with the entry before them; the box under the list shows the whole entry. The page follows the file while Streamer.bot writes it, and holds the newest 5,000 lines of a day. It comes by itself, at the foot of the rail above About; naming <code>&quot;sblog&quot;</code> among the pages gives it a title or an icon of its own. The window reads the file itself, so no settings action is too old for it. In the schema <code>&quot;streamerBotLog&quot;: { &quot;match&quot;: [ … ] }</code>. A UIFramework before 2.3.0 shows no such page. By itself the page keeps its columns within the table&#39;s width, a line too long ending in an ellipsis; <code>StreamerBotLog(false, match…)</code> lets a line run on under a horizontal scrollbar (<code>StreamerBotLog(true, …)</code> says the first outright). In the schema <code>&quot;fitWidth&quot;: false</code> beside <code>match</code>. A UIFramework before 2.5.0 does not read it</td>
 </tr>
 <tr>
 <td><code>Cooldowns(C(command, global, user), …)</code></td>

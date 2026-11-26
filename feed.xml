@@ -5,9 +5,73 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-25T22:38:13Z</updated>
+  <updated>2026-11-26T20:30:10Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>OBS Notes v2.0.0</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v2.0.0"/>
+    <id>https://github.com/aaskjer/OBSNotes/releases/tag/v2.0.0</id>
+    <published>2026-11-26T20:30:10Z</published>
+    <updated>2026-11-26T20:30:10Z</updated>
+    <category term="OBSNotes" label="OBS Notes"/>
+    <content type="html">&lt;p&gt;The settings moved from Set Argument sub-actions into a window, built with
+&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;. The commands and the post-its
+work as before.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New action &lt;strong&gt;OBS Notes Settings&lt;/strong&gt;: its Test trigger opens the settings window. &lt;code&gt;UIFramework.dll&lt;/code&gt;, the window
+itself (2.5.0 or newer), is not part of the import; the first open asks whether to download it.&lt;/li&gt;
+&lt;li&gt;The settings are kept in &lt;code&gt;OBS Notes\OBSNotes-Settings.json&lt;/code&gt;. The group &lt;em&gt;Settings (Important to check!)&lt;/em&gt; is gone
+from the action &lt;strong&gt;OBS Notes&lt;/strong&gt;. What was set there comes into the window once, as unsaved changes, from
+Streamer.bot&amp;#39;s own backup of your actions. A &lt;code&gt;Set Argument&lt;/code&gt; you add yourself still wins over the window, which
+then shows that setting locked.&lt;/li&gt;
+&lt;li&gt;New page &lt;strong&gt;Notes&lt;/strong&gt;: every note of every game, to read, correct and delete, and &lt;em&gt;Add row&lt;/em&gt; writes one under your
+name. A save only does what you changed, so notes your chat adds or deletes while the window is open stay as
+they are.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add the post-its to OBS&lt;/strong&gt; is a button on the Overlay page, with the OBS connection beside it and the result
+under it. The Test trigger of &lt;strong&gt;OBS Notes&lt;/strong&gt; still does the same; with &lt;code&gt;AddOBSOverlayTo&lt;/code&gt; left empty it takes the
+connection from the window.&lt;/li&gt;
+&lt;li&gt;A save reaches OBS at once: the post-its take the new look and the browser source the size of the new layout.
+Before, that took the next command.&lt;/li&gt;
+&lt;li&gt;New page &lt;strong&gt;Log&lt;/strong&gt;: what OBS Notes wrote into Streamer.bot&amp;#39;s log, with a search and a filter by level.&lt;/li&gt;
+&lt;li&gt;The window has a language of its own, picked in its footer. &lt;em&gt;Chat answers in&lt;/em&gt; stays the setting for the chat:
+German or English.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Updating from 1.0.x&lt;/h3&gt;
+&lt;p&gt;Import the new version over the old one. The notes and the post-its in OBS stay. The first time the settings
+window opens, it takes your old settings from Streamer.bot&amp;#39;s own backup of your actions and shows them as unsaved
+changes: look them over and press &lt;code&gt;Save&lt;/code&gt;. See the &lt;a href=&quot;https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt;
+and the &lt;a href=&quot;https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/OBSNotes/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/obsnotes/&quot;&gt;OBS Notes on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v2.5.0: UIFramework v2.5.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.5.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.5.0</id>
+    <published>2026-11-26T20:22:20Z</published>
+    <updated>2026-11-26T20:22:20Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;A table says how it meets its width: kept within it, or free to run past it under a horizontal scrollbar. Declaring
+&lt;code&gt;fitWidth&lt;/code&gt; needs the host block of this release; the settings action stays 0.3.3.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;fitWidth&lt;/code&gt; for a table: on a &lt;code&gt;list&lt;/code&gt;, a &lt;code&gt;table&lt;/code&gt;, &lt;code&gt;Log(…)&lt;/code&gt; and &lt;code&gt;StreamerBotLog(…)&lt;/code&gt;.&lt;/strong&gt; &lt;code&gt;true&lt;/code&gt; keeps the columns
+within the table&amp;#39;s width: no horizontal scrollbar, and a text too long for its column ends in an ellipsis.
+&lt;code&gt;false&lt;/code&gt; lets them run past it, each column as wide as its contents, under a horizontal scrollbar. Left out, every
+table does what it did: a list and Streamer.bot&amp;#39;s log are kept within, the Log page and a &lt;code&gt;table&lt;/code&gt; run past.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A column the user drags wider no longer pushes the others out of a table that is kept within its width.&lt;/strong&gt; The
+columns to its right share what is left, and the table keeps what the user set when the window&amp;#39;s width changes.
+Before, they slid past the table&amp;#39;s edge, with no scrollbar to reach them. The column that counts the rows is not
+dragged at all.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A line of Streamer.bot&amp;#39;s log too long for the table ends in an ellipsis.&lt;/strong&gt; It was cut off at the table&amp;#39;s edge.
+The box under the list shows the whole entry, as before.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;3362a8b38892c06b63ca46b53e15d409cd30ffabaadf44ce11648db92a372278&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.5.0&quot;&gt;Download v2.5.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>UIFramework v2.4.0: UIFramework v2.4.0 (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.4.0"/>
@@ -1754,51 +1818,5 @@ switched it on again.&lt;/li&gt;
 &lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1&quot;&gt;Download v13.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Slot Machine Game v16.4.1: A settings action that picks a UIFramework it fits</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1"/>
-    <id>https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1</id>
-    <published>2026-11-12T12:58:55Z</published>
-    <updated>2026-11-12T12:58:55Z</updated>
-    <category term="Slot-Machine-Game" label="Slot Machine Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1&quot;&gt;Download v16.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/slot-machine-game/&quot;&gt;Slot Machine Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Classic Chat Gamble v25.2.1: A settings action that picks a UIFramework it fits</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1"/>
-    <id>https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1</id>
-    <published>2026-11-12T12:58:08Z</published>
-    <updated>2026-11-12T12:58:08Z</updated>
-    <category term="Classic-Chat-Gamble" label="Classic Chat Gamble"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1&quot;&gt;Download v25.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

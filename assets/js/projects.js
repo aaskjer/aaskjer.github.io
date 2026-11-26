@@ -215,7 +215,7 @@ window.SITE = {
         ],
         aside: [{ label: 'Built on it', logos: ['Blackjack-Game', 'Battleship-Game', 'Slot-Machine-Game', 'Classic-Chat-Gamble', 'Trivia-Game', 'Hangman-Game', 'RhymeTime', 'High-Low-Game', 'GameCheck'] }],
       },
-      version: 'v2.0.0', stars: 0, downloads: 130,
+      version: 'v2.0.0', stars: 0, downloads: 133,
     },
     {
       repo: 'SuTo',
@@ -278,7 +278,7 @@ window.SITE = {
           { label: 'In chat', commands: ['!note', '!delnote', '!clearnotes', '!shownotes'] },
         ],
       },
-      version: 'v1.0.2', stars: 0, downloads: 16,
+      version: 'v2.0.0', stars: 0, downloads: 17,
     },
     {
       repo: 'GameCheck',

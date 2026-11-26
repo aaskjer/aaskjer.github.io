@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/obsnotes/">
-  <meta property="og:title" content="OBS Notes  •  v1.0.2">
+  <meta property="og:title" content="OBS Notes  •  v2.0.0">
   <meta property="og:description" content="Chat writes it down, OBS shows it as a post-it: notes from Twitch, YouTube and Kick chat, one list per game. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/obsnotes.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.0.2">
+  <meta name="twitter:data1" content="v2.0.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"1.0.2","made":"1.0.7","min":"1.0.7","actions":1,"code":1,"commands":["!zettel","!schmierzettel","!merkheft","!shownotes","!note","!notiz","!postit","!aufschreiben","!merken","!delnote","!deletenote","!radier","!clearnotes","!allesradieren"],"words":[],"timers":0,"sites":["kick.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.0.0","made":"1.0.7","min":"1.0.7","actions":2,"code":2,"commands":["!zettel","!schmierzettel","!merkheft","!shownotes","!note","!notiz","!postit","!aufschreiben","!merken","!delnote","!deletenote","!radier","!clearnotes","!allesradieren"],"words":[],"timers":0,"sites":["github.com","kick.com","raw.githubusercontent.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="OBSNotes" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v1.0.2">
+<body data-repo="OBSNotes" data-files="FAQ.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.0.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -106,7 +106,9 @@ YourBot: Note written down as number &#39;#3&#39;. SeemsGood
 LunaLurks: !shownotes 3
 YourBot: [3] &quot;1 1 2 3 . . . 21&quot; - written down by @NoScopeNick on [2026-10-27 / 20:18:11]
 </code></pre>
-<h2>✨ Highlights</h2>
+<p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/screenshots/notes-dark.png" alt="The Notes page of the settings window: the notes of one game, each with its number, text, author and time" width="460">
+</p><h2>✨ Highlights</h2>
 <ul>
 <li>🎮 <strong>One list per game.</strong> The list follows the Twitch category, or the Kick category when Twitch is not
 connected. Without either, all notes share one list.</li>
@@ -120,6 +122,10 @@ one before it, and keeps its angle when OBS reloads the page.</li>
 underneath instead of disappearing.</li>
 <li>💬 <strong>Twitch, Kick and YouTube.</strong> Replies go to the chat the command came from, with an emote of that
 platform, in German or English.</li>
+<li>🪟 <strong>Settings in a window.</strong> Layout, colours, the fade-out and the chat language, and a button that puts the
+post-its into OBS.</li>
+<li>✏️ <strong>Fix a note without chat.</strong> The window lists every note of every game, to correct or delete, while chat keeps
+writing.</li>
 <li>💾 <strong>Nothing lost by mistake.</strong> A backup file per game keeps every note ever added, one per line.</li>
 <li>🔄 <strong>Updates without touching OBS.</strong> After an import, the first command points browser sources that still
 show an older page to the current one.</li>
@@ -130,6 +136,7 @@ show an older page to the current one.</li>
 <li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
 <li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
 <li><strong>Works with:</strong> <a href="https://obsproject.com">OBS Studio</a> 28 or newer, as a browser source</li>
+<li><strong>Settings window:</strong> <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a></li>
 <li><strong>Data &amp; services:</strong> <a href="https://kick.com">Kick</a>: your channel&#39;s category, read from its public channel page when
 Twitch is not connected</li>
 <li><strong>Thanks:</strong> YOU ♡</li>
@@ -181,7 +188,7 @@ leave that platform out. The list follows the Twitch category. Without Twitch it
 Kick&#39;s public channel page (the live stream&#39;s category, offline the latest one); without either, every note goes to
 one list.</p>
 <p>Each command has a 5 second cooldown; the broadcaster is never held back. The replies in chat are in German
-or English, see <code>language</code> under <a href="#settings">Settings</a>.</p>
+or English, see <em>Chat answers in</em> under <a href="#settings">Settings</a>.</p>
 <hr>
 <h2>Setup</h2>
 <ol>
@@ -191,20 +198,32 @@ import window.</li>
 <li>Turn on the four commands in the group <strong>OBS Notes</strong> (<em>Commands</em> tab). They are imported switched off.</li>
 <li>Connect OBS in Streamer.bot (<em>Stream Apps &gt; OBS</em>). OBS has to run on the same PC, because the browser source
 reads a local file.</li>
-<li>In the action <strong>OBS Notes</strong>, right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>. It adds the browser source
-<strong>OBS Notes</strong> (600 x 800, or 900 x 560 with <code>layout</code> set to <code>horizontal</code>) to the scene OBS is showing. Move and
-scale it wherever you like.</li>
+<li>Open the settings: in the action <strong>OBS Notes Settings</strong>, right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>.
+The first time, a dialog asks whether to download <code>UIFramework.dll</code>, the window itself. Click <code>Yes</code>.</li>
+<li>On the <strong>Overlay</strong> page, press <strong>Add the post-its to OBS</strong>. It adds the browser source <strong>OBS Notes</strong>
+(600 x 800, or 900 x 560 with the horizontal layout) to the scene OBS is showing. Move and scale it wherever
+you like.</li>
 </ol>
-<p>The Test trigger&#39;s variable <code>AddOBSOverlayTo</code> names the OBS connection: <code>0</code> is the first one in Streamer.bot.
-Running the trigger again refreshes the source, or adds it to the scene that is showing now. Nothing in OBS?
-See the <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md#the-post-its-do-not-show-up-in-obs">FAQ</a>.</p>
+<p><em>OBS connection</em>, next to the button, names the OBS the post-its go to: <code>0</code> is the first one in Streamer.bot.
+Pressing the button again refreshes the source, or adds it to the scene that is showing now. The box under the
+button says what happened. Nothing in OBS? See the <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md#the-post-its-do-not-show-up-in-obs">FAQ</a>.</p>
+<p>The trigger <strong>Test</strong> of the action <strong>OBS Notes</strong> does the same without the window. Its variable <code>AddOBSOverlayTo</code>
+names the OBS connection; left empty, the one from the window counts.</p>
 <p>Updates keep the post-its in OBS: the first command after an import looks in every connected OBS for a browser
 source that still shows the page of an older version, points it to the current page and says so in the log.</p>
+<p><strong>Updating from 1.0.x?</strong> Import the new version over the old one. The notes and the post-its in OBS stay. The
+settings were <code>Set Argument</code> sub-actions of the action <strong>OBS Notes</strong>, which the import replaces: the first time the
+window opens, it takes their values from Streamer.bot&#39;s own backup of your actions (the folder <code>backup</code>) and shows
+them as unsaved changes. Look them over and press <code>Save</code>. Without such a backup the window opens with the
+defaults.</p>
 <hr>
 <h2>Requirements</h2>
 <ul>
 <li>Streamer.bot 1.0.7 or newer with Twitch or Kick connected (its category picks the list, Twitch first); YouTube optional</li>
 <li>OBS Studio 28 or newer (tested with 33), connected in Streamer.bot, on the same PC</li>
+<li>For the settings window: <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>
+2.5.0 or newer. It is not part of the import: the settings action downloads it the first time the window opens,
+into the folder <code>UIFramework</code> inside the Streamer.bot folder, and offers the update when an older one is there.</li>
 </ul>
 <hr>
 </div>
@@ -212,84 +231,107 @@ source that still shows the page of an older version, points it to the current p
       <section class="md" data-doc="settings" data-label="Settings" data-file="Setup-Guide.md">
         <h2 class="doc-label">Settings</h2>
         <div class="doc-body"><h2>Settings</h2>
-<p>Set Argument sub-actions in the action <strong>OBS Notes</strong>, under <em>Settings (Important to check!)</em>.</p>
-<p><strong>Chat</strong></p>
+<p>The settings are in a window: in the action <strong>OBS Notes Settings</strong>, right-click the trigger <strong>Test</strong> &gt;
+<em>Test Trigger</em>. <code>Save</code> writes them to <code>OBS Notes\OBSNotes-Settings.json</code>, and the next command uses them.</p>
+<p align="center"><img loading="lazy" alt="The Overlay page of the settings window" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/screenshots/overlay-dark.png" width="460"></p><p><strong>Chat</strong></p>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
+<th>Setting</th>
 <th>Default</th>
 <th></th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>useBot</code></td>
-<td><code>True</code></td>
-<td>Answers from the bot account; <code>False</code> = from the broadcaster account. Without a connected bot account Streamer.bot uses the broadcaster account.</td>
+<td><em>Send as bot account</em></td>
+<td>on</td>
+<td>Answers from the bot account; off = from the broadcaster account. Without a connected bot account Streamer.bot uses the broadcaster account.</td>
 </tr>
 <tr>
-<td><code>sendAsMe</code></td>
-<td><code>False</code></td>
-<td><code>True</code> = answers as a /me message (Twitch only; Kick and YouTube have none).</td>
+<td><em>Send as /me action</em></td>
+<td>off</td>
+<td>Answers as a /me message (Twitch only; Kick and YouTube have none).</td>
 </tr>
 <tr>
-<td><code>language</code></td>
-<td><code>DE</code></td>
-<td><code>DE</code> (German) or <code>EN</code> (English), for the chat answers and the post-its.</td>
+<td><em>Chat answers in</em></td>
+<td>Deutsch</td>
+<td>German or English, for the chat answers. The window has a language of its own, picked in its footer.</td>
 </tr>
 </tbody></table>
 <p><strong>Overlay</strong></p>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
+<th>Setting</th>
 <th>Default</th>
 <th></th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>hideAfterMinutes</code></td>
-<td><code>10</code></td>
+<td><em>Layout</em></td>
+<td>Vertical</td>
+<td>Vertical = two post-its side by side in three rows (600 x 800), horizontal = three side by side in two rows (900 x 560).</td>
+</tr>
+<tr>
+<td><em>Fade out after</em></td>
+<td><code>10</code> min</td>
 <td>Minutes without any command until the post-its fade out. The next command brings them back. <code>0</code> = always visible.</td>
 </tr>
 <tr>
-<td><code>colorfulNotes</code></td>
-<td><code>True</code></td>
-<td><code>False</code> = black text on white post-its.</td>
+<td><em>Colourful post-its</em></td>
+<td>on</td>
+<td>Off = black text on white post-its.</td>
 </tr>
 <tr>
-<td><code>showGameName</code></td>
-<td><code>True</code></td>
+<td><em>Show the game name</em></td>
+<td>on</td>
 <td>The game name on the top left post-it.</td>
 </tr>
 <tr>
-<td><code>layout</code></td>
-<td><code>vertical</code></td>
-<td><code>vertical</code> = two post-its side by side in three rows (600 x 800), <code>horizontal</code> = three side by side in two rows (900 x 560). The browser source in OBS takes the new size with the next command.</td>
+<td><em>OBS connection</em></td>
+<td><code>0</code></td>
+<td>The OBS that <strong>Add the post-its to OBS</strong> adds them to; <code>0</code> is the first one in Streamer.bot.</td>
 </tr>
 </tbody></table>
-<p>Changes reach OBS with the next command or Test trigger.</p>
+<p>A save reaches OBS at once: the post-its take the new look, and the browser source takes the size of the new
+layout.</p>
+<p><strong>Notes</strong></p>
+<p align="center"><img loading="lazy" alt="The Notes page of the settings window" src="https://raw.githubusercontent.com/aaskjer/OBSNotes/main/Assets/screenshots/notes-dark.png" width="460"></p><p>Every note your chat wrote, list by list. <em>Notes of</em> picks the game; when the window opens, it is the game your
+stream is set to. Click a text to change it, or pick notes and press <code>Delete</code>; a note whose text you empty is
+deleted too. <em>Add row</em> writes a note under your name. Nothing is written until you press <code>Save</code>. A save only does
+what you changed, so notes your chat adds or deletes while the window is open stay as they are.</p>
+<p><strong>Log</strong> shows what OBS Notes wrote into Streamer.bot&#39;s log, with a search and a filter by level. The
+<a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md">FAQ</a> says what the lines mean.</p>
+<p><code>Ctrl+1</code> … <code>Ctrl+6</code> switch pages, <code>Ctrl+S</code> saves, and <code>Ctrl+F</code> searches all settings. The pen in the footer lets you
+rename, move and hide fields and pages.</p>
+<p><strong>A Set Argument still wins.</strong> A <code>Set Argument</code> sub-action you put into the action <strong>OBS Notes</strong>, named <code>useBot</code>,
+<code>sendAsMe</code>, <code>language</code>, <code>hideAfterMinutes</code>, <code>colorfulNotes</code>, <code>showGameName</code> or <code>layout</code>, counts instead of the
+window&#39;s value, and the window shows that setting locked.</p>
 <hr>
 <h2>Files</h2>
 <p>Everything lives in <code>OBS Notes</code> inside the Streamer.bot folder:</p>
 <ul>
+<li><code>OBSNotes-Settings.json</code>: the settings, written by the window. <code>uiframework.layout.json</code> beside it is your layout
+of the window: theme, language, renamed or hidden pages and fields.</li>
 <li><code>&lt;Game&gt;-Notes.json</code>: the notes of one game.</li>
 <li><code>&lt;Game&gt;-Notes.json.bak</code>: every note ever added to that game, one per line, in case one was wiped by mistake.</li>
 <li><code>Overlay\notes_overlay.html</code> and <code>notes_state.json</code>: the page OBS shows and what it shows.</li>
 </ul>
+<p>The window itself is <code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code> in the Streamer.bot folder.</p>
 </div>
       </section>
       <section class="md" data-doc="faq" data-label="FAQ" data-file="FAQ.md">
         <h2 class="doc-label">FAQ</h2>
         <div class="doc-body"><h1>OBS Notes: FAQ</h1>
-<p>Most answers start in the Streamer.bot log. Every line OBS Notes writes there starts with <code>[OBS Notes]</code>; the log
-files are in the <code>logs</code> folder inside the Streamer.bot folder, one per day.</p>
+<p>Most answers start in the Streamer.bot log. Every line OBS Notes writes there starts with <code>[OBS Notes]</code>, and the
+<strong>Log</strong> page of the settings window shows exactly those lines. The log files are in the <code>logs</code> folder inside the
+Streamer.bot folder, one per day.</p>
 <hr>
 <h2>Post-its in OBS</h2>
 <h3>The post-its do not show up in OBS</h3>
-<p>Commands never add the browser source on their own, only the Test trigger does (<a href="https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md#setup">Setup</a>,
-step 4). Run it: in the action <strong>OBS Notes</strong>, right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>. Then look for the
-line it wrote:</p>
+<p>Commands never add the browser source on their own, only the button in the settings does
+(<a href="https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md#setup">Setup</a>, step 5). Press it: settings window, <strong>Overlay</strong> page, <strong>Add the post-its to OBS</strong>.
+The box under the button says what happened, and the log has the same line:</p>
 <table>
 <thead>
 <tr>
@@ -306,49 +348,50 @@ line it wrote:</p>
 <tr>
 <td><code>OBS connection #0 is not connected. The overlay file is ready at …</code></td>
 <td>Streamer.bot does not reach OBS. A fresh OBS has its WebSocket server switched off.</td>
-<td>In OBS, <em>Tools &gt; WebSocket Server Settings</em>: tick <em>Enable WebSocket server</em>, then <em>Show Connect Info</em> for port and password. In Streamer.bot, <em>Stream Apps &gt; OBS</em>: add a connection with them and connect. Run the Test trigger again.</td>
+<td>In OBS, <em>Tools &gt; WebSocket Server Settings</em>: tick <em>Enable WebSocket server</em>, then <em>Show Connect Info</em> for port and password. In Streamer.bot, <em>Stream Apps &gt; OBS</em>: add a connection with them and connect. Press the button again.</td>
 </tr>
 <tr>
 <td><code>no connected OBS shows the post-its (checked connection #0). …</code></td>
-<td>A command ran, but the Test trigger never did.</td>
-<td>Run the Test trigger.</td>
+<td>A command ran, but the post-its were never added to OBS.</td>
+<td>Press the button.</td>
 </tr>
 <tr>
-<td><code>the Test trigger needs the argument AddOBSOverlayTo …</code></td>
-<td>The trigger&#39;s variable is missing or no number.</td>
-<td>Set <code>AddOBSOverlayTo</code> on the trigger <strong>Test</strong> to <code>0</code>.</td>
+<td><code>AddOBSOverlayTo = &#39;…&#39; on the Test trigger is no OBS connection number …</code></td>
+<td>The trigger <strong>Test</strong> of the action <strong>OBS Notes</strong> was run, and its variable holds no number.</td>
+<td>Set <code>AddOBSOverlayTo</code> to <code>0</code>, or empty it: then <em>OBS connection</em> from the window counts.</td>
 </tr>
 <tr>
 <td><code>no commandId, the action was not started by one of its commands.</code></td>
-<td>The action was run some other way than by the Test trigger.</td>
-<td>Right-click the trigger <strong>Test</strong> &gt; <em>Test Trigger</em>.</td>
+<td>The action <strong>OBS Notes</strong> was run by hand.</td>
+<td>Nothing to fix. Use a command in chat, or the button in the settings.</td>
 </tr>
 <tr>
 <td><code>OBS already has a source named &#39;OBS Notes&#39; that is no browser source (…)</code></td>
 <td>The name is taken.</td>
-<td>Rename that source in OBS and run the Test trigger again.</td>
+<td>Rename that source in OBS and press the button again.</td>
 </tr>
 <tr>
 <td><code>OBS did not create the browser source: …</code></td>
 <td>OBS turned the request down; its answer follows in the same line and names the reason.</td>
-<td>Fix what OBS names, then run the Test trigger again.</td>
+<td>Fix what OBS names, then press the button again.</td>
 </tr>
 <tr>
 <td>No <code>[OBS Notes]</code> line at all</td>
-<td>The trigger never reached the action.</td>
-<td>Switch on the action <strong>OBS Notes</strong> and its trigger <strong>Test</strong>.</td>
+<td>The button never reached the action.</td>
+<td>Switch on the action <strong>OBS Notes</strong>.</td>
 </tr>
 </tbody></table>
-<p><code>AddOBSOverlayTo</code> counts the OBS connections in Streamer.bot from <code>0</code>: with more than one OBS, it picks which one
-gets the post-its.</p>
+<p><em>OBS connection</em>, next to the button, counts the OBS connections in Streamer.bot from <code>0</code>: with more than one OBS,
+it picks which one gets the post-its. The trigger <strong>Test</strong> of the action <strong>OBS Notes</strong> adds the post-its too,
+without the window; its variable <code>AddOBSOverlayTo</code> is that same number.</p>
 <h3>The source is there, but it stays empty</h3>
 <ul>
 <li><strong>No notes yet.</strong> The page is transparent until the first note. Try <code>!note test</code>.</li>
-<li><strong>Faded out.</strong> After <code>hideAfterMinutes</code> without a command the post-its fade out, and the next command brings them
-back. <code>0</code> keeps them on screen.</li>
-<li><strong>Studio Mode.</strong> The Test trigger adds the source to the scene on air (<em>Program</em>), not to the one in <em>Preview</em>.</li>
-<li><strong>Another scene.</strong> The source goes to the scene showing when the trigger ran. Run it again in another scene to
-add it there too.</li>
+<li><strong>Faded out.</strong> After the minutes in <em>Fade out after</em> without a command the post-its fade out, and the next command
+brings them back. <code>0</code> keeps them on screen.</li>
+<li><strong>Studio Mode.</strong> The button adds the source to the scene on air (<em>Program</em>), not to the one in <em>Preview</em>.</li>
+<li><strong>Another scene.</strong> The source goes to the scene showing when the button was pressed. Press it again in another
+scene to add it there too.</li>
 <li><strong>A folder Streamer.bot cannot write to</strong>, such as <code>C:\Program Files</code>. The log says <code>overlay file write failed</code>.
 Move Streamer.bot to a folder of your own, for example in <em>Documents</em>.</li>
 <li><strong>OBS on another PC.</strong> The browser source reads a local file, so OBS has to run on the PC with Streamer.bot.</li>
@@ -356,10 +399,11 @@ Move Streamer.bot to a folder of your own, for example in <em>Documents</em>.</l
 <h3>After an update the post-its stopped changing</h3>
 <p>The first command after an import points every browser source that still shows an older page to the current one,
 and the log says <code>browser source &#39;…&#39; on OBS connection #0 showed …; it now shows …</code>. If OBS was not connected at
-that moment, the first command a minute or more later tries again; the Test trigger does it straight away.</p>
+that moment, the first command a minute or more later tries again; the button in the settings does it straight
+away.</p>
 <h3>How do I make the post-its bigger or smaller?</h3>
 <p>Scale the source in OBS. The text on each post-it grows as large as the post-it allows, so it stays readable in a
-corner of the screen. <code>layout</code> picks the shape: <code>vertical</code> (600 x 800) or <code>horizontal</code> (900 x 560).</p>
+corner of the screen. <em>Layout</em> in the settings picks the shape: vertical (600 x 800) or horizontal (900 x 560).</p>
 <hr>
 <h2>Commands</h2>
 <h3>The commands get no answer</h3>
@@ -372,14 +416,63 @@ corner of the screen. <code>layout</code> picks the shape: <code>vertical</code>
 <h3>Why do all notes go to the list &#39;global&#39;?</h3>
 <p>The list follows the Twitch category, without Twitch the Kick category. With neither connected in Streamer.bot,
 every note goes to one list, and the log says <code>Neither Twitch nor Kick is connected, so the notes go to the list &#39;global&#39;.</code></p>
+<h3>A note has a typo. Can I fix it?</h3>
+<p>Yes, on the <strong>Notes</strong> page of the settings window: pick the game under <em>Notes of</em>, click the text, change it and
+press <code>Save</code>. Notes your chat adds or deletes while the window is open stay as they are.</p>
 <h3>A note was deleted by mistake. Can I get it back?</h3>
 <p>Yes. <code>OBS Notes\&lt;Game&gt;-Notes.json.bak</code> in the Streamer.bot folder keeps every note ever added to that game, one per
-line. Find it there and add it again with <code>!note</code>.</p>
+line. Find it there and add it again with <code>!note</code>, or with <em>Add row</em> on the <strong>Notes</strong> page of the settings window.</p>
+<hr>
+<h2>Settings</h2>
+<h3>The settings window does not open</h3>
+<ul>
+<li><strong>Only one at a time.</strong> A window that is already open comes to the front instead of a second one.</li>
+<li><strong>The first open</strong> asks whether to download <code>UIFramework.dll</code>, the window itself. Without it there is no window;
+run the trigger again and click <code>Yes</code>.</li>
+<li><strong>An older UIFramework.</strong> OBS Notes needs 2.5.0 or newer; with an older one installed, the settings action offers
+the update instead of opening the window.</li>
+<li>Anything else is in the log, in the lines that start with <code>[OBS Notes/Settings]</code>.</li>
+</ul>
+<h3>My settings from before the update are gone</h3>
+<p>Up to 1.0.2 the settings were <code>Set Argument</code> sub-actions of the action <strong>OBS Notes</strong>, and an import replaces that
+action. The first time the window opens, it takes those values from Streamer.bot&#39;s own backup of your actions (the
+folder <code>backup</code>) and shows them as unsaved changes: press <code>Save</code>. Without such a backup the window opens with the
+defaults, and you set them once more.</p>
+<h3>A setting is greyed out and says <em>Set Argument</em></h3>
+<p>The action <strong>OBS Notes</strong> has a <code>Set Argument</code> sub-action with that name, and it counts instead of the window&#39;s
+value. Delete or disable the sub-action to set the value in the window.</p>
 </div>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/OBSNotes/releases">releases on GitHub</a>.</p><h2>v1.0.2</h2><p class="release__date">October 30, 2026</p><ul>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/OBSNotes/releases">releases on GitHub</a>.</p><h2>v2.0.0</h2><p class="release__date">November 26, 2026</p><p>The settings moved from Set Argument sub-actions into a window, built with
+<a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>. The commands and the post-its
+work as before.</p>
+<ul>
+<li>New action <strong>OBS Notes Settings</strong>: its Test trigger opens the settings window. <code>UIFramework.dll</code>, the window
+itself (2.5.0 or newer), is not part of the import; the first open asks whether to download it.</li>
+<li>The settings are kept in <code>OBS Notes\OBSNotes-Settings.json</code>. The group <em>Settings (Important to check!)</em> is gone
+from the action <strong>OBS Notes</strong>. What was set there comes into the window once, as unsaved changes, from
+Streamer.bot&#39;s own backup of your actions. A <code>Set Argument</code> you add yourself still wins over the window, which
+then shows that setting locked.</li>
+<li>New page <strong>Notes</strong>: every note of every game, to read, correct and delete, and <em>Add row</em> writes one under your
+name. A save only does what you changed, so notes your chat adds or deletes while the window is open stay as
+they are.</li>
+<li><strong>Add the post-its to OBS</strong> is a button on the Overlay page, with the OBS connection beside it and the result
+under it. The Test trigger of <strong>OBS Notes</strong> still does the same; with <code>AddOBSOverlayTo</code> left empty it takes the
+connection from the window.</li>
+<li>A save reaches OBS at once: the post-its take the new look and the browser source the size of the new layout.
+Before, that took the next command.</li>
+<li>New page <strong>Log</strong>: what OBS Notes wrote into Streamer.bot&#39;s log, with a search and a filter by level.</li>
+<li>The window has a language of its own, picked in its footer. <em>Chat answers in</em> stays the setting for the chat:
+German or English.</li>
+</ul>
+<h5>Updating from 1.0.x</h5>
+<p>Import the new version over the old one. The notes and the post-its in OBS stay. The first time the settings
+window opens, it takes your old settings from Streamer.bot&#39;s own backup of your actions and shows them as unsaved
+changes: look them over and press <code>Save</code>. See the <a href="https://github.com/aaskjer/OBSNotes/blob/main/Setup-Guide.md">setup guide</a>
+and the <a href="https://github.com/aaskjer/OBSNotes/blob/main/FAQ.md">FAQ</a>.</p>
+<h2>v1.0.2</h2><p class="release__date">October 30, 2026</p><ul>
 <li>When OBS is connected but no source in it shows the post-its, the first command says so in the log and names
 the Test trigger, which adds the browser source. Before, a fresh setup without the Test trigger showed nothing
 and said nothing.</li>
