@@ -157,7 +157,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v2.0.0', stars: 0, downloads: 129,
+      version: 'v2.0.0', stars: 0, downloads: 130,
     },
     {
       repo: 'SuTo',
