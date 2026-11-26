@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.3.0">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.4.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -285,6 +285,24 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
+<h2>[2.4.0] - 2026-11-25</h2>
+<p>A table can do without the column that counts its rows, and rows a project hands over late no longer replace what
+the footer says. Declaring <code>rowNumbers</code> needs the host block of this release; the settings action stays 0.3.3.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>A table without row numbers: <code>rowNumbers: false</code> on a <code>list</code>.</strong> A list shown as a table counts its rows in a
+first column. Rows that carry a number of their own in a column (a note&#39;s number, a rank) showed two columns of
+numbers side by side; <code>rowNumbers: false</code> leaves the counting one out. Nothing else changes, and a list that
+does not say so keeps its numbers. An older UIFramework shows the column.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>Rows a project hands over late no longer replace what the footer says.</strong> A list the project keeps itself
+(<code>rowsFrom</code>) gets its rows when the project answers, which can be after the window is built. The footer then said
+&quot;3 unsaved changes&quot; where it had just said that three values were taken over from the version before. Rows that
+are handed over are no change of the user&#39;s: the footer is written anew only where the count of unsaved changes
+moved, or where it still said that the rows could not be read.</li>
+</ul>
 <h2>[2.3.0] - 2026-11-25</h2>
 <p>Streamer.bot&#39;s own log as a page of the window, a list whose rows the project keeps itself, and a list that is
 stored as one line of text. All three come with the DLL; declaring them needs the host block of this release. The
@@ -2588,6 +2606,11 @@ conventions cannot know.</p>
 <td>for a <code>list</code>: rows are neither added nor removed in the window, only their cells edited; there is no <em>Restore defaults</em>, and a reset leaves the list alone</td>
 </tr>
 <tr>
+<td><code>rowNumbers</code></td>
+<td>no</td>
+<td>for a <code>list</code> shown as a table: <code>false</code> leaves out the first column, which counts the rows as they are shown (1, 2, 3 …). For rows that carry a number of their own in a column (a note&#39;s number, a rank), which would otherwise show two columns of numbers. Nothing else changes; a list in the row editor has no such column</td>
+</tr>
+<tr>
 <td><code>filter</code></td>
 <td>no</td>
 <td>for a <code>list</code>: the rows shown, conditions joined by <code>||</code>: <code>region= || Global=true || Counties~{region}</code>. The left side is a column of the list (in its exact spelling), else a setting of the window; <code>{key}</code> is a setting&#39;s current value. <code>=</code> and <code>!=</code> compare as text ignoring case, <code>~</code> is &quot;contains&quot; (for an array in the cell: one element equals it). A row that does not fit is hidden, not removed: it is saved back as it was</td>
@@ -2640,7 +2663,7 @@ neither a code nor empty, or which offers a code that is none; a state of a head
 setting, or whose tone is none; another title for a section no setting is in; a <code>format</code> on
 anything but a list, one that is not <code>pairs</code>, or <code>pairs</code> on a list that has not two columns of plain values; the
 page <code>sblog</code> named without a Streamer.bot log declared; <code>rowsFrom</code> on anything but a list, one that names itself or
-a key that is no setting, or beside <code>file</code> or <code>transient</code>; <code>rowKey</code>, <code>fixedRows</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
+a key that is no setting, or beside <code>file</code> or <code>transient</code>; <code>rowKey</code>, <code>fixedRows</code>, <code>rowNumbers</code> or <code>filter</code> on a field that is no list, a <code>rowKey</code>
 column the list does not have, a <code>filter</code> condition without an operator or one that names what is neither a column
 nor a setting (such a condition counts as holding, so every row shows); <code>optionsFrom</code> on a field that is no dropdown, one that names itself or a key
 that is no setting; a <code>multi</code> without options, or whose default names a value none of them has; a

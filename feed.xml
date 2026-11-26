@@ -5,9 +5,54 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-25T18:33:35Z</updated>
+  <updated>2026-11-25T22:38:13Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>UIFramework v2.4.0: UIFramework v2.4.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.4.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.4.0</id>
+    <published>2026-11-25T22:38:13Z</published>
+    <updated>2026-11-25T22:38:13Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;A table can do without the column that counts its rows, and rows a project hands over late no longer replace what
+the footer says. Declaring &lt;code&gt;rowNumbers&lt;/code&gt; needs the host block of this release; the settings action stays 0.3.3.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A table without row numbers: &lt;code&gt;rowNumbers: false&lt;/code&gt; on a &lt;code&gt;list&lt;/code&gt;.&lt;/strong&gt; A list shown as a table counts its rows in a
+first column. Rows that carry a number of their own in a column (a note&amp;#39;s number, a rank) showed two columns of
+numbers side by side; &lt;code&gt;rowNumbers: false&lt;/code&gt; leaves the counting one out. Nothing else changes, and a list that
+does not say so keeps its numbers. An older UIFramework shows the column.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rows a project hands over late no longer replace what the footer says.&lt;/strong&gt; A list the project keeps itself
+(&lt;code&gt;rowsFrom&lt;/code&gt;) gets its rows when the project answers, which can be after the window is built. The footer then said
+&amp;quot;3 unsaved changes&amp;quot; where it had just said that three values were taken over from the version before. Rows that
+are handed over are no change of the user&amp;#39;s: the footer is written anew only where the count of unsaved changes
+moved, or where it still said that the rows could not be read.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;8c611cf576982aa7fced09112a19020c5c00389a4677f285a30a9a4cdd3382e8&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.4.0&quot;&gt;Download v2.4.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>GameCheck v2.1.1: GameCheck 2.1.1: Check now no longer makes the settings window open every hour</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v2.1.1"/>
+    <id>https://github.com/aaskjer/GameCheck/releases/tag/v2.1.1</id>
+    <published>2026-11-25T22:19:46Z</published>
+    <updated>2026-11-25T22:19:46Z</updated>
+    <category term="GameCheck" label="GameCheck"/>
+    <content type="html">&lt;p&gt;A fix for 2.0.0 and 2.1.0. What the two checks post has not changed.&lt;/p&gt;
+&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The settings window opened by itself every hour, and the checks stopped.&lt;/strong&gt; After &lt;em&gt;Check now&lt;/em&gt; on the Status page, Free Game Check and Game Sale Check took the settings action&amp;#39;s ID for their own. Streamer.bot hands that ID on to the run it starts, so they planned their next runs for the settings action. &lt;em&gt;Check now&lt;/em&gt; now gives the action it starts that action&amp;#39;s own ID, and it never starts the settings action. Free Game Check removes such a planned run the next time the window opens, and the log says so with a warning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧 Updating from 2.0.0 or 2.1.0&lt;/h3&gt;
+&lt;p&gt;Import the new version over the old one. The three actions are replaced; the settings file, the bot token, the webhook URL, the IsThereAnyDeal key and the messages in Discord stay. Then press &lt;em&gt;Check now&lt;/em&gt; for both actions on the Status page once, or restart Streamer.bot, so that both plan their own runs again.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Import the attached &lt;code&gt;GameCheck.sb&lt;/code&gt;, or paste the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Import-String.md&quot;&gt;import string&lt;/a&gt;. To set the actions up by hand, the three scripts are attached as well. See the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/Setup-Guide.md&quot;&gt;setup guide&lt;/a&gt; and the &lt;a href=&quot;https://github.com/aaskjer/GameCheck/blob/main/CHANGELOG.md&quot;&gt;changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/GameCheck/releases/tag/v2.1.1&quot;&gt;Download v2.1.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/gamecheck/&quot;&gt;GameCheck on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>GameCheck v2.1.0: GameCheck 2.1.0: a Log page in the settings window</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/GameCheck/releases/tag/v2.1.0"/>
@@ -1755,51 +1800,5 @@ never came. A file damaged since its download is no longer loaded for it.&lt;/li
 &lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.1&quot;&gt;Download v25.2.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>RhymeTime v2.4.1: A settings action that picks a UIFramework it fits</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.1"/>
-    <id>https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.1</id>
-    <published>2026-11-12T12:57:51Z</published>
-    <updated>2026-11-12T12:57:51Z</updated>
-    <category term="RhymeTime" label="RhymeTime"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/RhymeTime/releases/tag/v2.4.1&quot;&gt;Download v2.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/rhymetime/&quot;&gt;RhymeTime on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>High-Low Game v2.3.1: A settings action that picks a UIFramework it fits</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1"/>
-    <id>https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1</id>
-    <published>2026-11-12T12:57:34Z</published>
-    <updated>2026-11-12T12:57:34Z</updated>
-    <category term="High-Low-Game" label="High-Low Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/High-Low-Game/releases/tag/v2.3.1&quot;&gt;Download v2.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/high-low-game/&quot;&gt;High-Low Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

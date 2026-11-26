@@ -157,7 +157,7 @@ window.SITE = {
         { id: 'get-started', label: 'Get started', file: 'docs/Getting-Started.md' },
         { id: 'schema', label: 'Schema', file: 'docs/Schema.md' },
       ],
-      version: 'v2.0.0', stars: 0, downloads: 127,
+      version: 'v2.0.0', stars: 0, downloads: 129,
     },
     {
       repo: 'SuTo',
@@ -217,7 +217,7 @@ window.SITE = {
         { name: 'IsThereAnyDeal API key', what: 'optional, adds the giveaways and deals of more shops' },
       ],
       guide: { label: 'Setup guide', href: 'Setup-Guide.md' },
-      version: 'v2.1.0', stars: 0, downloads: 4,
+      version: 'v2.1.1', stars: 0, downloads: 10,
     },
     {
       repo: 'ChatCalendar',

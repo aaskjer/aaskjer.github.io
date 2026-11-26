@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/gamecheck/">
-  <meta property="og:title" content="GameCheck  •  v2.1.0">
+  <meta property="og:title" content="GameCheck  •  v2.1.1">
   <meta property="og:description" content="Free games and the best game deals in your Discord, kept up to date on their own. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/gamecheck.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v2.1.0">
+  <meta name="twitter:data1" content="v2.1.1">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"2.1.0","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","github.com","gog.com","isthereanydeal.com","nintendo.com","raw.githubusercontent.com","steampowered.com"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.1.1","made":"1.0.7","min":"1.0.7","actions":3,"code":3,"commands":[],"words":[],"timers":0,"sites":["discord.com","eikowagenknecht.com","gamerpower.com","github.com","gog.com","isthereanydeal.com","nintendo.com","raw.githubusercontent.com","steampowered.com"],"updateCheck":false}</script>
 </head>
-<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.1.0">
+<body data-repo="GameCheck" data-files="CHANGELOG.md|Import-String.md|README.md|Setup-Guide.md" data-release="v2.1.1">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -291,6 +291,17 @@ again, or give the action made by hand exactly that name.</li>
         <h2 class="doc-label">Changelog</h2>
         <div class="doc-body"><h1>Changelog</h1>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2>[2.1.1] - 2026-11-25</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>The settings window opened by itself every hour, and the checks stopped.</strong> After <em>Check now</em> on the Status
+page, Free Game Check and Game Sale Check took the settings action&#39;s ID for their own (Streamer.bot hands it on
+to the run it starts) and planned their next runs for that one. <em>Check now</em> now hands the action its own ID and
+never starts the settings action. Free Game Check removes such a planned run the next time the window opens; the
+log says so with a warning.</li>
+</ul>
+<p>To update, import the new version over the old one, then press <em>Check now</em> for both actions on the Status page
+once (or restart Streamer.bot), so they plan their own runs again.</p>
 <h2>[2.1.0] - 2026-11-25</h2>
 <h3>Added</h3>
 <ul>
