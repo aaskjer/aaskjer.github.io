@@ -175,7 +175,7 @@ window.SITE = {
           ] },
         ],
       },
-      version: 'v1.0.0', stars: 1, downloads: 1,
+      version: 'v1.0.0', stars: 1, downloads: 2,
     },
     {
       repo: 'UIFramework-Streamer.bot',
