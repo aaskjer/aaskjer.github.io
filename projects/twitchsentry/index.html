@@ -33,7 +33,7 @@
   <script src="../../assets/js/search.js" defer></script>
   <script type="application/json" id="import-facts">{"version":"4.0.1","made":"1.0.7","min":"1.0.7","actions":21,"code":21,"commands":["!Permit","!EndPermit","!Vote","!EndVoting","!CheckLink","!AMAdd","!AMList","!AMRemove","!EGAdd","!EGList","!EGRemove","!EUAdd","!EUList","!EURemove","!KWAdd","!KWList","!KWRemove","!TLDAdd","!TLDList","!TLDRemove","!VEGAdd","!VEGList","!VEGRemove","!VEUAdd","!VEUList","!VEURemove","!WLAdd","!WLList","!WLRemove","!bwadd","!bwlist","!bwremove","!tsUndo","!AntiRaid","!FollowWave","!nuke","!HateRaid"],"words":[],"timers":1,"sites":["discord.com","gamevox.com","iana.org","ipqualityscore.com","ntfy.sh","raw.githubusercontent.com","stoat.chat","twitch.tv","twitchsentry.workers.dev","virustotal.com"],"updateCheck":true}</script>
 </head>
-<body data-repo="TwitchSentry" data-files="FAQ.md|Manual.md|README.md|Utilities/Comparison.md|Utilities/Import-String.md" data-release="v4.1.0-beta.1">
+<body data-repo="TwitchSentry" data-files="FAQ.md|Manual.md|README.md|Utilities/Comparison.md|Utilities/Import-String.md" data-release="v4.1.0-beta.2">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -2013,7 +2013,68 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/TwitchSentry/releases">releases on GitHub</a>.</p><h2 data-prerelease>v4.1.0-beta.1 — (TESTERS NEEDED) Bot waves, text waves, viewbot alarm and Silent Bot Protection</h2><p class="release__date">November 15, 2026 · pre-release</p><h3>This is a <strong>BETA</strong>! <strong>PLEASE</strong> test it out as much as you can, but do not use it as daily driver! Some translations may be missing, some features can be broken, intentionally not working, have misleading description or crash unexpectedly. Happy to hear about feedback <a href="https://github.com/aaskjer/TwitchSentry/issues">here</a>!</h3>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/TwitchSentry/releases">releases on GitHub</a>.</p><h2 data-prerelease>v4.1.0-beta.2 — (TESTERS NEEDED) Live spam feed, held links and stream summary</h2><p class="release__date">November 27, 2026 · pre-release</p><h3>This is a <strong>BETA</strong>! <strong>PLEASE</strong> test it out as much as you can, but do not use it as daily driver! Some translations may be missing, some features can be broken, intentionally not working, have misleading description or crash unexpectedly. Happy to hear about feedback <a href="https://github.com/aaskjer/TwitchSentry/issues">here</a>!</h3>
+<hr>
+<h5>⚠️ Older versions</h5>
+<ul>
+<li>v4.1.0-beta.1 and earlier take the spam feed from <code>main</code> without any SHA256 check. For security reasons that copy leaves <code>main</code> with the release after next at the latest, and those versions get no more spam feed updates. Update before then.</li>
+</ul>
+<h5>✨ Added</h5>
+<ul>
+<li>Spam feed and language files arrive within about a quarter of an hour from the new <code>feed</code> branch, checked every ten minutes from Streamer.bot&#39;s start, with no window to open.</li>
+<li>Every downloaded file must match the SHA256 and size in the feed&#39;s manifest, or it is not used.</li>
+<li>Language updates install on their own; a newer version shows a Windows notification. Your own chat texts stay.</li>
+<li>Each release keeps getting the language files made for it once a later release changes the window&#39;s texts; the Languages window only offers versions it can install.</li>
+<li>The spam feed can carry detection patterns: a new one watches for a day, then arms itself. Known Patterns → Spam Feed: &#39;Arm New Patterns Automatically&#39; (on); off, a pattern waits for you after 5 messages it would have caught.</li>
+<li>A feed pattern adds evidence in one part of an advert and never acts alone; a pattern that times out three times rests for 10 minutes.</li>
+<li>Known Patterns → Spam Feed lists the feed&#39;s patterns with their state, Arm and Turn Off; arming or turning one off survives feed updates.</li>
+<li>Stream summary at stream end, on every notification platform: deletions, timeouts, bans, blocks, warnings, modules, refusals, feed patterns, test mode.</li>
+<li>New notification switches: On New Feed Patterns and On Stream End, both on by default, on Windows too.</li>
+<li>Links held by Twitch&#39;s &#39;Hold Hyperlinks for Review&#39; are now judged, with the AutoMod module on or off: a link the Link Filter would remove is denied in the moderator queue, never timed out or banned for the link alone.</li>
+<li>Spam Scoring judges a held link first: spam is denied and the account treated as &#39;Default Action&#39; says. The Spam Learner reads every denied held link.</li>
+<li>Allowed links, permits and exempt viewers&#39; links still wait for your moderators; TwitchSentry never approves a held link.</li>
+<li>Messages Twitch holds for one of your Blocked Terms now reach the Word Filter, with the AutoMod module on or off: the matching entry&#39;s action applies, Delete denies the message in the moderator queue, and a timeout or ban is followed by the denial. Action Log, notifications and Twitch Warn as for chat.</li>
+<li>Held messages no entry matches, and exempt viewers&#39; messages, still wait for your moderators; TwitchSentry never approves one.</li>
+</ul>
+<h5>🔧 Changed</h5>
+<ul>
+<li>Message Filter → Code Injection: &#39;Code Injection Check Enabled&#39; is now on by default: a chat message can carry code into an overlay, as shown in a published proof of concept against OBS. An install that had it off gets it switched on once at Streamer.bot&#39;s start; turned off after that, it stays off.</li>
+<li>Logs start a new file every day instead of every month: <code>action-log-2026-11-24.txt</code> and so on, for the Spam Log, blocked followers, Silent Bot finds and the evidence files too. Each line lands in the day it is dated.</li>
+<li>Monthly log files of earlier versions are split into their days once, without losing a line.</li>
+<li>Action Log, Spam Log and Clean Chat Log pick their day like the Status Log; Refresh stays on the day you picked. The Clean Chat Log stays one file, since the Spam Learner measures against all of it.</li>
+<li>The stream summary reads every day a stream ran through.</li>
+<li>Spam Filter: doubled letters no longer hide a listed phrase (&quot;add me on disscord&quot;, &quot;cusstom arrt animation&quot;); hand-offs, service offers, approach stages and keywords all allow them. A letter may repeat but never shrink, so a misspelling in your own list (&quot;cusstom&quot;) does not catch the plain word. Domains and links are still read as written.</li>
+<li>Message Filter → Chat Modes: what the messages did picks the chat mode; young accounts decide it only when nothing else leads.</li>
+<li>Message Filter: &#39;Act On Account Age Alone&#39; acts from the Strict step up (Account Score Hit 1.2; an install still on the old 1.0 moves once).</li>
+<li>Message Filter: the Flood check is on by default for new installs.</li>
+<li>Spam Learner: it runs beside the filters instead of holding them up, never learns from your bot account, and with Spam Learner → Behavior: &#39;Ignore Chat Bots&#39; (on) leaves out known chat bots such as Nightbot. Its chat messages follow &#39;Use Bot Account&#39; and &#39;Send As Action&#39;.</li>
+<li><code>!checklink</code> lets a message past the filters only when it carries one link and nothing else, and a scanner is set up. With more, Check Link answers (Check Link → Messages: &#39;More Than A Link Message&#39;) and the filters judge the message.</li>
+<li>Check Link → Scans That Happen On Their Own: &#39;Check Every Posted Link&#39; scans the whole link, not only its host.</li>
+<li>Hate Raid Protection: the lookups per wave grow with a big raid, so a raid of several hundred viewers can still start a lockdown.</li>
+<li>A Deck or OBS dock undo is now done by <code>!tsundo</code>&#39;s own code: same Action Log line, same notification.</li>
+<li>Voting also asks Twitch&#39;s moderator and VIP lists before a vote acts, so &#39;never anyone above VIP&#39; no longer rests on one account lookup.</li>
+<li>Voting, Twitch Warn and AutoMod fall back on the window&#39;s defaults when a key is missing from configs.json.</li>
+</ul>
+<h5>🐛 Fixed</h5>
+<ul>
+<li>The share dialog checks the spam feed it downloads against the feed&#39;s manifest.</li>
+<li>AutoMod&#39;s Whitelist no longer lets a held link or one of your Blocked Terms through.</li>
+<li>Hate Raid Protection no longer counts held links towards its AutoMod signal.</li>
+<li>Hate Raid Protection: Word Filter entries with options (&#39;| twitch&#39;, an action, an end date) count as hate words again; patterns and expired entries do not.</li>
+<li>Hate Raid Protection: test mode switched on during a real lockdown stops it deleting messages as well.</li>
+<li>Twitch Warn: &#39;Exclude Followers&#39; now applies from the first violation after Streamer.bot starts, not only from the second.</li>
+<li>Twitch Warn: &#39;Count Warnings From Moderators&#39; works, through the Warned User trigger in the import. Voting&#39;s end command is <code>!EndVote</code>.</li>
+<li>Raid Protection: a raid window that ran out while Streamer.bot was closed lifts its chat modes and Shield Mode even with the module switched off.</li>
+<li>Raid Protection: a link the Link Filter&#39;s whitelist allows no longer counts as spam wording.</li>
+<li>Notifications name bot wave and text wave actions and Hate Raid blocks in words (BANNED, BLOCKED) instead of the raw action name.</li>
+<li>Message Filter: a held-down accented letter (ääääää) counts as repeated characters, and Long Messages counts ä as one character.</li>
+<li>Check Link: the Action Log and the alert say whether a harmful link&#39;s message was really removed.</li>
+<li>Shared Bot List: the import now runs it every five minutes, and the settings window keeps its timer on; without the timer the list was never read, so nothing was banned or lifted. A missing timer shows a notice.</li>
+<li>Shared Bot List: General Settings&#39; &#39;Exclude Followers&#39; is honoured, and a ban the list lifts itself no longer keeps that account off the list for good.</li>
+<li>Spam Scoring: the shipped <code>discord.gg</code> whitelist entry no longer hides Discord invite waves; on shared hosts a whitelist entry allows only the pages it names, as in the Link Filter.</li>
+<li>Spam Scoring: an account in a bot wave or text wave whose message another filter already removed still gets the wave&#39;s timeout or ban, and is reported to the Shared Bot List.</li>
+</ul>
+<h2 data-prerelease>v4.1.0-beta.1 — (TESTERS NEEDED) Bot waves, text waves, viewbot alarm and Silent Bot Protection</h2><p class="release__date">November 15, 2026 · pre-release</p><h3>This is a <strong>BETA</strong>! <strong>PLEASE</strong> test it out as much as you can, but do not use it as daily driver! Some translations may be missing, some features can be broken, intentionally not working, have misleading description or crash unexpectedly. Happy to hear about feedback <a href="https://github.com/aaskjer/TwitchSentry/issues">here</a>!</h3>
 <hr>
 <h5>✨ Added</h5>
 <ul>

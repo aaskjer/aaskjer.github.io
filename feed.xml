@@ -5,9 +5,79 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-26T20:30:10Z</updated>
+  <updated>2026-11-27T07:29:46Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>TwitchSentry v4.1.0-beta.2: (TESTERS NEEDED) Live spam feed, held links and stream summary (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.2"/>
+    <id>https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.2</id>
+    <published>2026-11-27T07:29:46Z</published>
+    <updated>2026-11-27T07:29:46Z</updated>
+    <category term="TwitchSentry" label="TwitchSentry"/>
+    <content type="html">&lt;h1&gt;This is a &lt;strong&gt;BETA&lt;/strong&gt;! &lt;strong&gt;PLEASE&lt;/strong&gt; test it out as much as you can, but do not use it as daily driver! Some translations may be missing, some features can be broken, intentionally not working, have misleading description or crash unexpectedly. Happy to hear about feedback &lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/issues&quot;&gt;here&lt;/a&gt;!&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h3&gt;⚠️ Older versions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;v4.1.0-beta.1 and earlier take the spam feed from &lt;code&gt;main&lt;/code&gt; without any SHA256 check. For security reasons that copy leaves &lt;code&gt;main&lt;/code&gt; with the release after next at the latest, and those versions get no more spam feed updates. Update before then.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;✨ Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Spam feed and language files arrive within about a quarter of an hour from the new &lt;code&gt;feed&lt;/code&gt; branch, checked every ten minutes from Streamer.bot&amp;#39;s start, with no window to open.&lt;/li&gt;
+&lt;li&gt;Every downloaded file must match the SHA256 and size in the feed&amp;#39;s manifest, or it is not used.&lt;/li&gt;
+&lt;li&gt;Language updates install on their own; a newer version shows a Windows notification. Your own chat texts stay.&lt;/li&gt;
+&lt;li&gt;Each release keeps getting the language files made for it once a later release changes the window&amp;#39;s texts; the Languages window only offers versions it can install.&lt;/li&gt;
+&lt;li&gt;The spam feed can carry detection patterns: a new one watches for a day, then arms itself. Known Patterns → Spam Feed: &amp;#39;Arm New Patterns Automatically&amp;#39; (on); off, a pattern waits for you after 5 messages it would have caught.&lt;/li&gt;
+&lt;li&gt;A feed pattern adds evidence in one part of an advert and never acts alone; a pattern that times out three times rests for 10 minutes.&lt;/li&gt;
+&lt;li&gt;Known Patterns → Spam Feed lists the feed&amp;#39;s patterns with their state, Arm and Turn Off; arming or turning one off survives feed updates.&lt;/li&gt;
+&lt;li&gt;Stream summary at stream end, on every notification platform: deletions, timeouts, bans, blocks, warnings, modules, refusals, feed patterns, test mode.&lt;/li&gt;
+&lt;li&gt;New notification switches: On New Feed Patterns and On Stream End, both on by default, on Windows too.&lt;/li&gt;
+&lt;li&gt;Links held by Twitch&amp;#39;s &amp;#39;Hold Hyperlinks for Review&amp;#39; are now judged, with the AutoMod module on or off: a link the Link Filter would remove is denied in the moderator queue, never timed out or banned for the link alone.&lt;/li&gt;
+&lt;li&gt;Spam Scoring judges a held link first: spam is denied and the account treated as &amp;#39;Default Action&amp;#39; says. The Spam Learner reads every denied held link.&lt;/li&gt;
+&lt;li&gt;Allowed links, permits and exempt viewers&amp;#39; links still wait for your moderators; TwitchSentry never approves a held link.&lt;/li&gt;
+&lt;li&gt;Messages Twitch holds for one of your Blocked Terms now reach the Word Filter, with the AutoMod module on or off: the matching entry&amp;#39;s action applies, Delete denies the message in the moderator queue, and a timeout or ban is followed by the denial. Action Log, notifications and Twitch Warn as for chat.&lt;/li&gt;
+&lt;li&gt;Held messages no entry matches, and exempt viewers&amp;#39; messages, still wait for your moderators; TwitchSentry never approves one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🔧 Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Message Filter → Code Injection: &amp;#39;Code Injection Check Enabled&amp;#39; is now on by default: a chat message can carry code into an overlay, as shown in a published proof of concept against OBS. An install that had it off gets it switched on once at Streamer.bot&amp;#39;s start; turned off after that, it stays off.&lt;/li&gt;
+&lt;li&gt;Logs start a new file every day instead of every month: &lt;code&gt;action-log-2026-11-24.txt&lt;/code&gt; and so on, for the Spam Log, blocked followers, Silent Bot finds and the evidence files too. Each line lands in the day it is dated.&lt;/li&gt;
+&lt;li&gt;Monthly log files of earlier versions are split into their days once, without losing a line.&lt;/li&gt;
+&lt;li&gt;Action Log, Spam Log and Clean Chat Log pick their day like the Status Log; Refresh stays on the day you picked. The Clean Chat Log stays one file, since the Spam Learner measures against all of it.&lt;/li&gt;
+&lt;li&gt;The stream summary reads every day a stream ran through.&lt;/li&gt;
+&lt;li&gt;Spam Filter: doubled letters no longer hide a listed phrase (&amp;quot;add me on disscord&amp;quot;, &amp;quot;cusstom arrt animation&amp;quot;); hand-offs, service offers, approach stages and keywords all allow them. A letter may repeat but never shrink, so a misspelling in your own list (&amp;quot;cusstom&amp;quot;) does not catch the plain word. Domains and links are still read as written.&lt;/li&gt;
+&lt;li&gt;Message Filter → Chat Modes: what the messages did picks the chat mode; young accounts decide it only when nothing else leads.&lt;/li&gt;
+&lt;li&gt;Message Filter: &amp;#39;Act On Account Age Alone&amp;#39; acts from the Strict step up (Account Score Hit 1.2; an install still on the old 1.0 moves once).&lt;/li&gt;
+&lt;li&gt;Message Filter: the Flood check is on by default for new installs.&lt;/li&gt;
+&lt;li&gt;Spam Learner: it runs beside the filters instead of holding them up, never learns from your bot account, and with Spam Learner → Behavior: &amp;#39;Ignore Chat Bots&amp;#39; (on) leaves out known chat bots such as Nightbot. Its chat messages follow &amp;#39;Use Bot Account&amp;#39; and &amp;#39;Send As Action&amp;#39;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!checklink&lt;/code&gt; lets a message past the filters only when it carries one link and nothing else, and a scanner is set up. With more, Check Link answers (Check Link → Messages: &amp;#39;More Than A Link Message&amp;#39;) and the filters judge the message.&lt;/li&gt;
+&lt;li&gt;Check Link → Scans That Happen On Their Own: &amp;#39;Check Every Posted Link&amp;#39; scans the whole link, not only its host.&lt;/li&gt;
+&lt;li&gt;Hate Raid Protection: the lookups per wave grow with a big raid, so a raid of several hundred viewers can still start a lockdown.&lt;/li&gt;
+&lt;li&gt;A Deck or OBS dock undo is now done by &lt;code&gt;!tsundo&lt;/code&gt;&amp;#39;s own code: same Action Log line, same notification.&lt;/li&gt;
+&lt;li&gt;Voting also asks Twitch&amp;#39;s moderator and VIP lists before a vote acts, so &amp;#39;never anyone above VIP&amp;#39; no longer rests on one account lookup.&lt;/li&gt;
+&lt;li&gt;Voting, Twitch Warn and AutoMod fall back on the window&amp;#39;s defaults when a key is missing from configs.json.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;🐛 Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The share dialog checks the spam feed it downloads against the feed&amp;#39;s manifest.&lt;/li&gt;
+&lt;li&gt;AutoMod&amp;#39;s Whitelist no longer lets a held link or one of your Blocked Terms through.&lt;/li&gt;
+&lt;li&gt;Hate Raid Protection no longer counts held links towards its AutoMod signal.&lt;/li&gt;
+&lt;li&gt;Hate Raid Protection: Word Filter entries with options (&amp;#39;| twitch&amp;#39;, an action, an end date) count as hate words again; patterns and expired entries do not.&lt;/li&gt;
+&lt;li&gt;Hate Raid Protection: test mode switched on during a real lockdown stops it deleting messages as well.&lt;/li&gt;
+&lt;li&gt;Twitch Warn: &amp;#39;Exclude Followers&amp;#39; now applies from the first violation after Streamer.bot starts, not only from the second.&lt;/li&gt;
+&lt;li&gt;Twitch Warn: &amp;#39;Count Warnings From Moderators&amp;#39; works, through the Warned User trigger in the import. Voting&amp;#39;s end command is &lt;code&gt;!EndVote&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Raid Protection: a raid window that ran out while Streamer.bot was closed lifts its chat modes and Shield Mode even with the module switched off.&lt;/li&gt;
+&lt;li&gt;Raid Protection: a link the Link Filter&amp;#39;s whitelist allows no longer counts as spam wording.&lt;/li&gt;
+&lt;li&gt;Notifications name bot wave and text wave actions and Hate Raid blocks in words (BANNED, BLOCKED) instead of the raw action name.&lt;/li&gt;
+&lt;li&gt;Message Filter: a held-down accented letter (ääääää) counts as repeated characters, and Long Messages counts ä as one character.&lt;/li&gt;
+&lt;li&gt;Check Link: the Action Log and the alert say whether a harmful link&amp;#39;s message was really removed.&lt;/li&gt;
+&lt;li&gt;Shared Bot List: the import now runs it every five minutes, and the settings window keeps its timer on; without the timer the list was never read, so nothing was banned or lifted. A missing timer shows a notice.&lt;/li&gt;
+&lt;li&gt;Shared Bot List: General Settings&amp;#39; &amp;#39;Exclude Followers&amp;#39; is honoured, and a ban the list lifts itself no longer keeps that account off the list for good.&lt;/li&gt;
+&lt;li&gt;Spam Scoring: the shipped &lt;code&gt;discord.gg&lt;/code&gt; whitelist entry no longer hides Discord invite waves; on shared hosts a whitelist entry allows only the pages it names, as in the Link Filter.&lt;/li&gt;
+&lt;li&gt;Spam Scoring: an account in a bot wave or text wave whose message another filter already removed still gets the wave&amp;#39;s timeout or ban, and is reported to the Shared Bot List.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.2&quot;&gt;Download v4.1.0-beta.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/twitchsentry/&quot;&gt;TwitchSentry on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>OBS Notes v2.0.0</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/OBSNotes/releases/tag/v2.0.0"/>
@@ -1792,31 +1862,5 @@ never came. A file damaged since its download is no longer loaded for it.&lt;/li
 &lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1&quot;&gt;Download v2.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Hangman Game v13.3.1: A settings action that picks a UIFramework it fits</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1"/>
-    <id>https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1</id>
-    <published>2026-11-12T12:59:34Z</published>
-    <updated>2026-11-12T12:59:34Z</updated>
-    <category term="Hangman-Game" label="Hangman Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came, and the window could not tell whether you are live. A file damaged since its download is no
-longer loaded for either.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The timer for automatic rounds stays off once you switch it off.&lt;/strong&gt; A run that came in just after had
-switched it on again.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Hangman-Game/releases/tag/v13.3.1&quot;&gt;Download v13.3.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/hangman-game/&quot;&gt;Hangman Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
