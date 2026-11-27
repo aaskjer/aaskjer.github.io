@@ -106,6 +106,8 @@
   <a href="https://github.com/aaskjer/TwitchSentry/blob/main/FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Utilities/Comparison.md"><b>Comparison</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Utilities/Import-String.md"><b>Import String</b></a>
+</p><p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/preview/TwitchSentry-preview.gif" alt="TwitchSentry at work: a scam advert, a link from a stranger, a flooder, a raid's bot swarm and a wave of fake followers" width="880">
 </p><hr>
 <h2>📖 Overview</h2>
 <p>Fake gift links, sketchy URLs, copy-paste scams: TwitchSentry removes them from your Twitch chat and logs
@@ -118,7 +120,7 @@ advert — somewhere to go, something on offer, a way to redeem it, a signature 
 them fit together. The <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#link-filter">Link Filter</a> blocks links from viewers you have not trusted.
 Both are always on.</li>
 <li>💬 <strong>How people chat, not just what.</strong> The <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#message-filter">Message Filter</a> watches account age,
-ALL CAPS, emote spam, flooding and repeats, and optionally walls of text, ASCII art and Zalgo text. The
+ALL CAPS, emote spam, flooding, repeats and code injection, and optionally walls of text, ASCII art and Zalgo text. The
 <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#word-filter">Word Filter</a> finds your terms through their disguises and stays in
 step with Twitch&#39;s Blocked Terms.</li>
 <li>🌊 <strong>Protection against waves.</strong> <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#raid-protection">Raid Protection</a> arms itself after an incoming
@@ -130,7 +132,9 @@ accounts from known bot waves.</li>
 other TwitchSentry channels identified as bots. The <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#spam-learner">Spam Learner</a> mines removed
 messages for new keywords, phrases and domain endings and proposes them for review.</li>
 <li>🤖 <strong>Clears the AutoMod queue.</strong> TwitchSentry answers the messages Twitch&#39;s <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#automod">AutoMod</a>
-holds back, so nobody waits there for a moderator. It also catches what AutoMod has nothing to say about:
+holds back and denies the held links and Blocked Terms your rules would remove. Allowed links, permits, exempt
+viewers and terms no entry matches wait for your moderators on purpose: TwitchSentry never approves a held
+link or term. It also catches what AutoMod has nothing to say about:
 raid swarms, follow-bot waves and sales pitches that only show up in the fifth message.</li>
 <li>⚠️ <strong>Escalation and exceptions.</strong> <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#twitch-warn">Twitch Warn</a> escalates from warnings to a timeout,
 ban or restriction. <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#permit">Permit</a> grants a time-limited link exception, and
@@ -140,8 +144,8 @@ ban or restriction. <a href="https://github.com/aaskjer/TwitchSentry/blob/main/M
 clean-chat and status logs show what happened and why.</li>
 <li>🎛️ <strong>Control from anywhere.</strong> <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#deck-buttons">Deck Buttons</a> on a Stream Deck, a Streamer.bot Deck or
 the OBS dock switch profiles and modules. <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#notifications">Notifications</a> go to Discord, Stoat or
-GameVox webhooks, ntfy or Windows. <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#offline-protection">Offline Protection</a> sets chat modes when
-the stream ends. <em>Work in Progress</em></li>
+GameVox webhooks, ntfy or Windows, with a summary when the stream ends. <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#offline-protection">Offline Protection</a>
+sets chat modes when the stream ends. <em>Work in Progress</em></li>
 <li>🌍 <strong>Five languages.</strong> The window and the chat messages come in English, German, Spanish, French and
 Brazilian Portuguese, with community translations on top. Messages can use the pronouns viewers set on
 pronouns.alejo.io.</li>
@@ -173,11 +177,11 @@ pronouns.alejo.io.</li>
 <p>Everything is configured from one window. There is no config file you are expected to edit by hand (well, you can if you want) and nothing to sign up for beyond the two link-scanning services, which are optional and free.</p>
 <hr>
 <h1>Import</h1>
-<p align="center"><img loading="lazy" alt="The Streamer.bot toolbar, with the Import button highlighted" src="https://github.com/user-attachments/assets/7db12d06-c0ee-42a2-a35a-996566f20b3c" /></p><p align="center"><img loading="lazy" alt="The import dialog, with the TwitchSentry.sb file dragged into it" src="https://github.com/user-attachments/assets/b91f4bf4-2aa3-4730-8991-85c3eddd14b9" /></p><p>Open your copy of Streamer.bot, click <strong>Import</strong>, and drag the <code>TwitchSentry.sb</code> file into the window that opens, like in the screenshot above. Answer <strong>Yes / OK</strong> to the prompts that follow to finish the import.</p>
+<p align="center"><img loading="lazy" alt="The Streamer.bot toolbar, with the Import button highlighted" src="https://github.com/user-attachments/assets/7db12d06-c0ee-42a2-a35a-996566f20b3c" /></p><p align="center"><img loading="lazy" alt="The import dialog, with the TwitchSentry.sb file dragged into it" src="https://github.com/user-attachments/assets/b91f4bf4-2aa3-4730-8991-85c3eddd14b9" /></p><p>Open your copy of Streamer.bot, click <strong>Import</strong>, and drag the <code>TwitchSentry-stable.sb</code> file (<code>TwitchSentry-pre-release.sb</code> for a beta) into the window that opens, like in the screenshot above. Answer <strong>Yes / OK</strong> to the prompts that follow to finish the import.</p>
 <p align="center"><img loading="lazy" alt="The Commands tab in Streamer.bot with every TwitchSentry command ticked" src="https://github.com/user-attachments/assets/c3ba2442-a260-4f72-9dcc-22da02b30792" /></p><p>Then enable all the commands under <strong>Commands</strong>, as in the picture.</p>
 <hr>
 <h1>First run</h1>
-<p align="center"><img loading="lazy" alt="Right-clicking the Test sub-action of the TS - Settings action and choosing Test Trigger" src="https://github.com/user-attachments/assets/f1ef63e3-c5da-4e9e-a94f-e79a32a70ec2" /></p><p>Go to the <code>[TS] - Settings</code> action, right-click <strong>Test</strong> and choose <strong>Test Trigger</strong>. That opens the settings window. <em>(The first start takes a moment — it fetches the language files.)</em></p>
+<p align="center"><img loading="lazy" alt="Right-clicking the Test sub-action of the TS - Settings action and choosing Test Trigger" src="https://github.com/user-attachments/assets/f1ef63e3-c5da-4e9e-a94f-e79a32a70ec2" /></p><p>Go to the <code>[TS] - .Settings GUI</code> action, right-click <strong>Test</strong> and choose <strong>Test Trigger</strong>. That opens the settings window. <em>(The first start takes a moment — it fetches the language files.)</em></p>
 <p>The defaults are meant to be a working configuration, not a starting point you have to tune. If you change nothing at all, TwitchSentry filters links and spam, watches how people chat, learns from what it removes, hands out permits and bans the accounts on the <a href="#shared-bot-list">Shared Bot List</a>; Raid Protection, Hate Raid Protection, Follow Wave Protection, Silent Bot Protection, AutoMod, Twitch Warn, Check Link, Voting and the Discord, Stoat and GameVox notifications stay off until you switch them on.</p>
 <hr>
 <h1>The settings window</h1>
@@ -357,8 +361,15 @@ to put on a key under <em>Switch From A Deck</em>.</p>
 <h3>Discord</h3>
 <p>One switch per thing that can happen, not per module: what you are deciding is how much you want to
 hear, and a permit being granted happens hundreds of times more often than one being revoked.
-Thirty-one of them, grouped by where the alert comes from; the Word Filter has its own group,
+They are grouped by where the alert comes from; the Word Filter has its own group,
 so its removals do not ride on the Chat Moderation switches.</p>
+<p><strong>On Stream End</strong> (under <em>Stream Summary Notify</em>) sends one summary as the stream ends, whether or not
+<a href="#offline-protection">Offline Protection</a> is on: how long the stream ran, how many messages were
+deleted, viewers timed out, banned, blocked or warned, which modules did it, what Twitch refused, what
+the spam feed&#39;s patterns did, and whether test mode was on. A stream with nothing to do says so in one
+line. <strong>On New Feed Patterns</strong> (under <em>Spam Feed Notify</em>) reports new detection patterns from the
+<a href="#known-patterns">spam feed</a>, and each one that waits for you, with the messages it would have caught.
+On the Windows tab both start switched on.</p>
 <p>Every alert says what happened in one word, the same in every module: <strong>DELETED</strong>, <strong>TIMEOUT</strong>,
 <strong>BANNED</strong>, <strong>WARNED</strong>, <strong>RESTRICTED</strong>, <strong>BLOCKED</strong> and so on, under a title that names the module the
 way the window does (<em>Spam Scoring — Action Taken</em>). The evidence is a bulleted <strong>Why</strong> — <em>Account is
@@ -537,7 +548,7 @@ Messages</strong>, <strong>Send Messages in Threads</strong> and <strong>Embed L
 usually <em>Missing Permissions</em>.</li>
 </ul>
 <h3>Stoat</h3>
-<img loading="lazy" width="926" alt="Notifications → Stoat" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/notifications-stoat.png" /><p>The same thirty-one alerts as on the Discord tab, each with a switch of its own for Stoat, starting as the
+<img loading="lazy" width="926" alt="Notifications → Stoat" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/notifications-stoat.png" /><p>The same alerts as on the Discord tab, each with a switch of its own for Stoat, starting as the
 Discord ones do. Stoat&#39;s messages have no fields, so an alert arrives as one block: the title, then
 <strong>User</strong>, <strong>Action</strong> and the details line by line, with the <strong>Why</strong> as a list, and last the footer with the
 date and time the alert came in on this PC, since Stoat shows no timestamp of an embed&#39;s own. A burst goes out as one
@@ -546,7 +557,7 @@ message of up to five alerts, as long as their text stays within Stoat&#39;s 200
 name and copy the webhook URL. <strong>Display Name</strong> and <strong>Avatar URL</strong> work as on the Discord tab; Stoat takes a
 name of up to 32 characters, and the window warns you when you save a longer one.</p>
 <h3>GameVox</h3>
-<img loading="lazy" width="926" alt="Notifications → GameVox" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/notifications-gamevox.png" /><p>The same thirty-one alerts again, with switches of their own for GameVox. An alert looks as it does in
+<img loading="lazy" width="926" alt="Notifications → GameVox" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/notifications-gamevox.png" /><p>The same alerts again, with switches of their own for GameVox. An alert looks as it does in
 Discord, except that the date and time it came in on this PC are in its footer, since GameVox shows no timestamp of an
 embed&#39;s own. GameVox shows every post under the webhook&#39;s own name and picture, whatever a post asks for, so
 this tab has no name or picture to set. GameVox may only show a new post once the page is reloaded.</p>
@@ -555,7 +566,7 @@ this tab has no name or picture to set. GameVox may only show a new post once th
 <h3>ntfy</h3>
 <img loading="lazy" width="926" alt="Notifications → ntfy" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/notifications-ntfy.png" /><p><a href="https://ntfy.sh">ntfy</a> delivers a push notification to the ntfy app on a phone (Android or iOS) or to a
 browser tab, without an account. You send to a <em>topic</em>, and every device subscribed to it shows the alert. The
-same thirty-one alerts as on the Discord tab, each with a switch of its own for ntfy, starting as the Discord ones
+same alerts as on the Discord tab, each with a switch of its own for ntfy, starting as the Discord ones
 do. A push shows the alert&#39;s title, with the action&#39;s emoji in front of it (🔨 a ban, ⏱️ a timeout, 🚨 a raid,
 the same as the Discord forum tags), and below it <strong>User</strong>, <strong>Action</strong> and the details line by line. A tap on it
 opens your channel&#39;s mod view. Alerts that arrive together go out as one push, <em>TwitchSentry — 3 alerts</em>, as long
@@ -677,7 +688,7 @@ it is one switch per kind:</p>
 <tbody><tr>
 <td><strong>On New Releases</strong></td>
 <td>on</td>
-<td>A new TwitchSentry release is out, or the window&#39;s or the chat&#39;s language has a newer translation. Once per release and per language version; TwitchSentry looks when Streamer.bot starts, and for a release also each time the settings window opens. Opening the window installs a newer language.</td>
+<td>A new TwitchSentry release is out, or a newer translation of the window&#39;s or the chat&#39;s language was installed. Once per release and per language version; TwitchSentry looks for a release when Streamer.bot starts and each time the settings window opens, and for languages every ten minutes, installing them on its own.</td>
 </tr>
 <tr>
 <td><strong>On Deck Button Actions</strong></td>
@@ -696,7 +707,7 @@ it is one switch per kind:</p>
 </tr>
 </tbody></table>
 <p>Below those come the same switches as on the <a href="#discord">Discord</a> tab, group for group and all off until
-you switch them on. They do not need Discord at all, so the alerts can be on screen instead of, or as
+you switch them on, except <strong>On New Feed Patterns</strong> and <strong>On Stream End</strong>, which start on. They do not need Discord at all, so the alerts can be on screen instead of, or as
 well as, in a Discord channel. What one module reports within a few seconds arrives as one notification
 (<em>Raid Protection — Action Taken (5)</em>, with the first viewers named), so a raid does not bury the screen.</p>
 <p><strong>Show A Test Notification</strong> sends one straight away, whatever is switched on. If nothing appears,
@@ -718,21 +729,21 @@ Notifications</em>, where Streamer.bot has to be allowed to send notifications.
 <td align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/message-filter-expert.png" alt="Expert mode"></td>
 </tr>
 </tbody></table>
-<p>Three tabs: <strong>Checks</strong>, <strong>Chat Modes</strong> and <strong>Messages</strong>. The checks look at how someone is chatting rather than at particular words: account age, ALL CAPS, emote spam, posting too fast or repeating yourself, and, if you switch them on, repeated words, symbol spam, walls of text, mass mentions, ASCII art, Zalgo text and code injection.</p>
-<p>No single one of those is proof of anything on its own — people shout, people spam emotes when something good happens — so with <strong>Require Two Signals</strong> on, a viewer who has chatted here before is only acted on when two of them show up together, while a newcomer to the channel can be acted on for any single one. Being new to Twitch is a risk factor that makes whatever else the message tripped count for more, never a finding by itself. Someone with a long history in your chat needs more evidence than a stranger does.</p>
+<p>Three tabs: <strong>Checks</strong>, <strong>Chat Modes</strong> and <strong>Messages</strong>. The checks look at how someone is chatting rather than at particular words: account age, ALL CAPS, emote spam, posting too fast or repeating yourself, code injection, and, if you switch them on, repeated words, symbol spam, walls of text, mass mentions, ASCII art and Zalgo text.</p>
+<p>No single one of those is proof of anything on its own — people shout, people spam emotes when something good happens — so with <strong>Require Two Signals</strong> on, a viewer who has chatted here before is only acted on when two of them show up together, while a newcomer to the channel can be acted on for any single one. Being new to Twitch is a risk factor that makes whatever else the message tripped count for more, not a finding by itself, unless <strong>Act On Account Age Alone</strong> under <em>Expert Tuning — Scoring</em> is on: then, from the <code>Strict</code> step of the slider up, a young account can be acted on with nothing else against it. Someone with a long history in your chat needs more evidence than a stranger does.</p>
 <p>Each check has its own switch and there is no module-wide one: unticking every check is what silences it.</p>
 <p><strong>Repetition Spam</strong> holds two checks. <em>Repeated characters</em> (<code>aaaaaaa</code>, <code>!!!!!!!</code>, <code>NOOOOOO</code>) used to be part of the caps check; it has its own switch now, and an install that never saved it keeps what the caps switch gave it. A stretched letter counts once towards the caps ratio, so one held-down key is one signal, not two. <em>Repeated words</em> catches the same word or a phrase of up to three words back to back (<code>lol lol lol lol lol</code>); a wall of emotes is left to the emote check. Repeated words are off by default.</p>
 <p><strong>Symbol Spam</strong>, <strong>Long Messages</strong> and <strong>Mass Mentions</strong> are scored like caps and emotes, so a regular&#39;s single hit is discounted and <em>Require Two Signals</em> applies. All three are off by default. Symbols measure the share of punctuation and symbols in a message, leaving out emoji, emotes and whatever the ASCII art check counts; Long Messages flags anything over <em>Max. Characters</em> (300); Mass Mentions counts <em>different</em> @names (5).</p>
-<p><strong>Code Injection</strong> is scored like caps and emotes, off by default: such a message is usually sent once rather than spammed, so a regular&#39;s single hit is discounted and <em>Require Two Signals</em> applies. Twitch only ever shows a message, but a chat overlay, a TTS voice or a Streamer.bot action that hands <code>%rawInput%</code> on to a program, a file path or a web page can run it. The check knows the usual shapes of that: HTML and script tags (<code>&lt;script&gt;</code>, <code>&lt;img>), TTS tags (<code>&lt;break&gt;</code>, <code>&lt;prosody&gt;</code>), shell and PowerShell commands that break out of the one they were handed to (<code>; rm -rf</code>, <code>powershell -enc</code>), template lookups like Log4Shell&#39;s <code>${jndi:…}</code>, SQL (<code>&#39; OR &#39;1&#39;=&#39;1</code>), and file paths that climb out of their folder (<code>../../</code>) or point at another computer (<code>\\server\share</code>). A message with one of them adds <em>Code Injection Score Hit</em> (1.5) to its score; the reply is <em>Code Injection Flag</em>. It does not make an overlay or an action safe, which only escaping the text there can, and in a chat that talks about programming it also catches ordinary code.</p>
+<p><strong>Code Injection</strong> is scored like caps and emotes, on by default: such a message is usually sent once rather than spammed, so a regular&#39;s single hit is discounted and <em>Require Two Signals</em> applies. Twitch only ever shows a message, but a chat overlay, a TTS voice or a Streamer.bot action that hands <code>%rawInput%</code> on to a program, a file path or a web page can run it. The check knows the usual shapes of that: HTML and script tags (<code>&lt;script&gt;</code>, <code>&lt;img>), TTS tags (<code>&lt;break&gt;</code>, <code>&lt;prosody&gt;</code>), shell and PowerShell commands that break out of the one they were handed to (<code>; rm -rf</code>, <code>powershell -enc</code>), template lookups like Log4Shell&#39;s <code>${jndi:…}</code>, SQL (<code>&#39; OR &#39;1&#39;=&#39;1</code>), and file paths that climb out of their folder (<code>../../</code>) or point at another computer (<code>\\server\share</code>). A message with one of them adds <em>Code Injection Score Hit</em> (1.5) to its score; the reply is <em>Code Injection Flag</em>. It does not make an overlay or an action safe, which only escaping the text there can, and in a chat that talks about programming it also catches ordinary code.</p>
 <p><strong>ASCII Art</strong> and <strong>Zalgo Text</strong> sit in the <strong>Flood</strong> card and hang off its switch: pictures and stacked marks are mostly spammed, so with the Flood check off neither of them does anything.</p>
 <p><strong>ASCII Art</strong> is off by default. Switched on, it removes pictures drawn out of Braille dots (⣿⠄) or block and box characters (█▀═), which raids, bot waves and ordinary viewers all paste into chat. It counts those characters, and a message with at least <em>Min. Art Characters</em> of them (20, in Expert mode) is acted on the way <em>Default Action</em> on General Settings says; the reply is <em>ASCII Art Flag</em> on the page&#39;s Messages tab. Unlike the other checks it is a rule rather than a score, so <em>Require Two Signals</em> and the regular&#39;s discount do not apply and a regular&#39;s picture goes too. Exempted viewers and anyone with a permit stay exempt.</p>
 <p><strong>Zalgo Text</strong> works like ASCII art: a rule rather than a score, acting on regulars too, off by default. Writing never needs more than two marks on one letter, so only the third mark onwards is counted, and <em>Min. Stacked Marks</em> (10) of them is Zalgo text.</p>
 <p>In expert mode every check&#39;s card also carries its <strong>Score Hit</strong>, the weight that check adds to a message&#39;s score. What they add up against is under <em>Expert Tuning — Scoring</em> at the bottom of the tab: <em>Require Two Signals</em>, how many messages make a viewer known or a regular, and the threshold.</p>
-<p><strong>Chat Modes</strong>, the second tab, deals with the whole chat rather than one viewer. When enough <em>different</em> people trip the filters inside the same window, a Twitch chat mode is switched on for everyone and lifted again on its own. Its main switch sits at the right of the band at the top while the tab is open; while it is off, the tab&#39;s name is dimmed with a ○. The tab reads top to bottom:</p>
+<p><strong>Chat Modes</strong>, the second tab, deals with the whole chat rather than one viewer. When the Message Filter acts on enough <em>different</em> people inside the same window, a Twitch chat mode is switched on for everyone and lifted again on its own. Its main switch sits at the right of the band at the top while the tab is open; while it is off, the tab&#39;s name is dimmed with a ○. The tab reads top to bottom:</p>
 <ul>
 <li><strong>When It Starts</strong>: a sentence that says in plain words what the numbers add up to, then how many <em>Violations</em>, from at least how many different <em>Viewers</em>, <em>Within</em> how many seconds.</li>
 <li><strong>Modes It May Use</strong>: <em>Slow Mode</em> with its <em>Seconds Between Messages</em> and <em>Always Add Slow Mode</em>, <em>Follower-Only</em> with how long someone must have followed, <em>Emote-Only</em> and <em>Sub-Only</em>. A mode switched off here is skipped.</li>
-<li><strong>How Long It Stays On</strong>: <em>Lift After</em>, counted from the last violation, so the mode lasts as long as the wave.</li>
+<li><strong>How Long It Stays On</strong>: <em>Lift After</em>, counted from when the mode went on, and started over each time the wave reaches the numbers under <em>When It Starts</em> again.</li>
 <li><strong>What Happens</strong>: a table with one row per kind of wave, showing which mode comes first and, with <em>Step Up If The Wave Continues</em> on, what is added if the wave keeps going. It redraws as you tick and names the modes it skips.</li>
 </ul>
 <img loading="lazy" width="926" alt="Message Filter, Chat Modes tab" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/message-filter-chat-modes.png" /><p>The third tab, <strong>Messages</strong>, holds what the Message Filter says in chat, including the two chat mode notices.</p>
@@ -747,14 +758,15 @@ Notifications</em>, where Streamer.bot has to be allowed to send notifications.
 </ul>
 <p>They sit here rather than on the Permit page because they are not a permit: they keep working with Permit switched off entirely.</p>
 <p><strong>Check Every Posted Link</strong>, the scan of every link with VirusTotal, is on the <a href="#check-link">Check Link</a> page.</p>
+<p><strong>Held links.</strong> With Twitch&#39;s <em>Hold Hyperlinks for Review</em> switched on, a link never reaches chat: Twitch holds it until a moderator answers. TwitchSentry still judges it, whether the AutoMod module is on or off. A link this page would remove is denied in Twitch&#39;s moderator queue; Twitch holding it is evidence enough, so the account is never timed out or banned for the link alone, whatever <strong>Default Action</strong> says. The Spam Learner reads the message like any removed one, and <a href="#spam-scoring">Spam Scoring</a> judges it first: spam is denied and the account treated as <strong>Default Action</strong> says. A link this page allows, a link under a permit and an exempt viewer&#39;s link wait for your moderators. TwitchSentry never approves a held link.</p>
 <h2>Word Filter</h2>
-<img loading="lazy" width="926" alt="Word Filter" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/word-filter.png" /><p>Your own list of words and phrases that are not welcome in your chat. It is its own action, <strong>[TS] - Word Filter</strong>, with the triggers <em>Twitch &gt; Chat &gt; Chat Message</em>, <em>Twitch &gt; Moderation &gt; Blocked Terms Added</em> and <em>Blocked Terms Deleted</em>, and the <code>!nuke</code> command.</p>
+<img loading="lazy" width="926" alt="Word Filter" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/word-filter.png" /><p>Your own list of words and phrases that are not welcome in your chat.</p>
 <ul>
 <li><strong>A word or phrase matches as a whole word</strong>, whatever its case and accents: <code>cheap</code> does not catch <code>cheaper</code>. A <code>*</code> stands for any letters (<code>*cheap*</code>), and an entry written as <code>/pattern/</code> is a regular expression.</li>
 <li><strong>Catch Disguised Words</strong> (on by default) also reads every message with its disguises off: lookalike letters from other alphabets, digits and signs standing in for letters (<code>h4te</code>, <code>$pam</code>), letters spaced out (<code>h a t e</code>, <code>h.a.t.e</code>) and letters held down (<code>haaaate</code>). Digits stuck on to dodge the list (<code>hate123</code>) do not hide a word either.</li>
 <li><strong>There is no score.</strong> A match is acted on whoever sends it, except moderators, the broadcaster and the viewers exempted on General Settings. <strong>Page Action</strong> (Delete, Timeout or Ban) applies to every entry set to <em>Page Action</em>; <strong>Timeout Duration</strong> sets the length of every timeout, an entry&#39;s own <em>Timeout</em> too. With Twitch Warn on, a deletion is handed over like the other filters&#39;.</li>
 <li><strong>Each entry</strong> can be marked <strong>Block On Twitch</strong>, have its own action, and run out on its own after an hour, a day or a week, which is what a spoiler or today&#39;s drama wants.</li>
-<li><strong>Twitch&#39;s Blocked Terms</strong>: Twitch&#39;s own list stops a message before anyone sees it, even while Streamer.bot is closed, but such a message never reaches TwitchSentry either. Entries marked <em>Block On Twitch</em> are put on Twitch&#39;s list and taken off again when you unmark, remove or let them run out. What a moderator adds on Twitch is taken in; what a moderator deletes there goes from here too if it came from Twitch, and only loses its mark if it was made here. The two lists are compared after every save, every quarter of an hour while chat runs, and at once through the two Blocked Terms triggers. A failed read of Twitch&#39;s list never empties either side; an empty list is believed only when the next sync, minutes later, finds it empty too.</li>
+<li><strong>Twitch&#39;s Blocked Terms</strong>: Twitch&#39;s own list keeps a message out of chat, even while Streamer.bot is closed, and holds it for your moderators. While Streamer.bot runs, the held message comes to the Word Filter, whether the AutoMod module is on or off, and the entry it matches decides as in chat: <em>Delete</em> denies it in Twitch&#39;s moderator queue, a timeout or ban is followed by the denial, and a denial goes to Twitch Warn like a deletion. A message no entry matches (a term that is only on Twitch, for example with <em>Sync With Twitch</em> off) and an exempt viewer&#39;s message wait for your moderators; TwitchSentry never approves one. Twitch reports nothing for its private blocked terms, so those messages never reach TwitchSentry. Entries marked <em>Block On Twitch</em> are put on Twitch&#39;s list and taken off again when you unmark, remove or let them run out. What a moderator adds on Twitch is taken in; what a moderator deletes there goes from here too if it came from Twitch, and only loses its mark if it was made here. The two lists are compared after every save, every quarter of an hour while chat runs, and at once whenever a term is added to or deleted from Twitch&#39;s list. A failed read of Twitch&#39;s list never empties either side; an empty list is believed only when the next sync, minutes later, finds it empty too.</li>
 <li><strong><code>!nuke &lt;word or phrase&gt; [seconds]</code></strong> reaches back through the last stretch of chat (60 seconds unless the command says, 600 at most) and removes every matching message, by default with a timeout for each sender. The phrase then stays on the list for <em>Keep Blocking</em> minutes. One <code>!tsundo</code> takes the whole nuke back, <code>!tsundo @name</code> one viewer&#39;s part of it.</li>
 <li>The list is never posted in chat: <code>!bwlist</code> only says how many entries there are, unless it is whispered.</li>
 </ul>
@@ -775,20 +787,23 @@ Notifications</em>, where Streamer.bot has to be allowed to send notifications.
 </tbody></table>
 <p>This does not judge a message by how many red flags it trips. It asks whether the message is built like an advert. An advert has parts: somewhere to go (<strong>Destination</strong>), something being sold (<strong>Offer</strong>), a way to redeem it (<strong>Instrument</strong>), the random <code>@handle</code> a spam bot signs with (<strong>Tag</strong>), and wording this channel has seen from spam before (<strong>Signature</strong>).</p>
 <p>One part on its own is a coincidence — plenty of ordinary messages have one. Two parts together is an advert. That is what the sensitivity slider controls, and why false positives are rare: no single keyword is ever the whole verdict.</p>
+<p>A link Twitch holds for review (<em>Hold Hyperlinks for Review</em>) is judged the same way, though it never reached chat: an advert is denied in Twitch&#39;s moderator queue, the account timed out or banned as <strong>Default Action</strong> says, and reported to the Shared Bot List like any other. A held message never makes its sender a regular.</p>
 <p><strong>Fancy fonts change nothing.</strong> Spam is often written in letters from other alphabets that only look Latin: Cherokee (<code>ᏙᏆᎬᎳᎬᎡᏚ</code>), Lisu, Greek, Cyrillic, Canadian syllabics, small capitals, boxed or circled letters, letters with strokes or stacked accents, or plain words padded with invisible characters. Before any list is read, all of that is read back as the letters it shows, and the Spam Learner and Raid Protection read messages the same way. Disguised letters that reveal wording from your lists are deliberate evasion and make that evidence decisive; harmless words in such a font stay harmless. A phrase on your lists also finds its words joined by underscores, and a Telegram bot named next to &quot;tg&quot; or &quot;telegram&quot; in a message selling viewers or followers is a hand-off, the same part of an advert as &quot;add me on Discord&quot;.</p>
 <p><strong>Conversation Scam</strong> is tracked separately, because it is a different animal from the bot that drops one advert and leaves. This account chats with you: it asks how long you have been streaming, says your channel looks a little empty, mentions that a logo or a VTuber model would fix that, and only then tells you it sells exactly that. No single message it sends is spam — the tell is the order. Four stages are tracked per account inside a window, they only count moving forwards, and it only acts once an account has walked them in order and ended on the offer. Being a familiar face does not buy an exemption here — it raises the bar to all four stages instead of three. Sitting in a channel for hours is how these accounts earn their standing in the first place.</p>
-<p><strong>Bot Wave</strong> catches what no single message gives away. A wave of brand-new accounts rotates its wording, so no two messages look alike and none of them need be an advert on its own; what it cannot vary is where it sends people. Within a short window (60 seconds by default) TwitchSentry counts the brand-new chatters whose first message names the same address: a link, a domain written with spaces or <code>dot</code>, an invite link, a Telegram bot. Once five of them share one (more during a raid, scaled with its size), that address counts as a known spam site for everyone still in the window: the messages already posted get the Default Action in one go, with one undo entry for all of them, every further message naming the address goes, and the address lands in your spam domains through the Spam Learner. Regulars are never touched, Twitch links and the Link Filter&#39;s allowed domains never count, and a friendly raid&#39;s greetings name no address. The window, the number of senders and the raid share are in expert mode.</p>
+<p><strong>Bot Wave</strong> catches what no single message gives away. A wave of brand-new accounts rotates its wording, so no two messages look alike and none of them need be an advert on its own; what it cannot vary is where it sends people. Within a short window (60 seconds by default) TwitchSentry counts the brand-new chatters whose first message names the same address: a link, a domain written with spaces or <code>dot</code>, an invite link, a Telegram bot. Once five of them share one (more during a raid, scaled with its size), that address counts as a known spam site for everyone still in the window: the messages already posted get the Default Action in one go, with one undo entry for all of them, every further message naming the address goes, and the accounts reach the Shared Bot List with the reason <code>bot_wave</code>. While the Spam Learner is on, an address that is a domain of its own also lands in your spam domains; an invite link, a Telegram bot or a page on a shared host does not. Regulars are never touched, Twitch links and the Link Filter&#39;s allowed domains never count, and a friendly raid&#39;s greetings name no address. The window, the number of senders and the raid share are in expert mode.</p>
 <p><strong>Text Wave</strong> catches chat bot tools that post lines from a list, one bought account after the other, seconds or minutes apart: no link, no advert, often a harmless sounding sentence such as &quot;Use the !discord command to connect to our Discord server.&quot; What they cannot hide is that different accounts post the very same words. Within a window (10 minutes by default) TwitchSentry counts the accounts that are not regulars here and post the same message word for word, letters in a fancy font read as the letters they show. Once three of them have, those words count as spam for everyone still in the window: the messages already posted get the Default Action in one go, with one undo entry for all of them, every further message with them goes, and the accounts reach the Shared Bot List with the reason <code>text_wave</code>. Regulars are never touched, and words a regular posted in the window never count, so a copypasta your chat started stays alone. Commands, lines under 20 letters or four words and messages of nothing but emotes never count, and for ten minutes after a raid the text wave rests, because raiders paste the same raid message. On by default (<strong>Detect Text Waves</strong>); the window, the number of senders and the shortest message are in expert mode.</p>
 <p><strong>Detect Rotating Accounts</strong> (on, with the text wave) covers the tools that run a single account through a list of lines, a few seconds or a minute apart. One account is never a wave, so it asks something else: once an account that is not a regular here has posted at least two different lines, each of them twice or more within the window, those lines count as spam for everyone still in the window and the account&#39;s earlier messages get the Default Action. A viewer who asks the same question again repeats one line and never trips it, and channel bots such as Nightbot or StreamElements, whose timers go round the same way, are never counted.</p>
 <h2>Known Patterns</h2>
 <img loading="lazy" width="926" alt="Known Patterns" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/known-patterns.png" /><p>The actual active rules every module checks against — <code>spam.json</code>, editable in place. Spam domains, keywords, strong keywords, domain endings, custom patterns and voucher-code patterns, plus the four <strong>conversation beats</strong> the scam detector matches on, and the <strong>hand-off phrases</strong> and <strong>service offers</strong> it acts on for accounts new to your chat. Add your own here, or approve what the Learner suggests. Don&#39;t forget <strong>Save</strong>. Easy mode shows the spam domains, the keywords and the hand-off and service lists; strong keywords, domain endings, both pattern lists and the conversation beats are in expert mode.</p>
-<p><strong>New entries arrive on their own.</strong> When a new viewer-selling site starts circulating, it is added once to the <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Feed/README.md">spam feed</a>, and within a few hours it shows up in these lists — no new version to import. Each entry arrives exactly once: delete one here and it stays deleted. The feed only ever adds to the plain-text lists; custom patterns and voucher patterns are yours alone. <strong>Receive New Entries</strong> at the top of the page switches it off.</p>
+<p><strong>New entries arrive on their own.</strong> When a new viewer-selling site starts circulating, it is added once to the <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Feed/README.md">spam feed</a>, and within about a quarter of an hour it shows up in these lists — no new version to import, and no window to open. TwitchSentry looks every ten minutes, and every file it fetches has to match the SHA256 the feed publishes for it, or it is not used. Each entry arrives exactly once: delete one here and it stays deleted. Your own custom patterns and voucher patterns are yours alone. <strong>Receive New Entries</strong> at the top of the page switches it off; the time of the last look is shown under <strong>New Patterns</strong>.</p>
+<p><strong>New detection arrives the same way.</strong> Besides entries, the feed carries detection patterns. A new one first watches for a day: it only notes what it would have caught and changes nothing. Then it arms itself and counts in its part of an advert like any other evidence, never on its own, so a pattern alone never removes a message. With <strong>Arm New Patterns Automatically</strong> off, a pattern keeps watching until it would have caught 5 messages, then waits for you: the notice at the top of the window and the list under <strong>New Patterns</strong> show what it would have caught, with <strong>Arm</strong> and <strong>Turn Off</strong> beside each pattern. What you choose for a pattern stays as you left it when the feed changes; only a pattern whose wording the feed changes starts watching again. <a href="#notifications">Notifications</a> → <strong>On New Feed Patterns</strong> reports new patterns and the ones that wait for you.</p>
 <p><strong>Share what you found.</strong> <em>Share With Other Streamers...</em> on this page, or <em>Share With Others...</em> in the ☰ menu, offers the entries in your lists that TwitchSentry does not have yet: nothing the feed already carries, and nothing a version shipped as a default. Each list is headed with what an entry in it does, and <em>How does this work?</em> above the list explains the rest, including why a conversation stage can show up on its own. Tick the ones worth passing on and it opens a GitHub form with them filled in; you press Submit there yourself, and once an entry holds up it reaches everyone else through the feed. The same dialog shares your saved settings as a profile, or a complete translation file. Nothing is sent from the window, and only the entries go along — never a chat message or a name. A single translated text that reads badly is a ticket rather than a share: <em>Report...</em> in the ☰ menu, <em>A translation</em>.</p>
 <p>A shared profile is too long for the link, so it goes onto your clipboard to paste into the form. If Windows will not hand the clipboard over (it happens in Remote Desktop sessions), the form opens anyway and the dialog shows the profile, with <em>Copy Again</em> beside it. Once you submit, the repository checks the profile the way the window checks an import, and if it holds up it is stored on the <a href="https://github.com/aaskjer/TwitchSentry/tree/profiles"><code>profiles</code> branch</a> and the ticket is closed. There is no pull request and nobody has to accept it, so it doubles as a backup: download the file from there and put it into <code>Settings/Profiles</code>, on this PC or any other.</p>
 <h2>Spam Learner</h2>
 <img loading="lazy" width="926" alt="Spam Learner" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/spam-learner.png" /><p>Watches what actually got removed and works out which words, phrases and domain endings keep showing up in it, scoring each candidate by how much more often it appears in spam than in ordinary chat. New finds start as suggestions for you to review; they are promoted into the real rule list only once they have built a track record — either because you approve them, or automatically if <strong>Auto Promote Trusted Rules</strong> is on.</p>
 <p><strong>Sensitivity</strong> sets how much evidence that takes, from <code>Very cautious</code> (many different accounts, again and again) to <code>Very eager</code> (the first signs). <code>Normal</code> waits for at least two different accounts and three removed messages. Expert mode shows the seven numbers behind the slider and the rest of the tuning: download caches, caps per run, the clean-chat sample and decay.</p>
-<p>Only <em>content</em> violations feed it. The fact that somebody typed too fast tells you nothing about which of their words were spam, so behavioural violations contribute none. On top of that sit an <strong>Ignore Terms</strong> list, automatic protection for your own account names, a denylist for major brands, and the clean-chat sample described below.</p>
+<p>Only <em>content</em> violations feed it. The fact that somebody typed too fast tells you nothing about which of their words were spam, so behavioural violations contribute none. On top of that sit an <strong>Ignore Terms</strong> list, automatic protection for your own account names, a denylist for major brands, and the clean-chat sample described below. Your bot account is never learnt from, and with <strong>Ignore Chat Bots</strong> on (the default) neither are known chat bots such as Nightbot or StreamElements: their messages stay out of the learning and out of the clean-chat sample.</p>
+<p>The learner runs beside the filters rather than in their way: a removal never waits for it.</p>
 <h2>Suggestions</h2>
 <img loading="lazy" width="926" alt="Suggestions" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/suggestions.png" /><p>Everything the Learner has proposed but not applied. Read the <strong>Would hit</strong> column first: that is how many messages from your own clean chat log the rule would have matched. Zero is what you want, and anything above zero is never auto-promoted. <strong>Users</strong> counts how many different people posted it, so one spammer repeating themselves counts once. Expert mode adds the statistics columns, among them <strong>Discrim.</strong>: how much more often it shows up in spam than in ordinary chat.</p>
 <p><strong>Probation</strong> means a candidate is still building a record; <strong>trusted</strong> means it is proven enough to be auto-promoted, if you have turned that on. <strong>Clear File</strong> wipes the pending list and leaves your active rules alone.</p>
@@ -807,7 +822,7 @@ Notifications</em>, where Streamer.bot has to be allowed to send notifications.
 <td align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/raid-protection-expert.png" alt="Expert mode"></td>
 </tr>
 </tbody></table>
-<p>The same idea as the Message Filter, but stricter, and only armed for a limited window right after an incoming raid. It adds <strong>swarm detection</strong>, which spots several different accounts posting near-identical messages at once and checks that line against your spam lists.
+<p>The same idea as the Message Filter, but stricter, and only armed for a limited window right after an incoming raid. It adds <strong>swarm detection</strong>, which spots several different accounts posting near-identical messages at once and checks that line against your spam lists; a link that is not on the Link Filter&#39;s whitelist counts as such wording too.
 Three tabs: <strong>Detection</strong> (sensitivity, the <strong>Action</strong> for a message it catches, what counts as a raid worth stopping and, in expert mode, the raid window, velocity, duplicate and swarm numbers), <strong>Chat Modes</strong> and <strong>Messages</strong>.</p>
 <p><strong>Chat Modes</strong> works like the <a href="#message-filter">Message Filter&#39;s</a>, with three differences: <strong>When It Starts</strong> is one switch, <em>As Soon As A Raid Arrives</em> (otherwise the first mode goes on when a raid message crosses the score threshold); <strong>Shield Mode</strong> has its own card; and everything is lifted when the raid window ends rather than after a set time. A second wave of the same pattern moves up a step instead of re-picking the mode that is already running.</p>
 <img loading="lazy" width="926" alt="Raid Protection, Chat Modes tab" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/raid-protection-chat-modes.png" /><p><strong>Pause Queues</strong>, at the bottom of the Chat Modes tab, holds Streamer.bot action queues while a harmful raid is being stopped, so its spam never
@@ -841,11 +856,14 @@ and the Word Filter&#39;s if <em>Use The Word Filter&#39;s Words</em> is ticked)
 (<code>hoss00312</code>, <code>h0ss_0312</code>), several accounts made within one day. The last two describe any bot wave, which
 is why they never lock the chat down alone. In a big raid a share of the arrivals has to fit a signal, so a
 few accounts that happen to share a creation day in a crowd of hundreds count for nothing. The same line
-posted by many accounts is never a signal: that is what a friendly raid looks like.</p>
+posted by many accounts is never a signal: that is what a friendly raid looks like. A Twitch raid from a
+channel on the hate raid lists, and not on <em>Trusted Raiders</em>, needs no second signal: the lockdown starts as
+the raid arrives.</p>
 </li>
 <li><p><strong>Viewers who have written here before</strong> are never counted and never acted on, not even during a lockdown,
 whatever they write: only an account writing in your chat for the first time, or following, is an arrival.
-A message AutoMod holds back from a regular only counts towards the AutoMod signal.</p>
+A message AutoMod holds back from a regular only counts towards the AutoMod signal. A link Twitch holds for
+review (<em>Hold Hyperlinks for Review</em>) does not count at all: Twitch holds every link, hateful or not.</p>
 </li>
 <li><p><strong>The lockdown</strong>: every account of the wave goes into <code>Logs/hateraid-evidence.txt</code> first, with what it
 wrote, for a report to Twitch. Then <strong>Shield Mode</strong> goes on (with the settings you gave it on Twitch), and
@@ -858,9 +876,11 @@ first. A ban takes their messages with it, so the chat is not cleared and everyb
 accounts and the raiding channel: they can no longer follow, whisper or raid you.</li>
 </ul>
 <p>A channel on Raid Protection → Raid Window: &#39;Trusted Raiders&#39; is never banned or blocked. Accounts arriving
-during the lockdown are judged the same way; one <code>!tsundo</code> lifts the bans or blocks of a whole wave. The
-lockdown lifts itself once nothing new has arrived for <strong>Quiet Time</strong> (10 minutes), and at the latest after
-<strong>Longest Time</strong> (60 minutes), and only lifts what it set: a Shield Mode that was on before stays on.</p>
+during the lockdown are judged the same way. Bans and blocks go out in rounds of up to 40 accounts, and one
+<code>!tsundo</code> lifts one round, so a bigger wave, or accounts that arrive later in the lockdown, take more than
+one. The lockdown lifts itself once <strong>Quiet Time</strong> (10 minutes) has passed without a new account judged part
+of the wave (arrivals that fit no signal do not keep it going), and at the latest after <strong>Longest Time</strong>
+(60 minutes), and only lifts what it set: a Shield Mode that was on before stays on.</p>
 </li>
 <li><p><strong>Chat Modes</strong>, on the Lockdown tab: follower-only, sub-only, emote-only and slow mode, whichever you tick, go
 on with the lockdown and come off with it. A mode another TwitchSentry module still needs, Raid Protection&#39;s
@@ -877,10 +897,11 @@ hate raid participants, kept in <code>Cache/isds</code> and fetched every six ho
 also shows when they were last fetched and how many accounts they name. An account on them is acted on when it writes, follows or
 raids (and, with <em>Check Accounts Sitting In Chat</em>, while it lurks): <strong>Action On A Listed Account</strong> ships as
 <em>Restrict</em>, so only moderators see what it writes; <em>Notify Only</em>, <em>Monitor</em> and <em>Ban</em> are the others. During
-a lockdown a listed account is banned. <strong>Harassment List</strong> adds the accounts listed for harassment, threats
-and racism; <strong>Hijacked Accounts During A Lockdown</strong> adds hijacked accounts, but only during a lockdown, since
-their owners are victims too. The lists name real people as well, which is why a listed account is not banned
-outside a lockdown. Twitch gives a name free again once its owner renamed or deleted the account, so an
+a lockdown a listed account gets what <strong>During A Lockdown</strong> does: it is banned on <em>Ban</em> and blocked on
+<em>Clear Chat And Block</em>, while on <em>Clear Chat</em> it still gets <em>Action On A Listed Account</em>. <strong>Harassment List</strong>
+adds the accounts listed for harassment, threats and racism; <strong>Hijacked Accounts During A Lockdown</strong> adds
+hijacked accounts, but only during a lockdown, since their owners are victims too. The lists name real people
+as well, which is why the action outside a lockdown ships as <em>Restrict</em> rather than <em>Ban</em>. Twitch gives a name free again once its owner renamed or deleted the account, so an
 account made after its name appeared on a list is somebody else and is left alone; the whitelist, greylist
 and unban list never count. How to ask for a name to come off a list is on isdsdataarchive&#39;s page, linked on About &amp; Links.</p>
 </li>
@@ -923,7 +944,7 @@ is somebody who never filled the form in.</li>
 <li><strong>Report Only is the default</strong>, because a block is invisible from the viewer&#39;s side: they simply cannot follow,
 and nobody tells them why. Every account it blocks is written to <code>followbot-blocks.txt</code> in the Logs folder,
 with the evidence that convicted it, and <a href="#chat-commands"><code>!tsundo</code></a> lifts the last one. <strong>Open Folder</strong>
-under <em>Blocked Accounts</em> on the page shows the file in Explorer; a new one starts each month, like the other logs.</li>
+under <em>Blocked Accounts</em> on the page shows the file in Explorer; a new one starts each day, like the other logs.</li>
 <li><strong>Judge Single Follows Too</strong> (off by default) runs the checks on every follow rather than only inside a wave.</li>
 <li><strong>Chat Modes</strong>: follower-only, sub-only, emote-only and slow mode, whichever you tick, go on when a wave
 crosses the threshold or it is armed by hand, and come off when the wave window ends. Follower-only is the one
@@ -944,9 +965,7 @@ the window over; <code>off</code> ends it.</li>
 of channels without ever writing, most likely to log the chat for keys or to build up history and aging. They are made in batches: the same day, the
 same short name pattern, no picture, no bio.</p>
 <ul>
-<li>It runs as its own action, <strong><code>SilentBotProtection</code></strong>, on the trigger <em>Twitch → General → Present Viewers</em>.
-Tick <strong>Live Update</strong> under <em>Platforms → Twitch → Settings → Present Viewers</em>: without it Streamer.bot
-only lists viewers who wrote recently, and a Silent Bot never writes.</li>
+<li>It goes through the viewers Streamer.bot lists as present in chat, one round at a time.</li>
 <li><strong>Which Accounts Are Looked Up</strong>: only names of exactly <strong>Letters In The Name</strong> letters followed by
 <strong>Digits At The End</strong> digits (5 and 2). Moderators, the broadcaster and the viewers exempted on General
 Settings are skipped. Each account is looked up on Twitch once, at most <strong>Lookups Per Round</strong> (20) per round.</li>
@@ -988,10 +1007,14 @@ GitHub (<a href="https://github.com/aaskjer/TwitchSentry/tree/botlist">the <code
 channels reported there.</p>
 <ul>
 <li><strong>What is reported</strong>, automatically and without a switch: a decisive hit in Spam Scoring (a known spam
-domain, a strong keyword, a conversation scam) from a viewer who is not a regular; a Silent Bot Protection verdict
-with the name shape, a bot day and a bare profile together; an account in one of Follow Wave Protection&#39;s follow
-waves; and an account in a Raid Protection swarm whose wording is on a spam list. Silent Bot Protection and Follow
-Wave Protection report on Report Only as well. Only the account is sent, never a chat message or which channel reported it. Test mode reports nothing, and lifting a ban or a
+domain, a strong keyword, a conversation scam) from a viewer who is not a regular, and the accounts of one of
+its <a href="#spam-scoring">bot waves or text waves</a> (<code>bot_wave</code>, <code>text_wave</code>); a Silent Bot Protection verdict with the
+name shape and a bare profile together, made on a known bot day or on the same day as at least <strong>Same Day
+Accounts</strong> accounts of that shape; an account in one of Follow Wave Protection&#39;s follow waves; an account in a
+Raid Protection swarm whose wording is on a spam list; and an account Hate Raid Protection bans or blocks in a
+lockdown because its name shares a stem with others of the wave or it was made within one day of them. Spam Scoring
+reports to the <strong>Spam Bots</strong> list, Silent Bot Protection to <strong>Silent Bots</strong>, the others to <strong>Bot Waves</strong>. Silent
+Bot Protection and Follow Wave Protection report on Report Only as well. Only the account is sent, never a chat message or which channel reported it. Test mode reports nothing, and lifting a ban or a
 timeout on Twitch takes the report back.</li>
 <li><strong>What is banned</strong>: an account at least two channels reported, from the lists switched on: <strong>Spam Bots</strong>,
 <strong>Silent Bots</strong> and <strong>Bot Waves</strong> (all on). Each account is looked up on Twitch first; moderators, VIPs,
@@ -1016,8 +1039,7 @@ by itself. So the moment Twitch reports the stream offline, the modes ticked her
 <strong>Shield Mode</strong>. When the stream goes live again, <strong>Lift When The Stream Goes Live</strong> switches off exactly
 what this page switched on, and nothing else.</p>
 <ul>
-<li>It runs as its own action, <strong><code>OfflineProtection</code></strong>, with two triggers: <em>Twitch → Stream Offline</em> and
-<em>Twitch → Stream Online</em>. Streamer.bot has to be running when the stream ends.</li>
+<li>Streamer.bot has to be running when the stream ends.</li>
 <li>With <a href="#discord">Discord</a> switched on, <strong>On Chat Modes Switched</strong> posts <em>Chat Modes On</em> as the stream ends
 and <em>Chat Modes Lifted</em> as it goes live, naming any mode Twitch would not switch.</li>
 <li>What it switched on is remembered across a restart of Streamer.bot, so going live lifts it even then.</li>
@@ -1031,14 +1053,15 @@ this page switched on.</li>
 <p>These are off by default, except Permit. Each one is optional: the chat filters and spam scoring are the core, and everything here is something you may or may not want.</p>
 <h2>AutoMod</h2>
 <img loading="lazy" width="926" alt="AutoMod" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/automod.png" /><p><strong>Off by default</strong>. Twitch&#39;s own AutoMod holds suspicious messages back and waits for a moderator to approve or deny each one. This answers them for you, by level and by category. Leave <strong>AutoMod Categories</strong> empty to act on everything Twitch holds, or list only the categories you care about.</p>
-<p><strong>Ban Evasion</strong> (off by default, needs the trigger <em>Twitch &gt; Moderation &gt; Suspicious User Message</em>) acts on the rating Twitch gives an account it compares with the ones banned here before: <em>likely</em> only, or <em>possible</em> too. Twitch&#39;s own Suspicious User Controls can already monitor or restrict such accounts; this adds a ban if you want one, the Action Log, Discord and <code>!tsundo</code>. Each account is acted on once a day. The reason Twitch records with such a ban is on the page&#39;s Messages tab.</p>
+<p>A link Twitch holds because <em>Hold Hyperlinks for Review</em> is on is not AutoMod judging words and is not answered here: the <a href="#link-filter">Link Filter</a> and Spam Scoring answer it. A message Twitch holds for one of your Blocked Terms goes to the <a href="#word-filter">Word Filter</a> while it is switched on. The <strong>Whitelist</strong> only answers AutoMod misreading a word; it never lets a held link or one of your own Blocked Terms through.</p>
+<p><strong>Ban Evasion</strong> (off by default) acts on the rating Twitch gives an account it compares with the ones banned here before: <em>likely</em> only, or <em>possible</em> too. Twitch&#39;s own Suspicious User Controls can already monitor or restrict such accounts; this adds a ban if you want one, the Action Log, Discord and <code>!tsundo</code>. Each account is acted on once a day. The reason Twitch records with such a ban is on the page&#39;s Messages tab.</p>
 <p><strong>Unban requests</strong> are always written to the Action Log, and posted to Discord or shown as a Windows notification wherever <strong>On Unban Requests</strong> is switched on under <a href="#notifications">Notifications</a>, with what TwitchSentry&#39;s logs say about the account beside them: which module acted, when, why and on which message, archived months included. This works with the AutoMod module switched off too. The decision is still made in Twitch&#39;s moderator view.</p>
 <h2>Twitch Warn</h2>
 <img loading="lazy" width="926" alt="Twitch Warn" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/twitch-warn.png" /><p>A warned viewer has to read and click through a warning screen before they can chat again, and Twitch keeps the count in their moderation history. <strong>Warning Escalation</strong> adds steps on top: warns accumulate, the last one before the threshold is a final warning, and the violation after that becomes a timeout, a ban or a <strong>restriction</strong>. A restricted viewer stays in chat, but everything they write from then on reaches only the moderators. Counts reset on their own after a quiet period.</p>
 <p>Two switches go with it:</p>
 <ul>
 <li><strong>Monitor From The Final Warning</strong> flags the viewer as monitored on Twitch along with the final warning. They chat as before, and the moderators see a marker on every message they send, so whoever is watching knows who is one violation away.</li>
-<li><strong>Count Warnings From Moderators</strong> counts a warning a moderator gives in Twitch — <code>/warn</code>, or the warning on the viewer&#39;s card — towards the same ladder. It needs the trigger <strong>Twitch &gt; Moderation &gt; Warned User</strong> on the TwitchWarn action; the settings window says so while that trigger has never fired. A moderator&#39;s warning never escalates by itself, and TwitchSentry&#39;s own warnings, which Twitch reports through the same trigger, are not counted twice.</li>
+<li><strong>Count Warnings From Moderators</strong> counts a warning a moderator gives in Twitch — <code>/warn</code>, or the warning on the viewer&#39;s card — towards the same ladder. A moderator&#39;s warning never escalates by itself, and TwitchSentry&#39;s own warnings, which Twitch reports the same way, are not counted twice.</li>
 </ul>
 <p>A restriction and a monitoring are both lifted with <code>!tsundo</code>, from a deck button, or on the viewer&#39;s card in Twitch.</p>
 <h2>Permit</h2>
@@ -1048,8 +1071,8 @@ A permit can also come from a <a href="#deck-buttons">deck button</a> or the <a 
 Viewers can also redeem a permit themselves through Channel Points, if <strong>Allow Self-Permit</strong> is on. <strong>When A Self-Permit Is Redeemed</strong> decides what happens next: <strong>Grant It Right Away</strong>, or <strong>Wait For A Deck Button</strong>, where the request waits in the <a href="#the-obs-dock">OBS dock</a>&#39;s Permit list (or for a <code>tsPermit</code> key) until you let it through or refuse it and the points go back. Chat hears <em>Self-Permit Waiting</em> meanwhile. A request nobody answered gives the points back by itself once the next stream goes live, after 12 hours, or a few minutes after its viewer left the chat. Set that reward up with <strong>Skip Reward Requests Queue</strong> turned <strong>off</strong> — that is what lets TwitchSentry give the points back when a redemption cannot become a permit. A reward that skips the queue is spent the moment it is redeemed, and Twitch will not allow a refund.
 With <strong>Accept !permitme</strong> on (card <em>Chat Requests</em>), viewers can ask in chat as well: <code>!permitme</code> puts the request on the same Permit list of the <a href="#the-obs-dock">OBS dock</a> and on a <code>tsPermit</code> key, where you let it through or refuse it, and a moderator&#39;s <code>!permit</code> for that viewer answers it too. It costs nothing, so nothing goes back; asking again while the request waits gets no answer in chat. Chat hears <em>Request Waiting</em>, and <em>Request Turned Down</em> when you refuse it. A moderator&#39;s <code>!permit</code> also answers a waiting Channel Points request, and its points are then spent.</p>
 <h2>Check Link</h2>
-<img loading="lazy" width="926" alt="Check Link" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/check-link.png" /><p>Two jobs. Anyone can scan a URL on demand with <code>!checklink &lt;url&gt;</code>, and the second job scans every link posted in chat automatically, on top of the Link Filter&#39;s own rules.
-It uses VirusTotal (required, free key) and, for a second opinion, IPQualityScore if you like. IPQS rates a link from 0 to 100; the default threshold is 75, with a stricter one for domains it also reports as recently registered, because brand-new throwaway domains are a common phishing trick. Both thresholds, the scanner limits, the result cache, link defanging and whispered checks are in expert mode.</p>
+<img loading="lazy" width="926" alt="Check Link" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/check-link.png" /><p>Two jobs. Anyone can scan a URL on demand with <code>!checklink &lt;url&gt;</code>, and the second job scans every link posted in chat automatically, on top of the Link Filter&#39;s own rules. The automatic scan looks at the whole link, so a file on a shared host such as <code>cdn.discordapp.com</code> is judged by itself rather than by its host. The command takes one link and nothing else: with more, Check Link answers with <em>More Than A Link Message</em>, scans nothing, and the filters judge the message like any other.
+It uses VirusTotal (free key) and, for a second opinion, IPQualityScore if you like (<strong>Use IPQS</strong>); either of the two on its own is enough to scan. IPQS rates a link from 0 to 100; the default threshold is 75, with a stricter one for domains it also reports as recently registered, because brand-new throwaway domains are a common phishing trick. Both thresholds, the scanner limits, the result cache, link defanging and whispered checks are in expert mode.</p>
 <h2>Voting</h2>
 <img loading="lazy" width="926" alt="Voting" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/voting.png" /><p>Lets chat decide! <code>!vote @user</code> starts or joins a vote, and if enough <em>different</em> viewers vote within the time window, that person is timed out, or banned if you allow it. When the window runs out, the vote resets. Subscribers and VIPs can be exempted, there are separate exclusion lists for users and Streamer.bot groups, and <strong>nobody above VIP can ever be voted out</strong>.</p>
 <hr>
@@ -1178,14 +1201,14 @@ particular (an escalation notice, say) always takes the third form.</li>
 <hr>
 <h1>Results</h1>
 <h2>Action Log</h2>
-<img loading="lazy" width="926" alt="Action Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/action-log.png" /><p>Every action involving a viewer this month, filterable by module and by result, with the raw line underneath. This is the page for <em>what happened</em>. Each module brings its own columns, and <strong>Details</strong> holds whatever a line says that has no column of its own, such as the changes of a Word Filter sync. A removed message has a <strong>Message</strong> column, so you can judge the removal without opening another page.</p>
-<p>Each month starts a new <code>action-log.txt</code> (and a new <code>spam-log.txt</code>). The month before is moved aside in the same <code>Logs</code> folder as <code>action-log-2026-09.txt</code> and so on, and nothing is deleted. The Home counters still count the older months, and the Spam Learner&#39;s History Lines reach back into them, so a new month does not start its memory from nothing.</p>
+<img loading="lazy" width="926" alt="Action Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/action-log.png" /><p>Every action involving a viewer on the day picked at the top, filterable by module and by result, with the raw line underneath. This is the page for <em>what happened</em>. Each module brings its own columns, and <strong>Details</strong> holds whatever a line says that has no column of its own, such as the changes of a Word Filter sync. A removed message has a <strong>Message</strong> column, so you can judge the removal without opening another page.</p>
+<p>Each day starts a new <code>action-log.txt</code> at midnight, and so does every other log in the <code>Logs</code> folder except the Clean Chat Log. The day before is moved aside in the same folder as <code>action-log-2026-11-24.txt</code> and so on, and nothing is deleted; the day list at the top of the page reads them, newest first, the way the Status Log picks a day of the Streamer.bot log. The Home counters still count the older days, the stream summary reads every day a stream ran through, and the Spam Learner&#39;s History Lines reach back into them, so a new day does not start its memory from nothing.</p>
 <h2>Status Log</h2>
-<img loading="lazy" width="926" alt="Status Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/status-log.png" /><p>What TwitchSentry has been saying about <em>itself</em>, pulled out of the Streamer.bot log: an API key still on its placeholder, a download that failed, an action Twitch refused. None of that is announced in chat, so this is the page to open when something quietly did not happen.</p>
+<img loading="lazy" width="926" alt="Status Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/status-log.png" /><p>What TwitchSentry has been saying about <em>itself</em>, pulled out of the Streamer.bot log: an API key still on its placeholder, a download that failed, an action Twitch refused. None of that is announced in chat, so this is the page to open when something quietly did not happen. Streamer.bot starts a new log file at midnight; the day list at the top picks which one to read.</p>
 <h2>Spam Log</h2>
-<img loading="lazy" width="926" alt="Spam Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/spam-log.png" /><p>The <strong>Spam Log</strong> is every message the Spam Filter and the Link Filter removed this month, exactly as it was posted. The Spam Learner learns from it, and it is the page to open when you disagree with one of those removals. Earlier months are in <code>spam-log-2026-09.txt</code> and so on, beside it in the <code>Logs</code> folder.</p>
+<img loading="lazy" width="926" alt="Spam Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/spam-log.png" /><p>The <strong>Spam Log</strong> is every message the Spam Filter and the Link Filter removed on the day picked at the top, exactly as it was posted. The Spam Learner learns from it, and it is the page to open when you disagree with one of those removals. Earlier days are in <code>spam-log-2026-11-24.txt</code> and so on, beside it in the <code>Logs</code> folder, and the Spam Learner keeps reading them.</p>
 <h2>Clean Chat Log</h2>
-<img loading="lazy" width="926" alt="Clean Chat Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/clean-chat-log.png" /><p>The <strong>Clean Chat Log</strong> is the opposite of the Spam Log: a sample of ordinary chat that was deliberately left alone, roughly one message in ten. The Spam Learner measures its candidates against it, which is what stops an everyday word from becoming a rule. Both pages have a search box and a per-account filter, and both show the full line under the list, because chat messages are usually wider than the row.</p>
+<img loading="lazy" width="926" alt="Clean Chat Log" src="https://raw.githubusercontent.com/aaskjer/TwitchSentry/main/Utilities/screenshots/clean-chat-log.png" /><p>The <strong>Clean Chat Log</strong> is the opposite of the Spam Log: a sample of ordinary chat that was deliberately left alone, roughly one message in ten. The Spam Learner measures its candidates against it, which is what stops an everyday word from becoming a rule. Unlike the other logs it stays one file rather than starting anew each day, because the Spam Learner measures against all of it; its day list only picks which day of the sample to show. Both pages have a search box, a day list and a per-account filter, and both show the full line under the list, because chat messages are usually wider than the row.</p>
 <hr>
 <h1>Help</h1>
 <h2>Manual</h2>
@@ -1253,11 +1276,6 @@ values it takes, your saved profiles included.</p>
 <td>Switches a module on or off: <code>Raid Protection</code>, <code>Hate Raid Protection</code>, <code>Follow Wave Protection</code>, <code>Silent Bot Protection</code>, <code>Word Filter</code>, <code>Offline Protection</code>, <code>AutoMod</code>, <code>Twitch Warn</code>, <code>Permit</code>, <code>Check Link</code>, <code>Voting</code>, <code>Spam Learner</code></td>
 </tr>
 <tr>
-<td><code>tsNotify</code></td>
-<td><code>Stoat on</code></td>
-<td>Switches a tab of the Notifications page on or off, by its main switch: <code>Discord</code>, <code>Stoat</code>, <code>GameVox</code>, <code>ntfy</code>, <code>Windows</code></td>
-</tr>
-<tr>
 <td><code>tsExempt</code></td>
 <td><code>VIPs on</code></td>
 <td>Whether <code>Followers</code>, <code>Subscribers</code> or <code>VIPs</code> are left alone by the filters — <em>Exclude Followers</em>, <em>Exclude Subscribers</em> and <em>Exclude VIPs</em> on General Settings</td>
@@ -1266,6 +1284,11 @@ values it takes, your saved profiles included.</p>
 <td><code>tsAllow</code></td>
 <td><code>All YouTube Videos on</code></td>
 <td>One of the twelve <em>Always Allowed</em> switches of the Link Filter: <code>Your Twitch Clips</code>, <code>Your Twitch Channel Page</code>, <code>Your YouTube Channel Page</code>, <code>Your Kick Clips</code>, <code>Your Kick VODs</code> (<em>Only Your Channel</em>), <code>All Twitch Clips</code>, <code>All Twitch VOD Links</code>, <code>All YouTube Videos</code>, <code>All YouTube Shorts</code>, <code>All YouTube Live Streams</code>, <code>All YouTube Clips</code>, <code>All Kick VOD Links</code> (<em>Any Channel</em>: every channel&#39;s links of that kind)</td>
+</tr>
+<tr>
+<td><code>tsNotify</code></td>
+<td><code>Stoat on</code></td>
+<td>Switches a tab of the Notifications page on or off, by its main switch: <code>Discord</code>, <code>Stoat</code>, <code>GameVox</code>, <code>ntfy</code>, <code>Windows</code></td>
 </tr>
 <tr>
 <td><code>tsAutoMod</code></td>
@@ -1489,7 +1512,8 @@ does not lift itself after a quiet spell, only by hand (<code>off</code>, the ke
 <em>Longest Time</em>. Hate Raid Protection itself has to be switched on.</li>
 <li><strong>Undo</strong> follows <code>!tsundo</code> step for step: the newest entry on the undo trail, whichever module wrote it.
 When Twitch refuses, the entry stays on the trail to be tried again. It is written to the Action Log,
-and said in chat only where TwitchSentry says what it does in chat (<em>Reply In Chat</em>).</li>
+posted wherever <em>On Undo via !tsundo</em> is switched on under <a href="#notifications">Notifications</a>, and said in
+chat only where TwitchSentry says what it does in chat (<em>Reply In Chat</em>).</li>
 </ul>
 <h2>With the settings window open</h2>
 <p>The window notices within a couple of seconds and says so in the notice strip — <em>A deck button switched
@@ -1499,7 +1523,7 @@ in the window keeps what the key wrote, and one you did change keeps your change
 a key counts down in the strip, as it does from the menu.</p>
 <hr>
 <h1>Chat commands</h1>
-<p>Moderator-only unless noted. TwitchSentry recognises each command by its Streamer.bot command id, so a command or trigger word renamed in the Commands tab keeps working; a command deleted and made again gets a new id and is no longer TwitchSentry&#39;s. A viewer&#39;s <code>!checklink &lt;link&gt;</code> is left to Check Link while Check Link is on; with more words after it, the message is checked like any other. Any other message that starts with a command is checked like every other message — moderators and the broadcaster are exempt from the filters anyway.</p>
+<p>Moderator-only unless noted. TwitchSentry recognises each command by its Streamer.bot command id, so a command or trigger word renamed in the Commands tab keeps working; a command deleted and made again gets a new id and is no longer TwitchSentry&#39;s. A viewer&#39;s <code>!checklink &lt;link&gt;</code> is left to Check Link while Check Link is on, but only when everything after the command is exactly one valid link. With anything else after it, TwitchSentry answers that the message holds more than a link, scans nothing, and every filter checks the message as usual. Any other message that starts with a command is checked like every other message — moderators and the broadcaster are exempt from the filters anyway.</p>
 <table>
 <thead>
 <tr>
@@ -1508,7 +1532,7 @@ a key counts down in the strip, as it does from the menu.</p>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>!checklink &lt;url&gt;</code> / <code>!linkcheck &lt;url&gt;</code></td>
+<td><code>!checklink &lt;url&gt;</code></td>
 <td>Scans a link with Check Link <em>(anyone)</em></td>
 </tr>
 <tr>
@@ -1573,7 +1597,7 @@ a key counts down in the strip, as it does from the menu.</p>
 </tr>
 <tr>
 <td><code>!tsundo [@user]</code></td>
-<td>Takes back the last timeout, ban, restriction, monitoring, follow block or whole nuke (or that viewer&#39;s last one)</td>
+<td>Takes back the last timeout, ban, restriction, monitoring, block or batch (a whole nuke, a wave, a Silent Bot round, up to 40 accounts of a lockdown), or that viewer&#39;s last one</td>
 </tr>
 <tr>
 <td><code>!hateraid [on|off]</code></td>
@@ -1620,14 +1644,16 @@ TwitchSentry/Settings/Profiles/&lt;name&gt;.json           ← exported policy p
 TwitchSentry/Machine Learning/spam.json              ← active keywords, phrases, patterns, TLDs
 TwitchSentry/Machine Learning/spam-suggestions.json  ← the Learner&#39;s pending suggestions
 TwitchSentry/Machine Learning/spam-feed-state.json   ← which spam feed entries were already handed over
-TwitchSentry/Logs/action-log.txt                     ← this month&#39;s moderation action history
-TwitchSentry/Logs/action-log-&lt;yyyy-MM&gt;.txt           ← earlier months, one file each
-TwitchSentry/Logs/spam-log.txt                       ← this month&#39;s raw text the Learner mines from
-TwitchSentry/Logs/spam-log-&lt;yyyy-MM&gt;.txt             ← earlier months, one file each
+TwitchSentry/Machine Learning/feed-patterns-state.json ← each spam feed pattern: watching, waiting, armed or off
+TwitchSentry/Logs/action-log.txt                     ← today&#39;s moderation action history
+TwitchSentry/Logs/action-log-&lt;yyyy-MM-dd&gt;.txt        ← earlier days, one file each
+TwitchSentry/Logs/spam-log.txt                       ← today&#39;s raw text the Learner mines from
+TwitchSentry/Logs/spam-log-&lt;yyyy-MM-dd&gt;.txt          ← earlier days, one file each
 TwitchSentry/Logs/clean-log.txt                      ← sampled normal chat
 TwitchSentry/Cache/stopwords.txt                     ← downloaded common-word list
 TwitchSentry/Cache/tld_cache.txt                     ← downloaded valid domain-ending list
 TwitchSentry/Cache/spam-feed.json                    ← the last downloaded spam feed
+TwitchSentry/Cache/ota-manifest.json                 ← the feed&#39;s list of files with their SHA256
 TwitchSentry/Cache/home-banner.png                   ← the banner on Home
 TwitchSentry/Cache/TwitchSentry-Toast.ico            ← the icon Windows notifications carry
 TwitchSentry/Cache/webhook-threads.json              ← each module&#39;s thread in a Discord forum
@@ -1667,7 +1693,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p>The <strong>?</strong> in a card&#39;s corner opens the <strong>Manual</strong> page (under Help) at that card&#39;s section, and <strong>← Back to …</strong> takes you back. The Manual&#39;s <strong>Terms</strong> tab explains the words the window uses, each with a link to where it is, and its <strong>Deck Buttons</strong> tab lists every deck argument with its values. Installing and where the files live are in the <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md">online Manual</a>.</p>
 <hr>
 <h2>🧭 Commands</h2>
-<p>Commands are never scanned as ordinary chat. <strong>Allow Chat Commands</strong> and <strong>Allow Whisper Commands</strong> on General Settings decide where they are accepted. <code>!tsundo</code> in chat works even with <strong>Allow Chat Commands</strong> off: that switch is about editing the lists.</p>
+<p>A moderator&#39;s command is never scanned as ordinary chat, because moderators are exempt from the filters; for a viewer&#39;s, see <em>Can a command be flagged as a violation?</em> under Message Filter. <strong>Allow Chat Commands</strong> and <strong>Allow Whisper Commands</strong> on General Settings decide where they are accepted. <code>!tsundo</code> in chat works even with <strong>Allow Chat Commands</strong> off: that switch is about editing the lists.</p>
 <table>
 <thead>
 <tr>
@@ -1679,7 +1705,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <tbody><tr>
 <td><code>!tsundo</code></td>
 <td>Moderators</td>
-<td>Takes back TwitchSentry&#39;s last timeout, ban, restriction, monitoring or follow block, whichever module did it</td>
+<td>Takes back TwitchSentry&#39;s last timeout, ban, restriction, monitoring or block, whichever module did it, or its last batch: a whole nuke, a wave, a Silent Bot round, up to 40 accounts of a lockdown</td>
 </tr>
 <tr>
 <td><code>!tsundo @user</code></td>
@@ -1702,7 +1728,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <td>Asks for a link permit, while <strong>Accept !permitme</strong> is on</td>
 </tr>
 <tr>
-<td><code>!checklink &lt;url&gt;</code> / <code>!linkcheck &lt;url&gt;</code></td>
+<td><code>!checklink &lt;url&gt;</code></td>
 <td>Anyone</td>
 <td>Scans a link with Check Link</td>
 </tr>
@@ -1756,6 +1782,31 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <td>Moderators</td>
 <td>Spaced-URL TLDs</td>
 </tr>
+<tr>
+<td><code>!bwadd &lt;word&gt; [2h] [twitch] [delete|timeout|ban]</code> / <code>!bwremove</code> / <code>!bwlist</code></td>
+<td>Moderators</td>
+<td>Blocked Words on the Word Filter page; <code>!bwlist</code> says only how many there are, unless whispered</td>
+</tr>
+<tr>
+<td><code>!nuke &lt;phrase&gt; [seconds]</code></td>
+<td>Moderators</td>
+<td>Removes every message with that phrase from the last stretch of chat, by default with a timeout for each sender</td>
+</tr>
+<tr>
+<td><code>!hateraid [on|off]</code></td>
+<td>Moderators</td>
+<td>Starts or lifts a Hate Raid Protection lockdown; without on or off it toggles</td>
+</tr>
+<tr>
+<td><code>!antiraid [on|off]</code></td>
+<td>Moderators</td>
+<td>Arms or disarms Raid Protection as an incoming raid does; without on or off it toggles</td>
+</tr>
+<tr>
+<td><code>!followwave [on|off]</code></td>
+<td>Moderators</td>
+<td>Arms or disarms Follow Wave Protection as a follow wave does; without on or off it toggles</td>
+</tr>
 </tbody></table>
 <hr>
 <p><strong>Q: How far back does <code>!tsundo</code> reach?</strong></p>
@@ -1772,7 +1823,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p>Yes, it shows the name and <strong>On</strong> or <strong>Off</strong> after every press, or words of your own with placeholders such as <code>{state:LIVE|OFF}</code>. <code>tsColor = auto</code> colours it too, and an <em>Action Switch</em> key always shows the side that is true. Details: <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#a-key-that-shows-what-it-switched">Manual → A key that shows what it switched</a>.</p>
 <hr>
 <p><strong>Q: Can I use the buttons inside OBS?</strong></p>
-<p>Yes. ☰ → <strong>Options...</strong> → <em>OBS Dock</em> → <strong>Set Up OBS Dock</strong> writes a dock page and puts its address on the clipboard; in OBS paste it under <strong>Docks → Custom Browser Docks</strong>, with <em>TwitchSentry</em> as the name. OBS takes a dock only from that menu, so TwitchSentry cannot add it for you. It needs Streamer.bot&#39;s <strong>WebSocket Server</strong> (Servers/Clients) running. Besides the panic button and every switch it has six big buttons you set up yourself with ✎: a profile, a module, an exemption, an Always Allowed link, AutoMod Action, Test Mode, Raid Protection or Undo each. Details: <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#the-obs-dock">Manual → The OBS dock</a>.</p>
+<p>Yes. ☰ → <strong>Options...</strong> → <em>OBS Dock</em> → <strong>Set Up OBS Dock</strong> writes a dock page and puts its address on the clipboard; in OBS paste it under <strong>Docks → Custom Browser Docks</strong>, with <em>TwitchSentry</em> as the name. OBS takes a dock only from that menu, so TwitchSentry cannot add it for you. It needs Streamer.bot&#39;s <strong>WebSocket Server</strong> (Servers/Clients) running. Besides the panic button and every switch it has up to 24 buttons you set up yourself with ✎ (six until you change <strong>Buttons Shown</strong>): Test Mode, the panic button, Undo, a profile, a module&#39;s switch or one of its functions (arming Raid or Follow Wave Protection, a hate raid lockdown, AutoMod&#39;s or Silent Bot Protection&#39;s action, granting, refusing or revoking permits), a Notifications tab, an exemption or an Always Allowed switch each. Details: <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#the-obs-dock">Manual → The OBS dock</a>.</p>
 <hr>
 <h2>⚖️ Profiles</h2>
 <p><strong>Q: What is the difference between a profile and a backup?</strong></p>
@@ -1796,19 +1847,19 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <h2>💬 Message Filter</h2>
 <p><strong>Q: What does it check?</strong></p>
 <p><em>How</em> someone chats: account age, caps, repeated characters and words, emote spam, flooding or repeated messages, symbol spam, long messages, mass mentions, ASCII art, Zalgo text and code injection. Each check has its own switch; untick all of them to switch the filter off. A list of words you do not want in chat is the <a href="https://github.com/aaskjer/TwitchSentry/blob/main/Manual.md#word-filter">Word Filter</a>&#39;s job.</p>
-<p>People shout and spam emotes when something good happens, so someone who has chatted here before needs two signals on the same message; a newcomer to the channel can be acted on for one. A young account only makes the other signals weigh more, and regulars need more against them than strangers. <strong>Require Two Signals</strong> and <strong>Act On Account Age Alone</strong> under Expert Tuning change that balance.</p>
+<p>People shout and spam emotes when something good happens, so someone who has chatted here before needs two signals on the same message; a newcomer to the channel can be acted on for one. A young account only makes the other signals weigh more, and regulars need more against them than strangers. <strong>Require Two Signals</strong> and <strong>Act On Account Age Alone</strong> under Expert Tuning change that balance; with the latter on, a young account can be acted on by itself from the <em>Strict</em> step of the slider up.</p>
 <hr>
 <p><strong>Q: Can it remove ASCII art?</strong></p>
 <p>Yes, with <strong>ASCII Art Check</strong> on (it is off by default): pictures drawn out of Braille dots (⣿⠄) or block and box characters (█▀═), whether a raid, a bot wave or an ordinary viewer pastes them. A message with at least <strong>Min. Art Characters</strong> of them (20, in Expert mode) is acted on as <strong>Action On Violation</strong> on General Settings says. It is a rule rather than a score, so <strong>Require Two Signals</strong> and the regular&#39;s discount do not apply and regulars are caught too. Exempted viewers and anyone with a permit are not. It sits in the <strong>Flood</strong> card and only works while the Flood check is on, because pictures are mostly spammed.</p>
 <hr>
 <p><strong>Q: Can someone run harmful code through chat?</strong></p>
-<p>Not through Twitch: it only ever shows a message. A chat overlay, a TTS voice or a Streamer.bot action that hands <code>%rawInput%</code> on to a program, a file path or a web page can run it, though. <strong>Code Injection Check</strong> (off by default) acts on the usual shapes of that: HTML and script tags, TTS tags, shell and PowerShell commands, Log4Shell&#39;s <code>${jndi:…}</code>, SQL, and paths like <code>../../</code> or <code>\\server\share</code>. Such a message is usually sent once rather than spammed, so it is scored like caps or emotes: with <strong>Require Two Signals</strong> on, a newcomer can be acted on for it alone and a regular needs more. It does not make a weak overlay or action safe, which only escaping the text there can, and in a chat that talks about programming it also catches ordinary code. Links to malware are Check Link&#39;s job.</p>
+<p>Not through Twitch: it only ever shows a message. A chat overlay, a TTS voice or a Streamer.bot action that hands <code>%rawInput%</code> on to a program, a file path or a web page can run it, though. <strong>Code Injection Check</strong> (on by default) acts on the usual shapes of that: HTML and script tags, TTS tags, shell and PowerShell commands, Log4Shell&#39;s <code>${jndi:…}</code>, SQL, and paths like <code>../../</code> or <code>\\server\share</code>. Such a message is usually sent once rather than spammed, so it is scored like caps or emotes: with <strong>Require Two Signals</strong> on, a newcomer can be acted on for it alone and a regular needs more. It does not make a weak overlay or action safe, which only escaping the text there can, and in a chat that talks about programming it also catches ordinary code. Links to malware are Check Link&#39;s job.</p>
 <hr>
 <p><strong>Q: Can a command be flagged as a violation?</strong></p>
-<p>A moderator&#39;s or the broadcaster&#39;s never: they are exempt from every filter. A viewer&#39;s <code>!checklink &lt;link&gt;</code> is left to Check Link while Check Link is on, and a malicious or suspicious result removes it. Any other message is checked whatever word it starts with, so a command in front of a link is not a way past the filters.</p>
+<p>A moderator&#39;s or the broadcaster&#39;s never: they are exempt from every filter. A viewer&#39;s <code>!checklink &lt;link&gt;</code> is left to Check Link while Check Link is on, as long as everything after the command is exactly one valid link, and a malicious or suspicious result removes it. With anything else after it, TwitchSentry answers that the message holds more than a link, scans nothing, and every filter checks the message as usual. Any other message is checked whatever word it starts with, so a command in front of a link is not a way past the filters.</p>
 <hr>
 <p><strong>Q: What are chat modes?</strong></p>
-<p>A chat-wide safety net on the Message Filter&#39;s <strong>Chat Modes</strong> tab: when enough <em>different</em> viewers trigger violations in a short time, a Twitch chat mode (slow, follower-only, emote-only or sub-only) is switched on and lifted again once things calm down. The mode depends on the kind of wave, and the <strong>What Happens</strong> table shows the order for the boxes you have ticked. Emote-only and sub-only are opt-in.</p>
+<p>A chat-wide safety net on the Message Filter&#39;s <strong>Chat Modes</strong> tab: when the Message Filter acts on enough <em>different</em> viewers in a short time, a Twitch chat mode (slow, follower-only, emote-only or sub-only) is switched on and lifted again once things calm down. The mode depends on the kind of wave, and the <strong>What Happens</strong> table shows the order for the boxes you have ticked. Emote-only and sub-only are opt-in.</p>
 <hr>
 <h2>🚫 Spam Scoring</h2>
 <p><strong>Q: What does it catch?</strong></p>
@@ -1821,7 +1872,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p>The &quot;sales chat&quot;: friendly questions, then &quot;your channel looks empty&quot;, then a suggestion (logo, overlay, VTuber model), then the pitch (&quot;I work with streamers...&quot;). No single message is spam, so TwitchSentry tracks the four stages per account over 45 minutes. Three in order, with the pitch last, closes it; regulars need all four. Its own action: <strong>Report Only</strong>, <strong>Timeout</strong> (a day by default) or <strong>Ban</strong>.</p>
 <hr>
 <p><strong>Q: Where do the block lists come from, and do they update?</strong></p>
-<p>From the Spam Learner, the public Stop The Bots list, and the <strong>spam feed</strong>: with <strong>Receive New Entries</strong> on (Known Patterns page), new entries arrive every three hours. Each arrives once, so an entry you delete stays deleted, and the feed only touches the plain-text lists, never your custom or voucher patterns. <strong>Share With Other Streamers...</strong> on the same card offers your own entries for everyone.</p>
+<p>From the Spam Learner, the public Stop The Bots list, and the <strong>spam feed</strong>: with <strong>Receive New Entries</strong> on (Known Patterns page), new entries arrive within about a quarter of an hour, each file checked against its published SHA256 first. Each arrives once, so an entry you delete stays deleted, and the feed never touches your custom or voucher patterns. New detection patterns from the feed watch for a day before they count, and never act on their own. <strong>Share With Other Streamers...</strong> on the same card offers your own entries for everyone.</p>
 <hr>
 <p><strong>Q: Can I add my own patterns?</strong></p>
 <p>Yes, on <strong>Known Patterns</strong>: keywords, strong keywords, domains, TLDs, custom patterns and voucher patterns.</p>
@@ -1840,13 +1891,13 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p><strong>Clear File</strong> on the Suggestions page. It doesn&#39;t touch your active <code>spam.json</code> rules.</p>
 <hr>
 <p><strong>Q: What is Decay?</strong></p>
-<p>Cleanup of rules and suggestions that no longer turn up in recent violations. Entries starting with <code>!</code> are protected.</p>
+<p>Cleanup of rules and suggestions that no longer turn up in recent violations. With <strong>Decay Enabled</strong> on, suggestions are always cleaned up, active rules in <code>spam.json</code> only while <strong>Auto Promote Trusted Rules</strong> is on as well, and never a rule the spam feed brought or TwitchSentry shipped. Entries starting with <code>!</code> are protected too, while <strong>Protect Manual Rules</strong> is on (the default).</p>
 <hr>
 <p><strong>Q: Where can I see what was removed?</strong></p>
-<p>Under Results: the <strong>Action Log</strong> shows each action with the message it was taken on, and the <strong>Spam Log</strong> lists every message the Spam Filter and the Link Filter removed this month; <strong>Clean Chat Log</strong> is the sample of normal chat the learner compares against. The two message logs have search and a per-account filter.</p>
+<p>Under Results: the <strong>Action Log</strong> shows each action with the message it was taken on, and the <strong>Spam Log</strong> lists every message the Spam Filter and the Link Filter removed; <strong>Clean Chat Log</strong> is the sample of normal chat the learner compares against. Every log page has a day list at the top, and the two message logs have search and a per-account filter.</p>
 <hr>
-<p><strong>Q: Where did last month&#39;s log go?</strong></p>
-<p>Each month starts a new <code>action-log.txt</code> and <code>spam-log.txt</code>. The previous month is moved aside in the same <code>Logs</code> folder as <code>action-log-2026-09.txt</code> / <code>spam-log-2026-09.txt</code> and so on. Nothing is deleted, so you can remove old months by hand whenever you like.</p>
+<p><strong>Q: Where did yesterday&#39;s log go?</strong></p>
+<p>Each day starts a new <code>action-log.txt</code> and <code>spam-log.txt</code> at midnight. The day before is moved aside in the same <code>Logs</code> folder as <code>action-log-2026-11-24.txt</code> / <code>spam-log-2026-11-24.txt</code> and so on, and the day list at the top of each log page reads them. Nothing is deleted, so you can remove old days by hand whenever you like.</p>
 <hr>
 <h2>🔗 Link Filter &amp; Whitelist</h2>
 <p><strong>Q: Can I switch the Link Filter or Spam Scoring off?</strong></p>
@@ -1890,10 +1941,10 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <hr>
 <h2>🚨 Raid Protection</h2>
 <p><strong>Q: How is it different from the Message Filter?</strong></p>
-<p>It arms itself for a while after an incoming raid, is stricter, and adds <strong>swarm detection</strong>: several accounts posting near-identical messages at once. By default a swarm only counts when that line matches your spam lists, and then it is enough to act. It has its own slider and its own <strong>Chat Modes</strong> tab, with <em>Step Up If The Wave Continues</em>. A deck button (<code>tsRaid</code>) arms it without a raid.</p>
+<p>It arms itself for a while after an incoming raid, is stricter, and adds <strong>swarm detection</strong>: several accounts posting near-identical messages at once. By default a swarm only counts when that line matches your spam lists or carries a link that is not whitelisted, and then it is enough to act. It has its own slider and its own <strong>Chat Modes</strong> tab, with <em>Step Up If The Wave Continues</em>. A deck button (<code>tsRaid</code>) arms it without a raid.</p>
 <hr>
 <p><strong>Q: Which chat mode does a raid get?</strong></p>
-<p>The dominant pattern decides: emote spam prefers slow mode, fresh accounts follower-only, caps spam emote-only. Only modes you enabled are used.</p>
+<p>The dominant pattern decides: emote spam prefers slow mode, the same text from many accounts follower-only, caps or character spam emote-only, and a mix slow mode. Only modes you enabled are used; with <em>Step Up If The Wave Continues</em> on, the next one is added if the wave keeps going. The <strong>What Happens</strong> table on the Chat Modes tab shows the order.</p>
 <hr>
 <h2>👣 Follow Wave Protection</h2>
 <p><strong>Q: What does it do?</strong></p>
@@ -1901,22 +1952,22 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <hr>
 <h2>👾 AutoMod</h2>
 <p><strong>Q: What does it do?</strong></p>
-<p>It answers the messages Twitch&#39;s AutoMod holds back, by the level and categories you set, so nobody has to sit in the queue. <strong>AutoMod Categories</strong> limits it to certain categories; empty means all.</p>
+<p>It answers the messages Twitch&#39;s AutoMod holds back, by the level and categories you set. <strong>AutoMod Categories</strong> limits it to certain categories; empty means all.</p>
 <hr>
 <p><strong>Q: Held messages are still waiting. What did I miss?</strong></p>
-<p>The switch in the AutoMod page header. It ships off.</p>
+<p>The switch in the AutoMod page header. It ships off, and with it on, a message rated below <strong>AutoMod Min Level</strong> or outside <strong>AutoMod Categories</strong> still waits. Some held messages wait for your moderators on purpose, whatever that switch says: a held link the Link Filter allows, one under a permit and an exempt viewer&#39;s link, and a message held for one of your Blocked Terms that no Word Filter entry matches, or that comes from an exempt viewer. TwitchSentry never approves a held link or a held Blocked Term.</p>
 <hr>
 <h2>🕵️ Check Link</h2>
 <p><strong>Q: Which services does it use?</strong></p>
-<p>VirusTotal (required, free key) and optionally IPQualityScore. IPQS flags links from a fraud score of 75, or from 40 for recently registered domains, which are a common phishing sign.</p>
+<p>VirusTotal (free key) and, with <strong>Use IPQS</strong>, IPQualityScore; either of the two on its own is enough, both together give a second opinion. IPQS flags links from a fraud score of 75, or from 40 for recently registered domains, which are a common phishing sign.</p>
 <hr>
 <h2>⚠️ Twitch Warn</h2>
 <p><strong>Q: What is Twitch Warn?</strong></p>
 <p>Twitch&#39;s own warning screen: the viewer has to click through it before they can chat again. A step below a timeout.</p>
 <hr>
 <p><strong>Q: How does escalation work?</strong></p>
-<p>On the <strong>Warning Escalation</strong> card: after <strong>Warns Before Final Warning</strong> warnings the viewer gets a final warning, and the next violation gets the <strong>Escalation Action</strong>: Timeout, Ban or <strong>Restrict</strong> (they stay in chat, but only moderators see their messages). Counts reset after <strong>Warn Count Reset (Hours)</strong> without a violation.</p>
-<p><strong>Monitor From The Final Warning</strong> also flags the viewer as monitored on Twitch with the final warning. <strong>Count Warnings From Moderators</strong> counts a <code>/warn</code> from your mods towards the same ladder; it needs the trigger <em>Twitch &gt; Moderation &gt; Warned User</em> on the TwitchWarn action. Restrictions and monitoring are lifted with <code>!tsundo</code>.</p>
+<p>On the <strong>Warning Escalation</strong> card: each violation gets a warning, the one that reaches <strong>Warns Before Final Warning</strong> is the final warning, and the next violation gets the <strong>Escalation Action</strong>: Timeout, Ban or <strong>Restrict</strong> (they stay in chat, but only moderators see their messages). Counts reset after <strong>Warn Count Reset (Hours)</strong> without a violation.</p>
+<p><strong>Monitor From The Final Warning</strong> also flags the viewer as monitored on Twitch with the final warning. <strong>Count Warnings From Moderators</strong> counts a <code>/warn</code> from your mods towards the same ladder. Restrictions and monitoring are lifted with <code>!tsundo</code>.</p>
 <hr>
 <h2>🔓 Permit</h2>
 <p><strong>Q: What is a permit?</strong></p>
@@ -1929,7 +1980,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p><strong>Max Permit Duration (Seconds)</strong> caps every permit, with a hard ceiling of 24 hours.</p>
 <hr>
 <p><strong>Q: Can viewers grant themselves one?</strong></p>
-<p>Yes, with <strong>Allow Self-Permit</strong> and a Channel Points reward: point the reward&#39;s trigger at the Permit action and put its ID in <strong>Self-Permit Reward ID</strong>. Turn the reward&#39;s <strong>Skip Reward Requests Queue</strong> OFF, or TwitchSentry can&#39;t refund points when a redemption can&#39;t become a permit.</p>
+<p>Yes, with <strong>Allow Self-Permit</strong> and a Channel Points reward: put its ID in <strong>Self-Permit Reward ID</strong>. Turn the reward&#39;s <strong>Skip Reward Requests Queue</strong> OFF, or TwitchSentry can&#39;t refund points when a redemption can&#39;t become a permit.</p>
 <hr>
 <p><strong>Q: Can viewers ask for one in chat?</strong></p>
 <p>Yes, with <strong>Accept !permitme</strong> on the Permit page: <code>!permitme</code> puts the request on the OBS dock&#39;s Permit list and on a <code>tsPermit</code> key, where you let it through or refuse it. A moderator&#39;s <code>!permit</code> for that viewer answers it too.</p>
@@ -1943,7 +1994,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <hr>
 <h2>🔔 Notifications</h2>
 <p><strong>Q: What can it post?</strong></p>
-<p>Thirty-one kinds of event, each with its own switch: deletions, timeouts and bans; Word Filter catches, nukes and changes from the Twitch sync; warnings and escalations; raid arming and raid actions; AutoMod denials, allows, restrictions, blocks and unban requests; malicious and suspicious scans; permits granted, expired and revoked; Spam Learner auto-applies; follow waves and blocked followers; Silent Bots found; accounts banned from the Shared Bot List; hate raid lockdowns and listed accounts; Shield Mode; Offline Protection&#39;s chat modes; settings changed by chat command; and undos with <code>!tsundo</code>.</p>
+<p>Each kind of event has its own switch: deletions, timeouts and bans; Word Filter catches, nukes and changes from the Twitch sync; warnings and escalations; raid arming and raid actions; AutoMod denials, allows, restrictions, blocks and unban requests; malicious and suspicious scans; permits granted, expired and revoked; Spam Learner auto-applies; new spam feed patterns; follow waves and blocked followers; Silent Bots found and viewer spikes; hate raid lockdowns and listed accounts; accounts banned from the Shared Bot List; Offline Protection&#39;s chat modes; the summary at stream end; Shield Mode; settings changed by chat command; and undos, from <code>!tsundo</code> or a deck button.</p>
 <hr>
 <p><strong>Q: An alert says <em>TIMEOUT REFUSED</em>.</strong></p>
 <p>Twitch turned the action down, so nothing happened to the viewer. Usual reasons: the target is a moderator or the broadcaster, the message was already removed, or the Streamer.bot Twitch account lacks a scope (<code>moderator:manage:banned_users</code>, <code>moderator:manage:chat_messages</code>, <code>moderator:manage:warnings</code>). The <strong>Status Log</strong> names which; a missing scope is fixed by re-authorising the account in Streamer.bot.</p>
@@ -1955,7 +2006,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p><strong>Display Name</strong> and <strong>Avatar URL</strong> on the Discord tab of the Notifications page. Clear them to use the webhook&#39;s own. Discord refuses names over 80 characters or containing <em>discord</em> or <em>clyde</em>, so TwitchSentry drops such a name instead of sending it.</p>
 <hr>
 <p><strong>Q: Can TwitchSentry tell me things on the desktop?</strong></p>
-<p>Yes, on the <strong>Windows</strong> tab of the <strong>Notifications</strong> page (Setup): a new TwitchSentry release and a deck button that could not do what it was asked (both on by default), and what a deck button just did (off by default). They show while the settings window is closed too. A profile never carries these switches.</p>
+<p>Yes, on the <strong>Windows</strong> tab of the <strong>Notifications</strong> page (Setup). Its own switches cover a new TwitchSentry release or translation, a deck button that could not do what it was asked, and what a deck button just did; below them come the same switches as on the Discord tab, which work without Discord. On by default: new releases, deck button problems, Silent Bots found, new feed patterns and the summary at stream end; the rest start off. They show while the settings window is closed too. A profile never carries these switches.</p>
 <hr>
 <p><strong>Q: The test notification never shows up.</strong></p>
 <p>Windows is holding it back. Check <em>Do Not Disturb</em> (<em>Focus Assist</em>) and <em>Settings → System → Notifications</em>, where Streamer.bot has to be allowed to send notifications.</p>
@@ -1965,7 +2016,7 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <p>No setting lives there: it reports, and a click on a module&#39;s chip or a line opens the page that owns it. Its <em>Start Here</em> card opens the Profiles dialog and starts test mode for you, and <em>Hide</em> puts the card away until ☰ → <em>Options...</em> → <em>Notices</em> brings it back.</p>
 <hr>
 <p><strong>Q: What do the numbers count?</strong></p>
-<p><em>Activity</em> counts lines in <code>action-log.txt</code> (today, the last seven days, all time; all time includes the earlier months&#39; <code>action-log-&lt;yyyy-MM&gt;.txt</code> files); the details below it cover the last seven days. <em>What It Knows</em> counts the active block lists and waiting suggestions.</p>
+<p><em>Activity</em> counts lines in <code>action-log.txt</code> (today, the last seven days, all time; all time includes the earlier days&#39; <code>action-log-&lt;yyyy-MM-dd&gt;.txt</code> files); the details below it cover the last seven days. <em>What It Knows</em> counts the active block lists and waiting suggestions.</p>
 <hr>
 <h2>🐞 Reporting A Bug Or An Idea</h2>
 <p><strong>Q: How do I open a ticket?</strong></p>
@@ -2021,28 +2072,38 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 </ul>
 <h5>✨ Added</h5>
 <ul>
-<li>Spam feed and language files arrive within about a quarter of an hour from the new <code>feed</code> branch, checked every ten minutes from Streamer.bot&#39;s start, with no window to open.</li>
+<li>Spam feed and language files arrive within about a quarter of an hour from the new <code>feed</code> branch, checked every ten minutes from Streamer.bot&#39;s start, with no window to open.<ul>
 <li>Every downloaded file must match the SHA256 and size in the feed&#39;s manifest, or it is not used.</li>
 <li>Language updates install on their own; a newer version shows a Windows notification. Your own chat texts stay.</li>
 <li>Each release keeps getting the language files made for it once a later release changes the window&#39;s texts; the Languages window only offers versions it can install.</li>
-<li>The spam feed can carry detection patterns: a new one watches for a day, then arms itself. Known Patterns → Spam Feed: &#39;Arm New Patterns Automatically&#39; (on); off, a pattern waits for you after 5 messages it would have caught.</li>
+</ul>
+</li>
+<li>The spam feed can carry detection patterns: a new one watches for a day, then arms itself. Known Patterns → Spam Feed: &#39;Arm New Patterns Automatically&#39; (on); off, a pattern waits for you after 5 messages it would have caught.<ul>
 <li>A feed pattern adds evidence in one part of an advert and never acts alone; a pattern that times out three times rests for 10 minutes.</li>
 <li>Known Patterns → Spam Feed lists the feed&#39;s patterns with their state, Arm and Turn Off; arming or turning one off survives feed updates.</li>
+</ul>
+</li>
 <li>Stream summary at stream end, on every notification platform: deletions, timeouts, bans, blocks, warnings, modules, refusals, feed patterns, test mode.</li>
 <li>New notification switches: On New Feed Patterns and On Stream End, both on by default, on Windows too.</li>
-<li>Links held by Twitch&#39;s &#39;Hold Hyperlinks for Review&#39; are now judged, with the AutoMod module on or off: a link the Link Filter would remove is denied in the moderator queue, never timed out or banned for the link alone.</li>
+<li>Links held by Twitch&#39;s &#39;Hold Hyperlinks for Review&#39; are now judged, with the AutoMod module on or off: a link the Link Filter would remove is denied in the moderator queue, never timed out or banned for the link alone.<ul>
 <li>Spam Scoring judges a held link first: spam is denied and the account treated as &#39;Default Action&#39; says. The Spam Learner reads every denied held link.</li>
 <li>Allowed links, permits and exempt viewers&#39; links still wait for your moderators; TwitchSentry never approves a held link.</li>
-<li>Messages Twitch holds for one of your Blocked Terms now reach the Word Filter, with the AutoMod module on or off: the matching entry&#39;s action applies, Delete denies the message in the moderator queue, and a timeout or ban is followed by the denial. Action Log, notifications and Twitch Warn as for chat.</li>
+</ul>
+</li>
+<li>Messages Twitch holds for one of your Blocked Terms now reach the Word Filter, with the AutoMod module on or off: the matching entry&#39;s action applies, Delete denies the message in the moderator queue, and a timeout or ban is followed by the denial. Action Log, notifications and Twitch Warn as for chat.<ul>
 <li>Held messages no entry matches, and exempt viewers&#39; messages, still wait for your moderators; TwitchSentry never approves one.</li>
+</ul>
+</li>
 </ul>
 <h5>🔧 Changed</h5>
 <ul>
 <li>Message Filter → Code Injection: &#39;Code Injection Check Enabled&#39; is now on by default: a chat message can carry code into an overlay, as shown in a published proof of concept against OBS. An install that had it off gets it switched on once at Streamer.bot&#39;s start; turned off after that, it stays off.</li>
-<li>Logs start a new file every day instead of every month: <code>action-log-2026-11-24.txt</code> and so on, for the Spam Log, blocked followers, Silent Bot finds and the evidence files too. Each line lands in the day it is dated.</li>
+<li>Logs start a new file every day instead of every month: <code>action-log-2026-11-24.txt</code> and so on, for the Spam Log, blocked followers, Silent Bot finds and the evidence files too. Each line lands in the day it is dated.<ul>
 <li>Monthly log files of earlier versions are split into their days once, without losing a line.</li>
 <li>Action Log, Spam Log and Clean Chat Log pick their day like the Status Log; Refresh stays on the day you picked. The Clean Chat Log stays one file, since the Spam Learner measures against all of it.</li>
 <li>The stream summary reads every day a stream ran through.</li>
+</ul>
+</li>
 <li>Spam Filter: doubled letters no longer hide a listed phrase (&quot;add me on disscord&quot;, &quot;cusstom arrt animation&quot;); hand-offs, service offers, approach stages and keywords all allow them. A letter may repeat but never shrink, so a misspelling in your own list (&quot;cusstom&quot;) does not catch the plain word. Domains and links are still read as written.</li>
 <li>Message Filter → Chat Modes: what the messages did picks the chat mode; young accounts decide it only when nothing else leads.</li>
 <li>Message Filter: &#39;Act On Account Age Alone&#39; acts from the Strict step up (Account Score Hit 1.2; an install still on the old 1.0 moves once).</li>
@@ -2063,7 +2124,8 @@ TwitchSentry/Backups/                                ← backups, unless Backup 
 <li>Hate Raid Protection: Word Filter entries with options (&#39;| twitch&#39;, an action, an end date) count as hate words again; patterns and expired entries do not.</li>
 <li>Hate Raid Protection: test mode switched on during a real lockdown stops it deleting messages as well.</li>
 <li>Twitch Warn: &#39;Exclude Followers&#39; now applies from the first violation after Streamer.bot starts, not only from the second.</li>
-<li>Twitch Warn: &#39;Count Warnings From Moderators&#39; works, through the Warned User trigger in the import. Voting&#39;s end command is <code>!EndVote</code>.</li>
+<li>Twitch Warn: &#39;Count Warnings From Moderators&#39; works, through the Warned User trigger in the import.</li>
+<li>Voting: the end command is <code>!EndVote</code>.</li>
 <li>Raid Protection: a raid window that ran out while Streamer.bot was closed lifts its chat modes and Shield Mode even with the module switched off.</li>
 <li>Raid Protection: a link the Link Filter&#39;s whitelist allows no longer counts as spam wording.</li>
 <li>Notifications name bot wave and text wave actions and Hate Raid blocks in words (BANNED, BLOCKED) instead of the raw action name.</li>

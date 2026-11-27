@@ -105,7 +105,7 @@ window.SITE = {
         blocks: [{ features: true }],
         aside: [{ label: 'A few of its chat commands', commands: ['!Permit', '!CheckLink', '!Vote', '!AntiRaid', '!nuke'] }],
       },
-      version: 'v4.0.1', stars: 7, downloads: 134,
+      version: 'v4.0.1', stars: 7, downloads: 136,
     },
     {
       repo: 'Better-Stream-Announcements',
