@@ -215,7 +215,7 @@ window.SITE = {
         ],
         aside: [{ label: 'Built on it', logos: ['Blackjack-Game', 'Battleship-Game', 'Slot-Machine-Game', 'Classic-Chat-Gamble', 'Trivia-Game', 'Hangman-Game', 'RhymeTime', 'High-Low-Game', 'GameCheck'] }],
       },
-      version: 'v2.0.0', stars: 0, downloads: 133,
+      version: 'v2.0.0', stars: 0, downloads: 135,
     },
     {
       repo: 'SuTo',
