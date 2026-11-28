@@ -32,7 +32,7 @@
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
 </head>
-<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.5.0">
+<body data-repo="UIFramework-Streamer.bot" data-files="CHANGELOG.md|README.md|docs/Getting-Started.md|docs/Schema.md" data-release="v2.6.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -285,6 +285,30 @@ its section here before the tag is pushed. Everything before 1.0.0 was published
 only a round version (2.0.0, 3.0.0) is a stable release; every other one is published as a pre-release, and
 <code>lib/v1/latest.json</code>, which the games&#39; settings actions read, names the newest 1.x of either kind; 2.0.0 and what
 follows it go to <code>lib/v2/latest.json</code>.</p>
+<h2>[2.6.0] - 2026-11-28</h2>
+<p>A window that takes over the values of the version before can leave out what that version shipped in place of a
+value, and the settings action can ask the first of several actions. Declaring <code>AdoptExcept</code> needs the host block
+of this release; several ids need its settings action, which is 0.3.4 now. <code>MinHostStub</code> stays 0.1.0: a project on
+an older settings action goes on as it is.</p>
+<h3>Added</h3>
+<ul>
+<li><strong>Several actions can answer the settings window: <code>GameActionId</code> takes their ids, with commas between them.</strong> The
+settings action asks the first that is there and switched on, and looks again when that one stops running. A
+project whose actions stand side by side gives each the host block and names them all; the settings then still
+open after one of them was deleted or disabled. Before, the settings action knew one action, and such a project
+needed an action of its own that did nothing but answer the window.</li>
+<li><strong><code>AdoptExcept(&quot;&lt;&lt; YOUR_* &gt;&gt;&quot;)</code> on the window, <code>adoptExcept</code> in the schema.</strong> A Set Argument or a Send Message text
+of the old action that still reads like one of the named texts is not taken over, and the field keeps its
+default. <code>*</code> stands for any text; neither capitals nor the spaces around the value count. Before, a webhook the
+user never set came into its field as <code>&lt;&lt; YOUR_WEBHOOK &gt;&gt;</code>. A DLL before 2.6.0 takes such a value over, as it did.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><strong>A field the project locks no longer puts a line behind the red i of a window that takes over old values.</strong> With
+<code>locked:</code> in <code>UiHost.Handle</code> (or a Set Argument that sets the field) and an <code>Adopt</code> mapping to the same field, the
+window said that the mapping leads to a field it never saves. The field takes no old value while it is locked, as
+before; the declaration is not at fault.</li>
+</ul>
 <h2>[2.5.0] - 2026-11-26</h2>
 <p>A table says how it meets its width: kept within it, or free to run past it under a horizontal scrollbar. Declaring
 <code>fitWidth</code> needs the host block of this release; the settings action stays 0.3.3.</p>
@@ -2137,7 +2161,7 @@ the settings action: <code>GameActionName</code>, the same name as <code>ActionN
 <tr>
 <td><code>GameActionId</code></td>
 <td>the settings action (<code>Stub.cs</code>), the line below it; optional</td>
-<td>your action&#39;s id in Streamer.bot (a GUID; every run gets it as the argument <code>actionId</code>, and an export carries it). With it the settings action finds your action by the id and runs it by the id, so the settings still open after a streamer renamed the action; an import keeps the id. Left empty, or where no action has that id (an action made by hand), the action is found by <code>GameActionName</code>, and the log says so once (stub 0.3.3)</td>
+<td>your action&#39;s id in Streamer.bot (a GUID; every run gets it as the argument <code>actionId</code>, and an export carries it). With it the settings action finds your action by the id and runs it by the id, so the settings still open after a streamer renamed the action; an import keeps the id. Left empty, or where no action has that id (an action made by hand), the action is found by <code>GameActionName</code>, and the log says so once (stub 0.3.3) Several ids, with commas between them, where more than one action answers the window: the first that is there and switched on is asked</td>
 </tr>
 <tr>
 <td><code>ActionName</code></td>
@@ -2299,6 +2323,7 @@ Streamer.bot&#39;s actions or from its last backups:</p>
     .Adopt(Old(&quot;5d80b7e4-2c19-4a63-8f05-e1b6a3d92c47&quot;, &quot;sendAsMe&gt;sendAction&quot;));
 </code></pre>
 <p>An argument named like a setting needs no mapping; <code>&quot;old&gt;new&quot;</code> leads one of another name to its setting.
+<code>.AdoptExcept(&quot;&lt;&lt; YOUR_* &gt;&gt;&quot;)</code> leaves out what the old version shipped where the user was to put a value.
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md#values-from-the-version-before">Schema.md</a> has the rest: Send Message texts, where it looks, what it
 leaves out.</p>
 <h3>A project with several actions</h3>
@@ -2307,6 +2332,12 @@ leaves out.</p>
 <li><p><strong>The host action</strong> carries the host block with the table and calls <code>UiHost.Handle</code>. Where the working actions
 run all the time, or may be deleted one by one, make it an action of its own that does nothing else
 (<code>My Project Settings Host</code>). The settings action names it in <code>GameActionName</code>.</p>
+</li>
+<li><p><strong>Or every working action is a host:</strong> each carries the host block with the same table and window
+(<code>tools\copy-host-block.ps1</code> keeps them equal), and the settings action names them all in <code>GameActionId</code>, with
+commas between the ids. It asks the first that is there and switched on, so the settings still open after one
+of them was deleted or disabled. No action reads the file with the reader then, and none is there only for the
+window.</p>
 </li>
 <li><p><strong>Every other action</strong> carries the host reader instead of the host block:
 <a href="https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/stub/HostReader.cs"><code>stub/HostReader.cs</code></a>, from <code>// --- UIFramework host reader</code> to
@@ -2993,6 +3024,10 @@ whatever order the window declares them in (a page of the project&#39;s own with
 <td><code>Adopt(Old(actionId, mappings…), …)</code></td>
 <td>the action a version before this window kept its settings in, as Set Argument sub-actions: while nothing has been saved yet, their values come into the window as unsaved changes; see <em>Values from the version before</em> below</td>
 </tr>
+<tr>
+<td><code>AdoptExcept(values…)</code></td>
+<td>what the old version shipped where the user was to put a value of their own (<code>&quot;&lt;&lt; YOUR_* &gt;&gt;&quot;</code>): <code>Adopt</code> leaves out a value that still reads so</td>
+</tr>
 </tbody></table>
 <h3>The colours of the results</h3>
 <p>The Log page shows each line&#39;s result as a pill. Unless the project says otherwise, it colours a result by the words
@@ -3173,10 +3208,17 @@ two Set Arguments of one name the last wins, as when the action ran. A value is 
 left out when it does not fit: a switch from <code>true</code>/<code>false</code>, <code>yes</code>/<code>no</code>, <code>on</code>/<code>off</code>, <code>ja</code>/<code>nein</code> or <code>1</code>/<code>0</code>, a
 whole number from digits, a decimal with a point or a comma, a dropdown&#39;s value as one of its options. A list, a
 button, a <code>readOnly</code> and a <code>transient</code> setting take none, and neither does a setting the window has no field for.</p>
+<p>An old version often ships a Set Argument with a text that says what goes there. <code>AdoptExcept</code> names such texts:</p>
+<pre><code class="language-csharp">    .AdoptExcept(&quot;&lt;&lt; YOUR_* &gt;&gt;&quot;)
+</code></pre>
+<p>A value that still reads so is left out, and the field keeps its default. <code>*</code> stands for any text; neither
+capitals nor the spaces around the value count. It holds for every old action, and for the text of a Send Message
+too.</p>
 <p>No value reaches the log, since it may be a webhook or a token: the log names counts, the action&#39;s id and the
 file. The red <strong>i</strong> names an id that is no GUID, a mapping of neither form, and one that leads to a key that is no
 setting or takes no value. In the schema: <code>&quot;adopt&quot;: [ { &quot;action&quot;: &quot;&lt;id&gt;&quot;, &quot;map&quot;: [ &quot;old&gt;new&quot;, &quot;#&lt;subActionId&gt;&gt;key&quot; ] } ]</code>
-in the window; a DLL that does not know it opens the window without the values.</p>
+and <code>&quot;adoptExcept&quot;: [ &quot;&lt;&lt; YOUR_* &gt;&gt;&quot; ]</code> in the window; a DLL that does not know <code>adopt</code> opens the window without
+the values, and one before 2.6.0 takes over what <code>adoptExcept</code> names.</p>
 <h2>The game&#39;s side</h2>
 <p><code>UiHost.Handle(args, CPH, actionName, host, version, settingsFile, …)</code> is the first thing your action calls. It
 answers the settings action&#39;s requests and returns true, so the action returns at once; otherwise it returns false

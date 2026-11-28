@@ -215,7 +215,7 @@ window.SITE = {
         ],
         aside: [{ label: 'Built on it', logos: ['Blackjack-Game', 'Battleship-Game', 'Slot-Machine-Game', 'Classic-Chat-Gamble', 'Trivia-Game', 'Hangman-Game', 'RhymeTime', 'High-Low-Game', 'GameCheck'] }],
       },
-      version: 'v2.0.0', stars: 0, downloads: 135,
+      version: 'v2.0.0', stars: 0, downloads: 138,
     },
     {
       repo: 'SuTo',
@@ -246,7 +246,7 @@ window.SITE = {
           ] },
         ],
       },
-      version: 'v1.0.0', stars: 0, downloads: 1,
+      version: 'v2.1.0', stars: 0, downloads: 6,
     },
     {
       repo: 'OBSNotes',

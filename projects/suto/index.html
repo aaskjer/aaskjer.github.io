@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aaskjer">
   <meta property="og:url" content="https://aaskjer.github.io/projects/suto/">
-  <meta property="og:title" content="Suggestions To  •  v1.0.0">
+  <meta property="og:title" content="Suggestions To  •  v2.1.0">
   <meta property="og:description" content="Chat suggestions from Twitch, YouTube and Kick, straight to your Discord, Stoat or GameVox server. A free Streamer.bot import.">
   <meta property="og:image" content="https://aaskjer.github.io/assets/img/scenes/suto.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:label1" content="Version">
-  <meta name="twitter:data1" content="v1.0.0">
+  <meta name="twitter:data1" content="v2.1.0">
   <link rel="alternate" type="application/atom+xml" title="aaskjer · new releases" href="../../feed.xml">
   <link rel="icon" href="../../assets/img/avatar.png" type="image/png">
   <link rel="preload" href="../../assets/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -31,9 +31,9 @@
   <script src="../../assets/js/milestones.js" defer></script>
   <script src="../../assets/js/project.js" defer></script>
   <script src="../../assets/js/search.js" defer></script>
-  <script type="application/json" id="import-facts">{"version":"1.0.0","made":"1.0.7","min":"1.0.4","actions":3,"code":3,"commands":["!suggestion","!vorschlag"],"words":[],"timers":0,"sites":["gamevox.com","stoat.chat"],"updateCheck":false}</script>
+  <script type="application/json" id="import-facts">{"version":"2.1.0","made":"1.0.7","min":"1.0.4","actions":5,"code":5,"commands":["!suggestion","!vorschlag"],"words":[],"timers":0,"sites":["discord.com","gamevox.com","github.com","raw.githubusercontent.com","stoat.chat"],"updateCheck":false}</script>
 </head>
-<body data-repo="SuTo" data-files="Import-String.md|README.md|Setup-Guide.md" data-release="v1.0.0">
+<body data-repo="SuTo" data-files="Import-String.md|README.md|Setup-Guide.md" data-release="v2.1.0">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="topbar">
@@ -101,27 +101,34 @@
 <p>SuTo is an import for Streamer.bot. A viewer types <code>!suggestion Play the new farming game on Sunday</code> in
 chat, and a moment later the idea sits in your server: who sent it, where from and when. The viewer gets a
 short confirmation in chat. <code>!vorschlag</code> works the same way.</p>
+<p>Everything is set in one window: which servers you post to, their webhooks, the look of the post and the answer
+in chat.</p>
 <h2>✨ Highlights</h2>
 <ul>
 <li>💬 <strong>Three chats in.</strong> Twitch, YouTube and Kick. The action works out by itself which platform a message
 came from.</li>
-<li>📬 <strong>Three servers out.</strong> One action each for Discord, Stoat and GameVox. Turn on one, two or all three.</li>
+<li>📬 <strong>Three servers out.</strong> Discord, Stoat and GameVox. Switch on one, two or all three.</li>
+<li>⚙️ <strong>A settings window.</strong> A page per server, with a button that sends a test suggestion and says whether it
+arrived. Your settings survive every update.</li>
 <li>🎨 <strong>A tidy post.</strong> An embed coloured per platform, with the viewer&#39;s avatar, name, platform, date and time.
 Discord shows the time in each reader&#39;s own time zone.</li>
 <li>🧵 <strong>Discord forums.</strong> A new forum post for every suggestion, or all of them in one thread.</li>
 <li>📡 <strong>Several channels at once.</strong> Enter more than one webhook URL, separated by commas.</li>
 <li>✏️ <strong>Your wording.</strong> The text of the post, the colours, the footer and the chat reply are all yours to
 change.</li>
-<li>✅ <strong>Confirmed only when it arrived.</strong> The chat reply goes out on the platform the suggestion came from, and
-only once the post went through.</li>
+<li>✅ <strong>Confirmed only when it arrived.</strong> The chat reply goes out on the platform the suggestion came from, once
+per suggestion, and only when the post went through.</li>
 <li>🔒 <strong>No webhook token in your logs.</strong> When something fails, the log says what and why, with the secret part
 of the URL masked.</li>
 </ul>
-<hr>
+<p align="center">
+  <img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/screenshots/discord-dark.png" alt="The Discord page of SuTo's settings window: the server is switched on, the webhook URL shows as dots, and the test suggestion arrived" width="720">
+</p><hr>
 <h2>Credits</h2>
 <ul>
 <li><strong>Author:</strong> <a href="https://twitch.tv/aaskjer">aaskjer on Twitch</a> · <a href="https://aaskjer.github.io/">aaskjer.github.io</a></li>
 <li><strong>Built for:</strong> <a href="https://streamer.bot">Streamer.bot</a> by <a href="https://www.patreon.com/c/nate1280/home">nate1280</a></li>
+<li><strong>Settings window:</strong> <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a></li>
 <li><strong>Thanks:</strong> YOU ♡</li>
 </ul>
 <p>Not affiliated with Streamer.bot, Twitch, YouTube, Kick, Discord, Stoat or GameVox. All names and trademarks
@@ -131,63 +138,55 @@ belong to their respective owners.</p>
       <section class="md" data-doc="setup" data-label="Setup guide" data-file="Setup-Guide.md">
         <h2 class="doc-label">Setup guide</h2>
         <div class="doc-body"><h1>📝 SuTo — Setup Guide</h1>
-<p>How to install SuTo, then every argument of the three actions: what it does and what it starts as. What SuTo is and does is on the <strong><a href="https://github.com/aaskjer/SuTo/blob/main/README.md">overview page</a></strong>.</p>
+<p>How to install SuTo, then every setting of its window: what it does and what it starts as. What SuTo is and does is on the <strong><a href="https://github.com/aaskjer/SuTo/blob/main/README.md">overview page</a></strong>.</p>
 <p><strong><a href="https://github.com/aaskjer/SuTo/blob/main/README.md">Overview</a></strong> · <strong><a href="https://github.com/aaskjer/SuTo/blob/main/Import-String.md">Import string</a></strong> · <strong><a href="https://github.com/aaskjer/SuTo/releases">Changelog</a></strong> · <strong><a href="https://github.com/aaskjer/SuTo/issues">Report a problem</a></strong></p>
 <hr>
 <h1>Install</h1>
 <h3>1. Import</h3>
-<p>Download <strong><code>SuggestionsTo.sb</code></strong> from the <a href="https://github.com/aaskjer/SuTo/releases/latest">latest release</a>, or copy the string from <a href="https://github.com/aaskjer/SuTo/blob/main/Import-String.md">Import-String.md</a>. In Streamer.bot (1.0 or newer) click <strong>Import</strong> and drag the file in, or paste the string. The window lists the three actions; click <strong>Import</strong> and answer <strong>Yes</strong> to the question about C# code.</p>
-<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-import.png" alt="Streamer.bot's Import window with the SuTo string pasted in: the actions [SuTo] ... Discord, GameVox and Stoat, and the note that the import contains C# code" width="640"></p><h3>2. Enable the commands</h3>
-<p>Open <strong>Commands</strong> in Streamer.bot&#39;s menu on the left. The group <strong>[SuTo] Suggestions To</strong> holds one command per server, all switched off after the import. Enable the ones you post to, until <strong>Enabled</strong> says <strong>Yes</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Posts to</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>[SuTo] Suggestion to Discord</code></td>
-<td>Discord</td>
-</tr>
-<tr>
-<td><code>[SuTo] Suggestion to Stoat</code></td>
-<td>Stoat</td>
-</tr>
-<tr>
-<td><code>[SuTo] Suggestion to GameVox</code></td>
-<td>GameVox</td>
-</tr>
-</tbody></table>
-<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-commands.png" alt="The Commands page in Streamer.bot with the three SuTo commands, each answering to !suggestion and !vorschlag, all enabled" width="800"></p><p>All three answer to <code>!suggestion</code> and <code>!vorschlag</code>. With more than one enabled, a suggestion goes to every server, and the chat confirmation comes once per server.</p>
-<h3>3. Add your webhook</h3>
-<p>Open <strong>Actions &amp; Queues → Actions</strong>, select the action (<strong>[SuTo] ... Discord</strong>, <strong>... Stoat</strong> or <strong>... GameVox</strong>) and double-click the <strong>Set argument</strong> line in the <strong>Webhook: Send to Channel</strong> group. Replace the placeholder in <strong>Value</strong> with your webhook URL and click <strong>Ok</strong>.</p>
-<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-action-discord.png" alt="The Actions page in Streamer.bot with [SuTo] ... Discord selected; its sub-actions show the Webhook: Send to Channel group with the discordWebhookUrl argument, and the Suggestion Content group" width="800"></p><p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-set-argument.png" alt="The Set Argument window for discordWebhookUrl, with the placeholder in the Value field" width="480"></p><table>
+<p>Download <strong><code>SuggestionsTo.sb</code></strong> from the <a href="https://github.com/aaskjer/SuTo/releases/latest">latest release</a>, or copy the string from <a href="https://github.com/aaskjer/SuTo/blob/main/Import-String.md">Import-String.md</a>. In Streamer.bot (1.0 or newer) click <strong>Import</strong> and drag the file in, or paste the string. The window lists the five actions and, on its second tab, the three commands; click <strong>Import</strong> and answer <strong>Yes</strong> to the question about C# code.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-import.png" alt="Streamer.bot's Import window with the pasted string: it lists the five SuTo actions" width="720"></p><h3>2. Enable the command</h3>
+<p>Streamer.bot switches every imported command off, and says so in a notice. Open <strong>Commands</strong>, find the group <strong>[SuTo] Suggestions To</strong>, right-click the command of each server you post to and tick <strong>Enabled</strong>.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-commands.png" alt="The Commands page in Streamer.bot after the import: the three SuTo commands, each on !suggestion and !vorschlag, are off, and the right-click menu of the first is open on Enabled" width="800"></p><h3>3. Open the settings</h3>
+<p>Open <strong>Actions &amp; Queues → Actions</strong>, select the action <strong>[SuTo] Settings</strong>, right-click its trigger <strong>Test</strong> and choose <strong>Test Trigger</strong>. The first time, a dialog asks whether to download <code>UIFramework.dll</code>, the window itself. Click <strong>Yes</strong>.</p>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/sb-action-settings.png" alt="The Actions page in Streamer.bot: the action [SuTo] Settings is selected, and the right-click menu of its trigger Test is open on Test Trigger" width="800"></p><h3>4. Switch on your server</h3>
+<p>Every server has a page of its own: <strong>Discord</strong>, <strong>Stoat</strong>, <strong>GameVox</strong>. On the page of the one you post to:</p>
+<ol>
+<li>Switch on <strong>Post suggestions to …</strong>.</li>
+<li>Paste the channel&#39;s webhook URL into <strong>Webhook URL</strong>.</li>
+<li>Press <strong>Send a test suggestion</strong>. It posts a test under your name, and the box under the button says whether it arrived, or why not.</li>
+<li>Press <strong>Save</strong>.</li>
+</ol>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/screenshots/discord-dark.png" alt="The Discord page of the settings window: the switch Post suggestions to Discord is on, the webhook URL shows as dots, and the box under Send a test suggestion says Arrived" width="720"></p><table>
 <thead>
 <tr>
 <th>Server</th>
-<th>Argument</th>
 <th>Where the URL comes from</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>Discord</td>
-<td><code>discordWebhookUrl</code></td>
 <td>Channel settings → Integrations → Webhooks → New Webhook → Copy Webhook URL</td>
 </tr>
 <tr>
 <td>Stoat</td>
-<td><code>stoatSuggestionWebhook</code></td>
 <td>The channel&#39;s webhook settings; the URL looks like <code>https://api.stoat.chat/webhooks/{id}/{token}</code></td>
 </tr>
 <tr>
 <td>GameVox</td>
-<td><code>gameVoxWebhookUrl</code></td>
 <td><a href="https://developers.gamevox.com/docs/webhooks">GameVox Developer Portal</a> → your application → Webhooks → New Webhook. The URL is shown only once.</td>
 </tr>
 </tbody></table>
-<p>That is it. Type <code>!suggestion test</code> in your chat to try it.</p>
-<p>Everything else (text, colours, footer, time format, Discord forums) is optional and explained below.</p>
+<p>That is it. Type <code>!suggestion test</code> in your chat.</p>
+<p>Everything else (text, colours, footer, time format, Discord forums, the answer in chat) is optional and explained below.</p>
+<h3>Updating from 1.0.0</h3>
+<p>Import the new version over the old one, then open the settings.</p>
+<ul>
+<li><strong>Your settings come along.</strong> They were <strong>Set Argument</strong> sub-actions of the three actions, which the import replaces. The first time the window opens, it takes their values (webhooks, texts, colours, the chat confirmation) from Streamer.bot&#39;s own backup of your actions (the folder <code>backup</code>) and shows them as unsaved changes. Without such a backup the window opens with the defaults.</li>
+<li><strong>Switch on the servers you post to, look the values over, and press Save.</strong> Until then nothing is posted.</li>
+<li>A webhook you never set stays empty: the <code>&lt;&lt; YOUR_… &gt;&gt;</code> of version 1 only said what goes there.</li>
+<li>The chat confirmation is now one text per platform for all three servers. The texts of the Discord action are taken over; if you had changed them only in the Stoat or the GameVox action, type them in again on the <strong>Messages</strong> page.</li>
+<li><strong>Enable the commands again.</strong> Streamer.bot switches them off with every import, also with one over commands that were on: right-click each one you use → <strong>Enabled</strong>.</li>
+</ul>
 <hr>
 <h1>What lands where</h1>
 <table>
@@ -236,75 +235,67 @@ belong to their respective owners.</p>
 <td>—</td>
 </tr>
 </tbody></table>
-<p>The chat confirmation (<code>@user has made a suggestion!</code>) is sent on the platform the suggestion came from, and only when the post went through.</p>
+<p>The chat confirmation (<code>@user has made a suggestion!</code>) is sent on the platform the suggestion came from, once per suggestion, and only when the post went through.</p>
 <hr>
 <h1>Good to know</h1>
 <ul>
-<li><strong>Webhooks are secrets.</strong> Anyone with the URL can post to that channel. Do not show the action on stream, and create a new webhook if one leaks.</li>
+<li><strong>Webhooks are secrets.</strong> Anyone with the URL can post to that channel. The window shows them as dots; do not reveal them on stream, do not share <code>Suggestions To\SuTo-Settings.json</code>, and create a new webhook if one leaks.</li>
 <li><strong>GameVox webhooks only reach cloud-hosted GameVox servers.</strong> A self-hosted server answers with &quot;not found&quot;.</li>
-<li><strong>Do not edit the &quot;No Touchy!&quot; group.</strong> It looks up Kick avatars and runs the code.</li>
-<li><strong>Something not posting?</strong> Streamer.bot&#39;s log (<strong>Logs</strong> tab) has a line starting with <code>[SuTo/Discord]</code>, <code>[SuTo/Stoat]</code> or <code>[SuTo/GameVox]</code> that says why. <a href="#when-nothing-arrives">When nothing arrives</a> lists the usual ones.</li>
+<li><strong>The commands</strong> are in Streamer.bot&#39;s <strong>Commands</strong> tab, group <strong>[SuTo] Suggestions To</strong>: one per server, all three on <code>!suggestion</code> and <code>!vorschlag</code>. Change the command words, cooldowns and permissions there, the same for all three. Streamer.bot switches them off with every import; enable the ones you use again after an update.</li>
+<li><strong>Leave the actions as they are.</strong> The <strong>No Touchy!</strong> group looks up Kick avatars and runs the code, and <strong>[SuTo] Settings Host</strong> answers the settings window: do not delete or disable it, the window does not open without it. Nothing in them is a setting.</li>
+<li><strong>A server&#39;s action that is disabled or deleted</strong> cannot post. The window shows it: the server&#39;s page is locked, and its pill in the header reads <strong>action off</strong> or <strong>action missing</strong>. Enable the action again, or import SuTo again.</li>
+<li><strong>Something not posting?</strong> The <strong>Log</strong> page of the window shows what SuTo wrote into Streamer.bot&#39;s log: lines starting with <code>[SuTo/Discord]</code>, <code>[SuTo/Stoat]</code> or <code>[SuTo/GameVox]</code> say why. <a href="#when-nothing-arrives">When nothing arrives</a> lists the usual ones.</li>
 </ul>
 <hr>
 <h1>Settings</h1>
-<p>All settings are <strong>Set Argument</strong> sub-actions inside the actions <strong>[SuTo] ... Discord</strong>, <strong>[SuTo] ... Stoat</strong> and <strong>[SuTo] ... GameVox</strong> (<strong>Actions &amp; Queues → Actions</strong> in Streamer.bot). Double-click one to change its <strong>Value</strong>, then <strong>Ok</strong>. A sub-action that is switched off (greyed out) does not count; right-click → <strong>Enabled</strong> switches it on.</p>
+<p>The settings are in a window: in the action <strong>[SuTo] Settings</strong>, right-click the trigger <strong>Test</strong> → <strong>Test Trigger</strong>. <strong>Save</strong> writes them to <code>Suggestions To\SuTo-Settings.json</code> in the Streamer.bot folder, and the next suggestion uses them. No import touches that file, so an update keeps your settings.</p>
+<p>The pills in the window&#39;s header say which servers are switched on.</p>
 <hr>
-<h1>What every action shares</h1>
-<h2>Suggestion Content</h2>
+<h1>What every server page shares</h1>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
+<th>Setting</th>
 <th>Starts as</th>
 <th>What it does</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>suggestionTemplate</code></td>
+<td><strong>Post suggestions to …</strong></td>
+<td>off</td>
+<td>Off: <code>!suggestion</code> does nothing for this server, and everything else on the page stays as it is.</td>
+</tr>
+<tr>
+<td><strong>Webhook URL</strong></td>
+<td>empty</td>
+<td>The channel&#39;s webhook. <strong>Several URLs separated by commas</strong> post the same suggestion to every one of them.</td>
+</tr>
+<tr>
+<td><strong>Send a test suggestion</strong></td>
+<td></td>
+<td>Saves unsaved changes, posts a test under your name through the server&#39;s own action and says in the box below whether it arrived. Works while the server is switched off, and sends nothing to chat.</td>
+</tr>
+<tr>
+<td><strong>Text</strong></td>
 <td>Discord: <code>📝 **__Suggestion__**: %suggestion%</code><br>Stoat: <code>📝 suggests: %suggestion%</code><br>GameVox: <code>📝 Suggestion: %suggestion%</code></td>
 <td>The text of the post. Placeholders: <code>%suggestion%</code> (what the viewer wrote), <code>%user%</code> (their name), <code>%platform%</code> (<code>TWITCH</code>, <code>YOUTUBE</code> or <code>KICK</code>).</td>
 </tr>
 <tr>
-<td><code>showTimestamp</code></td>
-<td><code>True</code></td>
+<td><strong>Date and time</strong></td>
+<td>on</td>
 <td>Date and time of the suggestion next to name and platform. See <a href="#date-and-time">Date and time</a>.</td>
 </tr>
-</tbody></table>
-<h2>Embed Colour</h2>
-<table>
-<thead>
 <tr>
-<th>Argument</th>
-<th>Starts as</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>randomColour</code></td>
-<td><code>False</code></td>
-<td><code>True</code> gives every post a random colour and ignores the three below.</td>
+<td><strong>A random colour for every post</strong></td>
+<td>off</td>
+<td>On: every post gets a random colour, and the three below are not used.</td>
 </tr>
 <tr>
-<td><code>colourTwitch</code></td>
-<td><code>#9146FF</code></td>
-<td>Colour of the bar beside a suggestion from Twitch.</td>
-</tr>
-<tr>
-<td><code>colourYouTube</code></td>
-<td><code>#FF0000</code></td>
-<td>… from YouTube.</td>
-</tr>
-<tr>
-<td><code>colourKick</code></td>
-<td><code>#53FC18</code></td>
-<td>… from Kick.</td>
+<td><strong>Twitch</strong>, <strong>YouTube</strong>, <strong>Kick</strong></td>
+<td><code>#9146FF</code>, <code>#FF0000</code>, <code>#53FC18</code></td>
+<td>Colour of the bar beside a suggestion from that platform.</td>
 </tr>
 </tbody></table>
-<p>Colours are hex values: <code>#9146FF</code>, <code>9146FF</code> and <code>0x9146FF</code> all work. Anything else (a colour name, a short <code>#FFF</code>) gives a warning in the log and the default colour.</p>
-<h2>The webhook URL</h2>
-<p>Each action has one webhook argument in its <strong>Webhook: Send to Channel</strong> group. It starts as a placeholder like <code>&lt;&lt; YOUR_SUGGESTION_WEBHOOK &gt;&gt;</code>; replace that with your URL. <strong>Several URLs separated by commas</strong> post the same suggestion to every one of them.</p>
-<h2>The chat confirmation</h2>
-<p>At the bottom of each action, <strong>Edit the respond messages per platform</strong> holds a switch with one message per platform: <code>@%user% has made a suggestion!</code>. Change the text there. It is sent with your bot account (or the broadcaster account if there is no bot), and only when the post reached every webhook. If something failed, the viewer gets no confirmation and the log says why.</p>
 <h2>Date and time</h2>
 <table>
 <thead>
@@ -322,14 +313,14 @@ belong to their respective owners.</p>
 <tr>
 <td>Stoat, GameVox</td>
 <td>Your PC&#39;s time as text, e.g. <code>aaskjer (TWITCH) • 2026-10-25 20:21</code></td>
-<td><code>timestampFormat</code></td>
+<td><strong>Time format</strong></td>
 </tr>
 </tbody></table>
-<p><code>timestampFormat</code> takes a <a href="https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings">.NET date format</a>:</p>
+<p><strong>Time format</strong> takes a <a href="https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings">.NET date format</a>:</p>
 <table>
 <thead>
 <tr>
-<th><code>timestampFormat</code></th>
+<th>Time format</th>
 <th>Shows</th>
 </tr>
 </thead>
@@ -350,157 +341,143 @@ belong to their respective owners.</p>
 <td>20:21</td>
 </tr>
 </tbody></table>
-<p>An invalid format gives a warning in the log and the default.</p>
-<h2>Do not touch</h2>
-<p>The <strong>No Touchy!</strong> group looks up the viewer on Kick (for the Kick avatar) and runs the code. Leave it as it is.</p>
+<p>The window names an invalid format before it saves.</p>
 <hr>
-<h1>[SuTo] ... Discord</h1>
+<h1>Discord</h1>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
-<th>Group</th>
+<th>Setting</th>
 <th>Starts as</th>
 <th>What it does</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>discordWebhookUrl</code></td>
-<td>Webhook: Send to Channel</td>
-<td><code>&lt;&lt; YOUR_SUGGESTION_WEBHOOK &gt;&gt;</code></td>
-<td>The channel&#39;s webhook URL. Channel settings → Integrations → Webhooks → New Webhook → Copy Webhook URL.</td>
+<td><strong>Avatar and name under the post</strong></td>
+<td>on</td>
+<td>The viewer&#39;s avatar and name in the post&#39;s footer.</td>
 </tr>
 <tr>
-<td><code>showFooter</code></td>
-<td>Suggestion Content</td>
-<td><code>True</code></td>
-<td>The viewer&#39;s avatar and name under the post.</td>
-</tr>
-<tr>
-<td><code>showPlatformTag</code></td>
-<td>Suggestion Content</td>
-<td><code>True</code></td>
-<td><code>(TWITCH)</code>, <code>(YOUTUBE)</code> or <code>(KICK)</code> after the name.</td>
-</tr>
-</tbody></table>
-<p><code>suggestionTemplate</code> takes Discord Markdown: <code>**bold**</code>, <code>__underline__</code>, <code>*italic*</code>.</p>
-<h2>Forums and threads</h2>
-<p>The group <strong>Webhook: Send to Forum or Threads</strong> is for a forum channel, or for one thread. All its arguments start switched off; switch on what you use.</p>
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Starts as</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>discordForumWebhookUrl</code></td>
-<td><code>&lt;&lt; YOUR_FORUM_WEBHOOK &gt;&gt;</code> (off)</td>
-<td>A webhook of the forum channel. When it is on, it is used instead of <code>discordWebhookUrl</code>.</td>
-</tr>
-<tr>
-<td><code>discordThreadName</code></td>
-<td><code>Thread_Name</code> (off)</td>
-<td><strong>Separate Forum Threads:</strong> every suggestion opens a new forum post with this title. <code>%targetUser%</code>, <code>%user%</code> and <code>%userName%</code> become the viewer&#39;s name, e.g. <code>Suggested by %targetUser%</code>. Longer than 100 characters is cut.</td>
-</tr>
-<tr>
-<td><code>discordThreadId</code></td>
-<td><code>Forum_Thread_ID</code> (off)</td>
-<td><strong>All suggestions in a single Thread:</strong> every suggestion goes into this existing thread or forum post. Right-click the thread in Discord → <strong>Copy Thread ID</strong> (needs Developer Mode under Settings → Advanced). Only digits.</td>
-</tr>
-</tbody></table>
-<p>Use one of the two: with both on, the thread ID wins. A forum webhook needs one of them, or Discord refuses the post.</p>
-<hr>
-<h1>[SuTo] ... Stoat</h1>
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Group</th>
-<th>Starts as</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>stoatSuggestionWebhook</code></td>
-<td>Webhook: Send to Channel</td>
-<td><code>&lt;&lt; YOUR_WEBHOOK &gt;&gt;</code></td>
-<td>The channel&#39;s webhook URL, <code>https://api.stoat.chat/webhooks/{id}/{token}</code>.</td>
-</tr>
-<tr>
-<td><code>timestampFormat</code></td>
-<td>Suggestion Content</td>
-<td><code>yyyy-MM-dd HH:mm</code></td>
-<td>See <a href="#date-and-time">Date and time</a>.</td>
-</tr>
-</tbody></table>
-<p>The post shows the suggestion, then the viewer&#39;s avatar (Twitch and Kick), name, platform and time underneath. <code>suggestionTemplate</code> takes Markdown.</p>
-<p><strong>Optional extras</strong>, which are not in the action: add a <strong>Set Argument</strong> to its <strong>Suggestion Content</strong> group if you want one.</p>
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Example</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>suggestionFooterTemplate</code></td>
-<td><code>by %user% on %platform%</code></td>
-<td>The line under the suggestion. Starts as <code>%user% (%platform%)</code>.</td>
-</tr>
-<tr>
-<td><code>iconTwitch</code>, <code>iconYouTube</code>, <code>iconKick</code></td>
-<td><code>https://example.com/twitch.png</code></td>
-<td>A fixed picture instead of the viewer&#39;s avatar, for every suggestion from that platform.</td>
-</tr>
-</tbody></table>
-<hr>
-<h1>[SuTo] ... GameVox</h1>
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Group</th>
-<th>Starts as</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>gameVoxWebhookUrl</code></td>
-<td>Webhook: Send to Channel</td>
-<td><code>&lt;&lt; YOUR_GAMEVOX_WEBHOOK &gt;&gt;</code></td>
-<td>The execute URL of an app webhook: <a href="https://developers.gamevox.com/docs/webhooks">GameVox Developer Portal</a> → your application → <strong>Webhooks</strong> → <strong>New Webhook</strong>. Copy it right away; GameVox shows it only once.</td>
-</tr>
-<tr>
-<td><code>showFooter</code></td>
-<td>Suggestion Content</td>
-<td><code>True</code></td>
-<td>The viewer&#39;s avatar and name under the post.</td>
-</tr>
-<tr>
-<td><code>showPlatformTag</code></td>
-<td>Suggestion Content</td>
-<td><code>True</code></td>
+<td><strong>Platform after the name</strong></td>
+<td>on</td>
 <td><code>(TWITCH)</code>, <code>(YOUTUBE)</code> or <code>(KICK)</code> after the name.</td>
 </tr>
 <tr>
-<td><code>timestampFormat</code></td>
-<td>Suggestion Content</td>
+<td><strong>Pictures (optional)</strong>: From Twitch, From YouTube, From Kick</td>
+<td>empty</td>
+<td>The web address of a fixed picture instead of the viewer&#39;s avatar, for every suggestion from that platform. Greyed out while <strong>Avatar and name under the post</strong> is off.</td>
+</tr>
+</tbody></table>
+<p><strong>Text</strong> takes Discord Markdown: <code>**bold**</code>, <code>__underline__</code>, <code>*italic*</code>.</p>
+<h2>Forum or thread (optional)</h2>
+<p>For a forum channel, or for one thread. Leave all three empty to post into the channel of the webhook above.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Forum webhook URL</strong></td>
+<td>A webhook of the forum channel. While it is set, it is used instead of the webhook URL above.</td>
+</tr>
+<tr>
+<td><strong>A new thread per suggestion, named</strong></td>
+<td>Every suggestion opens a new forum post with this title. <code>%user%</code> becomes the viewer&#39;s name, e.g. <code>Suggested by %user%</code>. Longer than 100 characters is cut.</td>
+</tr>
+<tr>
+<td><strong>Or all into one thread, with the ID</strong></td>
+<td>Every suggestion goes into this existing thread or forum post. Right-click the thread in Discord → <strong>Copy Thread ID</strong> (needs Developer Mode under Settings → Advanced). Only digits.</td>
+</tr>
+</tbody></table>
+<p>Use one of the two: with both filled in, the thread ID wins. A forum webhook needs one of them, or Discord refuses the post; the window says so before it saves.</p>
+<hr>
+<h1>Stoat</h1>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Starts as</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Line under the text</strong></td>
+<td><code>%user% (%platform%)</code></td>
+<td>The line under the suggestion, after the viewer&#39;s avatar (Twitch and Kick). <code>%user%</code> and <code>%platform%</code> work here too.</td>
+</tr>
+<tr>
+<td><strong>Time format</strong></td>
 <td><code>yyyy-MM-dd HH:mm</code></td>
 <td>See <a href="#date-and-time">Date and time</a>.</td>
+</tr>
+<tr>
+<td><strong>Pictures (optional)</strong>: From Twitch, From YouTube, From Kick</td>
+<td>empty</td>
+<td>The web address of a fixed picture instead of the viewer&#39;s avatar, for every suggestion from that platform.</td>
+</tr>
+</tbody></table>
+<p><strong>Text</strong> takes Markdown. The URL is always sent to <code>api.stoat.chat</code>, whatever host it names.</p>
+<hr>
+<h1>GameVox</h1>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Starts as</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Avatar and name under the post</strong></td>
+<td>on</td>
+<td>The viewer&#39;s avatar and name in the post&#39;s footer.</td>
+</tr>
+<tr>
+<td><strong>Platform after the name</strong></td>
+<td>on</td>
+<td><code>(TWITCH)</code>, <code>(YOUTUBE)</code> or <code>(KICK)</code> after the name.</td>
+</tr>
+<tr>
+<td><strong>Time format</strong></td>
+<td><code>yyyy-MM-dd HH:mm</code></td>
+<td>See <a href="#date-and-time">Date and time</a>.</td>
+</tr>
+<tr>
+<td><strong>Pictures (optional)</strong>: From Twitch, From YouTube, From Kick</td>
+<td>empty</td>
+<td>The web address of a fixed picture instead of the viewer&#39;s avatar, for every suggestion from that platform. Greyed out while <strong>Avatar and name under the post</strong> is off.</td>
 </tr>
 </tbody></table>
 <p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/gamevox-example.png" alt="Two suggestions in a GameVox channel, from Twitch and from Kick, each with the viewer's avatar, name and platform under the text" width="608"></p><ul>
-<li>GameVox shows no Markdown in embeds, so the template is plain text.</li>
+<li>The webhook is the execute URL of an app webhook: <a href="https://developers.gamevox.com/docs/webhooks">GameVox Developer Portal</a> → your application → <strong>Webhooks</strong> → <strong>New Webhook</strong>. Copy it right away; GameVox shows it only once.</li>
+<li>GameVox shows no Markdown in embeds, so the text is plain.</li>
 <li>The post comes from your GameVox application&#39;s bot, with its name and picture. GameVox does not let a webhook change them.</li>
-<li>Webhooks only reach cloud-hosted GameVox servers, not self-hosted ones.</li>
-<li>With <code>showFooter</code> off and <code>showTimestamp</code> on, the footer shows only the time.</li>
+<li>With <strong>Avatar and name</strong> off and <strong>Date and time</strong> on, the footer shows only the time.</li>
 </ul>
 <hr>
+<h1>Messages</h1>
+<p align="center"><img loading="lazy" src="https://raw.githubusercontent.com/aaskjer/SuTo/main/Assets/screenshots/messages-dark.png" alt="The Messages page of the settings window: the confirmation text for Twitch, its placeholders as chips, a preview of the chat line, and the switches Bot account and Send as /me" width="720"></p><p>The confirmation in chat, one text per platform: <strong>On Twitch</strong>, <strong>On YouTube</strong>, <strong>On Kick</strong>. Each starts as <code>@%user% has made a suggestion!</code>.</p>
+<ul>
+<li>It goes into the chat the suggestion came from, and only when the post reached every webhook of a server. If something failed, the viewer gets no confirmation and the log says why.</li>
+<li>A suggestion that went to several servers is confirmed once.</li>
+<li><code>%user%</code> is the viewer&#39;s name, <code>%platform%</code> and <code>%suggestion%</code> as in the post. Any other <code>%argument%</code> of the chat message works as it does in Streamer.bot&#39;s own Send Message.</li>
+<li>An empty text sends no confirmation on that platform.</li>
+<li><strong>Bot account</strong> sends it from your bot. Off, or without a bot account, the broadcaster account sends it.</li>
+<li><strong>Send as /me</strong> sends it as a <code>/me</code> action. Twitch only: YouTube and Kick get the text as a message. Off at first.</li>
+</ul>
+<hr>
+<h1>A second channel with its own command</h1>
+<p>The three actions read the settings file. A <strong>Set Argument</strong> sub-action named like a setting&#39;s key wins over the file, so a copy of an action can post somewhere else:</p>
+<ol>
+<li>Duplicate the action, for example <strong>[SuTo] ... Discord</strong>, and give the copy a command of its own (<code>!feedback</code>).</li>
+<li>In the copy, add <strong>Set Argument</strong> sub-actions above the <strong>No Touchy!</strong> group: <code>discordWebhookUrl</code> with the other channel&#39;s webhook, and whatever else should differ (<code>discordSuggestionTemplate</code>, <code>discordColourTwitch</code> …).</li>
+</ol>
+<p>The keys are the names in <code>Suggestions To\SuTo-Settings.json</code>. The window does not show such an argument; it only counts for the action it is in.</p>
+<hr>
 <h1>When nothing arrives</h1>
-<p>Open Streamer.bot&#39;s <strong>Logs</strong> tab and look for the line from the action:</p>
+<p>Open the <strong>Log</strong> page of the settings window, or Streamer.bot&#39;s <strong>Logs</strong> tab, and look for the line from the action:</p>
 <table>
 <thead>
 <tr>
@@ -509,20 +486,36 @@ belong to their respective owners.</p>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>... is not a webhook URL. Replace the placeholder ...</code></td>
-<td>The webhook argument still holds <code>&lt;&lt; ... &gt;&gt;</code>, or the URL is cut off. Paste the full URL.</td>
+<td><code>Nothing is set up yet. Run the action &#39;[SuTo] Settings&#39; ...</code></td>
+<td>Nothing has been saved in the settings window yet. Open it, switch on a server, save.</td>
 </tr>
 <tr>
-<td><code>... webhook URL is missing or empty</code></td>
-<td>The webhook argument is empty or switched off.</td>
+<td><code>Discord is switched off in the settings.</code> (a debug line)</td>
+<td>Switch the server on at the top of its page.</td>
 </tr>
 <tr>
-<td><code>The forum webhook needs &#39;discordThreadName&#39; ... or &#39;discordThreadId&#39;</code></td>
-<td>Switch on one of the two (Discord forums).</td>
+<td>nothing at all</td>
+<td>The server&#39;s command is off in Streamer.bot&#39;s <strong>Commands</strong> tab, as it is after every import. Right-click it → <strong>Enabled</strong>.</td>
 </tr>
 <tr>
-<td><code>&#39;discordThreadId&#39; must be the numeric ID ...</code></td>
-<td>The thread ID still says <code>Forum_Thread_ID</code>, or holds more than digits.</td>
+<td>nothing at all, and the server&#39;s page in the window is locked</td>
+<td>The server&#39;s action is disabled or deleted in Streamer.bot. The pill in the window&#39;s header says which. Enable it, or import SuTo again.</td>
+</tr>
+<tr>
+<td><code>No webhook URL is set. ...</code></td>
+<td>The server is switched on, but <strong>Webhook URL</strong> is empty.</td>
+</tr>
+<tr>
+<td><code>... is not a webhook URL. ...</code></td>
+<td>The URL is cut off, or the field holds something else. Paste the full URL.</td>
+</tr>
+<tr>
+<td><code>The forum webhook needs a thread name ... or a thread ID</code></td>
+<td>Fill in one of the two (Discord forums).</td>
+</tr>
+<tr>
+<td><code>The thread ID must be the numeric ID ...</code></td>
+<td>The thread ID holds more than digits.</td>
 </tr>
 <tr>
 <td><code>Could not parse webhook id/token ...</code> (Stoat)</td>
@@ -541,7 +534,7 @@ belong to their respective owners.</p>
 <td>Discord&#39;s own answer follows; most often the webhook was deleted.</td>
 </tr>
 <tr>
-<td><code>&#39;colourTwitch&#39; is not a hex colour ...</code></td>
+<td><code>The colour for Twitch is not a hex colour ...</code></td>
 <td>Only a warning: the post went out in the default colour.</td>
 </tr>
 <tr>
@@ -550,12 +543,75 @@ belong to their respective owners.</p>
 </tr>
 </tbody></table>
 <p>A webhook URL never appears in full in the log: the secret token is replaced by <code>***</code>.</p>
+<p><strong>The settings window does not open?</strong> Its log lines start with <code>[SuTo/Settings]</code>. The first time, it needs the internet once, to download <code>UIFramework.dll</code>.</p>
 <p>If none of this helps, <a href="https://github.com/aaskjer/SuTo/issues">open an issue</a> with the log line.</p>
+<hr>
+<h1>The files</h1>
+<p>In the Streamer.bot folder:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Suggestions To\SuTo-Settings.json</code></td>
+<td>Everything the window saves, the webhook URLs included. Keep it to yourself.</td>
+</tr>
+<tr>
+<td><code>Suggestions To\SuTo-Settings.json.bak</code></td>
+<td>The settings before the last save.</td>
+</tr>
+<tr>
+<td><code>Suggestions To\uiframework.layout.json</code></td>
+<td>Your layout of the window: theme, language, renamed or hidden pages and fields.</td>
+</tr>
+<tr>
+<td><code>UIFramework\lib\&lt;version&gt;\UIFramework.dll</code></td>
+<td>The window itself, <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a> 2.6.0 or newer. It is not part of the import: the settings action downloads it the first time the window opens and offers the update when an older one is there.</td>
+</tr>
+</tbody></table>
 </div>
       </section>
       <section class="md" data-doc="changelog" data-label="Changelog" data-file="CHANGELOG.md">
         <h2 class="doc-label">Changelog</h2>
-        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/SuTo/releases">releases on GitHub</a>.</p><h2>v1.0.0 — Suggestions to Discord, Stoat and GameVox</h2><p class="release__date">October 25, 2026</p><h3>📝 Suggestions from chat, straight to your server</h3>
+        <div class="doc-body"><p>From the <a href="https://github.com/aaskjer/SuTo/releases">releases on GitHub</a>.</p><h2>v2.1.0 — SuTo v2.1.0: a fixed picture per platform, on every server</h2><p class="release__date">November 28, 2026</p><h3>🖼️ A fixed picture per platform, on every server</h3>
+<p>Discord and GameVox get what only Stoat had: a picture of your choice in place of the viewer&#39;s avatar.</p>
+<h4>New</h4>
+<ul>
+<li><strong>Pictures (optional)</strong> on the Discord and the GameVox page: <em>From Twitch</em>, <em>From YouTube</em>, <em>From Kick</em>. The web address of a picture that stands beside the name of every suggestion from that platform, instead of the viewer&#39;s avatar. Empty, as it starts: the viewer&#39;s own avatar. The three fields are greyed out while <strong>Avatar and name under the post</strong> is off, since no picture is shown then.</li>
+</ul>
+<p>Nothing else changes. Your settings stay as they are.</p>
+<h3>🔄 Updating from 2.0.0</h3>
+<p>Import the new version over the old one. Streamer.bot switches the three commands off with every import: in <strong>Commands</strong>, right-click the ones you use → <strong>Enabled</strong>.</p>
+<h3>📦 Install</h3>
+<p>Download <strong><code>SuggestionsTo.sb</code></strong> below and drag it into Streamer.bot&#39;s <strong>Import</strong> window, or paste the string from <a href="https://github.com/aaskjer/SuTo/blob/main/Import-String.md">Import-String.md</a>. Then enable the command of your server, open <strong>[SuTo] Settings</strong> and switch the server on, as in the <a href="https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md#install">Setup Guide</a>.</p>
+<p>The window needs UIFramework 2.6.0 or newer. It is not part of the import: the settings action downloads it the first time the window opens.</p>
+<h2>v2.0.0 — SuTo v2.0.0: the settings window</h2><p class="release__date">November 28, 2026</p><h3>🪟 The settings are a window now</h3>
+<p>No more Set Argument sub-actions: SuTo has a settings window, built with <a href="https://github.com/aaskjer/UIFramework-Streamer.bot">UIFramework for streamer.bot</a>. Open it from the action <strong>[SuTo] Settings</strong> (right-click its trigger <strong>Test</strong> → <em>Test Trigger</em>).</p>
+<h4>New</h4>
+<ul>
+<li><strong>A settings window</strong>: a page per server, the answer in chat, SuTo&#39;s lines from Streamer.bot&#39;s log, and a help page. The settings live in <code>Suggestions To\SuTo-Settings.json</code>, which no import touches.</li>
+<li><strong>A switch per server.</strong> <em>Post suggestions to Discord / Stoat / GameVox</em> decides where a suggestion goes.</li>
+<li><strong>Send a test suggestion.</strong> A button on every server page posts a test under your name and says whether it arrived, or why not.</li>
+<li><strong>One confirmation per suggestion</strong>, however many servers it went to. The texts are on the <strong>Messages</strong> page, one per platform; an empty text sends none. On Twitch it can go out as a <code>/me</code> action (<strong>Send as /me</strong>).</li>
+<li><strong>A page that says when it cannot work.</strong> A server whose action is disabled or deleted in Streamer.bot shows its page locked, and its pill in the header reads <em>action off</em> or <em>action missing</em>.</li>
+<li><strong>A check before saving</strong>: a server that is switched on without a webhook, a URL that is none, a forum webhook without a thread, a thread ID that is not a number, a time format that is none.</li>
+</ul>
+<h4>Changed</h4>
+<ul>
+<li>The <strong>Set Argument</strong> sub-actions and the switch with the Send Message sub-actions are gone from the three actions. Two actions come with the window: <strong>[SuTo] Settings</strong> opens it, <strong>[SuTo] Settings Host</strong> answers it. Do not delete or disable the second one: the window does not open without it.</li>
+<li>The log names settings by what the window calls them.</li>
+<li>A copy of an action can still post somewhere else: a Set Argument named like a key of the settings file (<code>discordWebhookUrl</code>, <code>discordSuggestionTemplate</code> …) wins over the file. The argument names of 1.0.0 (<code>suggestionTemplate</code>, <code>showFooter</code> …) are no longer read.</li>
+</ul>
+<h3>🔄 Updating from 1.0.0</h3>
+<p>Import the new version over the old one and open the settings. The first time, the window takes the values of your Set Arguments and the chat texts from Streamer.bot&#39;s own backup of your actions and shows them as unsaved changes; a webhook you never set stays empty. Switch on the servers you post to, look the values over and press <strong>Save</strong>; until then nothing is posted.</p>
+<p>Streamer.bot switches the three commands off with the import, as with every import: in <strong>Commands</strong>, right-click the ones you use → <strong>Enabled</strong>. The <a href="https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md#updating-from-100">Setup Guide</a> has the details.</p>
+<h3>📦 Install</h3>
+<p>Download <strong><code>SuggestionsTo.sb</code></strong> below and drag it into Streamer.bot&#39;s <strong>Import</strong> window, or paste the string from <a href="https://github.com/aaskjer/SuTo/blob/main/Import-String.md">Import-String.md</a>. Then enable the command of your server, open <strong>[SuTo] Settings</strong> and switch the server on, as in the <a href="https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md#install">Setup Guide</a>.</p>
+<p>The window needs UIFramework 2.6.0 or newer. It is not part of the import: the settings action downloads it the first time the window opens.</p>
+<h2>v1.0.0 — Suggestions to Discord, Stoat and GameVox</h2><p class="release__date">October 25, 2026</p><h3>📝 Suggestions from chat, straight to your server</h3>
 <p><code>!suggestion</code> and <code>!vorschlag</code> in Twitch, YouTube and Kick chat post the idea to your <strong>Discord</strong>, <strong>Stoat</strong> or <strong>GameVox</strong> server, with the viewer&#39;s avatar, name, platform and the time. The viewer gets a short confirmation in chat.</p>
 <ul>
 <li>One action per server: turn on one, two or all three.</li>

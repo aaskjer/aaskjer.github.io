@@ -5,9 +5,95 @@
   <link rel="self" type="application/atom+xml" href="https://aaskjer.github.io/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://aaskjer.github.io/"/>
   <id>https://aaskjer.github.io/feed.xml</id>
-  <updated>2026-11-27T07:29:46Z</updated>
+  <updated>2026-11-28T13:58:30Z</updated>
   <author><name>aaskjer</name><uri>https://github.com/aaskjer</uri></author>
   <icon>https://aaskjer.github.io/assets/img/avatar.png</icon>
+  <entry>
+    <title>Suggestions To v2.1.0: SuTo v2.1.0: a fixed picture per platform, on every server</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/SuTo/releases/tag/v2.1.0"/>
+    <id>https://github.com/aaskjer/SuTo/releases/tag/v2.1.0</id>
+    <published>2026-11-28T13:58:30Z</published>
+    <updated>2026-11-28T13:58:30Z</updated>
+    <category term="SuTo" label="Suggestions To"/>
+    <content type="html">&lt;h1&gt;🖼️ A fixed picture per platform, on every server&lt;/h1&gt;
+&lt;p&gt;Discord and GameVox get what only Stoat had: a picture of your choice in place of the viewer&amp;#39;s avatar.&lt;/p&gt;
+&lt;h2&gt;New&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pictures (optional)&lt;/strong&gt; on the Discord and the GameVox page: &lt;em&gt;From Twitch&lt;/em&gt;, &lt;em&gt;From YouTube&lt;/em&gt;, &lt;em&gt;From Kick&lt;/em&gt;. The web address of a picture that stands beside the name of every suggestion from that platform, instead of the viewer&amp;#39;s avatar. Empty, as it starts: the viewer&amp;#39;s own avatar. The three fields are greyed out while &lt;strong&gt;Avatar and name under the post&lt;/strong&gt; is off, since no picture is shown then.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nothing else changes. Your settings stay as they are.&lt;/p&gt;
+&lt;h1&gt;🔄 Updating from 2.0.0&lt;/h1&gt;
+&lt;p&gt;Import the new version over the old one. Streamer.bot switches the three commands off with every import: in &lt;strong&gt;Commands&lt;/strong&gt;, right-click the ones you use → &lt;strong&gt;Enabled&lt;/strong&gt;.&lt;/p&gt;
+&lt;h1&gt;📦 Install&lt;/h1&gt;
+&lt;p&gt;Download &lt;strong&gt;&lt;code&gt;SuggestionsTo.sb&lt;/code&gt;&lt;/strong&gt; below and drag it into Streamer.bot&amp;#39;s &lt;strong&gt;Import&lt;/strong&gt; window, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the command of your server, open &lt;strong&gt;[SuTo] Settings&lt;/strong&gt; and switch the server on, as in the &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md#install&quot;&gt;Setup Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The window needs UIFramework 2.6.0 or newer. It is not part of the import: the settings action downloads it the first time the window opens.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/SuTo/releases/tag/v2.1.0&quot;&gt;Download v2.1.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/suto/&quot;&gt;Suggestions To on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Suggestions To v2.0.0: SuTo v2.0.0: the settings window</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/SuTo/releases/tag/v2.0.0"/>
+    <id>https://github.com/aaskjer/SuTo/releases/tag/v2.0.0</id>
+    <published>2026-11-28T12:47:42Z</published>
+    <updated>2026-11-28T12:47:42Z</updated>
+    <category term="SuTo" label="Suggestions To"/>
+    <content type="html">&lt;h1&gt;🪟 The settings are a window now&lt;/h1&gt;
+&lt;p&gt;No more Set Argument sub-actions: SuTo has a settings window, built with &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot&quot;&gt;UIFramework for streamer.bot&lt;/a&gt;. Open it from the action &lt;strong&gt;[SuTo] Settings&lt;/strong&gt; (right-click its trigger &lt;strong&gt;Test&lt;/strong&gt; → &lt;em&gt;Test Trigger&lt;/em&gt;).&lt;/p&gt;
+&lt;h2&gt;New&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A settings window&lt;/strong&gt;: a page per server, the answer in chat, SuTo&amp;#39;s lines from Streamer.bot&amp;#39;s log, and a help page. The settings live in &lt;code&gt;Suggestions To\SuTo-Settings.json&lt;/code&gt;, which no import touches.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A switch per server.&lt;/strong&gt; &lt;em&gt;Post suggestions to Discord / Stoat / GameVox&lt;/em&gt; decides where a suggestion goes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Send a test suggestion.&lt;/strong&gt; A button on every server page posts a test under your name and says whether it arrived, or why not.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One confirmation per suggestion&lt;/strong&gt;, however many servers it went to. The texts are on the &lt;strong&gt;Messages&lt;/strong&gt; page, one per platform; an empty text sends none. On Twitch it can go out as a &lt;code&gt;/me&lt;/code&gt; action (&lt;strong&gt;Send as /me&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A page that says when it cannot work.&lt;/strong&gt; A server whose action is disabled or deleted in Streamer.bot shows its page locked, and its pill in the header reads &lt;em&gt;action off&lt;/em&gt; or &lt;em&gt;action missing&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A check before saving&lt;/strong&gt;: a server that is switched on without a webhook, a URL that is none, a forum webhook without a thread, a thread ID that is not a number, a time format that is none.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;Set Argument&lt;/strong&gt; sub-actions and the switch with the Send Message sub-actions are gone from the three actions. Two actions come with the window: &lt;strong&gt;[SuTo] Settings&lt;/strong&gt; opens it, &lt;strong&gt;[SuTo] Settings Host&lt;/strong&gt; answers it. Do not delete or disable the second one: the window does not open without it.&lt;/li&gt;
+&lt;li&gt;The log names settings by what the window calls them.&lt;/li&gt;
+&lt;li&gt;A copy of an action can still post somewhere else: a Set Argument named like a key of the settings file (&lt;code&gt;discordWebhookUrl&lt;/code&gt;, &lt;code&gt;discordSuggestionTemplate&lt;/code&gt; …) wins over the file. The argument names of 1.0.0 (&lt;code&gt;suggestionTemplate&lt;/code&gt;, &lt;code&gt;showFooter&lt;/code&gt; …) are no longer read.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;🔄 Updating from 1.0.0&lt;/h1&gt;
+&lt;p&gt;Import the new version over the old one and open the settings. The first time, the window takes the values of your Set Arguments and the chat texts from Streamer.bot&amp;#39;s own backup of your actions and shows them as unsaved changes; a webhook you never set stays empty. Switch on the servers you post to, look the values over and press &lt;strong&gt;Save&lt;/strong&gt;; until then nothing is posted.&lt;/p&gt;
+&lt;p&gt;Streamer.bot switches the three commands off with the import, as with every import: in &lt;strong&gt;Commands&lt;/strong&gt;, right-click the ones you use → &lt;strong&gt;Enabled&lt;/strong&gt;. The &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md#updating-from-100&quot;&gt;Setup Guide&lt;/a&gt; has the details.&lt;/p&gt;
+&lt;h1&gt;📦 Install&lt;/h1&gt;
+&lt;p&gt;Download &lt;strong&gt;&lt;code&gt;SuggestionsTo.sb&lt;/code&gt;&lt;/strong&gt; below and drag it into Streamer.bot&amp;#39;s &lt;strong&gt;Import&lt;/strong&gt; window, or paste the string from &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Import-String.md&quot;&gt;Import-String.md&lt;/a&gt;. Then enable the command of your server, open &lt;strong&gt;[SuTo] Settings&lt;/strong&gt; and switch the server on, as in the &lt;a href=&quot;https://github.com/aaskjer/SuTo/blob/main/Setup-Guide.md#install&quot;&gt;Setup Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The window needs UIFramework 2.6.0 or newer. It is not part of the import: the settings action downloads it the first time the window opens.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/SuTo/releases/tag/v2.0.0&quot;&gt;Download v2.0.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/suto/&quot;&gt;Suggestions To on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>UIFramework v2.6.0: UIFramework v2.6.0 (pre-release)</title>
+    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.6.0"/>
+    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.6.0</id>
+    <published>2026-11-28T12:46:32Z</published>
+    <updated>2026-11-28T12:46:32Z</updated>
+    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
+    <content type="html">&lt;p&gt;A window that takes over the values of the version before can leave out what that version shipped in place of a
+value, and the settings action can ask the first of several actions. Declaring &lt;code&gt;AdoptExcept&lt;/code&gt; needs the host block
+of this release; several ids need its settings action, which is 0.3.4 now. &lt;code&gt;MinHostStub&lt;/code&gt; stays 0.1.0: a project on
+an older settings action goes on as it is.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Several actions can answer the settings window: &lt;code&gt;GameActionId&lt;/code&gt; takes their ids, with commas between them.&lt;/strong&gt; The
+settings action asks the first that is there and switched on, and looks again when that one stops running. A
+project whose actions stand side by side gives each the host block and names them all; the settings then still
+open after one of them was deleted or disabled. Before, the settings action knew one action, and such a project
+needed an action of its own that did nothing but answer the window.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;AdoptExcept(&amp;quot;&amp;lt;&amp;lt; YOUR_* &amp;gt;&amp;gt;&amp;quot;)&lt;/code&gt; on the window, &lt;code&gt;adoptExcept&lt;/code&gt; in the schema.&lt;/strong&gt; A Set Argument or a Send Message text
+of the old action that still reads like one of the named texts is not taken over, and the field keeps its
+default. &lt;code&gt;*&lt;/code&gt; stands for any text; neither capitals nor the spaces around the value count. Before, a webhook the
+user never set came into its field as &lt;code&gt;&amp;lt;&amp;lt; YOUR_WEBHOOK &amp;gt;&amp;gt;&lt;/code&gt;. A DLL before 2.6.0 takes such a value over, as it did.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A field the project locks no longer puts a line behind the red i of a window that takes over old values.&lt;/strong&gt; With
+&lt;code&gt;locked:&lt;/code&gt; in &lt;code&gt;UiHost.Handle&lt;/code&gt; (or a Set Argument that sets the field) and an &lt;code&gt;Adopt&lt;/code&gt; mapping to the same field, the
+window said that the mapping leads to a field it never saves. The field takes no old value while it is locked, as
+before; the declaration is not at fault.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;04c3ff2dae6dc4b2877ebeab9c88d2ba13bc1ccc2f287dd13df2583a18df5302&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v2.6.0&quot;&gt;Download v2.6.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>TwitchSentry v4.1.0-beta.2: (TESTERS NEEDED) Live spam feed, held links and stream summary (pre-release)</title>
     <link rel="alternate" type="text/html" href="https://github.com/aaskjer/TwitchSentry/releases/tag/v4.1.0-beta.2"/>
@@ -1708,170 +1794,5 @@ game action did not answer.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;A late answer is not taken for the next one.&lt;/strong&gt; Every request to the game has a variable of its own.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Classic-Chat-Gamble/releases/tag/v25.2.2&quot;&gt;Download v25.2.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/classic-chat-gamble/&quot;&gt;Classic Chat Gamble on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>UIFramework v1.9.0: UIFramework v1.9.0 (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0"/>
-    <id>https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0</id>
-    <published>2026-11-12T17:02:55Z</published>
-    <updated>2026-11-12T17:02:55Z</updated>
-    <category term="UIFramework-Streamer.bot" label="UIFramework"/>
-    <content type="html">&lt;p&gt;The Log page&amp;#39;s colours can be declared, and what the audit of 2026-11-08 had left open is done. The window&amp;#39;s
-part works with every game as it is. The settings action&amp;#39;s part (stub 0.3.0) and the builder&amp;#39;s new parts come to
-a game with its next release; nothing a game has stops working.&lt;/p&gt;
-&lt;h3&gt;Added&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;A game declares the colours of its results on the Log page:&lt;/strong&gt; &lt;code&gt;.Log(..., styles: new[] { &amp;quot;GAME-OVER|muted&amp;quot;, &amp;quot;WIN-*|success&amp;quot; }, outcome: new[] { &amp;quot;DUEL WIN|WIN&amp;quot; })&lt;/code&gt;, in the schema &lt;code&gt;log.styles&lt;/code&gt; and &lt;code&gt;log.outcome&lt;/code&gt;. The colours
-were guessed from words in the result, so Hangman&amp;#39;s &lt;code&gt;GAME-OVER&lt;/code&gt; and &lt;code&gt;MISS-LTTR&lt;/code&gt; showed in the accent colour. A
-style is &lt;code&gt;success&lt;/code&gt;, &lt;code&gt;warning&lt;/code&gt;, &lt;code&gt;muted&lt;/code&gt;, &lt;code&gt;accent&lt;/code&gt; or &lt;code&gt;none&lt;/code&gt;; &lt;code&gt;*&lt;/code&gt; stands for any run of characters; the first that
-fits wins, and a result none names is coloured by its words as before. &lt;code&gt;outcome&lt;/code&gt; names what a result is filtered
-by. See &lt;em&gt;The colours of the results&lt;/em&gt; in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Schema.md&quot;&gt;docs/Schema.md&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;ask&lt;/code&gt;:&lt;/strong&gt; a field that asks the game whenever it changes (a preset slider whose answer fills other fields) has a
-name of its own. &lt;code&gt;live&lt;/code&gt; on a field that is no button meant the same and is still read.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Builder:&lt;/strong&gt; &lt;code&gt;UiSchema.P(...).AtBottom()&lt;/code&gt; (a page at the foot of the rail) and &lt;code&gt;UiWindow.InLanguage(&amp;quot;de&amp;quot;)&lt;/code&gt; (the
-window&amp;#39;s language); both could only be said in the schema. &lt;code&gt;UiHost.Handle&lt;/code&gt; takes &lt;code&gt;null&lt;/code&gt; for the action&amp;#39;s name and
-uses the one Streamer.bot gives the run.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Without the mouse:&lt;/strong&gt; the rail takes the keyboard (Tab, Up and Down, Enter or Space). In the customise mode the
-Menu key (or Shift+F10) opens a field&amp;#39;s or a page&amp;#39;s menu, which has &lt;em&gt;Move up&lt;/em&gt; and &lt;em&gt;Move down&lt;/em&gt; now, also on
-Alt+Up and Alt+Down; the moved one keeps the keyboard.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A locked window can show the help under the fields:&lt;/strong&gt; a bulb in its footer, beside the language. The switch for
-it sits in the customise bar, which a locked window does not have.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tests for the settings action.&lt;/strong&gt; &lt;code&gt;stub/Stub.cs&lt;/code&gt; is compiled into the tests against a stand-in for Streamer.bot
-and tested there: versions, the download&amp;#39;s tries, the files it keeps, how it asks the game.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The window does not stand still while the game is asked.&lt;/strong&gt; A Try button, a table and the check before a save
-waited for the game on the window&amp;#39;s own thread, up to 35 seconds when the game&amp;#39;s handler hung, and Windows called
-the window &amp;quot;not responding&amp;quot;; &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md&quot;&gt;docs/Loader.md&lt;/a&gt; said it never froze. The game is asked from another
-thread now. A Try button&amp;#39;s answer and a table&amp;#39;s rows arrive when they arrive (the button is greyed, the table says
-that it is asking); the check before a save waits with the window alive, without input. With every settings
-action, also the ones games carry today.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;No answer is not &amp;quot;done&amp;quot;.&lt;/strong&gt; A Try button whose game did not answer (a timeout, a disabled action) showed
-&amp;quot;done&amp;quot; in green; it says that the game did not answer, in the colour of a failure, and a table says so instead
-of showing as empty (stub 0.3.0).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;An import is checked like a save.&lt;/strong&gt; It wrote values without their fields&amp;#39; limits, without a look at their
-type and without the game&amp;#39;s &lt;code&gt;validate&lt;/code&gt;, and it wrote &lt;code&gt;readOnly&lt;/code&gt; settings. Every value goes through its field now
-(a number beyond its limits is pulled into them; text for a number or an option the dropdown lacks is not taken),
-a &lt;code&gt;readOnly&lt;/code&gt; setting is left alone, the dialog names what is not taken and why, and the game checks as before a
-save. The dialog no longer says &amp;quot;replace&amp;quot;: what the file does not name stays.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A value the window shows other than the file has it is said:&lt;/strong&gt; a number beyond its limits or text where a
-number belongs showed corrected and was written with some later save, without a word, while the game went on
-reading the file&amp;#39;s value. The status line names how many, its tooltip which.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A &lt;code&gt;readOnly&lt;/code&gt; setting follows its conditions and has its help:&lt;/strong&gt; &lt;code&gt;showWhen&lt;/code&gt;, &lt;code&gt;requires&lt;/code&gt;, its section&amp;#39;s condition
-and its help (tooltip or line) were skipped for it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The help under the fields reaches the framework&amp;#39;s own fields:&lt;/strong&gt; the Messages page&amp;#39;s sender switches and number
-format and the Log page&amp;#39;s switch kept their help in the tooltip.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Long labels and the status line in a narrow window.&lt;/strong&gt; A switch&amp;#39;s label wraps instead of being cut at the
-window&amp;#39;s edge without &amp;quot;…&amp;quot; (German and Spanish labels at the smallest width); the status line takes a line of its
-own above the footer&amp;#39;s buttons when they leave it no room (it read &amp;quot;Ke…&amp;quot;).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Customise mode:&lt;/strong&gt; a click on &lt;em&gt;Done&lt;/em&gt; or &lt;em&gt;Export&lt;/em&gt; right after typing an accent colour is no longer lost (taking
-the colour rebuilt the window under the pointer); the hint counts the help switch as a change, &lt;em&gt;Reset layout&lt;/em&gt;
-takes it back too and is greyed while there is nothing to take back; an empty accent box opens the picker on the
-accent in use, not on yellow.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Icons:&lt;/strong&gt; &lt;em&gt;Reset page&lt;/em&gt; no longer looks like the mirror image of &lt;em&gt;Reset all&lt;/em&gt; and no longer shares its arrow with
-&amp;quot;read again&amp;quot; on the Log page and the tables; the Log page&amp;#39;s folder button has the folder a path field has.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;twitchOnly&lt;/code&gt; works on every field with a label.&lt;/strong&gt; It was read for switches alone and did nothing elsewhere
-(three reward ids in Trivia): such a field says &amp;quot;(Twitch only)&amp;quot; in its label.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;auto&lt;/code&gt; brings &lt;code&gt;live&lt;/code&gt; and &lt;code&gt;panel&lt;/code&gt;.&lt;/strong&gt; An action without a button followed the typed values only with &lt;code&gt;live&lt;/code&gt; and
-wanted &lt;code&gt;panel&lt;/code&gt; although it has a box of its own.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Settings action (stub 0.3.0):&lt;/strong&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Closing the update dialog no longer skips the version for good.&lt;/em&gt; &lt;strong&gt;No&lt;/strong&gt; skips it, &lt;strong&gt;Cancel&lt;/strong&gt;, the X and Esc
-mean &amp;quot;not now&amp;quot;. Before, No meant &amp;quot;later&amp;quot; and Cancel &amp;quot;skip&amp;quot;, so the X skipped.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;A download GitHub does not deliver is tried three times&lt;/em&gt; (a 5xx, a 429, a broken or timed-out connection),
-and what is left reads &amp;quot;GitHub did not deliver the file ... Try again in a moment&amp;quot; instead of the raw error.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Every request to the game has a variable of its own,&lt;/em&gt; so a request that hung and answers late cannot be read
-by the next one; it is unset also when the game&amp;#39;s run failed.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;What holds for the one DLL is kept once:&lt;/em&gt; a skipped version and &lt;code&gt;&amp;quot;autoUpdate&amp;quot;: false&lt;/code&gt; live in
-&lt;code&gt;&amp;lt;Streamer.bot&amp;gt;\UIFramework\loader.json&lt;/code&gt; and hold for every game. They were kept per game, so each game asked
-again about a version another had skipped. A game&amp;#39;s layout file is still read.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Today&amp;#39;s log lines show while a round runs:&lt;/em&gt; the log was opened as a file nobody writes to, which the game&amp;#39;s
-open file is not.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;One prefix in the log,&lt;/em&gt; &lt;code&gt;[&amp;lt;game action&amp;gt;/Settings]&lt;/code&gt; or the one the window declares, from the first line to the
-DLL&amp;#39;s lines; it changed to the window&amp;#39;s title half-way.&lt;/li&gt;
-&lt;li&gt;The release check counts &lt;code&gt;1.9&lt;/code&gt; as &lt;code&gt;1.9.0&lt;/code&gt;; the hint for a DLL fetched by hand no longer asks GitHub a second
-time (offline it stood still again) and does not name a release this settings action is too old for; the
-dialog no longer says the host block stands &amp;quot;at the end&amp;quot; of the action.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The red i says more:&lt;/strong&gt; &lt;code&gt;panel&lt;/code&gt;, &lt;code&gt;auto&lt;/code&gt; or &lt;code&gt;confirm&lt;/code&gt; on a field that is no button; &lt;code&gt;placeholders&lt;/code&gt; on one that
-is no message; a &lt;code&gt;platform&lt;/code&gt; that is none; a &lt;code&gt;{placeholder}&lt;/code&gt; in a message&amp;#39;s default text that its list lacks; a
-page named by its id alone that no setting is on (&lt;code&gt;&amp;quot;mesages&amp;quot;&lt;/code&gt;); a &lt;code&gt;custom&lt;/code&gt; page behind the generic settings
-action, which was left out with its fields in silence; a &lt;code&gt;Cmd&lt;/code&gt;, &lt;code&gt;Link&lt;/code&gt; or &lt;code&gt;Note&lt;/code&gt; in the tour and a &lt;code&gt;Tip&lt;/code&gt; in a
-help section (one type in the host block, so the wrong one compiled and was dropped); an unknown style of the
-Log page&amp;#39;s colours. An unknown kind is told the kinds there are, and &amp;quot;The spec overrides&amp;quot; is said in the
-builder&amp;#39;s words.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;A schema written by hand may use the builder&amp;#39;s short forms,&lt;/strong&gt; which the docs showed as if they were JSON: an
-option &lt;code&gt;&amp;quot;a|Label&amp;quot;&lt;/code&gt;, a list column &lt;code&gt;&amp;quot;key|kind|label&amp;quot;&lt;/code&gt;, &lt;code&gt;shows&lt;/code&gt; as &lt;code&gt;&amp;quot;option: key, key&amp;quot;&lt;/code&gt;, one &lt;code&gt;aliasFactor&lt;/code&gt;. A bar
-segment&amp;#39;s colour is read as &lt;code&gt;color&lt;/code&gt; too.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Texts:&lt;/strong&gt; English dialog titles in one spelling; the tour names Ctrl+0; the icon hint lists &lt;code&gt;gift&lt;/code&gt; and says
-that an unknown name shows a dot; a page&amp;#39;s tooltip in the customise mode names &lt;em&gt;Change icon&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Docs:&lt;/strong&gt; &lt;code&gt;requires&lt;/code&gt; greys a field out, &lt;code&gt;showWhen&lt;/code&gt; hides it (&lt;code&gt;hide:&lt;/code&gt; in front of a &lt;code&gt;requires&lt;/code&gt; is still read and
-no longer recommended); what the game&amp;#39;s &lt;code&gt;UiSettings&lt;/code&gt; does not know of the conventions; a table of the names a
-game carries (&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Getting-Started.md&quot;&gt;docs/Getting-Started.md&lt;/a&gt;); how a new major line is released
-(&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/docs/Loader.md&quot;&gt;docs/Loader.md&lt;/a&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Removed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Code nothing used: &lt;code&gt;Sidecars.Strip&lt;/code&gt;, &lt;code&gt;Requirement.Holds(key, op, wanted)&lt;/code&gt;, &lt;code&gt;Conventions.Aliases()&lt;/code&gt; and
-&lt;code&gt;FrameworkKeys&lt;/code&gt;, &lt;code&gt;LayoutFile.OverriddenPages&lt;/code&gt; and &lt;code&gt;OverriddenFields&lt;/code&gt;, &lt;code&gt;Schema.Defaults()&lt;/code&gt; and &lt;code&gt;Aliases()&lt;/code&gt;,
-&lt;code&gt;Text.Or&lt;/code&gt;. The tests that went through them go the way the window goes.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hosts/rhymetime/spec.json&lt;/code&gt; and &lt;code&gt;host-section.cs&lt;/code&gt;, left from before the game declared its window.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;For 2.0.0&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The settings action reads its major line from one word, &lt;code&gt;FrameworkLine&lt;/code&gt; in &lt;code&gt;stub/Stub.cs&lt;/code&gt;, and a test fails
-while that word and the DLL&amp;#39;s major version disagree. Nothing else is prepared in code: what a major version is
-to take away is listed in &lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/blob/main/PLAN.md&quot;&gt;PLAN.md&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;SHA-256 of UIFramework.dll: &lt;code&gt;dc2e4347b71a92c3d5b927e7d534262e4b4e701659a3d96c084c14d4bc6a48fd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/UIFramework-Streamer.bot/releases/tag/v1.9.0&quot;&gt;Download v1.9.0&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/uiframework/&quot;&gt;UIFramework on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Blackjack Game v17.5.2: A settings action that picks a UIFramework it fits</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.2"/>
-    <id>https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.2</id>
-    <published>2026-11-12T13:01:06Z</published>
-    <updated>2026-11-12T13:01:06Z</updated>
-    <category term="Blackjack-Game" label="Blackjack Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s: a setting that holds a number too large for 64 bits is read instead of
-failing.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Blackjack-Game/releases/tag/v17.5.2&quot;&gt;Download v17.5.2&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/blackjack-game/&quot;&gt;Blackjack Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Battleship Game v2.4.1: A settings action that picks a UIFramework it fits (pre-release)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1"/>
-    <id>https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1</id>
-    <published>2026-11-12T13:00:13Z</published>
-    <updated>2026-11-12T13:00:13Z</updated>
-    <category term="Battleship-Game" label="Battleship Game"/>
-    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The settings action passes over a UIFramework it is too old for.&lt;/strong&gt; Every game in a Streamer.bot shares the
-installed UIFramework.dll. Should a later one need a newer settings action than this game&amp;#39;s, the action now
-leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
-load whatever was newest. (Settings action 0.2.1.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;The update notice works with a UIFramework.dll you put in by hand.&lt;/strong&gt; A file saved from the browser carries
-Windows&amp;#39; &amp;quot;downloaded from the internet&amp;quot; mark, and the game did not load it: the notice at Streamer.bot&amp;#39;s start
-never came. A file damaged since its download is no longer loaded for it.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Changed&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The host block is UIFramework 1.8.4&amp;#39;s. Nothing in your settings changes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aaskjer/Battleship-Game/releases/tag/v2.4.1&quot;&gt;Download v2.4.1&lt;/a&gt; · &lt;a href=&quot;https://aaskjer.github.io/projects/battleship-game/&quot;&gt;Battleship Game on aaskjer.github.io&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
